@@ -1,0 +1,120 @@
+<!--<div class="outer">-->
+<!--<div class="middle">-->
+<!--<div class="inner" id="account-popup">-->
+<br>
+
+<!--<a href="profile1.html" class="fast-tap btn x">&nbsp;&nbsp;X&nbsp;&nbsp;</a>-->
+
+
+<center class="additem-popup">
+
+    <p style=" margin: 0px 8px 12px 18px; text-align: center;">Upload well lit portrait shots of your item for sale or
+        other insperational images related to your stores message.</p>
+
+    <!--<div style="margin: 0 auto; margin: 30px -15px 20px -15px;"><a href="#" class="fast-tap btn sml">&nbsp;Upload item-->
+        <!--pics&nbsp;</a></div>-->
+
+    <!--<div class="upload-pic-previews-wrapper hidden">-->
+        <!--<div class="upload-pic-previews"></div>-->
+        <!--<div class="upload-pic-previews"></div>-->
+        <!--<div class="upload-pic-previews"></div>-->
+        <!--<div class="upload-pic-previews"></div>-->
+        <!--<div class="upload-pic-previews"></div>-->
+    <!--</div>-->
+
+    <div style="width:240px;display: inline-block;">
+        <input class="custom-file-input" id="inputImage2"
+               type="file"
+               accept="image/*"
+               imagesh="image2"
+               resize-max-height="300"
+               resize-max-width="300"
+               resize-quality="0.7"/>
+        <div class="btn sml" style="margin-top:-16px;" type="submit"
+             ng-click="single(image2.resized)">Upload
+        </div>
+    </div>
+
+    <h6>{{image2.file.name}}</h6>
+
+    <!--<div class="upload-pic-previews-wrapper">-->
+        <!--<div class="upload-pic-previews" ng-repeat="thumb in slides">-->
+            <!--<img width="44" height="70" ng-src="{{thumb.image_url}}"/>-->
+            <!--<span class="x-but" ng-click="removeImage(thumb)">X</span>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <div style="margin: 10px 0px 0px 0px;">
+        <textarea ng-model="item.description" class="input item-desicription" placeholder="Item description"></textarea>
+    </div>
+
+    <div style="inline: block; width: 220px; margin: 0px 0 10px 0;">
+        <div style="float: left; margin: 0px 0px 0px 0px;"><input ng-model="item.price" id="textfield8" type="number"
+                                                                  placeholder="Price:"></div>
+
+        <div style="float: left; margin: 0px 0px 0px 10px;"><input ng-model="item.size" id="textfield3" type="text"
+                                                                   placeholder="Size"></div>
+
+        <div style="float: left; margin: 0px 0px 0px 10px;"><input ng-model="item.quantity" id="textfield3"
+                                                                   type="number" placeholder="#"></div>
+
+    </div>
+
+    <!--
+    <div style="width: 220px; margin: 6px 0 0px 0;" >
+    <select class="selector1" style="margin: -2px 0 20px 0;">
+        <option value="">Catagory</option>
+        <option value="accessories">Accessories</option>
+           <option value="bags">Bags</option>
+           <option value="casual">Casual</option>
+           <option value="coats">Coats</option>
+           <option value="dresses">Dresses</option>
+           <option value="hats">Hats</option>
+           <option value="pants">Trousers</option>
+           <option value="coach&co">Shoes</option>
+           <option value="commedesgarcon">Sports</option>
+           <option value="suits">Suits</option>
+           <option value="sunglasses">Sunglasses</option>
+           <option value="swimwear">Swimwear</option>
+    </select>
+    </div>
+
+    <div style="width: 220px; margin: 6px 0 0px 0;" >
+    <select class="selector1" style="margin: -2px 0 20px 0;">
+        <option value="">Condition*</option>
+           <option value="newwithtags">New with tags</option>
+           <option value="New">New</option>
+           <option value="slightlywarn">Slightly warn</option>
+           <option value="visablywarn">Visably warn</option>
+           <option value="secondhand">Second hand</option>
+           <option value="distressed">Distressed</option>
+    </select>
+    </div>
+
+    <div style="width: 220px; margin: 6px 0 0px 0;" >
+    <select class="selector1" style="margin: -2px 0 20px 0;">
+        <option value="">Shipping size*</option>
+           <option value="extralarge">Extra large</option>
+           <option value="large">Large</option>
+           <option value="medium">Medium</option>
+           <option value="Small">Small</option>
+    </select>
+    </div> -->
+
+    <div style="width: 220px; margin: 6px 0 0px 0;">
+        <select class="selector1" style="margin: -2px 0 20px 0;">
+            <option value="">Store pick up</option>
+        </select>
+    </div>
+
+    <div style="margin: 10px 0px 20px 0px;"><a class="btn sml" ng-click="save()">&nbsp;Post&nbsp;</a></div>
+
+</center>
+
+
+<!--</div>-->
+
+
+<!--</div>-->
+<!--</div>-->

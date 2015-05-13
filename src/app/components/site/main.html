@@ -1,0 +1,25 @@
+<div class="outer">
+    <div class="middle">
+        <div class="inner">
+            <center>
+                <img src="assets/images/mobbbi.png" width="140">
+                <br>
+                <br>
+                <div style="inline: block; width: 220px; margin: 0 10px 10px 10px;">
+
+                    <div style="float: left; margin: -4px 0px 0px 0;">
+                        <input ng-model="model.username" required="" class="form-control" id="login" placeholder="Enter login" autofocus>
+                    </div>
+
+                    <div style="float: left; margin: -4px 0px 0px 0;">
+                        <input type="password" required="" ng-model="model.password" class="form-control" id="password" placeholder="Enter password">
+                    </div>
+                </div>
+                <br>
+                <a ng-click="login()" class="btn sml">&nbsp;&nbsp;Enter&nbsp;&nbsp;</a>
+            </center>
+            <br>
+            <a ng-click="authenticate('facebook')" class="btn sml btn-blu">Enter with Facebook</a>
+        </div>
+    </div>
+</div>

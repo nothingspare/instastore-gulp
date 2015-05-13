@@ -1,0 +1,93 @@
+<div class="grid-container itemfeed">
+
+    <div ng-repeat="item in items" class="item-container">
+        <div class="rowfree">
+            <div class="heartoverimage3 heart-reveal hidden"></div>
+        </div>
+        <div class="stream-item-pic">
+
+            <a ui-sref="itemview({ id: item.id })">
+                <div id="item-large-pic" ng-style="{'background-image': 'url(' + item.images[0].image_url + ')'}">
+                    <!--<img ng-src="{{item.image_url}}" />-->
+                </div>
+            </a>
+
+
+            <p id="heart-position"><span class="heart-small"
+                                         style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
+                    class="price-text">454</b>
+            </p>
+
+            <p id="location-position"><span class="location-small"
+                                            style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b class="price-text">In-store </b>
+            </p>
+
+            <p id="price-position"><span class="buy-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
+                    class="price-text">{{item.price}}</b>
+            </p>
+
+            <p id="message-position"><span class="message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
+                    class="seller-name-text">MyBoutique </b>{{item.description}}</p>
+
+            <!--<div class="leavecomment" style=" margin: 10px 0 10px 10px; "><a href="#" style="color: #f37878; text-decoration: none !important;">Leave comment</a>
+		</div> -->
+            <br>
+
+            <div class="seemorecontainer">
+                <div class="fast-tap seemore" style=" margin: -28px 8px 4px -10px; text-align: right;"><span>See comments...</span>
+                </div>
+
+                <div class="seemorecontent">
+                    <p id="message-position" style=" margin: 5px 8px 0px 0px; text-align: right;"><span
+                            class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
+                            class="buyer-name-text">BeckyFoster </b>What sort of a discount will you do if we buy more
+                        than one?</p>
+
+                    <p id="message-position" style=" margin: 5px 8px 0px 0px; text-align: right;"><span
+                            class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
+                            class="buyer-name-text">NickyLaser </b>Cool</p>
+
+                    <p id="message-position" style=" margin: 5px 8px 0px 0px; text-align: right;"><span
+                            class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
+                            class="buyer-name-text">DanKeen </b>This looks like exactly what I have been looking for.
+                        Before I head over can I ask how many you have?</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="icon-cirle-wapper" style="margin-bottom: 10px; padding: 1px;">
+            <div ng-if="!isSeller">
+                <div ui-sref="itemview({id:item.id, tab:1})" class="action-icon active">
+                    <div class="buyer-message-circle active"></div>
+                </div>
+                <div ui-sref="itemview({id:item.id, tab:2})" class="action-icon">
+                    <div class="buy-circle"></div>
+                </div>
+                <div ui-sref="itemview({id:item.id, tab:3})" class="action-icon">
+                    <div class="heart-circle"></div>
+                </div>
+                <div ui-sref="itemview({id:item.id, tab:4})" class="action-icon">
+                    <div class="location-circle"></div>
+                </div>
+            </div>
+            <div ng-if="isSeller">
+                <div ui-sref="itemview({id:item.id, tab:1})" class="action-icon">
+                    <div class="message-circle active"></div>
+                </div>
+                <div ui-sref="itemview({id:item.id, tab:2})" class="action-icon">
+                    <div class="buy-circle"></div>
+                </div>
+                <div ui-sref="itemview({id:item.id, tab:3})" class="action-icon">
+                    <div class="promote-circle"></div>
+                </div>
+                <div ui-sref="itemview({id:item.id, tab:4})" class="action-icon">
+                    <div class="edit-circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h4 class="loadmore">load more...</h4>
