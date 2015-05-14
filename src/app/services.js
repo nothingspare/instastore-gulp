@@ -1,7 +1,7 @@
 'use strict';
 
 app
-    .factory('authInterceptor', function ($q, $window, UserService, $injector, $rootScope) {
+    .factory('authInterceptor', function ($q, $window, UserService, $injector) {
         return {
             request: function (config) {
                 if ($window.sessionStorage._auth && config.url.substring(0, 4) == 'http') {
@@ -9,12 +9,7 @@ app
                         'access-token': $window.sessionStorage._auth
                     };
                 }
-                UserService.initBgAndAvatar();
-                UserService.initIsSeller();
-                var stateService = $injector.get('$state');
-                if (stateService.includes('store')) $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
-                else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
-                    $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
+                UserService.init();
                 return config;
             },
             responseError: function (rejection) {
@@ -63,9 +58,14 @@ app
             }
         };
     })
-    .factory('UserService', function ($rootScope, $window) {
+    .factory('UserService', function ($rootScope, $window, $injector) {
         var currentUser;
         return {
+            init: function(){
+                this.initBgAndAvatar();
+                this.initIsSeller();
+                this.initBgFilter();
+            },
             login: function (token) {
                 $window.sessionStorage._auth = token;
             },
@@ -86,7 +86,12 @@ app
                 if ($window.sessionStorage.avatarUrl) $rootScope.avatarUrl = $window.sessionStorage.avatarUrl;
                 if ($window.sessionStorage.bgUrl) $rootScope.bgUrl = $window.sessionStorage.bgUrl;
             },
-
+            initBgFilter: function() {
+                var stateService = $injector.get('$state');
+                if (stateService.includes('store')) $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
+                else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
+                    $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
+            },
             //sometimes should be deprecated
             initIsSeller: function () {
                 if ($window.sessionStorage.isSeller == "true")
