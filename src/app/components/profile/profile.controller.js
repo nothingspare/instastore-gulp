@@ -8,7 +8,7 @@ angular.module('instastore')
             {title: 'third'},
             {title: 'fourth'}
         ];
-        //$scope.facebookProfile = UserService.getProfile();
+        $scope.facebookProfile = UserService.getProfile();
     }])
     .controller('ProfileStoreIndex', ['$scope', 'UserService', function ($scope, UserService) {
         $scope.slides = [

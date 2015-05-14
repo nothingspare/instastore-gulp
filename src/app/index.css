@@ -3546,6 +3546,36 @@ html:before {
     margin-bottom: 21px;
 }
 
+.itemfeed #icon-cirle-wapper {
+  position: relative;
+  margin: 0 auto;
+  padding: 1px;
+  pading-top: -10px;
+  text-align: center;
+  width: 312px;
+  height: 55px;
+  background: none;
+}
+
+.itemfeed>.item-container{
+    margin-bottom: 10px;
+}
+
+.itemgrid>.grid_unit .heart-small{
+    background-position: -37px -10px;
+}
+
+.itemgrid>.grid_unit .item-preview-small-grid {
+  margin: 0 auto;
+  position: relative;
+  margin: 0 auto;
+  width: 92px;
+  height: 110px;
+  margin-bottom: 5px;
+  padding: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 /*Seller comment starts*/
 .itemview .comment .icon-message {
     vertical-align: top;

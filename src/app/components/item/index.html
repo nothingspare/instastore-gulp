@@ -8,10 +8,8 @@
 
             <a ui-sref="itemview({ id: item.id })">
                 <div id="item-large-pic" ng-style="{'background-image': 'url(' + item.images[0].image_url + ')'}">
-                    <!--<img ng-src="{{item.image_url}}" />-->
                 </div>
             </a>
-
 
             <p id="heart-position"><span class="heart-small"
                                          style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
@@ -25,6 +23,37 @@
             <p id="price-position"><span class="buy-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
                     class="price-text">{{item.price}}</b>
             </p>
+
+            <div id="icon-cirle-wapper" style="margin-bottom: 10px; padding: 1px;">
+                <div ng-if="!isSeller">
+                    <div ui-sref="itemview({id:item.id, tab:1})" class="action-icon active">
+                        <div class="buyer-message-circle active"></div>
+                    </div>
+                    <div ui-sref="itemview({id:item.id, tab:2})" class="action-icon">
+                        <div class="buy-circle"></div>
+                    </div>
+                    <div ui-sref="itemview({id:item.id, tab:3})" class="action-icon">
+                        <div class="heart-circle"></div>
+                    </div>
+                    <div ui-sref="itemview({id:item.id, tab:4})" class="action-icon">
+                        <div class="location-circle"></div>
+                    </div>
+                </div>
+                <div ng-if="isSeller">
+                    <div ui-sref="itemview({id:item.id, tab:1})" class="action-icon">
+                        <div class="message-circle active"></div>
+                    </div>
+                    <div ui-sref="itemview({id:item.id, tab:2})" class="action-icon">
+                        <div class="buy-circle"></div>
+                    </div>
+                    <div ui-sref="itemview({id:item.id, tab:3})" class="action-icon">
+                        <div class="promote-circle"></div>
+                    </div>
+                    <div ui-sref="itemview({id:item.id, tab:4})" class="action-icon">
+                        <div class="edit-circle"></div>
+                    </div>
+                </div>
+            </div>
 
             <p id="message-position"><span class="message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
                     class="seller-name-text">MyBoutique </b>{{item.description}}</p>
@@ -53,37 +82,6 @@
                         Before I head over can I ask how many you have?</p>
                 </div>
 
-            </div>
-        </div>
-
-        <div id="icon-cirle-wapper" style="margin-bottom: 10px; padding: 1px;">
-            <div ng-if="!isSeller">
-                <div ui-sref="itemview({id:item.id, tab:1})" class="action-icon active">
-                    <div class="buyer-message-circle active"></div>
-                </div>
-                <div ui-sref="itemview({id:item.id, tab:2})" class="action-icon">
-                    <div class="buy-circle"></div>
-                </div>
-                <div ui-sref="itemview({id:item.id, tab:3})" class="action-icon">
-                    <div class="heart-circle"></div>
-                </div>
-                <div ui-sref="itemview({id:item.id, tab:4})" class="action-icon">
-                    <div class="location-circle"></div>
-                </div>
-            </div>
-            <div ng-if="isSeller">
-                <div ui-sref="itemview({id:item.id, tab:1})" class="action-icon">
-                    <div class="message-circle active"></div>
-                </div>
-                <div ui-sref="itemview({id:item.id, tab:2})" class="action-icon">
-                    <div class="buy-circle"></div>
-                </div>
-                <div ui-sref="itemview({id:item.id, tab:3})" class="action-icon">
-                    <div class="promote-circle"></div>
-                </div>
-                <div ui-sref="itemview({id:item.id, tab:4})" class="action-icon">
-                    <div class="edit-circle"></div>
-                </div>
             </div>
         </div>
     </div>

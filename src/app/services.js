@@ -33,6 +33,7 @@ app
 
             baseUrl: API_URL,
             path: undefined,
+            condition: undefined,
 
             models: function () {
                 return $http.get(this.baseUrl + this.path + location.search);
@@ -85,17 +86,19 @@ app
                 if ($window.sessionStorage.avatarUrl) $rootScope.avatarUrl = $window.sessionStorage.avatarUrl;
                 if ($window.sessionStorage.bgUrl) $rootScope.bgUrl = $window.sessionStorage.bgUrl;
             },
-            //controlBgFilter: function () {
-            //    if ($state.includes('store'))
-            //        $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
-            //    else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
-            //        $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
-            //},
+
+            //sometimes should be deprecated
             initIsSeller: function () {
                 if ($window.sessionStorage.isSeller == "true")
                     $rootScope.isSeller = true;
                 else
                     $rootScope.isSeller = false;
+            },
+            isSeller: function(){
+                if ($window.sessionStorage.isSeller == "true")
+                    return true;
+                else
+                    return false;
             },
             setIsSeller: function (value) {
                 $window.sessionStorage.isSeller = $rootScope.isSeller = value;
@@ -104,7 +107,9 @@ app
                 $window.sessionStorage.facebookProfile = JSON.stringify(profile);
             },
             getProfile: function () {
-                return JSON.parse($window.sessionStorage.facebookProfile);
+                if ($window.sessionStorage.facebookProfile)
+                    return JSON.parse($window.sessionStorage.facebookProfile);
+                else return {};
             },
             currentUser: function () {
                 return currentUser;

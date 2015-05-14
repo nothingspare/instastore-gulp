@@ -1,11 +1,15 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ItemIndex', ['$scope', 'rest', 'toaster', function ($scope, rest, toaster) {
+    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', function ($scope, rest, toaster, UserService) {
 
         $scope.pageClass = 'page-buyerprofile3';
 
-        rest.path = 'v1/items';
+        if (UserService.isSeller()) {
+            rest.path = 'v1/user-items';
+        }
+        else
+            rest.path = 'v1/items';
 
         var errorCallback = function (data) {
             toaster.clear();
@@ -210,7 +214,7 @@ angular.module('instastore')
                     $scope.currentTab = 'app/components/item/view-tab-buyer-comment.html';
                     break;
                 case '2':
-                    $scope.currentTab ='app/components/item/view-tab-buy.html';
+                    $scope.currentTab = 'app/components/item/view-tab-buy.html';
                     break;
                 case '3':
                     $scope.currentTab = 'app/components/item/view-tab-buyer-comment.html';
