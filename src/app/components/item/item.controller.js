@@ -1,24 +1,43 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', function ($scope, rest, toaster, UserService) {
+    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', function ($scope, rest, toaster, UserService, $stateParams, $rootScope) {
 
         $scope.pageClass = 'page-buyerprofile3';
-
-        if (UserService.isSeller()) {
-            rest.path = 'v1/user-items';
-        }
-        else
-            rest.path = 'v1/items';
 
         var errorCallback = function (data) {
             toaster.clear();
             toaster.pop('error', "status: " + data.status + " " + data.name, data.message);
         };
-
-        rest.models().success(function (data) {
-            $scope.items = data;
-        }).error(errorCallback);
+        var store;
+        if ($stateParams.storeurl) {
+            rest.path = 'v1/stores';
+            rest.models({store_url: $stateParams.storeurl}).success(function (data) {
+                store = data[0];
+                console.log(store);
+                if(!store) {
+                    errorCallback({status:404,name: 'Error', message:'There is no store with such url'});
+                    return;
+                };
+                rest.path = 'v1/items';
+                rest.models({user_id:store.user_id}).success(function (data) {
+                    $scope.items = data;
+                    $rootScope.bgUrl = store.bg_url;
+                    $rootScope.avatarUrl = store.avatar_url;
+                    $rootScope.isSeller = false;
+                });
+            }).error(errorCallback);
+        }
+        else {
+            if (UserService.isSeller()) {
+                rest.path = 'v1/user-items';
+            }
+            else
+                rest.path = 'v1/items';
+            rest.models().success(function (data) {
+                $scope.items = data;
+            }).error(errorCallback);
+        }
     }])
     .controller('ItemGridIndex', ['$scope', 'rest', 'toaster', function ($scope, rest, toaster) {
 

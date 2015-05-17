@@ -28,10 +28,23 @@ app
 
             baseUrl: API_URL,
             path: undefined,
-            condition: undefined,
 
-            models: function () {
-                return $http.get(this.baseUrl + this.path + location.search);
+            serialize: function (obj, prefix) {
+                var str = [];
+                for (var p in obj) {
+                    if (obj.hasOwnProperty(p)) {
+                        var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+                        str.push(typeof v == "object" ?
+                            serialize(v, k) :
+                        encodeURIComponent(k) + "=" + encodeURIComponent(v));
+                    }
+                }
+                return str.join("&");
+            },
+
+            models: function (filter) {
+                if (!filter) return $http.get(this.baseUrl + this.path);
+                return $http.get(this.baseUrl + this.path + '?' + this.serialize(filter));
             },
 
             model: function () {
@@ -61,7 +74,7 @@ app
     .factory('UserService', function ($rootScope, $window, $injector) {
         var currentUser;
         return {
-            init: function(){
+            init: function () {
                 this.initBgAndAvatar();
                 this.initIsSeller();
                 this.initBgFilter();
@@ -86,7 +99,7 @@ app
                 if ($window.sessionStorage.avatarUrl) $rootScope.avatarUrl = $window.sessionStorage.avatarUrl;
                 if ($window.sessionStorage.bgUrl) $rootScope.bgUrl = $window.sessionStorage.bgUrl;
             },
-            initBgFilter: function() {
+            initBgFilter: function () {
                 var stateService = $injector.get('$state');
                 if (stateService.includes('store')) $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
                 else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
@@ -99,7 +112,7 @@ app
                 else
                     $rootScope.isSeller = false;
             },
-            isSeller: function(){
+            isSeller: function () {
                 if ($window.sessionStorage.isSeller == "true")
                     return true;
                 else

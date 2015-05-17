@@ -28,7 +28,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('item', {
-            url: '/item',
+            url: '/item/:storeurl',
             controller: 'ItemIndex',
             templateUrl: modulesPath + '/item/index.html'
         });
@@ -57,8 +57,14 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/profile/profilestore.html'
         });
 
+        $stateProvider.state('storeview', {
+            url: '/storeview/:storeurl',
+            controller: 'StoreView',
+            templateUrl: modulesPath + '/item/index.html'
+        });
+
         $stateProvider.state('grid', {
-            url: '/grid',
+            url: '/grid/:storeurl',
             controller: 'ItemGridIndex',
             templateUrl: modulesPath + '/item/item-grid.html'
         });
