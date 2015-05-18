@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('instastore')
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$window', '$state', '$auth', 'UserService',
@@ -27,7 +27,7 @@ angular.module('instastore')
                     return;
                 }
                 rest.postModel($scope.model).success(function (data) {
-                    UserService.login(data);
+                    UserService.login(data.token);
                     toaster.pop('success', "Success");
                     $state.go('sellorbuy');
                 }).error(errorCallback);

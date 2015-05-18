@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', function ($scope, rest, toaster, UserService, $stateParams, $rootScope) {
+    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state',
+        function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state) {
 
         $scope.pageClass = 'page-buyerprofile3';
 
@@ -14,9 +15,9 @@ angular.module('instastore')
             rest.path = 'v1/stores';
             rest.models({store_url: $stateParams.storeurl}).success(function (data) {
                 store = data[0];
-                console.log(store);
                 if(!store) {
-                    errorCallback({status:404,name: 'Error', message:'There is no store with such url'});
+                    errorCallback({status:404, name:'error', message:'There is no store with such url'});
+                    $state.go('item');
                     return;
                 };
                 rest.path = 'v1/items';
