@@ -70,10 +70,13 @@
                 </a></li>
             </ul>
             <ul ng-if="!isSeller">
-                <li><a ui-sref-active="menu-item-active" ui-sref="grid">
+                <!--<li><a ui-sref-active="menu-item-active" ui-sref="grid">-->
+                    <!--<div class="gridstream"></div>-->
+                <!--</a></li>-->
+                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl})">
                     <div class="gridstream"></div>
                 </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="item">
+                <li><a ui-sref-active="menu-item-active" ui-sref="item({storeurl:$stateParams.storeurl})">
                     <div class="stream"></div>
                 </a></li>
                 <li><a ui-sref-active="menu-item-active" ui-sref="location">

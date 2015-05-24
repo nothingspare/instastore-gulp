@@ -37,11 +37,13 @@ angular.module('instastore')
                 $auth.authenticate(provider).then(function (res) {
 
                     UserService.login(res.data.token);
+                    UserService.setFacebookProfile(res.data.facebookProfile);
                     UserService.setProfile(res.data.profile);
+                    console.log(res.data.profile);
                     UserService.setBg(res.data.store.bg_url);
                     UserService.setAvatar(res.data.store.avatar_url);
 
-                    toaster.pop('success', "Welcome, " + res.data.profile.first_name + "!");
+                    toaster.pop('success', "Welcome, " + res.data.facebookProfile.first_name + "!");
                     $state.go('sellorbuy');
                 }, handleError);
             };

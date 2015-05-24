@@ -9,7 +9,8 @@ app
                         'access-token': $window.sessionStorage._auth
                     };
                 }
-                UserService.init();
+                var stateParamsService = $injector.get('$stateParams');
+                if (!stateParamsService.storeurl) UserService.init();
                 return config;
             },
             responseError: function (rejection) {
@@ -62,7 +63,8 @@ app
                 return $http.post(this.baseUrl + this.path, model);
             },
 
-            putModel: function (model) {
+            putModel: function (model, id) {
+                if (id) return $http.put(this.baseUrl + this.path + "/" + id, model);
                 return $http.put(this.baseUrl + this.path + "/" + $stateParams.id, model);
             },
 
@@ -122,9 +124,17 @@ app
                 $window.sessionStorage.isSeller = $rootScope.isSeller = value;
             },
             setProfile: function (profile) {
-                $window.sessionStorage.facebookProfile = JSON.stringify(profile);
+                $window.sessionStorage.profile = JSON.stringify(profile);
             },
             getProfile: function () {
+                if ($window.sessionStorage.profile)
+                    return JSON.parse($window.sessionStorage.profile);
+                else return {};
+            },
+            setFacebookProfile: function (profile) {
+                $window.sessionStorage.facebookProfile = JSON.stringify(profile);
+            },
+            getFacebookProfile: function () {
                 if ($window.sessionStorage.facebookProfile)
                     return JSON.parse($window.sessionStorage.facebookProfile);
                 else return {};
@@ -133,4 +143,19 @@ app
                 return currentUser;
             }
         };
+    })
+    .service('errorService', function(toaster){
+        return {
+            alert: function (data) {
+                toaster.clear();
+                if (data.status == undefined) {
+                    angular.forEach(data, function (error) {
+                        toaster.pop('error', "Field: " + error.field, error.message);
+                    });
+                }
+                else {
+                    toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
+                }
+            }
+        }
     });

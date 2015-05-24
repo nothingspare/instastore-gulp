@@ -1,15 +1,56 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ProfileIndex', ['$scope', 'UserService', function ($scope, UserService) {
-        $scope.slides = [
-            {title: 'first'},
-            {title: 'second'},
-            {title: 'third'},
-            {title: 'fourth'}
-        ];
-        $scope.facebookProfile = UserService.getProfile();
-    }])
+    .controller('ProfileIndex', ['$scope', 'UserService', 'errorService', 'toaster', 'rest',
+        function ($scope, UserService, errorService, toaster, rest) {
+
+            $scope.isFacebookOff = true;
+
+            var errorCallback = function (data) {
+                toaster.clear();
+                if (data.status == undefined) {
+                    angular.forEach(data, function (error) {
+                        toaster.pop('error', "Field: " + error.field, error.message);
+                    });
+                }
+                else {
+                    toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
+                }
+            };
+
+            $scope.slides = [
+                {title: 'first'},
+                {title: 'second'},
+                {title: 'third'},
+                {title: 'fourth'}
+            ];
+
+            rest.path = 'v1/profiles';
+            $scope.profile = UserService.getProfile();
+
+            $scope.save = function () {
+                rest.putModel($scope.profile, $scope.profile.id).success(function () {
+                    toaster.pop('success', "Profile saved");
+                    UserService.setProfile($scope.profile);
+                }).error(errorCallback);
+            };
+
+            $scope.toggleFacebookProfile = function () {
+                $scope.isFacebookOff = !$scope.isFacebookOff;
+                if($scope.isFacebookOff){
+                    var user = UserService.getProfile();
+                    $scope.profile.first_name = user.first_name;
+                    $scope.profile.last_name = user.last_name;
+                    $scope.profile.email = user.email;
+                }
+                else{
+                    var facebookUser = UserService.getFacebookProfile();
+                    $scope.profile.first_name = facebookUser.first_name;
+                    $scope.profile.last_name = facebookUser.last_name;
+                    $scope.profile.email = facebookUser.email;
+                }
+            };
+        }])
     .controller('ProfileStoreIndex', ['$scope', 'UserService', function ($scope, UserService) {
         $scope.slides = [
             {title: 'first'},
@@ -18,7 +59,6 @@ angular.module('instastore')
             {title: 'fourth'},
             {title: 'fifth'}
         ];
-        //$scope.facebookProfile = UserService.getProfile();
     }])
     .controller('CropUploadCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', '$window', 'UserService',
         function ($scope, $stateParams, $upload, API_URL, toaster, $window, UserService) {
