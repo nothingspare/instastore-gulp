@@ -31,4 +31,7 @@ app
     }])
     .controller('StoreAccounts', ['$scope', function ($scope) {
         console.log('StoreAccounts initialized');
+    }])
+    .controller('urlCtrl', ['$scope', function ($scope) {
+        console.log('urlCtrl initialized');
     }]);

@@ -38,8 +38,8 @@ angular.module('instastore')
 
                     UserService.login(res.data.token);
                     UserService.setFacebookProfile(res.data.facebookProfile);
+                    res.data.profile.store = res.data.store;
                     UserService.setProfile(res.data.profile);
-                    console.log(res.data.profile);
                     UserService.setBg(res.data.store.bg_url);
                     UserService.setAvatar(res.data.store.avatar_url);
 

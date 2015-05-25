@@ -25,25 +25,31 @@ angular.module('instastore')
                 {title: 'fourth'}
             ];
 
-            rest.path = 'v1/profiles';
             $scope.profile = UserService.getProfile();
 
             $scope.save = function () {
+                rest.path = 'v1/profiles';
                 rest.putModel($scope.profile, $scope.profile.id).success(function () {
-                    toaster.pop('success', "Profile saved");
-                    UserService.setProfile($scope.profile);
-                }).error(errorCallback);
+                        if ($scope.profile.store.id) {
+                            rest.path = 'v1/stores';
+                            rest.putModel($scope.profile.store, $scope.profile.store.id).success(function () {
+                                toaster.pop('success', "Profile saved");
+                                UserService.setProfile($scope.profile);
+                            });
+                        }
+                    }
+                ).error(errorCallback);
             };
 
             $scope.toggleFacebookProfile = function () {
                 $scope.isFacebookOff = !$scope.isFacebookOff;
-                if($scope.isFacebookOff){
+                if ($scope.isFacebookOff) {
                     var user = UserService.getProfile();
                     $scope.profile.first_name = user.first_name;
                     $scope.profile.last_name = user.last_name;
                     $scope.profile.email = user.email;
                 }
-                else{
+                else {
                     var facebookUser = UserService.getFacebookProfile();
                     $scope.profile.first_name = facebookUser.first_name;
                     $scope.profile.last_name = facebookUser.last_name;
@@ -51,7 +57,8 @@ angular.module('instastore')
                 }
             };
         }])
-    .controller('ProfileStoreIndex', ['$scope', 'UserService', function ($scope, UserService) {
+    .
+    controller('ProfileStoreIndex', ['$scope', 'UserService', function ($scope) {
         $scope.slides = [
             {title: 'first'},
             {title: 'second'},
