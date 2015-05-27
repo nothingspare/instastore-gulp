@@ -38,8 +38,7 @@
                             <f3>User details</f3>
                         </div>
                         <br>
-                        <input class="regular-feild" type="email" ng-model="profile.email"
-                               placeholder="Email"/>
+                        <input class="regular-feild" ng-model="profile.email" placeholder="Email"/>
                         <input class="regular-feild" ng-model="profile.phone" placeholder="Mobile number"/>
                         <input id="inp-new-pass" class="regular-feild margin-top" type="password"
                                placeholder="Enter a new password"/>
@@ -100,19 +99,12 @@
                         <h6 style="margin: 20px;">Email us and tell us about your store.
                             We will then see if you are qualify for a free early adapter account</h6>
 
-                        <div ng-controller="urlCtrl">
-                            <form name="storeurl-form" novalidate="" role="form">
 
-                                <input class="regular-field" style="width:214px;" type="text"
-                                       name="storeurl" ng-model="profile.store.store_url"
-                                       placeholder="Store Facebook page url" storeurl/>
-                                <span ng-show="storeurl-form.storeurl.$error.urlIsAvailable">This url is already taken!</span>
-                                <span ng-show="storeurl-form.storeurl.$error.$invalid">This url is already taken!</span>
+                        <input class="regular-field" style="width:214px;" type="text" ng-model="profile.store.store_url"
+                               placeholder="Store Facebook page url"/>
 
-                                <div style=" margin: 4px 0 10px 0;">
-                                    <div class="btn">&nbsp;Apply now&nbsp;</div>
-                                </div>
-                            </form>
+                        <div style=" margin: 4px 0 10px 0;">
+                            <div class="btn" ng-click = "saveUrl()">&nbsp;Apply now&nbsp;</div>
                         </div>
 
                         <div style="display: inline-block; width: 240px;">

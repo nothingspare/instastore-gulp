@@ -40,41 +40,41 @@ angular.module('instastore')
     .controller('ItemGridIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state',
         function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state) {
 
-        $scope.pageClass = 'page-buyerprofile1';
+            $scope.pageClass = 'page-buyerprofile1';
 
-        var errorCallback = function (data) {
-            toaster.clear();
-            toaster.pop('error', "status: " + data.status + " " + data.name, data.message);
-        };
-        var store;
-        if ($stateParams.storeurl) {
-            rest.path = 'v1/stores';
-            rest.models({store_url: $stateParams.storeurl}).success(function (data) {
-                store = data[0];
-                if (!store) {
-                    errorCallback({status: 404, name: 'error', message: 'There is no store with such url'});
-                    $state.go('item');
-                    return;
-                }
-                ;
-                rest.path = 'v1/items';
-                rest.models({user_id: store.user_id}).success(function (data) {
+            var errorCallback = function (data) {
+                toaster.clear();
+                toaster.pop('error', "status: " + data.status + " " + data.name, data.message);
+            };
+            var store;
+            if ($stateParams.storeurl) {
+                rest.path = 'v1/stores';
+                rest.models({store_url: $stateParams.storeurl}).success(function (data) {
+                    store = data[0];
+                    if (!store) {
+                        errorCallback({status: 404, name: 'error', message: 'There is no store with such url'});
+                        $state.go('item');
+                        return;
+                    }
+                    ;
+                    rest.path = 'v1/items';
+                    rest.models({user_id: store.user_id}).success(function (data) {
+                        $scope.items = data;
+                        $rootScope.bgUrl = store.bg_url;
+                        $rootScope.avatarUrl = store.avatar_url;
+                        $rootScope.isSeller = false;
+                    });
+                }).error(errorCallback);
+            }
+            else {
+                rest.path = 'v1/user-items';
+                rest.models().success(function (data) {
                     $scope.items = data;
-                    $rootScope.bgUrl = store.bg_url;
-                    $rootScope.avatarUrl = store.avatar_url;
-                    $rootScope.isSeller = false;
-                });
-            }).error(errorCallback);
-        }
-        else {
-            rest.path = 'v1/user-items';
-            rest.models().success(function (data) {
-                $scope.items = data;
-            }).error(errorCallback);
-        }
-    }])
-    .controller('ItemView', ['$scope', 'rest', 'toaster',
-        function ($scope, rest, toaster) {
+                }).error(errorCallback);
+            }
+        }])
+    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state',
+        function ($scope, rest, toaster, $state) {
 
             rest.path = 'v1/items';
 
@@ -115,6 +115,17 @@ angular.module('instastore')
                     })
                     .error(errorCallback);
             };
+
+            $scope.removeItem = function () {
+
+                rest.path = 'v1/items/' + $scope.item.id;
+                rest.deleteModel()
+                    .success(function () {
+                        toaster.pop('success', "Item deleted!");
+                        $state.go('item');
+                    })
+                    .error(errorCallback);
+            };
         }
     ])
     .controller('ItemAdd', ['$scope', 'rest', 'toaster', '$upload', 'API_URL', 'ngDialog',
@@ -122,7 +133,12 @@ angular.module('instastore')
 
             rest.path = 'v1/items';
 
-            $scope.item = {title: 'New item title', brand_id: 9, category_id: 1, description: 'Description'};
+            $scope.item = {title: 'New item title', brand_id: 9, category_id: 1, description: ''};
+
+            $scope.$watch('image2', function () {
+                if ($scope.image2) $scope.single($scope.image2);
+                console.log('image watch');
+            });
 
             var errorCallback = function (data) {
                 toaster.clear();
@@ -138,24 +154,19 @@ angular.module('instastore')
 
             $scope.save = function () {
                 rest.path = 'v1/items';
-                rest.postModel($scope.item).success(function () {
-                    toaster.pop('success', "Saved");
-                }).error(errorCallback);
+                if ($scope.item.id) {
+                    rest.putModel($scope.item).success(function () {
+                        toaster.pop('success', "Saved");
+                    }).error(errorCallback);
+                }
+                else {
+                    rest.postModel($scope.item).success(function () {
+                        toaster.pop('success', "Saved");
+                    }).error(errorCallback);
+                }
                 ngDialog.close();
             };
 
-
-            $scope.removeImage = function (thumb) {
-
-                rest.path = 'v1/item-images/' + thumb.id;
-
-                rest.deleteModel().success(function () {
-                    var index = $scope.slides.indexOf(thumb);
-                    $scope.slides.splice(index, 1);
-                    toaster.pop('success', "Image deleted!");
-                })
-                    .error(errorCallback);
-            };
 
             var dataURItoBlob = function (dataURI) {
                 var binary = atob(dataURI.split(',')[1]);
@@ -201,7 +212,7 @@ angular.module('instastore')
                             console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                         }).success(function (data, status, headers, config) {
                             toaster.pop('success', 'File ' + config.file.name + ' uploaded!');
-                            console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                            console.log('file ' + config.file.name + 'uploaded. Response: ' + data.image_url);
                         });
                     }
                 }
@@ -298,7 +309,7 @@ angular.module('instastore')
                     }).success(function (data, status, headers, config) {
                         toaster.pop('success', 'File ' + config.file.name + ' uploaded!');
                         $scope.slides.push({'image_url': data});
-                        console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                        console.log('file ' + config.file.name + 'uploaded. Response: ' + data.image_url);
                     });
                 }
             }

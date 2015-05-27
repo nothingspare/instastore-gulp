@@ -18,11 +18,11 @@
                                 <option value="">Stores Facebook page</option>
                             </select>
                         </div>
-                        <input class="regular-feild" type="text"
+                        <input class="regular-feild" type="text" ng-model="profile.store.store_name"
                                placeholder="Store name"/>
-                        <input class="regular-feild" type="text"
+                        <input class="regular-feild" type="text" ng-model="profile.store.description"
                                placeholder="Store description. Two lines."/>
-                        <input class="regular-feild" type="text"
+                        <input class="regular-feild" type="text" ng-model="profile.store.specialities"
                                placeholder="Store specialities. Three lines."/>
 
                         <div style="width: 240px; margin: 6px 0 0px 0;">
@@ -38,19 +38,20 @@
                             <f3>Store details</f3>
                         </div>
 
-                        <input style="margin:5px 0 0 0" class="regular-feild" type="text" placeholder="Store location"/>
+                        <input style="margin:5px 0 0 0" class="regular-feild" type="text"
+                               ng-model="profile.store.address" placeholder="Store location"/>
 
                         <div style="display:inline-block;width: 240px;margin: 10px 0 0 0;">
                             <div style="float: left;">
-                                <input id="textfield4" type="text" placeholder="City"/>
+                                <input id="textfield4" type="text" ng-model="profile.store.city" placeholder="City"/>
                             </div>
 
                             <div style="float: right; margin: 0px 0px 0px 10px;">
-                                <input id="textfield5" type="text" placeholder="State"/>
+                                <input id="textfield5" type="text" ng-model="profile.store.state" placeholder="State"/>
                             </div>
 
                             <div style="float: left; margin: -4px 0 0 0;">
-                                <input id="textfield7" type="text" placeholder="Zipcode"/>
+                                <input id="textfield7" type="text" ng-model="profile.store.zipcode" placeholder="Zipcode"/>
                             </div>
 
                             <div style=" margin: 4px 0 16px 0; float: right;"><a href="#" class="btn sml">&nbsp;Verify&nbsp;</a>
@@ -62,7 +63,7 @@
 
                         <div style="display:inline-block; width: 240px; margin: 10px 0 0 0;">
                             <div style="float: left; margin: 0px 0px 0px 0px;">
-                                <input id="textfield6" type="text" placeholder="PayPal email"/>
+                                <input id="textfield6" type="text" ng-model="profile.store.billing_email" placeholder="PayPal email"/>
                             </div>
 
                             <div style=" margin: 8px 0 10px 0; float: right;"><a href="#" class="btn sml">Cash
@@ -211,8 +212,8 @@
                 </li>
             </ul>
 
-            <div style=" margin: -55px 0 5px 0; float: center;">
-                <div ui-sref="store" class="btn sml">&nbsp;Done&nbsp;</div>
+            <div class="done-btn-ctn">
+                <div class="btn sml" ng-click="save()">&nbsp;Done&nbsp;</div>
             </div>
             <div rn-carousel-indicators ng-if="slides.length > 1" slides="slides"
                  rn-carousel-index="carouselIndex"></div>

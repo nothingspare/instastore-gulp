@@ -1,17 +1,22 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ProfileIndex', ['$scope', 'UserService', 'errorService', 'toaster', 'rest',
-        function ($scope, UserService, errorService, toaster, rest) {
+    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest',
+        function ($scope, UserService, toaster, rest) {
 
             $scope.isFacebookOff = true;
 
             var errorCallback = function (data) {
                 toaster.clear();
                 if (data.status == undefined) {
-                    angular.forEach(data, function (error) {
-                        toaster.pop('error', "Field: " + error.field, error.message);
-                    });
+                    if (data.code == 23000) {
+                        toaster.pop('error', "Field: Email has already been taken");
+                    }
+                    else {
+                        angular.forEach(data, function (error) {
+                            toaster.pop('error', "Field: " + error.field, error.message);
+                        });
+                    }
                 }
                 else {
                     toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
@@ -30,15 +35,18 @@ angular.module('instastore')
             $scope.save = function () {
                 rest.path = 'v1/profiles';
                 rest.putModel($scope.profile, $scope.profile.id).success(function () {
-                        if ($scope.profile.store.id) {
-                            rest.path = 'v1/stores';
-                            rest.putModel($scope.profile.store, $scope.profile.store.id).success(function () {
-                                toaster.pop('success', "Profile saved");
-                                UserService.setProfile($scope.profile);
-                            });
-                        }
+                        toaster.pop('success', "Profile saved");
+                        UserService.setProfile($scope.profile);
                     }
                 ).error(errorCallback);
+            };
+
+            $scope.saveUrl = function () {
+                rest.path = 'v1/stores';
+                rest.putModel($scope.profile.store, $scope.profile.store.id).success(function () {
+                    toaster.pop('success', "Store url saved");
+                    UserService.setProfile($scope.profile);
+                }).error(errorCallback);
             };
 
             $scope.toggleFacebookProfile = function () {
@@ -57,8 +65,24 @@ angular.module('instastore')
                 }
             };
         }])
-    .
-    controller('ProfileStoreIndex', ['$scope', 'UserService', function ($scope) {
+    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', function ($scope, UserService, rest, toaster) {
+        var errorCallback = function (data) {
+            toaster.clear();
+            if (data.status == undefined) {
+                if (data.code == 23000) {
+                    toaster.pop('error', "Field: Paypal Email has already been taken");
+                }
+                else {
+                    angular.forEach(data, function (error) {
+                        toaster.pop('error', "Field: " + error.field, error.message);
+                    });
+                }
+            }
+            else {
+                toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
+            }
+        };
+
         $scope.slides = [
             {title: 'first'},
             {title: 'second'},
@@ -66,6 +90,16 @@ angular.module('instastore')
             {title: 'fourth'},
             {title: 'fifth'}
         ];
+
+        $scope.profile = UserService.getProfile();
+
+        $scope.save = function () {
+            rest.path = 'v1/stores';
+            rest.putModel($scope.profile.store, $scope.profile.store.id).success(function () {
+                toaster.pop('success', "Store saved");
+                UserService.setProfile($scope.profile);
+            }).error(errorCallback);
+        };
     }])
     .controller('CropUploadCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', '$window', 'UserService',
         function ($scope, $stateParams, $upload, API_URL, toaster, $window, UserService) {
@@ -121,13 +155,13 @@ angular.module('instastore')
                             console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                         }).success(function (data, status, headers, config) {
                             if (isAvatar > 0) {
-                                UserService.setAvatar(data);
+                                UserService.setAvatar(data.image_url);
                             }
                             else {
-                                UserService.setBg(data);
+                                UserService.setBg(data.image_url);
                             }
                             toaster.pop('success', 'File uploaded!');
-                            console.log('file uploaded. Response: ' + data);
+                            console.log('file uploaded. Response: ' + data.image_url);
                         });
                     }
                 }

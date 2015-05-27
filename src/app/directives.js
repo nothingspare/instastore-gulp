@@ -171,32 +171,4 @@ app
         return function (input) {
             return input ? '✓' : '✘';
         };
-    })
-    .directive('storeurl', function (rest) {
-        return {
-            require: 'ngModel',
-            link: function (scope, elm, attrs, ctrl) {
-                ctrl.$parsers.unshift(function (value) {
-                    if (value) {
-                        // test and set the validity after update.
-                        var valid;
-
-                        rest.path = 'v1/stores';
-                        rest.models({store_url: value}).success(function (data) {
-                            if (data.length < 1) {
-                                // The storeurl is available
-                                valid = true;
-                            } else {
-                                valid = false;
-                            }
-                            ctrl.$setValidity('urlIsAvailable', valid);
-                            // if it's valid, return the value to the model,
-                            // otherwise return undefined.
-                            return valid ? value : undefined;
-                        });
-                    }
-                });
-
-            }
-        };
     });
