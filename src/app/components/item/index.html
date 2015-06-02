@@ -55,34 +55,40 @@
                 </div>
             </div>
 
-            <p id="message-position"><span class="message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
-                    class="seller-name-text">MyBoutique </b>{{item.description}}</p>
+            <table class="comment">
+                <tr>
+                    <td class="icon-message">
+                        <span class="seller-message-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                    <td>
+                        <p>
+                            <b class="seller-name-text">{{item.userFullName}}</b>
+                            {{item.description}}
+                        </p>
+                    </td>
+                </tr>
+                <tr ng-repeat="comment in item.comments | limitTo:2">
+                    <td class="icon-message">
+                        <span ng-class="item.userFullName==comment.authorFullName?'seller-message-small':'buyer-message-small'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </td>
+                    <td>
+                        <p>
+                            <b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'">{{comment.authorFullName}}</b>
+                            {{comment.content}}
+                        </p>
+                    </td>
+                </tr>
+            </table>
 
-            <!--<div class="leavecomment" style=" margin: 10px 0 10px 10px; "><a href="#" style="color: #f37878; text-decoration: none !important;">Leave comment</a>
-		</div> -->
-            <br>
-
-            <div class="seemorecontainer">
-                <div class="fast-tap seemore" style=" margin: -28px 8px 4px -10px; text-align: right;"><span>See comments...</span>
-                </div>
-
-                <div class="seemorecontent">
-                    <p id="message-position" style=" margin: 5px 8px 0px 0px; text-align: right;"><span
-                            class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
-                            class="buyer-name-text">BeckyFoster </b>What sort of a discount will you do if we buy more
-                        than one?</p>
-
-                    <p id="message-position" style=" margin: 5px 8px 0px 0px; text-align: right;"><span
-                            class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
-                            class="buyer-name-text">NickyLaser </b>Cool</p>
-
-                    <p id="message-position" style=" margin: 5px 8px 0px 0px; text-align: right;"><span
-                            class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
-                            class="buyer-name-text">DanKeen </b>This looks like exactly what I have been looking for.
-                        Before I head over can I ask how many you have?</p>
-                </div>
-
+            <div class="leavecomment" style=" margin: 10px 0 10px 10px; ">
+                <a style="color: #4c87f1; text-decoration: none !important;" ng-click="leavecomment({id:item.id, tab:1})">Leave comment</a>
             </div>
+
+            <div class="seemorecontainer" ng-click="seemore({id:item.id, tab:1})">
+                <div class="seemore" style=" margin: -28px 8px 4px -10px; text-align: right;">
+                    <span>See more...</span>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

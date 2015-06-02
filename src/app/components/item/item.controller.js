@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state',
-        function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state) {
+    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state', 'feedHelper',
+        function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper) {
 
             $scope.pageClass = 'page-buyerprofile3';
 
@@ -36,6 +36,16 @@ angular.module('instastore')
                     $scope.items = data;
                 }).error(errorCallback);
             }
+
+            $scope.seemore = function (go) {
+                feedHelper.seeMore = true;
+                $state.go('itemview', go);
+            };
+
+            $scope.leavecomment = function (go) {
+                feedHelper.leaveComment = true;
+                $state.go('itemview', go);
+            };
         }])
     .controller('ItemGridIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state',
         function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state) {
@@ -56,7 +66,6 @@ angular.module('instastore')
                         $state.go('item');
                         return;
                     }
-                    ;
                     rest.path = 'v1/items';
                     rest.models({user_id: store.user_id}).success(function (data) {
                         $scope.items = data;
@@ -73,12 +82,24 @@ angular.module('instastore')
                 }).error(errorCallback);
             }
         }])
-    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state',
-        function ($scope, rest, toaster, $state) {
+    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper',
+        function ($scope, rest, toaster, $state, feedHelper) {
 
             rest.path = 'v1/items';
 
             $scope.item = {};
+
+            $scope.seeMore = false;
+            if (feedHelper.seeMore) {
+                $scope.seeMore = true;
+                feedHelper.seeMore = false;
+            }
+
+            $scope.leaveComment = false;
+            if (feedHelper.leaveComment) {
+                $scope.leaveComment = true;
+                feedHelper.leaveComment = false;
+            }
 
             var errorCallback = function (data) {
                 toaster.clear();
@@ -91,6 +112,7 @@ angular.module('instastore')
                     toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
                 }
             };
+
 
             rest.model().success(function (data) {
                 $scope.item = data;
@@ -126,6 +148,16 @@ angular.module('instastore')
                     })
                     .error(errorCallback);
             };
+
+            $scope.saveComment = function (comment) {
+                rest.path = 'v1/comments';
+                $scope.seeMore = true;
+                rest.postModel({content: comment, item_id: $scope.item.id}).success(function () {
+                    toaster.pop('success', "Commented");
+                    $scope.item.comments.push({authorFullName: $scope.item.userFullName, content: comment});
+                    $scope.item.newComment = null;
+                }).error(errorCallback);
+            };
         }
     ])
     .controller('ItemAdd', ['$scope', 'rest', 'toaster', '$upload', 'API_URL', 'ngDialog',
@@ -137,7 +169,6 @@ angular.module('instastore')
 
             $scope.$watch('image2', function () {
                 if ($scope.image2) $scope.single($scope.image2);
-                console.log('image watch');
             });
 
             var errorCallback = function (data) {
@@ -211,7 +242,7 @@ angular.module('instastore')
                             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                             console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                         }).success(function (data, status, headers, config) {
-                            toaster.pop('success', 'File ' + config.file.name + ' uploaded!');
+                            toaster.pop('success', 'File uploaded!');
                             console.log('file ' + config.file.name + 'uploaded. Response: ' + data.image_url);
                         });
                     }
@@ -307,9 +338,10 @@ angular.module('instastore')
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                     }).success(function (data, status, headers, config) {
-                        toaster.pop('success', 'File ' + config.file.name + ' uploaded!');
-                        $scope.slides.push({'image_url': data});
-                        console.log('file ' + config.file.name + 'uploaded. Response: ' + data.image_url);
+                        toaster.pop('success', 'File uploaded!');
+                        delete $scope.image2;
+                        $scope.slides.push({'image_url': data.image_url});
+                        console.log('file ' + data.image_url + ' uploaded!');
                     });
                 }
             }

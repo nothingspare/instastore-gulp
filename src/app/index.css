@@ -832,7 +832,7 @@ p {
 /* - - menu text - - */
 
 h1 {
-    font-family: "helvetica neue" helvetica, arial, san-serif;
+    font-family: "helvetica neue", "helvetica", "arial", "san-serif";
     font-weight: 200;
     font-weight: 500;
     font-size: 10px;
@@ -1537,13 +1537,13 @@ h3 {
 }
 
 .buyer-message-small {
-    background: url(../assets/images/icons.svg);
+    background-image: url(../assets/images/icons.svg);
     background-position: -207px -9px;
     background-size: 900px 35px;
 }
 
 .seller-message-small {
-    background: url(../assets/images/icons.svg);
+    background-image: url(../assets/images/icons.svg);
     background-position: -66px -9px;
     background-size: 900px 35px;
 }
@@ -1964,6 +1964,7 @@ p {
 .leavecomment {
     font-size: 80%;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .seemorecontainer .seemorecontent {
@@ -2083,7 +2084,7 @@ p {
     position: relative;
     right: 15px;
     top: 3px;
-    background: transparent url(assets/images`/arrow-right-light.png) no-repeat left;
+    background: transparent url(assets/images/arrow-right-light.png) no-repeat left;
     background-size: 12px 12px;
     padding: 0 10px 0 200px;
 }
@@ -2274,7 +2275,7 @@ select,
 .sml,
 .cropButton,
 .crop-btn {
-    font-family: "helvetica neue" helvetica, arial, san-serif;
+    font-family: "helvetica neue", "helvetica", "arial", "san-serif";
     text-align: center;
     font-weight: 200;
     font-size: 18px;
@@ -3140,12 +3141,7 @@ ul.safearea a {
 }
 
 #container1-itemview {
-    position: fixed;
-    top: 0px;
-    margin: 0 auto;
-    width: 100%;
     background: rgba(225, 225, 225, 0.3);
-    opacity: 0.9;
     z-index: 200;
 }
 
@@ -3519,6 +3515,11 @@ html:before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 
+.itemview .img-container-square {
+    height:200px;
+    width:245px;
+}
+
 .additem-popup .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
 }
@@ -3589,6 +3590,10 @@ html:before {
     margin-bottom: 10px;
 }
 
+.itemfeed .comment .icon-message {
+    vertical-align: top;
+}
+
 .itemgrid>.grid_unit .heart-small{
     background-position: -37px -10px;
 }
@@ -3607,6 +3612,11 @@ html:before {
 /*Seller comment starts*/
 .itemview .comment .icon-message {
     vertical-align: top;
+}
+
+.itemview .leavecomment-container input{
+    margin-left: 20px;
+    margin-top:7px;
 }
 
 /*Seller comment end*/

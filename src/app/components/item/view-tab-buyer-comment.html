@@ -3,60 +3,52 @@
         <table class="comment">
             <tr>
                 <td class="icon-message">
-                    <span class="seller-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                    <span class="seller-message-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
                 <td>
                     <p>
-                        <b class="seller-name-text">MyBoutique</b>
-                        Vintage pair of 80's Cazals still in the original box.
+                        <b class="seller-name-text">{{item.userFullName}}</b>
+                        {{item.description}}
                     </p>
                 </td>
             </tr>
-            <tr>
+            <tr ng-if='!seeMore' ng-repeat="comment in item.comments | limitTo:2">
                 <td class="icon-message">
-                    <span class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                    <span ng-class="item.userFullName==comment.authorFullName?'seller-message-small':'buyer-message-small'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </td>
                 <td>
                     <p>
-                        <b class="buyer-name-text">DanKeen</b>
-                        This looks like exactly what I have been looking for. Before I head over can I ask how many you
-                        have?
+                        <b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'">{{comment.authorFullName}}</b>
+                        {{comment.content}}
                     </p>
                 </td>
             </tr>
-            <tr>
+            <tr ng-if='seeMore' ng-repeat="comment in item.comments">
                 <td class="icon-message">
-                    <span class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                    <span ng-class="item.userFullName==comment.authorFullName?'seller-message-small':'buyer-message-small'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </td>
                 <td>
                     <p>
-                        <b class="buyer-name-text">BeckyFoster</b>
-                        What sort of a discount will you do if we buy more than one?
+                        <b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'">{{comment.authorFullName}}</b>
+                        {{comment.content}}
                     </p>
                 </td>
             </tr>
         </table>
-        <div class="leavecomment" style=" margin: 10px 0 10px 10px; "><a href="#"
-                                                                         style="color: #f37878; text-decoration: none !important;">Leave
-            comment</a>
+        <div class="leavecomment" style=" margin: 10px 0 10px 10px; ">
+            <a style="color: #4c87f1; text-decoration: none !important;" ng-click="leaveComment = !leaveComment">Leave
+                comment</a>
         </div>
 
         <div class="seemorecontainer">
-            <div class="seemore" style=" margin: -28px 8px 4px -10px; text-align: right;"><span>See more...</span>
+            <div class="seemore" style=" margin: -28px 8px 4px -10px; text-align: right;">
+                <span ng-click="seeMore = !seeMore">See {{seeMore?' less':' more'}}...</span>
             </div>
+        </div>
 
-            <div class="seemorecontent">
-                <p id="message-position" style=" margin: 5px 8px 0px -5px; text-align: left;"><span
-                        class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
-                        class="buyer-name-text">BeckyFoster </b>What sort of a discount will you do if we buy more than
-                    one?</p>
+        <div ng-if="leaveComment" class="leavecomment-container">
+            <input ng-model="item.newComment">
 
-                <p id="message-position" style=" margin: 5px 8px 0px -5px; text-align: left;"><span
-                        class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
-                        class="buyer-name-text">NickyLaser </b>Cool</p>
-
-                <p id="message-position" style=" margin: 5px 8px 0px -5px; text-align: left;"><span
-                        class="buyer-message-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
-                        class="buyer-name-text">DanKeen </b>This looks like exactly what I have been looking for. Before
-                    I head over can I ask how many you have?</p>
-            </div>
+            <div class="but sml" ng-click="saveComment(item.newComment)">Post</div>
         </div>
     </div>
 </div>

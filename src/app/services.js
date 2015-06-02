@@ -158,4 +158,10 @@ app
                 }
             }
         }
+    })
+    .service('feedHelper', function(){
+        return {
+            seeMore: false,
+            leaveComment:false
+        }
     });
