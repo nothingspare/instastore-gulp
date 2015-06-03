@@ -1,6 +1,7 @@
 'use strict';
 
-var app = angular.module('instastore', ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer', 'angularFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch']);
+var app = angular.module('instastore', ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
+    'angularFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch', 'ngCookies']);
 
 app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider', 'API_URL',
     function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL) {

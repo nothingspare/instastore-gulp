@@ -1,12 +1,12 @@
 'use strict';
 
 app
-    .factory('authInterceptor', function ($q, $window, UserService, $injector) {
+    .factory('authInterceptor', function ($q, UserService, $injector, $cookies) {
         return {
             request: function (config) {
-                if ($window.sessionStorage._auth && config.url.substring(0, 4) == 'http') {
+                if ($cookies._auth  && config.url.substring(0, 4) == 'http') {
                     config.params = {
-                        'access-token': $window.sessionStorage._auth
+                        'access-token': $cookies._auth
                     };
                 }
                 var stateParamsService = $injector.get('$stateParams');
@@ -73,7 +73,7 @@ app
             }
         };
     })
-    .factory('UserService', function ($rootScope, $window, $injector) {
+    .factory('UserService', function ($rootScope, $injector, $cookies, $window) {
         var currentUser;
         return {
             init: function () {
@@ -82,24 +82,29 @@ app
                 this.initBgFilter();
             },
             login: function (token) {
-                $window.sessionStorage._auth = token;
+                $cookies._auth = token;
             },
             logout: function () {
-                $window.sessionStorage.removeItem('_auth');
+                delete $cookies._auth;
             },
             isGuest: function () {
-                if ($window.sessionStorage._auth) return false;
+                var token = $cookies._auth;
+                if (token) return false;
                 else return true;
             },
             setBg: function (bgUrl) {
-                $rootScope.bgUrl = $window.sessionStorage.bgUrl = bgUrl;
+                $cookies.bgUrl = bgUrl;
+                $rootScope.bgUrl = bgUrl;
             },
             setAvatar: function (avatarUrl) {
-                $rootScope.avatarUrl = $window.sessionStorage.avatarUrl = avatarUrl;
+                $cookies.avatarUrl = avatarUrl;
+                $rootScope.avatarUrl = avatarUrl;
             },
             initBgAndAvatar: function () {
-                if ($window.sessionStorage.avatarUrl) $rootScope.avatarUrl = $window.sessionStorage.avatarUrl;
-                if ($window.sessionStorage.bgUrl) $rootScope.bgUrl = $window.sessionStorage.bgUrl;
+                var bgU = $cookies.bgUrl;
+                var avU = $cookies.avatarUrl;
+                if (avU) $rootScope.avatarUrl = avU;
+                if (bgU) $rootScope.bgUrl = bgU;
             },
             initBgFilter: function () {
                 var stateService = $injector.get('$state');
@@ -107,28 +112,27 @@ app
                 else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
                     $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
             },
-            //sometimes should be deprecated
             initIsSeller: function () {
-                if ($window.sessionStorage.isSeller == "true")
+                if ($cookies.isSeller == "true")
                     $rootScope.isSeller = true;
                 else
                     $rootScope.isSeller = false;
             },
             isSeller: function () {
-                if ($window.sessionStorage.isSeller == "true")
+                if ($cookies.isSeller == "true")
                     return true;
                 else
                     return false;
             },
             setIsSeller: function (value) {
-                $window.sessionStorage.isSeller = $rootScope.isSeller = value;
+                $cookies.isSeller = $rootScope.isSeller = value;
             },
             setProfile: function (profile) {
-                $window.sessionStorage.profile = JSON.stringify(profile);
+                $cookies.profile = JSON.stringify(profile);
             },
             getProfile: function () {
-                if ($window.sessionStorage.profile)
-                    return JSON.parse($window.sessionStorage.profile);
+                if ($cookies.profile)
+                    return JSON.parse($cookies.profile);
                 else return {};
             },
             setFacebookProfile: function (profile) {
@@ -144,7 +148,7 @@ app
             }
         };
     })
-    .service('errorService', function(toaster){
+    .service('errorService', function (toaster) {
         return {
             alert: function (data) {
                 toaster.clear();
@@ -159,9 +163,9 @@ app
             }
         }
     })
-    .service('feedHelper', function(){
+    .service('feedHelper', function () {
         return {
             seeMore: false,
-            leaveComment:false
+            leaveComment: false
         }
     });

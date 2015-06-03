@@ -1,8 +1,8 @@
 //'use strict';
 
 angular.module('instastore')
-    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$window', '$state', '$auth', 'UserService',
-        function ($scope, $rootScope, rest, toaster, $window, $state, $auth, UserService) {
+    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService',
+        function ($scope, $rootScope, rest, toaster, $state, $auth, UserService) {
 
             if (!UserService.isGuest()) $state.go('item');
 
@@ -52,7 +52,7 @@ angular.module('instastore')
                 toaster.pop('error', err.data);
             }
         }])
-    .controller('SiteHeader', ['$scope', '$window', '$state', 'ngDialog', 'UserService', function ($scope, $window, $state, ngDialog, UserService) {
+    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', function ($scope, $state, ngDialog, UserService) {
 
         $scope.logout = function () {
             UserService.logout();
