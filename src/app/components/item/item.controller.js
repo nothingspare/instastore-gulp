@@ -186,7 +186,7 @@ angular.module('instastore')
             $scope.save = function () {
                 rest.path = 'v1/items';
                 if ($scope.item.id) {
-                    rest.putModel($scope.item).success(function () {
+                    rest.putModel($scope.item, $scope.item.id).success(function () {
                         toaster.pop('success', "Saved");
                     }).error(errorCallback);
                 }
@@ -240,10 +240,11 @@ angular.module('instastore')
                             file: file
                         }).progress(function (evt) {
                             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                            console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                            console.log('File upload: ' + progressPercentage + '% ');
                         }).success(function (data, status, headers, config) {
-                            toaster.pop('success', 'File uploaded!');
-                            console.log('file ' + config.file.name + 'uploaded. Response: ' + data.image_url);
+                            if (data.image_url){
+                            toaster.pop('success', 'File uploaded!');}
+                            else errorCallback({message:'File is not uploaded!', status:500, name:'Ooops!', code:500});
                         });
                     }
                 }

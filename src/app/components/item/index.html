@@ -11,13 +11,12 @@
                 </div>
             </a>
 
-            <p id="heart-position"><span class="heart-small"
-                                         style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
-                    class="price-text">454</b>
+            <p id="heart-position"><span class="heart-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <b class="price-text">454</b>
             </p>
 
-            <p id="location-position"><span class="location-small"
-                                            style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b class="price-text">In-store </b>
+            <p id="location-position">
+                <span class="location-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b class="price-text">In-store </b>
             </p>
 
             <p id="price-position"><span class="buy-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
@@ -62,7 +61,7 @@
                     <td>
                         <p>
                             <b class="seller-name-text">{{item.userFullName}}</b>
-                            {{item.description}}
+                            {{item.description?item.description:'No description given'}}
                         </p>
                     </td>
                 </tr>

@@ -673,6 +673,12 @@ p {
     width: 100%;
 }
 
+.account-outer {
+    display: table;
+    height: 90%;
+    width: 100%;
+}
+
 .middle {
     display: table-cell;
     vertical-align: middle;
@@ -1244,7 +1250,7 @@ h3 {
     opacity: 1.0;
     z-index: 200;
     position: relative;
-    top: 4.4em;
+    top: 12em;
 }
 
 /** - - - - - - - item hero circles end - - - - - - - - - - **/
@@ -3214,6 +3220,9 @@ html:before {
         .ngdialog {
             padding-top: 1% !important;
         }
+        #item-circles{
+            top:10.6em;
+        }
     }
 }
 
@@ -3222,12 +3231,18 @@ html:before {
         .ngdialog {
             padding-top: 12% !important;
         }
+        #item-circles{
+            top:17.8em;
+        }
     }
 }
 
 @media only screen and (min-width: 375px) {
     .ngdialog {
         padding-top: 22% !important;
+    }
+    #item-circles{
+        top:20.8em;
     }
 }
 
