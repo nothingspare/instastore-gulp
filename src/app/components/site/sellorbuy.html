@@ -1,26 +1,34 @@
-<div class="outer sellorbuy">
+<div ng-controller="SiteHeader" id="container1-itemview">
+    <div id="navigation1">
+        <ul>
+            <li>
+                <a style="width:82%;height:38px"></a>
+            </li>
+            <li>
+                <a ng-click="goAsBuyer()">
+                    <div class="fast-tap user"></div>
+                    <h4></h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="outer-top sellorbuy">
     <div class="middle">
         <div class="inner">
-
-
+            <br>
+            <br>
             <img src="assets/images/mobbbi.png" width="140">
             <br>
-            <br>
-            <br>
-            <br>
-            <a ng-click="goAsBuyer()" class="btn sml">&nbsp;&nbsp;Enter&nbsp;&nbsp;</a>
-            <br>
-            <br>
-                <p style="margin: 20px 10px 20px 10px;">Or store owners can use their key to enter their own store. </p>
 
-                <div style="display: inline-block; width: 240px; margin: 0 10px 10px 10px;">
+            <h3>Welcome store owner</h3>
 
-                    <div style="float: left; margin: -4px 0px 0px 0;">
-                        <input type="password" placeholder="Store key"/>
-                    </div>
+            <p style="margin: 20px 10px 20px 10px;">Enter as store owner or store-icon to view your store as
+                customer </p>
 
-                    <div style=" margin: 4px 0 0px 0; float: right;"><a ng-click="goAsSeller()" class="btn sml">&nbsp;Enter&nbsp;</a></div>
-                </div>
+            <div style="display: inline-block; width: 240px; margin: 0 10px 10px 10px;">
+                <a ng-click="goAsSeller()" class="btn enter-button">&nbsp;Enter&nbsp;</a>
+            </div>
         </div>
     </div>
 </div>

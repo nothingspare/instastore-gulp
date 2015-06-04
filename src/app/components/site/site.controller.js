@@ -18,38 +18,24 @@ angular.module('instastore')
                 });
             };
 
-            $scope.login = function () {
-
-                rest.path = 'v1/user/login';
-
-                if (!$scope.model) {
-                    toaster.pop('error', "Wrong login or password");
-                    return;
-                }
-                rest.postModel($scope.model).success(function (data) {
-                    UserService.login(data.token);
-                    toaster.pop('success', "Success");
-                    $state.go('sellorbuy');
-                }).error(errorCallback);
-            };
-
             $scope.authenticate = function (provider) {
                 $auth.authenticate(provider).then(function (res) {
-
                     UserService.login(res.data.token);
                     UserService.setFacebookProfile(res.data.facebookProfile);
                     res.data.profile.store = res.data.store;
+                    res.data.profile.stores = res.data.stores;
                     UserService.setProfile(res.data.profile);
                     UserService.setBg(res.data.store.bg_url);
                     UserService.setAvatar(res.data.store.avatar_url);
-
-                    toaster.pop('success', "Welcome, " + res.data.facebookProfile.first_name + "!");
-                    $state.go('sellorbuy');
+                    var name = res.data.profile.first_name ? res.data.profile.first_name : res.data.facebookProfile.first_name;
+                    toaster.pop('success', "Welcome, " + name + "!");
+                    if (UserService.getInvitedStatus()) $state.go('sellorbuy');
+                    else $state.go('storeselect');
                 }, handleError);
             };
 
             function handleError(err) {
-                toaster.pop('error', err.data);
+                if (err.data) toaster.pop('error', err.data);
             }
         }])
     .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', function ($scope, $state, ngDialog, UserService) {
@@ -71,19 +57,25 @@ angular.module('instastore')
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
 
         $scope.goAsBuyer = function () {
+            var profile = UserService.getProfile();
             UserService.setIsSeller(false);
-            $state.go('storeselect');
+            $state.go('item', {storeurl:profile.store.store_url});
         };
 
         $scope.goAsSeller = function () {
             UserService.setIsSeller(true);
-            $state.go('storeselect');
+            $state.go('item');
         };
 
     }])
-    .controller('SiteStoreSelect', ['$scope', '$rootScope', '$state', function ($scope, $rootScope, $state) {
-        if ($rootScope.isSeller) $state.go('item');
-        $scope.selectStore = function () {
-            $state.go('item');
+    .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'errorService', 'toaster', function ($scope, UserService, $state, rest, errorService, toaster) {
+        $scope.profile = UserService.getProfile();
+        rest.path = 'v1/profiles';
+        $scope.selectStore = function (inviter_id) {
+            $scope.profile.inviter_id = inviter_id;
+            rest.putModel($scope.profile, $scope.profile.id).success(function () {
+                toaster.pop('success', "Saved");
+                $state.go('sellorbuy');
+            }).error(errorService.alert);
         };
     }]);

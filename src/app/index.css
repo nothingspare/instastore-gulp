@@ -679,6 +679,13 @@ p {
     width: 100%;
 }
 
+.outer-top {
+    display: table;
+    top: 56px;
+    height: 90%;
+    width: 100%;
+}
+
 .middle {
     display: table-cell;
     vertical-align: middle;
@@ -724,7 +731,8 @@ p {
     width: 120px;
     height: 10px;
     cursor: pointer;
-    margin: 40px 0 10px 0;
+    margin: 8px 8px 4px -10px;
+    color: #000000;
 }
 
 .info4:hover + .popup4 {
@@ -833,7 +841,6 @@ p {
     background-position: -612px -7px;
     background-size: 700px 50px;
 }
-
 
 /* - - menu text - - */
 
@@ -1530,6 +1537,12 @@ h3 {
     background-size: 900px 35px;
 }
 
+.description-small {
+    background-image: url(../assets/images/icons.svg);
+    background-position: -100px -10px;
+    background-size: 900px 35px;
+}
+
 .location-small {
     background-image: url(../assets/images/icons.svg);
     background-position: -140px -9px;
@@ -1672,7 +1685,7 @@ h3 {
 }
 
 .promote-circle:hover {
-    background: url(../assets/images/icons.svg)  -1100px -0px;
+    background: url(../assets/images/icons.svg) -1100px -0px;
     background-size: 1200px 50px;
 }
 
@@ -3220,8 +3233,9 @@ html:before {
         .ngdialog {
             padding-top: 1% !important;
         }
-        #item-circles{
-            top:10.6em;
+
+        #item-circles {
+            top: 10.6em;
         }
     }
 }
@@ -3231,8 +3245,9 @@ html:before {
         .ngdialog {
             padding-top: 12% !important;
         }
-        #item-circles{
-            top:17.8em;
+
+        #item-circles {
+            top: 13.8em;
         }
     }
 }
@@ -3241,8 +3256,9 @@ html:before {
     .ngdialog {
         padding-top: 22% !important;
     }
-    #item-circles{
-        top:20.8em;
+
+    #item-circles {
+        top: 17.8em;
     }
 }
 
@@ -3309,7 +3325,7 @@ html:before {
     box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.6), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-.popup-outer .done-btn-ctn{
+.popup-outer .done-btn-ctn {
     width: 100%;
     height: 0px;
     text-align: center;
@@ -3319,11 +3335,11 @@ html:before {
     cursor: pointer;
 }
 
-.popup-outer #textfield4{
+.popup-outer #textfield4 {
     width: 118px;
 }
 
-.popup-outer .done-btn-ctn{
+.popup-outer .done-btn-ctn {
     width: 100%;
     height: 0px;
     text-align: center;
@@ -3333,7 +3349,7 @@ html:before {
     cursor: pointer;
 }
 
-.popup-outer .rn-carousel-indicator{
+.popup-outer .rn-carousel-indicator {
     top: -23px;
 }
 
@@ -3434,6 +3450,10 @@ html:before {
     height: 24px;
 }
 
+.sellorbuy .enter-button {
+    width: 200px;
+}
+
 /*Sellorbuy section end*/
 /*Item start*/
 .grid-container.itemview {
@@ -3531,8 +3551,8 @@ html:before {
 }
 
 .itemview .img-container-square {
-    height:200px;
-    width:245px;
+    height: 200px;
+    width: 245px;
 }
 
 .additem-popup .custom-file-input::-webkit-file-upload-button {
@@ -3591,17 +3611,17 @@ html:before {
 }
 
 .itemfeed #icon-cirle-wapper {
-  position: relative;
-  margin: 0 auto;
-  padding: 1px;
-  pading-top: -10px;
-  text-align: center;
-  width: 312px;
-  height: 55px;
-  background: none;
+    position: relative;
+    margin: 0 auto;
+    padding: 1px;
+    pading-top: -10px;
+    text-align: center;
+    width: 312px;
+    height: 55px;
+    background: none;
 }
 
-.itemfeed>.item-container{
+.itemfeed > .item-container {
     margin-bottom: 10px;
 }
 
@@ -3609,19 +3629,19 @@ html:before {
     vertical-align: top;
 }
 
-.itemgrid>.grid_unit .heart-small{
+.itemgrid > .grid_unit .heart-small {
     background-position: -37px -10px;
 }
 
-.itemgrid>.grid_unit .item-preview-small-grid {
-  margin: 0 auto;
-  position: relative;
-  margin: 0 auto;
-  width: 92px;
-  height: 110px;
-  margin-bottom: 5px;
-  padding: 1px;
-  background-color: rgba(255, 255, 255, 0.5);
+.itemgrid > .grid_unit .item-preview-small-grid {
+    margin: 0 auto;
+    position: relative;
+    margin: 0 auto;
+    width: 92px;
+    height: 110px;
+    margin-bottom: 5px;
+    padding: 1px;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 /*Seller comment starts*/
@@ -3629,9 +3649,9 @@ html:before {
     vertical-align: top;
 }
 
-.itemview .leavecomment-container input{
+.itemview .leavecomment-container input {
     margin-left: 20px;
-    margin-top:7px;
+    margin-top: 7px;
 }
 
 /*Seller comment end*/

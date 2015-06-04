@@ -75,6 +75,7 @@ app
     })
     .factory('UserService', function ($rootScope, $injector, $cookies, $window) {
         var currentUser;
+        var isInvited;
         return {
             init: function () {
                 this.initBgAndAvatar();
@@ -108,7 +109,7 @@ app
             },
             initBgFilter: function () {
                 var stateService = $injector.get('$state');
-                if (stateService.includes('store')) $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
+                if (stateService.includes('store')) $rootScope.bgFilter = '-webkit-filter:opacity(.8);filter:opacity(.8);';
                 else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
                     $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
             },
@@ -129,11 +130,16 @@ app
             },
             setProfile: function (profile) {
                 $cookies.profile = JSON.stringify(profile);
+                if(profile.inviter_id) isInvited = true;
             },
             getProfile: function () {
                 if ($cookies.profile)
                     return JSON.parse($cookies.profile);
                 else return {};
+            },
+            getInvitedStatus: function (){
+              if (isInvited) return true;
+                else return false;
             },
             setFacebookProfile: function (profile) {
                 $window.sessionStorage.facebookProfile = JSON.stringify(profile);
