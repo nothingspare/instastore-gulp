@@ -12,7 +12,6 @@ app
         }
     }])
     .directive('imagesh', function ($q) {
-        'use strict'
 
         var URL = window.URL || window.webkitURL;
 
@@ -91,7 +90,7 @@ app
                 resizeMaxHeight: '@?',
                 resizeMaxWidth: '@?',
                 resizeQuality: '@?',
-                resizeType: '@?',
+                resizeType: '@?'
             },
             link: function postLink(scope, element, attrs, ctrl) {
 
@@ -105,10 +104,8 @@ app
                         callback(imageResult);
                     });
                 };
-
                 var applyScope = function (imageResult) {
                     scope.$apply(function () {
-                        //console.log(imageResult);
                         if (attrs.multiple)
                             scope.image.push(imageResult);
                         else
@@ -166,6 +163,28 @@ app
                     element.append(style);
                 });
         };
+    })
+    .directive('toggleimageheight', function ($rootScope, SLIDER_HEIGHT) {
+        var isRealHeight;
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                attrs.$observe('carind', function(){
+                    $rootScope.sliderImageHeight = SLIDER_HEIGHT;
+                    isRealHeight = false;
+                });
+                elem.bind('click', function () {
+                    var height = elem[0].clientHeight;
+                    scope.$apply(function () {
+                        if (isRealHeight)
+                            $rootScope.sliderImageHeight = SLIDER_HEIGHT;
+                        else
+                            $rootScope.sliderImageHeight = height;
+                        isRealHeight = !isRealHeight;
+                    });
+                });
+            }
+        }
     })
     .filter('checkmark', function () {
         return function (input) {

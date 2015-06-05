@@ -3,15 +3,15 @@
         <div ng-if="showHearts" class="rowfree">
             <div class="heartoverimage2 heart-reveal-large"></div>
         </div>
-        <ul rn-carousel rn-carousel-buffered rn-carousel-indicator rn-carousel-controls
+        <ul style = "height:{{sliderImageHeight}}px;" rn-carousel rn-carousel-buffered rn-carousel-indicator rn-carousel-controls
             rn-carousel-index="carouselIndex" class="my-slider">
             <li ng-repeat="image in slides">
-                <div ng-if="image.image_url" id="item-large-pic"
-                     ng-style="{'background-image': 'url(' + image.image_url + ')'}"></div>
+                <div toggleimageheight carind="{{carouselIndex}}" ng-if="image.image_url" class = "resizable-image" ng-style="{'background-image': 'url(' + image.image_url + ')'};">
+                    <img ng-src="{{image.image_url}}" style="visibility:hidden" width="310"/>
+                </div>
             </li>
         </ul>
-        <div rn-carousel-indicators ng-if="slides.length > 1" slides="slides" rn-carousel-index="carouselIndex"
-             style="margin-top: -45px;"></div>
+        <div rn-carousel-indicators ng-if="slides.length > 1" slides="slides" rn-carousel-index="carouselIndex"></div>
     </div>
 
     <div class="item-attrs-wrapper">
@@ -36,7 +36,8 @@
                 <div class="buyer-message-circle"
                      ng-class="isActiveTab('app/components/item/view-tab-buyer-comment.html') ? 'active' : ''"></div>
             </div>
-            <div class="action-icon" ng-click="onClickTab({title: 'Two', url: 'app/components/item/view-tab-buy.html'})">
+            <div class="action-icon"
+                 ng-click="onClickTab({title: 'Two', url: 'app/components/item/view-tab-buy.html'})">
                 <div class="buy-circle"
                      ng-class="isActiveTab('app/components/item/view-tab-buy .html') ? 'active' : ''"></div>
             </div>
@@ -55,7 +56,8 @@
                 <div class="message-circle"
                      ng-class="isActiveTab('app/components/item/view-tab-comment.html') ? 'active' : ''"></div>
             </div>
-            <div class="action-icon" ng-click="onClickTab({title: 'Two', url: 'app/components/item/view-tab-log.html'})">
+            <div class="action-icon"
+                 ng-click="onClickTab({title: 'Two', url: 'app/components/item/view-tab-log.html'})">
                 <div class="buy-circle"
                      ng-class="isActiveTab('app/components/item/view-tab-log.html') ? 'active' : ''"></div>
             </div>

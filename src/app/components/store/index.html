@@ -3,9 +3,11 @@
         <div class="inner">
             <div id="item-circles">
                 <ul>
-                    <li><a href="buyer-item.html"><div class="fast-tap item-circle-1"></div></a></li>
-                    <li><a href="buyer-item.html"><div class="fast-tap item-circle-2"></div></a></li>
-                    <li><a href="buyer-item.html"><div class="fast-tap item-circle-3"></div></a></li>
+                    <li ng-repeat="item in items| limitTo:3">
+                        <a ui-sref="itemview({id:item.id})">
+                            <div class="item-circle-1"></div>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

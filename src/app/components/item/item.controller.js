@@ -82,8 +82,8 @@ angular.module('instastore')
                 }).error(errorCallback);
             }
         }])
-    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper',
-        function ($scope, rest, toaster, $state, feedHelper) {
+    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'SLIDER_HEIGHT',
+        function ($scope, rest, toaster, $state, feedHelper, SLIDER_HEIGHT) {
 
             rest.path = 'v1/items';
 
@@ -94,6 +94,10 @@ angular.module('instastore')
                 $scope.seeMore = true;
                 feedHelper.seeMore = false;
             }
+
+            $scope.changeSlides = function(carouselIndex){
+                console.log(carouselIndex);
+            };
 
             $scope.leaveComment = false;
             if (feedHelper.leaveComment) {

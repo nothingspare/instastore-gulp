@@ -86,7 +86,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
         $authProvider.facebook({
             clientId: '352496064951251',
-            url:'v1/user/auth'
+            url: 'v1/user/auth'
         });
 
         $locationProvider.html5Mode(true).hashPrefix('!');

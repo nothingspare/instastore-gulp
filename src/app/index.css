@@ -1754,6 +1754,7 @@ h3 {
 /** - - - - - GRID ITEM icon & text positioning - - - - - - - **/
 /** - - big pic - - **/
 
+/*TODO: Consider to delete*/
 #item-large-pic {
     position: relative;
     background: url(img/i2.jpg) center top;
@@ -3215,6 +3216,20 @@ html:before {
     background-size: cover;
 }
 
+/*body:before {*/
+    /*content: "";*/
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: -1;*/
+    /*display: block;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background-color: white;*/
+    /*-webkit-filter: opacity(.4);*/
+    /*filter: opacity(.4);*/
+/*}*/
+
 .ngdialog {
     position: fixed;
     overflow: auto;
@@ -3233,7 +3248,6 @@ html:before {
         .ngdialog {
             padding-top: 1% !important;
         }
-
         #item-circles {
             top: 10.6em;
         }
@@ -3245,7 +3259,6 @@ html:before {
         .ngdialog {
             padding-top: 12% !important;
         }
-
         #item-circles {
             top: 13.8em;
         }
@@ -3256,7 +3269,6 @@ html:before {
     .ngdialog {
         padding-top: 22% !important;
     }
-
     #item-circles {
         top: 17.8em;
     }
@@ -3475,11 +3487,14 @@ html:before {
     position: relative;
     margin: 0 auto;
     width: 310px;
-    height: 280px;
     margin-bottom: 0px;
     padding: 2px;
     background-color: rgba(255, 255, 255, 0.5);
     overflow: hidden;
+}
+
+.itemview .resizable-image{
+    background-size: 310px auto;
 }
 
 .itemview .item-attrs-wrapper {
@@ -3553,6 +3568,11 @@ html:before {
 .itemview .img-container-square {
     height: 200px;
     width: 245px;
+}
+
+.itemview div[rn-carousel-indicators]{
+    height:20px;
+    margin-top: -20px;
 }
 
 .additem-popup .custom-file-input::-webkit-file-upload-button {
@@ -3642,6 +3662,15 @@ html:before {
     margin-bottom: 5px;
     padding: 1px;
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+.itemgrid .grid-image {
+    width: 92px;
+    height: 92px;
+    background-size: cover;
+    overflow: hidden;
+    background-position: center center;
+    margin-bottom: 4px;
 }
 
 /*Seller comment starts*/
