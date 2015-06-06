@@ -34,7 +34,7 @@ angular.module('instastore')
 
             $scope.save = function () {
                 rest.path = 'v1/profiles';
-                rest.putModel($scope.profile, $scope.profile.id).success(function () {
+                rest.putModel($scope.profile).success(function () {
                         toaster.pop('success', "Profile saved");
                         UserService.setProfile($scope.profile);
                     }
@@ -43,7 +43,7 @@ angular.module('instastore')
 
             $scope.saveUrl = function () {
                 rest.path = 'v1/stores';
-                rest.putModel($scope.profile.store, $scope.profile.store.id).success(function () {
+                rest.putModel($scope.profile.store).success(function () {
                     toaster.pop('success', "Store url saved");
                     UserService.setProfile($scope.profile);
                 }).error(errorCallback);
@@ -95,7 +95,7 @@ angular.module('instastore')
 
         $scope.save = function () {
             rest.path = 'v1/stores';
-            rest.putModel($scope.profile.store, $scope.profile.store.id).success(function () {
+            rest.putModel($scope.profile.store).success(function () {
                 toaster.pop('success', "Store saved");
                 UserService.setProfile($scope.profile);
             }).error(errorCallback);

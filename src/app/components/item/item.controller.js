@@ -1,11 +1,10 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state', 'feedHelper',
-        function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper) {
-
+    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state', 'feedHelper', 'errorService', '$filter',
+        function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper, errorService, $filter) {
             $scope.pageClass = 'page-buyerprofile3';
-
+            $scope.showCheckmark = $stateParams.storeurl ? false : true;
             var errorCallback = function (data) {
                 toaster.clear();
                 toaster.pop('error', "status: " + data.status + " " + data.name, data.message);
@@ -20,9 +19,8 @@ angular.module('instastore')
                         $state.go('item');
                         return;
                     }
-                    ;
                     rest.path = 'v1/items';
-                    rest.models({user_id: store.user_id}).success(function (data) {
+                    rest.models({user_id: store.user_id, status: 20}).success(function (data) {
                         $scope.items = data;
                         $rootScope.bgUrl = store.bg_url;
                         $rootScope.avatarUrl = store.avatar_url;
@@ -45,6 +43,15 @@ angular.module('instastore')
             $scope.leavecomment = function (go) {
                 feedHelper.leaveComment = true;
                 $state.go('itemview', go);
+            };
+
+            $scope.toggleItemStatus = function (item) {
+                if (item.status == 10) item.status = 20;
+                else item.status = 10;
+                rest.putModel(item).success(function (data) {
+                    var found = $filter('getById')($scope.items, data.id);
+                    found.status = data.status;
+                }).error(errorService.alert);
             };
         }])
     .controller('ItemGridIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state',
@@ -82,8 +89,8 @@ angular.module('instastore')
                 }).error(errorCallback);
             }
         }])
-    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'SLIDER_HEIGHT',
-        function ($scope, rest, toaster, $state, feedHelper, SLIDER_HEIGHT) {
+    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
+        function ($scope, rest, toaster, $state, feedHelper, errorService) {
 
             rest.path = 'v1/items';
 
@@ -95,38 +102,21 @@ angular.module('instastore')
                 feedHelper.seeMore = false;
             }
 
-            $scope.changeSlides = function(carouselIndex){
-                console.log(carouselIndex);
-            };
-
             $scope.leaveComment = false;
             if (feedHelper.leaveComment) {
                 $scope.leaveComment = true;
                 feedHelper.leaveComment = false;
             }
 
-            var errorCallback = function (data) {
-                toaster.clear();
-                if (data.status == undefined) {
-                    angular.forEach(data, function (error) {
-                        toaster.pop('error', "Field: " + error.field, error.message);
-                    });
-                }
-                else {
-                    toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
-                }
-            };
-
-
             rest.model().success(function (data) {
                 $scope.item = data;
                 $scope.slides = data.images;
-            }).error(errorCallback);
+            }).error(errorService.alert);
 
             $scope.save = function () {
                 rest.putModel($scope.item).success(function () {
                     toaster.pop('success', "Saved");
-                }).error(errorCallback);
+                }).error(errorService.alert);
             };
 
             $scope.removeImage = function (thumb) {
@@ -139,7 +129,7 @@ angular.module('instastore')
                         $scope.slides.splice(index, 1);
                         toaster.pop('success', "Image deleted!");
                     })
-                    .error(errorCallback);
+                    .error(errorService.alert);
             };
 
             $scope.removeItem = function () {
@@ -150,7 +140,7 @@ angular.module('instastore')
                         toaster.pop('success', "Item deleted!");
                         $state.go('item');
                     })
-                    .error(errorCallback);
+                    .error(errorService.alert);
             };
 
             $scope.saveComment = function (comment) {
@@ -160,12 +150,12 @@ angular.module('instastore')
                     toaster.pop('success', "Commented");
                     $scope.item.comments.push({authorFullName: $scope.item.userFullName, content: comment});
                     $scope.item.newComment = null;
-                }).error(errorCallback);
+                }).error(errorService.alert);
             };
         }
     ])
-    .controller('ItemAdd', ['$scope', 'rest', 'toaster', '$upload', 'API_URL', 'ngDialog',
-        function ($scope, rest, toaster, $upload, API_URL, ngDialog) {
+    .controller('ItemAdd', ['$scope', 'rest', 'toaster', '$upload', 'API_URL', 'ngDialog', 'errorService',
+        function ($scope, rest, toaster, $upload, API_URL, ngDialog, errorService) {
 
             rest.path = 'v1/items';
 
@@ -175,29 +165,17 @@ angular.module('instastore')
                 if ($scope.image2) $scope.single($scope.image2);
             });
 
-            var errorCallback = function (data) {
-                toaster.clear();
-                if (data.status == undefined) {
-                    angular.forEach(data, function (error) {
-                        toaster.pop('error', "Field: " + error.field, error.message);
-                    });
-                }
-                else {
-                    toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
-                }
-            };
-
             $scope.save = function () {
                 rest.path = 'v1/items';
                 if ($scope.item.id) {
-                    rest.putModel($scope.item, $scope.item.id).success(function () {
+                    rest.putModel($scope.item).success(function () {
                         toaster.pop('success', "Saved");
                     }).error(errorCallback);
                 }
                 else {
                     rest.postModel($scope.item).success(function () {
                         toaster.pop('success', "Saved");
-                    }).error(errorCallback);
+                    }).error(errorService.alert);
                 }
                 ngDialog.close();
             };
@@ -246,9 +224,15 @@ angular.module('instastore')
                             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                             console.log('File upload: ' + progressPercentage + '% ');
                         }).success(function (data, status, headers, config) {
-                            if (data.image_url){
-                            toaster.pop('success', 'File uploaded!');}
-                            else errorCallback({message:'File is not uploaded!', status:500, name:'Ooops!', code:500});
+                            if (data.image_url) {
+                                toaster.pop('success', 'File uploaded!');
+                            }
+                            else errorCallback({
+                                message: 'File is not uploaded!',
+                                status: 500,
+                                name: 'Ooops!',
+                                code: 500
+                            });
                         });
                     }
                 }

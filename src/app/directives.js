@@ -169,7 +169,7 @@ app
         return {
             restrict: 'A',
             link: function (scope, elem, attrs) {
-                attrs.$observe('carind', function(){
+                attrs.$observe('carind', function () {
                     $rootScope.sliderImageHeight = SLIDER_HEIGHT;
                     isRealHeight = false;
                 });
@@ -186,8 +186,29 @@ app
             }
         }
     })
-    .filter('checkmark', function () {
+    .filter('itemPrice', function () {
         return function (input) {
-            return input ? '✓' : '✘';
+            return input ? input : '---';
         };
+    })
+    .filter('itemStatus', function () {
+        return function (input) {
+            return ((input * 1) == 10) ? '✓' : '✘';
+        };
+    })
+    .filter('itemDescription', function () {
+        return function (input) {
+            return input ? input : 'No description given';
+        };
+    })
+    .filter('getById', function () {
+        return function (input, id) {
+            var i = 0, len = input.length;
+            for (; i < len; i++) {
+                if (+input[i].id == +id) {
+                    return input[i];
+                }
+            }
+            return null;
+        }
     });

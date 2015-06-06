@@ -1,7 +1,7 @@
 var app = angular.module('instastore');
 app
     .controller('StoreIndex', ['$scope', 'rest', 'errorService', function ($scope, rest, errorService) {
-        rest.path = 'v1/user-items';
+        rest.path = 'v1/user-lastitems';
         $scope.items = {};
         rest.models().success(function (data) {
             $scope.items = data;

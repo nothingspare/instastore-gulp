@@ -4,7 +4,7 @@ app
     .factory('authInterceptor', function ($q, UserService, $injector, $cookies) {
         return {
             request: function (config) {
-                if ($cookies._auth  && config.url.substring(0, 4) == 'http') {
+                if ($cookies._auth && config.url.substring(0, 4) == 'http') {
                     config.params = {
                         'access-token': $cookies._auth
                     };
@@ -63,8 +63,8 @@ app
                 return $http.post(this.baseUrl + this.path, model);
             },
 
-            putModel: function (model, id) {
-                if (id) return $http.put(this.baseUrl + this.path + "/" + id, model);
+            putModel: function (model) {
+                if (model.id) return $http.put(this.baseUrl + this.path + "/" + model.id, model);
                 return $http.put(this.baseUrl + this.path + "/" + $stateParams.id, model);
             },
 
@@ -130,15 +130,15 @@ app
             },
             setProfile: function (profile) {
                 $cookies.profile = JSON.stringify(profile);
-                if(profile.inviter_id) isInvited = true;
+                if (profile.inviter_id) isInvited = true;
             },
             getProfile: function () {
                 if ($cookies.profile)
                     return JSON.parse($cookies.profile);
                 else return {};
             },
-            getInvitedStatus: function (){
-              if (isInvited) return true;
+            getInvitedStatus: function () {
+                if (isInvited) return true;
                 else return false;
             },
             setFacebookProfile: function (profile) {
@@ -173,5 +173,16 @@ app
         return {
             seeMore: false,
             leaveComment: false
+        }
+    })
+    .service('Item', function (rest, toaster, errorService) {
+        return {
+            save: function (item, successCallback) {
+                rest.path = 'v1/user-items';
+                rest.putModel(item).success(
+                    successCallback ? successCallback : function () {
+                        toaster.pop('success', "Saved");
+                    }).error(errorService.alert);
+            }
         }
     });
