@@ -1,7 +1,7 @@
 <div class="popup-outer">
     <div class="middle">
         <div class="inner popup-inner">
-            <div ui-sref="store" class="x-profile"></div>
+            <div class="x-profile" ng-click="goBack()"></div>
             <ul rn-carousel rn-carousel-buffered rn-carousel-indicator rn-carousel-index="carouselIndex"
                 class="safearea popup-safearea ng-cloak">
                 <li>
@@ -25,7 +25,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="profile-img"></div>
+                        <div class="profile-img" style="background-image:url(http://graph.facebook.com/{{facebookUid}}/picture?type=large)"></div>
                         <input class="regular-feild margin-top" ng-model="profile.first_name" type="text"
                                placeholder="First name"/>
                         <input class="regular-feild" type="text" ng-model="profile.last_name"

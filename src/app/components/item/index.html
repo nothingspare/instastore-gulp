@@ -1,7 +1,7 @@
 <div class="grid-container itemfeed">
     <div ng-repeat="item in items" class="item-container">
         <div class="stream-item-pic">
-            <div class="checkmark" ng-if="showCheckmark" ng-click="toggleItemStatus(item)">{{item.status|itemStatus}}</div>
+            <div class="x-profile" ng-if="showCheckmark" ng-click="toggleItemStatus(item)"></div>
             <div ui-sref="itemview({id:item.id})" id="item-large-pic"
                  ng-style="{'background-image': 'url(' + item.images[0].image_url + ')', 'opacity':item.status==10?0.3:1}">
             </div>
@@ -12,7 +12,7 @@
 
                 <p id="location-position">
                     <span class="location-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <b class="price-text">In-store </b>
+                    <b class="price-text">In-store</b>
                 </p>
 
                 <p id="price-position"><span class="buy-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

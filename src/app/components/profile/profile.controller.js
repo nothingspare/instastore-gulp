@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest',
-        function ($scope, UserService, toaster, rest) {
+    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state',
+        function ($scope, UserService, toaster, rest, PreviousState, $state) {
 
             $scope.isFacebookOff = true;
 
@@ -32,6 +32,9 @@ angular.module('instastore')
 
             $scope.profile = UserService.getProfile();
 
+            var facebookUser = UserService.getFacebookProfile();
+            $scope.facebookUid = facebookUser.id;
+
             $scope.save = function () {
                 rest.path = 'v1/profiles';
                 rest.putModel($scope.profile).success(function () {
@@ -43,8 +46,9 @@ angular.module('instastore')
 
             $scope.saveUrl = function () {
                 rest.path = 'v1/stores';
-                rest.putModel($scope.profile.store).success(function () {
+                rest.putModel($scope.profile.store).success(function (data) {
                     toaster.pop('success', "Store url saved");
+                    $scope.profile.store.store_url = data.store_url;
                     UserService.setProfile($scope.profile);
                 }).error(errorCallback);
             };
@@ -58,14 +62,23 @@ angular.module('instastore')
                     $scope.profile.email = user.email;
                 }
                 else {
-                    var facebookUser = UserService.getFacebookProfile();
                     $scope.profile.first_name = facebookUser.first_name;
                     $scope.profile.last_name = facebookUser.last_name;
                     $scope.profile.email = facebookUser.email;
                 }
             };
+
+            $scope.goBack = function () {
+                if (PreviousState.Name) {
+                    if (PreviousState.Name == 'profilestore') $state.go('item');
+                    else $state.go(PreviousState.Name, PreviousState.Params);
+                }
+                else
+                    $state.go('item');
+            };
         }])
-    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', function ($scope, UserService, rest, toaster) {
+    .
+    controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', function ($scope, UserService, rest, toaster) {
         var errorCallback = function (data) {
             toaster.clear();
             if (data.status == undefined) {

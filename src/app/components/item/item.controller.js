@@ -54,41 +54,6 @@ angular.module('instastore')
                 }).error(errorService.alert);
             };
         }])
-    .controller('ItemGridIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state',
-        function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state) {
-
-            $scope.pageClass = 'page-buyerprofile1';
-
-            var errorCallback = function (data) {
-                toaster.clear();
-                toaster.pop('error', "status: " + data.status + " " + data.name, data.message);
-            };
-            var store;
-            if ($stateParams.storeurl) {
-                rest.path = 'v1/stores';
-                rest.models({store_url: $stateParams.storeurl}).success(function (data) {
-                    store = data[0];
-                    if (!store) {
-                        errorCallback({status: 404, name: 'error', message: 'There is no store with such url'});
-                        $state.go('item');
-                        return;
-                    }
-                    rest.path = 'v1/items';
-                    rest.models({user_id: store.user_id}).success(function (data) {
-                        $scope.items = data;
-                        $rootScope.bgUrl = store.bg_url;
-                        $rootScope.avatarUrl = store.avatar_url;
-                        $rootScope.isSeller = false;
-                    });
-                }).error(errorCallback);
-            }
-            else {
-                rest.path = 'v1/user-items';
-                rest.models().success(function (data) {
-                    $scope.items = data;
-                }).error(errorCallback);
-            }
-        }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         function ($scope, rest, toaster, $state, feedHelper, errorService) {
 

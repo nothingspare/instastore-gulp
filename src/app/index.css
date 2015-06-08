@@ -624,6 +624,10 @@ body {
 
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
+
+    height: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 html {
@@ -632,10 +636,19 @@ html {
     overflow: hidden;
 }
 
-body {
+
+html:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    display: block;
+    width: 100%;
     height: 100%;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
+    background-size: cover;
+    opacity: 0.4;
 }
 
 a {
@@ -3220,33 +3233,6 @@ ul.safearea a {
     width: 30px;
 }
 
-html:before {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: -1;
-
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-}
-
-/*body:before {*/
-/*content: "";*/
-/*position: fixed;*/
-/*left: 0;*/
-/*right: 0;*/
-/*z-index: -1;*/
-/*display: block;*/
-/*width: 100%;*/
-/*height: 100%;*/
-/*background-color: white;*/
-/*-webkit-filter: opacity(.4);*/
-/*filter: opacity(.4);*/
-/*}*/
-
 .ngdialog {
     position: fixed;
     overflow: auto;
@@ -3673,6 +3659,11 @@ html:before {
     background-position: -37px -10px;
 }
 
+.itemgrid > .grid_unit .item-preview-small-grid .x-profile {
+    right: -6px;
+    top: -6px;
+}
+
 .itemgrid > .grid_unit .item-preview-small-grid {
     margin: 0 auto;
     position: relative;
@@ -3705,6 +3696,10 @@ html:before {
 
 /*Seller comment end*/
 
+#container1-itemview #navigation1 li a {
+    height: 38px;
+}
+
 /*Item end*/
 
 .centered {
@@ -3719,4 +3714,12 @@ html:before {
     float: left;
     width: 50px;
     padding: 0 0 0 22px;
+}
+
+.item-inactive {
+    opacity: 0.3;
+}
+
+.item-active {
+    opacity: 1;
 }

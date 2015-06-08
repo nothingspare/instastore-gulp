@@ -34,6 +34,12 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/item/index.html'
         });
 
+        $stateProvider.state('grid', {
+            url: '/grid/:storeurl',
+            controller: 'ItemIndex',
+            templateUrl: modulesPath + '/item/item-grid.html'
+        });
+
         $stateProvider.state('itemview', {
             url: '/itemview/:id/:tab',
             controller: 'ItemView',
@@ -48,6 +54,19 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
         $stateProvider.state('profile', {
             url: '/profile',
+            resolve: {
+                PreviousState: [
+                    '$state',
+                    function ($state) {
+                        var currentStateData = {
+                            Name: $state.current.name,
+                            Params: $state.params,
+                            URL: $state.href($state.current.name, $state.params)
+                        };
+                        return currentStateData;
+                    }
+                ]
+            },
             controller: 'ProfileIndex',
             templateUrl: modulesPath + '/profile/index.html'
         });
@@ -62,12 +81,6 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             url: '/storeview/:storeurl',
             controller: 'StoreView',
             templateUrl: modulesPath + '/item/index.html'
-        });
-
-        $stateProvider.state('grid', {
-            url: '/grid/:storeurl',
-            controller: 'ItemGridIndex',
-            templateUrl: modulesPath + '/item/item-grid.html'
         });
 
         $stateProvider.state('location', {

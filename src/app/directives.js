@@ -191,15 +191,15 @@ app
             return input ? input : '---';
         };
     })
-    .filter('itemStatus', function () {
-        return function (input) {
-            return ((input * 1) == 10) ? '✓' : '✘';
-        };
-    })
     .filter('itemDescription', function () {
         return function (input) {
             return input ? input : 'No description given';
         };
+    })
+    .filter('itemStatus', function () {
+        return function(input){
+            return ((input*1)==10)? 'item-inactive': 'item-active';
+        }
     })
     .filter('getById', function () {
         return function (input, id) {
