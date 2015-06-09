@@ -168,6 +168,10 @@ app
                 else {
                     toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
                 }
+            },
+            simpleAlert: function (data) {
+                toaster.clear();
+                toaster.pop('error', "status: " + data.status + " " + data.name, data.message);
             }
         }
     })

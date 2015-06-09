@@ -57,8 +57,6 @@ angular.module('instastore')
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         function ($scope, rest, toaster, $state, feedHelper, errorService) {
 
-            rest.path = 'v1/items';
-
             $scope.item = {};
 
             $scope.seeMore = false;
@@ -73,6 +71,7 @@ angular.module('instastore')
                 feedHelper.leaveComment = false;
             }
 
+            rest.path = 'v1/items';
             rest.model().success(function (data) {
                 $scope.item = data;
                 $scope.slides = data.images;
@@ -241,20 +240,20 @@ angular.module('instastore')
         else
             switch ($stateParams.tab) {
                 case '1':
-                    $scope.currentTab = 'app/components/item/view-tab-buyer-comment.html';
+                    $scope.currentTab = 'app/components/item/view-tab-comment.html';
                     break;
                 case '2':
                     $scope.currentTab = 'app/components/item/view-tab-buy.html';
                     break;
                 case '3':
-                    $scope.currentTab = 'app/components/item/view-tab-buyer-comment.html';
+                    $scope.currentTab = 'app/components/item/view-tab-comment.html';
                     $scope.likeItem();
                     break;
                 case '4':
                     $scope.currentTab = 'app/components/item/view-tab-location.html'
                     break;
                 default:
-                    $scope.currentTab = 'app/components/item/view-tab-buyer-comment.html';
+                    $scope.currentTab = 'app/components/item/view-tab-comment.html';
             }
     }])
     .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', function ($scope, $stateParams, $upload, API_URL, toaster) {

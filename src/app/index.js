@@ -90,7 +90,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('store', {
-            url: '/store',
+            url: '/store/:storeurl',
             controller: 'StoreIndex',
             templateUrl: modulesPath + '/store/index.html'
         });

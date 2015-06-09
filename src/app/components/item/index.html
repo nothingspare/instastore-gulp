@@ -58,7 +58,6 @@
                             <span class="description-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
                         <td>
                             <p>
-                                <b class="seller-name-text">{{item.userFullName}}</b>
                                 {{item.description | itemDescription}}
                             </p>
                         </td>
@@ -69,7 +68,8 @@
                         </td>
                         <td>
                             <p>
-                                <b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'">{{comment.authorFullName}}</b>
+                                <b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'"><a
+                                        ui-sref="store({storeurl:comment.storeUrl})">{{item.userFullName!==comment.authorFullName?comment.authorFullName:''}}</a></b>
                                 {{comment.content}}
                             </p>
                         </td>
@@ -81,7 +81,7 @@
                        ng-click="leavecomment({id:item.id, tab:1})">Leave comment</a>
                 </div>
 
-                <div class="seemorecontainer" ng-if="item.comments.length>2"ng-click="seemore({id:item.id, tab:1})">
+                <div class="seemorecontainer" ng-if="item.comments.length>2" ng-click="seemore({id:item.id, tab:1})">
                     <div class="seemore" style=" margin: -28px 8px 4px -10px; text-align: right;">
                         <span>See more...</span>
                     </div>
