@@ -164,23 +164,18 @@ app
                 });
         };
     })
-    .directive('toggleimageheight', function ($rootScope, SLIDER_HEIGHT) {
-        var isRealHeight;
+    .directive('toggleimageheight', function ($rootScope, SLIDER_HEIGHT, SLIDER_HEIGHT_EXTENDED) {
+        var isExtHeight;
         return {
             restrict: 'A',
             link: function (scope, elem, attrs) {
-                attrs.$observe('carind', function () {
-                    $rootScope.sliderImageHeight = SLIDER_HEIGHT;
-                    isRealHeight = false;
-                });
                 elem.bind('click', function () {
-                    var height = elem[0].clientHeight;
                     scope.$apply(function () {
-                        if (isRealHeight)
+                        if (isExtHeight)
                             $rootScope.sliderImageHeight = SLIDER_HEIGHT;
                         else
-                            $rootScope.sliderImageHeight = height;
-                        isRealHeight = !isRealHeight;
+                            $rootScope.sliderImageHeight = SLIDER_HEIGHT_EXTENDED;
+                        isExtHeight = !isExtHeight;
                     });
                 });
             }
@@ -197,8 +192,8 @@ app
         };
     })
     .filter('itemStatus', function () {
-        return function(input){
-            return ((input*1)==10)? 'item-inactive': 'item-active';
+        return function (input) {
+            return ((input * 1) == 10) ? 'item-inactive' : 'item-active';
         }
     })
     .filter('getById', function () {

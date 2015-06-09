@@ -636,7 +636,6 @@ html {
     overflow: hidden;
 }
 
-
 html:before {
     content: "";
     position: fixed;
@@ -3010,8 +3009,11 @@ input:-moz-placeholder {
 
 .my-slider {
     width: 310px;
-    height: 300px;
+    height: 310px;
     font-size: 0;
+    -webkit-transition: height 0.8s;
+    -moz-transition: height 0.8s;
+    transition: height 0.8s;
 }
 
 /* variables */
@@ -3572,8 +3574,9 @@ ul.safearea a {
 }
 
 .itemview .img-container-square {
-    height: 200px;
-    width: 245px;
+    height: 92px;
+    width: 240px;
+    margin-bottom: 10px;
 }
 
 .itemview div[rn-carousel-indicators] {
@@ -3722,4 +3725,10 @@ ul.safearea a {
 
 .item-active {
     opacity: 1;
+}
+
+.angular-google-map-container {
+    top:9px;
+    height: 400px;
+    width:100%;
 }
