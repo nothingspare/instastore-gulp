@@ -40,6 +40,8 @@ angular.module('instastore')
         }])
     .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', function ($scope, $state, ngDialog, UserService) {
 
+        $scope.avatarUrl = UserService.getAvatar();
+
         $scope.logout = function () {
             UserService.logout();
             $state.go("main");
@@ -56,10 +58,12 @@ angular.module('instastore')
     }])
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
 
+        $scope.facebookProfile = UserService.getFacebookProfile();
+
         $scope.goAsBuyer = function () {
             var profile = UserService.getProfile();
             UserService.setIsSeller(false);
-            $state.go('item', {storeurl:profile.store.store_url});
+            $state.go('item', {storeurl: profile.store.store_url});
         };
 
         $scope.goAsSeller = function () {

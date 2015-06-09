@@ -3474,6 +3474,10 @@ ul.safearea a {
     width: 200px;
 }
 
+.sellorbuy .profile{
+    float:none;
+}
+
 /*Sellorbuy section end*/
 /*Item start*/
 .grid-container.itemview {

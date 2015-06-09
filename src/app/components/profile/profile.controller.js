@@ -5,6 +5,7 @@ angular.module('instastore')
         function ($scope, UserService, toaster, rest, PreviousState, $state) {
 
             $scope.isFacebookOff = true;
+            $scope.avatarUrl = UserService.getAvatar();
 
             var errorCallback = function (data) {
                 toaster.clear();

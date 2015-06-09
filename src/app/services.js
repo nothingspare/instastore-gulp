@@ -97,14 +97,16 @@ app
                 $cookies.bgUrl = bgUrl;
                 $rootScope.bgUrl = bgUrl;
             },
+            getAvatar: function () {
+                var profile = this.getProfile();
+                var facebookProfile = this.getFacebookProfile();
+                return profile.store.avatar_url ? profile.store.avatar_url : 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
+            },
             setAvatar: function (avatarUrl) {
                 $cookies.avatarUrl = avatarUrl;
-                $rootScope.avatarUrl = avatarUrl;
             },
             initBgAndAvatar: function () {
                 var bgU = $cookies.bgUrl;
-                var avU = $cookies.avatarUrl;
-                if (avU) $rootScope.avatarUrl = avU;
                 if (bgU) $rootScope.bgUrl = bgU;
             },
             initBgFilter: function () {
