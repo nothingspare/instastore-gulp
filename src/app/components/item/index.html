@@ -16,7 +16,7 @@
                 </p>
 
                 <p id="price-position"><span class="buy-small" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <b class="price-text">${{item.price | itemPrice}}</b>
+                    <b class="price-text">${{item.price|itemPrice}}</b>
                 </p>
 
 
@@ -81,7 +81,7 @@
                        ng-click="leavecomment({id:item.id, tab:1})">Leave comment</a>
                 </div>
 
-                <div class="seemorecontainer" ng-click="seemore({id:item.id, tab:1})">
+                <div class="seemorecontainer" ng-if="item.comments.length>2"ng-click="seemore({id:item.id, tab:1})">
                     <div class="seemore" style=" margin: -28px 8px 4px -10px; text-align: right;">
                         <span>See more...</span>
                     </div>

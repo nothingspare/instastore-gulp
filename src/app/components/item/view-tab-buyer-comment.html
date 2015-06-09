@@ -39,7 +39,7 @@
                 comment</a>
         </div>
 
-        <div class="seemorecontainer">
+        <div  ng-if="item.comments.length>2" class="seemorecontainer">
             <div class="seemore" style=" margin: -28px 8px 4px -10px; text-align: right;">
                 <span ng-click="seeMore = !seeMore">See {{seeMore?' less':' more'}}...</span>
             </div>
