@@ -30,7 +30,7 @@
 
         <ul>
             <li><a ui-sref="store" style="width: 25%;">
-                <div class="fast-tap"><img class="profile" ng-src="{{store.avatar_url}}"></div>
+                <div class="fast-tap"><img class="profile" ng-src="{{store.avatar_url|storeAvatar}}"></div>
             </a></li>
             <li>
                 <div id="items-data"><span class="profile-digits">Items</span><br>

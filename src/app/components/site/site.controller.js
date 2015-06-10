@@ -14,9 +14,11 @@ angular.module('instastore')
                     UserService.setFacebookProfile(res.data.facebookProfile);
                     res.data.profile.store = res.data.store;
                     res.data.profile.stores = res.data.stores;
+                    if (res.data.store) {
+                        UserService.setBg(res.data.store.bg_url);
+                        UserService.setAvatar(res.data.store.avatar_url);
+                    }
                     UserService.setProfile(res.data.profile);
-                    UserService.setBg(res.data.store.bg_url);
-                    UserService.setAvatar(res.data.store.avatar_url);
                     var name = res.data.profile.first_name ? res.data.profile.first_name : res.data.facebookProfile.first_name;
                     toaster.pop('success', "Welcome, " + name + "!");
                     if (UserService.getInvitedStatus()) $state.go('sellorbuy');
@@ -62,9 +64,9 @@ angular.module('instastore')
     }])
     .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'errorService', 'toaster', function ($scope, UserService, $state, rest, errorService, toaster) {
         $scope.profile = UserService.getProfile();
-        rest.path = 'v1/profiles';
         $scope.selectStore = function (inviter_id) {
             $scope.profile.inviter_id = inviter_id;
+            rest.path = 'v1/profiles';
             rest.putModel($scope.profile).success(function () {
                 toaster.pop('success', "Saved");
                 $state.go('sellorbuy');

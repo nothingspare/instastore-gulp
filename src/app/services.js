@@ -1,5 +1,3 @@
-'use strict';
-
 app
     .factory('authInterceptor', function ($q, UserService, $injector, $cookies) {
         return {
@@ -95,9 +93,11 @@ app
             },
             setBg: function (bgUrl) {
                 var profile = this.getProfile();
-                profile.store.bg_url = bgUrl;
-                this.setProfile(profile);
-                $cookies.bgUrl = $rootScope.bgUrl = bgUrl;
+                if (profile.store) {
+                    profile.store.bg_url = bgUrl;
+                    this.setProfile(profile);
+                    $cookies.bgUrl = $rootScope.bgUrl = bgUrl;
+                }
             },
             initStore: function () {
                 var facebookProfile = this.getFacebookProfile();
@@ -117,7 +117,7 @@ app
                             state.go('item');
                             return;
                         }
-                        store.avatar_url = store.avatar_url ? store.avatar_url : 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
+                        if (!store.avatar_url) store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
                         if (!state.includes('item') || !state.includes('grid')) {
                             rest.path = 'v1/user-lastitems';
                             rest.models({user_id: store.user_id}).success(function (data) {
@@ -133,75 +133,92 @@ app
                 }
                 else {
                     var profile = this.getProfile();
-                    profile.store.avatar_url = profile.store.avatar_url ? profile.store.avatar_url : 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
-                    if (!state.includes('item') || !state.includes('grid')) {
-                        rest.path = 'v1/user-lastitems';
-                        rest.models({user_id: profile.store.user_id}).success(function (data) {
-                            profile.store.items = data;
-                            $rootScope.store = profile.store;
-                        }).error(errorService.alert);
+                    if (profile.store) {
+                        if (!profile.store.avatar_url) profile.store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
+                        if (!state.includes('item') || !state.includes('grid')) {
+                            rest.path = 'v1/user-lastitems';
+                            rest.models({user_id: profile.id}).success(function (data) {
+                                $rootScope.store = profile.store;
+                                if (!data) return;
+                                $rootScope.store.items = data;
+                            }).error(errorService.alert);
+                        }
+                        else $rootScope.store = profile.store;
                     }
-                    else $rootScope.store = profile.store;
                 }
             },
             setAvatar: function (avatarUrl) {
                 var profile = this.getProfile();
-                profile.store.avatar_url = avatarUrl;
-                this.setProfile(profile);
-                $cookies.avatarUrl = avatarUrl;
-            },
+                if (profile.store) {
+                    profile.store.avatar_url = avatarUrl;
+                    this.setProfile(profile);
+                    $cookies.avatarUrl = avatarUrl;
+                }
+            }
+            ,
             initBgAndAvatar: function () {
                 var bgU = $cookies.bgUrl;
                 if (bgU) $rootScope.bgUrl = bgU;
-            },
+            }
+            ,
             initBgFilter: function () {
                 var stateService = $injector.get('$state');
                 if (stateService.includes('store')) $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
                 else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
                     $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
-            },
+            }
+            ,
             initIsSeller: function () {
                 if ($cookies.isSeller == "true")
                     $rootScope.isSeller = true;
                 else
                     $rootScope.isSeller = false;
-            },
+            }
+            ,
             isSeller: function () {
                 if ($cookies.isSeller == "true")
                     return true;
                 else
                     return false;
-            },
+            }
+            ,
             setIsSeller: function (value) {
                 $cookies.isSeller = $rootScope.isSeller = value;
-            },
+            }
+            ,
             setProfile: function (profile) {
                 $cookies.profile = JSON.stringify(profile);
                 if (profile.inviter_id) isInvited = true;
-            },
+            }
+            ,
             getProfile: function () {
                 if ($cookies.profile)
                     return JSON.parse($cookies.profile);
                 else return {};
-            },
+            }
+            ,
             getInvitedStatus: function () {
                 if (isInvited) return true;
                 else return false;
-            },
+            }
+            ,
             setFacebookProfile: function (profile) {
                 $window.sessionStorage.facebookProfile = JSON.stringify(profile);
-            },
+            }
+            ,
             getFacebookProfile: function () {
                 if ($window.sessionStorage.facebookProfile)
                     return JSON.parse($window.sessionStorage.facebookProfile);
                 else return {};
-            },
+            }
+            ,
             currentUser: function () {
                 return currentUser;
             }
         };
     })
-    .service('errorService', function (toaster) {
+    .
+    service('errorService', function (toaster) {
         return {
             alert: function (data) {
                 toaster.clear();

@@ -206,4 +206,10 @@ app
             }
             return null;
         }
+    })
+    .filter('storeAvatar', function (UserService) {
+        return function (input) {
+            var facebookProfile = UserService.getFacebookProfile();
+            return input ? input : 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
+        }
     });
