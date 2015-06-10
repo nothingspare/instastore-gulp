@@ -11,7 +11,7 @@
                 <li>
                     <a href="#" style="width: 70%; height: 38px">
                         <div class="storetitle"></div>
-                        <h3>MyBoutique</h3>
+                        <h3>{{store.store_name}}</h3>
                     </a>
                 </li>
                 <li>
@@ -30,7 +30,7 @@
 
         <ul>
             <li><a ui-sref="store" style="width: 25%;">
-                <div class="fast-tap"><img class="profile" ng-src="{{avatarUrl}}"></div>
+                <div class="fast-tap"><img class="profile" ng-src="{{store.avatar_url}}"></div>
             </a></li>
             <li>
                 <div id="items-data"><span class="profile-digits">Items</span><br>
@@ -53,7 +53,7 @@
     </div>
 
 
-    <div id="profile-text"><h5>Silverlake’s original clothing boutique. Looking good from head to toe.</h5></div>
+    <div id="profile-text"><h5>{{store.description}}</h5></div>
 
 
     <div id="container2">

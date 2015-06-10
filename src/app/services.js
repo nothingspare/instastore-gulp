@@ -73,7 +73,7 @@ app
             }
         };
     })
-    .factory('UserService', function ($rootScope, $injector, $cookies, $window) {
+    .factory('UserService', function ($rootScope, $injector, $cookies, $window, errorService) {
         var currentUser;
         var isInvited;
         return {
@@ -94,15 +94,60 @@ app
                 else return true;
             },
             setBg: function (bgUrl) {
-                $cookies.bgUrl = bgUrl;
-                $rootScope.bgUrl = bgUrl;
-            },
-            getAvatar: function () {
                 var profile = this.getProfile();
+                profile.store.bg_url = bgUrl;
+                this.setProfile(profile);
+                $cookies.bgUrl = $rootScope.bgUrl = bgUrl;
+            },
+            initStore: function () {
                 var facebookProfile = this.getFacebookProfile();
-                return profile.store.avatar_url ? profile.store.avatar_url : 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
+                var stateParams = $injector.get('$stateParams');
+                var rest = $injector.get('rest');
+                var state = $injector.get('$state');
+                if (stateParams.storeurl) {
+                    rest.path = 'v1/stores';
+                    rest.models({store_url: stateParams.storeurl}).success(function (data) {
+                        var store = data[0];
+                        if (!store) {
+                            errorService.simpleAlert({
+                                status: 404,
+                                name: 'error',
+                                message: 'There is no store with such url'
+                            });
+                            state.go('item');
+                            return;
+                        }
+                        store.avatar_url = store.avatar_url ? store.avatar_url : 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
+                        if (!state.includes('item') || !state.includes('grid')) {
+                            rest.path = 'v1/user-lastitems';
+                            rest.models({user_id: store.user_id}).success(function (data) {
+                                store.items = data;
+                                $rootScope.bgUrl = store.bg_url;
+                                $rootScope.avatarUrl = store.avatar_url;
+                                $rootScope.isSeller = false;
+                                $rootScope.store = store;
+                            }).error(errorService.alert);
+                        }
+                        else $rootScope.store = store;
+                    }).error(errorService.alert);
+                }
+                else {
+                    var profile = this.getProfile();
+                    profile.store.avatar_url = profile.store.avatar_url ? profile.store.avatar_url : 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
+                    if (!state.includes('item') || !state.includes('grid')) {
+                        rest.path = 'v1/user-lastitems';
+                        rest.models({user_id: profile.store.user_id}).success(function (data) {
+                            profile.store.items = data;
+                            $rootScope.store = profile.store;
+                        }).error(errorService.alert);
+                    }
+                    else $rootScope.store = profile.store;
+                }
             },
             setAvatar: function (avatarUrl) {
+                var profile = this.getProfile();
+                profile.store.avatar_url = avatarUrl;
+                this.setProfile(profile);
                 $cookies.avatarUrl = avatarUrl;
             },
             initBgAndAvatar: function () {

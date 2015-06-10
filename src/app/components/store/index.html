@@ -3,7 +3,7 @@
         <div class="inner">
             <div id="item-circles">
                 <ul>
-                    <li ng-repeat="item in items| limitTo:3">
+                    <li ng-repeat="item in store.items| limitTo:3">
                         <a ui-sref="itemview({id:item.id})">
                             <div class="item-circle-1" style="background-image:url({{item.images[0].image_url}})"></div>
                         </a>
@@ -14,6 +14,6 @@
     </div>
 </div>
 <div id="text-container">
-    <h3>Silverlake’s original clothing boutique. Look good from head to toe, make overs available.</h3>
-    <h5>Opened in 1997 My boutique has been serving the silverlake community for longer than there was a community.</h5>
+    <h3>{{store.description}}</h3>
+    <h5>{{store.specialities}}</h5>
 </div>

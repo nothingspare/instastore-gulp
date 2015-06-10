@@ -6,17 +6,7 @@ angular.module('instastore')
 
             if (!UserService.isGuest()) $state.go('item');
 
-            $scope.pageClass = 'page-enter1';
-
             rest.path = 'v1/user/login';
-
-            var errorCallback = function (data) {
-                toaster.clear();
-                UserService.logout();
-                angular.forEach(data, function (error) {
-                    toaster.pop('error', "Field: " + error.field, error.message);
-                });
-            };
 
             $scope.authenticate = function (provider) {
                 $auth.authenticate(provider).then(function (res) {
@@ -39,9 +29,7 @@ angular.module('instastore')
             }
         }])
     .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', function ($scope, $state, ngDialog, UserService) {
-
-        $scope.avatarUrl = UserService.getAvatar();
-
+        UserService.initStore();
         $scope.logout = function () {
             UserService.logout();
             $state.go("main");
