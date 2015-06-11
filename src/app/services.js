@@ -100,11 +100,12 @@ app
                 }
             },
             initStore: function () {
+                var profile = this.getProfile();
                 var facebookProfile = this.getFacebookProfile();
                 var stateParams = $injector.get('$stateParams');
                 var rest = $injector.get('rest');
                 var state = $injector.get('$state');
-                if (stateParams.storeurl) {
+                if (stateParams.storeurl && (profile.store.store_url !== stateParams.storeurl)) {
                     rest.path = 'v1/stores';
                     rest.models({store_url: stateParams.storeurl}).success(function (data) {
                         var store = data[0];
@@ -132,7 +133,6 @@ app
                     }).error(errorService.alert);
                 }
                 else {
-                    var profile = this.getProfile();
                     if (profile.store) {
                         if (!profile.store.avatar_url) profile.store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
                         if (!state.includes('item') || !state.includes('grid')) {

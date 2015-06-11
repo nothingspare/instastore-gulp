@@ -7,9 +7,13 @@ angular.module('instastore')
             if ($stateParams.storeurl) {
                 rest.path = 'v1/stores';
                 rest.models({store_url: $stateParams.storeurl}).success(function (data) {
-                    store = data[0];
+                    $scope.store = store = data[0];
                     if (!store) {
-                        errorService.simpleAlert({status: 404, name: 'error', message: 'There is no store with such url'});
+                        errorService.simpleAlert({
+                            status: 404,
+                            name: 'error',
+                            message: 'There is no store with such url'
+                        });
                         $state.go('item');
                         return;
                     }
@@ -45,30 +49,30 @@ angular.module('instastore')
                 }).error(errorService.alert);
             };
         }])
-    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
-        function ($scope, rest, toaster, $state, feedHelper, errorService) {
+    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService', 'UserService', '$stateParams',
+        function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams) {
 
             $scope.item = {};
 
-            $scope.seeMore = false;
-            if (feedHelper.seeMore) {
-                $scope.seeMore = true;
-                feedHelper.seeMore = false;
+            if ($stateParams.itemurl) {
+                var profile = UserService.getProfile();
+                rest.path = 'v1/items';
+                rest.models({user_id: profile.id, item_url: $stateParams.itemurl}).success(function (data) {
+                    $scope.item = data[0];
+                    $scope.slides = data[0].images;
+                }).error(errorService.alert);
             }
-
-            $scope.leaveComment = false;
-            if (feedHelper.leaveComment) {
-                $scope.leaveComment = true;
-                feedHelper.leaveComment = false;
+            else {
+                errorService.simpleAlert({
+                    status: 404,
+                    name: 'error',
+                    message: 'There is no item with such url'
+                });
+                $state.go('item');
             }
-
-            rest.path = 'v1/items';
-            rest.model().success(function (data) {
-                $scope.item = data;
-                $scope.slides = data.images;
-            }).error(errorService.alert);
 
             $scope.save = function () {
+                rest.path='v1/user-items';
                 rest.putModel($scope.item).success(function () {
                     toaster.pop('success', "Saved");
                 }).error(errorService.alert);
@@ -107,6 +111,18 @@ angular.module('instastore')
                     $scope.item.newComment = null;
                 }).error(errorService.alert);
             };
+
+            $scope.seeMore = false;
+            if (feedHelper.seeMore) {
+                $scope.seeMore = true;
+                feedHelper.seeMore = false;
+            }
+
+            $scope.leaveComment = false;
+            if (feedHelper.leaveComment) {
+                $scope.leaveComment = true;
+                feedHelper.leaveComment = false;
+            }
         }
     ])
     .controller('ItemAdd', ['$scope', 'rest', 'toaster', '$upload', 'API_URL', 'ngDialog', 'errorService',
@@ -259,18 +275,18 @@ angular.module('instastore')
             return new Blob([new Uint8Array(array)], {type: mimeString});
         };
 
-        $scope.single = function (image) {
-            $scope.upload([dataURItoBlob(image.dataURL)]);
+        $scope.single = function (image, id) {
+            $scope.upload([dataURItoBlob(image.dataURL)], id);
         };
 
-        $scope.upload = function (files) {
+        $scope.upload = function (files, id) {
             if (files && files.length) {
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     $upload.upload({
                         url: API_URL + 'v1/item/upload',
                         fields: {
-                            'itemId': $stateParams.id
+                            'itemId': id
                         },
                         headers: {
                             'Content-Type': file.type

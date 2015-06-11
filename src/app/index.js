@@ -17,21 +17,27 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('sellorbuy', {
-            url: '/sellorbuy',
+            url: '/sellorbuy/',
             controller: 'SellOrBuy',
             templateUrl: modulesPath + '/site/sellorbuy.html'
         });
 
         $stateProvider.state('storeselect', {
-            url: '/storeselect',
+            url: '/storeselect/',
             controller: 'SiteStoreSelect',
             templateUrl: modulesPath + '/site/storeselect.html'
         });
 
         $stateProvider.state('item', {
-            url: '/item/:storeurl',
+            url: '/{storeurl}',
             controller: 'ItemIndex',
             templateUrl: modulesPath + '/item/index.html'
+        });
+
+        $stateProvider.state('itemview', {
+            url: '/:storeurl/:itemurl/:tab',
+            controller: 'ItemView',
+            templateUrl: modulesPath + '/item/view.html'
         });
 
         $stateProvider.state('grid', {
@@ -40,20 +46,14 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/item/item-grid.html'
         });
 
-        $stateProvider.state('itemview', {
-            url: '/itemview/:id/:tab',
-            controller: 'ItemView',
-            templateUrl: modulesPath + '/item/view.html'
-        });
-
         $stateProvider.state('accounts', {
-            url: '/accounts',
+            url: '/accounts/',
             controller: 'StoreAccounts',
             templateUrl: modulesPath + '/store/accounts.html'
         });
 
         $stateProvider.state('profile', {
-            url: '/profile',
+            url: '/profile/',
             resolve: {
                 PreviousState: [
                     '$state',
@@ -72,7 +72,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('profilestore', {
-            url: '/profilestore',
+            url: '/profilestore/',
             controller: 'ProfileStoreIndex',
             templateUrl: modulesPath + '/profile/profilestore.html'
         });
@@ -84,7 +84,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('location', {
-            url: '/location',
+            url: '/location/',
             controller: 'LocationIndex',
             templateUrl: modulesPath + '/location/index.html'
         });
