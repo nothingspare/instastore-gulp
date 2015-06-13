@@ -72,9 +72,11 @@ angular.module('instastore')
             }
 
             $scope.save = function () {
+                $scope.item.item_url = $scope.item.title;
                 rest.path='v1/user-items';
-                rest.putModel($scope.item).success(function () {
+                rest.putModel($scope.item).success(function (item) {
                     toaster.pop('success', "Saved");
+                    $state.transitionTo('itemview', {storeurl:$stateParams.storeurl, itemurl:item.item_url, tab:4});
                 }).error(errorService.alert);
             };
 
@@ -130,18 +132,19 @@ angular.module('instastore')
 
             rest.path = 'v1/items';
 
-            $scope.item = {title: 'New item title', brand_id: 9, category_id: 1, description: ''};
+            $scope.item = {brand_id: 9, category_id: 1, description: ''};
 
             $scope.$watch('image2', function () {
                 if ($scope.image2) $scope.single($scope.image2);
             });
 
             $scope.save = function () {
+                $scope.item.item_url = $scope.item.title;
                 rest.path = 'v1/items';
                 if ($scope.item.id) {
                     rest.putModel($scope.item).success(function () {
                         toaster.pop('success', "Saved");
-                    }).error(errorCallback);
+                    }).error(errorService.alert);
                 }
                 else {
                     rest.postModel($scope.item).success(function () {
@@ -171,7 +174,7 @@ angular.module('instastore')
                     rest.postModel($scope.item).success(function (item) {
                         $scope.item.id = item.id;
                         $scope.upload([dataURItoBlob(image.dataURL)]);
-                    }).error(errorCallback);
+                    }).error(errorService.alert);
                 }
 
             };
@@ -198,7 +201,7 @@ angular.module('instastore')
                             if (data.image_url) {
                                 toaster.pop('success', 'File uploaded!');
                             }
-                            else errorCallback({
+                            else errorService.simpleAlert({
                                 message: 'File is not uploaded!',
                                 status: 500,
                                 name: 'Ooops!',

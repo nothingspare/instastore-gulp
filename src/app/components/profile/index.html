@@ -62,8 +62,7 @@
                                 <div style="float: left;margin: 0px 0px 0px 10px;">
                                     <input id="textfield3" type="text" placeholder="CVV">
                                 </div>
-                                <div style=" margin: 8px 0 20px 0;float: right;"><a href="#"
-                                                                                    class="fast-tap btn sml">&nbsp;&nbsp;&nbsp;Link&nbsp;&nbsp;&nbsp;</a>
+                                <div style=" margin: 8px 0 20px 0;float: right;"><a href="#" class="fast-tap btn sml">&nbsp;&nbsp;&nbsp;Link&nbsp;&nbsp;&nbsp;</a>
                                 </div>
                             </div>
 
@@ -100,11 +99,11 @@
                             We will then see if you are qualify for a free early adapter account</h6>
 
 
-                        <input class="regular-field" style="width:214px;" type="text" ng-model="profile.store.store_url"
+                        <input  disabled class="regular-field" style="width:214px;" type="text" ng-model="facebookLink"
                                placeholder="Store Facebook page url"/>
 
                         <div style=" margin: 4px 0 10px 0;">
-                            <div class="btn" ng-click = "saveUrl()">&nbsp;Apply now&nbsp;</div>
+                            <div class="btn">&nbsp;Apply now&nbsp;</div>
                         </div>
 
                         <div style="display: inline-block; width: 240px;">
@@ -112,9 +111,8 @@
                                 <input id="textfield7" type="text" placeholder="Invite code"/>
                             </div>
 
-                            <div style=" margin: 4px 0 30px 0; float: right;"><a ui-sref="profilestore"
-                                                                                 class="btn sml">
-                                &nbsp;Enter&nbsp;</a>
+                            <div style=" margin: 4px 0 30px 0; float: right;">
+                                <a ui-sref="profilestore" class="btn sml">&nbsp;Enter&nbsp;</a>
                             </div>
                         </div>
                     </center>

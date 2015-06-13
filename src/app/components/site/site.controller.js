@@ -50,6 +50,9 @@ angular.module('instastore')
 
         $scope.facebookProfile = UserService.getFacebookProfile();
 
+        var profile = UserService.getProfile();
+        $scope.sellerAllowed = profile.seller;
+
         $scope.goAsBuyer = function () {
             var profile = UserService.getProfile();
             UserService.setIsSeller(false);

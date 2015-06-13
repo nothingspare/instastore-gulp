@@ -2,7 +2,7 @@
 
     <div ng-repeat="item in items" class="grid_unit">
         <div class="item-preview-small-grid">
-            <div class="x-profile" ng-if="showCheckmark" ng-click="toggleItemStatus(item)"></div>
+            <div class="x-profile" ng-if="isSeller" ng-click="toggleItemStatus(item)"></div>
 
             <div ng-class="item.status|itemStatus">
                 <div ui-sref="itemview({ id: item.id })" style="background-image:url({{item.images[0].image_url}});"

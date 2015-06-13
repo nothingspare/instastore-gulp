@@ -35,6 +35,7 @@ angular.module('instastore')
 
             var facebookUser = UserService.getFacebookProfile();
             $scope.facebookUid = facebookUser.id;
+            $scope.facebookLink = facebookUser.link;
 
             $scope.save = function () {
                 rest.path = 'v1/profiles';
@@ -108,6 +109,7 @@ angular.module('instastore')
         $scope.profile = UserService.getProfile();
 
         $scope.save = function () {
+            $scope.profile.store.store_url = $scope.profile.store.store_name;
             rest.path = 'v1/stores';
             rest.putModel($scope.profile.store).success(function () {
                 toaster.pop('success', "Store saved");
