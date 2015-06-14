@@ -5,7 +5,7 @@
             <div class="x-profile" ng-if="isSeller" ng-click="toggleItemStatus(item)"></div>
 
             <div ng-class="item.status|itemStatus">
-                <div ui-sref="itemview({ id: item.id })" style="background-image:url({{item.images[0].image_url}});"
+                <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})" style="background-image:url({{item.images[0].image_url}});"
                      class="grid-image"></div>
                 <p id="grid-heart-position"><span class="heart-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
                         class="grid-price-text">51</b></p>

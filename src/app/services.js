@@ -116,7 +116,7 @@ app
                                 message: 'There is no store with such url'
                             });
                             state.go('item');
-                            return; 
+                            return;
                         }
                         if (!store.avatar_url) store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
                         if (!state.includes('item') || !state.includes('grid')) {
