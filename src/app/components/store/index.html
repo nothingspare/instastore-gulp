@@ -4,7 +4,7 @@
             <div id="item-circles">
                 <ul>
                     <li ng-repeat="item in store.items| limitTo:3">
-                        <a ui-sref="itemview({id:item.id})">
+                        <a ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">
                             <div class="item-circle-1" style="background-image:url({{item.images[0].image_url}})"></div>
                         </a>
                     </li>

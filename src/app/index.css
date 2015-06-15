@@ -935,6 +935,25 @@ h3 {
     color: #fff;
 }
 
+.bar {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: absolute;
+    right: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
 /** - - - - - - - header end - - - - - - - - - - - **/
 /** - - - - - - - middle nav profile page - - - - - - - - - - **/
 
@@ -3735,4 +3754,7 @@ ul.safearea a {
     top:9px;
     height: 400px;
     width:100%;
+}
+html.full-opacity:before {
+    opacity: 1;
 }
