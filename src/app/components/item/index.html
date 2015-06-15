@@ -1,5 +1,5 @@
 <div class="grid-container itemfeed">
-    <div ng-repeat="item in items" class="item-container">
+    <div ng-repeat="item in items track by $index" class="item-container">
         <div class="stream-item-pic">
             <div class="x-profile" ng-if="isSeller" ng-click="toggleItemStatus(item)"></div>
             <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})" id="item-large-pic"
@@ -90,6 +90,3 @@
         </div>
     </div>
 </div>
-
-
-<h4 class="loadmore">load more...</h4>

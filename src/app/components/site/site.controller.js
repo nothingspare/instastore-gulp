@@ -12,9 +12,9 @@ angular.module('instastore')
                 $auth.authenticate(provider).then(function (res) {
                     UserService.login(res.data.token);
                     UserService.setFacebookProfile(res.data.facebookProfile);
-                    res.data.profile.store = res.data.store;
                     res.data.profile.stores = res.data.stores;
                     if (res.data.store) {
+                        res.data.profile.store = res.data.store;
                         UserService.setBg(res.data.store.bg_url);
                         UserService.setAvatar(res.data.store.avatar_url);
                     }
