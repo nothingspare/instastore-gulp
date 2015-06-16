@@ -1,6 +1,15 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('LocationIndex', ['$scope', 'rest', 'toaster', function($scope, rest, toaster) {
-        $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    .controller('LocationIndex', ['$scope', '$rootScope', function ($scope, $rootScope) {
+
+        $rootScope.$watch($rootScope.store, function () {
+            $scope.map = {
+                center: {latitude: $rootScope.store.store_long, longitude: $rootScope.store.store_lat},
+                zoom: 14
+            };
+            $scope.staticMarker = {id: 'store-marker'};
+            $scope.staticMarker.coords = {latitude: $rootScope.store.store_long, longitude: $rootScope.store.store_lat};
+        });
+
     }]);
