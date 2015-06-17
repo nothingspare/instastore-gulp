@@ -115,9 +115,10 @@ angular.module('instastore')
                 $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.F;
             }
             rest.path = 'v1/stores';
-            rest.putModel($scope.profile.store).success(function () {
-                delete $scope.profile.store.place;
+            rest.putModel($scope.profile.store).success(function (store) {
                 toaster.pop('success', "Store saved");
+                delete $scope.profile.store.place;
+                $scope.profile.store = store;
                 UserService.setProfile($scope.profile);
             }).error(errorCallback);
         };
