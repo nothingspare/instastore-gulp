@@ -63,10 +63,10 @@
                 <li><a ng-click="clickToOpen()">
                     <div class="additem"></div>
                 </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="item">
+                <li><a ui-sref-active="menu-item-active" ui-sref="item({storeurl:$stateParams.storeurl})">
                     <div class="stream"></div>
                 </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="grid">
+                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl})">
                     <div class="gridstream"></div>
                 </a></li>
             </ul>
@@ -80,7 +80,7 @@
                 <li><a ui-sref-active="menu-item-active" ui-sref="item({storeurl:$stateParams.storeurl})">
                     <div class="stream"></div>
                 </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="location">
+                <li><a ui-sref-active="menu-item-active" ui-sref="location({storeurl:$stateParams.storeurl})">
                     <div class="location"></div>
                 </a></li>
             </ul>

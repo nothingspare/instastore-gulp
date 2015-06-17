@@ -87,7 +87,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('location', {
-            url: '/location/',
+            url: '/location/:storeurl',
             controller: 'LocationIndex',
             templateUrl: modulesPath + '/location/index.html'
         });

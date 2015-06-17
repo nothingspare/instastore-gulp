@@ -133,6 +133,8 @@ app
                     }).error(errorService.alert);
                 }
                 else {
+                    if (!profile.seller && (state.includes('item'))) state.go('item', {storeurl: profile.inviter_url});
+                    if (!profile.seller && (state.includes('grid'))) state.go('grid', {storeurl: profile.inviter_url});
                     if (profile.store) {
                         if (!profile.store.avatar_url) profile.store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
                         if (!state.includes('item') || !state.includes('grid')) {

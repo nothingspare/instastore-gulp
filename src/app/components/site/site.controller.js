@@ -69,6 +69,8 @@ angular.module('instastore')
                     return;
                 }
                 inviter_url = store.store_url;
+                profile.inviter_url = inviter_url;
+                UserService.setProfile(profile);
             }).error(errorService.alert);
         }
 
