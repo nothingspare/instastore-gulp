@@ -18,6 +18,7 @@ angular.module('instastore')
                         UserService.setBg(res.data.store.bg_url);
                         UserService.setAvatar(res.data.store.avatar_url);
                     }
+                    else res.data.profile.store = {};
                     UserService.setProfile(res.data.profile);
                     var name = res.data.profile.first_name ? res.data.profile.first_name : res.data.facebookProfile.first_name;
                     toaster.pop('success', "Welcome, " + name + "!");
@@ -46,17 +47,34 @@ angular.module('instastore')
         };
 
     }])
-    .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
+    .controller('SellOrBuy', ['$scope', 'UserService', '$state', 'rest', 'errorService', function ($scope, UserService, $state, rest, errorService) {
 
         $scope.facebookProfile = UserService.getFacebookProfile();
 
         var profile = UserService.getProfile();
         $scope.sellerAllowed = profile.seller;
 
+        var inviter_url;
+        if (!profile.seller) {
+            rest.path = 'v1/stores';
+            rest.models({user_id: profile.inviter_id}).success(function (data) {
+                var store = data[0];
+                if (!store) {
+                    errorService.simpleAlert({
+                        status: 404,
+                        name: 'error',
+                        message: 'There is no store with such url'
+                    });
+                    state.go('item');
+                    return;
+                }
+                inviter_url = store.store_url;
+            }).error(errorService.alert);
+        }
+
         $scope.goAsBuyer = function () {
-            var profile = UserService.getProfile();
             UserService.setIsSeller(false);
-            $state.go('item', {storeurl: profile.store.store_url});
+            $state.go('item', {storeurl: inviter_url});
         };
 
         $scope.goAsSeller = function () {
