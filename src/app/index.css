@@ -953,6 +953,7 @@ h3 {
     left: 0;
     box-sizing: border-box;
     width: 100%;
+    z-index: 999;
 }
 /** - - - - - - - header end - - - - - - - - - - - **/
 /** - - - - - - - middle nav profile page - - - - - - - - - - **/
@@ -1112,6 +1113,12 @@ h3 {
     background-image: url('../assets/images/background1circle290x290px.jpg');
     opacity: 1;
     border: 1px solid #f37878;
+}
+
+.profile.customheader-profile {
+    margin:2px 0 0 3px;
+    width: 32px;
+    height: 32px;
 }
 
 #profile-container2 {
