@@ -3,11 +3,11 @@
 var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
         'angularFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
-        'google.places'
+        'google.places', 'ngClipboard'
     ]);
 
-app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider', 'API_URL',
-    function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL) {
+app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider', 'API_URL', 'ngClipProvider',
+    function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, ngClipProvider) {
 
         var modulesPath = 'app/components';
 
@@ -107,6 +107,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
         $locationProvider.html5Mode(true).hashPrefix('!');
         $httpProvider.interceptors.push('authInterceptor');
+        ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf")
     }]);
 
 app.run(function ($rootScope, $state, $stateParams) {

@@ -691,9 +691,12 @@ p {
     width: 100%;
 }
 
-.account-outer .regular-field{
+.account-outer .copyurl-container{
     position: relative;
     top: 80px;
+}
+
+.account-outer .copyurl-container .regular-field{
     background-color: rgba(225, 225, 225, 1);
 }
 

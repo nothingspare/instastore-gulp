@@ -1,17 +1,17 @@
 var app = angular.module('instastore');
 app
-    .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', function ($scope, UserService, $stateParams) {
+    .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', 'CLIENT_URL', function ($scope, UserService, $stateParams, CLIENT_URL) {
         var profile = UserService.getProfile();
         $scope.seller = profile.seller;
         if (profile.seller) {
             if ($stateParams.storeurl) {
-                $scope.store_url = $stateParams.storeurl;
+                $scope.store_url = CLIENT_URL + $stateParams.storeurl;
             } else {
                 if (profile.store)
-                    $scope.store_url = profile.store.store_url;
+                    $scope.store_url = CLIENT_URL + profile.store.store_url;
             }
         } else {
-            $scope.store_url=profile.inviter_url;
+            $scope.store_url = CLIENT_URL + profile.inviter_url;
         }
     }])
     .controller('StoreView', ['$scope', 'rest', '$rootScope', 'errorService', function ($scope, rest, $rootScope, errorService) {
