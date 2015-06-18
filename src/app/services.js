@@ -116,11 +116,11 @@ app
                                     name: 'error',
                                     message: 'There is no store with such url'
                                 });
-                                state.go('feed');
+                                state.go('grid');
                                 return;
                             }
                             if (!store.avatar_url) store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
-                            if (!state.includes('feed') || !state.includes('grid')) {
+                            if (!state.includes('grid')) {
                                 rest.path = 'v1/user-lastitems';
                                 rest.models({user_id: store.user_id}).success(function (data) {
                                     store.items = data;
@@ -134,11 +134,10 @@ app
                         }).error(errorService.alert);
                     }
                     else {
-                        if (!profile.seller && (state.includes('feed'))) state.go('feed', {storeurl: profile.inviter_url});
                         if (!profile.seller && (state.includes('grid'))) state.go('grid', {storeurl: profile.inviter_url});
                         if (profile.store) {
                             if (!profile.store.avatar_url) profile.store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
-                            if (!state.includes('feed') || !state.includes('grid')) {
+                            if (!state.includes('grid')) {
                                 rest.path = 'v1/user-lastitems';
                                 rest.models({user_id: profile.id}).success(function (data) {
                                     $rootScope.store = profile.store;
