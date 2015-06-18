@@ -691,6 +691,12 @@ p {
     width: 100%;
 }
 
+.account-outer .regular-field{
+    position: relative;
+    top: 80px;
+    background-color: rgba(225, 225, 225, 1);
+}
+
 .outer-top {
     display: table;
     top: 56px;

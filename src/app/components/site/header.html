@@ -29,7 +29,7 @@
 
         <ul>
             <li>
-                <a ui-sref="store" style="width: 25%;">
+                <a ui-sref="store({storeurl:$stateParams.storeurl})" style="width: 25%;">
                     <img class="profile" ng-src="{{store.avatar_url|storeAvatar}}">
                 </a>
             </li>

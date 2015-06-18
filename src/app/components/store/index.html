@@ -1,7 +1,7 @@
 <div class="account-outer">
     <div class="middle">
         <div class="inner">
-            <input />
+            <input ng-if="seller" class="regular-field" type="text" ng-model="store_url" placeholder="Store URL">
             <div id="item-circles">
                 <ul>
                     <li ng-repeat="item in store.items| limitTo:3">

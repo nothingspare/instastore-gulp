@@ -1,7 +1,18 @@
 var app = angular.module('instastore');
 app
-    .controller('StoreIndex', ['$scope', 'rest', 'errorService', '$state', '$stateParams','UserService', function ($scope, rest, errorService, $state, $stateParams, UserService) {
-
+    .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', function ($scope, UserService, $stateParams) {
+        var profile = UserService.getProfile();
+        $scope.seller = profile.seller;
+        if (profile.seller) {
+            if ($stateParams.storeurl) {
+                $scope.store_url = $stateParams.storeurl;
+            } else {
+                if (profile.store)
+                    $scope.store_url = profile.store.store_url;
+            }
+        } else {
+            $scope.store_url=profile.inviter_url;
+        }
     }])
     .controller('StoreView', ['$scope', 'rest', '$rootScope', 'errorService', function ($scope, rest, $rootScope, errorService) {
         rest.path = 'v1/stores';
@@ -15,7 +26,4 @@ app
     }])
     .controller('StoreAccounts', ['$scope', function ($scope) {
         console.log('StoreAccounts initialized');
-    }])
-    .controller('urlCtrl', ['$scope', function ($scope) {
-        console.log('urlCtrl initialized');
     }]);

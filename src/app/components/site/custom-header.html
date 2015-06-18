@@ -5,7 +5,7 @@
                 <a ui-sref="item">
                     <div class="back"></div>
                 </a>
-                <a ui-sref="store" style="width: 8%;">
+                <a ui-sref="store({storeurl:$stateParams.storeurl})" style="width: 8%;">
                     <img class="profile customheader-profile" ng-src="{{store.avatar_url|storeAvatar}}">
                 </a>
             </li>
