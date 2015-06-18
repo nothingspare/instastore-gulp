@@ -149,8 +149,6 @@ app
                             else $rootScope.store = profile.store;
                         }
                     }
-                } else{
-                    state.go('login');
                 }
             },
             setAvatar: function (avatarUrl) {

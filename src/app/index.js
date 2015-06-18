@@ -14,13 +14,13 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         $urlRouterProvider.otherwise('/login');
 
         $stateProvider.state('login', {
-            url: '/login',
+            url: '/',
             controller: 'SiteLogin',
             templateUrl: modulesPath + '/site/main.html'
         });
 
         $stateProvider.state('grid', {
-            url: '/{storeurl}',
+            url: '/grid/{storeurl}',
             controller: 'ItemIndex',
             templateUrl: modulesPath + '/item/item-grid.html'
         });
