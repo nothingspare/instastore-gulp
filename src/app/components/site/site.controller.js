@@ -4,9 +4,7 @@ angular.module('instastore')
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService',
         function ($scope, $rootScope, rest, toaster, $state, $auth, UserService) {
 
-            if (!UserService.isGuest()) $state.go('feed');
-
-            rest.path = 'v1/user/login';
+            if (!UserService.isGuest()) $state.go('grid');
 
             $scope.authenticate = function (provider) {
                 $auth.authenticate(provider).then(function (res) {
@@ -80,7 +78,7 @@ angular.module('instastore')
 
         $scope.goAsSeller = function () {
             UserService.setIsSeller(true);
-            $state.go('grid');
+            $state.go('grid',{storeurl:profile.store.store_url});
         };
     }])
     .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'errorService', 'toaster', function ($scope, UserService, $state, rest, errorService, toaster) {

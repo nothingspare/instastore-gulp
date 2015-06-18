@@ -11,7 +11,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
         var modulesPath = 'app/components';
 
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/');
 
         $stateProvider.state('login', {
             url: '/',
@@ -20,9 +20,11 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('grid', {
-            url: '/grid/{storeurl}',
+            url: '/:storeurl/mode/:mode',
             controller: 'ItemIndex',
-            templateUrl: modulesPath + '/item/item-grid.html'
+            templateUrl: function($stateParams){
+                return $stateParams.mode !== 'feed'?modulesPath + '/item/item-grid.html':modulesPath + '/item/index.html';
+            }
         });
 
         $stateProvider.state('sellorbuy', {
@@ -37,12 +39,11 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/site/storeselect.html'
         });
 
-
-        $stateProvider.state('feed', {
-            url: '/feed/{storeurl}',
-            controller: 'ItemIndex',
-            templateUrl: modulesPath + '/item/index.html'
-        });
+        //$stateProvider.state('feed', {
+        //    url: '/{storeurl}',
+        //    controller: 'ItemIndex',
+        //    templateUrl: modulesPath + '/item/index.html'
+        //});
 
         $stateProvider.state('itemview', {
             url: '/:storeurl/:itemurl/:tab',
