@@ -13,7 +13,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
         $urlRouterProvider.otherwise('/');
 
-        $stateProvider.state('main', {
+        $stateProvider.state('login', {
             url: '/',
             controller: 'SiteLogin',
             templateUrl: modulesPath + '/site/main.html'
@@ -31,8 +31,8 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/site/storeselect.html'
         });
 
-        $stateProvider.state('item', {
-            url: '/{storeurl}',
+        $stateProvider.state('feed', {
+            url: '/feed/{storeurl}',
             controller: 'ItemIndex',
             templateUrl: modulesPath + '/item/index.html'
         });
@@ -107,7 +107,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
         $locationProvider.html5Mode(true).hashPrefix('!');
         $httpProvider.interceptors.push('authInterceptor');
-        ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf")
+        ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
     }]);
 
 app.run(function ($rootScope, $state, $stateParams) {

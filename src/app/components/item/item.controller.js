@@ -14,7 +14,7 @@ angular.module('instastore')
                             name: 'error',
                             message: 'There is no store with such url'
                         });
-                        $state.go('item');
+                        $state.go('feed');
                         return;
                     }
                     rest.path = 'v1/items';
@@ -68,7 +68,7 @@ angular.module('instastore')
                     name: 'error',
                     message: 'There is no item with such url'
                 });
-                $state.go('item');
+                $state.go('feed');
             }
 
             $scope.save = function () {
@@ -99,7 +99,7 @@ angular.module('instastore')
                 rest.deleteModel()
                     .success(function () {
                         toaster.pop('success', "Item deleted!");
-                        $state.go('item');
+                        $state.go('feed');
                     })
                     .error(errorService.alert);
             };

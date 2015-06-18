@@ -4,7 +4,7 @@ angular.module('instastore')
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService',
         function ($scope, $rootScope, rest, toaster, $state, $auth, UserService) {
 
-            if (!UserService.isGuest()) $state.go('item');
+            if (!UserService.isGuest()) $state.go('feed');
 
             rest.path = 'v1/user/login';
 
@@ -35,11 +35,11 @@ angular.module('instastore')
         UserService.initStore();
         $scope.logout = function () {
             UserService.logout();
-            $state.go("main");
+            $state.go('login');
         }
 
         $scope.profile = function () {
-            $state.go("profile");
+            $state.go('profile');
         };
 
         $scope.clickToOpen = function () {
@@ -65,7 +65,7 @@ angular.module('instastore')
                         name: 'error',
                         message: 'There is no store with such url'
                     });
-                    state.go('item');
+                    state.go('feed');
                     return;
                 }
                 inviter_url = store.store_url;
@@ -76,12 +76,12 @@ angular.module('instastore')
 
         $scope.goAsBuyer = function () {
             UserService.setIsSeller(false);
-            $state.go('item', {storeurl: inviter_url});
+            $state.go('feed', {storeurl: inviter_url});
         };
 
         $scope.goAsSeller = function () {
             UserService.setIsSeller(true);
-            $state.go('item');
+            $state.go('feed');
         };
 
     }])

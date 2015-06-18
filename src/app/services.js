@@ -14,7 +14,7 @@ app
             responseError: function (rejection) {
                 if (rejection.status === 401 || rejection.status === 0) {
                     var stateService = $injector.get('$state');
-                    stateService.go('main');
+                    stateService.go('login');
                 }
                 return $q.reject(rejection);
             }
@@ -115,11 +115,11 @@ app
                                 name: 'error',
                                 message: 'There is no store with such url'
                             });
-                            state.go('item');
+                            state.go('feed');
                             return;
                         }
                         if (!store.avatar_url) store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
-                        if (!state.includes('item') || !state.includes('grid')) {
+                        if (!state.includes('feed') || !state.includes('grid')) {
                             rest.path = 'v1/user-lastitems';
                             rest.models({user_id: store.user_id}).success(function (data) {
                                 store.items = data;
@@ -133,11 +133,11 @@ app
                     }).error(errorService.alert);
                 }
                 else {
-                    if (!profile.seller && (state.includes('item'))) state.go('item', {storeurl: profile.inviter_url});
+                    if (!profile.seller && (state.includes('feed'))) state.go('feed', {storeurl: profile.inviter_url});
                     if (!profile.seller && (state.includes('grid'))) state.go('grid', {storeurl: profile.inviter_url});
                     if (profile.store) {
                         if (!profile.store.avatar_url) profile.store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
-                        if (!state.includes('item') || !state.includes('grid')) {
+                        if (!state.includes('feed') || !state.includes('grid')) {
                             rest.path = 'v1/user-lastitems';
                             rest.models({user_id: profile.id}).success(function (data) {
                                 $rootScope.store = profile.store;

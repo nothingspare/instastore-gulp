@@ -72,11 +72,11 @@ angular.module('instastore')
 
             $scope.goBack = function () {
                 if (PreviousState.Name) {
-                    if (PreviousState.Name == 'profilestore') $state.go('item');
+                    if (PreviousState.Name == 'profilestore') $state.go('feed');
                     else $state.go(PreviousState.Name, PreviousState.Params);
                 }
                 else
-                    $state.go('item');
+                    $state.go('feed');
             };
         }])
     .
