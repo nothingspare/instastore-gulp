@@ -63,9 +63,8 @@ angular.module('instastore')
                     errorService.simpleAlert({
                         status: 404,
                         name: 'error',
-                        message: 'There is no store with such url'
+                        message: 'There is no inviter store with such url'
                     });
-                    state.go('feed');
                     return;
                 }
                 inviter_url = store.store_url;
@@ -76,14 +75,13 @@ angular.module('instastore')
 
         $scope.goAsBuyer = function () {
             UserService.setIsSeller(false);
-            $state.go('feed', {storeurl: inviter_url});
+            $state.go('grid', {storeurl: inviter_url});
         };
 
         $scope.goAsSeller = function () {
             UserService.setIsSeller(true);
-            $state.go('feed');
+            $state.go('grid');
         };
-
     }])
     .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'errorService', 'toaster', function ($scope, UserService, $state, rest, errorService, toaster) {
         $scope.profile = UserService.getProfile();
