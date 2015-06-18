@@ -5,18 +5,21 @@
                 <li>
                     <a ng-click="logout()">
                         <div class="back"></div>
-                        <h4></h4>
+                    </a>
+                    <a set-class-when-at-top="hide-element" ui-sref="store({storeurl:$stateParams.storeurl})" style="width: 8%;">
+                        <img class="profile customheader-profile" ng-src="{{store.avatar_url|storeAvatar}}">
                     </a>
                 </li>
                 <li>
-                    <a href="#" style="width: 70%; height: 38px">
-                        <div class="storetitle"></div>
+                    <a href="#" style="width: 62%; height: 38px">
+                        <div class="fast-tap storetitle"></div>
                         <h3>{{store.store_name}}</h3>
                     </a>
                 </li>
                 <li>
                     <a ui-sref="profile">
-                        <div class="user"></div>
+                        <div class="fast-tap user"></div>
+                        <h4></h4>
                     </a>
                 </li>
             </ul>

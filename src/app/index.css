@@ -3781,3 +3781,7 @@ ul.safearea a {
 html.full-opacity:before {
     opacity: 1;
 }
+
+.hide-element{
+    visibility: hidden;
+}
