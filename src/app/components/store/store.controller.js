@@ -1,6 +1,6 @@
 var app = angular.module('instastore');
 app
-    .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', 'CLIENT_URL', function ($scope, UserService, $stateParams, CLIENT_URL) {
+    .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', 'CLIENT_URL', 'toaster', function ($scope, UserService, $stateParams, CLIENT_URL, toaster) {
         var profile = UserService.getProfile();
         $scope.seller = profile.seller;
         if (profile.seller) {
@@ -10,9 +10,16 @@ app
                 if (profile.store)
                     $scope.store_url = CLIENT_URL + profile.store.store_url;
             }
-        } else {
+        } else
             $scope.store_url = CLIENT_URL + profile.inviter_url;
+
+        $scope.getTextToCopy = function () {
+            return $scope.store_url;
         }
+        $scope.alertCopy = function () {
+            toaster.pop('success', 'Copied!');
+        }
+
     }])
     .controller('StoreView', ['$scope', 'rest', '$rootScope', 'errorService', function ($scope, rest, $rootScope, errorService) {
         rest.path = 'v1/stores';
