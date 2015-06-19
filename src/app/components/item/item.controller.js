@@ -51,8 +51,8 @@ angular.module('instastore')
                 };
             }
         }])
-    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService', 'UserService', '$stateParams',
-        function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams) {
+    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService', 'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout',
+        function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams, $location, $anchorScroll, $timeout) {
 
             $scope.item = {};
 
@@ -127,9 +127,18 @@ angular.module('instastore')
                 $scope.leaveComment = true;
                 feedHelper.leaveComment = false;
             }
+
+            $scope.showCommentTabGoToBottom = function () {
+                $scope.leaveComment = !$scope.leaveComment;
+                $timeout(function () {
+                    $location.hash('bottom');
+                    $anchorScroll();
+                }, 100);
+            };
         }
     ])
-    .controller('ItemAdd', ['$scope', 'rest', 'toaster', '$upload', 'API_URL', 'ngDialog', 'errorService',
+    .
+    controller('ItemAdd', ['$scope', 'rest', 'toaster', '$upload', 'API_URL', 'ngDialog', 'errorService',
         function ($scope, rest, toaster, $upload, API_URL, ngDialog, errorService) {
 
             rest.path = 'v1/items';
