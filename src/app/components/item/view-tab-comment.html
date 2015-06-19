@@ -43,7 +43,7 @@
                       ng-click="seeMore = !seeMore">See {{seeMore?' less':' more'}}...</span>
             </div>
         </div>
-        <div class="leavecomment-container">
+        <div ng-class="item.comments.length<1?'mtop':''" class="leavecomment-container">
             <div ng-show="leaveComment">
                 <input ng-model="item.newComment">
                 <div class="but sml" ng-click="saveComment(item.newComment)">Post</div>

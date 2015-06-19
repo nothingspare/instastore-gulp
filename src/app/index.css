@@ -691,12 +691,12 @@ p {
     width: 100%;
 }
 
-.account-outer .copyurl-container{
+.account-outer .copyurl-container {
     position: relative;
     top: 80px;
 }
 
-.account-outer .copyurl-container .regular-field{
+.account-outer .copyurl-container .regular-field {
     background-color: rgba(225, 225, 225, 1);
 }
 
@@ -964,6 +964,7 @@ h3 {
     width: 100%;
     z-index: 999;
 }
+
 /** - - - - - - - header end - - - - - - - - - - - **/
 /** - - - - - - - middle nav profile page - - - - - - - - - - **/
 
@@ -1125,7 +1126,7 @@ h3 {
 }
 
 .profile.customheader-profile {
-    margin:2px 0 0 3px;
+    margin: 2px 0 0 3px;
     width: 32px;
     height: 32px;
 }
@@ -3497,13 +3498,14 @@ ul.safearea a {
     color: #555;
 }
 
-.profile-store .page2 .enter-storeaddress{
-    margin-top:20px;
+.profile-store .page2 .enter-storeaddress {
+    margin-top: 20px;
 }
 
-.profile-store .page2 .enter-storeaddress h6{
-    margin:0 20px 10px 20px;
+.profile-store .page2 .enter-storeaddress h6 {
+    margin: 0 20px 10px 20px;
 }
+
 /*Profile store section end*/
 
 /*Sellorbuy section start*/
@@ -3516,8 +3518,8 @@ ul.safearea a {
     width: 200px;
 }
 
-.sellorbuy .profile{
-    float:none;
+.sellorbuy .profile {
+    float: none;
 }
 
 /*Sellorbuy section end*/
@@ -3734,8 +3736,13 @@ ul.safearea a {
 }
 
 /*Seller comment starts*/
+
 .itemview .comment .icon-message {
     vertical-align: top;
+}
+
+.itemview .tab-comment .leavecomment-container.mtop {
+    margin-top: 35px;
 }
 
 .itemview .leavecomment-container input {
@@ -3774,14 +3781,15 @@ ul.safearea a {
 }
 
 .angular-google-map-container {
-    top:9px;
+    top: 9px;
     height: 400px;
-    width:100%;
+    width: 100%;
 }
+
 html.full-opacity:before {
     opacity: 1;
 }
 
-.hide-element{
+.hide-element {
     visibility: hidden;
 }

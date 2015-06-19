@@ -6,8 +6,8 @@ var app = angular.module('instastore',
         'google.places', 'ngClipboard'
     ]);
 
-app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider', 'API_URL', 'ngClipProvider',
-    function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, ngClipProvider) {
+app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider', 'API_URL', 'ngClipProvider', 'uiGmapGoogleMapApiProvider',
+    function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, ngClipProvider, uiGmapGoogleMapApiProvider) {
 
         var modulesPath = 'app/components';
 
@@ -39,11 +39,6 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/site/storeselect.html'
         });
 
-        //$stateProvider.state('feed', {
-        //    url: '/{storeurl}',
-        //    controller: 'ItemIndex',
-        //    templateUrl: modulesPath + '/item/index.html'
-        //});
 
         $stateProvider.state('itemview', {
             url: '/:storeurl/:itemurl/:tab',
@@ -111,6 +106,12 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         $locationProvider.html5Mode(true).hashPrefix('!');
         $httpProvider.interceptors.push('authInterceptor');
         ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
+        uiGmapGoogleMapApiProvider.configure({
+            //    key: 'your api key',
+            v: '3.17',
+            libraries: 'places'
+        });
+
     }]);
 
 app.run(function ($rootScope, $state, $stateParams) {
