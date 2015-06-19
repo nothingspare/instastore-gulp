@@ -311,7 +311,7 @@ angular.module('instastore')
                     }).progress(function (evt) {
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                    }).success(function (data, status, headers, config) {
+                    }).success(function (data) {
                         toaster.pop('success', 'File uploaded!');
                         delete $scope.image2;
                         $scope.slides.push({'image_url': data.image_url});
@@ -320,4 +320,19 @@ angular.module('instastore')
                 }
             }
         };
+    }])
+    .controller('ItemLocation', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
+        uiGmapGoogleMapApi.then(function (maps) {
+            if ($rootScope.store) {
+                $scope.map = {
+                    center: {latitude: $rootScope.store.store_long, longitude: $rootScope.store.store_lat},
+                    zoom: 14
+                };
+                $scope.staticMarker = {id: 'store-marker'};
+                $scope.staticMarker.coords = {
+                    latitude: $rootScope.store.store_long,
+                    longitude: $rootScope.store.store_lat
+                };
+            }
+        });
     }]);
