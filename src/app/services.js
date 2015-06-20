@@ -99,6 +99,12 @@ app
                     $cookies.bgUrl = $rootScope.bgUrl = bgUrl;
                 }
             },
+            isYourStore: function () {
+                var profile = this.getProfile();
+                var stateParams = $injector.get('$stateParams');
+
+                return profile.store.store_url === stateParams.storeurl ? true : false;
+            },
             initStore: function () {
                 var state = $injector.get('$state');
                 if (!this.isGuest()) {
@@ -106,21 +112,17 @@ app
                     var facebookProfile = this.getFacebookProfile();
                     var stateParams = $injector.get('$stateParams');
                     var rest = $injector.get('rest');
-                    if (stateParams.storeurl && (profile.store.store_url !== stateParams.storeurl)) {
+                    if (stateParams.storeurl && !this.isYourStore(stateParams.storeurl)) {
                         rest.path = 'v1/stores';
                         rest.models({store_url: stateParams.storeurl}).success(function (data) {
                             var store = data[0];
                             if (!store) {
-                                errorService.simpleAlert({
-                                    status: 404,
-                                    name: 'error',
-                                    message: 'There is no store with such url'
-                                });
+                                errorService.simpleAlert('nostorewithurl');
                                 state.go('grid');
                                 return;
                             }
                             if (!store.avatar_url) store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
-                            if (!state.includes('grid')) {
+                            if (state.includes('store')) {
                                 rest.path = 'v1/user-lastitems';
                                 rest.models({user_id: store.user_id}).success(function (data) {
                                     store.items = data;
@@ -137,7 +139,7 @@ app
                         if (!profile.seller && (state.includes('grid'))) state.go('grid', {storeurl: profile.inviter_url});
                         if (profile.store) {
                             if (!profile.store.avatar_url) profile.store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
-                            if (!state.includes('grid')) {
+                            if (state.includes('store')) {
                                 rest.path = 'v1/user-lastitems';
                                 rest.models({user_id: profile.id}).success(function (data) {
                                     $rootScope.store = profile.store;
@@ -220,8 +222,14 @@ app
             }
         };
     })
-    .
-    service('errorService', function (toaster) {
+    .service('errorService', function (toaster) {
+        var messages = {
+            nourl: {status: '', name: '', message: 'No url specified!'},
+            nostorewithurl: {status: 404, name: 'error', message: 'There is no store with such url'},
+            noitemwithurl: {status: 404, name: 'error', message: 'There is no item with such url'},
+            fileisntuploaded: {message: 'File is not uploaded!', status: 500, name: 'Ooops!', code: 500},
+            noinviterwithurl: {status: 404, name: 'error', message: 'There is no inviter store with such url'}
+        };
         return {
             alert: function (data) {
                 toaster.clear();
@@ -234,7 +242,8 @@ app
                     toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
                 }
             },
-            simpleAlert: function (data) {
+            simpleAlert: function (code) {
+                var data = messages[code];
                 toaster.clear();
                 toaster.pop('error', "status: " + data.status + " " + data.name, data.message);
             }

@@ -5,19 +5,16 @@ angular.module('instastore')
         function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper, errorService, $filter) {
             if (!UserService.isGuest()) {
                 var store;
-                if ($stateParams.storeurl) {
+                if ($stateParams.storeurl && !UserService.isYourStore()) {
                     rest.path = 'v1/stores';
                     rest.models({store_url: $stateParams.storeurl}).success(function (data) {
                         $scope.store = store = data[0];
                         if (!store) {
-                            errorService.simpleAlert({
-                                status: 404,
-                                name: 'error',
-                                message: 'There is no store with such url'
-                            });
+                            errorService.simpleAlert('nostorewithurl');
                             $state.go('grid');
                             return;
                         }
+
                         rest.path = 'v1/items';
                         rest.models({user_id: store.user_id, status: 20}).success(function (data) {
                             $scope.items = data;
@@ -65,11 +62,7 @@ angular.module('instastore')
                 }).error(errorService.alert);
             }
             else {
-                errorService.simpleAlert({
-                    status: 404,
-                    name: 'error',
-                    message: 'There is no item with such url'
-                });
+                errorService.simpleAlert('noitemwithurl');
                 $state.go('grid');
             }
 
@@ -212,12 +205,7 @@ angular.module('instastore')
                             if (data.image_url) {
                                 toaster.pop('success', 'File uploaded!');
                             }
-                            else errorService.simpleAlert({
-                                message: 'File is not uploaded!',
-                                status: 500,
-                                name: 'Ooops!',
-                                code: 500
-                            });
+                            else errorService.simpleAlert('fileisntuploaded');
                         });
                     }
                 }

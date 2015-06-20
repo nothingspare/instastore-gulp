@@ -58,11 +58,7 @@ angular.module('instastore')
             rest.models({user_id: profile.inviter_id}).success(function (data) {
                 var store = data[0];
                 if (!store) {
-                    errorService.simpleAlert({
-                        status: 404,
-                        name: 'error',
-                        message: 'There is no inviter store with such url'
-                    });
+                    errorService.simpleAlert('noinviterwithurl');
                     return;
                 }
                 inviter_url = store.store_url;
