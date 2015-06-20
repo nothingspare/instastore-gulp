@@ -74,7 +74,7 @@ angular.module('instastore')
 
         $scope.goAsSeller = function () {
             UserService.setIsSeller(true);
-            $state.go('grid');
+            $state.go('grid',{storeurl:profile.store.store_url});
         };
     }])
     .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'errorService', 'toaster', function ($scope, UserService, $state, rest, errorService, toaster) {

@@ -5,7 +5,7 @@ angular.module('instastore')
         function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper, errorService, $filter) {
             if (!UserService.isGuest()) {
                 var store;
-                if ($stateParams.storeurl && !UserService.isYourStore()) {
+                if (!UserService.isYourStore()) {
                     rest.path = 'v1/stores';
                     rest.models({store_url: $stateParams.storeurl}).success(function (data) {
                         $scope.store = store = data[0];
@@ -14,7 +14,6 @@ angular.module('instastore')
                             $state.go('grid');
                             return;
                         }
-
                         rest.path = 'v1/items';
                         rest.models({user_id: store.user_id, status: 20}).success(function (data) {
                             $scope.items = data;
