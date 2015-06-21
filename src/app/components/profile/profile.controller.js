@@ -1,11 +1,8 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state',
-        function ($scope, UserService, toaster, rest, PreviousState, $state) {
-
-            $scope.isFacebookOff = true;
-            UserService.initStore();
+    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state', '$stateParams',
+        function ($scope, UserService, toaster, rest, PreviousState, $state, $stateParams) {
 
             var errorCallback = function (data) {
                 toaster.clear();
@@ -24,14 +21,22 @@ angular.module('instastore')
                 }
             };
 
+            $scope.profile = UserService.getProfile();
+
+            rest.path = 'v1/stores';
+
+            rest.model($scope.profile.store.id).success(function(data){
+                $scope.store = data;
+            }).error(errorCallback);
+
+            $scope.isFacebookOff = true;
+
             $scope.slides = [
                 {title: 'first'},
                 {title: 'second'},
                 {title: 'third'},
                 {title: 'fourth'}
             ];
-
-            $scope.profile = UserService.getProfile();
 
             var facebookUser = UserService.getFacebookProfile();
             $scope.facebookUid = facebookUser.id;

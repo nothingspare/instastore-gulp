@@ -46,10 +46,11 @@ app
                 return $http.get(this.baseUrl + this.path + '?' + this.serialize(filter));
             },
 
-            model: function () {
-                if ($stateParams.expand != null) {
+            model: function (id) {
+                if (id)
+                    return $http.get(this.baseUrl + this.path + "/" + id);
+                if ($stateParams.expand != null)
                     return $http.get(this.baseUrl + this.path + "/" + $stateParams.id + '?expand=' + $stateParams.expand);
-                }
                 return $http.get(this.baseUrl + this.path + "/" + $stateParams.id);
             },
 
@@ -100,7 +101,7 @@ app
                 }
             },
             //go to your store as seller, go to inviter's store as buyer
-            goToMainStore: function(){
+            goToMainStore: function () {
                 var profile = this.getProfile();
                 var state = $injector.get('$state');
                 state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url});
@@ -151,7 +152,12 @@ app
                                     $rootScope.store = store;
                                 }).error(errorService.alert);
                             }
-                            else $rootScope.store = store;
+                            else {
+                                $rootScope.isSeller = false;
+                                $rootScope.store = store;
+                                $rootScope.bgUrl = store.bg_url;
+                            }
+
                         }).error(errorService.alert);
                     }
                     else {
@@ -166,7 +172,10 @@ app
                                     $rootScope.store.items = data;
                                 }).error(errorService.alert);
                             }
-                            else $rootScope.store = profile.store;
+                            else {
+                                $rootScope.store = profile.store;
+                                $rootScope.bgUrl = profile.store.bg_url;
+                            }
                         }
                     }
                 }
