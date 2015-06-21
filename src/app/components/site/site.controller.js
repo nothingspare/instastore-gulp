@@ -3,15 +3,14 @@
 angular.module('instastore')
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService',
         function ($scope, $rootScope, rest, toaster, $state, $auth, UserService) {
-
-            if (!UserService.isGuest()) $state.go('grid');
+            if (!UserService.isGuest()) UserService.goToMainStore()
 
             $scope.authenticate = function (provider) {
                 $auth.authenticate(provider).then(function (res) {
                     UserService.login(res.data.token);
                     UserService.setFacebookProfile(res.data.facebookProfile);
                     res.data.profile.stores = res.data.stores;
-                    if (res.data.store) {
+                        if (res.data.store) {
                         res.data.profile.store = res.data.store;
                         UserService.setBg(res.data.store.bg_url);
                         UserService.setAvatar(res.data.store.avatar_url);
@@ -74,7 +73,7 @@ angular.module('instastore')
 
         $scope.goAsSeller = function () {
             UserService.setIsSeller(true);
-            $state.go('grid',{storeurl:profile.store.store_url});
+            $state.go('grid', {storeurl: profile.store.store_url});
         };
     }])
     .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'errorService', 'toaster', function ($scope, UserService, $state, rest, errorService, toaster) {

@@ -99,29 +99,33 @@ app
                     $cookies.bgUrl = $rootScope.bgUrl = bgUrl;
                 }
             },
-            isRouteNeedsStoreurlCheck: function () {
+            //go to your store as seller, go to inviter's store as buyer
+            goToMainStore: function(){
+                var profile = this.getProfile();
+                var state = $injector.get('$state');
+                state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url});
+            },
+            routeStoreurlCheck: function () {
                 var state = $injector.get('$state');
                 return state.includes('store') || state.includes('grid') || state.includes('itemview') ? true : false;
             },
-            isUrlStoreSpecified: function () {
+            checkStoreUrl: function () {
                 var stateParams = $injector.get('$stateParams');
-                var state = $injector.get('$state');
-                var profile = this.getProfile();
                 if (!stateParams.storeurl) {
                     errorService.simpleAlert('nourl');
-                    state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url});
+                    this.goToMainStore();
                     return false;
                 } else
                     return stateParams.storeurl;
             },
             isYourStore: function () {
                 var profile = this.getProfile();
-                var storeUrl = this.isUrlStoreSpecified();
+                var storeUrl = this.checkStoreUrl();
                 if (storeUrl)
                     return profile.store.store_url === storeUrl ? true : false;
             },
             initStore: function () {
-                if (this.isRouteNeedsStoreurlCheck()) {
+                if (this.routeStoreurlCheck()) {
                     var state = $injector.get('$state');
                     var profile = this.getProfile();
                     var facebookProfile = this.getFacebookProfile();
@@ -189,14 +193,14 @@ app
             }
             ,
             initIsSeller: function () {
-                if ($cookies.isSeller == true)
+                if ($cookies.isSeller)
                     $rootScope.isSeller = true;
                 else
                     $rootScope.isSeller = false;
             }
             ,
             isSeller: function () {
-                if ($cookies.isSeller == true)
+                if ($cookies.isSeller)
                     return true;
                 else
                     return false;
@@ -239,7 +243,7 @@ app
     })
     .service('errorService', function (toaster) {
         var messages = {
-            nourl: {status: '', name: '', message: 'No url specified!'},
+            nourl: {status: 500, name: '', message: 'No url specified!'},
             nostorewithurl: {status: 404, name: 'error', message: 'There is no store with such url'},
             noitemwithurl: {status: 404, name: 'error', message: 'There is no item with such url'},
             fileisntuploaded: {status: 500, name: 'Ooops!', code: 500, message: 'File is not uploaded!'},
@@ -268,16 +272,5 @@ app
         return {
             seeMore: false,
             leaveComment: false
-        }
-    })
-    .service('Item', function (rest, toaster, errorService) {
-        return {
-            save: function (item, successCallback) {
-                rest.path = 'v1/user-items';
-                rest.putModel(item).success(
-                    successCallback ? successCallback : function () {
-                        toaster.pop('success', "Saved");
-                    }).error(errorService.alert);
-            }
         }
     });
