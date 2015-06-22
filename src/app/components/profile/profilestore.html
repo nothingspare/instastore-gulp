@@ -44,9 +44,9 @@
 
                             <h6>Fill out your store address if you want to change it. Your current address: {{profile.store.address}}</h6>
 
-                            <div ng-if="carouselIndex==1">
-                                <input type="text" g-places-autocomplete ng-model="profile.store.place"
-                                       placeholder="Enter store address"/>
+                            <div ng-include="renderMap&&carouselIndex==1 ? 'app/components/profile/g-autocomplete.html' : null">
+                                <!--<input type="text" g-places-autocomplete ng-model="profile.store.place"-->
+                                       <!--placeholder="Enter store address"/>-->
                             </div>
 
                         </div>
