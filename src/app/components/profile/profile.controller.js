@@ -97,7 +97,7 @@ angular.module('instastore')
             })
             .then(function (maps) {
                 $scope.renderMap = true;
-        });
+            });
 
         var errorCallback = function (data) {
             toaster.clear();
@@ -128,10 +128,14 @@ angular.module('instastore')
 
         $scope.save = function () {
             if ($scope.profile.store.place) {
-                if ($scope.profile.store.place.types.indexOf('street_address') > -1) {
-                    $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k;
-                    $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D;
-                    $scope.profile.store.address = $scope.profile.store.place.formatted_address;
+                if ($scope.profile.store.place.types) {
+                    if ($scope.profile.store.place.types.indexOf('street_address') > -1) {
+                        $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k;
+                        $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D;
+                        $scope.profile.store.address = $scope.profile.store.place.formatted_address;
+                    } else {
+                        toaster.pop('error', 'Invalid address')
+                    }
                 } else {
                     toaster.pop('error', 'Invalid address')
                 }

@@ -3754,6 +3754,10 @@ ul.safearea a {
     margin-top: -5px;
 }
 
+.itemview .itemmap-container .angular-google-map>.angular-google-map-container {
+    top: 4px;
+}
+
 /*Seller comment end*/
 
 #container1-itemview #navigation1 li a {

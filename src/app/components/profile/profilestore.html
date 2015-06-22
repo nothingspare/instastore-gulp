@@ -37,64 +37,24 @@
                         <div class="setting-titles">
                             <f3>Store details</f3>
                         </div>
-                        <!--<input style="margin:5px 0 0 0" class="regular-feild" type="text"-->
-                        <!--ng-model="profile.store.address" placeholder="Store location"/>-->
-
                         <div class="enter-storeaddress">
 
                             <h6>Fill out your store address if you want to change it. Your current address: {{profile.store.address}}</h6>
 
-                            <div ng-include="renderMap&&carouselIndex==1 ? 'app/components/profile/g-autocomplete.html' : null">
-                                <!--<input type="text" g-places-autocomplete ng-model="profile.store.place"-->
-                                       <!--placeholder="Enter store address"/>-->
-                            </div>
+                            <div ng-include="renderMap&&carouselIndex==1 ? 'app/components/profile/g-autocomplete.html' : null"></div>
 
                         </div>
-
-                        <!--<div style="display:inline-block;width: 240px;margin: 10px 0 0 0;">-->
-                        <!--&lt;!&ndash;<div style="float: left;">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<input id="textfield4" type="text" ng-model="profile.store.city" placeholder="City"/>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                        <!--&lt;!&ndash;<div style="float: right; margin: 0px 0px 0px 10px;">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<input id="textfield5" type="text" ng-model="profile.store.state" placeholder="State"/>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                        <!--&lt;!&ndash;<div style="float: left; margin: -4px 0 0 0;">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<input id="textfield7" type="text" ng-model="profile.store.zipcode" placeholder="Zipcode"/>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                        <!--&lt;!&ndash;<div style=" margin: 4px 0 16px 0; float: right;"><a href="#" class="btn sml">&nbsp;Verify&nbsp;</a></div>&ndash;&gt;-->
-                        <!--</div>-->
-
                         <h6 style="margin:0 20px 0 20px;">Start trading now. Mobbbi holds your balance until
                             your ready to cash out with PayPal. </h6>
-
                         <div style="display:inline-block; width: 240px; margin: 10px 0 0 0;">
                             <div style="float: left; margin: 0px 0px 0px 0px;">
                                 <input id="textfield6" type="text" ng-model="profile.store.billing_email"
                                        placeholder="PayPal email"/>
                             </div>
-
                             <div style=" margin: 8px 0 10px 0; float: right;"><a href="#" class="btn sml">Cash
                                 out&nbsp;</a>
                             </div>
                         </div>
-                        <!--<div style="display:inline-block; width: 220px; margin: 75px 0 0 0;">-->
-                        <!--<div style=" margin: 8px 20px 0 0; float: left;">-->
-                        <!--<p>Store visability</p>-->
-                        <!--</div>-->
-                        <!--<div style="float: right;">-->
-                        <!--<label class="switch-light switch" onclick="">-->
-                        <!--<input type="checkbox">-->
-                        <!--<span>-->
-                        <!--<span>On</span>-->
-                        <!--<span>Off</span>-->
-                        <!--</span>-->
-                        <!--<a></a>-->
-                        <!--</label>-->
-                        <!--</div>-->
-                        <!--</div>-->
                     </center>
                 </li>
                 <li>
@@ -122,16 +82,13 @@
                             <f3>Import items</f3>
                         </div>
                         <h6 style="margin: 10px 0 0 53px;float: left">Add items via the</h6>
-
                         <div style="float:left;margin-top:2px;margin-left:10px;margin-right:10px;"
                              class="additem"></div>
                         <h6 style="float: left;margin-top:10px;"> button</h6>
-
                         <div style="display:inline-block;width:240px;margin:15px 0 0 0;">
                             <div style="float: left; margin: 5px 0 0 0;">
                                 <h6>Instagram items</h6>
                             </div>
-
                             <div style=" margin: 4px 0 5px 0; float: right;">
                                 <a ui-sref="profilestore"
                                    class="btn sml"
@@ -141,7 +98,6 @@
                         </div>
                         <h6 style="margin:0 20px;">Select items previously posted on Instagram. Make edits on the
                             item pages once imported.</h6>
-
                         <div style="width: 220px; margin: 10px 0 0 0;">
                             <div style=" margin: 8px 0 0 0; float: left;">
                                 <p>Instagram Posting</p>
