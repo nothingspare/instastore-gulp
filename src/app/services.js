@@ -108,12 +108,12 @@ app
             },
             routeStoreurlCheck: function () {
                 var state = $injector.get('$state');
-                return state.includes('store') || state.includes('grid') || state.includes('itemview') ? true : false;
+                return state.includes('store') || state.includes('grid') || state.includes('itemview') || state.includes('location') ? true : false;
             },
             checkStoreUrl: function () {
                 var stateParams = $injector.get('$stateParams');
                 if (!stateParams.storeurl) {
-                    errorService.simpleAlert('nourl');
+                    //errorService.simpleAlert('nourl');
                     this.goToMainStore();
                     return false;
                 } else

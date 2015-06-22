@@ -1,8 +1,12 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state', '$stateParams',
-        function ($scope, UserService, toaster, rest, PreviousState, $state, $stateParams) {
+    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state', '$rootScope', 'uiGmapGoogleMapApi',
+        function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope, uiGmapGoogleMapApi) {
+
+            uiGmapGoogleMapApi.then(function (maps) {
+                console.log('maps is here');
+            });
 
             var errorCallback = function (data) {
                 toaster.clear();
@@ -25,8 +29,9 @@ angular.module('instastore')
 
             rest.path = 'v1/stores';
 
-            rest.model($scope.profile.store.id).success(function(data){
-                $scope.store = data;
+            rest.model($scope.profile.store.id).success(function (store) {
+                $scope.store = store;
+                $rootScope.bgUrl = store.bg_url;
             }).error(errorCallback);
 
             $scope.isFacebookOff = true;
@@ -85,7 +90,15 @@ angular.module('instastore')
             };
         }])
     .
-    controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', function ($scope, UserService, rest, toaster) {
+    controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi) {
+        uiGmapGoogleMapApi
+            .then(function () {
+                return uiGmapGoogleMapApi;
+            })
+            .then(function (maps) {
+                $scope.renderMap = true;
+        });
+
         var errorCallback = function (data) {
             toaster.clear();
             if (data.status == undefined) {
@@ -114,11 +127,16 @@ angular.module('instastore')
         $scope.profile = UserService.getProfile();
 
         $scope.save = function () {
-            $scope.profile.store.store_url = $scope.profile.store.store_name;
             if ($scope.profile.store.place) {
-                $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.A;
-                $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.F;
+                if ($scope.profile.store.place.types.indexOf('street_address') > -1) {
+                    $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k;
+                    $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D;
+                    $scope.profile.store.address = $scope.profile.store.place.formatted_address;
+                } else {
+                    toaster.pop('error', 'Invalid address')
+                }
             }
+            $scope.profile.store.store_url = $scope.profile.store.store_name;
             rest.path = 'v1/stores';
             rest.putModel($scope.profile.store).success(function (store) {
                 toaster.pop('success', "Store saved");
