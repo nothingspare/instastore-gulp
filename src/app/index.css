@@ -700,6 +700,19 @@ p {
     background-color: rgba(225, 225, 225, 1);
 }
 
+.account-outer .copyurl-container .url-text.os-windows,
+.account-outer .copyurl-container .url-text.os-mac,
+.account-outer .copyurl-container .url-text.os-linux,
+.account-outer .copyurl-container .url-text.os-unix{
+   display: none;
+}
+
+.account-outer .copyurl-container .ngclip.os-ios,
+.account-outer .copyurl-container .ngclip.os-android,
+.account-outer .copyurl-container .ngclip.os-firefoxos{
+    display: none;
+}
+
 .outer-top {
     display: table;
     top: 56px;

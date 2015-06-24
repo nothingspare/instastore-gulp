@@ -27,19 +27,20 @@ angular.module('instastore')
 
             $scope.profile = UserService.getProfile();
 
-            rest.path = 'v1/stores';
+            $scope.slides = [
+                {title: 'first'},
+                {title: 'second'},
+                {title: 'third'},
+                {title: 'fourth'}
+            ];
 
+            rest.path = 'v1/stores';
             rest.model($scope.profile.store.id).success(function (store) {
                 $scope.store = store;
                 $rootScope.bgUrl = store.bg_url;
             }).error(errorCallback);
 
             $scope.isFacebookOff = true;
-
-            $scope.slides = [
-                {title: 'first'},
-                {title: 'second'},
-            ];
 
             var facebookUser = UserService.getFacebookProfile();
             $scope.facebookUid = facebookUser.id;

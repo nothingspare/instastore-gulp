@@ -34,6 +34,9 @@
             <div ng-if="sellerAllowed" style="display: inline-block; width: 240px; margin: 0 10px 10px 10px;">
                 <a ng-click="goAsSeller()" class="btn enter-button">&nbsp;Enter&nbsp;</a>
             </div>
+            <div ng-if="!sellerAllowed" style="display: inline-block; width: 240px; margin: 0 10px 10px 10px;">
+                <a ng-click="goAsBuyer()" class="btn enter-button">&nbsp;Enter&nbsp;</a>
+            </div>
         </div>
     </div>
 </div>

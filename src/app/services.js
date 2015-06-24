@@ -196,7 +196,8 @@ app
             ,
             initBgFilter: function () {
                 var stateService = $injector.get('$state');
-                if (stateService.includes('store')) $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
+                if (stateService.includes('store'))
+                    $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
                 else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
                     $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
             }

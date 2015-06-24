@@ -2,8 +2,16 @@
     <div class="middle">
         <div class="inner">
             <div class="copyurl-container">
-                <input ng-disabled="true" ng-if="seller" class="regular-field" type="text" ng-model="store_url" placeholder="Store URL">
-                <button class="btn" clip-copy="getTextToCopy()" clip-click="alertCopy()" clip-click-fallback="fallback(copy)">Copy!</button>
+                <div device-detector ng-if="seller" class="ngclip">
+                    <input ng-disabled="true" class="regular-field" type="text" ng-model="store_url"
+                           placeholder="Store URL">
+                    <button class="btn" clip-copy="getTextToCopy()" clip-click="alertCopy()"
+                            clip-click-fallback="fallback(copy)">Copy!
+                    </button>
+                </div>
+                <div device-detector class="url-text">
+                    <h4>{{store_url}}</h4>
+                </div>
             </div>
             <div id="item-circles">
                 <ul>
