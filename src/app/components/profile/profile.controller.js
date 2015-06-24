@@ -39,8 +39,6 @@ angular.module('instastore')
             $scope.slides = [
                 {title: 'first'},
                 {title: 'second'},
-                {title: 'third'},
-                {title: 'fourth'}
             ];
 
             var facebookUser = UserService.getFacebookProfile();
