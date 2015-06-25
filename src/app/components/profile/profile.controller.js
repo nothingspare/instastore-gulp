@@ -3,10 +3,25 @@
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state', '$rootScope', 'uiGmapGoogleMapApi',
         function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope, uiGmapGoogleMapApi) {
-
             uiGmapGoogleMapApi.then(function (maps) {
-                console.log('maps is here');
             });
+
+            $scope.profile = UserService.getProfile();
+            if ($scope.profile.seller) {
+                $scope.slides = [
+                    {title: 'first'},
+                    {title: 'second'},
+                    {title: 'third'},
+                    {title: 'fourth'}
+                ];
+            } else {
+                $scope.slides = [
+                    {title: 'first'},
+                    {title: 'second'}
+                ];
+            }
+
+            $scope.full_name = $scope.profile.first_name + ' ' + $scope.profile.last_name;
 
             var errorCallback = function (data) {
                 toaster.clear();
@@ -24,15 +39,6 @@ angular.module('instastore')
                     toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
                 }
             };
-
-            $scope.profile = UserService.getProfile();
-
-            $scope.slides = [
-                {title: 'first'},
-                {title: 'second'},
-                {title: 'third'},
-                {title: 'fourth'}
-            ];
 
             rest.path = 'v1/stores';
             rest.model($scope.profile.store.id).success(function (store) {

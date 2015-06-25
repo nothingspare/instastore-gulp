@@ -92,6 +92,10 @@ app
                 if (token) return false;
                 else return true;
             },
+            getUserRole: function () {
+                var profile = this.getProfile();
+                return profile.seller;
+            },
             setBg: function (bgUrl) {
                 var profile = this.getProfile();
                 if (profile.store) {

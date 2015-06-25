@@ -22,8 +22,8 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         $stateProvider.state('grid', {
             url: '/:storeurl/mode/:mode',
             controller: 'ItemIndex',
-            templateUrl: function($stateParams){
-                return $stateParams.mode !== 'feed'?modulesPath + '/item/item-grid.html':modulesPath + '/item/index.html';
+            templateUrl: function ($stateParams) {
+                return $stateParams.mode !== 'feed' ? modulesPath + '/item/item-grid.html' : modulesPath + '/item/index.html';
             }
         });
 
@@ -69,7 +69,9 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
                 ]
             },
             controller: 'ProfileIndex',
-            templateUrl: modulesPath + '/profile/index.html'
+            templateUrl: function ($stateParams) {
+                return true ? modulesPath + '/profile/index.html' : modulesPath + '/profile/index.html';
+            }
         });
 
         $stateProvider.state('profilestore', {
