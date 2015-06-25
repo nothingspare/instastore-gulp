@@ -102,7 +102,9 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
         $authProvider.facebook({
             clientId: '352496064951251',
-            url: 'v1/user/auth'
+            url: 'v1/user/auth',
+            scope: 'email,manage_pages',
+            scopeDelimiter: ','
         });
 
         $locationProvider.html5Mode(true).hashPrefix('!');
