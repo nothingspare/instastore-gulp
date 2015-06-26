@@ -261,7 +261,8 @@ app
             nostorewithurl: {status: 404, name: 'error', message: 'There is no store with such url'},
             noitemwithurl: {status: 404, name: 'error', message: 'There is no item with such url'},
             fileisntuploaded: {status: 500, name: 'Ooops!', code: 500, message: 'File is not uploaded!'},
-            noinviterwithurl: {status: 404, name: 'error', message: 'There is no inviter store with such url'}
+            noinviterwithurl: {status: 404, name: 'error', message: 'There is no inviter store with such url'},
+            lstorageisnotavailable: {status: 'Ooops!', name: 'error', message: 'Session Storage is not available'}
         };
         return {
             alert: function (data) {
@@ -287,4 +288,18 @@ app
             seeMore: false,
             leaveComment: false
         }
-    });
+    })
+    .service('SStorage', ['errorService', '$window', '$timeout',
+        function SStorage(errorService, $window, $timeout) {
+            this.isSessionStorageAvailable = function () {
+                try {
+                    $window.sessionStorage.world = 'hello';
+                    delete $window.sessionStorage.world;
+                    return true;
+                } catch (ex) {
+                    errorService.simpleAlert('lstorageisnotavailable');
+                }
+            };
+        }
+    ])
+;

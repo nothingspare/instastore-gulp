@@ -99,6 +99,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $authProvider.baseUrl = API_URL;
+        $authProvider.storage = 'sessionStorage';
 
         $authProvider.facebook({
             clientId: '352496064951251',
@@ -111,7 +112,6 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         $httpProvider.interceptors.push('authInterceptor');
         ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
         uiGmapGoogleMapApiProvider.configure({
-            //    key: 'your api key',
             v: '3.17',
             libraries: 'places'
         });

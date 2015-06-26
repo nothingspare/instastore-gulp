@@ -5,12 +5,12 @@
                 <h3>Welcome to</h3>
                 <img src="assets/images/mobbbi.png" width="200">
                 <br>
-                <a ng-click="authenticate('facebook')" class="btn sml btn-blu">Enter with Facebook</a>
+                <a ng-if="isSession" ng-click="authenticate('facebook')" class="btn sml btn-blu">Enter with Facebook</a>
 
                 <div class="seemorecontainer">
-                    <div class="seemore" id="ii"><span ng-click="showFacebookTip=!showFacebookTip">Why Facebook?</span>
+                    <div  ng-if="isSession" class="seemore" id="ii"><span ng-click="showFacebookTip=!showFacebookTip">Why Facebook?</span>
                     </div>
-                    <div ng-if="showFacebookTip" class="seemorecontent am-fade-and-slide-left   "
+                    <div ng-if="showFacebookTip" class="seemorecontent am-fade-and-slide-left"
                          style="display:block;margin: -5px 8px 4px 8px; padding: 10px; width: 280px;">
                         <p>We use Facebook to match Mobbbi stores with the friends they have invited. You can click <a
                                 href="enter1.html">here</a> to unlink your account after you have looked around.</p>

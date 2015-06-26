@@ -1,16 +1,18 @@
 //'use strict';
 
 angular.module('instastore')
-    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService',
-        function ($scope, $rootScope, rest, toaster, $state, $auth, UserService) {
-            if (!UserService.isGuest()) UserService.goToMainStore()
+    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService', 'SStorage',
+        function ($scope, $rootScope, rest, toaster, $state, $auth, UserService, SStorage) {
+            if (!UserService.isGuest()) UserService.goToMainStore();
+
+            $scope.isSession = SStorage.isSessionStorageAvailable();
 
             $scope.authenticate = function (provider) {
                 $auth.authenticate(provider).then(function (res) {
                     UserService.login(res.data.token);
                     UserService.setFacebookProfile(res.data.facebookProfile);
                     res.data.profile.stores = res.data.stores;
-                        if (res.data.store) {
+                    if (res.data.store) {
                         res.data.profile.store = res.data.store;
                         UserService.setBg(res.data.store.bg_url);
                         UserService.setAvatar(res.data.store.avatar_url);
