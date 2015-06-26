@@ -263,7 +263,8 @@ angular.module('instastore')
                     $scope.currentTab = 'app/components/item/view-tab-comment.html';
             }
     }])
-    .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', function ($scope, $stateParams, $upload, API_URL, toaster) {
+    .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', 'deviceDetector',
+        function ($scope, $stateParams, $upload, API_URL, toaster, deviceDetector) {
 
         var dataURItoBlob = function (dataURI) {
             var binary = atob(dataURI.split(',')[1]);
@@ -286,7 +287,8 @@ angular.module('instastore')
                     $upload.upload({
                         url: API_URL + 'v1/item/upload',
                         fields: {
-                            'itemId': id
+                            'itemId': id,
+                            'os': deviceDetector.os
                         },
                         headers: {
                             'Content-Type': file.type
