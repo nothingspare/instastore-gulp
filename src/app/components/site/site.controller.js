@@ -31,7 +31,11 @@ angular.module('instastore')
             }
         }])
     .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', function ($scope, $state, ngDialog, UserService) {
+
         UserService.initStore();
+        var profile = UserService.getProfile();
+        $scope.sellerAllowed = profile.seller;
+
         $scope.logout = function () {
             UserService.logout();
             $state.go('login');
@@ -55,7 +59,7 @@ angular.module('instastore')
 
         $scope.goAsBuyer = function () {
             UserService.setIsSeller(false);
-            $state.go('grid', {storeurl: profile.seller?profile.store.store_url:profile.inviter_url});
+            $state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url});
         };
 
         $scope.goAsSeller = function () {
