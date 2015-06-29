@@ -106,11 +106,15 @@ app
                 };
                 var applyScope = function (imageResult) {
                     scope.$apply(function () {
-                        if (attrs.multiple)
-                            scope.image.push(imageResult);
-                        else
-                            scope.image = imageResult;
-                    });
+                            if (attrs.multiple) {
+                                scope.image.push(imageResult);
+                            }
+                            else {
+                                scope.image = imageResult;
+                            }
+                        }
+                    )
+                    ;
                 };
 
 
@@ -121,30 +125,41 @@ app
 
                     var files = evt.target.files;
                     for (var i = 0; i < files.length; i++) {
+
                         //create a result object for each file in files
                         var imageResult = {
                             file: files[i],
                             url: URL.createObjectURL(files[i])
                         };
 
-                        fileToDataURL(files[i]).then(function (dataURL) {
-                            imageResult.dataURL = dataURL;
-                        });
+                        loadImage.parseMetaData(files[i], function (data) {
+                            if (data.exif) {
+                                var orientation = data.exif.get('Orientation');
+                            }
 
-                        if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
-                            doResizing(imageResult, function (imageResult) {
-                                applyScope(imageResult);
+                            fileToDataURL(files[i]).then(function (dataURL) {
+                                imageResult.dataURL = dataURL;
                             });
-                        }
-                        else { //no resizing
-                            applyScope(imageResult);
-                        }
+
+                            if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
+                                doResizing(imageResult, function (imageResult) {
+                                    imageResult.orientation = data.exif.get('Orientation');
+                                    applyScope(imageResult, orientation);
+                                });
+                            }
+                            else { //no resizing
+                                imageResult.orientation = data.exif.get('Orientation');
+                                applyScope(imageResult, orientation);
+                            }
+                        });
                     }
                 });
             }
-        };
+        }
+            ;
     })
-    .directive('backgroundImage', function () {
+    .
+    directive('backgroundImage', function () {
         return function (scope, element, attrs) {
             restrict: 'A',
                 attrs.$observe('backgroundImage', function (value) {

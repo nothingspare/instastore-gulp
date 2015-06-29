@@ -69,9 +69,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
                 ]
             },
             controller: 'ProfileIndex',
-            templateUrl: function ($stateParams) {
-                return true ? modulesPath + '/profile/index.html' : modulesPath + '/profile/index.html';
-            }
+            templateUrl: modulesPath + '/profile/index.html'
         });
 
         $stateProvider.state('profilestore', {
