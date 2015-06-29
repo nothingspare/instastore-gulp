@@ -23,30 +23,38 @@
                 <div id="icon-cirle-wapper"
                      style="margin-bottom: 10px; padding: 1px;">
                     <div ng-if="!isSeller">
-                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})" class="action-icon active">
+                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})"
+                             class="action-icon active">
                             <div class="buyer-message-circle active"></div>
                         </div>
-                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:2})" class="action-icon">
+                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:2})"
+                             class="action-icon">
                             <div class="buy-circle"></div>
                         </div>
-                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:3})" class="action-icon">
+                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:3})"
+                             class="action-icon">
                             <div class="heart-circle"></div>
                         </div>
-                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:4})" class="action-icon">
+                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:4})"
+                             class="action-icon">
                             <div class="location-circle"></div>
                         </div>
                     </div>
                     <div ng-if="isSeller">
-                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})" class="action-icon">
+                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})"
+                             class="action-icon">
                             <div class="message-circle active"></div>
                         </div>
-                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:2})" class="action-icon">
+                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:2})"
+                             class="action-icon">
                             <div class="buy-circle"></div>
                         </div>
-                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:3})" class="action-icon">
+                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:3})"
+                             class="action-icon">
                             <div class="promote-circle"></div>
                         </div>
-                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:4})" class="action-icon">
+                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:4})"
+                             class="action-icon">
                             <div class="edit-circle"></div>
                         </div>
                     </div>
@@ -78,10 +86,12 @@
 
                 <div class="leavecomment" style=" margin: 10px 0 10px 10px; ">
                     <a style="color: #4c87f1; text-decoration: none !important;"
-                       ng-click="leavecomment({id:item.id, tab:1})">Leave comment</a>
+                       ng-click="leavecomment({storeurl:store.store_url,itemurl:item.item_url, tab:1})">Leave
+                        comment</a>
                 </div>
 
-                <div class="seemorecontainer" ng-if="item.comments.length>2" ng-click="seemore({id:item.id, tab:1})">
+                <div class="seemorecontainer" ng-if="item.comments.length>2"
+                     ng-click="seemore({storeurl:store.store_url,itemurl:item.item_url, tab:1})">
                     <div class="seemore" style=" margin: -28px 8px 4px -10px; text-align: right;">
                         <span>See more...</span>
                     </div>
