@@ -2,7 +2,6 @@ var app = angular.module('instastore');
 app
     .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', 'CLIENT_URL', 'toaster', function ($scope, UserService, $stateParams, CLIENT_URL, toaster) {
         var profile = UserService.getProfile();
-        UserService.initBgFilter();
         $scope.seller = profile.seller;
         if (profile.seller) {
             if ($stateParams.storeurl) {

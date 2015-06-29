@@ -7,8 +7,7 @@ app
                         'access-token': $cookies._auth
                     };
                 }
-                var stateParamsService = $injector.get('$stateParams');
-                if (!stateParamsService.storeurl) UserService.init();
+                UserService.init();
                 return config;
             },
             responseError: function (rejection) {
@@ -96,7 +95,7 @@ app
                 var profile = this.getProfile();
                 return profile.seller;
             },
-            getUserFullName: function(){
+            getUserFullName: function () {
                 var profile = this.getProfile();
                 return profile.first_name + ' ' + profile.last_name;
             },
