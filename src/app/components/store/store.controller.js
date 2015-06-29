@@ -1,6 +1,7 @@
 var app = angular.module('instastore');
 app
     .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', 'CLIENT_URL', 'toaster', function ($scope, UserService, $stateParams, CLIENT_URL, toaster) {
+
         var profile = UserService.getProfile();
         $scope.seller = profile.seller;
         if (profile.seller) {

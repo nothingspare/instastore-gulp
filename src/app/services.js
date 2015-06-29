@@ -7,6 +7,7 @@ app
                         'access-token': $cookies._auth
                     };
                 }
+                var stateService = $injector.get('$state');
                 UserService.init();
                 return config;
             },
@@ -193,65 +194,54 @@ app
                     this.setProfile(profile);
                     $cookies.avatarUrl = avatarUrl;
                 }
-            }
-            ,
+            },
             initBgAndAvatar: function () {
-                var bgU = $cookies.bgUrl;
-                if (bgU) $rootScope.bgUrl = bgU;
-            }
-            ,
+                //var bgU = $cookies.bgUrl;
+                //if (bgU) $rootScope.bgUrl = bgU;
+            },
             initBgFilter: function () {
                 var stateService = $injector.get('$state');
                 if (stateService.includes('store'))
                     $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
                 else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
                     $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
-            }
-            ,
+            },
             initIsSeller: function () {
-                if ($cookies.isSeller)
-                    $rootScope.isSeller = true;
-                else
-                    $rootScope.isSeller = false;
-            }
-            ,
+                //if (String($cookies.isSeller)==='true')
+                //    $rootScope.isSeller = true;
+                //else
+                //    $rootScope.isSeller = false;
+            },
             isSeller: function () {
-                if ($cookies.isSeller)
+                if (String($cookies.isSeller)==='true')
                     return true;
                 else
                     return false;
-            }
-            ,
+            },
             setIsSeller: function (value) {
                 $cookies.isSeller = $rootScope.isSeller = value;
-            }
-            ,
+            },
             setProfile: function (profile) {
                 $cookies.profile = JSON.stringify(profile);
                 if (profile.inviter_id) isInvited = true;
-            }
-            ,
+            },
             getProfile: function () {
                 if ($cookies.profile)
                     return JSON.parse($cookies.profile);
                 else return {};
-            }
-            ,
+            },
             getInvitedStatus: function () {
                 if (isInvited) return true;
                 else return false;
-            }
-            ,
+            },
             setFacebookProfile: function (profile) {
                 $window.sessionStorage.facebookProfile = JSON.stringify(profile);
-            }
-            ,
+            },
             getFacebookProfile: function () {
                 if ($window.sessionStorage.facebookProfile)
                     return JSON.parse($window.sessionStorage.facebookProfile);
                 else return {};
-            }
-            ,
+            },
             currentUser: function () {
                 return currentUser;
             }

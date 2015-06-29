@@ -7,7 +7,7 @@
                 </a>
             </li>
             <li>
-                <a ui-sref="store({storeurl:$stateParams.storeurl})" style="width: 70%; height: 38px">
+                <a ng-click="goToTop()" style="width: 70%; height: 38px">
                     <img class="profile customheader-profile" ng-src="{{store.avatar_url|storeAvatar}}">
                     <div class="storetitle"></div>
                     <h3>{{store.store_name}}</h3>

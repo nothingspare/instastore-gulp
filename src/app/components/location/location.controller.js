@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('LocationIndex', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
+    .controller('LocationIndex', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', 'UserService', function ($scope, $rootScope, uiGmapGoogleMapApi, UserService) {
         uiGmapGoogleMapApi
             .then(function () {
                 return uiGmapGoogleMapApi;

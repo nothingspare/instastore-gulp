@@ -209,7 +209,9 @@ angular.module('instastore')
             };
         }
     ])
-    .controller('ItemViewTabsCtrl', ['$scope', '$rootScope', '$timeout', '$stateParams', function ($scope, $rootScope, $timeout, $stateParams) {
+    .controller('ItemViewTabsCtrl', ['$scope', '$rootScope', '$timeout', '$stateParams', 'UserService', function ($scope, $rootScope, $timeout, $stateParams, UserService) {
+
+        UserService.init();
 
         $scope.onClickTab = function (tab) {
             $scope.currentTab = tab.url;
