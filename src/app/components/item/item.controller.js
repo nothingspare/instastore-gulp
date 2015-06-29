@@ -102,7 +102,7 @@ angular.module('instastore')
                 $scope.seeMore = true;
                 rest.postModel({content: comment, item_id: $scope.item.id}).success(function () {
                     toaster.pop('success', "Commented");
-                    $scope.item.comments.push({authorFullName: $scope.item.userFullName, content: comment});
+                    $scope.item.comments.push({authorFullName: UserService.getUserFullName(), content: comment});
                     $scope.item.newComment = null;
                 }).error(errorService.alert);
             };
@@ -266,49 +266,49 @@ angular.module('instastore')
     .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster',
         function ($scope, $stateParams, $upload, API_URL, toaster) {
 
-        var dataURItoBlob = function (dataURI) {
-            var binary = atob(dataURI.split(',')[1]);
-            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-            var array = [];
-            for (var i = 0; i < binary.length; i++) {
-                array.push(binary.charCodeAt(i));
-            }
-            return new Blob([new Uint8Array(array)], {type: mimeString});
-        };
-
-        $scope.single = function (image, id) {
-            $scope.upload([dataURItoBlob(image.resized.dataURL)], id, image.orientation);
-        };
-
-        $scope.upload = function (files, id, orientation) {
-            if (files && files.length) {
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    $upload.upload({
-                        url: API_URL + 'v1/item/upload',
-                        fields: {
-                            'itemId': id,
-                            'orientation': orientation
-                        },
-                        headers: {
-                            'Content-Type': file.type
-                        },
-                        method: 'POST',
-                        data: file,
-                        file: file
-                    }).progress(function (evt) {
-                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                        console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                    }).success(function (data) {
-                        toaster.pop('success', 'File uploaded!');
-                        delete $scope.image2;
-                        $scope.slides.push({'image_url': data.image_url});
-                        console.log('file ' + data.image_url + ' uploaded!');
-                    });
+            var dataURItoBlob = function (dataURI) {
+                var binary = atob(dataURI.split(',')[1]);
+                var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+                var array = [];
+                for (var i = 0; i < binary.length; i++) {
+                    array.push(binary.charCodeAt(i));
                 }
-            }
-        };
-    }])
+                return new Blob([new Uint8Array(array)], {type: mimeString});
+            };
+
+            $scope.single = function (image, id) {
+                $scope.upload([dataURItoBlob(image.resized.dataURL)], id, image.orientation);
+            };
+
+            $scope.upload = function (files, id, orientation) {
+                if (files && files.length) {
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        $upload.upload({
+                            url: API_URL + 'v1/item/upload',
+                            fields: {
+                                'itemId': id,
+                                'orientation': orientation
+                            },
+                            headers: {
+                                'Content-Type': file.type
+                            },
+                            method: 'POST',
+                            data: file,
+                            file: file
+                        }).progress(function (evt) {
+                            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                            console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                        }).success(function (data) {
+                            toaster.pop('success', 'File uploaded!');
+                            delete $scope.image2;
+                            $scope.slides.push({'image_url': data.image_url});
+                            console.log('file ' + data.image_url + ' uploaded!');
+                        });
+                    }
+                }
+            };
+        }])
     .controller('ItemLocation', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
         uiGmapGoogleMapApi.then(function (maps) {
             if ($rootScope.store) {

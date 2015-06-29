@@ -96,6 +96,10 @@ app
                 var profile = this.getProfile();
                 return profile.seller;
             },
+            getUserFullName: function(){
+                var profile = this.getProfile();
+                return profile.first_name + ' ' + profile.last_name;
+            },
             setBg: function (bgUrl) {
                 var profile = this.getProfile();
                 if (profile.store) {
@@ -117,7 +121,6 @@ app
             checkStoreUrl: function () {
                 var stateParams = $injector.get('$stateParams');
                 if (!stateParams.storeurl) {
-                    //errorService.simpleAlert('nourl');
                     this.goToMainStore();
                     return false;
                 } else
