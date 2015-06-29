@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="upload-pic-previews-wrapper">
-                        <div class="upload-pic-previews" ng-repeat="thumb in slides">
+                        <div class="upload-pic-previews" ng-repeat="thumb in item.images">
                             <img width="44" height="70" ng-src="{{thumb.image_url}}"/>
                             <span class="x-but" ng-click="removeImage(thumb)">X</span>
                         </div>
