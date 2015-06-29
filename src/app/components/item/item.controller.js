@@ -56,7 +56,6 @@ angular.module('instastore')
                 rest.path = 'v1/items';
                 rest.models({item_url: $stateParams.itemurl}).success(function (data) {
                     $scope.item = data[0];
-                    $scope.slides = data[0].images;
                 }).error(errorService.alert);
             }
             else {

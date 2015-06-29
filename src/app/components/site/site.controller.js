@@ -53,24 +53,9 @@ angular.module('instastore')
         var profile = UserService.getProfile();
         $scope.sellerAllowed = profile.seller;
 
-        var inviter_url;
-        if (!profile.seller) {
-            rest.path = 'v1/stores';
-            rest.models({user_id: profile.inviter_id}).success(function (data) {
-                var store = data[0];
-                if (!store) {
-                    errorService.simpleAlert('noinviterwithurl');
-                    return;
-                }
-                inviter_url = store.store_url;
-                profile.inviter_url = inviter_url;
-                UserService.setProfile(profile);
-            }).error(errorService.alert);
-        }
-
         $scope.goAsBuyer = function () {
             UserService.setIsSeller(false);
-            $state.go('grid', {storeurl: inviter_url});
+            $state.go('grid', {storeurl: profile.seller?profile.store.store_url:profile.inviter_url});
         };
 
         $scope.goAsSeller = function () {
