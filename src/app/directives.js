@@ -133,9 +133,7 @@ app
                         };
 
                         loadImage.parseMetaData(files[i], function (data) {
-                            if (data.exif) {
-                                var orientation = data.exif.get('Orientation');
-                            }
+                            if (data.exif) imageResult.orientation = data.exif.get('Orientation');
 
                             fileToDataURL(files[i]).then(function (dataURL) {
                                 imageResult.dataURL = dataURL;
@@ -143,13 +141,11 @@ app
 
                             if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
                                 doResizing(imageResult, function (imageResult) {
-                                    if (orientation) imageResult.orientation = orientation;
-                                    applyScope(imageResult, orientation);
+                                    applyScope(imageResult);
                                 });
                             }
                             else { //no resizing
-                                if (orientation) imageResult.orientation = orientation;
-                                applyScope(imageResult, orientation);
+                                applyScope(imageResult);
                             }
                         });
                     }
