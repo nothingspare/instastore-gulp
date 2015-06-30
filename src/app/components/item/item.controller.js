@@ -264,8 +264,8 @@ angular.module('instastore')
                     $scope.currentTab = 'app/components/item/view-tab-comment.html';
             }
     }])
-    .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', 'ImageService',
-        function ($scope, $stateParams, $upload, API_URL, toaster, ImageService) {
+    .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', 'ImageService', 'cfpLoadingBar',
+        function ($scope, $stateParams, $upload, API_URL, toaster, ImageService, cfpLoadingBar) {
 
             $scope.$watch('image2', function (val) {
                 if (val) {
@@ -295,6 +295,7 @@ angular.module('instastore')
                         }).progress(function (evt) {
                             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                             console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                            cfpLoadingBar.status() // Returns the loading bar's progress.
                         }).success(function (data) {
                             toaster.pop('success', 'File uploaded!');
                             delete $scope.image2;

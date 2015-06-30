@@ -3,11 +3,11 @@
 var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
         'angularFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
-        'google.places', 'ngClipboard', 'ng.deviceDetector'
+        'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar'
     ]);
 
-app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider', 'API_URL', 'ngClipProvider', 'uiGmapGoogleMapApiProvider',
-    function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, ngClipProvider, uiGmapGoogleMapApiProvider) {
+app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider', 'API_URL', 'ngClipProvider', 'uiGmapGoogleMapApiProvider', 'cfpLoadingBarProvider',
+    function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, ngClipProvider, uiGmapGoogleMapApiProvider, cfpLoadingBarProvider) {
 
         var modulesPath = 'app/components';
 
@@ -113,6 +113,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             v: '3.17',
             libraries: 'places'
         });
+        cfpLoadingBarProvider.latencyThreshold = 200;
 
     }]);
 

@@ -11,7 +11,7 @@ app
             template: '<a href="login" ng-if="isGuest">Login</a>'
         }
     }])
-    .directive('imagesh', function ($q) {
+    .directive('imagesh', function ($q, cfpLoadingBar) {
 
         var URL = window.URL || window.webkitURL;
 
@@ -96,6 +96,7 @@ app
 
                 var doResizing = function (imageResult, callback) {
                     createImage(imageResult.url, function (image) {
+                        cfpLoadingBar.set(0.5);
                         var dataURL = resizeImage(image, scope);
                         imageResult.resized = {
                             dataURL: dataURL,
@@ -119,12 +120,17 @@ app
 
 
                 element.bind('change', function (evt) {
+
+                    cfpLoadingBar.start();
+                    cfpLoadingBar.set(0.1);
+
                     //when multiple always return an array of images
                     if (attrs.multiple)
                         scope.image = [];
 
                     var files = evt.target.files;
                     for (var i = 0; i < files.length; i++) {
+                        cfpLoadingBar.set(0.3);
 
                         //create a result object for each file in files
                         var imageResult = {
