@@ -143,20 +143,19 @@ app
 
                             if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
                                 doResizing(imageResult, function (imageResult) {
-                                    imageResult.orientation = data.exif.get('Orientation');
+                                    if (orientation) imageResult.orientation = orientation;
                                     applyScope(imageResult, orientation);
                                 });
                             }
                             else { //no resizing
-                                imageResult.orientation = data.exif.get('Orientation');
+                                if (orientation) imageResult.orientation = orientation;
                                 applyScope(imageResult, orientation);
                             }
                         });
                     }
                 });
             }
-        }
-            ;
+        };
     })
     .
     directive('backgroundImage', function () {

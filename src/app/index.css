@@ -3600,7 +3600,7 @@ ul.safearea a {
 }
 
 .itemview .custom-file-input::before {
-    content: 'Choose image';
+    content: 'Upload image';
     display: inline-block;
     width: 180px;
     height: 36px;

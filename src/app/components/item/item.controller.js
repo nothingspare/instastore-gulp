@@ -78,8 +78,8 @@ angular.module('instastore')
 
                 rest.deleteModel()
                     .success(function () {
-                        var index = $scope.slides.indexOf(thumb);
-                        $scope.slides.splice(index, 1);
+                        var index = $scope.item.images.indexOf(thumb);
+                        $scope.item.images.splice(index, 1);
                         toaster.pop('success', "Image deleted!");
                     })
                     .error(errorService.alert);
@@ -264,32 +264,27 @@ angular.module('instastore')
                     $scope.currentTab = 'app/components/item/view-tab-comment.html';
             }
     }])
-    .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster',
-        function ($scope, $stateParams, $upload, API_URL, toaster) {
+    .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', 'ImageService',
+        function ($scope, $stateParams, $upload, API_URL, toaster, ImageService) {
 
-            var dataURItoBlob = function (dataURI) {
-                var binary = atob(dataURI.split(',')[1]);
-                var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-                var array = [];
-                for (var i = 0; i < binary.length; i++) {
-                    array.push(binary.charCodeAt(i));
+            $scope.$watch('image2', function (val) {
+                if (val) {
+                    if (val.length)
+                        $scope.upload(val, $scope.item.id);
+                    else
+                        $scope.upload([val], $scope.item.id);
                 }
-                return new Blob([new Uint8Array(array)], {type: mimeString});
-            };
+            });
 
-            $scope.single = function (image, id) {
-                $scope.upload([dataURItoBlob(image.resized.dataURL)], id, image.orientation);
-            };
-
-            $scope.upload = function (files, id, orientation) {
+            $scope.upload = function (files, id) {
                 if (files && files.length) {
                     for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
+                        var file = ImageService.dataURItoBlob(files[i].resized.dataURL);
                         $upload.upload({
                             url: API_URL + 'v1/item/upload',
                             fields: {
                                 'itemId': id,
-                                'orientation': orientation
+                                'orientation': files[i].orientation
                             },
                             headers: {
                                 'Content-Type': file.type
@@ -303,7 +298,7 @@ angular.module('instastore')
                         }).success(function (data) {
                             toaster.pop('success', 'File uploaded!');
                             delete $scope.image2;
-                            $scope.slides.push({'image_url': data.image_url});
+                            $scope.item.images.push({'image_url': data.image_url});
                             console.log('file ' + data.image_url + ' uploaded!');
                         });
                     }
