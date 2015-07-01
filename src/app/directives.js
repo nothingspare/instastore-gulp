@@ -118,6 +118,7 @@ app
                     ;
                 };
 
+                var images = [];
 
                 element.bind('change', function (evt) {
 
@@ -143,16 +144,15 @@ app
 
                             fileToDataURL(files[i]).then(function (dataURL) {
                                 imageResult.dataURL = dataURL;
-                            });
-
-                            if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
-                                doResizing(imageResult, function (imageResult) {
+                                if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
+                                    doResizing(imageResult, function (imageResult) {
+                                        applyScope(imageResult);
+                                    });
+                                }
+                                else { //no resizing
                                     applyScope(imageResult);
-                                });
-                            }
-                            else { //no resizing
-                                applyScope(imageResult);
-                            }
+                                }
+                            });
                         });
                     }
                 });
