@@ -8,6 +8,13 @@
                 </div>
                 <div ng-controller="ShrinkUploadImageCtrl">
                     <div style="width:240px;display: inline-block;">
+                        <input device-detector class="custom-file-input" id="inputImage3"
+                               type="file"
+                               accept="image/*"
+                               imagesh="image2"
+                               resize-max-height="390"
+                               resize-max-width="390"
+                               resize-quality="1"/>
                         <input class="custom-file-input" id="inputImage2"
                                type="file"
                                accept="image/*"
@@ -16,14 +23,6 @@
                                resize-max-width="390"
                                resize-quality="1"
                                multiple />
-
-                        <input class="custom-file-input" id="inputImage2"
-                               type="file"
-                               accept="image/*"
-                               imagesh="image2"
-                               resize-max-height="390"
-                               resize-max-width="390"
-                               resize-quality="1"/>
                     </div>
 
                     <div class="upload-pic-previews-wrapper">

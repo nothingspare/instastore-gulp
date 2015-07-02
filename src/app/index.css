@@ -3595,12 +3595,19 @@ ul.safearea a {
     margin-left: 10px;
 }
 
+.itemview #inputImage3.custom-file-input.os-windows,
+.itemview #inputImage3.custom-file-input.os-mac,
+.itemview #inputImage3.custom-file-input.os-linux,
+.itemview #inputImage3.custom-file-input.os-unix{
+    display: none;
+}
+
 .itemview .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
 }
 
 .itemview .custom-file-input::before {
-    content: 'Upload image';
+    content: 'Photo';
     display: inline-block;
     width: 180px;
     height: 36px;
@@ -3615,16 +3622,25 @@ ul.safearea a {
     padding: 6px 10px 6px 12px;
 }
 
+.itemview .custom-file-input[multiple]::before {
+    content: 'Upload multiple';
+}
+
+
 .itemview .custom-file-input:hover::before {
     color: #f37878;
     background-color: #eee;
 }
 
 .itemview .custom-file-input {
-    width: 135px;
+    width: 70px;
     overflow: hidden;
     padding: 0 0 0 0;
     height: 34px;
+}
+
+.itemview .custom-file-input[multiple] {
+    width: 145px;
 }
 
 .itemview .custom-file-input:active::before {
