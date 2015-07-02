@@ -269,10 +269,10 @@ angular.module('instastore')
 
             $scope.$watch('image2', function (val) {
                 if (val) {
-                    if (val.length>0)
+                    if (val.length > 0) {
                         $scope.upload(val, $scope.item.id);
-                    else
-                        $scope.upload([val], $scope.item.id);
+                        delete $scope.image2;
+                    }
                 }
             });
 

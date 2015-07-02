@@ -15,7 +15,15 @@
                                resize-max-height="390"
                                resize-max-width="390"
                                resize-quality="1"
-                               />
+                               multiple />
+
+                        <input class="custom-file-input" id="inputImage2"
+                               type="file"
+                               accept="image/*"
+                               imagesh="image2"
+                               resize-max-height="390"
+                               resize-max-width="390"
+                               resize-quality="1"/>
                     </div>
 
                     <div class="upload-pic-previews-wrapper">
@@ -26,6 +34,7 @@
                     </div>
                 </div>
                 <input style="width:210px;" class="regular-feild" ng-model="item.title" placeholder="title"/>
+
                 <div style="margin: 5px 0px 0px 0px;">
                         <textarea ng-model="item.description" class="input item-desicription-input"
                                   placeholder="Item description"></textarea>

@@ -105,13 +105,15 @@ app
                         callback(imageResult);
                     });
                 };
-                var applyScope = function (imageResult) {
+                var applyScope = function (imageResult, imagesLength) {
                     scope.$apply(function () {
                             if (attrs.multiple) {
-                                scope.image.push(imageResult);
+                                images.push(imageResult);
+                                if (imagesLength == images.length)
+                                    scope.image = images;
                             }
                             else {
-                                scope.image = imageResult;
+                                scope.image = [imageResult];
                             }
                         }
                     )
@@ -119,6 +121,7 @@ app
                 };
 
                 var images = [];
+                var orientations = [];
 
                 element.bind('change', function (evt) {
 
@@ -129,31 +132,51 @@ app
                     if (attrs.multiple)
                         scope.image = [];
 
+                    //init buffer images array
+                    images = [];
+                    orientations = [];
+
                     var files = evt.target.files;
+
                     for (var i = 0; i < files.length; i++) {
                         cfpLoadingBar.set(0.3);
 
-                        //create a result object for each file in files
-                        var imageResult = {
-                            file: files[i],
-                            url: URL.createObjectURL(files[i])
-                        };
-
-                        loadImage.parseMetaData(files[i], function (data) {
-                            if (data.exif) imageResult.orientation = data.exif.get('Orientation');
-
+                        if (attrs.multiple) {
+                            var imageResult = {
+                                file: files[i],
+                                url: URL.createObjectURL(files[i])
+                            };
                             fileToDataURL(files[i]).then(function (dataURL) {
                                 imageResult.dataURL = dataURL;
-                                if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
-                                    doResizing(imageResult, function (imageResult) {
-                                        applyScope(imageResult);
-                                    });
-                                }
-                                else { //no resizing
-                                    applyScope(imageResult);
-                                }
                             });
-                        });
+                            if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
+                                doResizing(imageResult, function (imageResult) {
+                                    applyScope(imageResult, files.length);
+                                });
+                            }
+                            else { //no resizing
+                                applyScope(imageResult, files.length);
+                            }
+                        } else {
+                            fileToDataURL(files[0]).then(function (dataURL) {
+                                var imageResult = {
+                                    file: files[0],
+                                    url: URL.createObjectURL(files[0])
+                                };
+                                loadImage.parseMetaData(files[0], function (data) {
+                                    if (data.exif) imageResult.orientation = data.exif.get('Orientation');
+                                    imageResult.dataURL = dataURL;
+                                    if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
+                                        doResizing(imageResult, function (imageResult) {
+                                            applyScope(imageResult, files.length);
+                                        });
+                                    }
+                                    else { //no resizing
+                                        applyScope(imageResult, files.length);
+                                    }
+                                });
+                            });
+                        }
                     }
                 });
             }
