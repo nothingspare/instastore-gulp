@@ -207,10 +207,10 @@ app
                     $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
             },
             initIsSeller: function () {
-                //if (String($cookies.isSeller)==='true')
-                //    $rootScope.isSeller = true;
-                //else
-                //    $rootScope.isSeller = false;
+                if (String($cookies.isSeller)==='true')
+                    $rootScope.isSeller = true;
+                else
+                    $rootScope.isSeller = false;
             },
             isSeller: function () {
                 if (String($cookies.isSeller)==='true')
