@@ -155,8 +155,8 @@ angular.module('instastore')
             }).error(errorCallback);
         };
     }])
-    .controller('CropUploadCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', '$window', 'UserService',
-        function ($scope, $stateParams, $upload, API_URL, toaster, $window, UserService) {
+    .controller('CropUploadCtrl', ['$scope', '$stateParams', 'Upload', 'API_URL', 'toaster', '$window', 'UserService',
+        function ($scope, $stateParams, Upload, API_URL, toaster, $window, UserService) {
             $scope.myImage = '';
             $scope.myCroppedImage = '';
 
@@ -187,13 +187,14 @@ angular.module('instastore')
                 };
                 reader.readAsDataURL(file);
             };
+
             angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
 
             $scope.upload = function (files, isAvatar) {
                 if (files && files.length) {
                     for (var i = 0; i < files.length; i++) {
                         var file = files[i];
-                        $upload.upload({
+                        Upload.upload({
                             url: API_URL + 'v1/store/upload',
                             fields: {
                                 'isAvatar': isAvatar

@@ -73,21 +73,19 @@ angular.module('instastore')
             };
 
             $scope.removeImage = function (thumb) {
-
+                var index = $scope.item.images.indexOf(thumb);
+                $scope.item.images.splice(index, 1);
                 rest.path = 'v1/item-images/' + thumb.id;
-
                 rest.deleteModel()
                     .success(function () {
-                        var index = $scope.item.images.indexOf(thumb);
-                        $scope.item.images.splice(index, 1);
                         toaster.pop('success', "Image deleted!");
                     })
                     .error(errorService.alert);
             };
 
-            $scope.removeItem = function () {
-
-                rest.path = 'v1/items/' + $scope.item.id;
+            $scope.removeItem = function (item) {
+                console.log(item);
+                rest.path = 'v1/items/' + item.id;
                 rest.deleteModel()
                     .success(function () {
                         toaster.pop('success', "Item deleted!");
@@ -125,6 +123,7 @@ angular.module('instastore')
                     $anchorScroll();
                 }, 100);
             };
+
         }
     ])
     .
@@ -263,8 +262,12 @@ angular.module('instastore')
                     $scope.currentTab = 'app/components/item/view-tab-comment.html';
             }
     }])
-    .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', '$upload', 'API_URL', 'toaster', 'ImageService', 'cfpLoadingBar',
-        function ($scope, $stateParams, $upload, API_URL, toaster, ImageService, cfpLoadingBar) {
+    .controller('ShrinkUploadImageCtrl', ['$scope', '$stateParams', 'Upload', 'API_URL', 'toaster', 'ImageService',
+        function ($scope, $stateParams, Upload, API_URL, toaster, ImageService) {
+
+            $scope.$watch('files', function () {
+                $scope.upload1($scope.files, $scope.item.id);
+            });
 
             $scope.$watch('image2', function (val) {
                 if (val) {
@@ -279,7 +282,7 @@ angular.module('instastore')
                 if (files && files.length) {
                     for (var i = 0; i < files.length; i++) {
                         var file = ImageService.dataURItoBlob(files[i].resized.dataURL);
-                        $upload.upload({
+                        Upload.upload({
                             url: API_URL + 'v1/item/upload',
                             fields: {
                                 'itemId': id,
@@ -294,16 +297,44 @@ angular.module('instastore')
                         }).progress(function (evt) {
                             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                             console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                            cfpLoadingBar.status() // Returns the loading bar's progress.
                         }).success(function (data) {
                             toaster.pop('success', 'File uploaded!');
                             delete $scope.image2;
-                            $scope.item.images.push({'image_url': data.image_url});
+                            $scope.item.images.push({id: data.id, 'image_url': data.image_url});
                             console.log('file ' + data.image_url + ' uploaded!');
                         });
                     }
                 }
             };
+
+            $scope.upload1 = function (files, id) {
+                if (files && files.length) {
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        Upload.upload({
+                            url: API_URL + 'v1/item/upload',
+                            fields: {
+                                'itemId': id
+                            },
+                            headers: {
+                                'Content-Type': file.type
+                            },
+                            method: 'POST',
+                            data: file,
+                            file: file
+                        }).progress(function (evt) {
+                            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                            console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                        }).success(function (data) {
+                            toaster.pop('success', 'File uploaded!');
+                            delete $scope.image2;
+                            $scope.item.images.push({id: data.id, 'image_url': data.image_url});
+                            console.log('file ' + data.image_url + ' uploaded!');
+                        });
+                    }
+                }
+            };
+
         }])
     .controller('ItemLocation', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
         uiGmapGoogleMapApi.then(function (maps) {

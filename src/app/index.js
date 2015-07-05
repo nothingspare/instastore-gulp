@@ -2,7 +2,7 @@
 
 var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
-        'angularFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
+        'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
         'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar'
     ]);
 
