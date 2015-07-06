@@ -127,8 +127,8 @@ angular.module('instastore')
         }
     ])
     .
-    controller('ItemAdd', ['$scope', 'rest', 'toaster', '$upload', 'API_URL', 'ngDialog', 'errorService',
-        function ($scope, rest, toaster, $upload, API_URL, ngDialog, errorService) {
+    controller('ItemAdd', ['$scope', 'rest', 'toaster', 'Upload', 'API_URL', 'ngDialog', 'errorService',
+        function ($scope, rest, toaster, Upload, API_URL, ngDialog, errorService) {
 
             rest.path = 'v1/items';
 
@@ -183,7 +183,7 @@ angular.module('instastore')
                 if (files && files.length) {
                     for (var i = 0; i < files.length; i++) {
                         var file = files[i];
-                        $upload.upload({
+                        Upload.upload({
                             url: API_URL + 'v1/item/upload',
                             fields: {
                                 'itemId': $scope.item.id
