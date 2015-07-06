@@ -33,11 +33,17 @@
                     </div>
 
                     <h3>Plupload</h3>
+
                     <div style="width:240px;display: inline-block;">
                         <button pl-upload pl-progress-model="percent" pl-auto-upload="true"
                                 pl-files-model="plupfiles"
-                                pl-multi-params-model = "multiParams"
-                                pl-url = "{{uploadPath}}">Upload Files</button>
+                                pl-multi-params-model="multiParams"
+                                pl-url="{{uploadPath}}"
+                                on-file-uploaded="uploaded($response)"
+                                on-file-added="added()"
+                                on-file-progress="progress()"
+                                pl-progress-model = "fileUploadProgress"
+                                >Upload Files</button>
                     </div>
 
                     <div class="upload-pic-previews-wrapper">

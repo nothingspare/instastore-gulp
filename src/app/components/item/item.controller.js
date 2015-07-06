@@ -48,9 +48,9 @@ angular.module('instastore')
             }
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
-        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL',
+        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
-                  $location, $anchorScroll, $timeout, API_URL) {
+                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar) {
 
             $scope.item = {};
             $scope.plupfiles = [];
@@ -129,6 +129,22 @@ angular.module('instastore')
                 }, 100);
             };
 
+            //Plupload handlers
+
+            $scope.uploaded = function (data) {
+                var res = JSON.parse(data.response);
+                $scope.item.images.push({id: res.id, 'image_url': res.image_url});
+                cfpLoadingBar.complete();
+                toaster.pop('success', 'File uploaded!');
+            };
+
+            $scope.added = function () {
+                cfpLoadingBar.start();
+            };
+
+            $scope.progress = function () {
+                cfpLoadingBar.set($scope.fileUploadProgress);
+            };
         }
     ])
     .
