@@ -47,15 +47,20 @@ angular.module('instastore')
                 };
             }
         }])
-    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService', 'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout',
-        function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams, $location, $anchorScroll, $timeout) {
+    .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
+        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL',
+        function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
+                  $location, $anchorScroll, $timeout, API_URL) {
 
             $scope.item = {};
+            $scope.plupfiles = [];
+            $scope.uploadPath = API_URL + 'v1/item/upload?access-token=' + UserService.getToken();
 
             if ($stateParams.itemurl) {
                 rest.path = 'v1/items';
                 rest.models({item_url: $stateParams.itemurl}).success(function (data) {
                     $scope.item = data[0];
+                    $scope.multiParams = {itemId: data[0].id}
                 }).error(errorService.alert);
             }
             else {

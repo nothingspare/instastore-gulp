@@ -7,7 +7,6 @@ app
                         'access-token': $cookies._auth
                     };
                 }
-                var stateService = $injector.get('$state');
                 UserService.init();
                 return config;
             },
@@ -86,6 +85,9 @@ app
             },
             logout: function () {
                 delete $cookies._auth;
+            },
+            getToken: function(){
+                return $cookies._auth;
             },
             isGuest: function () {
                 var token = $cookies._auth;

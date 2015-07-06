@@ -3,11 +3,15 @@
 var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
         'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
-        'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar'
+        'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive'
     ]);
 
-app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider', 'API_URL', 'ngClipProvider', 'uiGmapGoogleMapApiProvider', 'cfpLoadingBarProvider',
-    function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL, ngClipProvider, uiGmapGoogleMapApiProvider, cfpLoadingBarProvider) {
+app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider',
+    'API_URL', 'ngClipProvider', 'uiGmapGoogleMapApiProvider', 'cfpLoadingBarProvider',
+    'plUploadServiceProvider',
+    function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider,
+              $authProvider, API_URL, ngClipProvider, uiGmapGoogleMapApiProvider, cfpLoadingBarProvider,
+              plUploadServiceProvider) {
 
         var modulesPath = 'app/components';
 
@@ -107,13 +111,19 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $locationProvider.html5Mode(true).hashPrefix('!');
+
         $httpProvider.interceptors.push('authInterceptor');
+
         ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
+
         uiGmapGoogleMapApiProvider.configure({
             v: '3.17',
             libraries: 'places'
         });
-        cfpLoadingBarProvider.latencyThreshold = 200;
+
+        plUploadServiceProvider.setConfig('flashPath', 'bower_components/plupload-angular-directive/plupload.flash.swf');
+        plUploadServiceProvider.setConfig('silverLightPath', 'bower_components/plupload-angular-directive/plupload.silverlight.xap');
+        plUploadServiceProvider.setConfig('resize', {width: 310, height: 390});
 
     }]);
 

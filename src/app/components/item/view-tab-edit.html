@@ -32,6 +32,14 @@
                         <div class="btn sml" ngf-select ng-model="files" ngf-multiple="true">Multiple</div>
                     </div>
 
+                    <h3>Plupload</h3>
+                    <div style="width:240px;display: inline-block;">
+                        <button pl-upload pl-progress-model="percent" pl-auto-upload="true"
+                                pl-files-model="plupfiles"
+                                pl-multi-params-model = "multiParams"
+                                pl-url = "{{uploadPath}}">Upload Files</button>
+                    </div>
+
                     <div class="upload-pic-previews-wrapper">
                         <div class="upload-pic-previews" ng-repeat="thumb in item.images">
                             <img width="44" height="70" ng-src="{{thumb.image_url}}"/>
