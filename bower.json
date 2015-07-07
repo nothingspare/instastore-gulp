@@ -22,6 +22,7 @@
     "ng-clip": "~0.2.6",
     "ng-device-detector": "~1.1.7",
     "blueimp-load-image": "~1.13.0",
+    "plupload": "~2.1.7",
     "plupload-angular-directive": "~0.1.2"
   },
   "devDependencies": {

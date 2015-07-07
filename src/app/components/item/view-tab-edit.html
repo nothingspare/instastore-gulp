@@ -6,7 +6,7 @@
                     &nbsp;Delete
                     item&nbsp;</a>
                 </div>
-                <div ng-controller="ShrinkUploadImageCtrl">
+                <!--<div ng-controller="ShrinkUploadImageCtrl">-->
                     <div style="width:240px;display: inline-block;">
                         <input device-detector class="custom-file-input" id="inputImage3"
                                type="file"
@@ -35,16 +35,20 @@
                     <h3>Plupload</h3>
 
                     <div style="width:240px;display: inline-block;">
-                        <button pl-upload pl-progress-model="percent" pl-auto-upload="true"
+                        <div multiple="false" class="btn sml" pl-upload
+                                pl-progress-model="percent"
+                                pl-auto-upload="true"
                                 pl-files-model="plupfiles"
-                                pl-multi-params-model="multiParams"
-                                pl-url="{{uploadPath}}"
+                                pl-multi-params-model="pluploadConfig.multiParams"
+                                pl-url="{{pluploadConfig.uploadPath}}"
                                 on-file-uploaded="uploaded($response)"
                                 on-file-added="added()"
                                 on-file-progress="progress()"
-                                pl-progress-model = "fileUploadProgress"
-                                >Upload Files</button>
+                                pl-multi-selection = "false"
+                                >Upload Files</div>
+
                     </div>
+                    <div ng-click="uploader.multi_selection = false">False</div>
 
                     <div class="upload-pic-previews-wrapper">
                         <div class="upload-pic-previews" ng-repeat="thumb in item.images">
@@ -52,7 +56,7 @@
                             <span class="x-but" ng-click="removeImage(thumb)">X</span>
                         </div>
                     </div>
-                </div>
+                <!--</div>-->
                 <input style="width:210px;" class="regular-feild" ng-model="item.title" placeholder="title"/>
 
                 <div style="margin: 5px 0px 0px 0px;">

@@ -53,14 +53,16 @@ angular.module('instastore')
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar) {
 
             $scope.item = {};
+
             $scope.plupfiles = [];
-            $scope.uploadPath = API_URL + 'v1/item/upload?access-token=' + UserService.getToken();
+            $scope.pluploadConfig = {};
+            $scope.pluploadConfig.uploadPath = API_URL + 'v1/item/upload?access-token=' + UserService.getToken();
 
             if ($stateParams.itemurl) {
                 rest.path = 'v1/items';
                 rest.models({item_url: $stateParams.itemurl}).success(function (data) {
                     $scope.item = data[0];
-                    $scope.multiParams = {itemId: data[0].id}
+                    $scope.pluploadConfig.multiParams = {itemId: data[0].id};
                 }).error(errorService.alert);
             }
             else {
@@ -89,7 +91,6 @@ angular.module('instastore')
             };
 
             $scope.removeItem = function (item) {
-                console.log(item);
                 rest.path = 'v1/items/' + item.id;
                 rest.deleteModel()
                     .success(function () {
@@ -130,7 +131,6 @@ angular.module('instastore')
             };
 
             //Plupload handlers
-
             $scope.uploaded = function (data) {
                 var res = JSON.parse(data.response);
                 $scope.item.images.push({id: res.id, 'image_url': res.image_url});
@@ -143,7 +143,7 @@ angular.module('instastore')
             };
 
             $scope.progress = function () {
-                cfpLoadingBar.set($scope.fileUploadProgress);
+                cfpLoadingBar.set($scope.percent);
             };
         }
     ])
