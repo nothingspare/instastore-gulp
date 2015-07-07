@@ -44,12 +44,20 @@
                                 on-file-uploaded="uploaded($response)"
                                 on-file-added="added()"
                                 on-file-progress="progress()"
-                                pl-multi-selection = "false"
-                                >Upload Files</div>
+                                pl-multi-selection = "false">Photo</div>
+
+                        <div multiple="true" class="btn sml" pl-upload
+                             pl-progress-model="percent"
+                             pl-auto-upload="true"
+                             pl-files-model="plupfiles"
+                             pl-multi-params-model="pluploadConfig.multiParams"
+                             pl-url="{{pluploadConfig.uploadPath}}"
+                             on-file-uploaded="uploaded($response)"
+                             on-file-added="added()"
+                             on-file-progress="progress()"
+                             pl-multi-selection = "true">Multiple</div>
 
                     </div>
-                    <div ng-click="uploader.multi_selection = false">False</div>
-
                     <div class="upload-pic-previews-wrapper">
                         <div class="upload-pic-previews" ng-repeat="thumb in item.images">
                             <img width="44" height="70" ng-src="{{thumb.image_url}}"/>
