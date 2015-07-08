@@ -124,7 +124,6 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         plUploadServiceProvider.setConfig('flashPath', 'bower_components/plupload-angular-directive/plupload.flash.swf');
         plUploadServiceProvider.setConfig('silverLightPath', 'bower_components/plupload-angular-directive/plupload.silverlight.xap');
         plUploadServiceProvider.setConfig('resize', {width: 310, height: 390});
-        plUploadServiceProvider.setConfig('multi_selection', false);
 
     }]);
 
