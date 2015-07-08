@@ -6,65 +6,38 @@
                     &nbsp;Delete
                     item&nbsp;</a>
                 </div>
-                <!--<div ng-controller="ShrinkUploadImageCtrl">-->
-                    <div style="width:240px;display: inline-block;">
-                        <input device-detector class="custom-file-input" id="inputImage3"
-                               type="file"
-                               accept="image/*"
-                               imagesh="image2"
-                               resize-max-height="390"
-                               resize-max-width="390"
-                               resize-quality="1"/>
-                        <input class="custom-file-input" id="inputImage2"
-                               type="file"
-                               accept="image/*"
-                               imagesh="image2"
-                               resize-max-height="390"
-                               resize-max-width="390"
-                               resize-quality="1"
-                               multiple/>
+                <div style="width:240px;display: inline-block;margin-bottom: 10px">
+                    <div multiple="false" class="btn sml" pl-upload
+                         pl-progress-model="percent"
+                         pl-auto-upload="true"
+                         pl-files-model="plupfiles"
+                         pl-multi-params-model="pluploadConfig.multiParams"
+                         pl-url="{{pluploadConfig.uploadPath}}"
+                         on-file-uploaded="uploaded($response)"
+                         on-file-added="added()"
+                         on-file-progress="progress()"
+                         pl-multi-selection="false">Photo
                     </div>
 
-                    <h3>Compress on Backend</h3>
-
-                    <div style="width:240px;display: inline-block;">
-                        <div class="btn sml" ngf-select ng-model="files" ngf-capture="'camera'">Photo</div>
-                        <div class="btn sml" ngf-select ng-model="files" ngf-multiple="true">Multiple</div>
+                    <div multiple="true" class="btn sml" pl-upload
+                         pl-progress-model="percent"
+                         pl-auto-upload="true"
+                         pl-files-model="plupfiles"
+                         pl-multi-params-model="pluploadConfig.multiParams"
+                         pl-url="{{pluploadConfig.uploadPath}}"
+                         on-file-uploaded="uploaded($response)"
+                         on-file-added="added()"
+                         on-file-progress="progress()"
+                         pl-multi-selection="true">Multiple
                     </div>
 
-                    <h3>Plupload</h3>
-
-                    <div style="width:240px;display: inline-block;">
-                        <div multiple="false" class="btn sml" pl-upload
-                                pl-progress-model="percent"
-                                pl-auto-upload="true"
-                                pl-files-model="plupfiles"
-                                pl-multi-params-model="pluploadConfig.multiParams"
-                                pl-url="{{pluploadConfig.uploadPath}}"
-                                on-file-uploaded="uploaded($response)"
-                                on-file-added="added()"
-                                on-file-progress="progress()"
-                                pl-multi-selection = "false">Photo</div>
-
-                        <div multiple="true" class="btn sml" pl-upload
-                             pl-progress-model="percent"
-                             pl-auto-upload="true"
-                             pl-files-model="plupfiles"
-                             pl-multi-params-model="pluploadConfig.multiParams"
-                             pl-url="{{pluploadConfig.uploadPath}}"
-                             on-file-uploaded="uploaded($response)"
-                             on-file-added="added()"
-                             on-file-progress="progress()"
-                             pl-multi-selection = "true">Multiple</div>
-
+                </div>
+                <div class="upload-pic-previews-wrapper">
+                    <div class="upload-pic-previews" ng-repeat="thumb in item.images">
+                        <img width="44" height="70" ng-src="{{thumb.image_url}}"/>
+                        <span class="x-but" ng-click="removeImage(thumb)">X</span>
                     </div>
-                    <div class="upload-pic-previews-wrapper">
-                        <div class="upload-pic-previews" ng-repeat="thumb in item.images">
-                            <img width="44" height="70" ng-src="{{thumb.image_url}}"/>
-                            <span class="x-but" ng-click="removeImage(thumb)">X</span>
-                        </div>
-                    </div>
-                <!--</div>-->
+                </div>
                 <input style="width:210px;" class="regular-feild" ng-model="item.title" placeholder="title"/>
 
                 <div style="margin: 5px 0px 0px 0px;">
