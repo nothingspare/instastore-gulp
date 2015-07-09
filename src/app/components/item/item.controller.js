@@ -156,7 +156,7 @@ angular.module('instastore')
     .
     controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope',
         function ($scope, rest, toaster, ITEM_STATUS, API_URL, ngDialog, errorService, UserService, cfpLoadingBar, $rootScope) {
-            $scope.item = {};
+            $scope.item = {category_id:9, brand_id:1, description:''};
             $scope.item.images = [];
 
             //init Plupload-directive vars
@@ -170,6 +170,12 @@ angular.module('instastore')
                 if ($scope.item.id) {
                     rest.path = 'v1/items';
                     rest.putModel($scope.item).success(function (item) {
+                        toaster.pop('success', "Saved");
+                        $rootScope.$broadcast('newItem', item);
+                    }).error(errorService.alert);
+                } else {
+                    rest.path = 'v1/items';
+                    rest.postModel($scope.item).success(function (item) {
                         toaster.pop('success', "Saved");
                         $rootScope.$broadcast('newItem', item);
                     }).error(errorService.alert);

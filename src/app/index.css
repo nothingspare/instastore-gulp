@@ -3595,56 +3595,11 @@ ul.safearea a {
     margin-left: 10px;
 }
 
-.itemview #inputImage3.custom-file-input.os-windows,
-.itemview #inputImage3.custom-file-input.os-mac,
-.itemview #inputImage3.custom-file-input.os-linux,
-.itemview #inputImage3.custom-file-input.os-unix{
+.hidden-desktop.os-windows,
+.hidden-desktop.os-mac,
+.hidden-desktop.os-linux,
+.hidden-desktop.os-unix{
     display: none;
-}
-
-.itemview .custom-file-input::-webkit-file-upload-button {
-    visibility: hidden;
-}
-
-.itemview .custom-file-input::before {
-    content: 'Photo';
-    display: inline-block;
-    width: 180px;
-    height: 36px;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    cursor: pointer;
-    font-weight: 200;
-    font-size: 18px;
-    color: #fff;
-    background-color: #f37878;
-    padding: 6px 10px 6px 12px;
-}
-
-.itemview .custom-file-input[multiple]::before {
-    content: 'Upload multiple';
-}
-
-
-.itemview .custom-file-input:hover::before {
-    color: #f37878;
-    background-color: #eee;
-}
-
-.itemview .custom-file-input {
-    width: 70px;
-    overflow: hidden;
-    padding: 0 0 0 0;
-    height: 34px;
-}
-
-.itemview .custom-file-input[multiple] {
-    width: 145px;
-}
-
-.itemview .custom-file-input:active::before {
-    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 
 .itemview .img-container-square {
@@ -3656,43 +3611,6 @@ ul.safearea a {
 .itemview div[rn-carousel-indicators] {
     height: 20px;
     margin-top: -20px;
-}
-
-.additem-popup .custom-file-input::-webkit-file-upload-button {
-    visibility: hidden;
-}
-
-/*add item popup starts*/
-.additem-popup .custom-file-input::before {
-    content: 'Choose image';
-    display: inline-block;
-    width: 180px;
-    height: 42px;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    cursor: pointer;
-    font-weight: 200;
-    font-size: 18px;
-    color: #fff;
-    background-color: #f37878;
-    padding: 9px 10px 6px 12px;
-}
-
-.additem-popup .custom-file-input:hover::before {
-    color: #f37878;
-    background-color: #eee;
-}
-
-.additem-popup .custom-file-input {
-    width: 135px;
-    overflow: hidden;
-    padding: 0 0 0 0;
-    height: 42px;
-}
-
-.additem-popup .custom-file-input:active::before {
-    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 
 .additem-popup #textfield2 {
