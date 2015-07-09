@@ -1,48 +1,34 @@
-<!--<div class="outer">-->
-<!--<div class="middle">-->
-<!--<div class="inner" id="account-popup">-->
-<br>
-
-<!--<a href="profile1.html" class="fast-tap btn x">&nbsp;&nbsp;X&nbsp;&nbsp;</a>-->
-
-
 <center class="additem-popup">
 
-    <p style=" margin: 0px 8px 12px 18px; text-align: center;">Upload well lit portrait shots of your item for sale or
+    <p style=" margin: 10px 8px 12px 18px; text-align: center;">Upload well lit portrait shots of your item for sale or
         other insperational images related to your stores message.</p>
 
-    <!--<div style="margin: 0 auto; margin: 30px -15px 20px -15px;"><a href="#" class="fast-tap btn sml">&nbsp;Upload item-->
-        <!--pics&nbsp;</a></div>-->
-
-    <!--<div class="upload-pic-previews-wrapper hidden">-->
-        <!--<div class="upload-pic-previews"></div>-->
-        <!--<div class="upload-pic-previews"></div>-->
-        <!--<div class="upload-pic-previews"></div>-->
-        <!--<div class="upload-pic-previews"></div>-->
-        <!--<div class="upload-pic-previews"></div>-->
-    <!--</div>-->
-
-    <div style="width:240px;display: inline-block;">
-        <input class="custom-file-input" id="inputImage2"
-               type="file"
-               accept="image/*"
-               imagesh="image2"
-               resize-max-height="300"
-               resize-max-width="300"
-               resize-quality="0.7"/>
-        <!--<div class="btn sml" style="margin-top:-16px;" type="submit"-->
-             <!--ng-click="single(image2.resized)">Upload-->
-        <!--</div>-->
+    <div style="width:240px;display: inline-block;margin-bottom: 10px">
+        <div class="btn sml" pl-upload
+             pl-files-model="plupfiles"
+             pl-multi-params-model="pluploadConfig.multiParams"
+             pl-url="{{pluploadConfig.uploadPath}}"
+             on-file-uploaded="uploaded($response)"
+             on-file-added="added()"
+             on-file-progress="progress()"
+             pl-multi-selection="false"
+             pl-instance="uploader">Photo
+        </div>
+        <div class="btn sml" pl-upload
+             pl-progress-model="percent"
+             pl-auto-upload="true"
+             pl-files-model="plupfiles"
+             pl-multi-params-model="pluploadConfig.multiParams"
+             pl-url="{{pluploadConfig.uploadPath}}"
+             on-file-uploaded="uploaded($response)"
+             on-file-added="added()"
+             on-file-progress="progress()"
+             pl-multi-selection="true"
+             pl-instance="uploader">Multiple
+        </div>
     </div>
 
-    <h6>{{image2.file.name}}</h6>
-
-    <!--<div class="upload-pic-previews-wrapper">-->
-        <!--<div class="upload-pic-previews" ng-repeat="thumb in slides">-->
-            <!--<img width="44" height="70" ng-src="{{thumb.image_url}}"/>-->
-            <!--<span class="x-but" ng-click="removeImage(thumb)">X</span>-->
-        <!--</div>-->
-    <!--</div>-->
+    <h6>Uploaded images: {{item.images.length}}</h6>
 
     <input style="width:217px;" class="regular-feild" ng-model="item.title" placeholder="title"/>
 
@@ -112,10 +98,3 @@
     <div style="margin: 10px 0px 20px 0px;"><a class="btn sml" ng-click="save()">&nbsp;Post&nbsp;</a></div>
 
 </center>
-
-
-<!--</div>-->
-
-
-<!--</div>-->
-<!--</div>-->

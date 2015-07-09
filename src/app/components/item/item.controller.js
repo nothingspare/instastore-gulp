@@ -3,6 +3,11 @@
 angular.module('instastore')
     .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state', 'feedHelper', 'errorService', '$filter',
         function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper, errorService, $filter) {
+
+            $scope.$on('newItem', function (event, item) {
+                if (item) $scope.items.push(item);
+            });
+
             if (!UserService.isGuest()) {
                 var store;
                 if (!UserService.isYourStore()) {
@@ -48,12 +53,13 @@ angular.module('instastore')
             }
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
-        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
+        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar', '$rootScope',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
-                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar) {
+                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, $rootScope) {
 
             $scope.item = {};
 
+            //init Plupload-directive vars
             $scope.plupfiles = [];
             $scope.pluploadConfig = {};
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/item/upload?access-token=' + UserService.getToken();
@@ -91,7 +97,7 @@ angular.module('instastore')
             };
 
             $scope.removeItem = function (item) {
-                rest.path = 'v1/items/' + item.id;
+                rest.path = 'v1/items/' + $scope.item.id;
                 rest.deleteModel()
                     .success(function () {
                         toaster.pop('success', "Item deleted!");
@@ -130,7 +136,7 @@ angular.module('instastore')
                 }, 100);
             };
 
-            //Plupload handlers
+            //Plupload-directive handlers
             $scope.uploaded = function (data) {
                 var res = JSON.parse(data.response);
                 $scope.item.images.push({id: res.id, 'image_url': res.image_url});
@@ -148,84 +154,45 @@ angular.module('instastore')
         }
     ])
     .
-    controller('ItemAdd', ['$scope', 'rest', 'toaster', 'Upload', 'API_URL', 'ngDialog', 'errorService',
-        function ($scope, rest, toaster, Upload, API_URL, ngDialog, errorService) {
+    controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope',
+        function ($scope, rest, toaster, ITEM_STATUS, API_URL, ngDialog, errorService, UserService, cfpLoadingBar, $rootScope) {
+            $scope.item = {};
+            $scope.item.images = [];
 
-            rest.path = 'v1/items';
-
-            $scope.item = {brand_id: 9, category_id: 1, description: ''};
-
-            $scope.$watch('image2', function () {
-                if ($scope.image2) $scope.single($scope.image2);
-            });
+            //init Plupload-directive vars
+            $scope.plupfiles = [];
+            $scope.pluploadConfig = {};
+            $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/new-item-images?access-token=' + UserService.getToken();
 
             $scope.save = function () {
                 $scope.item.item_url = $scope.item.title;
-                rest.path = 'v1/items';
+                $scope.item.status = ITEM_STATUS.inactive;
                 if ($scope.item.id) {
-                    rest.putModel($scope.item).success(function () {
+                    rest.path = 'v1/items';
+                    rest.putModel($scope.item).success(function (item) {
                         toaster.pop('success', "Saved");
-                    }).error(errorService.alert);
-                }
-                else {
-                    rest.postModel($scope.item).success(function () {
-                        toaster.pop('success', "Saved");
+                        $rootScope.$broadcast('newItem', item);
                     }).error(errorService.alert);
                 }
                 ngDialog.close();
             };
 
-
-            var dataURItoBlob = function (dataURI) {
-                var binary = atob(dataURI.split(',')[1]);
-                var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-                var array = [];
-                for (var i = 0; i < binary.length; i++) {
-                    array.push(binary.charCodeAt(i));
-                }
-                return new Blob([new Uint8Array(array)], {type: mimeString});
+            //Plupload-directive handlers
+            $scope.uploaded = function (data) {
+                var res = JSON.parse(data.response);
+                $scope.item.id = res.item_id;
+                $scope.item.images.push({id: res.id, 'image_url': res.image_url});
+                $scope.uploader.setOption('multipart_params', {itemId: res.item_id});
+                cfpLoadingBar.complete();
+                toaster.pop('success', 'File uploaded!');
             };
 
-            $scope.single = function (image) {
-                if ($scope.item.id) {
-                    $scope.upload([dataURItoBlob(image.dataURL)]);
-                }
-                else {
-                    rest.path = 'v1/items';
-                    rest.postModel($scope.item).success(function (item) {
-                        $scope.item.id = item.id;
-                        $scope.upload([dataURItoBlob(image.dataURL)]);
-                    }).error(errorService.alert);
-                }
-
+            $scope.added = function () {
+                cfpLoadingBar.start();
             };
 
-            $scope.upload = function (files) {
-                if (files && files.length) {
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        Upload.upload({
-                            url: API_URL + 'v1/item/upload',
-                            fields: {
-                                'itemId': $scope.item.id
-                            },
-                            headers: {
-                                'Content-Type': file.type
-                            },
-                            method: 'POST',
-                            data: file,
-                            file: file
-                        }).progress(function (evt) {
-                            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                            console.log('File upload: ' + progressPercentage + '% ');
-                        }).success(function (data, status, headers, config) {
-                            if (data.image_url) {
-                                toaster.pop('success', 'File uploaded!');
-                            }
-                            else errorService.simpleAlert('fileisntuploaded');
-                        });
-                    }
-                }
+            $scope.progress = function () {
+                cfpLoadingBar.set($scope.percent);
             };
         }
     ])

@@ -3,11 +3,10 @@
         <center>
             <div id="content-popup">
                 <div style="margin: 15px 0px 20px 0px;"><a href="#" class="btn sml delete" ng-click="removeItem()">
-                    &nbsp;Delete
-                    item&nbsp;</a>
+                    &nbsp;Delete item&nbsp;</a>
                 </div>
                 <div style="width:240px;display: inline-block;margin-bottom: 10px">
-                    <div multiple="false" class="btn sml" pl-upload
+                    <div class="btn sml" pl-upload
                          pl-progress-model="percent"
                          pl-auto-upload="true"
                          pl-files-model="plupfiles"
@@ -18,8 +17,7 @@
                          on-file-progress="progress()"
                          pl-multi-selection="false">Photo
                     </div>
-
-                    <div multiple="true" class="btn sml" pl-upload
+                    <div class="btn sml" pl-upload
                          pl-progress-model="percent"
                          pl-auto-upload="true"
                          pl-files-model="plupfiles"
@@ -30,7 +28,6 @@
                          on-file-progress="progress()"
                          pl-multi-selection="true">Multiple
                     </div>
-
                 </div>
                 <div class="upload-pic-previews-wrapper">
                     <div class="upload-pic-previews" ng-repeat="thumb in item.images">
