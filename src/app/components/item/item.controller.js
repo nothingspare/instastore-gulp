@@ -63,6 +63,7 @@ angular.module('instastore')
             $scope.plupfiles = [];
             $scope.pluploadConfig = {};
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/item/upload?access-token=' + UserService.getToken();
+            $scope.pluploadConfig.resize = {width: 310, height: 390, preserve_headers: false, quality: 100};
 
             if ($stateParams.itemurl) {
                 rest.path = 'v1/items';
@@ -156,15 +157,17 @@ angular.module('instastore')
     .
     controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope',
         function ($scope, rest, toaster, ITEM_STATUS, API_URL, ngDialog, errorService, UserService, cfpLoadingBar, $rootScope) {
-            $scope.item = {category_id:9, brand_id:1, description:''};
+            $scope.item = {category_id: 9, brand_id: 1, description: ''};
             $scope.item.images = [];
 
             //init Plupload-directive vars
             $scope.plupfiles = [];
             $scope.pluploadConfig = {};
+            $scope.pluploadConfig.resize = {width: 310, height: 390, preserve_headers: false, quality: 100};
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/new-item-images?access-token=' + UserService.getToken();
 
             $scope.save = function () {
+                if (!$scope.item.title) $scope.item.title = Math.random().toString(36).slice(2);
                 $scope.item.item_url = $scope.item.title;
                 $scope.item.status = ITEM_STATUS.inactive;
                 if ($scope.item.id) {
