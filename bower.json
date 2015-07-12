@@ -21,9 +21,8 @@
     "zeroclipboard": "~2.2.0",
     "ng-clip": "~0.2.6",
     "ng-device-detector": "~1.1.7",
-    "blueimp-load-image": "~1.13.0",
-    "plupload-angular-directive": "~0.1.2",
-    "plupload": "~2.1.7"
+    "plupload": "~2.1.7",
+    "plupload-angular-directive": "git@github.com:tairezzzz/plupload-angular-directive.git#acd50805c29f4cc518c9a0d4a0987f14f6daf94b"
   },
   "devDependencies": {
     "angular-mocks": "~1.3.4"
