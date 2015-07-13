@@ -66,7 +66,7 @@ angular.module('instastore')
             //init Plupload-directive vars
             $scope.plupfiles = [];
             $scope.pluploadConfig = {};
-            $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/new-item-images?access-token=' + UserService.getToken();
+            $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
             $scope.pluploadConfig.resize = {width: 310, height: 390, preserve_headers: false, quality: 100};
 
             if ($stateParams.itemurl) {
@@ -174,7 +174,7 @@ angular.module('instastore')
             $scope.plupfiles = [];
             $scope.pluploadConfig = {};
             $scope.pluploadConfig.resize = {width: 310, height: 390, preserve_headers: false, quality: 100};
-            $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/new-item-images?access-token=' + UserService.getToken();
+            $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
 
             $scope.save = function () {
                 if (!$scope.item.title) $scope.item.title = Math.random().toString(36).slice(2);
@@ -270,7 +270,7 @@ angular.module('instastore')
             }
     }])
     .controller('ItemLocation', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
-        uiGmapGoogleMapApi.then(function (maps) {
+        uiGmapGoogleMapApi.then(function () {
             if ($rootScope.store) {
                 $scope.map = {
                     center: {latitude: $rootScope.store.store_long, longitude: $rootScope.store.store_lat},
