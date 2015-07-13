@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('LocationIndex', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', 'UserService', function ($scope, $rootScope, uiGmapGoogleMapApi, UserService) {
+    .controller('LocationIndex', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
         uiGmapGoogleMapApi
             .then(function () {
                 return uiGmapGoogleMapApi;
             })
-            .then(function (maps) {
+            .then(function () {
                 if ($rootScope.store) {
                     $scope.map = {
                         center: {latitude: $rootScope.store.store_long, longitude: $rootScope.store.store_lat},

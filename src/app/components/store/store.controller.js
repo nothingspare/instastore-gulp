@@ -1,3 +1,5 @@
+'use strict';
+
 var app = angular.module('instastore');
 app
     .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', 'CLIENT_URL', 'toaster', function ($scope, UserService, $stateParams, CLIENT_URL, toaster) {
@@ -6,21 +8,22 @@ app
         $scope.seller = profile.seller;
         if (profile.seller) {
             if ($stateParams.storeurl) {
-                $scope.store_url = CLIENT_URL + $stateParams.storeurl;
+                $scope.storeUrl = CLIENT_URL + $stateParams.storeurl;
             } else {
-                if (profile.store)
-                    $scope.store_url = CLIENT_URL + profile.store.store_url;
+                if (profile.store) {
+                    $scope.storeUrl = CLIENT_URL + profile.store.store_url;
+                }
             }
-        } else
-            $scope.store_url = CLIENT_URL + profile.inviter_url;
+        } else {
+            $scope.storeUrl = CLIENT_URL + profile.inviter_url;
+        }
 
         $scope.getTextToCopy = function () {
-            return $scope.store_url;
-        }
+            return $scope.storeUrl;
+        };
         $scope.alertCopy = function () {
             toaster.pop('success', 'Copied!');
-        }
-
+        };
     }])
     .controller('StoreView', ['$scope', 'rest', '$rootScope', 'errorService', function ($scope, rest, $rootScope, errorService) {
         rest.path = 'v1/stores';
@@ -32,6 +35,5 @@ app
             $rootScope.isSeller = false;
         }).error(errorService.alert);
     }])
-    .controller('StoreAccounts', ['$scope', function ($scope) {
-        console.log('StoreAccounts initialized');
+    .controller('StoreAccounts', [function () {
     }]);

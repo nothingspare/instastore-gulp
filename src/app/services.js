@@ -1,8 +1,9 @@
-app
+'use strict';
+angular.module('instastore')
     .factory('authInterceptor', function ($q, UserService, $injector, $cookies) {
         return {
             request: function (config) {
-                if ($cookies._auth && config.url.substring(0, 4) == 'http') {
+                if ($cookies._auth && config.url.substring(0, 4) === 'http') {
                     config.params = {
                         'access-token': $cookies._auth
                     };
@@ -31,26 +32,28 @@ app
                 var str = [];
                 for (var p in obj) {
                     if (obj.hasOwnProperty(p)) {
-                        var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
-                        str.push(typeof v == "object" ?
+                        var k = prefix ? prefix + '[' + p + ']' : p, v = obj[p];
+                        str.push(typeof v === 'object' ?
                             serialize(v, k) :
-                        encodeURIComponent(k) + "=" + encodeURIComponent(v));
+                        encodeURIComponent(k) + '=' + encodeURIComponent(v));
                     }
                 }
-                return str.join("&");
+                return str.join('&');
             },
 
             models: function (filter) {
-                if (!filter) return $http.get(this.baseUrl + this.path);
+                if (!filter) {
+                    return $http.get(this.baseUrl + this.path);
+                }
                 return $http.get(this.baseUrl + this.path + '?' + this.serialize(filter));
             },
 
             model: function (id) {
                 if (id)
-                    return $http.get(this.baseUrl + this.path + "/" + id);
+                    return $http.get(this.baseUrl + this.path + '/' + id);
                 if ($stateParams.expand != null)
-                    return $http.get(this.baseUrl + this.path + "/" + $stateParams.id + '?expand=' + $stateParams.expand);
-                return $http.get(this.baseUrl + this.path + "/" + $stateParams.id);
+                    return $http.get(this.baseUrl + this.path + '/' + $stateParams.id + '?expand=' + $stateParams.expand);
+                return $http.get(this.baseUrl + this.path + '/' + $stateParams.id);
             },
 
             get: function () {
@@ -62,8 +65,8 @@ app
             },
 
             putModel: function (model) {
-                if (model.id) return $http.put(this.baseUrl + this.path + "/" + model.id, model);
-                return $http.put(this.baseUrl + this.path + "/" + $stateParams.id, model);
+                if (model.id) return $http.put(this.baseUrl + this.path + '/' + model.id, model);
+                return $http.put(this.baseUrl + this.path + '/' + $stateParams.id, model);
             },
 
             deleteModel: function () {
@@ -86,7 +89,7 @@ app
             logout: function () {
                 delete $cookies._auth;
             },
-            getToken: function(){
+            getToken: function () {
                 return $cookies._auth;
             },
             isGuest: function () {
@@ -209,13 +212,13 @@ app
                     $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
             },
             initIsSeller: function () {
-                if (String($cookies.isSeller)==='true')
+                if (String($cookies.isSeller) === 'true')
                     $rootScope.isSeller = true;
                 else
                     $rootScope.isSeller = false;
             },
             isSeller: function () {
-                if (String($cookies.isSeller)==='true')
+                if (String($cookies.isSeller) === 'true')
                     return true;
                 else
                     return false;

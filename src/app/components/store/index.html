@@ -3,14 +3,14 @@
         <div class="inner">
             <div ng-if="seller" class="copyurl-container">
                 <div device-detector class="ngclip">
-                    <input ng-disabled="true" class="regular-field" type="text" ng-model="store_url"
+                    <input ng-disabled="true" class="regular-field" type="text" ng-model="storeUrl"
                            placeholder="Store URL">
                     <button class="btn" clip-copy="getTextToCopy()" clip-click="alertCopy()"
                             clip-click-fallback="fallback(copy)">Copy!
                     </button>
                 </div>
                 <div device-detector class="url-text">
-                    <h4>{{store_url}}</h4>
+                    <h4>{{storeUrl}}</h4>
                 </div>
                 <!--Don't remove this block-->
                 <div class="url-text" style=" margin: 10px 0 20px 0;visibility: hidden;">

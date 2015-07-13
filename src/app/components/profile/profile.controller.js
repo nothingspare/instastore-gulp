@@ -21,7 +21,7 @@ angular.module('instastore')
                 ];
             }
 
-            $scope.full_name = $scope.profile.first_name + ' ' + $scope.profile.last_name;
+            $scope.fullName = $scope.profile.first_name + ' ' + $scope.profile.last_name;
 
             var errorCallback = function (data) {
                 toaster.clear();
