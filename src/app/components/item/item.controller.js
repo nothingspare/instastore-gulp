@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state', 'feedHelper', 'errorService', '$filter',
-        function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper, errorService, $filter) {
+    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state', 'feedHelper', 'errorService', '$filter', 'ITEM_STATUS',
+        function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper, errorService, $filter, ITEM_STATUS) {
 
             $scope.$on('newItem', function (event, item) {
                 if (item) $scope.items.push(item);
@@ -20,7 +20,7 @@ angular.module('instastore')
                             return;
                         }
                         rest.path = 'v1/items';
-                        rest.models({user_id: store.user_id, status: 20}).success(function (data) {
+                        rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
                             $scope.items = data;
                         });
                     }).error(errorService.simpleAlert);
@@ -43,8 +43,12 @@ angular.module('instastore')
                 };
 
                 $scope.toggleItemStatus = function (item) {
-                    if (item.status == 10) item.status = 20;
-                    else item.status = 10;
+                    if (item.status == ITEM_STATUS.inactive) {
+                        item.status = ITEM_STATUS.active;
+                    }
+                    else {
+                        item.status = ITEM_STATUS.inactive;
+                    }
                     rest.putModel(item).success(function (data) {
                         var found = $filter('getById')($scope.items, data.id);
                         found.status = data.status;
@@ -53,16 +57,16 @@ angular.module('instastore')
             }
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
-        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar', '$rootScope',
+        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
-                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, $rootScope) {
+                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar) {
 
             $scope.item = {};
 
             //init Plupload-directive vars
             $scope.plupfiles = [];
             $scope.pluploadConfig = {};
-            $scope.pluploadConfig.uploadPath = API_URL + 'v1/item/upload?access-token=' + UserService.getToken();
+            $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/new-item-images?access-token=' + UserService.getToken();
             $scope.pluploadConfig.resize = {width: 310, height: 390, preserve_headers: false, quality: 100};
 
             if ($stateParams.itemurl) {
@@ -97,7 +101,13 @@ angular.module('instastore')
                     .error(errorService.alert);
             };
 
-            $scope.removeItem = function (item) {
+            $scope.removeItem = function () {
+                if ($scope.item.images) {
+                    var index;
+                    for (index = 0; index < $scope.item.images.length; ++index) {
+                        $scope.removeImage($scope.item.images[index]);
+                    }
+                }
                 rest.path = 'v1/items/' + $scope.item.id;
                 rest.deleteModel()
                     .success(function () {
