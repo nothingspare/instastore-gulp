@@ -703,13 +703,13 @@ p {
 .account-outer .copyurl-container .url-text.os-windows,
 .account-outer .copyurl-container .url-text.os-mac,
 .account-outer .copyurl-container .url-text.os-linux,
-.account-outer .copyurl-container .url-text.os-unix{
-   display: none;
+.account-outer .copyurl-container .url-text.os-unix {
+    display: none;
 }
 
 .account-outer .copyurl-container .ngclip.os-ios,
 .account-outer .copyurl-container .ngclip.os-android,
-.account-outer .copyurl-container .ngclip.os-firefoxos{
+.account-outer .copyurl-container .ngclip.os-firefoxos {
     display: none;
 }
 
@@ -892,6 +892,17 @@ h1 {
     text-rendering: optimizelegibility;
 }
 
+.header-title {
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 5px;
+    color: #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /** - - - - - - - header 1 profile page - - - - - - - - - - - **/
 
 #container1 {
@@ -915,7 +926,6 @@ h1 {
     margin-bottom: 8px;
 }
 
-.storetitle,
 h3 {
     font-size: 20px;
     font-weight: 100;
@@ -3598,7 +3608,7 @@ ul.safearea a {
 .hidden-desktop.os-windows,
 .hidden-desktop.os-mac,
 .hidden-desktop.os-linux,
-.hidden-desktop.os-unix{
+.hidden-desktop.os-unix {
     display: none;
 }
 
@@ -3698,7 +3708,7 @@ ul.safearea a {
     margin-top: -5px;
 }
 
-.itemview .itemmap-container .angular-google-map>.angular-google-map-container {
+.itemview .itemmap-container .angular-google-map > .angular-google-map-container {
     top: 4px;
 }
 

@@ -179,7 +179,7 @@ angular.module('instastore')
             $scope.save = function () {
                 if (!$scope.item.title) $scope.item.title = Math.random().toString(36).slice(2);
                 $scope.item.item_url = $scope.item.title;
-                $scope.item.status = ITEM_STATUS.inactive;
+                $scope.item.status = ITEM_STATUS.active;
                 if ($scope.item.id) {
                     rest.path = 'v1/items';
                     rest.putModel($scope.item).success(function (item) {
