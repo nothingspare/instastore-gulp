@@ -110,11 +110,22 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             scopeDelimiter: ','
         });
 
+        $authProvider.oauth2({
+            name: 'instagram',
+            url: 'http://' + API_URL + '/link/instagram',
+            redirectUri: 'http://instastore.us/',
+            clientId: '59429297486f4f2393762a1febf17583',
+            requiredUrlParams: ['scope'],
+            scope: ['likes'],
+            scopeDelimiter: '+',
+            authorizationEndpoint: 'https://api.instagram.com/oauth/authorize'
+        });
+
         $locationProvider.html5Mode(true).hashPrefix('!');
 
         $httpProvider.interceptors.push('authInterceptor');
 
-        ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
+        ngClipProvider.setPath('bower_components/zeroclipboard/dist/ZeroClipboard.swf');
 
         uiGmapGoogleMapApiProvider.configure({
             v: '3.17',

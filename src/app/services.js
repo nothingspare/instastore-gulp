@@ -103,6 +103,7 @@ angular.module('instastore')
             },
             getUserFullName: function () {
                 var profile = this.getProfile();
+                /*jshint camelcase: false */
                 return profile.first_name + ' ' + profile.last_name;
             },
             setBg: function (bgUrl) {

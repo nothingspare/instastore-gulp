@@ -5,7 +5,7 @@ app
     .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', 'CLIENT_URL', 'toaster', function ($scope, UserService, $stateParams, CLIENT_URL, toaster) {
 
         var profile = UserService.getProfile();
-        $scope.seller = profile.seller;
+        $scope.seller = UserService.isSeller()?profile.seller:false;
         if (profile.seller) {
             if ($stateParams.storeurl) {
                 $scope.storeUrl = CLIENT_URL + $stateParams.storeurl;
@@ -34,6 +34,4 @@ app
             $rootScope.avatarUrl = store.avatar_url;
             $rootScope.isSeller = false;
         }).error(errorService.alert);
-    }])
-    .controller('StoreAccounts', [function () {
     }]);
