@@ -83,7 +83,8 @@ angular.module('instastore')
         $scope.selectStore = function (inviter_id) {
             $scope.profile.inviter_id = inviter_id;
             rest.path = 'v1/profiles';
-            rest.putModel($scope.profile).success(function () {
+            rest.putModel($scope.profile).success(function (profile) {
+                UserService.setProfile(profile);
                 toaster.pop('success', 'Saved');
                 $state.go('sellorbuy');
             }).error(errorService.alert);

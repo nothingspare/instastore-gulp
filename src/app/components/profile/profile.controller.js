@@ -100,7 +100,7 @@ angular.module('instastore')
             .then(function () {
                 return uiGmapGoogleMapApi;
             })
-            .then(function (maps) {
+            .then(function () {
                 $scope.renderMap = true;
             });
 
@@ -162,8 +162,6 @@ angular.module('instastore')
 
             /**
              * Converts data uri to Blob. Necessary for uploading.
-             * @see
-             *   http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
              * @param  {String} dataURI
              * @return {Blob}
              */
@@ -195,7 +193,7 @@ angular.module('instastore')
                     for (var i = 0; i < files.length; i++) {
                         var file = files[i];
                         Upload.upload({
-                            url: API_URL + 'v1/store/upload',
+                            url: API_URL + 'v1/uploader/store-images',
                             fields: {
                                 'isAvatar': isAvatar
                             },
