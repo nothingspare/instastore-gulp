@@ -3179,16 +3179,16 @@ input:-moz-placeholder {
     }
     80% {
         background-size: 200px 180px;
-        opacity: 100;
+        opacity: 1;
         display: block;
     }
     99% {
-        background-size: 40px 35px;
+        background-size: 200px 180px;
         opacity: 0;
         display: block;
     }
     100% {
-        background-size: 40px 35px;
+        background-size: 200px 180px;
         opacity: 0;
         display: none;
     }
@@ -3198,10 +3198,11 @@ input:-moz-placeholder {
     position: absolute;
     margin: 0 auto;
     width: 308px;
-    height: 419px;
+    height: 390px;
     left: 0px;
-    background: url(../assets/images/heart.png) center center;
-    background-size: 310px 280px;
+    background-image: url(../assets/images/heart.png);
+    background-size: 308px 390px;
+    background-position: center center;
     /*background-repeat: no-repeat;*/
     bottom: 0;
     left: -108px;
