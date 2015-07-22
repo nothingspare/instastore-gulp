@@ -40,7 +40,7 @@ angular.module('instastore')
                 }
             }
         }])
-    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', function ($scope, $state, ngDialog, UserService) {
+    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$auth', function ($scope, $state, ngDialog, UserService, $auth) {
         'use strict';
         UserService.initStore();
         var profile = UserService.getProfile();
@@ -57,6 +57,13 @@ angular.module('instastore')
 
         $scope.clickToOpen = function () {
             ngDialog.open({template: 'app/components/item/additem.html', controller: 'ItemAdd'});
+        };
+
+        $scope.linkInstagram = function() {
+            $auth.link('instagram')
+                .then(function(response) {
+                    console.log(response);
+                });
         };
 
     }])

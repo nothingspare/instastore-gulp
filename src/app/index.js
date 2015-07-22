@@ -112,13 +112,14 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
         $authProvider.oauth2({
             name: 'instagram',
-            url: 'http://' + API_URL + '/link/instagram',
-            redirectUri: 'http://instastore.us/',
+            url: '/v1/link/instagram',
+            redirectUri: window.location.origin,
             clientId: '59429297486f4f2393762a1febf17583',
             requiredUrlParams: ['scope'],
             scope: ['likes'],
             scopeDelimiter: '+',
-            authorizationEndpoint: 'https://api.instagram.com/oauth/authorize'
+            authorizationEndpoint: 'https://instagram.com/oauth/authorize',
+            display: 'popup'
         });
 
         $locationProvider.html5Mode(true).hashPrefix('!');

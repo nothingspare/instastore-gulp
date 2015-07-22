@@ -48,7 +48,7 @@
 
     <div id="profile-container2">
 
-        <a ng-if="!isSeller" href="#" id="profile-button" class="fast-tap btn">&nbsp;Follow&nbsp;+&nbsp;</a>
+        <a ng-if="!isSeller" href="#" id="profile-button" class="fast-tap btn">&nbsp;Follow&nbsp;+&nbsp;</a><button ng-click="linkInstagram()">link</button>
         <a ng-if="isSeller" ui-sref="store({storeurl:$stateParams.storeurl})" id="profile-button" class="fast-tap btn">&nbsp;Edit profile&nbsp;</a>
 
     </div>
