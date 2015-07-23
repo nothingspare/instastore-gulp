@@ -95,7 +95,7 @@ angular.module('instastore')
             };
         }])
     .
-    controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi) {
+    controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth) {
         uiGmapGoogleMapApi
             .then(function () {
                 return uiGmapGoogleMapApi;
@@ -153,6 +153,16 @@ angular.module('instastore')
                 $scope.profile.store = store;
                 UserService.setProfile($scope.profile);
             }).error(errorCallback);
+        };
+
+        $scope.linkInstagram = function () {
+            $auth.link('instagram')
+                .then(function (response) {
+                    if (response.data && response.data.id) {
+                        $scope.profile.instagramId = response.data.id;
+                        UserService.setProfile($scope.profile);
+                    }
+                });
         };
     }])
     .controller('CropUploadCtrl', ['$scope', '$stateParams', 'Upload', 'API_URL', 'toaster', '$window', 'UserService',
