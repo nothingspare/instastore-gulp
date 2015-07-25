@@ -263,7 +263,7 @@ angular.module('instastore')
                     $scope.likeItem();
                     break;
                 case '4':
-                    $scope.currentTab = 'app/components/item/view-tab-location.html'
+                    $scope.currentTab = 'app/components/item/view-tab-location.html';
                     break;
                 default:
                     $scope.currentTab = 'app/components/item/view-tab-comment.html';
@@ -283,4 +283,9 @@ angular.module('instastore')
                 };
             }
         });
+    }])
+    .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', function ($scope, $http, API_URL, errorService) {
+        $http.get(API_URL + 'v1/link/instagram-media').success(function (data) {
+            $scope.items = data;
+        }).error(errorService.alert);
     }]);

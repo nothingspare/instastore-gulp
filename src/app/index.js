@@ -100,6 +100,12 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/store/index.html'
         });
 
+        $stateProvider.state('instaimport', {
+            url: '/instaimport',
+            controller: 'InstagramImport',
+            templateUrl: modulesPath + '/item/instaimport.html'
+        });
+
         $authProvider.baseUrl = API_URL;
         $authProvider.storage = 'sessionStorage';
 
