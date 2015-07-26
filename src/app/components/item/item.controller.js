@@ -288,4 +288,18 @@ angular.module('instastore')
         $http.get(API_URL + 'v1/link/instagram-media').success(function (data) {
             $scope.items = data;
         }).error(errorService.alert);
+
+        $scope.importItems = function () {
+            angular.forEach($scope.items, function (value, key) {
+                if (value.isChecked === true) {
+                    var item = {
+                        text: value.caption ? value.caption.text : 'Item from Instagram',
+                        image_url: value.images.standard_resolution.url
+                    };
+                    $http.post(API_URL + 'v1/uploader/item-import', item).success(function (data) {
+                        console.log(data);
+                    }).error(errorService.alert);
+                }
+            });
+        };
     }]);
