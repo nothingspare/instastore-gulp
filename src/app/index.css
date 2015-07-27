@@ -3715,7 +3715,7 @@ ul.safearea a {
 
 /*Seller comment end*/
 
-/*Instaimport comment start*/
+/*Instaimport start*/
 .instaimport.itemgrid > .grid_unit .item-preview-small-grid {
     height: 92px;
 }
@@ -3724,7 +3724,13 @@ ul.safearea a {
     margin: 75px 0 0 0;
 }
 
-/*Instaimport comment end*/
+.instaimport .control-panel{
+    width:100%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/*Instaimport end*/
 
 #container1-itemview #navigation1 li a {
     height: 38px;

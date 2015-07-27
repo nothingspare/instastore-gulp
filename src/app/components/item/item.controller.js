@@ -290,16 +290,30 @@ angular.module('instastore')
         }).error(errorService.alert);
 
         $scope.importItems = function () {
-            angular.forEach($scope.items, function (value, key) {
+            var items = [];
+            angular.forEach($scope.items, function (value) {
                 if (value.isChecked === true) {
                     var item = {
-                        text: value.caption ? value.caption.text : 'Item from Instagram',
+                        description: value.caption ? value.caption.text : 'Item from Instagram',
                         image_url: value.images.standard_resolution.url
                     };
-                    $http.post(API_URL + 'v1/uploader/item-import', item).success(function (data) {
-                        console.log(data);
-                    }).error(errorService.alert);
+                    items.push(item);
                 }
+            });
+            $http.post(API_URL + 'v1/uploader/item-import', items).success(function (data) {
+                console.log(data);
+            }).error(errorService.alert);
+        };
+
+        $scope.checkAll = function(){
+            angular.forEach($scope.items, function(value){
+                value.isChecked = true;
+            });
+        };
+
+        $scope.uncheckAll = function(){
+            angular.forEach($scope.items, function(value){
+                value.isChecked = false;
             });
         };
     }]);

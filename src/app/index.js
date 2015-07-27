@@ -101,7 +101,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('instaimport', {
-            url: '/instaimport',
+            url: '/instaimport/:storeurl',
             controller: 'InstagramImport',
             templateUrl: modulesPath + '/item/instaimport.html'
         });

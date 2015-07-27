@@ -120,9 +120,13 @@ angular.module('instastore')
                 var state = $injector.get('$state');
                 state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url});
             },
+            getMainStoreUrl: function(){
+                var profile = this.getProfile();
+                return profile.seller ? profile.store.store_url : profile.inviter_url;
+            },
             routeStoreurlCheck: function () {
                 var state = $injector.get('$state');
-                return state.includes('store') || state.includes('grid') || state.includes('itemview') || state.includes('location') ? true : false;
+                return state.includes('store') || state.includes('grid') || state.includes('itemview') || state.includes('location') || state.includes('instaimport') ? true : false;
             },
             checkStoreUrl: function () {
                 var stateParams = $injector.get('$stateParams');

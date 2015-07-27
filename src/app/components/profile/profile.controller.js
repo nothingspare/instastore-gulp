@@ -131,6 +131,8 @@ angular.module('instastore')
 
         $scope.profile = UserService.getProfile();
 
+        $scope.mainStoreUrl = UserService.getMainStoreUrl();
+
         $scope.save = function () {
             if ($scope.profile.store.place) {
                 if ($scope.profile.store.place.types) {
