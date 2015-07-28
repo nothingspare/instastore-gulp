@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state', '$rootScope', 'uiGmapGoogleMapApi',
         function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope, uiGmapGoogleMapApi) {
