@@ -1566,7 +1566,7 @@ h3 {
 
 .stream-item-slider {
     position: relative;
-    margin: 0 auto;
+    margin: 135px auto;
     width: 310px;
     margin-bottom: 0px;
     /** add to split up item listing on item page **/

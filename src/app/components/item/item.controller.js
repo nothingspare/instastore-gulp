@@ -6,6 +6,7 @@ angular.module('instastore')
 
             $scope.$on('newItem', function (event, item) {
                 if (item) $scope.items.push(item);
+                $scope.showPanel = false;
             });
 
             if (!UserService.isGuest()) {
@@ -21,6 +22,7 @@ angular.module('instastore')
                         }
                         rest.path = 'v1/items';
                         rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
+                            if (data.length === 0) $scope.showPanel = true;
                             $scope.items = data;
                         });
                     }).error(errorService.simpleAlert);
@@ -28,6 +30,7 @@ angular.module('instastore')
                 else {
                     rest.path = 'v1/user-items';
                     rest.models().success(function (data) {
+                        if (data.length === 0) $scope.showPanel = true;
                         $scope.items = data;
                     }).error(errorService.simpleAlert);
                 }
@@ -305,14 +308,14 @@ angular.module('instastore')
             }).error(errorService.alert);
         };
 
-        $scope.checkAll = function(){
-            angular.forEach($scope.items, function(value){
+        $scope.checkAll = function () {
+            angular.forEach($scope.items, function (value) {
                 value.isChecked = true;
             });
         };
 
-        $scope.uncheckAll = function(){
-            angular.forEach($scope.items, function(value){
+        $scope.uncheckAll = function () {
+            angular.forEach($scope.items, function (value) {
                 value.isChecked = false;
             });
         };

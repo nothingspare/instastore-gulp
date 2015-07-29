@@ -92,6 +92,21 @@ angular.module('instastore')
                 else
                     $state.go('grid');
             };
+
+            $scope.makeMeSeller = function(val){
+                if (val === 'demo'){
+                    $scope.profile.status = 20;
+                    rest.path = 'v1/profiles';
+                    rest.putModel($scope.profile).success(function (profile) {
+                            toaster.pop('success', "Profile saved");
+                            $scope.profile.seller = true;
+                            UserService.setProfile($scope.profile);
+                            UserService.setIsSeller(true);
+                            $state.go('grid', {storeurl:$scope.profile.store.store_url});
+                        }
+                    ).error(errorCallback);
+                }
+            };
         }])
     .
     controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth) {
@@ -157,7 +172,7 @@ angular.module('instastore')
         };
 
         $scope.linkInstagram = function () {
-            $auth.link('instagram')
+            $auth.authenticate('instagram')
                 .then(function (response) {
                     if (response.data && response.data.id) {
                         $scope.profile.instagramId = response.data.id;

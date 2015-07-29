@@ -113,13 +113,14 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             clientId: '352496064951251',
             url: 'v1/user/auth',
             scope: 'email,manage_pages',
-            scopeDelimiter: ','
+            scopeDelimiter: ',',
+            display: 'popup'
         });
 
         $authProvider.oauth2({
             name: 'instagram',
             url: '/v1/link/instagram',
-            redirectUri: window.location.origin,
+            redirectUri: 'http://instastore.us',
             clientId: '59429297486f4f2393762a1febf17583',
             requiredUrlParams: ['scope'],
             scope: ['likes'],
