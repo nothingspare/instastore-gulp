@@ -64,9 +64,9 @@ angular.module('instastore')
             }
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
-        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
+        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar', 'CLIENT_URL',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
-                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar) {
+                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL) {
 
             $scope.item = {};
 
@@ -75,6 +75,10 @@ angular.module('instastore')
             $scope.pluploadConfig = {};
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
             $scope.pluploadConfig.resize = {width: 310, height: 390, preserve_headers: false, quality: 100};
+
+            if ($stateParams.storeurl && $stateParams.itemurl) {
+                $scope.itemUrl = CLIENT_URL + $stateParams.storeurl + '/' + $stateParams.itemurl;
+            }
 
             if ($stateParams.itemurl) {
                 rest.path = 'v1/items';

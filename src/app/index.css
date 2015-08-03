@@ -3635,6 +3635,14 @@ ul.safearea a {
     margin-top: -20px;
 }
 
+.itemview div.url-text h4{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 10px 0 10px;
+    font-size:12px;
+}
+
 .additem-popup #textfield2 {
     width: 59px;
 }
