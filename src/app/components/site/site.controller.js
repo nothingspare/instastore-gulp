@@ -1,4 +1,4 @@
-//'use strict';
+'use strict';
 
 angular.module('instastore')
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService', 'SStorage',
@@ -40,9 +40,10 @@ angular.module('instastore')
                 }
             }
         }])
-    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', function ($scope, $state, ngDialog, UserService) {
-        'use strict';
+    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$stateParams', '$location', '$anchorScroll',
+        function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll) {
         UserService.initStore();
+
         var profile = UserService.getProfile();
         $scope.sellerAllowed = profile.seller;
 
@@ -58,6 +59,21 @@ angular.module('instastore')
         $scope.clickToOpen = function () {
             ngDialog.open({template: 'app/components/item/additem.html', controller: 'ItemAdd'});
         };
+
+        $scope.goBack = function () {
+            if ($state.includes('store')) {
+                UserService.goToMainStore();
+            }
+            else {
+                $state.go('grid', {storeurl: $stateParams.storeurl});
+            }
+        };
+
+        $scope.scrollToTop = function(){
+            $location.hash('start');
+            $anchorScroll();
+        };
+
     }])
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
         'use strict';

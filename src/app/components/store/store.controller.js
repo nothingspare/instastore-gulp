@@ -2,10 +2,18 @@
 
 var app = angular.module('instastore');
 app
-    .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', 'CLIENT_URL', 'toaster', function ($scope, UserService, $stateParams, CLIENT_URL, toaster) {
+    .controller('StoreIndex', ['$scope', 'UserService', '$stateParams', 'CLIENT_URL', 'toaster', '$rootScope', function ($scope, UserService, $stateParams, CLIENT_URL, toaster, $rootScope) {
 
+        //clear temp store data if not your store
+        if (!UserService.isYourStore()) {
+            $rootScope.bgUrl = 'assets/images/background1-blur.jpg';
+            $rootScope.store = {};
+            $rootScope.store.avatar_url = 'assets/images/background1circle290x290px.jpg';
+        }
+
+        UserService.initStore();
         var profile = UserService.getProfile();
-        $scope.seller = UserService.isSeller()?profile.seller:false;
+        $scope.seller = UserService.isYourStore() && UserService.isSeller() ? profile.seller : false;
         if (profile.seller) {
             if ($stateParams.storeurl) {
                 $scope.storeUrl = CLIENT_URL + $stateParams.storeurl;

@@ -13,7 +13,7 @@
                     <span ng-class="item.userFullName==comment.authorFullName?'seller-message-small':'buyer-message-small'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </td>
                 <td>
-                    <p>
+                    <p ui-sref = "store({storeurl:comment.storeUrl})">
                         <b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'">{{item.userFullName!==comment.authorFullName?comment.authorFullName:''}}</b>
                         {{comment.content}}
                     </p>

@@ -1564,15 +1564,26 @@ h3 {
 
 /* - - - - - - intagram slider size - - - - - - - */
 
-.stream-item-slider {
+.newstore-panel .stream-item-slider {
     position: relative;
     margin: 135px auto;
-    width: 310px;
+    width: 300px;
     margin-bottom: 0px;
     /** add to split up item listing on item page **/
-
-    padding: 2px;
+    padding: 10px;
     background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.newstore-panel .stream-item-slider h4 {
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    color: darkgray;
+    margin-bottom: 5px;
+}
+
+.newstore-panel .stream-item-slider h6 {
+    line-height: 20px;
 }
 
 .stream-item-pic {
@@ -3724,8 +3735,8 @@ ul.safearea a {
     margin: 75px 0 0 0;
 }
 
-.instaimport .control-panel{
-    width:100%;
+.instaimport .control-panel {
+    width: 100%;
     margin-bottom: 10px;
     text-align: center;
 }
