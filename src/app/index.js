@@ -109,15 +109,15 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         $authProvider.baseUrl = API_URL;
         $authProvider.storage = 'sessionStorage';
 
-        $authProvider.facebook({
+        var configFacebook = {
             clientId: '352496064951251',
             url: 'v1/user/auth',
-            scope: 'email,manage_pages',
+            scope: 'email',
             scopeDelimiter: ',',
             display: 'popup'
-        });
+        };
 
-        $authProvider.oauth2({
+        var configInstagram = {
             name: 'instagram',
             url: '/v1/link/instagram',
             redirectUri: 'http://instastore.us',
@@ -127,7 +127,21 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             scopeDelimiter: '+',
             authorizationEndpoint: 'https://instagram.com/oauth/authorize',
             display: 'popup'
-        });
+        };
+
+        switch (window.location.origin) {
+            case 'http://isopen.us':
+                configFacebook.clientId = '801870543171280';
+                configInstagram.clientId = 'a7cf21e1b2dc47d1a77f5f7ce3bbcae5';
+                break;
+            case 'http://192.168.0.103:3000':
+                //configFacebook.clientId = '694297854007943';
+                //configInstagram.clientId = '7f744b4b4f844419bd49872ac67cf22a';
+                break;
+        }
+
+        $authProvider.facebook(configFacebook);
+        $authProvider.oauth2(configInstagram);
 
         $locationProvider.html5Mode(true).hashPrefix('!');
 
