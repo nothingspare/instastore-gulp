@@ -4,7 +4,8 @@ angular.module('instastore')
     .value('app-version', '0.0.2')
     .constant('SLIDER_HEIGHT', 310)
     .constant('SLIDER_HEIGHT_EXTENDED', 390)
-    .constant('ITEM_STATUS', {temp: 0, inactive: 10, active: 20});
+    .constant('ITEM_STATUS', {temp: 0, inactive: 10, active: 20})
+    .constant('PLUPLOAD_RESIZE_CONFIG', {width: 620, height: 620, preserve_headers: false});
 
 switch (window.location.origin) {
     case 'http://isopen.us':

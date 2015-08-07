@@ -64,9 +64,10 @@ angular.module('instastore')
             }
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
-        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar', 'CLIENT_URL',
+        'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
+        'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
-                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL) {
+                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG) {
 
             $scope.item = {};
 
@@ -74,7 +75,7 @@ angular.module('instastore')
             $scope.plupfiles = [];
             $scope.pluploadConfig = {};
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
-            $scope.pluploadConfig.resize = {width: 310, height: 390, preserve_headers: false, quality: 100};
+            $scope.pluploadConfig.resize = PLUPLOAD_RESIZE_CONFIG;
 
             if ($stateParams.storeurl && $stateParams.itemurl) {
                 $scope.itemUrl = CLIENT_URL + $stateParams.storeurl + '/' + $stateParams.itemurl;
@@ -176,15 +177,15 @@ angular.module('instastore')
         }
     ])
     .
-    controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope',
-        function ($scope, rest, toaster, ITEM_STATUS, API_URL, ngDialog, errorService, UserService, cfpLoadingBar, $rootScope) {
+    controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG',
+        function ($scope, rest, toaster, ITEM_STATUS, API_URL, ngDialog, errorService, UserService, cfpLoadingBar, $rootScope, PLUPLOAD_RESIZE_CONFIG) {
             $scope.item = {category_id: 9, brand_id: 1, description: ''};
             $scope.item.images = [];
 
             //init Plupload-directive vars
             $scope.plupfiles = [];
             $scope.pluploadConfig = {};
-            $scope.pluploadConfig.resize = {width: 310, height: 390, preserve_headers: false, quality: 100};
+            $scope.pluploadConfig.resize = $scope.pluploadConfig.resize = PLUPLOAD_RESIZE_CONFIG;
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
 
             $scope.save = function () {
