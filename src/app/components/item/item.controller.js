@@ -297,6 +297,7 @@ angular.module('instastore')
         });
     }])
     .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', function ($scope, $http, API_URL, errorService) {
+
         $http.get(API_URL + 'v1/link/instagram-media').success(function (data) {
             $scope.items = data;
         }).error(errorService.alert);

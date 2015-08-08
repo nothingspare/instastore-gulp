@@ -174,8 +174,8 @@ angular.module('instastore')
         $scope.linkInstagram = function () {
             $auth.authenticate('instagram')
                 .then(function (response) {
-                    if (response.data && response.data.id) {
-                        $scope.profile.instagramId = response.data.id;
+                    if (response.data && response.data.user && response.data.user.id) {
+                        $scope.profile.instagramId = response.data.user.id;
                         UserService.setProfile($scope.profile);
                     }
                 });
