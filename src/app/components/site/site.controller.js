@@ -23,8 +23,6 @@ angular.module('instastore')
                         res.data.profile.store = {};
                     }
                     UserService.setProfile(res.data.profile);
-                    var name = res.data.profile.first_name ? res.data.profile.first_name : res.data.facebookProfile.first_name;
-                    toaster.pop('success', 'Welcome, ' + name + '!');
                     if (UserService.getInvitedStatus()) {
                         $state.go('sellorbuy');
                     }
