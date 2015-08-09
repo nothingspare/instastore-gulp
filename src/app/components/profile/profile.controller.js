@@ -109,7 +109,8 @@ angular.module('instastore')
             };
         }])
     .
-    controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth) {
+    controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth',
+        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth) {
         uiGmapGoogleMapApi
             .then(function () {
                 return uiGmapGoogleMapApi;
@@ -175,6 +176,7 @@ angular.module('instastore')
             $auth.authenticate('instagram')
                 .then(function (response) {
                     if (response.data && response.data.user && response.data.user.id) {
+                        UserService.fromInstaimport = true;
                         $scope.profile.instagramId = response.data.user.id;
                         UserService.setProfile($scope.profile);
                     }
@@ -232,7 +234,7 @@ angular.module('instastore')
                         }).progress(function (evt) {
                             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                             console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                        }).success(function (data, status, headers, config) {
+                        }).success(function (data) {
                             if (isAvatar > 0) {
                                 UserService.setAvatar(data.image_url);
                             }

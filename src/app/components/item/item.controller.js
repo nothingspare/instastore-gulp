@@ -5,7 +5,7 @@ angular.module('instastore')
         function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper, errorService, $filter, ITEM_STATUS) {
 
             $scope.$on('newItem', function (event, item) {
-                if (item) $scope.items.push(item);
+                if (item) $scope.items.unshift(item);
                 $scope.showPanel = false;
             });
 

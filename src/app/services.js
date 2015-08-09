@@ -114,13 +114,20 @@ angular.module('instastore')
                     $cookies.bgUrl = $rootScope.bgUrl = bgUrl;
                 }
             },
+            //instaimport part
+            fromInstaimport: false,
+            goToInstaimport: function () {
+                var profile = this.getProfile();
+                var state = $injector.get('$state');
+                state.go('instaimport', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url});
+            },
             //go to your store as seller, go to inviter's store as buyer
             goToMainStore: function () {
                 var profile = this.getProfile();
                 var state = $injector.get('$state');
                 state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url});
             },
-            getMainStoreUrl: function(){
+            getMainStoreUrl: function () {
                 var profile = this.getProfile();
                 return profile.seller ? profile.store.store_url : profile.inviter_url;
             },
@@ -209,33 +216,34 @@ angular.module('instastore')
                     this.setProfile(profile);
                     $cookies.avatarUrl = avatarUrl;
                 }
-            }
-            ,
+            },
             initBgAndAvatar: function () {
                 //var bgU = $cookies.bgUrl;
                 //if (bgU) $rootScope.bgUrl = bgU;
-            }
-            ,
+            },
             initBgFilter: function () {
                 var stateService = $injector.get('$state');
                 if (stateService.includes('store'))
                     $rootScope.bgFilter = '-webkit-filter:blur(0px);filter:blur(0px);';
                 else if ($rootScope.bgFilter != '-webkit-filter:blur(6px);filter:blur(6px);')
                     $rootScope.bgFilter = '-webkit-filter:blur(6px);filter:blur(6px);';
-            }
-            ,
+            },
             initIsSeller: function () {
-                if (String($cookies.isSeller) === 'true')
+                if (String($cookies.isSeller) === 'true') {
                     $rootScope.isSeller = true;
-                else
+                }
+                else {
                     $rootScope.isSeller = false;
+                }
             }
             ,
             isSeller: function () {
-                if (String($cookies.isSeller) === 'true')
+                if (String($cookies.isSeller) === 'true') {
                     return true;
-                else
+                }
+                else {
                     return false;
+                }
             }
             ,
             setIsSeller: function (value) {

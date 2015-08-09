@@ -4,7 +4,13 @@ angular.module('instastore')
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService', 'SStorage',
         function ($scope, $rootScope, rest, toaster, $state, $auth, UserService, SStorage) {
             if (!UserService.isGuest()) {
-                UserService.goToMainStore();
+                if (UserService.fromInstaimport) {
+                    UserService.fromInstaimport = false;
+                    UserService.goToInstaimport();
+                }
+                else {
+                    UserService.goToMainStore();
+                }
             }
 
             $scope.isSession = SStorage.isSessionStorageAvailable();
@@ -40,39 +46,39 @@ angular.module('instastore')
         }])
     .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$stateParams', '$location', '$anchorScroll',
         function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll) {
-        UserService.initStore();
+            UserService.initStore();
 
-        var profile = UserService.getProfile();
-        $scope.sellerAllowed = profile.seller;
+            var profile = UserService.getProfile();
+            $scope.sellerAllowed = profile.seller;
 
-        $scope.logout = function () {
-            UserService.logout();
-            $state.go('login');
-        };
+            $scope.logout = function () {
+                UserService.logout();
+                $state.go('login');
+            };
 
-        $scope.profile = function () {
-            $state.go('profile');
-        };
+            $scope.profile = function () {
+                $state.go('profile');
+            };
 
-        $scope.clickToOpen = function () {
-            ngDialog.open({template: 'app/components/item/additem.html', controller: 'ItemAdd'});
-        };
+            $scope.clickToOpen = function () {
+                ngDialog.open({template: 'app/components/item/additem.html', controller: 'ItemAdd'});
+            };
 
-        $scope.goBack = function () {
-            if ($state.includes('store')) {
-                UserService.goToMainStore();
-            }
-            else {
-                $state.go('grid', {storeurl: $stateParams.storeurl});
-            }
-        };
+            $scope.goBack = function () {
+                if ($state.includes('store')) {
+                    UserService.goToMainStore();
+                }
+                else {
+                    $state.go('grid', {storeurl: $stateParams.storeurl});
+                }
+            };
 
-        $scope.scrollToTop = function(){
-            $location.hash('start');
-            $anchorScroll();
-        };
+            $scope.scrollToTop = function () {
+                $location.hash('start');
+                $anchorScroll();
+            };
 
-    }])
+        }])
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
         'use strict';
         $scope.facebookProfile = UserService.getFacebookProfile();

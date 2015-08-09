@@ -120,7 +120,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         var configInstagram = {
             name: 'instagram',
             url: '/v1/link/instagram',
-            redirectUri: 'http://instastore.us',
+            redirectUri: 'http://instastore.us/profilestore/',
             clientId: '59429297486f4f2393762a1febf17583',
             requiredUrlParams: ['scope'],
             scope: ['likes'],
@@ -133,12 +133,12 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             case 'http://isopen.us':
                 configFacebook.clientId = '801870543171280';
                 configInstagram.clientId = 'a7cf21e1b2dc47d1a77f5f7ce3bbcae5';
-                configInstagram.redirectUri = 'http://isopen.us';
+                configInstagram.redirectUri = 'http://isopen.us/';
                 break;
             case 'http://192.168.0.103:3000':
                 //configFacebook.clientId = '694297854007943';
                 configInstagram.clientId = '7f744b4b4f844419bd49872ac67cf22a';
-                configInstagram.redirectUri = 'http://192.168.0.103:3000';
+                configInstagram.redirectUri = 'http://192.168.0.103:3000/';
                 break;
         }
 
