@@ -3,7 +3,8 @@
 var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
         'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
-        'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive'
+        'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive', 'ui.tree',
+        'angularMoment'
     ]);
 
 app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider',

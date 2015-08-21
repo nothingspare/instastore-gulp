@@ -2,10 +2,37 @@
     <div class="reveal2 item-transaction-section">
         <p style="text-align: left; margin: 10px 0 0 100px;">2 items sold 3 left</p>
         <br>
-        <!--<h2 style="font-size: 120%; font-weight: 200; margin: 20px 10px 40px 10px;">Five people have reserved this item from you.</h2> -->
+
+        <div ui-tree data-drag-enabled="false">
+            <ol ui-tree-nodes="" ng-model="item.itemSells">
+                <li ng-repeat="isell in item.itemSells" ui-tree-node>
+                    <div ui-tree-handle class="transaction-section-container">
+                        <div class="left">
+                            <a class="hideLink arrow-position">&nbsp;</a>
+                        </div>
+                        <div class="right">
+                            <div>{{isell.itemSellTransactions.slice(-1)[0].status | itemTransactionStatus}}</div>
+                            <div class="btn" ng-click="confirmItem(isell.id, true)">
+                                Accept
+                            </div>
+                            <div class="btn" ng-click="confirmItem(isell.id)">Decline</div>
+                            <img class="profile-in-transaciton"
+                                 ng-src="{{isell.buyer.avatar_url}}">
+                        </div>
+                    </div>
+                    <ol ui-tree-nodes="" ng-model="isell.itemSellTransactions">
+                        <li ng-repeat="subIsell in isell.itemSellTransactions" ui-tree-node>
+                            <div ui-tree-handle>
+                                {{subIsell.status | itemTransactionStatus}} {{subIsell.created_at | amCalendar}}
+                            </div>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
 
 
-        <div ng-repeat = "itemSell in item.itemSells" id="current" class="transaction-section-container">
+        <div ng-repeat="itemSell in item.itemSells" id="current" class="transaction-section-container">
             <div class="left">
                 <a class="hideLink arrow-position">&nbsp;</a>
             </div>

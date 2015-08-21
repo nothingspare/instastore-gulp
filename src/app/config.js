@@ -5,7 +5,11 @@ angular.module('instastore')
     .constant('SLIDER_HEIGHT', 310)
     .constant('SLIDER_HEIGHT_EXTENDED', 390)
     .constant('ITEM_STATUS', {temp: 0, inactive: 10, active: 20})
-    .constant('PLUPLOAD_RESIZE_CONFIG', {width: 620, height: 620, preserve_headers: false});
+    .constant('PLUPLOAD_RESIZE_CONFIG', {width: 620, height: 620, preserve_headers: false})
+    .constant('ITEMSELLTRANSACTION_STATUS', {'declined': 10, 'accepted': 20})
+    .constant('angularMomentConfig', {
+        preprocess: 'unix'
+    });
 
 switch (window.location.origin) {
     case 'http://isopen.us':

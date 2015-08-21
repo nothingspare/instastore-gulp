@@ -69,9 +69,22 @@ app
             return null;
         };
     })
-    .filter('storeAvatar', function (UserService) {
+    .filter('storeAvatar', ['UserService', function (UserService) {
         return function (input) {
             var facebookProfile = UserService.getFacebookProfile();
             return input ? input : 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
         };
-    });
+    }])
+    .filter('itemTransactionStatus', ['ITEMSELLTRANSACTION_STATUS', function (ITEMSELLTRANSACTION_STATUS) {
+        return function (input) {
+            if (!input) {
+                return 'Item sold!'
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.declined) {
+                return 'Item declined!'
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.accepted) {
+                return 'Item accepted!'
+            }
+        };
+    }]);

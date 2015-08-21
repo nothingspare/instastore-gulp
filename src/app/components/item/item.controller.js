@@ -65,9 +65,10 @@ angular.module('instastore')
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
-        'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG',
+        'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
-                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG) {
+                  $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
+                  ITEMSELLTRANSACTION_STATUS, $filter) {
 
             $scope.item = {};
 
@@ -176,14 +177,66 @@ angular.module('instastore')
                 rest.path = 'v1/item-sells';
                 //TODO: remove hardcoded quantity when we can use it
                 rest.postModel({item_id: $scope.item.id, quantity: 1}).success(function (itemsell) {
-                    console.log(itemsell);
+                    if (!$scope.item.itemSells) {
+                        $scope.item.itemSells = [];
+                    }
+                    $scope.item.itemSells.push(itemsell);
                 });
-            }
+            };
+
+            $scope.acceptItem = function (itemId) {
+                rest.path = 'v1/item-sell-transactions';
+                rest.postModel({
+                    itemsell_id: itemId,
+                    status: ITEMSELLTRANSACTION_STATUS.accepted
+                }).success(function (transaction) {
+                    var found = $filter('getById')($scope.item.itemSells, itemId);
+                    if (found) {
+                        found.itemSellTransactions.push(transaction);
+                    }
+                    else {
+                        $scope.item.itemSells[0].itemSellTransactions.push(transaction)
+                    }
+                }).error(errorService.alert);
+            };
+
+            $scope.declineItem = function (itemId) {
+                rest.path = 'v1/item-sell-transactions';
+                rest.postModel({
+                    itemsell_id: itemId,
+                    status: ITEMSELLTRANSACTION_STATUS.declined
+                }).success(function (transaction) {
+                    var found = $filter('getById')($scope.item.itemSells, itemId);
+                    if (found) {
+                        found.itemSellTransactions.push(transaction);
+                    }
+                    else {
+                        $scope.item.itemSells[0].itemSellTransactions.push(transaction)
+                    }
+                }).error(errorService.alert);
+            };
+
+            $scope.confirmItem = function (itemId, accepted) {
+                rest.path = 'v1/item-sell-transactions';
+                rest.postModel({
+                    itemsell_id: itemId,
+                    status: accepted ? ITEMSELLTRANSACTION_STATUS.accepted : ITEMSELLTRANSACTION_STATUS.declined
+                }).success(function (transaction) {
+                    var found = $filter('getById')($scope.item.itemSells, itemId);
+                    if (found) {
+                        found.itemSellTransactions.push(transaction);
+                    }
+                    else {
+                        $scope.item.itemSells[0].itemSellTransactions.push(transaction)
+                    }
+                }).error(errorService.alert);
+            };
         }
     ])
     .
     controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG',
         function ($scope, rest, toaster, ITEM_STATUS, API_URL, ngDialog, errorService, UserService, cfpLoadingBar, $rootScope, PLUPLOAD_RESIZE_CONFIG) {
+            //TODO: remove hardcoded data
             $scope.item = {category_id: 9, brand_id: 1, description: ''};
             $scope.item.images = [];
 
