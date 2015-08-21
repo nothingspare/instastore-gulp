@@ -1,6 +1,6 @@
 <div class="rowfree">
     <div class="reveal2 item-transaction-section">
-        <a ng-if="item.price" ng-click="showConfirm = !showConfirm" class="btn btn-buy btn-post centered">&nbsp;Buy Item ${{item.price}}&nbsp;</a>
+        <a ng-if="item.price" ng-click="buyItem()" class="btn btn-buy btn-post centered">&nbsp;Buy Item ${{item.price}}&nbsp;</a>
 
         <div ng-if="showConfirm">
             <h6 style="margin:0 20px 0 20px;">Purchasing with credit card ending <strong>** 4567</strong> and shipped to

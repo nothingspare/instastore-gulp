@@ -25,7 +25,7 @@ angular.module('instastore')
                         }
                         rest.path = 'v1/items';
                         rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
-                            if (data.length === 0) $scope.showPanel = true;
+                            if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
                             $scope.items = data;
                         });
                     }).error(errorService.simpleAlert);
@@ -34,7 +34,7 @@ angular.module('instastore')
                     $rootScope.isSeller = true;
                     rest.path = 'v1/user-items';
                     rest.models().success(function (data) {
-                        if (data.length === 0) $scope.showPanel = true;
+                        if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
                         $scope.items = data;
                     }).error(errorService.simpleAlert);
                 }
@@ -77,11 +77,8 @@ angular.module('instastore')
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
             $scope.pluploadConfig.resize = PLUPLOAD_RESIZE_CONFIG;
 
-            if ($stateParams.storeurl && $stateParams.itemurl) {
-                $scope.itemUrl = CLIENT_URL + $stateParams.storeurl + '/' + $stateParams.itemurl;
-            }
-
             if ($stateParams.itemurl) {
+                $scope.itemUrl = CLIENT_URL + $stateParams.storeurl + '/' + $stateParams.itemurl;
                 rest.path = 'v1/items';
                 rest.models({item_url: $stateParams.itemurl}).success(function (data) {
                     $scope.item = data[0];
@@ -174,6 +171,14 @@ angular.module('instastore')
             $scope.progress = function () {
                 cfpLoadingBar.set($scope.percent);
             };
+
+            $scope.buyItem = function () {
+                rest.path = 'v1/item-sells';
+                //TODO: remove hardcoded quantity when we can use it
+                rest.postModel({item_id: $scope.item.id, quantity: 1}).success(function (itemsell) {
+                    console.log(itemsell);
+                });
+            }
         }
     ])
     .
