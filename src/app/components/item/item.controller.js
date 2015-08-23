@@ -184,38 +184,6 @@ angular.module('instastore')
                 });
             };
 
-            $scope.acceptItem = function (itemId) {
-                rest.path = 'v1/item-sell-transactions';
-                rest.postModel({
-                    itemsell_id: itemId,
-                    status: ITEMSELLTRANSACTION_STATUS.accepted
-                }).success(function (transaction) {
-                    var found = $filter('getById')($scope.item.itemSells, itemId);
-                    if (found) {
-                        found.itemSellTransactions.push(transaction);
-                    }
-                    else {
-                        $scope.item.itemSells[0].itemSellTransactions.push(transaction)
-                    }
-                }).error(errorService.alert);
-            };
-
-            $scope.declineItem = function (itemId) {
-                rest.path = 'v1/item-sell-transactions';
-                rest.postModel({
-                    itemsell_id: itemId,
-                    status: ITEMSELLTRANSACTION_STATUS.declined
-                }).success(function (transaction) {
-                    var found = $filter('getById')($scope.item.itemSells, itemId);
-                    if (found) {
-                        found.itemSellTransactions.push(transaction);
-                    }
-                    else {
-                        $scope.item.itemSells[0].itemSellTransactions.push(transaction)
-                    }
-                }).error(errorService.alert);
-            };
-
             $scope.confirmItem = function (itemId, accepted) {
                 rest.path = 'v1/item-sell-transactions';
                 rest.postModel({
@@ -230,6 +198,11 @@ angular.module('instastore')
                         $scope.item.itemSells[0].itemSellTransactions.push(transaction)
                     }
                 }).error(errorService.alert);
+            };
+
+            $scope.toggle = function (scope) {
+                console.log('toggle');
+                scope.toggle();
             };
         }
     ])

@@ -78,13 +78,13 @@ app
     .filter('itemTransactionStatus', ['ITEMSELLTRANSACTION_STATUS', function (ITEMSELLTRANSACTION_STATUS) {
         return function (input) {
             if (!input) {
-                return 'Item sold!'
+                return 'Sold!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.declined) {
-                return 'Item declined!'
+                return 'Declined!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.accepted) {
-                return 'Item accepted!'
+                return 'Accepted!';
             }
         };
     }]);

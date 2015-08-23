@@ -2146,7 +2146,7 @@ p {
 
 /* - - - most recent tranaction section (called wrap on couturia) - - - - - */
 
-#current {
+.current-transaction {
     color: #000;
     margin: 0 auto;
     width: 280px;
@@ -2156,12 +2156,12 @@ p {
     border-bottom: 1px solid #bbb;
 }
 
-#current f1 {
+.current-transaction f1 {
     font-weight: medium;
     margin-left: 10px;
 }
 
-#current .arrow-position {
+.current-transaction .arrow-position {
     position: relative;
     right: 15px;
     top: 9px;
@@ -2169,13 +2169,13 @@ p {
 
 /* - - - previous tranaction section  (called past on couturia) - - - - - */
 
-#past {
+.past-transaction {
     position: relative;
     margin: 10px 0 -10px 0;
     font-weight: 100;
     color: #555;
     width: 280px;
-    left: -25px;
+    left: -20px;
     background-color: none;
     border-top: 0px solid #bbb;
     border-bottom: 1px solid #ccc;
@@ -2183,11 +2183,11 @@ p {
 
 /* - - arrow up - -*/
 
-#past .arrow-position {
+.past-transaction .arrow-position {
     position: relative;
     right: 15px;
     top: 3px;
-    background: transparent url(assets/images/arrow-right-light.png) no-repeat left;
+    background: transparent url(../assets/images/arrow-right-light.png) no-repeat left;
     background-size: 12px 12px;
     padding: 0 10px 0 200px;
 }
@@ -2195,17 +2195,17 @@ p {
 /* - - arrow down - -*/
 
 .extended {
-    background: transparent url(assets/images/arrow-down.png) no-repeat left !important;
+    background: transparent url(../assets/images/arrow-down.png) no-repeat left !important;
     background-size: 12px 12px !important;
 }
 
-#past f1 {
+.past-transaction f1 {
     font-weight: normal;
     font-size: 17px;
     line-height: .39;
 }
 
-#past f6 {
+.past-transaction f6 {
     font-size: 14px;
 }
 
@@ -3635,12 +3635,12 @@ ul.safearea a {
     margin-top: -20px;
 }
 
-.itemview div.url-text h4{
+.itemview div.url-text h4 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 0 10px 0 10px;
-    font-size:12px;
+    font-size: 12px;
 }
 
 .additem-popup #textfield2 {
@@ -3836,3 +3836,48 @@ div.rn-carousel-indicator span.active {
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.sell-transactions .first-transaction {
+    height: 50px;
+    color: #000;
+    margin: 0 auto;
+    width: 280px;
+    padding: 7px 0 0 20px;
+    background-color: rgba(222, 222, 222, 0.5);
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
+
+.sell-transactions .second-transaction {
+    height: 50px;
+    color: #000;
+    margin: 0 auto;
+    width: 280px;
+    padding: 7px 0 0 20px;
+    background-color: rgba(222, 222, 222, 0.5);
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
+
+.sell-transactions .profile-in-transaciton {
+    margin: -30px 3px 0 3px;
+}
+
+.sell-transactions .past-transaction {
+    position: relative;
+    font-weight: 100;
+    color: #555;
+    width: 280px;
+    left: -20px;
+    border-top: 0px solid #bbb;
+    border-bottom: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 0 0 0 0;
+    padding: 0px 5px 0px 25px;
+}
+
+.sell-transactions li[collapsed="false"] .first-transaction .hideLink {
+    background: transparent url(../assets/images/arrow-down.png) no-repeat left !important;
+    background-size: 12px 12px !important;
+}
+
