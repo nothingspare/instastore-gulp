@@ -279,11 +279,8 @@ angular.module('instastore')
             currentUser: function () {
                 return currentUser;
             }
-        }
-            ;
-    })
-    .
-    service('errorService', function (toaster) {
+        };
+    }).service('errorService', function (toaster) {
         var messages = {
             nourl: {status: 500, name: '', message: 'No url specified!'},
             nostorewithurl: {status: 404, name: 'error', message: 'There is no store with such url'},

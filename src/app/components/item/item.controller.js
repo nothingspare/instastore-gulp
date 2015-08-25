@@ -70,7 +70,9 @@ angular.module('instastore')
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
                   ITEMSELLTRANSACTION_STATUS, $filter) {
 
+
             $scope.item = {};
+            $scope.transactionStates = ITEMSELLTRANSACTION_STATUS;
 
             //init Plupload-directive vars
             $scope.plupfiles = [];
@@ -181,14 +183,15 @@ angular.module('instastore')
                         $scope.item.itemSells = [];
                     }
                     $scope.item.itemSells.push(itemsell);
+                    toaster.pop('success', 'Success!');
                 });
             };
 
-            $scope.confirmItem = function (itemId, accepted) {
+            $scope.changeItemStatus = function (itemId, status) {
                 rest.path = 'v1/item-sell-transactions';
                 rest.postModel({
                     itemsell_id: itemId,
-                    status: accepted ? ITEMSELLTRANSACTION_STATUS.accepted : ITEMSELLTRANSACTION_STATUS.declined
+                    status: status
                 }).success(function (transaction) {
                     var found = $filter('getById')($scope.item.itemSells, itemId);
                     if (found) {
@@ -201,13 +204,11 @@ angular.module('instastore')
             };
 
             $scope.toggle = function (scope) {
-                console.log('toggle');
                 scope.toggle();
             };
         }
     ])
-    .
-    controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG',
+    .controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG',
         function ($scope, rest, toaster, ITEM_STATUS, API_URL, ngDialog, errorService, UserService, cfpLoadingBar, $rootScope, PLUPLOAD_RESIZE_CONFIG) {
             //TODO: remove hardcoded data
             $scope.item = {category_id: 9, brand_id: 1, description: ''};
@@ -226,13 +227,13 @@ angular.module('instastore')
                 if ($scope.item.id) {
                     rest.path = 'v1/items';
                     rest.putModel($scope.item).success(function (item) {
-                        toaster.pop('success', "Saved");
+                        toaster.pop('success', 'Saved');
                         $rootScope.$broadcast('newItem', item);
                     }).error(errorService.alert);
                 } else {
                     rest.path = 'v1/items';
                     rest.postModel($scope.item).success(function (item) {
-                        toaster.pop('success', "Saved");
+                        toaster.pop('success', 'Saved');
                         $rootScope.$broadcast('newItem', item);
                     }).error(errorService.alert);
                 }
@@ -282,13 +283,13 @@ angular.module('instastore')
                     $scope.currentTab = 'app/components/item/view-tab-comment.html';
                     break;
                 case '2':
-                    $scope.currentTab = 'app/components/item/view-tab-log.html'
+                    $scope.currentTab = 'app/components/item/view-tab-log.html';
                     break;
                 case '3':
-                    $scope.currentTab = 'app/components/item/view-tab-social.html'
+                    $scope.currentTab = 'app/components/item/view-tab-social.html';
                     break;
                 case '4':
-                    $scope.currentTab = 'app/components/item/view-tab-edit.html'
+                    $scope.currentTab = 'app/components/item/view-tab-edit.html';
                     break;
                 default:
                     $scope.currentTab = 'app/components/item/view-tab-comment.html';

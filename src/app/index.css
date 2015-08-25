@@ -2164,7 +2164,7 @@ p {
 .current-transaction .arrow-position {
     position: relative;
     right: 15px;
-    top: 9px;
+    top: 7px;
 }
 
 /* - - - previous tranaction section  (called past on couturia) - - - - - */
@@ -2186,7 +2186,7 @@ p {
 .past-transaction .arrow-position {
     position: relative;
     right: 15px;
-    top: 3px;
+    top: 6px;
     background: transparent url(../assets/images/arrow-right-light.png) no-repeat left;
     background-size: 12px 12px;
     padding: 0 10px 0 200px;
@@ -3843,7 +3843,6 @@ div.rn-carousel-indicator span.active {
     margin: 0 auto;
     width: 280px;
     padding: 7px 0 0 20px;
-    background-color: rgba(222, 222, 222, 0.5);
     border-top: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
 }
@@ -3881,3 +3880,48 @@ div.rn-carousel-indicator span.active {
     background-size: 12px 12px !important;
 }
 
+.sell-transactions li[data-collapsed="false"] .past-transaction .hideLink {
+    background: transparent url(../assets/images/arrow-down.png) no-repeat left !important;
+    background-size: 12px 12px !important;
+}
+
+.sell-transactions .angular-ui-tree-handle {
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 400;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 20px;
+    line-height: 20px;
+}
+
+.sell-transactions .subtransaction-more-container {
+    margin: 10px 0 0 0;
+    padding: 6px 10px 0 0;
+    border-top: 1px solid #bbb;
+}
+
+.sell-transactions b {
+    border: solid 1px #ddd;
+    padding: 0 2px 1px 2px;
+    background-color: #eee;
+    border-radius: 4px;
+    font-weight: 400;
+}
+
+.sell-transactions .subtransaction-more-container .btn.btn-buy.btn-confirm-selling {
+    width: 134px;
+}
+
+.sell-transactions .subtransaction-more-container .btn-label {
+    margin-top: 15px;
+}
+
+.sell-transactions .past-transaction.accepted {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.sell-transactions .past-transaction.accepted .right {
+    margin: 10px 0 10px 0;
+}

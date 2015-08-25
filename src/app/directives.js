@@ -83,8 +83,23 @@ app
             if (input === ITEMSELLTRANSACTION_STATUS.declined) {
                 return 'Declined!';
             }
+            if (input === ITEMSELLTRANSACTION_STATUS.send) {
+                return 'Send item!';
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.label) {
+                return 'Send item!';
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.receivedInPost) {
+                return 'Received in post!';
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.arrived) {
+                return 'Item has arrived!';
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.hurryup) {
+                return 'Hurry up!';
+            }
             if (input === ITEMSELLTRANSACTION_STATUS.accepted) {
-                return 'Accepted!';
+                return 'Item accepted!';
             }
         };
     }]);

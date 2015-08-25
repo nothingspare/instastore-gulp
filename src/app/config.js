@@ -6,7 +6,16 @@ angular.module('instastore')
     .constant('SLIDER_HEIGHT_EXTENDED', 390)
     .constant('ITEM_STATUS', {temp: 0, inactive: 10, active: 20})
     .constant('PLUPLOAD_RESIZE_CONFIG', {width: 620, height: 620, preserve_headers: false})
-    .constant('ITEMSELLTRANSACTION_STATUS', {'declined': 10, 'accepted': 20})
+    .constant('ITEMSELLTRANSACTION_STATUS', {
+        sold: 0,
+        declined: 10,
+        send: 20,
+        label: 30,
+        receivedInPost: 40,
+        arrived: 50,
+        hurryup: 60,
+        accepted: 70
+    })
     .constant('angularMomentConfig', {
         preprocess: 'unix'
     });
