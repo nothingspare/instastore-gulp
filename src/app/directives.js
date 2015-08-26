@@ -78,10 +78,10 @@ app
     .filter('itemTransactionStatus', ['ITEMSELLTRANSACTION_STATUS', function (ITEMSELLTRANSACTION_STATUS) {
         return function (input) {
             if (!input) {
-                return 'Sold!';
+                return 'Item Sold!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.declined) {
-                return 'Declined!';
+                return 'Item Declined!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.send) {
                 return 'Send item!';

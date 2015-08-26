@@ -27,13 +27,13 @@
                                     <a class="hideLink arrow-position" ng-click="toggle(this)">&nbsp;</a>
                                 </div>
                                 <div class="right">
-                                    <div ng-if="subIsell.status !== transactionStates.accepted">{{subIsell.status |
+                                    <div ng-click="toggle(this)" ng-if="subIsell.status !== transactionStates.accepted">{{subIsell.status |
                                         itemTransactionStatus}}
+                                        <f6>{{subIsell.created_at | amCalendar}}</f6>
                                     </div>
                                     <p ng-if="subIsell.status === transactionStates.accepted">Well done on your
                                         successful sale. The balance of <b>$134</b> is now able to be spent on other
                                         items in Mobbbi and will be avialable to cash out in <b>10</b> days.</p>
-                                    <f6>{{subIsell.created_at | amCalendar}}</f6>
                                     <div class="subtransaction-more-container" ng-class="{hidden: collapsed}">
                                         <!--Hurryup state-->
                                         <div ng-if="subIsell.status==transactionStates.hurryup &&
