@@ -44,8 +44,8 @@ angular.module('instastore')
                 }
             }
         }])
-    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$stateParams', '$location', '$anchorScroll',
-        function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll) {
+    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$stateParams', '$location', '$anchorScroll', '$rootScope',
+        function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll, $rootScope) {
             UserService.initStore();
 
             var profile = UserService.getProfile();

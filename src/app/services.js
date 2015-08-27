@@ -94,8 +94,12 @@ angular.module('instastore')
             },
             isGuest: function () {
                 var token = $cookies._auth;
-                if (token) return false;
-                else return true;
+                if (token) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
             },
             getUserRole: function () {
                 var profile = this.getProfile();
@@ -169,7 +173,7 @@ angular.module('instastore')
                                 state.go('grid');
                                 return;
                             }
-                            if (!store.avatar_url) store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
+                            if (!store.avatar_url) store.avatar_url = '../assets/images/background1circle290x290px.jpg';
                             if (state.includes('store')) {
                                 rest.path = 'v1/user-lastitems';
                                 rest.models({user_id: store.user_id}).success(function (data) {
@@ -238,7 +242,7 @@ angular.module('instastore')
             }
             ,
             isSeller: function () {
-                if (String($cookies.isSeller) === 'true') {
+                if (String($cookies.isSeller) === 'true' && this.isYourStore()) {
                     return true;
                 }
                 else {

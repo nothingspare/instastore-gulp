@@ -29,7 +29,7 @@
     </div>
 
     <div ng-controller="ItemViewTabsCtrl">
-        <div ng-if="!isSeller" class="itemview-icon-cirle-wapper">
+        <div ng-if="!isYourStore || (isYourStore && !isSeller)" class="itemview-icon-cirle-wapper">
             <div class="action-icon"
                  ng-click="onClickTab({title: 'One', url: 'app/components/item/view-tab-comment.html'})">
                 <div class="buyer-message-circle"
@@ -49,7 +49,7 @@
                      ng-class="isActiveTab('app/components/item/view-tab-location.html') ? 'active' : ''"></div>
             </div>
         </div>
-        <div ng-if="isSeller" class="itemview-icon-cirle-wapper">
+        <div ng-if="isYourStore && isSeller" class="itemview-icon-cirle-wapper">
             <div class="action-icon"
                  ng-click="onClickTab({title: 'One', url: 'app/components/item/view-tab-comment.html'})">
                 <div class="message-circle"
