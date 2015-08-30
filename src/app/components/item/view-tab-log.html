@@ -5,7 +5,7 @@
 
         <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
             <ol ui-tree-nodes="" ng-model="item.itemSells">
-                <li ng-repeat="isell in item.itemSells" ui-tree-node collapsed="true">
+                <li ng-repeat="isell in item.itemSells track by isell.id" ui-tree-node collapsed="true">
                     <div ng-click="toggle(this)" ui-tree-handle class="first-transaction">
                         <div class="left">
                             <a class="hideLink arrow-position">&nbsp;</a>
@@ -19,8 +19,9 @@
                         </div>
                     </div>
                     <ol ui-tree-nodes="" ng-model="isell.itemSellTransactions" ng-class="{hidden: collapsed}">
-                        <li ng-repeat="subIsell in isell.itemSellTransactions  | orderBy:'-created_at'" ui-tree-node
-                            data-collapsed="true" ng-if="subIsell.status!=transactionStates.label">
+                        <li ng-repeat="subIsell in isell.itemSellTransactions  | orderBy:'-created_at' track by subIsell.id" ui-tree-node
+                            data-collapsed="true"
+                            ng-if="subIsell.status | itemTransactionStatusVisibility">
                             <div class="transaction-section-container past-transaction"
                                  ui-tree-handle ng-class="{accepted: subIsell.status === transactionStates.accepted}">
                                 <div ng-if="subIsell.status !== transactionStates.accepted" class="left">

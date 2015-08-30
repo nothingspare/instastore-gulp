@@ -3876,13 +3876,17 @@ div.rn-carousel-indicator span.active {
 }
 
 .sell-transactions li[collapsed="false"] .first-transaction .hideLink {
-    background: transparent url(../assets/images/arrow-down.png) no-repeat left !important;
-    background-size: 12px 12px !important;
+    background-image: url(../assets/images/arrow-down.png);
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: left;
 }
 
 .sell-transactions li[data-collapsed="false"] .past-transaction .hideLink {
-    background: transparent url(../assets/images/arrow-down.png) no-repeat left !important;
-    background-size: 12px 12px !important;
+    background-image: url(../assets/images/arrow-down.png);
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: left;
 }
 
 .sell-transactions .angular-ui-tree-handle {
@@ -3908,10 +3912,6 @@ div.rn-carousel-indicator span.active {
     background-color: #eee;
     border-radius: 4px;
     font-weight: 400;
-}
-
-.sell-transactions .subtransaction-more-container .btn.btn-buy.btn-confirm-selling {
-    width: 134px;
 }
 
 .sell-transactions .subtransaction-more-container .btn-label {

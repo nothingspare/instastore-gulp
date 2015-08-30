@@ -86,6 +86,15 @@ app
             if (input === ITEMSELLTRANSACTION_STATUS.send) {
                 return 'Send item!';
             }
+            if (input === ITEMSELLTRANSACTION_STATUS.sendFirstRemainder) {
+                return 'Send item!';
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.sendSecondRemainder) {
+                return 'Send item!';
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.sendThirdRemainder) {
+                return 'Send item!';
+            }
             if (input === ITEMSELLTRANSACTION_STATUS.label) {
                 return 'Send item!';
             }
@@ -100,6 +109,43 @@ app
             }
             if (input === ITEMSELLTRANSACTION_STATUS.accepted) {
                 return 'Item accepted!';
+            }
+        };
+    }])
+    .filter('itemTransactionStatusVisibility', ['ITEMSELLTRANSACTION_STATUS', function (ITEMSELLTRANSACTION_STATUS) {
+        return function (input) {
+            if (!input) {
+                return true;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.declined) {
+                return true;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.send) {
+                return true;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.sendFirstRemainder) {
+                return false;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.sendSecondRemainder) {
+                return false;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.sendThirdRemainder) {
+                return false;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.label) {
+                return false;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.receivedInPost) {
+                return true;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.arrived) {
+                return true;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.hurryup) {
+                return true;
+            }
+            if (input === ITEMSELLTRANSACTION_STATUS.accepted) {
+                return true;
             }
         };
     }]);
