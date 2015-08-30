@@ -95,6 +95,9 @@ app
             if (input === ITEMSELLTRANSACTION_STATUS.sendThirdRemainder) {
                 return 'Send item!';
             }
+            if (input === ITEMSELLTRANSACTION_STATUS.saleCanceled) {
+                return 'Sale Canceled!';
+            }
             if (input === ITEMSELLTRANSACTION_STATUS.label) {
                 return 'Send item!';
             }

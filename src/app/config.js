@@ -13,7 +13,7 @@ angular.module('instastore')
         sendFirstRemainder:21,
         sendSecondRemainder:22,
         sendThirdRemainder:23,
-        sendCancelled:24,
+        saleCanceled:24,
         label: 30,
         receivedInPost: 40,
         arrived: 50,
