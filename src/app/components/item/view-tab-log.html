@@ -109,36 +109,27 @@
                                         </div>
                                         <!--Declined item state-->
                                         <!--Item sold state-->
-                                        <div ng-if="subIsell.status==transactionStates.sold && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status|itemSoldBoxSizeVisibility">
+                                        <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
                                             <f6>Place item in a <b>Medium size box</b></f6>
-                                            <select class="sml selector1" style=" width: 240px;margin: 15px 0 10px 0;">
-                                                <option value="">Changing box size costs $</option>
+                                            <select ng-model="boxSize" ng-change ="changeItemStatus(isell.id, transactionStates.send)" class="sml selector1"
+                                                    style=" width: 240px;margin: 15px 0 10px 0;">
+                                                <option value="">Pick up box size</option>
                                                 <option value="extralarge">Extra large</option>
                                                 <option value="large">Large</option>
                                                 <option value="medium">Medium</option>
                                                 <option value="Small">Small</option>
                                             </select>
 
-                                            <div>
-                                                <div class="btn btn-buy btn-confirm-selling"
-                                                     ng-click="changeItemStatus(isell.id, transactionStates.send)">
-                                                    Confirm
-                                                </div>
-                                                <div class="btn"
-                                                     ng-click="changeItemStatus(isell.id, transactionStates.declined)">
-                                                    Decline
-                                                </div>
-                                            </div>
                                             <f6>isOpen boxes are supplied free to store owners but pleae allow 10 days
                                                 for delivery. If you need a box now they are available from your local
                                                 post office.
                                             </f6>
                                         </div>
                                         <div ng-if="subIsell.status==transactionStates.sold && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.send">
-                                            <f6>Item placed in Medium size box</f6>
+                                            <f6>Item placed in <b>Medium size box</b></f6>
                                         </div>
                                         <div ng-if="subIsell.status==transactionStates.sold &&
-                                         (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.sold
+                                         (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.sendThirdRemainder
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
                                             <f6>Item sold!</f6>
                                         </div>

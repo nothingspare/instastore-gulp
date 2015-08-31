@@ -155,7 +155,8 @@ app
     .filter('itemSoldBoxSizeVisibility', ['ITEMSELLTRANSACTION_STATUS', function (ITEMSELLTRANSACTION_STATUS) {
         return function (input) {
             if (
-                input == ITEMSELLTRANSACTION_STATUS.sendFirstRemainder
+                input == ITEMSELLTRANSACTION_STATUS.sold
+                ||input == ITEMSELLTRANSACTION_STATUS.sendFirstRemainder
                 || input == ITEMSELLTRANSACTION_STATUS.sendSecondRemainder
                 || input == ITEMSELLTRANSACTION_STATUS.sendThirdRemainder
             ) {
