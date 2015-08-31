@@ -208,6 +208,10 @@ angular.module('instastore')
             $scope.toggle = function (scope) {
                 scope.toggle();
             };
+
+            $scope.confirmBuying = function () {
+                $scope.showConfirm = !$scope.showConfirm;
+            };
         }
     ])
     .controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG',
