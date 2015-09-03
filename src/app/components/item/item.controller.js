@@ -65,10 +65,10 @@ angular.module('instastore')
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
-        'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$rootScope',
+        'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                  ITEMSELLTRANSACTION_STATUS, $filter, $rootScope) {
+                  ITEMSELLTRANSACTION_STATUS, $filter, $http) {
 
 
             $scope.item = {};
@@ -211,6 +211,17 @@ angular.module('instastore')
 
             $scope.confirmBuying = function () {
                 $scope.showConfirm = !$scope.showConfirm;
+            };
+
+            $scope.getLabel = function (isell) {
+                console.log(isell);
+                $http.post(API_URL + 'v1/link/label', {
+                    buyerId: isell.buyer.id,
+                    itemId: $scope.item.id,
+                    itemSellId:isell.id
+                }).success(function () {
+
+                }).error(errorService.alert);
             };
         }
     ])

@@ -78,7 +78,7 @@
                                             <div>
                                                 <div ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.send"
                                                      class="btn btn-buy centered btn-label"
-                                                     ng-click="changeItemStatus(isell.id, transactionStates.label)">Get
+                                                     ng-click="getLabel(isell)">Get
                                                     a Shipping Label
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.send
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
 
-                                            <div class="btn centered btn-label" ng-click="viewLabel(isell.id)">View
+                                            <div class="btn centered btn-label" ng-click="getLabel(isell)">View
                                                 Shipping
                                                 Label
                                             </div>
