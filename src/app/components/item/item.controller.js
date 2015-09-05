@@ -65,10 +65,10 @@ angular.module('instastore')
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
-        'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http',
+        'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', '$window',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                  ITEMSELLTRANSACTION_STATUS, $filter, $http) {
+                  ITEMSELLTRANSACTION_STATUS, $filter, $http, $window) {
 
 
             $scope.item = {};
@@ -218,9 +218,12 @@ angular.module('instastore')
                 $http.post(API_URL + 'v1/link/label', {
                     buyerId: isell.buyer.id,
                     itemId: $scope.item.id,
-                    itemSellId:isell.id
-                }).success(function () {
-
+                    itemSellId: isell.id
+                }).success(function (label) {
+                    if (label.label) {
+                        $scope.item.itemSells[0].itemSellTransactions.push({status: 30});
+                    }
+                    $window.open(label.url);
                 }).error(errorService.alert);
             };
         }

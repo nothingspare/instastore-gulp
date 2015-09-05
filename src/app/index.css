@@ -3837,7 +3837,7 @@ div.rn-carousel-indicator span.active {
     transform: rotate(45deg);
 }
 
-.sell-transactions .first-transaction {
+.sell-transactions .first-transaction, .buy-transactions .first-transaction {
     height: 50px;
     color: #000;
     margin: 0 auto;
@@ -3847,7 +3847,7 @@ div.rn-carousel-indicator span.active {
     border-bottom: 1px solid #bbb;
 }
 
-.sell-transactions .second-transaction {
+.sell-transactions .second-transaction, .buy-transactions .second-transaction {
     height: 50px;
     color: #000;
     margin: 0 auto;
@@ -3858,11 +3858,11 @@ div.rn-carousel-indicator span.active {
     border-bottom: 1px solid #bbb;
 }
 
-.sell-transactions .profile-in-transaciton {
+.sell-transactions .profile-in-transaciton, .buy-transactions .profile-in-transaciton  {
     margin: -30px 3px 0 3px;
 }
 
-.sell-transactions .past-transaction {
+.sell-transactions .past-transaction, .buy-transactions .past-transaction {
     position: relative;
     font-weight: 100;
     color: #555;
@@ -3875,21 +3875,21 @@ div.rn-carousel-indicator span.active {
     padding: 0px 5px 0px 25px;
 }
 
-.sell-transactions li[collapsed="false"] .first-transaction .hideLink {
+.sell-transactions li[collapsed="false"] .first-transaction .hideLink, .buy-transactions li[collapsed="false"] .first-transaction .hideLink {
     background-image: url(../assets/images/arrow-down.png);
     background-size: 12px 12px;
     background-repeat: no-repeat;
     background-position: left;
 }
 
-.sell-transactions li[data-collapsed="false"] .past-transaction .hideLink {
+.sell-transactions li[data-collapsed="false"] .past-transaction .hideLink, .buy-transactions li[data-collapsed="false"] .past-transaction .hideLink {
     background-image: url(../assets/images/arrow-down.png);
     background-size: 12px 12px;
     background-repeat: no-repeat;
     background-position: left;
 }
 
-.sell-transactions .angular-ui-tree-handle {
+.sell-transactions .angular-ui-tree-handle, .buy-transactions .angular-ui-tree-handle {
     cursor: pointer;
     text-decoration: none;
     font-weight: 400;
@@ -3900,13 +3900,13 @@ div.rn-carousel-indicator span.active {
     line-height: 20px;
 }
 
-.sell-transactions .subtransaction-more-container {
+.sell-transactions .subtransaction-more-container, .buy-transactions .subtransaction-more-container {
     margin: 10px 0 0 0;
     padding: 6px 10px 0 0;
     border-top: 1px solid #bbb;
 }
 
-.sell-transactions b {
+.sell-transactions b, .buy-transactions b {
     border: solid 1px #ddd;
     padding: 0 2px 1px 2px;
     background-color: #eee;
@@ -3914,14 +3914,14 @@ div.rn-carousel-indicator span.active {
     font-weight: 400;
 }
 
-.sell-transactions .subtransaction-more-container .btn-label {
+.sell-transactions .subtransaction-more-container .btn-label, .buy-transactions .subtransaction-more-container .btn-label {
     margin-top: 15px;
 }
 
-.sell-transactions .past-transaction.accepted {
+.sell-transactions .past-transaction.accepted, .buy-transactions .past-transaction.accepted {
     background-color: rgba(255, 255, 255, 0);
 }
 
-.sell-transactions .past-transaction.accepted .right {
+.sell-transactions .past-transaction.accepted .right, .buy-transactions .past-transaction.accepted .right {
     margin: 10px 0 10px 0;
 }
