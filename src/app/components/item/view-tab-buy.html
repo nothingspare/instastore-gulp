@@ -21,7 +21,7 @@
                                 itemBuyerTransactionStatus}}
                             </div>
                             <img class="profile-in-transaciton"
-                                 ng-src="{{isell.buyer.avatar_url}}">
+                                 ng-src="{{item.user.avatar_url}}">
                         </div>
                     </div>
                     <ol ui-tree-nodes="" ng-model="isell.itemSellTransactions" ng-class="{hidden: collapsed}">
@@ -40,17 +40,28 @@
                                         itemBuyerTransactionStatus}}
                                         <f6>{{subIsell.created_at | amCalendar}}</f6>
                                     </div>
-                                    <p ng-if="subIsell.status === transactionStates.accepted">Item accepted. Thanks for supporting individual sellers!
+                                    <p ng-if="subIsell.status === transactionStates.accepted">Item accepted. Thanks for
+                                        supporting individual sellers!
+
                                     <div class="subtransaction-more-container" ng-class="{hidden: collapsed}">
                                         <!--Hurryup state-->
                                         <div ng-if="subIsell.status==transactionStates.hurryup &&
-                                         (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.arrived
+                                         (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.hurryup
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
+                                            <f6> Thanks for accepting item!</f6>
+                                        </div>
+                                        <div ng-if="subIsell.status==transactionStates.hurryup &&
+                                         (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status===transactionStates.hurryup)"
+                                             ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
                                             <f6>Please hurry up with your transaction and help us run a service that is
                                                 quick and efficient for our buys and sellers. Thank you.
                                             </f6>
-                                            <!--TODO: remove in production-->
-                                            <div ng-click="changeItemStatus(isell.id, transactionStates.accepted)">^
+
+                                            <div>
+                                                <div class="btn btn-buy"
+                                                     ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
+                                                    Accept
+                                                </div>
                                             </div>
                                         </div>
                                         <!--Hurryup state-->
@@ -58,7 +69,8 @@
                                         <div ng-if="subIsell.status==transactionStates.arrived &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.receivedInPost
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Item has arrived! Please approve it: <b>Delivered in Michigan 36001</b></f6>
+                                            <f6>Item has arrived! Please approve it: <b>Delivered in Michigan 36001</b>
+                                            </f6>
                                             <!--TODO: remove in production-->
                                             <div ng-click="changeItemStatus(isell.id, transactionStates.hurryup)">^
                                             </div>
@@ -80,14 +92,31 @@
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
                                             <f6>Seller printed the postal label</f6>
                                             <!--TODO: remove in production-->
-                                            <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">^</div>
+                                            <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">
+                                                ^
+                                            </div>
                                         </div>
                                         <!--Label state-->
-                                        <!--Declined item state-->
-                                        <div ng-if="subIsell.status==transactionStates.declined && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.declined">
-                                            <f6>Item sell declined! Please contact seller for details!</f6>
+                                        <div ng-if="subIsell.status==transactionStates.sendThirdRemainder &&
+                                         (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.sendSecondRemainder
+                                         && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
+                                            <f6>Seller has been warned three times. We'll cancel sale tomorrow!</f6>
                                         </div>
-                                        <!--Declined item state-->
+                                        <!--3xRemainder state-->
+                                        <!--2xRemainder state-->
+                                        <div ng-if="subIsell.status==transactionStates.sendSecondRemainder &&
+                                         (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.sendFirstRemainder
+                                         && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
+                                            <f6>Seller has been warned twice.</f6>
+                                        </div>
+                                        <!--2xRemainder state-->
+                                        <!--1xRemainder state-->
+                                        <div ng-if="subIsell.status==transactionStates.sendFirstRemainder &&
+                                         (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.send
+                                         && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
+                                            <f6>Seller has been warned once.</f6>
+                                        </div>
+                                        <!--1xRemainder state-->
                                         <!--Item bought state-->
                                         <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
                                             <f6>Item wasn't place in the box</f6>

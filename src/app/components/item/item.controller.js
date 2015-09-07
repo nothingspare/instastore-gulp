@@ -65,10 +65,10 @@ angular.module('instastore')
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
-        'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', '$window',
+        'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', 'ngDialog', '$window',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                  ITEMSELLTRANSACTION_STATUS, $filter, $http, $window) {
+                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window) {
 
 
             $scope.item = {};
@@ -213,8 +213,9 @@ angular.module('instastore')
                 $scope.showConfirm = !$scope.showConfirm;
             };
 
+
+            //Label section
             $scope.getLabel = function (isell) {
-                console.log(isell);
                 $http.post(API_URL + 'v1/link/label', {
                     buyerId: isell.buyer.id,
                     itemId: $scope.item.id,
@@ -223,7 +224,23 @@ angular.module('instastore')
                     if (label.label) {
                         $scope.item.itemSells[0].itemSellTransactions.push({status: 30});
                     }
-                    $window.open(label.url);
+                    $scope.label = label;
+                    ngDialog.open({
+                        template: 'app/components/item/label.html',
+                        scope: $scope
+                    });
+                }).error(errorService.alert);
+            };
+
+            $scope.printLabel = function () {
+                $window.print();
+            };
+
+            $scope.emailLabel = function (isellId) {
+                $http.post(API_URL + 'v1/link/label-send', {isellId: isellId}).success(function (res) {
+                    if (res) {
+                        toaster.pop('success', 'Label sent');
+                    }
                 }).error(errorService.alert);
             };
         }
@@ -366,7 +383,6 @@ angular.module('instastore')
                 }
             });
             $http.post(API_URL + 'v1/uploader/item-import', items).success(function (data) {
-                console.log(data);
             }).error(errorService.alert);
         };
 
