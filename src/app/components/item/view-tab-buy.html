@@ -8,25 +8,25 @@
             <h6 style="margin:0 20px 15px 20px;">Enter your credit card requisites:</h6>
 
             <div ng-controller="PaymentCtrl as p">
-                <form class="payment-form" name="paymentForm" novalidate="">
+                <form  ng-submit="buyItem(p.cardNumber)" class="payment-form" name="paymentForm" novalidate="">
                     <center>
                         <div id="content-popup">
                             <input placeholder="XXXX XXXX XXXX XXXX" class="regular-field" type="text"
                                    x-autocompletetype="cc-number" restrict-numeric=""
                                    card-number-validator=""
                                    card-number-formatter="" name="ccNumber" ng-model="p.cardNumber"
-                                   card-type="cardType">
+                                   card-type="cardType" required>
                             <input placeholder="00 / 00" type="text" x-autocompletetype="cc-exp" maxlength="9"
                                    restrict-numeric=""
                                    card-expiry-validator=""
-                                   card-expiry-formatter="" name="ccExpiry" ng-model="p.cardExpiry">
+                                   card-expiry-formatter="" name="ccExpiry" ng-model="p.cardExpiry" required>
                             <input placeholder="CVV" type="text" x-autocompletetype="cc-csc" restrict-numeric="" card-cvc-validator=""
                                    card-cvc-formatter="" ng-maxlength="4" ng-pattern="/\d*/"
-                                   name="ccCvc" ng-model="p.cardCvc">
+                                   name="ccCvc" ng-model="p.cardCvc" required>
 
                             <h6 style="margin:0 0 0 0;">Your item will be shipped to
                                 your address <strong>418 W Ave 42, LA, CA 90065</strong></h6>
-                            <a class="btn btn-buy btn-post centered" ng-click="buyItem()">&nbsp;Confirm&nbsp;</a>
+                            <button ng-if="(paymentForm.$dirty && paymentForm.$valid)" type="submit" class="btn btn-buy btn-post centered">&nbsp;Confirm&nbsp;</button>
                         </div>
                     </center>
                 </form>
