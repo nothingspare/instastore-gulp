@@ -397,4 +397,7 @@ angular.module('instastore')
                 value.isChecked = false;
             });
         };
+    }])
+    .controller('PaymentCtrl',['$scope', function($scope){
+
     }]);

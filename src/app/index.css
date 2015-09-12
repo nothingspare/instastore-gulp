@@ -3858,7 +3858,7 @@ div.rn-carousel-indicator span.active {
     border-bottom: 1px solid #bbb;
 }
 
-.sell-transactions .profile-in-transaciton, .buy-transactions .profile-in-transaciton  {
+.sell-transactions .profile-in-transaciton, .buy-transactions .profile-in-transaciton {
     margin: -30px 3px 0 3px;
 }
 
@@ -3926,9 +3926,9 @@ div.rn-carousel-indicator span.active {
     margin: 10px 0 10px 0;
 }
 
-.label-popup .label-image{
-    max-width:100%;
-    max-height:100%;
+.label-popup .label-image {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 @media print {
@@ -3944,4 +3944,12 @@ div.rn-carousel-indicator span.active {
         font-size: 14px;
         line-height: 18px;
     }
+}
+
+.buy-transactions .payment-form input[name="ccExpiry"] {
+    width:56px;
+}
+
+.buy-transactions .payment-form input[name="ccCvc"] {
+    width:35px;
 }

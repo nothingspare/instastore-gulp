@@ -4,7 +4,7 @@ var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
         'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
         'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive', 'ui.tree',
-        'angularMoment'
+        'angularMoment', 'payment'
     ]);
 
 app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider',
@@ -111,7 +111,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         $authProvider.storage = 'sessionStorage';
 
         var configFacebook = {
-            clientId: '352496064951251',
+            clientId: '424453844422139',
             url: 'v1/user/auth',
             scope: 'email',
             scopeDelimiter: ',',
