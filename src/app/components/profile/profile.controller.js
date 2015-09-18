@@ -2,10 +2,19 @@
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state', '$rootScope', 'uiGmapGoogleMapApi',
         function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope, uiGmapGoogleMapApi) {
-            uiGmapGoogleMapApi.then(function (maps) {
-            });
+            uiGmapGoogleMapApi
+                .then(function () {
+                    return uiGmapGoogleMapApi;
+                })
+                .then(function () {
+                    $scope.renderMap = true;
+                });
 
-            $scope.profile = UserService.getProfile();
+
+            var initProfile;
+            var isVerified;
+            $scope.profile = initProfile = UserService.getProfile();
+
             if ($scope.profile.seller) {
                 $scope.slides = [
                     {title: 'first'},
@@ -16,7 +25,8 @@ angular.module('instastore')
             } else {
                 $scope.slides = [
                     {title: 'first'},
-                    {title: 'second'}
+                    {title: 'second'},
+                    {title: 'third'}
                 ];
             }
 
@@ -52,6 +62,13 @@ angular.module('instastore')
             $scope.facebookLink = facebookUser.link;
 
             $scope.save = function () {
+                if (!isVerified) {
+                    $scope.profile.apartment = initProfile.apartment;
+                    $scope.profile.address = initProfile.address;
+                    $scope.profile.state = initProfile.state;
+                    $scope.profile.city = initProfile.city;
+                    $scope.profile.zipcode = initProfile.zipcode;
+                }
                 rest.path = 'v1/profiles';
                 rest.putModel($scope.profile).success(function () {
                         toaster.pop('success', "Profile saved");
@@ -93,8 +110,8 @@ angular.module('instastore')
                     $state.go('grid');
             };
 
-            $scope.makeMeSeller = function(val){
-                if (val === 'demo'){
+            $scope.makeMeSeller = function (val) {
+                if (val === 'demo') {
                     $scope.profile.status = 20;
                     rest.path = 'v1/profiles';
                     rest.putModel($scope.profile).success(function (profile) {
@@ -102,87 +119,110 @@ angular.module('instastore')
                             $scope.profile.seller = true;
                             UserService.setProfile($scope.profile);
                             UserService.setIsSeller(true);
-                            $state.go('grid', {storeurl:$scope.profile.store.store_url});
+                            $state.go('grid', {storeurl: $scope.profile.store.store_url});
                         }
                     ).error(errorCallback);
                 }
             };
-        }])
-    .
-    controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth',
-        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth) {
-        uiGmapGoogleMapApi
-            .then(function () {
-                return uiGmapGoogleMapApi;
-            })
-            .then(function () {
-                $scope.renderMap = true;
-            });
 
-        var errorCallback = function (data) {
-            toaster.clear();
-            if (data.status == undefined) {
-                if (data.code == 23000) {
-                    toaster.pop('error', "Field: Paypal Email has already been taken");
+            $scope.verifyAddress = function () {
+                rest.path = 'v1/link/verify-address';
+                rest.postModel({
+                    address: $scope.profile.address,
+                    city: $scope.profile.city,
+                    state: $scope.profile.state,
+                    zipcode: $scope.profile.zipcode,
+                    apartment: $scope.profile.apartment
+                }).success(function (data) {
+                    if (data.AddressValidateResponse.Address) {
+                        isVerified = true;
+                        toaster.pop('success', "Address verified!");
+                        $scope.profile.apartment = data.AddressValidateResponse.Address.Address1;
+                        $scope.profile.address = data.AddressValidateResponse.Address.Address2;
+                        $scope.profile.state = data.AddressValidateResponse.Address.State;
+                        $scope.profile.city = data.AddressValidateResponse.Address.City;
+                        $scope.profile.zipcode = data.AddressValidateResponse.Address.Zip5;
+                    }
+                    else {
+                        toaster.pop('error', "Address verification failed!");
+                    }
+                }).error(errorCallback);
+            };
+        }])
+    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth',
+        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth) {
+            uiGmapGoogleMapApi
+                .then(function () {
+                    return uiGmapGoogleMapApi;
+                })
+                .then(function () {
+                    $scope.renderMap = true;
+                });
+
+            var errorCallback = function (data) {
+                toaster.clear();
+                if (data.status == undefined) {
+                    if (data.code == 23000) {
+                        toaster.pop('error', "Field: Paypal Email has already been taken");
+                    }
+                    else {
+                        angular.forEach(data, function (error) {
+                            toaster.pop('error', "Field: " + error.field, error.message);
+                        });
+                    }
                 }
                 else {
-                    angular.forEach(data, function (error) {
-                        toaster.pop('error', "Field: " + error.field, error.message);
-                    });
+                    toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
                 }
-            }
-            else {
-                toaster.pop('error', "code: " + data.code + " " + data.name, data.message);
-            }
-        };
+            };
 
-        $scope.slides = [
-            {title: 'first'},
-            {title: 'second'},
-            {title: 'third'},
-            {title: 'fourth'},
-            {title: 'fifth'}
-        ];
+            $scope.slides = [
+                {title: 'first'},
+                {title: 'second'},
+                {title: 'third'},
+                {title: 'fourth'},
+                {title: 'fifth'}
+            ];
 
-        $scope.profile = UserService.getProfile();
+            $scope.profile = UserService.getProfile();
 
-        $scope.mainStoreUrl = UserService.getMainStoreUrl();
+            $scope.mainStoreUrl = UserService.getMainStoreUrl();
 
-        $scope.save = function () {
-            if ($scope.profile.store.place) {
-                if ($scope.profile.store.place.types) {
-                    if ($scope.profile.store.place.types.indexOf('street_address') > -1) {
-                        $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k;
-                        $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D;
-                        $scope.profile.store.address = $scope.profile.store.place.formatted_address;
+            $scope.save = function () {
+                if ($scope.profile.store.place) {
+                    if ($scope.profile.store.place.types) {
+                        if ($scope.profile.store.place.types.indexOf('street_address') > -1) {
+                            $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k;
+                            $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D;
+                            $scope.profile.store.address = $scope.profile.store.place.formatted_address;
+                        } else {
+                            toaster.pop('error', 'Invalid address')
+                        }
                     } else {
                         toaster.pop('error', 'Invalid address')
                     }
-                } else {
-                    toaster.pop('error', 'Invalid address')
                 }
-            }
-            $scope.profile.store.store_url = $scope.profile.store.store_name;
-            rest.path = 'v1/stores';
-            rest.putModel($scope.profile.store).success(function (store) {
-                toaster.pop('success', "Store saved");
-                delete $scope.profile.store.place;
-                $scope.profile.store = store;
-                UserService.setProfile($scope.profile);
-            }).error(errorCallback);
-        };
+                $scope.profile.store.store_url = $scope.profile.store.store_name;
+                rest.path = 'v1/stores';
+                rest.putModel($scope.profile.store).success(function (store) {
+                    toaster.pop('success', "Store saved");
+                    delete $scope.profile.store.place;
+                    $scope.profile.store = store;
+                    UserService.setProfile($scope.profile);
+                }).error(errorCallback);
+            };
 
-        $scope.linkInstagram = function () {
-            $auth.authenticate('instagram')
-                .then(function (response) {
-                    if (response.data && response.data.user && response.data.user.id) {
-                        UserService.fromInstaimport = true;
-                        $scope.profile.instagramId = response.data.user.id;
-                        UserService.setProfile($scope.profile);
-                    }
-                });
-        };
-    }])
+            $scope.linkInstagram = function () {
+                $auth.authenticate('instagram')
+                    .then(function (response) {
+                        if (response.data && response.data.user && response.data.user.id) {
+                            UserService.fromInstaimport = true;
+                            $scope.profile.instagramId = response.data.user.id;
+                            UserService.setProfile($scope.profile);
+                        }
+                    });
+            };
+        }])
     .controller('CropUploadCtrl', ['$scope', '$stateParams', 'Upload', 'API_URL', 'toaster', '$window', 'UserService',
         function ($scope, $stateParams, Upload, API_URL, toaster, $window, UserService) {
             $scope.myImage = '';

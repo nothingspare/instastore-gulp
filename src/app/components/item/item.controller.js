@@ -177,10 +177,10 @@ angular.module('instastore')
                 cfpLoadingBar.set($scope.percent);
             };
 
-            $scope.buyItem = function (cardNumber, expiry, CCV) {
+            $scope.buyItem = function (cardNumber, cardExpiry, cardCcv) {
                 rest.path = 'v1/item-sells';
                 //TODO: remove hardcoded quantity when we can use it
-                rest.postModel({item_id: $scope.item.id, quantity: 1}).success(function (itemsell) {
+                rest.postModel({item_id: $scope.item.id, quantity: 1, cardNumber:cardNumber, cardExpiryMonth:cardExpiry.month, cardExpiryYear:cardExpiry.year, cardCcv:cardCcv }).success(function (itemsell) {
                     if (!$scope.item.itemSells) {
                         $scope.item.itemSells = [];
                     }
