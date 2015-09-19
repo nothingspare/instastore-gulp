@@ -73,6 +73,7 @@ angular.module('instastore')
 
             $scope.item = {};
             $scope.transactionStates = ITEMSELLTRANSACTION_STATUS;
+            $scope.profile = UserService.getProfile();
 
             //init Plupload-directive vars
             $scope.plupfiles = [];
@@ -180,7 +181,14 @@ angular.module('instastore')
             $scope.buyItem = function (cardNumber, cardExpiry, cardCcv) {
                 rest.path = 'v1/item-sells';
                 //TODO: remove hardcoded quantity when we can use it
-                rest.postModel({item_id: $scope.item.id, quantity: 1, cardNumber:cardNumber, cardExpiryMonth:cardExpiry.month, cardExpiryYear:cardExpiry.year, cardCcv:cardCcv }).success(function (itemsell) {
+                rest.postModel({
+                    item_id: $scope.item.id,
+                    quantity: 1,
+                    cardNumber: cardNumber,
+                    cardExpiryMonth: cardExpiry.month,
+                    cardExpiryYear: cardExpiry.year,
+                    cardCcv: cardCcv
+                }).success(function (itemsell) {
                     if (!$scope.item.itemSells) {
                         $scope.item.itemSells = [];
                     }
@@ -210,7 +218,14 @@ angular.module('instastore')
             };
 
             $scope.confirmBuying = function () {
-                $scope.showConfirm = !$scope.showConfirm;
+                if (!$scope.profile.address && !$scope.profile.city && !$scope.profile.state && !$scope.profile.zipcode) {
+                    toaster.pop('warning', 'You should enter and verify your address in profile section');
+                    $scope.showConfirm = false;
+                } else {
+                    $scope.showConfirm = true;
+                }
+
+
             };
 
 
@@ -398,6 +413,6 @@ angular.module('instastore')
             });
         };
     }])
-    .controller('PaymentCtrl',['$scope', function($scope){
+    .controller('PaymentCtrl', ['$scope', function ($scope) {
 
     }]);

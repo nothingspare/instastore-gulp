@@ -25,7 +25,7 @@
                                    name="ccCvc" ng-model="p.cardCvc" required>
 
                             <h6 style="margin:0 0 0 0;">Your item will be shipped to
-                                your address <strong>418 W Ave 42, LA, CA 90065</strong></h6>
+                                your address <strong>{{profile.address}}{{profile.apartment?' '+ profile.apartment:''}}, {{profile.city}}, {{profile.state}} {{profile.zipcode}}</strong></h6>
                             <button ng-if="(paymentForm.$dirty && paymentForm.$valid)" type="submit" class="btn btn-buy btn-post centered">&nbsp;Confirm&nbsp;</button>
                         </div>
                     </center>
