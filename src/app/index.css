@@ -2148,8 +2148,8 @@ p {
 
 .current-transaction {
     color: #000;
-    margin: 5px auto;
-    width: 280px;
+    width: 314px;
+    margin-left: -2px;
     background-color: rgba(222, 222, 222, 0.5);
     border-top: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
@@ -3840,7 +3840,6 @@ div.rn-carousel-indicator span.active {
     height: 50px;
     color: #000;
     margin: 0 auto;
-    width: 280px;
     padding: 7px 0 0 20px;
     border-top: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
@@ -3865,7 +3864,7 @@ div.rn-carousel-indicator span.active {
     position: relative;
     font-weight: 100;
     color: #555;
-    width: 280px;
+    width: 314px;
     left: -20px;
     border-top: 0px solid #bbb;
     border-bottom: 1px solid #ccc;
