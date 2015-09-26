@@ -194,6 +194,7 @@ angular.module('instastore')
                     }
                     $scope.item.itemSells.push(itemsell);
                     toaster.pop('success', 'Success!');
+                    $scope.showConfirm = false;
                 });
             };
 

@@ -169,7 +169,7 @@
             </tr>
             <tr>
                 <td>
-                    <a ng-repeat="isell in item.itemSells | unique:'buyer.id' | limitTo: 5"><img
+                    <a ng-repeat="isell in item.customers | unique:'buyer.id' | limitTo: 5"><img
                             class="buyer-profile-transaction" ng-src="{{isell.buyer.avatar_url}}"></a>
                 </td>
             </tr>
