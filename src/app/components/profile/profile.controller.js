@@ -149,8 +149,11 @@ angular.module('instastore')
                 }).error(errorCallback);
             };
         }])
-    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth',
-        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth) {
+    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL',
+        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL) {
+
+            $scope.CLIENT_URL = CLIENT_URL;
+
             uiGmapGoogleMapApi
                 .then(function () {
                     return uiGmapGoogleMapApi;
