@@ -5,15 +5,26 @@
 
         <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
             <ol ui-tree-nodes="" ng-model="item.itemSells">
-                <li ng-repeat="isell in item.itemSells track by isell.id" ui-tree-node collapsed="true">
-                    <div ng-click="toggle(this)" ui-tree-handle class="first-transaction">
-                        <div class="left">
-                            <a class="hideLink arrow-position">&nbsp;</a>
+                <li ng-repeat="isell in item.itemSells track by $index" ui-tree-node collapsed="true">
+                    <div ui-tree-handle class="first-transaction row">
+                        <div ng-click="toggle(this)" class="column arrow">
+                            <div class="hideLink arrow-position">&nbsp;</div>
                         </div>
-                        <div class="right">
-                            <div>{{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |
-                                itemTransactionStatus}}
+                        <div ng-click="toggle(this)" class="column status">
+                            {{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |
+                            itemTransactionStatus}}
+                        </div>
+                        <div ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.label"
+                             class="column label">
+                            <div class="btn centered btn-label" ng-click="getLabel(isell)">View Label</div>
+                        </div>
+                        <div class="column label" ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>=transactionStates.send &&
+                        isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<transactionStates.saleCanceled">
+                            <div class="btn btn-buy centered btn-label"
+                                 ng-click="getLabel(isell)">Get Label
                             </div>
+                        </div>
+                        <div class="column" ng-click="toggle(this)">
                             <img class="profile-in-transaciton"
                                  ng-src="{{isell.buyer.avatar_url}}">
                         </div>
@@ -72,16 +83,14 @@
                                             </div>
                                         </div>
                                         <!--Received in post state-->
+                                        <!--Remainders-->
+                                        <div ng-if="(subIsell.status>transactionStates.send) && (subIsell.status<transactionStates.label)">
+                                            <f6>Item placed in <b>Medium size box</b></f6>
+                                        </div>
+                                        <!--Remainders-->
                                         <!--Send item state-->
                                         <div ng-if="subIsell.status==transactionStates.send && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.send">
                                             <f6>Attach label to a <b>Medium size box</b></f6>
-                                            <div>
-                                                <div ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.send"
-                                                     class="btn btn-buy centered btn-label"
-                                                     ng-click="getLabel(isell)">Get
-                                                    a Shipping Label
-                                                </div>
-                                            </div>
                                             <f6>And give the box to your mailman asap.</f6>
                                             <!--TODO: remove in production-->
                                             <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">
@@ -91,12 +100,7 @@
                                         <div ng-if="subIsell.status==transactionStates.send &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.send
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-
-                                            <div class="btn centered btn-label" ng-click="getLabel(isell)">View
-                                                Shipping
-                                                Label
-                                            </div>
-                                              <f6>Item placed in <b>Medium size box</b></f6>
+                                            <f6>Item placed in <b>Medium size box</b></f6>
                                             <!--TODO: remove in production-->
                                             <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">
                                                 ^
@@ -111,7 +115,9 @@
                                         <!--Item sold state-->
                                         <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
                                             <f6>Place item in a <b>Medium size box</b></f6>
-                                            <select ng-model="boxSize" ng-change ="changeItemStatus(isell.id, transactionStates.send)" class="sml selector1"
+                                            <select ng-model="boxSize"
+                                                    ng-change="changeItemStatus(isell.id, transactionStates.send)"
+                                                    class="sml selector1"
                                                     style=" width: 240px;margin: 15px 0 10px 0;">
                                                 <option value="">Pick up box size</option>
                                                 <option value="extralarge">Extra large</option>
