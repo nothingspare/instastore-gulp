@@ -13,7 +13,23 @@
                          style="background-image:url({{store.avatar_url|storeAvatar}}); margin-bottom: 20px; margin-top: 20px; "></div>
                         <input class="regular-feild" disabled=true type="text" ng-model="::fullName"
                                placeholder="Full name"/>
-                        <input class="regular-feild" ng-model="profile.phone" placeholder="Mobile number"/>
+                </center>
+            </li>
+            <li>
+                <center>
+                    <div class="setting-titles" style="margin: 20px 0 0 0;">
+                        <f3>User details</f3>
+                    </div>
+                    <br>
+                    <input class="regular-feild" ng-model="profile.email" placeholder="Email"/>
+                    <input ng-disabled="profile.phone_validated_at" class="regular-feild" ng-model="profile.phone" placeholder="Mobile number"/>
+                    <span ng-if="profile.phone_validated_at">Number is verified!</span>
+
+                    <div ng-if="profile.phone.length>0 && !profile.phone_validated_at" style="margin: 10px 0 0 0;">
+                        <div id='btn-text-verify' class="btn" ng-click="textToVerify()" >&nbsp;Text me to verify&nbsp;</div>
+                        <input class="regular-feild" ng-model="verifyPhoneCode" style="margin: 5px 0 0 0;" placeholder="Enter texted code"/>
+                        <div id='btn-text-verify' ng-click="sendCode(verifyPhoneCode)" style="margin: 10px 0 0 0;" class="btn">&nbsp;Send code&nbsp;</div>
+                    </div>
                 </center>
             </li>
             <li>

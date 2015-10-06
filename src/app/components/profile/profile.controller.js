@@ -15,6 +15,7 @@ angular.module('instastore')
             var isVerified;
             $scope.profile = initProfile = UserService.getProfile();
 
+            //same stuff, but don't forget there was a difference between number of seller and buyer slides
             if ($scope.profile.seller) {
                 $scope.slides = [
                     {title: 'first'},
@@ -26,7 +27,8 @@ angular.module('instastore')
                 $scope.slides = [
                     {title: 'first'},
                     {title: 'second'},
-                    {title: 'third'}
+                    {title: 'third'},
+                    {title: 'fourth'}
                 ];
             }
 
@@ -148,6 +150,27 @@ angular.module('instastore')
                     }
                 }).error(errorCallback);
             };
+
+            $scope.textToVerify = function () {
+                rest.path = 'v1/link/verify-phone';
+                var params = {
+                    phone: $scope.profile.phone
+                };
+                if ($scope.profile.phone.substring(0, 4) === '+380') {
+                    params.country = 'UA';
+                }
+                rest.models(params).error(errorCallback);
+            };
+
+            $scope.sendCode = function (code) {
+                rest.path = 'v1/link/confirm-phone';
+                rest.models({code: code}).success(function (res) {
+                    $scope.profile.phone = res.phone;
+                    $scope.profile.phone_validated_at = res.phone_validated_at;
+                    UserService.setProfile($scope.profile);
+                }).error(errorCallback);
+            };
+
         }])
     .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL',
         function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL) {

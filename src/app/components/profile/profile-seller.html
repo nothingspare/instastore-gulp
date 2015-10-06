@@ -39,12 +39,14 @@
                     </div>
                     <br>
                     <input class="regular-feild" ng-model="profile.email" placeholder="Email"/>
-                    <input class="regular-feild" ng-model="profile.phone" placeholder="Mobile number"/>
-                    <input id="inp-new-pass" class="regular-feild margin-top" type="password"
-                           placeholder="Enter a new password"/>
+                    <input ng-disabled="profile.phone_validated_at" class="regular-feild" ng-model="profile.phone" placeholder="Mobile number"/>
+                    <span ng-if="profile.phone_validated_at">Number is verified!</span>
 
-                    <div id='btn-text-verify' class="btn">&nbsp;Text me to verify&nbsp;</div>
-                    <input class="regular-feild" type="password" placeholder="Enter texted code"/>
+                    <div ng-if="profile.phone.length>0 && !profile.phone_validated_at" style="margin: 10px 0 0 0;">
+                        <div id='btn-text-verify' class="btn" ng-click="textToVerify()" >&nbsp;Text me to verify&nbsp;</div>
+                        <input class="regular-feild" ng-model="verifyPhoneCode" style="margin: 5px 0 0 0;" placeholder="Enter texted code"/>
+                        <div id='btn-text-verify' ng-click="sendCode(verifyPhoneCode)" style="margin: 10px 0 0 0;" class="btn">&nbsp;Send code&nbsp;</div>
+                    </div>
                 </center>
             </li>
             <li>

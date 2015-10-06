@@ -192,7 +192,7 @@ angular.module('instastore')
                     if (!$scope.item.itemSells) {
                         $scope.item.itemSells = [];
                     }
-                    $scope.item.itemSells.push(itemsell);
+                    $scope.item.itemSells.unshift(itemsell);
                     toaster.pop('success', 'Success!');
                     $scope.showConfirm = false;
                 });
