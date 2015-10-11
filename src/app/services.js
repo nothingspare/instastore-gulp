@@ -309,6 +309,10 @@ angular.module('instastore')
                 var data = messages[code];
                 toaster.clear();
                 toaster.pop('error', "status: " + data.status + " " + data.name, data.message);
+            },
+            exception: function(data){
+                toaster.clear();
+                toaster.pop('error', "Error: " + data.message);
             }
         }
     })

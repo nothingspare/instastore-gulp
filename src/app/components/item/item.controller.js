@@ -195,7 +195,7 @@ angular.module('instastore')
                     $scope.item.itemSells.unshift(itemsell);
                     toaster.pop('success', 'Success!');
                     $scope.showConfirm = false;
-                });
+                }).error(errorService.exception);
             };
 
             $scope.changeItemStatus = function (itemId, status) {
