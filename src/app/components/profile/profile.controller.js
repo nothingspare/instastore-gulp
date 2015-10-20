@@ -1,7 +1,9 @@
 'use strict';
 angular.module('instastore')
-    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state', '$rootScope', 'uiGmapGoogleMapApi',
-        function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope, uiGmapGoogleMapApi) {
+    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state',
+        '$rootScope', 'uiGmapGoogleMapApi', 'stripe', 'API_URL', '$http',
+        function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope,
+                  uiGmapGoogleMapApi, stripe, API_URL, $http) {
             uiGmapGoogleMapApi
                 .then(function () {
                     return uiGmapGoogleMapApi;
@@ -15,13 +17,15 @@ angular.module('instastore')
             var isVerified;
             $scope.profile = initProfile = UserService.getProfile();
 
-            //same stuff, but don't forget there was a difference between number of seller and buyer slides
+            $scope.p = {};
+
             if ($scope.profile.seller) {
                 $scope.slides = [
                     {title: 'first'},
                     {title: 'second'},
                     {title: 'third'},
-                    {title: 'fourth'}
+                    {title: 'fourth'},
+                    {title: 'fifth'}
                 ];
             } else {
                 $scope.slides = [
@@ -169,6 +173,25 @@ angular.module('instastore')
                     $scope.profile.phone_validated_at = res.phone_validated_at;
                     UserService.setProfile($scope.profile);
                 }).error(errorCallback);
+            };
+
+            $scope.verifyCard = function (cardNumber, cardExpiry, cardCvc) {
+                var card = {
+                    number: cardNumber,
+                    exp_month: cardExpiry.month,
+                    exp_year: cardExpiry.year,
+                    cvc: cardCvc
+                };
+
+                stripe.card.createToken(card)
+                    .then(function (token) {
+                        return $http.post(API_URL + 'v1/link/save-tokenized-card?access-token=' + UserService.getToken(), {token: token.id});
+                    }).then(function (res) {
+                        $scope.profile.card_token_created_at = res.data.card.card_token_created_at;
+                        UserService.setProfile($scope.profile);
+                    }).catch(function (res) {
+                        toaster.pop('error', "Stripe error", res.data.message);
+                    });
             };
 
         }])

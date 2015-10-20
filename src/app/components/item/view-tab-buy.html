@@ -36,7 +36,7 @@
 
         <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
             <ol ui-tree-nodes="" ng-model="item.itemSells">
-                <li ng-repeat="isell in item.itemSells track by isell.id" ui-tree-node collapsed="true">
+                <li ng-repeat="isell in item.itemSells | orderBy:'-created_at' track by isell.id" ui-tree-node collapsed="true">
                     <div ng-click="toggle(this)" ui-tree-handle class="first-transaction">
                         <div class="left">
                             <a class="hideLink arrow-position">&nbsp;</a>

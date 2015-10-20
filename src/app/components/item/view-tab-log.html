@@ -5,7 +5,7 @@
 
         <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
             <ol ui-tree-nodes="" ng-model="item.itemSells">
-                <li ng-repeat="isell in item.itemSells track by $index" ui-tree-node collapsed="true">
+                <li ng-repeat="isell in item.itemSells  | orderBy:'-created_at' track by $index" ui-tree-node collapsed="true">
                     <div ui-tree-handle class="first-transaction row">
                         <div ng-click="toggle(this)" class="column arrow">
                             <div class="hideLink arrow-position">&nbsp;</div>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <ol ui-tree-nodes="" ng-model="isell.itemSellTransactions" ng-class="{hidden: collapsed}">
-                        <li ng-repeat="subIsell in isell.itemSellTransactions  | orderBy:'-created_at' track by subIsell.id"
+                        <li ng-repeat="subIsell in isell.itemSellTransactions  | orderBy:'+created_at' track by subIsell.id"
                             ui-tree-node
                             data-collapsed="true"
                             ng-if="subIsell.status | itemTransactionStatusVisibility">
