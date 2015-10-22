@@ -116,14 +116,13 @@
                                         <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
                                             <f6>Place item in a <b>Medium size box</b></f6>
                                             <select ng-model="boxSize"
-                                                    ng-change="changeItemStatus(isell.id, transactionStates.send)"
+                                                    ng-change="changeItemStatus(isell.id, transactionStates.send, boxSize)"
                                                     class="sml selector1"
                                                     style=" width: 240px;margin: 15px 0 10px 0;">
-                                                <option value="">Pick up box size</option>
-                                                <option value="extralarge">Extra large</option>
-                                                <option value="large">Large</option>
-                                                <option value="medium">Medium</option>
-                                                <option value="Small">Small</option>
+                                                <option disabled value="">Pick up box size</option>
+                                                <option value="30">Large</option>
+                                                <option value="20">Medium</option>
+                                                <option value="10">Small</option>
                                             </select>
 
                                             <f6>isOpen boxes are supplied free to store owners but pleae allow 10 days

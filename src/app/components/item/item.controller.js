@@ -198,12 +198,16 @@ angular.module('instastore')
                 }).error(errorService.exception);
             };
 
-            $scope.changeItemStatus = function (itemId, status) {
+            $scope.changeItemStatus = function (itemId, status, box) {
                 rest.path = 'v1/item-sell-transactions';
-                rest.postModel({
+                var req = {
                     itemsell_id: itemId,
                     status: status
-                }).success(function (transaction) {
+                };
+                if (status === ITEMSELLTRANSACTION_STATUS.send && box) {
+                    req.box = box*1;
+                }
+                rest.postModel(req).success(function (transaction) {
                     var found = $filter('getById')($scope.item.itemSells, itemId);
                     if (found) {
                         found.itemSellTransactions.push(transaction);
