@@ -10,6 +10,7 @@
                 <li>
                     <a ng-click="scrollToTop()" style="width: 70%; height: 38px">
                         <img class="profile customheader-profile" ng-src="{{store.avatar_url|storeAvatar}}">
+
                         <div class="header-title">{{store.store_name}}</div>
                     </a>
                 </li>
@@ -49,7 +50,8 @@
     <div id="profile-container2">
 
         <a ng-if="!isSeller" href="#" id="profile-button" class="fast-tap btn">&nbsp;Follow&nbsp;+&nbsp;</a>
-        <a ng-if="isSeller" ui-sref="store({storeurl:$stateParams.storeurl})" id="profile-button" class="fast-tap btn">&nbsp;Edit profile&nbsp;</a>
+        <a ng-if="isSeller" ui-sref="store({storeurl:$stateParams.storeurl})" id="profile-button" class="fast-tap btn">
+            &nbsp;Edit profile&nbsp;</a>
 
     </div>
 
@@ -63,22 +65,22 @@
                 <li><a ng-click="clickToOpen()">
                     <div class="additem"></div>
                 </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
-                    <div class="gridstream"></div>
-                </a></li>
                 <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
                     <div class="stream"></div>
+                </a></li>
+                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                    <div class="gridstream"></div>
                 </a></li>
             </ul>
             <ul ng-if="!isSeller">
                 <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
                     <div class="stream"></div>
                 </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
-                    <div class="gridstream"></div>
-                </a></li>
                 <li><a ui-sref-active="menu-item-active" ui-sref="location({storeurl:$stateParams.storeurl})">
                     <div class="location"></div>
+                </a></li>
+                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                    <div class="gridstream"></div>
                 </a></li>
             </ul>
         </div>

@@ -129,7 +129,7 @@ angular.module('instastore')
             goToMainStore: function () {
                 var profile = this.getProfile();
                 var state = $injector.get('$state');
-                state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url});
+                state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url, mode:'feed'});
             },
             getMainStoreUrl: function () {
                 var profile = this.getProfile();
