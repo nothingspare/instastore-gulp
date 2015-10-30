@@ -73,14 +73,14 @@
                 </a></li>
             </ul>
             <ul ng-if="!isSeller">
+                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                    <div class="gridstream"></div>
+                </a></li>
                 <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
                     <div class="stream"></div>
                 </a></li>
                 <li><a ui-sref-active="menu-item-active" ui-sref="location({storeurl:$stateParams.storeurl})">
                     <div class="location"></div>
-                </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
-                    <div class="gridstream"></div>
                 </a></li>
             </ul>
         </div>
