@@ -24,13 +24,24 @@
                                  ng-click="getLabel(isell)">Get Label
                             </div>
                         </div>
+                        <div ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.sold" class="column label">
+                            <select ng-model="boxSize"
+                                    ng-change="changeItemStatus(isell.id, transactionStates.send, boxSize)"
+                                    class="sml selector1"
+                                    style=" width: 185px;margin-left: -45px;">
+                                <option disabled value="">Pick up box size</option>
+                                <option value="30">Large</option>
+                                <option value="20">Medium</option>
+                                <option value="10">Small</option>
+                            </select>
+                        </div>
                         <div class="column" ng-click="toggle(this)">
                             <img class="profile-in-transaciton"
                                  ng-src="{{isell.buyer.avatar_url}}">
                         </div>
                     </div>
                     <ol ui-tree-nodes="" ng-model="isell.itemSellTransactions" ng-class="{hidden: collapsed}">
-                        <li ng-repeat="subIsell in isell.itemSellTransactions  | orderBy:'+created_at' track by subIsell.id"
+                        <li ng-repeat="subIsell in isell.itemSellTransactions  | orderBy:'-created_at' track by subIsell.id"
                             ui-tree-node
                             data-collapsed="true"
                             ng-if="subIsell.status | itemTransactionStatusVisibility">
@@ -85,26 +96,18 @@
                                         <!--Received in post state-->
                                         <!--Remainders-->
                                         <div ng-if="(subIsell.status>transactionStates.send) && (subIsell.status<transactionStates.label)">
-                                            <f6>Item placed in <b>Medium size box</b></f6>
+                                            <f6>Item placed in <b>{{subIsell.boxSizeTitle}}</b> box</f6>
                                         </div>
                                         <!--Remainders-->
                                         <!--Send item state-->
                                         <div ng-if="subIsell.status==transactionStates.send && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.send">
-                                            <f6>Attach label to a <b>Medium size box</b></f6>
+                                            <f6>Attach label to a <b>{{subIsell.boxSizeTitle}}</b> box </f6>
                                             <f6>And give the box to your mailman asap.</f6>
-                                            <!--TODO: remove in production-->
-                                            <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">
-                                                ^
-                                            </div>
                                         </div>
                                         <div ng-if="subIsell.status==transactionStates.send &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.send
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Item placed in <b>Medium size box</b></f6>
-                                            <!--TODO: remove in production-->
-                                            <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">
-                                                ^
-                                            </div>
+                                            <f6>Item placed in <b>{{subIsell.boxSizeTitle}}</b> box.</f6>
                                         </div>
                                         <!--Send item state-->
                                         <!--Declined item state-->
@@ -114,24 +117,13 @@
                                         <!--Declined item state-->
                                         <!--Item sold state-->
                                         <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
-                                            <f6>Place item in a <b>Medium size box</b></f6>
-                                            <select ng-model="boxSize"
-                                                    ng-change="changeItemStatus(isell.id, transactionStates.send, boxSize)"
-                                                    class="sml selector1"
-                                                    style=" width: 240px;margin: 15px 0 10px 0;">
-                                                <option disabled value="">Pick up box size</option>
-                                                <option value="30">Large</option>
-                                                <option value="20">Medium</option>
-                                                <option value="10">Small</option>
-                                            </select>
-
                                             <f6>isOpen boxes are supplied free to store owners but pleae allow 10 days
                                                 for delivery. If you need a box now they are available from your local
                                                 post office.
                                             </f6>
                                         </div>
                                         <div ng-if="subIsell.status==transactionStates.sold && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.send">
-                                            <f6>Item placed in <b>Medium size box</b></f6>
+                                            <f6>Item placed in <b>{{subIsell.boxSizeTitle}}</b> box.</f6>
                                         </div>
                                         <div ng-if="subIsell.status==transactionStates.sold &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.sendThirdRemainder
