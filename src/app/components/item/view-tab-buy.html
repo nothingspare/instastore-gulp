@@ -8,7 +8,8 @@
             <h6 style="margin:0 20px 15px 20px;">Enter your credit card requisites:</h6>
 
             <div ng-controller="PaymentCtrl as p">
-                <form  ng-submit="buyItem(p.cardNumber, p.cardExpiry, p.cardCvc)" class="payment-form" name="paymentForm" novalidate="">
+                <form ng-submit="buyItem(p.cardNumber, p.cardExpiry, p.cardCvc)" class="payment-form" name="paymentForm"
+                      novalidate="">
                     <center>
                         <div id="content-popup">
                             <input placeholder="XXXX XXXX XXXX XXXX" class="regular-field" type="text"
@@ -20,13 +21,16 @@
                                    restrict-numeric=""
                                    card-expiry-validator=""
                                    card-expiry-formatter="" name="ccExpiry" ng-model="p.cardExpiry" required>
-                            <input placeholder="CVV" type="text" x-autocompletetype="cc-csc" restrict-numeric="" card-cvc-validator=""
+                            <input placeholder="CVV" type="text" x-autocompletetype="cc-csc" restrict-numeric=""
+                                   card-cvc-validator=""
                                    card-cvc-formatter="" ng-maxlength="4" ng-pattern="/\d*/"
                                    name="ccCvc" ng-model="p.cardCvc" required>
 
                             <h6 style="margin:0 0 0 0;">Your item will be shipped to
-                                your address <strong>{{profile.address}}{{profile.apartment?' '+ profile.apartment:''}}, {{profile.city}}, {{profile.state}} {{profile.zipcode}}</strong></h6>
-                            <button ng-if="(paymentForm.$dirty && paymentForm.$valid)" type="submit" class="btn btn-buy btn-post centered">&nbsp;Confirm&nbsp;</button>
+                                your address <strong>{{profile.address}}{{profile.apartment?' '+ profile.apartment:''}},
+                                    {{profile.city}}, {{profile.state}} {{profile.zipcode}}</strong></h6>
+                            <button ng-if="(paymentForm.$dirty && paymentForm.$valid)" type="submit"
+                                    class="btn btn-buy btn-post centered">&nbsp;Confirm&nbsp;</button>
                         </div>
                     </center>
                 </form>
@@ -36,7 +40,8 @@
 
         <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
             <ol ui-tree-nodes="" ng-model="item.itemSells">
-                <li ng-repeat="isell in item.itemSells | orderBy:'-created_at' track by isell.id" ui-tree-node collapsed="true">
+                <li ng-repeat="isell in item.itemSells | orderBy:'-created_at' track by isell.id" ui-tree-node
+                    collapsed="true">
                     <div ng-click="toggle(this)" ui-tree-handle class="first-transaction">
                         <div class="left">
                             <a class="hideLink arrow-position">&nbsp;</a>
@@ -82,12 +87,11 @@
                                                 quick and efficient for our buys and sellers. Thank you.
                                             </f6>
 
-                                            <div>
-                                                <div class="btn btn-buy"
-                                                     ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
-                                                    Accept
-                                                </div>
+                                            <div class="btn btn-buy"
+                                                 ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
+                                                Accept
                                             </div>
+
                                         </div>
                                         <!--Hurryup state-->
                                         <!--Arrived state-->
@@ -96,6 +100,10 @@
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
                                             <f6>Item has arrived! Please approve it: <b>Delivered in Michigan 36001</b>
                                             </f6>
+                                            <div class="btn btn-buy"
+                                                 ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
+                                                Accept
+                                            </div>
                                             <!--TODO: remove in production-->
                                             <div ng-click="changeItemStatus(isell.id, transactionStates.hurryup)">^
                                             </div>
