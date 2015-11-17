@@ -42,16 +42,36 @@
             <ol ui-tree-nodes="" ng-model="item.itemSells">
                 <li ng-repeat="isell in item.itemSells | orderBy:'-created_at' track by isell.id" ui-tree-node
                     collapsed="true">
-                    <div ng-click="toggle(this)" ui-tree-handle class="first-transaction">
-                        <div class="left">
-                            <a class="hideLink arrow-position">&nbsp;</a>
+                    <!--<div ng-click="toggle(this)" ui-tree-handle class="first-transaction">-->
+                    <!--<div class="left">-->
+                    <!--<a class="hideLink arrow-position">&nbsp;</a>-->
+                    <!--</div>-->
+                    <!--<div class="right">-->
+                    <!--<div>{{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |-->
+                    <!--itemBuyerTransactionStatus}}-->
+                    <!--</div>-->
+                    <!--<img class="profile-in-transaciton"-->
+                    <!--ng-src="{{item.user.avatar_url}}">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div ui-tree-handle class="first-transaction row">
+                        <div ng-click="toggle(this)" class="column arrow">
+                            <div class="hideLink arrow-position">&nbsp;</div>
                         </div>
-                        <div class="right">
-                            <div>{{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |
-                                itemBuyerTransactionStatus}}
+                        <div ng-click="toggle(this)" class="column status">
+                            {{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |
+                            itemTransactionStatus}}
+                        </div>
+                        <div class="column label"
+                             ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.arrived
+                             || isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.hurryup">
+                            <div class="btn btn-buy centered btn-label"
+                                 ng-click="changeItemStatus(isell.id, transactionStates.accepted)">Accept
                             </div>
+                        </div>
+                        <div class="column" ng-click="toggle(this)">
                             <img class="profile-in-transaciton"
-                                 ng-src="{{item.user.avatar_url}}">
+                                 ng-src="{{isell.buyer.avatar_url}}">
                         </div>
                     </div>
                     <ol ui-tree-nodes="" ng-model="isell.itemSellTransactions" ng-class="{hidden: collapsed}">
@@ -100,13 +120,6 @@
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
                                             <f6>Item has arrived! Please approve it: <b>Delivered in Michigan 36001</b>
                                             </f6>
-                                            <div class="btn btn-buy"
-                                                 ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
-                                                Accept
-                                            </div>
-                                            <!--TODO: remove in production-->
-                                            <div ng-click="changeItemStatus(isell.id, transactionStates.hurryup)">^
-                                            </div>
                                         </div>
                                         <!--Arrived state-->
                                         <!--Received in post state-->

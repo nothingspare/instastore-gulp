@@ -3848,11 +3848,11 @@ div.rn-carousel-indicator span.active {
     border-bottom: 1px solid #bbb;
 }
 
-.buy-transactions .profile-in-transaciton {
-    margin: -30px 3px 0 3px;
-}
+/*.buy-transactions .profile-in-transaciton {*/
+/*margin: -30px 3px 0 3px;*/
+/*}*/
 
-.sell-transactions .profile-in-transaciton {
+.sell-transactions .profile-in-transaciton, .buy-transactions .profile-in-transaciton {
     position: relative;
     top: 12px;
 }
@@ -3921,37 +3921,42 @@ div.rn-carousel-indicator span.active {
     margin: 10px 0 10px 0;
 }
 
-.sell-transactions .row {
+.sell-transactions .row, .buy-transactions .row {
     display: table;
     width: 100%; /*Optional*/
     table-layout: fixed; /*Optional*/
 }
 
-.sell-transactions .column {
+.sell-transactions .column, .buy-transactions .column {
     display: table-cell;
 }
 
-.sell-transactions .column.arrow {
+.sell-transactions .column.arrow, .buy-transactions .column.arrow {
     width: 1%;
 }
 
-.sell-transactions .column.arrow .hideLink {
+.sell-transactions .column.arrow .hideLink, .buy-transactions .column.arrow .hideLink {
     padding: 0 10px 0 10px;
 }
 
-.sell-transactions .column.status {
+.sell-transactions .column.status, .buy-transactions .column.status {
     padding: 9px 5px;
 }
 
-.sell-transactions .column.label .btn {
+.sell-transactions .column.label .btn, .buy-transactions .column.label .btn, {
     margin-bottom: 0px;
     width: 100%;
 }
 
-.sell-transactions .row .arrow-position {
+.sell-transactions .row .arrow-position, .buy-transactions .row .arrow-position {
     position: relative;
     right: 15px;
     top: -3px;
+}
+
+.sell-transactions .column.label .btn.btn-label, .buy-transactions .column.label .btn.btn-label {
+    width: 118px;
+    margin:0;
 }
 
 .label-popup .label-image {

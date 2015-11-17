@@ -105,7 +105,7 @@ app
                 return 'Received in post!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.arrived) {
-                return 'Item has arrived!';
+                return 'Arrived!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.hurryup) {
                 return 'Hurry up!';
@@ -145,7 +145,7 @@ app
                 return 'Received in post!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.arrived) {
-                return 'Item has arrived!';
+                return 'Arrived!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.hurryup) {
                 return 'Hurry up!';
