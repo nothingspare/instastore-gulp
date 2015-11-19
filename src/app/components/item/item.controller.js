@@ -205,7 +205,7 @@ angular.module('instastore')
                     status: status
                 };
                 if (status === ITEMSELLTRANSACTION_STATUS.send && box) {
-                    req.box = box*1;
+                    req.box = box * 1;
                 }
                 rest.postModel(req).success(function (transaction) {
                     var found = $filter('getById')($scope.item.itemSells, itemId);
@@ -262,6 +262,10 @@ angular.module('instastore')
                         toaster.pop('success', 'Label sent');
                     }
                 }).error(errorService.alert);
+            };
+
+            $scope.goToStoreProfile = function (storeUrl) {
+                UserService.goToStoreProfile(storeUrl);
             };
         }
     ])

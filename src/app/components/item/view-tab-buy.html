@@ -42,18 +42,6 @@
             <ol ui-tree-nodes="" ng-model="item.itemSells">
                 <li ng-repeat="isell in item.itemSells | orderBy:'-created_at' track by isell.id" ui-tree-node
                     collapsed="true">
-                    <!--<div ng-click="toggle(this)" ui-tree-handle class="first-transaction">-->
-                    <!--<div class="left">-->
-                    <!--<a class="hideLink arrow-position">&nbsp;</a>-->
-                    <!--</div>-->
-                    <!--<div class="right">-->
-                    <!--<div>{{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |-->
-                    <!--itemBuyerTransactionStatus}}-->
-                    <!--</div>-->
-                    <!--<img class="profile-in-transaciton"-->
-                    <!--ng-src="{{item.user.avatar_url}}">-->
-                    <!--</div>-->
-                    <!--</div>-->
                     <div ui-tree-handle class="first-transaction row">
                         <div ng-click="toggle(this)" class="column arrow">
                             <div class="hideLink arrow-position">&nbsp;</div>
@@ -69,7 +57,7 @@
                                  ng-click="changeItemStatus(isell.id, transactionStates.accepted)">Accept
                             </div>
                         </div>
-                        <div class="column" ng-click="toggle(this)">
+                        <div class="column" ng-click="goToStoreProfile(isell.buyer.store.store_url)">
                             <img class="profile-in-transaciton"
                                  ng-src="{{isell.buyer.avatar_url}}">
                         </div>
@@ -191,7 +179,7 @@
             <tr>
                 <td>
                     <a ng-repeat="isell in item.customers | unique:'buyer.id' | limitTo: 5"><img
-                            class="buyer-profile-transaction" ng-src="{{isell.buyer.avatar_url}}"></a>
+                            class="buyer-profile-transaction" ng-src="{{isell.buyer.avatar_url}}" ng-click="goToStoreProfile(isell.buyer.store.store_url)"></a>
                 </td>
             </tr>
         </table>
