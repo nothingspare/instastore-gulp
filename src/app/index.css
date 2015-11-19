@@ -3956,7 +3956,7 @@ div.rn-carousel-indicator span.active {
 
 .sell-transactions .column.label .btn.btn-label, .buy-transactions .column.label .btn.btn-label {
     width: 118px;
-    margin:0;
+    margin: 0;
 }
 
 .label-popup .label-image {
@@ -3998,4 +3998,14 @@ svg.svg-debit {
     left: 0;
     margin: 30px;
     bottom: 10px;
+}
+
+.item-cta{
+    border-radius: 5px;
+    background: #f00;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    bottom: 25px;
+    left: 5px;
 }
