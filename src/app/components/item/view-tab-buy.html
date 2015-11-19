@@ -94,19 +94,13 @@
                                             <f6>Please hurry up with your transaction and help us run a service that is
                                                 quick and efficient for our buys and sellers. Thank you.
                                             </f6>
-
-                                            <div class="btn btn-buy"
-                                                 ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
-                                                Accept
-                                            </div>
-
                                         </div>
                                         <!--Hurryup state-->
                                         <!--Arrived state-->
                                         <div ng-if="subIsell.status==transactionStates.arrived &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.receivedInPost
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Item has arrived! Please approve it: <b>Delivered in Michigan 36001</b>
+                                            <f6>Item has arrived! Please approve it: <b>{{isell.arrived}}</b></b>
                                             </f6>
                                         </div>
                                         <!--Arrived state-->
@@ -114,10 +108,7 @@
                                         <div ng-if="subIsell.status==transactionStates.receivedInPost &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.label
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Postal label was scanned at: <b>Eagle Rock 90065</b></f6>
-                                            <!--TODO: remove in production-->
-                                            <div ng-click="changeItemStatus(isell.id, transactionStates.arrived)">^
-                                            </div>
+                                            <f6>Postal label was scanned at: <b>{{isell.received_in_post}}</b></f6>
                                         </div>
                                         <!--Received in post state-->
                                         <!--Label state-->
