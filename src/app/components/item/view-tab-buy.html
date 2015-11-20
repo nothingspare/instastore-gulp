@@ -57,9 +57,9 @@
                                  ng-click="changeItemStatus(isell.id, transactionStates.accepted)">Accept
                             </div>
                         </div>
-                        <div class="column" ng-click="goToStoreProfile(isell.buyer.store.store_url)">
+                        <div class="column img-column">
                             <img class="profile-in-transaciton"
-                                 ng-src="{{isell.buyer.avatar_url}}">
+                                 ng-src="{{isell.buyer.avatar_url}}" ng-click="goToStoreProfile(isell.buyer.store.store_url)">
                         </div>
                     </div>
                     <ol ui-tree-nodes="" ng-model="isell.itemSellTransactions" ng-class="{hidden: collapsed}">

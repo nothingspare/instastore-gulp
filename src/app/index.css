@@ -3955,7 +3955,7 @@ div.rn-carousel-indicator span.active {
 }
 
 .sell-transactions .column.label .btn.btn-label, .buy-transactions .column.label .btn.btn-label {
-    width: 118px;
+    width: 100px;
     margin: 0;
 }
 
@@ -4000,7 +4000,7 @@ svg.svg-debit {
     bottom: 10px;
 }
 
-.item-cta{
+.item-cta {
     border-radius: 5px;
     background: #f00;
     width: 10px;
