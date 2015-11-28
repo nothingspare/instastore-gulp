@@ -9,59 +9,59 @@ angular.module('instastore')
                 $scope.showPanel = false;
             });
 
-            if (!UserService.isGuest()) {
-                var store;
-                if (!UserService.isYourStore()) {
+            //if (!UserService.isGuest()) {
+            var store;
+            if (!UserService.isYourStore()) {
 
-                    $rootScope.isSeller = false;
+                $rootScope.isSeller = false;
 
-                    rest.path = 'v1/stores';
-                    rest.models({store_url: $stateParams.storeurl}).success(function (data) {
-                        $scope.store = store = data[0];
-                        if (!store) {
-                            errorService.simpleAlert('nostorewithurl');
-                            $state.go('grid');
-                            return;
-                        }
-                        rest.path = 'v1/items';
-                        rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
-                            if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
-                            $scope.items = data;
-                        });
-                    }).error(errorService.simpleAlert);
-                }
-                else {
-                    $rootScope.isSeller = true;
-                    rest.path = 'v1/user-items';
-                    rest.models().success(function (data) {
+                rest.path = 'v1/stores';
+                rest.models({store_url: $stateParams.storeurl}).success(function (data) {
+                    $scope.store = store = data[0];
+                    if (!store) {
+                        errorService.simpleAlert('nostorewithurl');
+                        $state.go('grid');
+                        return;
+                    }
+                    rest.path = 'v1/items';
+                    rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
                         if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
                         $scope.items = data;
-                    }).error(errorService.simpleAlert);
-                }
-
-                $scope.seemore = function (go) {
-                    feedHelper.seeMore = true;
-                    $state.go('itemview', go);
-                };
-
-                $scope.leavecomment = function (go) {
-                    feedHelper.leaveComment = true;
-                    $state.go('itemview', go);
-                };
-
-                $scope.toggleItemStatus = function (item) {
-                    if (item.status == ITEM_STATUS.inactive) {
-                        item.status = ITEM_STATUS.active;
-                    }
-                    else {
-                        item.status = ITEM_STATUS.inactive;
-                    }
-                    rest.putModel(item).success(function (data) {
-                        var found = $filter('getById')($scope.items, data.id);
-                        found.status = data.status;
-                    }).error(errorService.alert);
-                };
+                    });
+                }).error(errorService.simpleAlert);
             }
+            else {
+                $rootScope.isSeller = true;
+                rest.path = 'v1/user-items';
+                rest.models().success(function (data) {
+                    if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
+                    $scope.items = data;
+                }).error(errorService.simpleAlert);
+            }
+
+            $scope.seemore = function (go) {
+                feedHelper.seeMore = true;
+                $state.go('itemview', go);
+            };
+
+            $scope.leavecomment = function (go) {
+                feedHelper.leaveComment = true;
+                $state.go('itemview', go);
+            };
+
+            $scope.toggleItemStatus = function (item) {
+                if (item.status == ITEM_STATUS.inactive) {
+                    item.status = ITEM_STATUS.active;
+                }
+                else {
+                    item.status = ITEM_STATUS.inactive;
+                }
+                rest.putModel(item).success(function (data) {
+                    var found = $filter('getById')($scope.items, data.id);
+                    found.status = data.status;
+                }).error(errorService.alert);
+            };
+            //}
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
@@ -123,7 +123,7 @@ angular.module('instastore')
                         $scope.removeImage($scope.item.images[index]);
                     }
                 }
-                rest.path = 'v1/items/' + $scope.item.id;
+                rest.path = 'v1/user-items/' + $scope.item.id;
                 rest.deleteModel()
                     .success(function () {
                         toaster.pop('success', "Item deleted!");
@@ -286,13 +286,13 @@ angular.module('instastore')
                 $scope.item.item_url = $scope.item.title;
                 $scope.item.status = ITEM_STATUS.active;
                 if ($scope.item.id) {
-                    rest.path = 'v1/items';
+                    rest.path = 'v1/user-items';
                     rest.putModel($scope.item).success(function (item) {
                         toaster.pop('success', 'Saved');
                         $rootScope.$broadcast('newItem', item);
                     }).error(errorService.alert);
                 } else {
-                    rest.path = 'v1/items';
+                    rest.path = 'v1/user-items';
                     rest.postModel($scope.item).success(function (item) {
                         toaster.pop('success', 'Saved');
                         $rootScope.$broadcast('newItem', item);
@@ -320,60 +320,125 @@ angular.module('instastore')
             };
         }
     ])
-    .controller('ItemViewTabsCtrl', ['$scope', '$rootScope', '$timeout', '$stateParams', 'UserService', function ($scope, $rootScope, $timeout, $stateParams, UserService) {
+    .controller('ItemViewTabsCtrl', ['$scope', '$rootScope', '$timeout', '$stateParams', 'UserService',
+        '$auth', 'toaster', '$state', '$location', 'CLIENT_URL',
+        function ($scope, $rootScope, $timeout, $stateParams, UserService, $auth, toaster, $state, $location, CLIENT_URL) {
 
-        $scope.onClickTab = function (tab) {
-            $scope.currentTab = tab.url;
-        }
+            $scope.onClickTab = function (tab) {
+                if (UserService.isGuest()) {
+                    UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
+                    $auth.authenticate('facebook').then(function (res) {
+                        if (UserService.getProfile().lastRoute) {
+                            var lastRoute = UserService.getProfile().lastRoute;
+                        }
+                        UserService.login(res.data.token);
+                        UserService.setFacebookProfile(res.data.facebookProfile);
+                        res.data.profile.stores = res.data.stores;
+                        if (res.data.store) {
+                            res.data.profile.store = res.data.store;
+                            UserService.setBg(res.data.store.bg_url);
+                            UserService.setAvatar(res.data.store.avatar_url);
+                        }
 
-        $scope.isActiveTab = function (tabUrl) {
-            UserService.init();
-            return tabUrl == $scope.currentTab;
-        }
+                        res.data.profile.lastRoute = lastRoute;
 
-        $scope.likeItem = function () {
-            $rootScope.showHearts = true;
-            $timeout(function () {
-                $rootScope.showHearts = false;
-            }, 1000);
-        };
+                        UserService.setProfile(res.data.profile);
+                        $scope.profile = res.data.profile;
 
-        if ($rootScope.isSeller)
-            switch ($stateParams.tab) {
-                case '1':
-                    $scope.currentTab = 'app/components/item/view-tab-comment.html';
-                    break;
-                case '2':
-                    $scope.currentTab = 'app/components/item/view-tab-log.html';
-                    break;
-                case '3':
-                    $scope.currentTab = 'app/components/item/view-tab-social.html';
-                    break;
-                case '4':
-                    $scope.currentTab = 'app/components/item/view-tab-edit.html';
-                    break;
-                default:
-                    $scope.currentTab = 'app/components/item/view-tab-comment.html';
+                        changeStateAndUrlToTab(tab);
+
+                    }, handleError);
+                }
+                else {
+                    changeStateAndUrlToTab(tab);
+                }
+            };
+
+            function changeStateAndUrlToTab(tab) {
+                $stateParams['tab'] = tab.index;
+                $state.params['tab'] = tab.index;
+                $location.url($stateParams.storeurl + '/' + $stateParams.itemurl + '/' + tab.index);
+                $scope.currentTab = tab.url;
             }
-        else
-            switch ($stateParams.tab) {
-                case '1':
-                    $scope.currentTab = 'app/components/item/view-tab-comment.html';
-                    break;
-                case '2':
-                    $scope.currentTab = 'app/components/item/view-tab-buy.html';
-                    break;
-                case '3':
-                    $scope.currentTab = 'app/components/item/view-tab-comment.html';
-                    $scope.likeItem();
-                    break;
-                case '4':
-                    $scope.currentTab = 'app/components/item/view-tab-location.html';
-                    break;
-                default:
-                    $scope.currentTab = 'app/components/item/view-tab-comment.html';
+
+            $scope.isActiveTab = function (tabUrl) {
+                UserService.init();
+                return tabUrl == $scope.currentTab;
+            };
+
+            $scope.likeItem = function () {
+                $rootScope.showHearts = true;
+                $timeout(function () {
+                    $rootScope.showHearts = false;
+                }, 1000);
+            };
+
+            if ($rootScope.isSeller)
+                switch ($stateParams.tab) {
+                    case '1':
+                        $scope.currentTab = 'app/components/item/view-tab-comment.html';
+                        break;
+                    case '2':
+                        $scope.currentTab = 'app/components/item/view-tab-log.html';
+                        break;
+                    case '3':
+                        $scope.currentTab = 'app/components/item/view-tab-social.html';
+                        break;
+                    case '4':
+                        $scope.currentTab = 'app/components/item/view-tab-edit.html';
+                        break;
+                    default:
+                        $scope.currentTab = 'app/components/item/view-tab-comment.html';
+                }
+            else
+                switch ($stateParams.tab) {
+                    case '1':
+                        $scope.currentTab = 'app/components/item/view-tab-comment.html';
+                        break;
+                    case '2':
+                        if (UserService.isGuest()) {
+                            UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
+                            $auth.authenticate('facebook').then(function (res) {
+                                if (UserService.getProfile().lastRoute) {
+                                    var lastRoute = UserService.getProfile().lastRoute;
+                                }
+                                UserService.login(res.data.token);
+                                UserService.setFacebookProfile(res.data.facebookProfile);
+                                res.data.profile.stores = res.data.stores;
+                                if (res.data.store) {
+                                    res.data.profile.store = res.data.store;
+                                    UserService.setBg(res.data.store.bg_url);
+                                    UserService.setAvatar(res.data.store.avatar_url);
+                                }
+
+                                res.data.profile.lastRoute = lastRoute;
+
+                                UserService.setProfile(res.data.profile);
+                                $scope.profile = res.data.profile;
+                                $scope.currentTab = 'app/components/item/view-tab-buy.html';
+                            }, handleError);
+                        }
+                        else {
+                            $scope.currentTab = 'app/components/item/view-tab-buy.html';
+                        }
+                        break;
+                    case '3':
+                        $scope.currentTab = 'app/components/item/view-tab-comment.html';
+                        $scope.likeItem();
+                        break;
+                    case '4':
+                        $scope.currentTab = 'app/components/item/view-tab-location.html';
+                        break;
+                    default:
+                        $scope.currentTab = 'app/components/item/view-tab-comment.html';
+                }
+
+            function handleError(err) {
+                if (err.data) {
+                    toaster.pop('error', err.data);
+                }
             }
-    }])
+        }])
     .controller('ItemLocation', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
         uiGmapGoogleMapApi.then(function () {
             if ($rootScope.store) {

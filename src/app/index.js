@@ -161,7 +161,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         plUploadServiceProvider.setConfig('silverLightPath', 'bower_components/plupload-angular-directive/plupload.silverlight.xap');
         plUploadServiceProvider.setConfig('resize', {width: 310, height: 390});
 
-        stripeProvider.setPublishableKey('pk_test_1tDqDLjRoJ6lkeyKoQsQ4ZX0');
+        stripeProvider.setPublishableKey('pk_live_gAjzCf5vWrdKN8ycRSCbQDan');
 
     }]);
 

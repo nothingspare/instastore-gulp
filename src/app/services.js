@@ -138,11 +138,11 @@ angular.module('instastore')
                 var profile = this.getProfile();
                 return profile.seller ? profile.store.store_url : profile.inviter_url;
             },
-            goToStoreProfile: function(storeUrl){
+            goToStoreProfile: function (storeUrl) {
                 var profile = this.getProfile();
                 var state = $injector.get('$state');
                 state.go('store', {
-                    storeurl: storeUrl?storeUrl:profile.store.store_url
+                    storeurl: storeUrl ? storeUrl : profile.store.store_url
                 });
             },
             routeStoreurlCheck: function () {
@@ -283,6 +283,21 @@ angular.module('instastore')
             },
             currentUser: function () {
                 return currentUser;
+            },
+            //For redirects from socials
+            saveLastRouteToProfile: function (route) {
+                var profile = this.getProfile();
+                profile.lastRoute = route;
+                this.setProfile(profile);
+            },
+            goToLastRouteFromProfile: function () {
+                var state = $injector.get('$state');
+                var profile = this.getProfile();
+                if (profile.lastRoute) {
+                    var tempRoute = profile.lastRoute;
+                    profile.lastRoute = {};
+                    state.go(tempRoute.from.name, tempRoute.fromParams);
+                }
             }
         };
     }).service('errorService', function (toaster) {
@@ -348,4 +363,20 @@ angular.module('instastore')
                 return new Blob([new Uint8Array(array)], {type: mimeString});
             };
         }
-    ]);
+    ])
+    .factory('RouterTracker', ['$rootScope', function ($rootScope) {
+        var routeHistory = [];
+        var service = {
+            getRouteHistory: getRouteHistory
+        };
+
+        $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+            routeHistory.push({route: from, routeParams: fromParams});
+        });
+
+        function getRouteHistory() {
+            return routeHistory;
+        }
+
+        return service;
+    }]);

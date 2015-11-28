@@ -3,14 +3,18 @@
 angular.module('instastore')
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService', 'SStorage',
         function ($scope, $rootScope, rest, toaster, $state, $auth, UserService, SStorage) {
+            //if (!UserService.isGuest()) {
+            //    if (UserService.fromInstaimport) {
+            //        UserService.fromInstaimport = false;
+            //        UserService.goToInstaimport();
+            //    }
+            //    else {
+            //        UserService.goToMainStore();
+            //    }
+            //}
+
             if (!UserService.isGuest()) {
-                if (UserService.fromInstaimport) {
-                    UserService.fromInstaimport = false;
-                    UserService.goToInstaimport();
-                }
-                else {
-                    UserService.goToMainStore();
-                }
+                UserService.goToLastRouteFromProfile();
             }
 
             $scope.isSession = SStorage.isSessionStorageAvailable();
@@ -80,7 +84,7 @@ angular.module('instastore')
 
         }])
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
-        'use strict';
+
         $scope.facebookProfile = UserService.getFacebookProfile();
 
         var profile = UserService.getProfile();
@@ -88,16 +92,15 @@ angular.module('instastore')
 
         $scope.goAsBuyer = function () {
             UserService.setIsSeller(false);
-            $state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url, mode:'feed'});
+            $state.go('grid', {storeurl: profile.seller ? profile.store.store_url : profile.inviter_url, mode: 'feed'});
         };
 
         $scope.goAsSeller = function () {
             UserService.setIsSeller(true);
-            $state.go('grid', {storeurl: profile.store.store_url, mode:'feed'});
+            $state.go('grid', {storeurl: profile.store.store_url, mode: 'feed'});
         };
     }])
     .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'errorService', 'toaster', function ($scope, UserService, $state, rest, errorService, toaster) {
-        'use strict';
         $scope.profile = UserService.getProfile();
         $scope.selectStore = function (inviter_id) {
             $scope.profile.inviter_id = inviter_id;
