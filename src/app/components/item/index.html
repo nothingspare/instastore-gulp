@@ -1,4 +1,4 @@
-<div ng-if = "showPanel" ng-include="'app/components/item/newstore-panel.html'"></div>
+<div ng-if="showPanel" ng-include="'app/components/item/newstore-panel.html'"></div>
 <div class="grid-container itemfeed">
     <div ng-repeat="item in items track by $index" class="item-container">
         <div class="stream-item-pic">
@@ -28,7 +28,7 @@
                              class="action-icon active">
                             <div class="buyer-message-circle active"></div>
                         </div>
-                        <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:2})"
+                        <div ng-click="goToBuyItem(store.store_url, item.item_url)"
                              class="action-icon">
                             <div class="buy-circle"></div>
                         </div>

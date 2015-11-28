@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope', '$state', 'feedHelper', 'errorService', '$filter', 'ITEM_STATUS',
-        function ($scope, rest, toaster, UserService, $stateParams, $rootScope, $state, feedHelper, errorService, $filter, ITEM_STATUS) {
-
+    .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope',
+        '$state', 'feedHelper', 'errorService', '$filter', 'ITEM_STATUS', '$auth',
+        function ($scope, rest, toaster, UserService, $stateParams, $rootScope,
+                  $state, feedHelper, errorService, $filter, ITEM_STATUS, $auth) {
             $scope.$on('newItem', function (event, item) {
                 if (item) $scope.items.unshift(item);
                 $scope.showPanel = false;
             });
 
-            //if (!UserService.isGuest()) {
             var store;
             if (!UserService.isYourStore()) {
 
@@ -61,7 +61,36 @@ angular.module('instastore')
                     found.status = data.status;
                 }).error(errorService.alert);
             };
-            //}
+
+            $scope.goToBuyItem = function (storeurl, itemurl) {
+                if (UserService.isGuest()) {
+                    UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
+                    $auth.authenticate('facebook').then(function (res) {
+                        if (UserService.getProfile().lastRoute) {
+                            var lastRoute = UserService.getProfile().lastRoute;
+                        }
+                        UserService.login(res.data.token);
+                        UserService.setFacebookProfile(res.data.facebookProfile);
+                        res.data.profile.stores = res.data.stores;
+                        if (res.data.store) {
+                            res.data.profile.store = res.data.store;
+                            UserService.setBg(res.data.store.bg_url);
+                            UserService.setAvatar(res.data.store.avatar_url);
+                        }
+
+                        res.data.profile.lastRoute = lastRoute;
+
+                        UserService.setProfile(res.data.profile);
+                        $scope.profile = res.data.profile;
+
+                        $state.go('itemview', {storeurl: storeurl, itemurl: itemurl, tab: 2});
+
+                    }, errorService.satellizerAlert);
+                } else {
+                    $state.go('itemview', {storeurl: storeurl, itemurl: itemurl, tab: 2});
+                }
+            };
+
         }])
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
@@ -321,11 +350,11 @@ angular.module('instastore')
         }
     ])
     .controller('ItemViewTabsCtrl', ['$scope', '$rootScope', '$timeout', '$stateParams', 'UserService',
-        '$auth', 'toaster', '$state', '$location', 'CLIENT_URL',
-        function ($scope, $rootScope, $timeout, $stateParams, UserService, $auth, toaster, $state, $location, CLIENT_URL) {
+        '$auth', 'errorService', '$state', '$location',
+        function ($scope, $rootScope, $timeout, $stateParams, UserService, $auth, errorService, $state, $location) {
 
             $scope.onClickTab = function (tab) {
-                if (UserService.isGuest()) {
+                if (UserService.isGuest() && tab.index == 2) {
                     UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
                     $auth.authenticate('facebook').then(function (res) {
                         if (UserService.getProfile().lastRoute) {
@@ -347,7 +376,7 @@ angular.module('instastore')
 
                         changeStateAndUrlToTab(tab);
 
-                    }, handleError);
+                    }, errorService.satellizerAlert);
                 }
                 else {
                     changeStateAndUrlToTab(tab);
@@ -416,7 +445,7 @@ angular.module('instastore')
                                 UserService.setProfile(res.data.profile);
                                 $scope.profile = res.data.profile;
                                 $scope.currentTab = 'app/components/item/view-tab-buy.html';
-                            }, handleError);
+                            }, errorService.satellizerAlert);
                         }
                         else {
                             $scope.currentTab = 'app/components/item/view-tab-buy.html';
@@ -432,12 +461,6 @@ angular.module('instastore')
                     default:
                         $scope.currentTab = 'app/components/item/view-tab-comment.html';
                 }
-
-            function handleError(err) {
-                if (err.data) {
-                    toaster.pop('error', err.data);
-                }
-            }
         }])
     .controller('ItemLocation', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
         uiGmapGoogleMapApi.then(function () {

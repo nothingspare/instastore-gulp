@@ -329,6 +329,11 @@ angular.module('instastore')
             exception: function (data) {
                 toaster.clear();
                 toaster.pop('error', "Error: " + data.message);
+            },
+            satellizerAlert: function(err){
+                if (err.data) {
+                    toaster.pop('error', err.data);
+                }
             }
         }
     })

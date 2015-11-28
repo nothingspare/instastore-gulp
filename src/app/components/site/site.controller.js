@@ -1,20 +1,14 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'toaster', '$state', '$auth', 'UserService', 'SStorage',
-        function ($scope, $rootScope, rest, toaster, $state, $auth, UserService, SStorage) {
-            //if (!UserService.isGuest()) {
-            //    if (UserService.fromInstaimport) {
-            //        UserService.fromInstaimport = false;
-            //        UserService.goToInstaimport();
-            //    }
-            //    else {
-            //        UserService.goToMainStore();
-            //    }
-            //}
+    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'errorService', '$state', '$auth', 'UserService', 'SStorage',
+        function ($scope, $rootScope, rest, errorService, $state, $auth, UserService, SStorage) {
 
             if (!UserService.isGuest()) {
                 UserService.goToLastRouteFromProfile();
+            }
+            else {
+                UserService.goToMainStore();
             }
 
             $scope.isSession = SStorage.isSessionStorageAvailable();
@@ -39,17 +33,13 @@ angular.module('instastore')
                     else {
                         $state.go('storeselect');
                     }
-                }, handleError);
+                }, errorService.satellizerAlert);
             };
 
-            function handleError(err) {
-                if (err.data) {
-                    toaster.pop('error', err.data);
-                }
-            }
         }])
-    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$stateParams', '$location', '$anchorScroll', '$rootScope',
-        function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll, $rootScope) {
+    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$stateParams', '$location', '$anchorScroll',
+        '$auth', 'errorService',
+        function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll, $auth, errorService) {
             UserService.initStore();
 
             var profile = UserService.getProfile();
@@ -60,8 +50,27 @@ angular.module('instastore')
                 $state.go('login');
             };
 
-            $scope.profile = function () {
-                $state.go('profile');
+            $scope.goToProfile = function () {
+                if (UserService.isGuest()) {
+                    UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
+                    $auth.authenticate('facebook').then(function (res) {
+                        if (UserService.getProfile().lastRoute) {
+                            var lastRoute = UserService.getProfile().lastRoute;
+                        }
+                        UserService.login(res.data.token);
+                        UserService.setFacebookProfile(res.data.facebookProfile);
+                        res.data.profile.stores = res.data.stores;
+                        if (res.data.store) {
+                            res.data.profile.store = res.data.store;
+                            UserService.setBg(res.data.store.bg_url);
+                            UserService.setAvatar(res.data.store.avatar_url);
+                        }
+                        res.data.profile.lastRoute = lastRoute;
+                        UserService.setProfile(res.data.profile);
+                        $scope.profile = res.data.profile;
+                        $state.go('profile');
+                    }, errorService.satellizerAlert);
+                }
             };
 
             $scope.clickToOpen = function () {
