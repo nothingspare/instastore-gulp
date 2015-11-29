@@ -5,10 +5,9 @@ angular.module('instastore')
         function ($scope, $rootScope, rest, errorService, $state, $auth, UserService, SStorage) {
 
             if (!UserService.isGuest()) {
-                UserService.goToLastRouteFromProfile();
-            }
-            else {
-                UserService.goToMainStore();
+                if (!UserService.goToLastRouteFromProfile()){
+                    UserService.goToMainStore();
+                };
             }
 
             $scope.isSession = SStorage.isSessionStorageAvailable();

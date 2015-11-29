@@ -129,10 +129,12 @@ angular.module('instastore')
             goToMainStore: function () {
                 var profile = this.getProfile();
                 var state = $injector.get('$state');
-                state.go('grid', {
-                    storeurl: profile.seller ? profile.store.store_url : profile.inviter_url,
-                    mode: 'feed'
-                });
+                if (profile.seller || profile.inviter_url) {
+                    state.go('grid', {
+                        storeurl: profile.seller ? profile.store.store_url : profile.inviter_url,
+                        mode: 'feed'
+                    });
+                }
             },
             getMainStoreUrl: function () {
                 var profile = this.getProfile();
@@ -298,6 +300,9 @@ angular.module('instastore')
                     profile.lastRoute = {};
                     state.go(tempRoute.from.name, tempRoute.fromParams);
                 }
+                else {
+                    return false;
+                }
             }
         };
     }).service('errorService', function (toaster) {
@@ -330,7 +335,7 @@ angular.module('instastore')
                 toaster.clear();
                 toaster.pop('error', "Error: " + data.message);
             },
-            satellizerAlert: function(err){
+            satellizerAlert: function (err) {
                 if (err.data) {
                     toaster.pop('error', err.data);
                 }
