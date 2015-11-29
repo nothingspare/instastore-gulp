@@ -70,6 +70,9 @@ angular.module('instastore')
                         $state.go('profile');
                     }, errorService.satellizerAlert);
                 }
+                else {
+                    $state.go('profile');
+                }
             };
 
             $scope.clickToOpen = function () {
