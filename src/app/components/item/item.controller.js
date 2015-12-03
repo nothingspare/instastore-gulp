@@ -32,7 +32,7 @@ angular.module('instastore')
             }
             else {
                 $rootScope.isSeller = true;
-                rest.path = 'v1/user-items';
+                rest.path = 'v1/my-items';
                 rest.models().success(function (data) {
                     if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
                     $scope.items = data;
@@ -112,9 +112,18 @@ angular.module('instastore')
 
             $scope.isYourStore = UserService.isYourStore();
 
+            ////
+            if (!UserService.isGuest()) {
+                rest.path = 'v1/user-items';
+            }
+            else {
+                rest.path = 'v1/items';
+            }
+
             if ($stateParams.itemurl) {
                 $scope.itemUrl = CLIENT_URL + $stateParams.storeurl + '/' + $stateParams.itemurl;
-                rest.path = 'v1/items';
+
+                //rest.path is above
                 rest.models({item_url: $stateParams.itemurl}).success(function (data) {
                     $scope.item = data[0];
                     $scope.pluploadConfig.multiParams = {itemId: data[0].id};
@@ -124,6 +133,7 @@ angular.module('instastore')
                 errorService.simpleAlert('noitemwithurl');
                 $state.go('grid');
             }
+            ////
 
             $scope.save = function () {
                 $scope.item.item_url = $scope.item.title;
