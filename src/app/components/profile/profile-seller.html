@@ -1,32 +1,147 @@
-<div class="inner popup-inner">
+<div class="profile-section inner popup-inner">
+
     <form name="profileForm">
+        <div class="profile-tree">
+            <div class="row">
+                <h4 class="profile-header column">PERSONAL INFORMATION</h4>
+                <div class="profile-store-icon column">
+                    <a ui-sref="profilestore" class="btn sml">
+                        <ng-md-icon icon="local_mall" style="fill: white"></ng-md-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
         <div ng-if="treeConfig" class="profile-tree" ui-tree data-drag-enabled="false">
             <ol ui-tree-nodes="" ng-model="treeConfig">
                 <li ng-repeat="unit in treeConfig" ui-tree-node
                     collapsed="true">
-                    <div ui-tree-handle class="first-transaction row">
-                        <div ng-click="toggle(this)" class="column icon">
-                            <svg viewBox="0 0 32 23">
-                                <path fill="#e5e5e5" class="svg-debit-card"
-                                      d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
-                                <path fill="#bbb" class="svg-debit-data"
-                                      d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>
-                                <path fill="#fff" class="svg-debit-sign" d="M2.993 9h26v3h-26v-3z"></path>
-                                <path fill="#555" class="svg-debit-read" d="M-.007 3h32v3h-32v-3z"></path>
-                            </svg>
+                    <div ui-tree-handle class="first-transaction row" ng-click="toggle(this)">
+                        <div class="column icon">
+                            <div ng-if="unit.name === 'Phone number'" class="column">
+                                <ng-md-icon icon="phone" style="fill: lightcoral" size="24"></ng-md-icon>
+                            </div>
+                            <div ng-if="unit.name === 'Your card'" class="column">
+                                <ng-md-icon icon="credit_card" style="fill: lightcoral" size="24"></ng-md-icon>
+                            </div>
+                            <div ng-if="unit.name === 'Postal address'" class="column">
+                                <ng-md-icon icon="location_city" style="fill: lightcoral" size="24"></ng-md-icon>
+                            </div>
                         </div>
-                        <div ng-if="unit.name === 'Phone number'" class="column main-title">{{profile.phone}}</div>
+                        <div ng-if="unit.name === 'Phone number'" class="column main-title">
+                            <span>{{profile.phone}}</span></div>
                         <div ng-if="unit.name === 'Your card'" class="column main-title">Verified
                             {{profile.card_token_created_at | amCalendar}}
                         </div>
                         <div ng-if="unit.name === 'Postal address'" class="column main-title">{{profile.address}}, {{
-                            profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}}, {{profile.state}}, {{profile.zipcode}}
+                            profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}}, {{profile.state}},
+                            {{profile.zipcode}}
+                        </div>
+                        <div class="column icon">
+                            <ng-md-icon icon="expand_more" style="fill: lightcoral" size="24"></ng-md-icon>
                         </div>
                     </div>
                     <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: collapsed}">
-                        <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true">
-                            <div class="transaction-section-container past-transaction" ui-tree-handle>
-                                {{sub.name}}
+                        <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true" class="am-slide-top">
+                            <div ui-tree-handle class="am-slide-top">
+                                <div ng-if="unit.name === 'Phone number'">
+                                    <input ng-disabled="profile.phone_validated_at" class="regular-feild"
+                                           ng-model="profile.phone"
+                                           placeholder="Mobile number"/>
+                                    <span ng-if="profile.phone_validated_at">Number is verified!</span>
+
+                                    <div ng-if="profile.phone.length>0 && !profile.phone_validated_at"
+                                         style="margin: 10px 0 0 0;">
+                                        <div id='btn-text-verify' class="btn" ng-click="textToVerify()">&nbsp;Text me to
+                                            verify&nbsp;</div>
+                                        <input class="regular-feild" ng-model="verifyPhoneCode"
+                                               style="margin: 5px 0 0 0;"
+                                               placeholder="Enter texted code"/>
+
+                                        <div id='btn-text-verify' ng-click="sendCode(verifyPhoneCode)"
+                                             style="margin: 10px 0 0 0;"
+                                             class="btn">&nbsp;Send code&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div ng-if="unit.name === 'Your card'" class='card-wrapper'>
+                                    <svg ng-if="profile.card_token_created_at" class="svg-debit" viewBox="0 0 32 23">
+                                        <path fill="#e5e5e5" class="svg-debit-card"
+                                              d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
+                                        <path fill="#bbb" class="svg-debit-data"
+                                              d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>
+                                        <path fill="#fff" class="svg-debit-sign" d="M2.993 9h26v3h-26v-3z"></path>
+                                        <path fill="#555" class="svg-debit-read" d="M-.007 3h32v3h-32v-3z"></path>
+                                        <text x="5" y="11.6" fill="black" style="font-size: 2.8px;">**** **** ****
+                                            4589
+                                        </text>
+                                    </svg>
+
+                                    <div ng-if="!profile.card_token_created_at">
+                                        <h6 style="margin:20px">Enter your debit card requisites and push Verify
+                                            button:</h6>
+                                        <ng-form class="payment-form"
+                                                 name="verifyCardForm" novalidate="">
+                                            <center>
+                                                <div id="content-popup">
+                                                    <input placeholder="XXXX XXXX XXXX XXXX" class="regular-field"
+                                                           type="text"
+                                                           x-autocompletetype="cc-number" restrict-numeric=""
+                                                           card-number-validator=""
+                                                           card-number-formatter="" name="ccNumber"
+                                                           ng-model="cardNumber"
+                                                           card-type="cardType" required>
+                                                    <input placeholder="00 / 00" type="text" x-autocompletetype="cc-exp"
+                                                           maxlength="9"
+                                                           restrict-numeric=""
+                                                           card-expiry-validator=""
+                                                           card-expiry-formatter="" name="ccExpiry"
+                                                           ng-model="cardExpiry" required
+                                                           style="width:56px;">
+                                                    <input placeholder="CVV" type="text" x-autocompletetype="cc-csc"
+                                                           restrict-numeric=""
+                                                           card-cvc-validator=""
+                                                           card-cvc-formatter="" ng-maxlength="4" ng-pattern="/\d*/"
+                                                           name="ccCvc" ng-model="cardCvc" required style="width:38px;">
+                                                    <button ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)"
+                                                            type="submit"
+                                                            ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
+                                                            class="btn btn-buy btn-post centered"
+                                                            style="margin-top:5px;">&nbsp;Verify
+                                                        card&nbsp;</button>
+                                                </div>
+                                            </center>
+                                        </ng-form>
+                                    </div>
+                                </div>
+                                <div ng-if="unit.name === 'Postal address'" id="content">
+                                    <input class="regular-feild" type="text" ng-model="profile.address"
+                                           placeholder="Ship to address"/>
+
+                                    <input class="regular-feild" type="text" ng-model="profile.apartment"
+                                           placeholder="Enter your apartment"/>
+
+                                    <div style="inline: block; width: 240px;">
+                                        <div style="float: left;">
+                                            <input id="textfield4" type="text" ng-model="profile.city"
+                                                   placeholder="City"/>
+                                        </div>
+
+                                        <div style="float: right; margin: 0px 0px 0px 10px;">
+                                            <input id="textfield5" type="text" ng-model="profile.state"
+                                                   placeholder="State"/>
+                                        </div>
+
+                                        <div style="float: left; margin: -4px 0px 0px 0;">
+                                            <input id="textfield7" type="text" ng-model="profile.zipcode"
+                                                   placeholder="Zipcode"/>
+                                        </div>
+
+                                        <div ng-click="verifyAddress()" style=" margin: 4px 0 30px 0; float: right;"><a
+                                                href="#"
+                                                class="btn sml">
+                                            &nbsp;Verify&nbsp;</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     </ol>
@@ -34,142 +149,122 @@
             </ol>
         </div>
 
-        <ul rn-carousel rn-carousel-buffered rn-carousel-indicator rn-carousel-index="carouselIndex"
-            class="safearea popup-safearea ng-cloak">
-            <li>
-                <center>
-                    <br>
-                    <input ng-disabled="profile.phone_validated_at" class="regular-feild" ng-model="profile.phone"
-                           placeholder="Mobile number"/>
-                    <span ng-if="profile.phone_validated_at">Number is verified!</span>
+        <!--<ul rn-carousel rn-carousel-buffered rn-carousel-indicator rn-carousel-index="carouselIndex"-->
+            <!--class="safearea popup-safearea ng-cloak">-->
+            <!--<li>-->
+                <!--<center>-->
+                    <!--<br>-->
+                <!--</center>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<center>-->
+                    <!--<div class="setting-titles" style="margin: 20px 0 0 0;">-->
+                        <!--<f3>Credit card</f3>-->
+                    <!--</div>-->
 
-                    <div ng-if="profile.phone.length>0 && !profile.phone_validated_at" style="margin: 10px 0 0 0;">
-                        <div id='btn-text-verify' class="btn" ng-click="textToVerify()">&nbsp;Text me to
-                            verify&nbsp;</div>
-                        <input class="regular-feild" ng-model="verifyPhoneCode" style="margin: 5px 0 0 0;"
-                               placeholder="Enter texted code"/>
+                    <!--<svg ng-if="profile.card_token_created_at" class="svg-debit" viewBox="0 0 32 23">-->
+                        <!--<path fill="#e5e5e5" class="svg-debit-card"-->
+                              <!--d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>-->
+                        <!--<path fill="#bbb" class="svg-debit-data"-->
+                              <!--d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>-->
+                        <!--<path fill="#fff" class="svg-debit-sign" d="M2.993 9h26v3h-26v-3z"></path>-->
+                        <!--<path fill="#555" class="svg-debit-read" d="M-.007 3h32v3h-32v-3z"></path>-->
+                    <!--</svg>-->
 
-                        <div id='btn-text-verify' ng-click="sendCode(verifyPhoneCode)" style="margin: 10px 0 0 0;"
-                             class="btn">&nbsp;Send code&nbsp;</div>
-                    </div>
-                </center>
-            </li>
-            <li>
-                <center>
-                    <div class="setting-titles" style="margin: 20px 0 0 0;">
-                        <f3>Credit card</f3>
-                    </div>
+                    <!--<div ng-if="!profile.card_token_created_at">-->
+                        <!--<h6 style="margin:20px">Enter your debit card requisites and push Verify-->
+                            <!--button:</h6>-->
+                        <!--<ng-form class="payment-form"-->
+                                 <!--name="verifyCardForm" novalidate="">-->
+                            <!--<center>-->
+                                <!--<div id="content-popup">-->
+                                    <!--<input placeholder="XXXX XXXX XXXX XXXX" class="regular-field" type="text"-->
+                                           <!--x-autocompletetype="cc-number" restrict-numeric=""-->
+                                           <!--card-number-validator=""-->
+                                           <!--card-number-formatter="" name="ccNumber" ng-model="cardNumber"-->
+                                           <!--card-type="cardType" required>-->
+                                    <!--<input placeholder="00 / 00" type="text" x-autocompletetype="cc-exp" maxlength="9"-->
+                                           <!--restrict-numeric=""-->
+                                           <!--card-expiry-validator=""-->
+                                           <!--card-expiry-formatter="" name="ccExpiry" ng-model="cardExpiry" required-->
+                                           <!--style="width:56px;">-->
+                                    <!--<input placeholder="CVV" type="text" x-autocompletetype="cc-csc" restrict-numeric=""-->
+                                           <!--card-cvc-validator=""-->
+                                           <!--card-cvc-formatter="" ng-maxlength="4" ng-pattern="/\d*/"-->
+                                           <!--name="ccCvc" ng-model="cardCvc" required style="width:38px;">-->
+                                    <!--<button ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)" type="submit"-->
+                                            <!--ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"-->
+                                            <!--class="btn btn-buy btn-post centered" style="margin-top:5px;">&nbsp;Verify-->
+                                        <!--card&nbsp;</button>-->
+                                <!--</div>-->
+                            <!--</center>-->
+                        <!--</ng-form>-->
+                    <!--</div>-->
+                    <!--<h6 style="margin:20px 20px 20px 20px" ng-if="profile.card_token_created_at">You have verified card!-->
+                        <!--Verified-->
+                        <!--{{profile.card_token_created_at | amCalendar}}</h6>-->
+                <!--</center>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<center>-->
+                    <!--<div id="content">-->
+                        <!--<div class="setting-titles" style=" margin: 30px 0 10px 0;">-->
+                            <!--<f3>Verify your address</f3>-->
+                        <!--</div>-->
 
-                    <svg ng-if="profile.card_token_created_at" class="svg-debit" viewBox="0 0 32 23">
-                        <path fill="#e5e5e5" class="svg-debit-card"
-                              d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
-                        <path fill="#bbb" class="svg-debit-data"
-                              d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>
-                        <path fill="#fff" class="svg-debit-sign" d="M2.993 9h26v3h-26v-3z"></path>
-                        <path fill="#555" class="svg-debit-read" d="M-.007 3h32v3h-32v-3z"></path>
-                    </svg>
+                        <!--<h6 style="margin: 10px 20px 10px 20px;">This address will be using for sending your items</h6>-->
 
-                    <div ng-if="!profile.card_token_created_at">
-                        <h6 style="margin:20px">Enter your debit card requisites and push Verify
-                            button:</h6>
-                        <ng-form class="payment-form"
-                                 name="verifyCardForm" novalidate="">
-                            <center>
-                                <div id="content-popup">
-                                    <input placeholder="XXXX XXXX XXXX XXXX" class="regular-field" type="text"
-                                           x-autocompletetype="cc-number" restrict-numeric=""
-                                           card-number-validator=""
-                                           card-number-formatter="" name="ccNumber" ng-model="cardNumber"
-                                           card-type="cardType" required>
-                                    <input placeholder="00 / 00" type="text" x-autocompletetype="cc-exp" maxlength="9"
-                                           restrict-numeric=""
-                                           card-expiry-validator=""
-                                           card-expiry-formatter="" name="ccExpiry" ng-model="cardExpiry" required
-                                           style="width:56px;">
-                                    <input placeholder="CVV" type="text" x-autocompletetype="cc-csc" restrict-numeric=""
-                                           card-cvc-validator=""
-                                           card-cvc-formatter="" ng-maxlength="4" ng-pattern="/\d*/"
-                                           name="ccCvc" ng-model="cardCvc" required style="width:38px;">
-                                    <button ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)" type="submit"
-                                            ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
-                                            class="btn btn-buy btn-post centered" style="margin-top:5px;">&nbsp;Verify
-                                        card&nbsp;</button>
-                                </div>
-                            </center>
-                        </ng-form>
-                    </div>
-                    <h6 style="margin:20px 20px 20px 20px" ng-if="profile.card_token_created_at">You have verified card!
-                        Verified
-                        {{profile.card_token_created_at | amCalendar}}</h6>
-                </center>
-            </li>
-            <li>
-                <center>
-                    <div id="content">
-                        <div class="setting-titles" style=" margin: 30px 0 10px 0;">
-                            <f3>Verify your address</f3>
-                        </div>
+                        <!--<input class="regular-feild" type="text" ng-model="profile.address"-->
+                               <!--placeholder="Ship to address"/>-->
 
-                        <h6 style="margin: 10px 20px 10px 20px;">This address will be using for sending your items</h6>
+                        <!--<input class="regular-feild" type="text" ng-model="profile.apartment"-->
+                               <!--placeholder="Enter your apartment"/>-->
 
-                        <input class="regular-feild" type="text" ng-model="profile.address"
-                               placeholder="Ship to address"/>
+                        <!--<div style="inline: block; width: 240px;">-->
+                            <!--<div style="float: left;">-->
+                                <!--<input id="textfield4" type="text" ng-model="profile.city" placeholder="City"/>-->
+                            <!--</div>-->
 
-                        <input class="regular-feild" type="text" ng-model="profile.apartment"
-                               placeholder="Enter your apartment"/>
+                            <!--<div style="float: right; margin: 0px 0px 0px 10px;">-->
+                                <!--<input id="textfield5" type="text" ng-model="profile.state" placeholder="State"/>-->
+                            <!--</div>-->
 
-                        <div style="inline: block; width: 240px;">
-                            <div style="float: left;">
-                                <input id="textfield4" type="text" ng-model="profile.city" placeholder="City"/>
-                            </div>
+                            <!--<div style="float: left; margin: -4px 0px 0px 0;">-->
+                                <!--<input id="textfield7" type="text" ng-model="profile.zipcode"-->
+                                       <!--placeholder="Zipcode"/>-->
+                            <!--</div>-->
 
-                            <div style="float: right; margin: 0px 0px 0px 10px;">
-                                <input id="textfield5" type="text" ng-model="profile.state" placeholder="State"/>
-                            </div>
+                            <!--<div ng-click="verifyAddress()" style=" margin: 4px 0 30px 0; float: right;"><a href="#"-->
+                                                                                                            <!--class="btn sml">-->
+                                <!--&nbsp;Verify&nbsp;</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</center>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<center>-->
+                    <!--<div class="setting-titles" style=" margin: 20px 0 -10px 0;">-->
+                        <!--<f3>Apply to open store</f3>-->
+                    <!--</div>-->
 
-                            <div style="float: left; margin: -4px 0px 0px 0;">
-                                <input id="textfield7" type="text" ng-model="profile.zipcode"
-                                       placeholder="Zipcode"/>
-                            </div>
-
-                            <div ng-click="verifyAddress()" style=" margin: 4px 0 30px 0; float: right;"><a href="#"
-                                                                                                            class="btn sml">
-                                &nbsp;Verify&nbsp;</a>
-                            </div>
-                        </div>
-                    </div>
-                </center>
-            </li>
-            <li>
-                <center>
-                    <div class="setting-titles" style=" margin: 20px 0 -10px 0;">
-                        <f3>Apply to open store</f3>
-                    </div>
-
-                    <h6 style="margin: 20px;">Email us and tell us about your store.
-                        We will then see if you are qualify for a free early adapter account</h6>
+                    <!--<h6 style="margin: 20px;">Email us and tell us about your store.-->
+                        <!--We will then see if you are qualify for a free early adapter account</h6>-->
 
 
-                    <input disabled class="regular-field" style="width:214px;" type="text" ng-model="facebookLink"
-                           placeholder="Store Facebook page url"/>
+                    <!--<input disabled class="regular-field" style="width:214px;" type="text" ng-model="facebookLink"-->
+                           <!--placeholder="Store Facebook page url"/>-->
 
-                    <div style=" margin: 4px 0 10px 0;">
-                        <div class="btn">&nbsp;Apply now&nbsp;</div>
-                    </div>
-
-                    <div style="display: inline-block; width: 240px;">
-                        <div style=" margin: 4px 0 30px 0;">
-                            <a ui-sref="profilestore" class="btn sml">&nbsp;Your store profile&nbsp;</a>
-                        </div>
-                    </div>
-                </center>
-            </li>
-        </ul>
-        <div class="done-btn-ctn">
-            <button class="btn sml" ng-click="save()">&nbsp;{{profileForm.$dirty?'Save':'Done'}}&nbsp;</button>
-        </div>
+                    <!--<div style=" margin: 4px 0 10px 0;">-->
+                        <!--<div class="btn">&nbsp;Apply now&nbsp;</div>-->
+                    <!--</div>-->
+                <!--</center>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <br>
+        <button class="btn sml" ng-click="save()">&nbsp;{{profileForm.$dirty?'Save':'Done'}}&nbsp;</button>
     </form>
-    <div rn-carousel-indicators ng-if="slides.length > 1" slides="slides"
-         rn-carousel-index="carouselIndex">
-    </div>
+    <!--<div rn-carousel-indicators ng-if="slides.length > 1" slides="slides"-->
+    <!--rn-carousel-index="carouselIndex">-->
+    <!--</div>-->
 </div>

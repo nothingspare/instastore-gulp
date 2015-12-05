@@ -3992,12 +3992,6 @@ div.rn-carousel-indicator span.active {
 }
 
 svg.svg-debit {
-    position: absolute;
-    top: 81px !important;
-    right: 0 !important;
-    left: 0;
-    margin: 30px;
-    bottom: 10px;
 }
 
 .item-cta {
@@ -4012,10 +4006,7 @@ svg.svg-debit {
 
 /*Profile tree starts*/
 .profile-tree .first-transaction {
-    height: 50px;
     color: #000;
-    margin: 0 auto;
-    padding: 7px 0 0 20px;
     border-top: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
 }
@@ -4032,14 +4023,40 @@ svg.svg-debit {
 }
 
 .profile-tree .column.main-title {
-    width: 95%;
+    width: 70%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
+    font-size: 14px;
 }
 
 .profile-tree .column.icon {
-    width: 5%;
+    padding-left: 10px;
+    width: 15%;
+    text-align: center;
+}
+
+.profile-tree .card-wrapper {
+    padding: 20px;
+}
+
+.profile-tree .angular-ui-tree-nodes .angular-ui-tree-nodes {
+    padding-left: 0;
+}
+
+.profile-section h4 {
+    vertical-align: middle;
+    font-weight: 600;
+}
+
+.profile-tree .profile-header{
+    width:80%;
+    font-size:12pt;
+}
+
+.profile-tree .profile-store-icon{
+    padding: 10px 6px 3px 6px
 }
 
 /*Profile tree ends*/
