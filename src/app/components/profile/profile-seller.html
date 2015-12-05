@@ -113,7 +113,15 @@
                                     </div>
                                 </div>
                                 <div ng-if="unit.name === 'Postal address'" id="content">
-                                    <input class="regular-feild" type="text" ng-model="profile.address"
+
+                                    <div class="group">
+                                        <input type="text" ng-model="profile.address">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Ship to address</label>
+                                    </div>
+
+                                    <input class="regular-feild" type="text"
                                            placeholder="Ship to address"/>
 
                                     <input class="regular-feild" type="text" ng-model="profile.apartment"
