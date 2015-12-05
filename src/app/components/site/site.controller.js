@@ -41,8 +41,8 @@ angular.module('instastore')
         function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll, $auth, errorService) {
             UserService.initStore();
 
-            var profile = UserService.getProfile();
-            $scope.sellerAllowed = profile.seller;
+            $scope.profile = UserService.getProfile();
+            $scope.sellerAllowed = $scope.profile.seller;
 
             $scope.logout = function () {
                 UserService.logout();

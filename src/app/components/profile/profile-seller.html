@@ -1,44 +1,44 @@
 <div class="inner popup-inner">
-    <div class="x-profile" ng-click="goBack()"></div>
     <form name="profileForm">
+        <div ng-if="treeConfig" class="profile-tree" ui-tree data-drag-enabled="false">
+            <ol ui-tree-nodes="" ng-model="treeConfig">
+                <li ng-repeat="unit in treeConfig" ui-tree-node
+                    collapsed="true">
+                    <div ui-tree-handle class="first-transaction row">
+                        <div ng-click="toggle(this)" class="column icon">
+                            <svg viewBox="0 0 32 23">
+                                <path fill="#e5e5e5" class="svg-debit-card"
+                                      d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
+                                <path fill="#bbb" class="svg-debit-data"
+                                      d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>
+                                <path fill="#fff" class="svg-debit-sign" d="M2.993 9h26v3h-26v-3z"></path>
+                                <path fill="#555" class="svg-debit-read" d="M-.007 3h32v3h-32v-3z"></path>
+                            </svg>
+                        </div>
+                        <div ng-if="unit.name === 'Phone number'" class="column main-title">{{profile.phone}}</div>
+                        <div ng-if="unit.name === 'Your card'" class="column main-title">Verified
+                            {{profile.card_token_created_at | amCalendar}}
+                        </div>
+                        <div ng-if="unit.name === 'Postal address'" class="column main-title">{{profile.address}}, {{
+                            profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}}, {{profile.state}}, {{profile.zipcode}}
+                        </div>
+                    </div>
+                    <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: collapsed}">
+                        <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true">
+                            <div class="transaction-section-container past-transaction" ui-tree-handle>
+                                {{sub.name}}
+                            </div>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+
         <ul rn-carousel rn-carousel-buffered rn-carousel-indicator rn-carousel-index="carouselIndex"
             class="safearea popup-safearea ng-cloak">
             <li>
                 <center>
-                    <div class="setting-titles" style="margin: 20px 0 0 0;">
-                        <f3>User details</f3>
-                    </div>
-                    <div ng-if="profile.seller" style="display: inline-block; width: 220px; margin: 5px 0 0 0;">
-                        <div style="margin: 8px 0 0 0; float: left;">
-                            <p>Use Facebook info</p>
-                        </div>
-                        <div style="float: right;">
-                            <label class="switch-light switch">
-                                <input type="checkbox" ng-model="isFacebookOff" ng-checked="isFacebookOff"
-                                       ng-change="toggleFacebookProfile()">
-                                    <span>
-									<span>On</span>
-                                    <span>Off</span>
-                                    </span>
-                                <a></a>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="profile-img"
-                         style="background-image:url({{store.avatar_url|storeAvatar}}); margin-top: {{!profile.seller?'20px':'0px'}}"></div>
-                    <input class="regular-feild margin-top" ng-model="profile.first_name" type="text"
-                           placeholder="First name"/>
-                    <input class="regular-feild" type="text" ng-model="profile.last_name"
-                           placeholder="Last name"/>
-                </center>
-            </li>
-            <li>
-                <center>
-                    <div class="setting-titles" style="margin: 20px 0 0 0;">
-                        <f3>User details</f3>
-                    </div>
                     <br>
-                    <input class="regular-feild" ng-model="profile.email" placeholder="Email"/>
                     <input ng-disabled="profile.phone_validated_at" class="regular-feild" ng-model="profile.phone"
                            placeholder="Mobile number"/>
                     <span ng-if="profile.phone_validated_at">Number is verified!</span>

@@ -4009,3 +4009,38 @@ svg.svg-debit {
     bottom: 25px;
     left: 5px;
 }
+
+/*Profile tree starts*/
+.profile-tree .first-transaction {
+    height: 50px;
+    color: #000;
+    margin: 0 auto;
+    padding: 7px 0 0 20px;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
+
+.profile-tree .row {
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+}
+
+.profile-tree .column {
+    display: table-cell;
+    line-height: 35px;
+}
+
+.profile-tree .column.main-title {
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile-tree .column.icon {
+    width: 5%;
+}
+
+/*Profile tree ends*/
+

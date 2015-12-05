@@ -19,13 +19,34 @@ angular.module('instastore')
 
             $scope.p = {};
 
+            $scope.treeConfig = {
+                phoneNumber: {
+                    name: 'Phone number',
+                    subs:[
+                        {name:'Verify phone number'}
+                    ]
+                },
+                card: {
+                    name: 'Your card',
+                    subs:[
+                        {name:'Enter your card'}
+                    ]
+                },
+                address: {
+                        name: 'Postal address',
+                    subs:[
+                        {name:'Verify postal address'}
+                    ]
+                }
+            };
+
+
             if ($scope.profile.seller) {
                 $scope.slides = [
                     {title: 'first'},
                     {title: 'second'},
                     {title: 'third'},
-                    {title: 'fourth'},
-                    {title: 'fifth'}
+                    {title: 'fourth'}
                 ];
             } else {
                 $scope.slides = [
