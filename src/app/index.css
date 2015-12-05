@@ -4106,7 +4106,7 @@ svg.svg-debit {
 .profile-tree input:focus ~ label, .profile-tree input:valid ~ label {
     top: -20px;
     font-size: 14px;
-    color: #5264AE;
+    color: lightcoral;
 }
 
 /* BOTTOM BARS ================================= */
@@ -4124,7 +4124,7 @@ svg.svg-debit {
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: #5264AE;
+    background: lightcoral;
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
@@ -4164,7 +4164,7 @@ svg.svg-debit {
 /* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
     from {
-        background: #5264AE;
+        background: lightcoral;
     }
     to {
         width: 0;
@@ -4174,7 +4174,7 @@ svg.svg-debit {
 
 @-moz-keyframes inputHighlighter {
     from {
-        background: #5264AE;
+        background: lightcoral;
     }
     to {
         width: 0;
@@ -4184,7 +4184,7 @@ svg.svg-debit {
 
 @keyframes inputHighlighter {
     from {
-        background: #5264AE;
+        background: lightcoral;
     }
     to {
         width: 0;
