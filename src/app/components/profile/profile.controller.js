@@ -1,9 +1,9 @@
 'use strict';
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state',
-        '$rootScope', 'uiGmapGoogleMapApi', 'stripe', 'API_URL', '$http',
+        '$rootScope', 'uiGmapGoogleMapApi', 'stripe', 'API_URL', '$http', '$filter',
         function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope,
-                  uiGmapGoogleMapApi, stripe, API_URL, $http) {
+                  uiGmapGoogleMapApi, stripe, API_URL, $http, $filter) {
             uiGmapGoogleMapApi
                 .then(function () {
                     return uiGmapGoogleMapApi;
@@ -19,27 +19,61 @@ angular.module('instastore')
 
             $scope.p = {};
 
+            var orderBy = $filter('orderBy');
+
             $scope.treeConfig = {
+                '1': {
+                    code: 'name',
+                    name: 'Name',
+                    toggleThis: false,
+                    icon: 'person',
+                    subs: [
+                        {name: 'FistName LastName'}
+                    ]
+                },
                 phoneNumber: {
+                    code: 'phone',
                     name: 'Phone number',
-                    subs:[
-                        {name:'Verify phone number'}
+                    toggleThis: true,
+                    icon: 'phone',
+                    subs: [
+                        {name: 'Verify phone number'}
                     ]
                 },
                 card: {
+                    code: 'card',
                     name: 'Your card',
-                    subs:[
-                        {name:'Enter your card'}
+                    toggleThis: true,
+                    icon: 'credit_card',
+                    subs: [
+                        {name: 'Enter your card'}
                     ]
                 },
                 address: {
-                        name: 'Postal address',
-                    subs:[
-                        {name:'Verify postal address'}
+                    code: 'address',
+                    name: 'Postal address',
+                    toggleThis: true,
+                    icon: 'location_city',
+                    subs: [
+                        {name: 'Verify postal address'}
                     ]
                 }
             };
 
+            $scope.canToggle = function(code) {
+                switch(code){
+                    case 'name':
+                        return false;
+                    case 'phone':
+                        return $scope.profile.phone_validated_at?false:true;
+                    case 'card':
+                        return true;
+                    case 'address':
+                        return true;
+                    default:
+                        return false;
+                }
+            };
 
             if ($scope.profile.seller) {
                 $scope.slides = [

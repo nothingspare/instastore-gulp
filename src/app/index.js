@@ -4,7 +4,7 @@ var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
         'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngDialog', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
         'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive', 'ui.tree',
-        'angularMoment', 'payment', 'angular-stripe', 'ngMdIcons'
+        'angularMoment', 'payment', 'angular-stripe', 'ngMdIcons', 'ngMaterial'
     ]);
 
 app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider',
@@ -161,7 +161,9 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         plUploadServiceProvider.setConfig('silverLightPath', 'bower_components/plupload-angular-directive/plupload.silverlight.xap');
         plUploadServiceProvider.setConfig('resize', {width: 310, height: 390});
 
-        stripeProvider.setPublishableKey('pk_live_gAjzCf5vWrdKN8ycRSCbQDan');
+        //stripeProvider.setPublishableKey('pk_live_gAjzCf5vWrdKN8ycRSCbQDan');
+        stripeProvider.setPublishableKey('pk_test_1tDqDLjRoJ6lkeyKoQsQ4ZX0');
+
 
     }]);
 
