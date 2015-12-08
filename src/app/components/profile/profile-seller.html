@@ -143,38 +143,41 @@
                                     </div>
                                     <div ng-if="unit.name === 'Postal address'" layout="column" layout-padding
                                          layout-fill>
-                                        <div layout>
-                                            <md-input-container flex="70">
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex-sm flex-gt-sm="70">
                                                 <label>Address</label>
                                                 <input ng-model="profile.address" type="text">
                                             </md-input-container>
-                                            <md-input-container flex="30">
+                                            <md-input-container flex-sm flex-gt-sm="30">
                                                 <label>Apartment</label>
                                                 <input ng-model="profile.apartment" type="text">
                                             </md-input-container>
                                         </div>
 
-                                        <div layout>
-                                            <md-input-container flex="70">
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex-sm flex-gt-sm="70">
                                                 <label>City</label>
                                                 <input ng-model="profile.city" type="text">
                                             </md-input-container>
-                                            <md-input-container flex="30">
+                                            <md-input-container flex flex-gt-sm="30">
                                                 <label>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                                 <input ng-model="profile.state" type="text">
                                             </md-input-container>
                                         </div>
 
-                                        <div layout layout-align="center center">
-                                            <md-input-container>
-                                                <label>Zipcode&nbsp;&nbsp;</label>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Zipcode</label>
                                                 <input ng-model="profile.zipcode" type="text">
                                             </md-input-container>
-                                            <div class="btn sml" flex ng-click="verifyAddress()">
-                                                Verify
-                                            </div>
-                                            <div flex class="btn sml" ng-click="save()">
-                                                {{profileForm.$dirty?'Save':'Done'}}
+                                            <div layout layout-padding>
+                                                <div flex class="btn" flex ng-click="verifyAddress()">
+                                                    Verify
+                                                </div>
+                                                <div flex="5"></div>
+                                                <div flex class="btn" ng-click="save()">
+                                                    {{profileForm.$dirty?'Save':'Done'}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
