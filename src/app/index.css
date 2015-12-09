@@ -4012,25 +4012,12 @@ svg.svg-debit {
 }
 
 /*Profile tree starts*/
-.profile-tree .first-transaction {
-    color: #000;
-    border-top: 1px solid #bbb;
-    border-bottom: 1px solid #bbb;
-}
 
-.profile-tree .row {
-    display: table;
-    width: 100%; /*Optional*/
-    table-layout: fixed; /*Optional*/
-}
-
-.profile-tree .row.first-row {
-    margin-top: 5px;
-}
-
-.profile-tree .column {
-    display: table-cell;
-    line-height: 35px;
+.profile-tree .top-transaction {
+    background-color: rgba(222, 222, 222, 0.5);
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 500;
+    font-size: 110%;
 }
 
 .profile-tree .main-title {
@@ -4039,12 +4026,6 @@ svg.svg-debit {
     text-overflow: ellipsis;
     text-align: left;
     font-size: 14px;
-}
-
-.profile-tree .column.icon {
-    padding-left: 10px;
-    width: 15%;
-    text-align: center;
 }
 
 .profile-tree .angular-ui-tree-nodes .angular-ui-tree-nodes {
@@ -4065,138 +4046,16 @@ svg.svg-debit {
     padding: 10px 6px 3px 6px
 }
 
-.profile-tree input{
+.profile-tree input {
     box-shadow: none;
 }
 
-.profile-tree md-input-container{
+.profile-tree md-input-container {
     padding-bottom: 0;
 }
 
-/*.profile-tree .group {*/
-    /*position: relative;*/
-/*}*/
-
-/*.profile-tree input {*/
-    /*font-size: 18px;*/
-    /*padding: 0px 10px 5px 5px;*/
-    /*display: block;*/
-    /*border: none;*/
-    /*border-bottom: 1px solid #757575;*/
-
-    /*background-color: transparent;*/
-    /*box-shadow: none;*/
-    /*border-radius: 0;*/
-    /*margin-top: 20px;*/
-    /*margin-left: 15px;*/
-    /*margin-bottom: 1px;*/
-/*}*/
-
-/*.profile-tree input:focus {*/
-    /*outline: none;*/
-/*}*/
-
-/* LABEL ======================================= */
-/*.profile-tree label {*/
-    /*color: #999;*/
-    /*font-size: 18px;*/
-    /*font-weight: normal;*/
-    /*position: absolute;*/
-    /*pointer-events: none;*/
-    /*left: 15px;*/
-    /*top: 10px;*/
-    /*transition: 0.2s ease all;*/
-    /*-moz-transition: 0.2s ease all;*/
-    /*-webkit-transition: 0.2s ease all;*/
-/*}*/
-
-/* active state */
-/*.profile-tree input:focus ~ label, .profile-tree input:valid ~ label {*/
-    /*top: -20px;*/
-    /*font-size: 14px;*/
-    /*color: lightcoral;*/
-/*}*/
-
-/* BOTTOM BARS ================================= */
-/*.profile-tree .bar {*/
-    /*position: relative;*/
-    /*display: block;*/
-
-    /*margin-left: 15px;*/
-/*}*/
-
-/*.profile-tree .bar:before, .profile-tree .bar:after {*/
-    /*content: '';*/
-    /*height: 2px;*/
-    /*width: 0;*/
-    /*bottom: 1px;*/
-    /*position: absolute;*/
-    /*background: lightcoral;*/
-    /*transition: 0.2s ease all;*/
-    /*-moz-transition: 0.2s ease all;*/
-    /*-webkit-transition: 0.2s ease all;*/
-/*}*/
-
-/*.profile-tree .bar:before {*/
-    /*left: 50%;*/
-/*}*/
-
-/*.profile-tree .bar:after {*/
-    /*right: 50%;*/
-/*}*/
-
-/* active state */
-/*.profile-tree input:focus ~ .bar:before, .profile-tree input:focus ~ .bar:after {*/
-    /*width: 50%;*/
-/*}*/
-
-/* HIGHLIGHTER ================================== */
-/*.profile-tree .highlight {*/
-    /*position: absolute;*/
-    /*height: 60%;*/
-    /*width: 100px;*/
-    /*top: 25%;*/
-    /*left: 0;*/
-    /*pointer-events: none;*/
-    /*opacity: 0.5;*/
-/*}*/
-
-/* active state */
-/*.profile-tree input:focus ~ .highlight {*/
-    /*-webkit-animation: inputHighlighter 0.3s ease;*/
-    /*-moz-animation: inputHighlighter 0.3s ease;*/
-    /*animation: inputHighlighter 0.3s ease;*/
-/*}*/
-
-/* ANIMATIONS ================ */
-/*@-webkit-keyframes inputHighlighter {*/
-    /*from {*/
-        /*background: lightcoral;*/
-    /*}*/
-    /*to {*/
-        /*width: 0;*/
-        /*background: transparent;*/
-    /*}*/
-/*}*/
-
-/*@-moz-keyframes inputHighlighter {*/
-    /*from {*/
-        /*background: lightcoral;*/
-    /*}*/
-    /*to {*/
-        /*width: 0;*/
-        /*background: transparent;*/
-    /*}*/
-/*}*/
-
-/*@keyframes inputHighlighter {*/
-    /*from {*/
-        /*background: lightcoral;*/
-    /*}*/
-    /*to {*/
-        /*width: 0;*/
-        /*background: transparent;*/
-    /*}*/
-/*}*/
-
 /*Profile tree ends*/
+.io-primary-btn {
+    background-color: lightcoral !important;
+    color: white !important;
+}
