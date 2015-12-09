@@ -4065,3 +4065,10 @@ svg.svg-debit {
     background-color: lightcoral !important;
     color: white !important;
 }
+
+.io-avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}

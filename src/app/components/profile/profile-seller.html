@@ -39,6 +39,8 @@
                                 </div>
                                 <!---->
                             </div>
+                            <img ng-if="unit.code === 'name'" ng-src="{{store.avatar_url|storeAvatar}}"
+                                 class="io-avatar"/>
                             <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center" flex="10">
                                 <ng-md-icon ng-if="unit.name !== 'Phone number'"
                                             icon="{{collapsed?'expand_more':'expand_less'}}"
@@ -49,6 +51,7 @@
                                             icon="{{collapsed?'expand_more':'expand_less'}}" style="fill: lightcoral"
                                             size="24">
                                 </ng-md-icon>
+                                <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}"/>
                             </div>
                         </div>
                         <md-divider></md-divider>
@@ -148,9 +151,10 @@
                                                          layout="column" layout-align="center center">
                                                         <div layout layout-align="center center"
                                                              class="am-fade-and-scale">
-                                                            <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
-                                                                       ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
-                                                                       type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
+                                                            <md-button
+                                                                    class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                                    ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
+                                                                    type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
                                                             </md-button>
                                                         </div>
                                                     </div>
