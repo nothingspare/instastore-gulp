@@ -1,16 +1,16 @@
 <div layout>
     <div flex="30" hide-sm></div>
-    <md-card layout="column" flex>
+    <md-card layout="column" flex class="profile-tree">
         <form name="profileForm" layout="column">
             <div layout layout-align="center center" layout-padding>
                 <div flex="8" ng-click="goBack()" class="back"></div>
                 <h4 flex class="profile-header">PERSONAL INFORMATION</h4>
-
-                <div layout layout-align="center center" flex-sm="20" ui-sref="profilestore" class="btn sml">
-                    <ng-md-icon icon="local_mall" style="fill: white"></ng-md-icon>
-                </div>
+                <md-button ui-sref="profilestore" class="md-fab" style="background-color: lightcoral"
+                           aria-label="Profile Store">
+                    <ng-md-icon icon="local_mall"></ng-md-icon>
+                </md-button>
             </div>
-            <div ng-if="treeConfig" class="profile-tree" ui-tree data-drag-enabled="false">
+            <div ng-if="treeConfig" ui-tree data-drag-enabled="false">
                 <md-divider></md-divider>
                 <ol ui-tree-nodes="" ng-model="treeConfig">
                     <li ng-repeat="unit in treeConfig" ui-tree-node collapsed="true">
@@ -22,11 +22,12 @@
                             <!---->
                             <div layout layout-align="start center" flex>
                                 <div ng-if="unit.name === 'Phone number'" class="main-title">
-                                    <span>{{profile.phone?(profile.phone|tel):'Verify phone number'}}</span>
+                                    <span>{{profile.phone?(profile.phone|tel):'Phone Number'}}</span>
                                 </div>
                                 <div ng-if="unit.name === 'Your card'" class="main-title">
-                                    {{profile.card_token_created_at?'Card verified ' + (profile.card_token_created_at |
-                                    amCalendar):'Enter debit card requisites'}}
+                                    {{profile.card_token_created_at?'Debit Card Verified ' +
+                                    (profile.card_token_created_at |
+                                    amCalendar):'Enter Debit Card Requisites'}}
                                 </div>
                                 <div ng-if="unit.name === 'Postal address'" class="main-title">{{profile.address}},
                                     {{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},
@@ -39,13 +40,13 @@
                                 <!---->
                             </div>
                             <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center" flex="10">
-                                <ng-md-icon layout layout-fill ng-if="unit.name !== 'Phone number'"
+                                <ng-md-icon ng-if="unit.name !== 'Phone number'"
                                             icon="{{collapsed?'expand_more':'expand_less'}}"
                                             style="fill: lightcoral"
                                             size="24">
                                 </ng-md-icon>
                                 <ng-md-icon ng-if="unit.name === 'Phone number' && !profile.phone_validated_at"
-                                            icon="expand_more" style="fill: lightcoral"
+                                            icon="{{collapsed?'expand_more':'expand_less'}}" style="fill: lightcoral"
                                             size="24">
                                 </ng-md-icon>
                             </div>
@@ -59,14 +60,13 @@
                                         <!--<div layout layout-padding><span class="md-caption">We will send you SMS with verification code</span></div>-->
                                         <div layout ng-if="!profile.phone_validated_at">
                                             <md-input-container flex>
-                                                <label>Mobile number</label>
+                                                <label>Phone number</label>
                                                 <input ng-model="profile.phone" type="text">
                                             </md-input-container>
                                             <div layout layout-align="center center"
                                                  ng-if="profile.phone.length>7 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-accent md-raised md-hue-1"
-                                                           style="background-color: lightcoral; color:white;"
+                                                <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
                                                            ng-click="textToVerify()">Send Code
                                                 </md-button>
                                             </div>
@@ -87,6 +87,10 @@
                                         <h4 ng-if="profile.phone_validated_at">Number is verified!</h4>
                                     </div>
                                     <div layout ng-if="unit.name === 'Your card'">
+                                        <md-button ng-if="profile.card_token_created_at" class="md-fab right-corner-btn"
+                                                   ng-click="removeSellerCard()" aria-label="Delete Card">
+                                            <ng-md-icon icon="close"></ng-md-icon>
+                                        </md-button>
                                         <div layout layout-fill layout-padding
                                              ng-if="profile.card_token_created_at">
                                             <svg class="svg-debit" viewBox="0 0 32 23">
@@ -106,11 +110,11 @@
                                             </svg>
                                         </div>
                                         <div ng-if="!profile.card_token_created_at" layout="column" layout-fill
-                                             layout-wrap>
+                                             layout-padding>
                                             <ng-form name="verifyCardForm" novalidate=""
                                                      layout-wrap>
                                                 <div layout layout-sm="column" layout-fill>
-                                                    <md-input-container flex-sm flex-gt-sm="80">
+                                                    <md-input-container flex>
                                                         <label>Card number</label>
                                                         <input ng-model="cardNumber" type="text"
                                                                card-number-validator=""
@@ -119,7 +123,9 @@
                                                                ng-model="cardNumber"
                                                                card-type="cardType" required>
                                                     </md-input-container>
-                                                    <md-input-container flex-sm flex-gt-sm="20">
+                                                </div>
+                                                <div layout layout-sm="column" layout-fill>
+                                                    <md-input-container flex>
                                                         <label>00/00</label>
                                                         <input type="text"
                                                                x-autocompletetype="cc-exp"
@@ -129,9 +135,7 @@
                                                                card-expiry-formatter="" name="ccExpiry"
                                                                ng-model="cardExpiry" required>
                                                     </md-input-container>
-                                                </div>
-                                                <div layout layout-sm="column" layout-fill>
-                                                    <md-input-container flex-sm flex-gt-sm="50">
+                                                    <md-input-container flex>
                                                         <label>CVV</label>
                                                         <input type="text" x-autocompletetype="cc-csc"
                                                                restrict-numeric=""
@@ -140,13 +144,14 @@
                                                                ng-pattern="/\d*/"
                                                                name="ccCvc" ng-model="cardCvc" required>
                                                     </md-input-container>
-                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)"
-                                                         flex-sm flex-gt-sm="50"
+                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)" flex
                                                          layout="column" layout-align="center center">
-                                                        <div layout layout-align="center center" layout-padding
-                                                             layout-fill type="submit"
-                                                             ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
-                                                             class="btn btn-buy btn-post">Verify Card
+                                                        <div layout layout-align="center center"
+                                                             class="am-fade-and-scale">
+                                                            <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                                       ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
+                                                                       type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
+                                                            </md-button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -161,7 +166,7 @@
                                                 <input ng-model="profile.address" type="text">
                                             </md-input-container>
                                             <md-input-container flex-sm flex-gt-sm="30">
-                                                <label>Apartment</label>
+                                                <label>Apt</label>
                                                 <input ng-model="profile.apartment" type="text">
                                             </md-input-container>
                                         </div>
@@ -180,14 +185,11 @@
                                                 <label>Zipcode</label>
                                                 <input ng-model="profile.zipcode" type="text">
                                             </md-input-container>
-                                            <div layout layout-padding>
-                                                <div flex class="btn" flex ng-click="verifyAddress()">
-                                                    Verify
-                                                </div>
-                                                <div ng-if="profileForm.$dirty" flex="5"></div>
-                                                <div ng-if="profileForm.$dirty" flex class="btn" ng-click="save()">
-                                                    {{profileForm.$dirty?'Save':'Done'}}
-                                                </div>
+                                            <div layout layout-align="center center"
+                                                 class="am-fade-and-scale">
+                                                <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                           ng-click="verifyAddress()">Verify Address
+                                                </md-button>
                                             </div>
                                         </div>
                                     </div>

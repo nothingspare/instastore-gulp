@@ -12,9 +12,7 @@ angular.module('instastore')
                     $scope.renderMap = true;
                 });
 
-
             var initProfile;
-            var isVerified;
             $scope.profile = initProfile = UserService.getProfile();
 
             $scope.p = {};
@@ -60,12 +58,12 @@ angular.module('instastore')
                 }
             };
 
-            $scope.canToggle = function(code) {
-                switch(code){
+            $scope.canToggle = function (code) {
+                switch (code) {
                     case 'name':
                         return false;
                     case 'phone':
-                        return $scope.profile.phone_validated_at?false:true;
+                        return $scope.profile.phone_validated_at ? false : true;
                     case 'card':
                         return true;
                     case 'address':
@@ -73,6 +71,17 @@ angular.module('instastore')
                     default:
                         return false;
                 }
+            };
+
+            $scope.removeSellerCard = function () {
+                rest.path = 'v1/link/remove-seller-card';
+                rest.deleteModel().success(function () {
+                        delete($scope.profile.recipient_id);
+                        delete($scope.profile.card_token);
+                        delete($scope.profile.card_token_created_at);
+                        UserService.setProfile($scope.profile);
+                    }
+                ).error(errorCallback);
             };
 
             if ($scope.profile.seller) {
@@ -123,13 +132,6 @@ angular.module('instastore')
             $scope.facebookLink = facebookUser.link;
 
             $scope.save = function () {
-                if (!isVerified) {
-                    $scope.profile.apartment = initProfile.apartment;
-                    $scope.profile.address = initProfile.address;
-                    $scope.profile.state = initProfile.state;
-                    $scope.profile.city = initProfile.city;
-                    $scope.profile.zipcode = initProfile.zipcode;
-                }
                 rest.path = 'v1/profiles';
                 rest.putModel($scope.profile).success(function () {
                         toaster.pop('success', "Profile saved");
@@ -196,13 +198,13 @@ angular.module('instastore')
                     apartment: $scope.profile.apartment
                 }).success(function (data) {
                     if (data.AddressValidateResponse.Address) {
-                        isVerified = true;
                         toaster.pop('success', "Address verified!");
                         $scope.profile.apartment = data.AddressValidateResponse.Address.Address1;
                         $scope.profile.address = data.AddressValidateResponse.Address.Address2;
                         $scope.profile.state = data.AddressValidateResponse.Address.State;
                         $scope.profile.city = data.AddressValidateResponse.Address.City;
                         $scope.profile.zipcode = data.AddressValidateResponse.Address.Zip5;
+                        UserService.setProfile($scope.profile);
                     }
                     else {
                         toaster.pop('error', "Address verification failed!");

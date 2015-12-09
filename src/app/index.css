@@ -4054,6 +4054,12 @@ svg.svg-debit {
     padding-bottom: 0;
 }
 
+.profile-tree .right-corner-btn {
+    position: absolute;
+    right: 0;
+    background-color: lightcoral;
+}
+
 /*Profile tree ends*/
 .io-primary-btn {
     background-color: lightcoral !important;
