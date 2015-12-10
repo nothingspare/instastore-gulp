@@ -1,5 +1,5 @@
 <div layout>
-    <div flex="30" hide-sm></div>
+    <div flex="25" hide-sm></div>
     <md-card layout="column" flex class="profile-tree">
         <form name="profileForm" layout="column">
             <div layout layout-align="center center" layout-padding>
@@ -21,7 +21,7 @@
                             </div>
                             <!---->
                             <div layout layout-align="start center" flex>
-                                <div ng-if="unit.name === 'Phone number'" class="main-title">
+                                <div layout ng-if="unit.name === 'Phone number'" class="main-title">
                                     <span>{{profile.phone?(profile.phone|tel):'Phone Number'}}</span>
                                 </div>
                                 <div ng-if="unit.name === 'Your card'" class="main-title">
@@ -39,8 +39,19 @@
                                 </div>
                                 <!---->
                             </div>
-                            <img ng-if="unit.code === 'name'" ng-src="{{store.avatar_url|storeAvatar}}"
-                                 class="io-avatar"/>
+
+                            <div ng-if="unit.code==='phone' && profile.phone_validated_at" layout="column"
+                                 layout-align="center center" flex="10">
+                                <ng-md-icon ng-click="removePhone()" icon="cancel"
+                                            style="fill: lightcoral"></ng-md-icon>
+                            </div>
+
+                            <div ng-if="unit.code === 'name'" layout="column"
+                                 layout-align="center center" flex="10">
+                                <img ng-src="{{store.avatar_url|storeAvatar}}"
+                                     class="io-avatar"/>
+                            </div>
+
                             <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center" flex="10">
                                 <ng-md-icon ng-if="unit.name !== 'Phone number'"
                                             icon="{{collapsed?'expand_more':'expand_less'}}"
@@ -51,8 +62,8 @@
                                             icon="{{collapsed?'expand_more':'expand_less'}}" style="fill: lightcoral"
                                             size="24">
                                 </ng-md-icon>
-                                <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}"/>
                             </div>
+
                         </div>
                         <md-divider></md-divider>
                         <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: collapsed}">
@@ -206,5 +217,5 @@
             </div>
         </form>
     </md-card>
-    <div flex="30" hide-sm></div>
+    <div flex="25" hide-sm></div>
 </div>

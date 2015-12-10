@@ -84,6 +84,18 @@ angular.module('instastore')
                 ).error(errorCallback);
             };
 
+            $scope.removePhone = function(){
+                rest.path = 'v1/link/remove-phone';
+                rest.deleteModel().success(function () {
+                        delete($scope.profile.phone);
+                        delete($scope.profile.phone_code);
+                        delete($scope.profile.phone_valid_until);
+                        delete($scope.profile.phone_validated_at);
+                        UserService.setProfile($scope.profile);
+                    }
+                ).error(errorCallback);
+            };
+
             if ($scope.profile.seller) {
                 $scope.slides = [
                     {title: 'first'},
