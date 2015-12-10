@@ -254,9 +254,10 @@ angular.module('instastore')
 
                 stripe.card.createToken(card)
                     .then(function (token) {
-                        return $http.post(API_URL + 'v1/link/save-tokenized-card?access-token=' + UserService.getToken(), {token: token.id});
+                        return $http.post(API_URL + 'v1/link/save-tokenized-card?access-token=' + UserService.getToken(), {token: token.id, cardLastDigits: cardNumber.slice(cardNumber.length-4, cardNumber.length)});
                     }).then(function (res) {
                         $scope.profile.card_token_created_at = res.data.card.card_token_created_at;
+                        $scope.profile.card_last_digits = res.data.card.card_last_digits;
                         UserService.setProfile($scope.profile);
                     }).catch(function (res) {
                         toaster.pop('error', "Stripe error", res.data.message);
