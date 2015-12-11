@@ -84,7 +84,7 @@ angular.module('instastore')
                 ).error(errorCallback);
             };
 
-            $scope.removePhone = function(){
+            $scope.removePhone = function () {
                 rest.path = 'v1/link/remove-phone';
                 rest.deleteModel().success(function () {
                         delete($scope.profile.phone);
@@ -131,7 +131,7 @@ angular.module('instastore')
                 }
             };
 
-            rest.path = 'v1/stores';
+            rest.path = 'v1/my-stores';
             rest.model($scope.profile.store.id).success(function (store) {
                 $scope.store = store;
                 $rootScope.bgUrl = store.bg_url;
@@ -153,7 +153,7 @@ angular.module('instastore')
             };
 
             $scope.saveUrl = function () {
-                rest.path = 'v1/stores';
+                rest.path = 'v1/my-stores';
                 rest.putModel($scope.profile.store).success(function (data) {
                     toaster.pop('success', "Store url saved");
                     $scope.profile.store.store_url = data.store_url;
@@ -254,7 +254,10 @@ angular.module('instastore')
 
                 stripe.card.createToken(card)
                     .then(function (token) {
-                        return $http.post(API_URL + 'v1/link/save-tokenized-card?access-token=' + UserService.getToken(), {token: token.id, cardLastDigits: cardNumber.slice(cardNumber.length-4, cardNumber.length)});
+                        return $http.post(API_URL + 'v1/link/save-tokenized-card?access-token=' + UserService.getToken(), {
+                            token: token.id,
+                            cardLastDigits: cardNumber.slice(cardNumber.length - 4, cardNumber.length)
+                        });
                     }).then(function (res) {
                         $scope.profile.card_token_created_at = res.data.card.card_token_created_at;
                         $scope.profile.card_last_digits = res.data.card.card_last_digits;
@@ -265,10 +268,44 @@ angular.module('instastore')
             };
 
         }])
-    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL',
-        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL) {
+    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$rootScope',
+        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $rootScope) {
 
             $scope.CLIENT_URL = CLIENT_URL;
+
+            $scope.treeStoreConfig = {
+                '1': {
+                    code: 'specialities',
+                    name: 'Name, Description, Specialities',
+                    toggleThis: true,
+                    icon: 'local_mall',
+                    subs: [
+                        {name: 'Specialities'}
+                    ],
+                    collapsed: true
+                },
+                '2': {
+                    code: 'location',
+                    name: 'Store Location',
+                    toggleThis: true,
+                    icon: 'place',
+                    subs: [
+                        {name: 'Verify phone number'}
+                    ],
+                    collapsed: true
+                }
+            };
+
+            $scope.canToggle = function (code) {
+                switch (code) {
+                    case 'specialities':
+                        return true;
+                    case 'location':
+                        return true;
+                    default:
+                        return false;
+                }
+            };
 
             uiGmapGoogleMapApi
                 .then(function () {
@@ -310,19 +347,15 @@ angular.module('instastore')
             $scope.save = function () {
                 if ($scope.profile.store.place) {
                     if ($scope.profile.store.place.types) {
-                        if ($scope.profile.store.place.types.indexOf('street_address') > -1) {
-                            $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k;
-                            $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D;
+                            $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k || $scope.profile.store.place.geometry.location.G;
+                            $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D || $scope.profile.store.place.geometry.location.K;
                             $scope.profile.store.address = $scope.profile.store.place.formatted_address;
-                        } else {
-                            toaster.pop('error', 'Invalid address')
-                        }
                     } else {
                         toaster.pop('error', 'Invalid address')
                     }
                 }
                 $scope.profile.store.store_url = $scope.profile.store.store_name;
-                rest.path = 'v1/stores';
+                rest.path = 'v1/my-stores';
                 rest.putModel($scope.profile.store).success(function (store) {
                     toaster.pop('success', "Store saved");
                     delete $scope.profile.store.place;

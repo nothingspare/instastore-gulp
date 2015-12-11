@@ -4060,13 +4060,40 @@ svg.svg-debit {
     background-color: lightcoral;
 }
 
+.profile-tree .hint {
+    /* Position the hint */
+    position: absolute;
+    left: 2px;
+    right: auto;
+    bottom: 7px;
+    /* Copy styles from ng-messages */
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    /* Set our own color */
+    color: grey;
+}
+
+.profile-tree .hint.ng-hide,
+.profile-tree .hint.ng-enter,
+.profile-tree .hint.ng-leave.ng-leave-active {
+    bottom: 26px;
+    opacity: 0;
+}
+
+.profile-tree .hint.ng-leave,
+.profile-tree .hint.ng-enter.ng-enter-active {
+    bottom: 7px;
+    opacity: 1;
+}
+
 /*Profile tree ends*/
 .io-primary-btn {
     background-color: lightcoral !important;
     color: white !important;
 }
 
-.io-avatar{
+.io-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
