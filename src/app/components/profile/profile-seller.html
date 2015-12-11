@@ -5,10 +5,6 @@
             <div layout layout-align="center center" layout-padding>
                 <div flex="8" ng-click="goBack()" class="back"></div>
                 <h4 flex class="profile-header">PERSONAL INFORMATION</h4>
-                <md-button ui-sref="profilestore" class="md-fab" style="background-color: lightcoral"
-                           aria-label="Profile Store">
-                    <ng-md-icon icon="local_mall"></ng-md-icon>
-                </md-button>
             </div>
             <div ng-if="treeConfig" ui-tree data-drag-enabled="false">
                 <md-divider></md-divider>
@@ -234,29 +230,27 @@
                             <!--Left icon-->
                             <!--Main title-->
                             <div layout layout-align="start center" flex>
-                                <div ng-if="unit.code!=='location'" layout class="main-title">
+                                <div ng-if="unit.code!=='location' || unit.code!=='instagram'" layout
+                                     class="main-title">
                                     <span>{{unit.name}}</span>
                                 </div>
                                 <div ng-if="unit.code==='location'" layout>
-                                    <span flex class="main-title">{{profile.store.address}}</span>
+                                    <span flex class="main-title">{{profile.store.address?profile.store.address:'Store Location'}}</span>
                                 </div>
+
                             </div>
                             <!--Main Title-->
                             <!--Right Icon-->
-                            <div ng-if="unit.code === 'name'" layout="column"
-                                 layout-align="center center" flex="10">
-                                <img ng-src="{{store.avatar_url|storeAvatar}}"
-                                     class="io-avatar"/>
-                            </div>
-
+                            <ng-md-icon ng-if="unit.code==='instagram' && profile.instagramId" layout="column"
+                                        layout-align="center center" flex="10" icon="import_export"
+                                        style="fill: lightcoral" ui-sref="instaimport({storeurl:mainStoreUrl})"></ng-md-icon>
+                            <ng-md-icon ng-if="unit.code==='instagram' && !profile.instagramId" layout="column"
+                                        layout-align="center center" flex="10" icon="link"
+                                        style="fill: lightcoral" ng-click="linkInstagram()"></ng-md-icon>
                             <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center" flex="10">
-                                <ng-md-icon ng-if="unit.name !== 'Phone number'"
+                                <ng-md-icon ng-if="unit.code !== 'instagram'"
                                             icon="{{collapsed?'expand_more':'expand_less'}}"
                                             style="fill: lightcoral"
-                                            size="24">
-                                </ng-md-icon>
-                                <ng-md-icon ng-if="unit.name === 'Phone number' && !profile.phone_validated_at"
-                                            icon="{{collapsed?'expand_more':'expand_less'}}" style="fill: lightcoral"
                                             size="24">
                                 </ng-md-icon>
                             </div>
@@ -323,6 +317,36 @@
                                                        ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
                                             </md-button>
                                         </div>
+                                    </div>
+                                    <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
+                                        <h6>Upload a full-length background picture of yourself
+                                            in your store as your background image. Then crop your head to make your
+                                            profile.</h6>
+
+                                        <div ng-controller="CropUploadCtrl">
+                                            <!--<input type="file" id="fileInput" class="custom-file-input"/>-->
+                                            <div layout flex class="crop-area md-whiteframe-17dp" layout-margin>
+                                                <choose-file-button
+                                                        style="position:absolute; right:{{myImage?75:15}}px">
+                                                    <md-button aria-label="Upload a file" class="md-fab"
+                                                               style="background-color:lightcoral;">
+                                                        <ng-md-icon icon="photo_camera"></ng-md-icon>
+                                                    </md-button>
+                                                    <input id="fileInput" type="file">
+                                                </choose-file-button>
+                                                <md-button ng-if="myImage" ng-click="uploadCrop()" aria-label="Crop"
+                                                           class="md-fab am-fade"
+                                                           style="background-color:lightcoral;position: absolute; right:15px">
+                                                    <ng-md-icon icon="crop"></ng-md-icon>
+                                                </md-button>
+                                                <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="unit.code==='instagram'" layout layout-padding>
+                                        <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                   ng-click="linkInstagram()">&nbsp;Link&nbsp;
+                                        </md-button>
                                     </div>
                                     <md-divider></md-divider>
                                 </div>

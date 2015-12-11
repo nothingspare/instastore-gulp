@@ -293,6 +293,22 @@ angular.module('instastore')
                         {name: 'Verify phone number'}
                     ],
                     collapsed: true
+                },
+                '3': {
+                    code: 'crop',
+                    name: 'Crop Background To Store Avatar',
+                    toggleThis: true,
+                    icon: 'crop',
+                    subs: [{name: 'Upload and Crop'}],
+                    collapsed: true
+                },
+                '4': {
+                    code: 'instagram',
+                    name: 'Instagram Import',
+                    toggleThis: true,
+                    icon: 'instagram',
+                    subs: [{name: 'Instagram Import'}],
+                    collapsed: true
                 }
             };
 
@@ -302,6 +318,10 @@ angular.module('instastore')
                         return true;
                     case 'location':
                         return true;
+                    case 'crop':
+                        return true;
+                    case 'instagram':
+                        return false;
                     default:
                         return false;
                 }
@@ -347,9 +367,9 @@ angular.module('instastore')
             $scope.save = function () {
                 if ($scope.profile.store.place) {
                     if ($scope.profile.store.place.types) {
-                            $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k || $scope.profile.store.place.geometry.location.G;
-                            $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D || $scope.profile.store.place.geometry.location.K;
-                            $scope.profile.store.address = $scope.profile.store.place.formatted_address;
+                        $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k || $scope.profile.store.place.geometry.location.G;
+                        $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D || $scope.profile.store.place.geometry.location.K;
+                        $scope.profile.store.address = $scope.profile.store.place.formatted_address;
                     } else {
                         toaster.pop('error', 'Invalid address')
                     }

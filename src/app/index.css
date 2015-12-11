@@ -4087,6 +4087,21 @@ svg.svg-debit {
     opacity: 1;
 }
 
+.profile-tree .crop-area{
+    height: 300px;
+}
+
+.profile-area .crop-area choose-file-button{
+    position: absolute;
+    right:30px;
+}
+
+.profile-area md-button{
+    background-color: lightcoral;
+}
+
+
+
 /*Profile tree ends*/
 .io-primary-btn {
     background-color: lightcoral !important;
