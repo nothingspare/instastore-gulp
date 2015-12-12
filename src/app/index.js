@@ -121,7 +121,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         var configInstagram = {
             name: 'instagram',
             url: '/v1/link/instagram',
-            redirectUri: 'http://instastore.us/profilestore/',
+            redirectUri: 'http://instastore.us/',
             clientId: '59429297486f4f2393762a1febf17583',
             requiredUrlParams: ['scope'],
             scope: ['likes'],

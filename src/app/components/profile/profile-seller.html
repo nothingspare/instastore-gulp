@@ -212,7 +212,7 @@
                 </ol>
             </div>
         </form>
-        <div ng-controller="ProfileStoreIndex">
+        <div ng-if="profile.seller" ng-controller="ProfileStoreIndex">
             <div layout layout-align="center center" layout-padding>
                 <h4 class="profile-header">STORE INFORMATION</h4>
             </div>
@@ -230,7 +230,7 @@
                             <!--Left icon-->
                             <!--Main title-->
                             <div layout layout-align="start center" flex>
-                                <div ng-if="unit.code!=='location' || unit.code!=='instagram'" layout
+                                <div ng-if="unit.code === 'specialities' || unit.code === 'crop' || unit.code === 'instagram'" layout
                                      class="main-title">
                                     <span>{{unit.name}}</span>
                                 </div>

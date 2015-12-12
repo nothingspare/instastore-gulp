@@ -58,6 +58,10 @@ angular.module('instastore')
                 }
             };
 
+            if (!$scope.profile.seller) {
+                delete($scope.treeConfig.card);
+            }
+
             $scope.canToggle = function (code) {
                 switch (code) {
                     case 'name':
