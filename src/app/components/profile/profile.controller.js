@@ -60,6 +60,13 @@ angular.module('instastore')
 
             if (!$scope.profile.seller) {
                 delete($scope.treeConfig.card);
+                $scope.treeConfig['promo'] = {
+                    code: 'promo',
+                    name: 'Enter Promo Code to Become Seller',
+                    toggleThis: 'true',
+                    icon: 'local_mall',
+                    subs: [{name: 'Enter Promo Code to Become Seller'}]
+                };
             }
 
             $scope.canToggle = function (code) {
@@ -71,6 +78,8 @@ angular.module('instastore')
                     case 'card':
                         return true;
                     case 'address':
+                        return true;
+                    case 'promo':
                         return true;
                     default:
                         return false;

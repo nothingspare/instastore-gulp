@@ -33,6 +33,9 @@
                                 <div ng-if="unit.name === 'Name'" class="main-title">
                                     {{profile.fullName}}
                                 </div>
+                                <div ng-if="unit.code === 'promo'" class="main-title">
+                                    {{unit.name}}
+                                </div>
                                 <!---->
                             </div>
 
@@ -67,7 +70,6 @@
                                 class="am-collapse">
                                 <div ui-tree-handle>
                                     <div ng-if="unit.name === 'Phone number'" layout="column" layout-padding>
-                                        <!--<div layout layout-padding><span class="md-caption">We will send you SMS with verification code</span></div>-->
                                         <div layout ng-if="!profile.phone_validated_at">
                                             <md-input-container flex>
                                                 <label>Phone number</label>
@@ -204,6 +206,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div ng-if="unit.code ==='promo'">
+                                        <div layout layout-padding>
+                                            <md-input-container flex>
+                                                <label>Invite Code</label>
+                                                <input ng-model="inviteCode" type="text">
+                                            </md-input-container>
+                                            <div layout layout-align="center center"
+                                                 ng-if="inviteCode"
+                                                 class="am-fade-and-scale">
+                                                <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                           ng-click="makeMeSeller(inviteCode)">Send Code
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <md-divider></md-divider>
                                 </div>
                             </li>
@@ -230,7 +247,8 @@
                             <!--Left icon-->
                             <!--Main title-->
                             <div layout layout-align="start center" flex>
-                                <div ng-if="unit.code === 'specialities' || unit.code === 'crop' || unit.code === 'instagram'" layout
+                                <div ng-if="unit.code === 'specialities' || unit.code === 'crop' || unit.code === 'instagram'"
+                                     layout
                                      class="main-title">
                                     <span>{{unit.name}}</span>
                                 </div>
@@ -243,7 +261,8 @@
                             <!--Right Icon-->
                             <ng-md-icon ng-if="unit.code==='instagram' && profile.instagramId" layout="column"
                                         layout-align="center center" flex="10" icon="import_export"
-                                        style="fill: lightcoral" ui-sref="instaimport({storeurl:mainStoreUrl})"></ng-md-icon>
+                                        style="fill: lightcoral"
+                                        ui-sref="instaimport({storeurl:mainStoreUrl})"></ng-md-icon>
                             <ng-md-icon ng-if="unit.code==='instagram' && !profile.instagramId" layout="column"
                                         layout-align="center center" flex="10" icon="link"
                                         style="fill: lightcoral" ng-click="linkInstagram()"></ng-md-icon>
