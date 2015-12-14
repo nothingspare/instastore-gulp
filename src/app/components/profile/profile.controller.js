@@ -38,15 +38,6 @@ angular.module('instastore')
                         {name: 'Verify phone number'}
                     ]
                 },
-                card: {
-                    code: 'card',
-                    name: 'Your card',
-                    toggleThis: true,
-                    icon: 'credit_card',
-                    subs: [
-                        {name: 'Enter your card'}
-                    ]
-                },
                 address: {
                     code: 'address',
                     name: 'Postal address',
@@ -68,8 +59,6 @@ angular.module('instastore')
                         return false;
                     case 'phone':
                         return $scope.profile.phone_validated_at ? false : true;
-                    case 'card':
-                        return true;
                     case 'address':
                         return true;
                     default:
@@ -289,6 +278,15 @@ angular.module('instastore')
                     collapsed: true
                 },
                 '2': {
+                    code: 'card',
+                    name: 'Your card',
+                    toggleThis: true,
+                    icon: 'credit_card',
+                    subs: [
+                        {name: 'Enter your card'}
+                    ]
+                },
+                '3': {
                     code: 'location',
                     name: 'Store Location',
                     toggleThis: true,
@@ -298,7 +296,7 @@ angular.module('instastore')
                     ],
                     collapsed: true
                 },
-                '3': {
+                '4': {
                     code: 'crop',
                     name: 'Crop Background To Store Avatar',
                     toggleThis: true,
@@ -306,7 +304,7 @@ angular.module('instastore')
                     subs: [{name: 'Upload and Crop'}],
                     collapsed: true
                 },
-                '4': {
+                '5': {
                     code: 'instagram',
                     name: 'Instagram Import',
                     toggleThis: true,
@@ -326,6 +324,8 @@ angular.module('instastore')
                         return true;
                     case 'instagram':
                         return false;
+                    case 'card':
+                        return true;
                     default:
                         return false;
                 }

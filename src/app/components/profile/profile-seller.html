@@ -20,11 +20,6 @@
                                 <div layout ng-if="unit.name === 'Phone number'" class="main-title">
                                     <span>{{profile.phone?(profile.phone|tel):'Phone Number'}}</span>
                                 </div>
-                                <div ng-if="unit.name === 'Your card'" class="main-title">
-                                    {{profile.card_token_created_at?'Debit Card Verified ' +
-                                    (profile.card_token_created_at |
-                                    amCalendar):'Enter Debit Card Requisites'}}
-                                </div>
                                 <div ng-if="unit.name === 'Postal address'" class="main-title">{{profile.address}},
                                     {{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},
                                     {{profile.state}},
@@ -96,79 +91,6 @@
                                         </div>
                                         <h4 ng-if="profile.phone_validated_at">Number is verified!</h4>
                                     </div>
-                                    <div layout ng-if="unit.name === 'Your card'">
-                                        <md-button ng-if="profile.card_token_created_at" class="md-fab right-corner-btn"
-                                                   ng-click="removeSellerCard()" aria-label="Delete Card">
-                                            <ng-md-icon icon="close"></ng-md-icon>
-                                        </md-button>
-                                        <div layout layout-fill layout-padding
-                                             ng-if="profile.card_token_created_at">
-                                            <svg class="svg-debit" viewBox="0 0 32 23">
-                                                <path fill="#e5e5e5" class="svg-debit-card"
-                                                      d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
-                                                <path fill="#bbb" class="svg-debit-data"
-                                                      d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>
-                                                <path fill="#fff" class="svg-debit-sign"
-                                                      d="M2.993 9h26v3h-26v-3z"></path>
-                                                <path fill="#555" class="svg-debit-read"
-                                                      d="M-.007 3h32v3h-32v-3z"></path>
-                                                <text x="5" y="11.6" fill="black" style="font-size: 2.8px;">****
-                                                    ****
-                                                    ****
-                                                    {{profile.card_last_digits}}
-                                                </text>
-                                            </svg>
-                                        </div>
-                                        <div ng-if="!profile.card_token_created_at" layout="column" layout-fill
-                                             layout-padding>
-                                            <ng-form name="verifyCardForm" novalidate=""
-                                                     layout-wrap>
-                                                <div layout layout-sm="column" layout-fill>
-                                                    <md-input-container flex>
-                                                        <label>Card number</label>
-                                                        <input ng-model="cardNumber" type="text"
-                                                               card-number-validator=""
-                                                               x-autocompletetype="cc-number" restrict-numeric=""
-                                                               card-number-formatter="" name="ccNumber"
-                                                               ng-model="cardNumber"
-                                                               card-type="cardType" required>
-                                                    </md-input-container>
-                                                </div>
-                                                <div layout layout-sm="column" layout-fill>
-                                                    <md-input-container flex>
-                                                        <label>00/00</label>
-                                                        <input type="text"
-                                                               x-autocompletetype="cc-exp"
-                                                               maxlength="9"
-                                                               restrict-numeric=""
-                                                               card-expiry-validator=""
-                                                               card-expiry-formatter="" name="ccExpiry"
-                                                               ng-model="cardExpiry" required>
-                                                    </md-input-container>
-                                                    <md-input-container flex>
-                                                        <label>CVV</label>
-                                                        <input type="text" x-autocompletetype="cc-csc"
-                                                               restrict-numeric=""
-                                                               card-cvc-validator=""
-                                                               card-cvc-formatter="" ng-maxlength="4"
-                                                               ng-pattern="/\d*/"
-                                                               name="ccCvc" ng-model="cardCvc" required>
-                                                    </md-input-container>
-                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)" flex
-                                                         layout="column" layout-align="center center">
-                                                        <div layout layout-align="center center"
-                                                             class="am-fade-and-scale">
-                                                            <md-button
-                                                                    class="md-accent md-raised md-hue-1 io-primary-btn"
-                                                                    ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
-                                                                    type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
-                                                            </md-button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </ng-form>
-                                        </div>
-                                    </div>
                                     <div ng-if="unit.name === 'Postal address'" layout="column" layout-padding
                                          layout-fill>
                                         <div layout layout-sm="column">
@@ -237,7 +159,11 @@
                                 <div ng-if="unit.code==='location'" layout>
                                     <span flex class="main-title">{{profile.store.address?profile.store.address:'Store Location'}}</span>
                                 </div>
-
+                                <div ng-if="unit.code === 'card'" class="main-title">
+                                    {{profile.card_token_created_at?'Debit Card Verified ' +
+                                    (profile.card_token_created_at |
+                                    amCalendar):'Enter Debit Card Requisites'}}
+                                </div>
                             </div>
                             <!--Main Title-->
                             <!--Right Icon-->
@@ -347,6 +273,79 @@
                                         <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
                                                    ng-click="linkInstagram()">&nbsp;Link&nbsp;
                                         </md-button>
+                                    </div>
+                                    <div layout ng-if="unit.code === 'card'">
+                                        <md-button ng-if="profile.card_token_created_at" class="md-fab right-corner-btn"
+                                                   ng-click="removeSellerCard()" aria-label="Delete Card">
+                                            <ng-md-icon icon="close"></ng-md-icon>
+                                        </md-button>
+                                        <div layout layout-fill layout-padding
+                                             ng-if="profile.card_token_created_at">
+                                            <svg class="svg-debit" viewBox="0 0 32 23">
+                                                <path fill="#e5e5e5" class="svg-debit-card"
+                                                      d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
+                                                <path fill="#bbb" class="svg-debit-data"
+                                                      d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>
+                                                <path fill="#fff" class="svg-debit-sign"
+                                                      d="M2.993 9h26v3h-26v-3z"></path>
+                                                <path fill="#555" class="svg-debit-read"
+                                                      d="M-.007 3h32v3h-32v-3z"></path>
+                                                <text x="5" y="11.6" fill="black" style="font-size: 2.8px;">****
+                                                    ****
+                                                    ****
+                                                    {{profile.card_last_digits}}
+                                                </text>
+                                            </svg>
+                                        </div>
+                                        <div ng-if="!profile.card_token_created_at" layout="column" layout-fill
+                                             layout-padding>
+                                            <ng-form name="verifyCardForm" novalidate=""
+                                                     layout-wrap>
+                                                <div layout layout-sm="column" layout-fill>
+                                                    <md-input-container flex>
+                                                        <label>Card number</label>
+                                                        <input ng-model="cardNumber" type="text"
+                                                               card-number-validator=""
+                                                               x-autocompletetype="cc-number" restrict-numeric=""
+                                                               card-number-formatter="" name="ccNumber"
+                                                               ng-model="cardNumber"
+                                                               card-type="cardType" required>
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout layout-sm="column" layout-fill>
+                                                    <md-input-container flex>
+                                                        <label>00/00</label>
+                                                        <input type="text"
+                                                               x-autocompletetype="cc-exp"
+                                                               maxlength="9"
+                                                               restrict-numeric=""
+                                                               card-expiry-validator=""
+                                                               card-expiry-formatter="" name="ccExpiry"
+                                                               ng-model="cardExpiry" required>
+                                                    </md-input-container>
+                                                    <md-input-container flex>
+                                                        <label>CVV</label>
+                                                        <input type="text" x-autocompletetype="cc-csc"
+                                                               restrict-numeric=""
+                                                               card-cvc-validator=""
+                                                               card-cvc-formatter="" ng-maxlength="4"
+                                                               ng-pattern="/\d*/"
+                                                               name="ccCvc" ng-model="cardCvc" required>
+                                                    </md-input-container>
+                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)" flex
+                                                         layout="column" layout-align="center center">
+                                                        <div layout layout-align="center center"
+                                                             class="am-fade-and-scale">
+                                                            <md-button
+                                                                    class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                                    ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
+                                                                    type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
+                                                            </md-button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-form>
+                                        </div>
                                     </div>
                                     <md-divider></md-divider>
                                 </div>
