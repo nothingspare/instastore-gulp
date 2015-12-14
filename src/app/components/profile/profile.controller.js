@@ -62,10 +62,10 @@ angular.module('instastore')
                 delete($scope.treeConfig.card);
                 $scope.treeConfig['promo'] = {
                     code: 'promo',
-                    name: 'Enter Promo Code to Become Seller',
+                    name: 'Enter Store Key',
                     toggleThis: 'true',
                     icon: 'local_mall',
-                    subs: [{name: 'Enter Promo Code to Become Seller'}]
+                    subs: [{name: 'Enter Store Key'}]
                 };
             }
 
