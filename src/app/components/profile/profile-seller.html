@@ -28,6 +28,10 @@
                                 <div ng-if="unit.name === 'Name'" class="main-title">
                                     {{profile.fullName}}
                                 </div>
+                                <div ng-if="unit.code === 'crop'" layout
+                                     class="main-title">
+                                    <span>{{unit.name}}</span>
+                                </div>
                                 <!---->
                             </div>
 
@@ -126,6 +130,31 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
+                                        <h6>Upload a full-length background picture of yourself
+                                            in your store as your background image. Then crop your head to make your
+                                            profile.</h6>
+
+                                        <div ng-controller="CropUploadCtrl">
+                                            <!--<input type="file" id="fileInput" class="custom-file-input"/>-->
+                                            <div layout flex class="crop-area md-whiteframe-17dp" layout-margin>
+                                                <choose-file-button
+                                                        style="position:absolute; right:{{myImage?75:15}}px">
+                                                    <md-button aria-label="Upload a file" class="md-fab"
+                                                               style="background-color:lightcoral;">
+                                                        <ng-md-icon icon="photo_camera"></ng-md-icon>
+                                                    </md-button>
+                                                    <input id="fileInput" type="file">
+                                                </choose-file-button>
+                                                <md-button ng-if="myImage" ng-click="uploadCrop()" aria-label="Crop"
+                                                           class="md-fab am-fade"
+                                                           style="background-color:lightcoral;position: absolute; right:15px">
+                                                    <ng-md-icon icon="crop"></ng-md-icon>
+                                                </md-button>
+                                                <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <md-divider></md-divider>
                                 </div>
                             </li>
@@ -152,7 +181,7 @@
                             <!--Left icon-->
                             <!--Main title-->
                             <div layout layout-align="start center" flex>
-                                <div ng-if="unit.code === 'specialities' || unit.code === 'crop' || unit.code === 'instagram'" layout
+                                <div ng-if="unit.code === 'specialities' || unit.code === 'instagram'" layout
                                      class="main-title">
                                     <span>{{unit.name}}</span>
                                 </div>
@@ -242,31 +271,6 @@
                                             <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
                                                        ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
                                             </md-button>
-                                        </div>
-                                    </div>
-                                    <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
-                                        <h6>Upload a full-length background picture of yourself
-                                            in your store as your background image. Then crop your head to make your
-                                            profile.</h6>
-
-                                        <div ng-controller="CropUploadCtrl">
-                                            <!--<input type="file" id="fileInput" class="custom-file-input"/>-->
-                                            <div layout flex class="crop-area md-whiteframe-17dp" layout-margin>
-                                                <choose-file-button
-                                                        style="position:absolute; right:{{myImage?75:15}}px">
-                                                    <md-button aria-label="Upload a file" class="md-fab"
-                                                               style="background-color:lightcoral;">
-                                                        <ng-md-icon icon="photo_camera"></ng-md-icon>
-                                                    </md-button>
-                                                    <input id="fileInput" type="file">
-                                                </choose-file-button>
-                                                <md-button ng-if="myImage" ng-click="uploadCrop()" aria-label="Crop"
-                                                           class="md-fab am-fade"
-                                                           style="background-color:lightcoral;position: absolute; right:15px">
-                                                    <ng-md-icon icon="crop"></ng-md-icon>
-                                                </md-button>
-                                                <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-                                            </div>
                                         </div>
                                     </div>
                                     <div ng-if="unit.code==='instagram'" layout layout-padding>

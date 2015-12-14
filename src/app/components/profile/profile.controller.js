@@ -29,7 +29,7 @@ angular.module('instastore')
                         {name: 'FistName LastName'}
                     ]
                 },
-                phoneNumber: {
+                '2': {
                     code: 'phone',
                     name: 'Phone number',
                     toggleThis: true,
@@ -38,7 +38,7 @@ angular.module('instastore')
                         {name: 'Verify phone number'}
                     ]
                 },
-                address: {
+                '3': {
                     code: 'address',
                     name: 'Postal address',
                     toggleThis: true,
@@ -46,6 +46,14 @@ angular.module('instastore')
                     subs: [
                         {name: 'Verify postal address'}
                     ]
+                },
+                '4': {
+                    code: 'crop',
+                    name: 'Crop Background To Store Avatar',
+                    toggleThis: true,
+                    icon: 'crop',
+                    subs: [{name: 'Upload and Crop'}],
+                    collapsed: true
                 }
             };
 
@@ -60,6 +68,8 @@ angular.module('instastore')
                     case 'phone':
                         return $scope.profile.phone_validated_at ? false : true;
                     case 'address':
+                        return true;
+                    case 'crop':
                         return true;
                     default:
                         return false;
@@ -297,14 +307,6 @@ angular.module('instastore')
                     collapsed: true
                 },
                 '4': {
-                    code: 'crop',
-                    name: 'Crop Background To Store Avatar',
-                    toggleThis: true,
-                    icon: 'crop',
-                    subs: [{name: 'Upload and Crop'}],
-                    collapsed: true
-                },
-                '5': {
                     code: 'instagram',
                     name: 'Instagram Import',
                     toggleThis: true,
