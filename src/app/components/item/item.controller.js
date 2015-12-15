@@ -388,9 +388,7 @@ angular.module('instastore')
                         UserService.setBg(res.data.store.bg_url);
                         UserService.setAvatar(res.data.store.avatar_url);
                     }
-
                     res.data.profile.lastRoute = lastRoute;
-
                     UserService.setProfile(res.data.profile);
                     $scope.profile = res.data.profile;
                 });
