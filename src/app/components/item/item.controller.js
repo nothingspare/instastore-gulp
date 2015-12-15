@@ -83,11 +83,11 @@ angular.module('instastore')
                         UserService.setProfile(res.data.profile);
                         $scope.profile = res.data.profile;
 
-                        $state.go('itemview', {storeurl: storeurl, itemurl: itemurl, tab: 2});
+                        $state.go('itemview', {storeurl: storeurl, itemurl: itemurl, tab: 1});
 
                     }, errorService.satellizerAlert);
                 } else {
-                    $state.go('itemview', {storeurl: storeurl, itemurl: itemurl, tab: 2});
+                    $state.go('itemview', {storeurl: storeurl, itemurl: itemurl, tab: 1});
                 }
             };
 
@@ -95,12 +95,23 @@ angular.module('instastore')
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', 'ngDialog', '$window',
+        'uiGmapGoogleMapApi',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window) {
+                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi) {
 
+            uiGmapGoogleMapApi
+                .then(function () {
+                    return uiGmapGoogleMapApi;
+                })
+                .then(function () {
+                    $scope.renderMap = true;
+                });
 
             $scope.item = {};
+
+            $scope.isGuest = UserService.isGuest();
+
             $scope.transactionStates = ITEMSELLTRANSACTION_STATUS;
             $scope.profile = UserService.getProfile();
 
@@ -362,6 +373,28 @@ angular.module('instastore')
     .controller('ItemViewTabsCtrl', ['$scope', '$rootScope', '$timeout', '$stateParams', 'UserService',
         '$auth', 'errorService', '$state', '$location',
         function ($scope, $rootScope, $timeout, $stateParams, UserService, $auth, errorService, $state, $location) {
+
+            $scope.login = function () {
+                UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
+                $auth.authenticate('facebook').then(function (res) {
+                    if (UserService.getProfile().lastRoute) {
+                        var lastRoute = UserService.getProfile().lastRoute;
+                    }
+                    UserService.login(res.data.token);
+                    UserService.setFacebookProfile(res.data.facebookProfile);
+                    res.data.profile.stores = res.data.stores;
+                    if (res.data.store) {
+                        res.data.profile.store = res.data.store;
+                        UserService.setBg(res.data.store.bg_url);
+                        UserService.setAvatar(res.data.store.avatar_url);
+                    }
+
+                    res.data.profile.lastRoute = lastRoute;
+
+                    UserService.setProfile(res.data.profile);
+                    $scope.profile = res.data.profile;
+                });
+            };
 
             $scope.onClickTab = function (tab) {
                 if (UserService.isGuest() && tab.index == 2) {
