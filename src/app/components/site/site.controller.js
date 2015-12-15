@@ -84,7 +84,7 @@ angular.module('instastore')
                     UserService.goToMainStore();
                 }
                 else {
-                    $state.go('grid', {storeurl: $stateParams.storeurl});
+                    $state.go('grid', {storeurl: $stateParams.storeurl, mode: 'feed'});
                 }
             };
 

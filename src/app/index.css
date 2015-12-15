@@ -4114,3 +4114,9 @@ svg.svg-debit {
     border-radius: 50%;
     box-sizing: content-box;
 }
+
+/*Tabs override starts*/
+.md-tab{
+    padding: 0 13px;
+}
+/*Tabs override ends*/
