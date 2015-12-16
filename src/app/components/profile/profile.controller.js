@@ -59,6 +59,14 @@ angular.module('instastore')
 
             if (!$scope.profile.seller) {
                 delete($scope.treeConfig.card);
+                $scope.treeConfig['5'] = {
+                    code: 'own_store',
+                    name: 'Apply For Your Own Store',
+                    toggleThis: true,
+                    icon: 'local_mall',
+                    subs: [{name: 'Apply For Your Own Store'}],
+                    collapsed: true
+                };
             }
 
             $scope.canToggle = function (code) {
@@ -70,6 +78,8 @@ angular.module('instastore')
                     case 'address':
                         return true;
                     case 'crop':
+                        return true;
+                    case 'own_store':
                         return true;
                     default:
                         return false;

@@ -28,7 +28,7 @@
                                 <div ng-if="unit.name === 'Name'" class="main-title">
                                     {{profile.fullName}}
                                 </div>
-                                <div ng-if="unit.code === 'crop'" layout
+                                <div ng-if="unit.code === 'crop' || unit.code === 'own_store'" layout
                                      class="main-title">
                                     <span class="main-title">{{unit.name}}</span>
                                 </div>
@@ -71,7 +71,7 @@
                                                 <label>Phone number</label>
                                                 <input ng-model="profile.phone" type="text">
                                             </md-input-container>
-                                            <div layout layout-align="center center"
+                                            <div layout layout-align="center start"
                                                  ng-if="profile.phone.length>7 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
                                                 <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
@@ -84,7 +84,7 @@
                                                 <label>Enter texted code</label>
                                                 <input ng-model="verifyPhoneCode" type="text">
                                             </md-input-container>
-                                            <div layout layout-align="center center"
+                                            <div layout layout-align="center start"
                                                  ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
                                                 <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
@@ -121,7 +121,7 @@
                                                 <label>Zipcode</label>
                                                 <input ng-model="profile.zipcode" type="text">
                                             </md-input-container>
-                                            <div layout layout-align="center center"
+                                            <div layout layout-align="center start"
                                                  class="am-fade-and-scale">
                                                 <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
                                                            ng-click="verifyAddress()">Verify Address
@@ -135,7 +135,6 @@
                                             profile.</h6>
 
                                         <div ng-controller="CropUploadCtrl">
-                                            <!--<input type="file" id="fileInput" class="custom-file-input"/>-->
                                             <div layout flex class="crop-area md-whiteframe-17dp" layout-margin>
                                                 <choose-file-button
                                                         style="position:absolute; right:{{myImage?75:15}}px">
@@ -151,6 +150,20 @@
                                                     <ng-md-icon icon="crop"></ng-md-icon>
                                                 </md-button>
                                                 <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="unit.code === 'own_store'" layout="column" layout-padding>
+                                        <div layout>
+                                            <md-input-container flex>
+                                                <label>Invite code</label>
+                                                <input ng-model="inviteCode" type="text">
+                                            </md-input-container>
+                                            <div layout layout-align="center start"
+                                                 class="am-fade-and-scale">
+                                                <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                           ng-click="makeMeSeller(inviteCode)">Get Store
+                                                </md-button>
                                             </div>
                                         </div>
                                     </div>
@@ -253,13 +266,12 @@
                                                 <!--<div class="hint">Tell us what we should call you!</div>-->
                                                 <div ng-messages="specialitiesForm.store_name.$error"
                                                      ng-if="!showHints">
-                                                    <div ng-message="required">Name is required.</div>
                                                     <div ng-message="md-maxlength">The name has to be less than 90
                                                         characters long.
                                                     </div>
                                                 </div>
                                             </md-input-container>
-                                            <div layout layout-align="center center"
+                                            <div layout layout-align="center start"
                                                  class="am-fade-and-scale">
                                                 <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
                                                            ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
@@ -269,7 +281,7 @@
                                     </div>
                                     <div ng-if="unit.code === 'location'" layout="column" layout-padding>
                                         <div ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
-                                        <div layout layout-align="center center"
+                                        <div layout layout-align="center start"
                                              class="am-fade-and-scale">
                                             <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
                                                        ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
@@ -340,17 +352,14 @@
                                                                ng-pattern="/\d*/"
                                                                name="ccCvc" ng-model="cardCvc" required>
                                                     </md-input-container>
-                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)"
-                                                         flex
-                                                         layout="column" layout-align="center center">
-                                                        <div layout layout-align="center center"
-                                                             class="am-fade-and-scale">
-                                                            <md-button
-                                                                    class="md-accent md-raised md-hue-1 io-primary-btn"
-                                                                    ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
-                                                                    type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
-                                                            </md-button>
-                                                        </div>
+                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)" flex
+                                                         layout="column" layout-align="start center"
+                                                         class="am-fade-and-scale">
+                                                        <md-button
+                                                                class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                                ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
+                                                                type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
+                                                        </md-button>
                                                     </div>
                                                 </div>
                                             </ng-form>
