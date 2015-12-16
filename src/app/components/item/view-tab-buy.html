@@ -1,178 +1,178 @@
-<div class="rowfree buy-transactions">
-    <div class="reveal2 item-transaction-section">
-        <a ng-if="item.price" ng-click="confirmBuying()" class="btn btn-buy btn-post centered">&nbsp;Buy Item
-            ${{item.price}}&nbsp;</a>
+<div class="buy-transactions">
+    <a ng-if="item.price" ng-click="confirmBuying()" class="btn btn-buy btn-post centered">&nbsp;Buy Item
+        ${{item.price}}&nbsp;</a>
 
-        <div ng-if="showConfirm">
+    <div ng-if="showConfirm">
 
-            <h6 style="margin:0 20px 15px 20px;">Enter your credit card requisites:</h6>
+        <h6 style="margin:0 20px 15px 20px;">Enter your credit card requisites:</h6>
 
-            <div ng-controller="PaymentCtrl as p">
-                <form ng-submit="buyItem(p.cardNumber, p.cardExpiry, p.cardCvc)" class="payment-form" name="paymentForm"
-                      novalidate="">
-                    <center>
-                        <div id="content-popup">
-                            <input placeholder="XXXX XXXX XXXX XXXX" class="regular-field" type="text"
-                                   x-autocompletetype="cc-number" restrict-numeric=""
-                                   card-number-validator=""
-                                   card-number-formatter="" name="ccNumber" ng-model="p.cardNumber"
-                                   card-type="cardType" required>
-                            <input placeholder="00 / 00" type="text" x-autocompletetype="cc-exp" maxlength="9"
-                                   restrict-numeric=""
-                                   card-expiry-validator=""
-                                   card-expiry-formatter="" name="ccExpiry" ng-model="p.cardExpiry" required>
-                            <input placeholder="CVV" type="text" x-autocompletetype="cc-csc" restrict-numeric=""
-                                   card-cvc-validator=""
-                                   card-cvc-formatter="" ng-maxlength="4" ng-pattern="/\d*/"
-                                   name="ccCvc" ng-model="p.cardCvc" required>
+        <div ng-controller="PaymentCtrl as p">
+            <form ng-submit="buyItem(p.cardNumber, p.cardExpiry, p.cardCvc)" class="payment-form" name="paymentForm"
+                  novalidate="">
+                <center>
+                    <div id="content-popup">
+                        <input placeholder="XXXX XXXX XXXX XXXX" class="regular-field" type="text"
+                               x-autocompletetype="cc-number" restrict-numeric=""
+                               card-number-validator=""
+                               card-number-formatter="" name="ccNumber" ng-model="p.cardNumber"
+                               card-type="cardType" required>
+                        <input placeholder="00 / 00" type="text" x-autocompletetype="cc-exp" maxlength="9"
+                               restrict-numeric=""
+                               card-expiry-validator=""
+                               card-expiry-formatter="" name="ccExpiry" ng-model="p.cardExpiry" required>
+                        <input placeholder="CVV" type="text" x-autocompletetype="cc-csc" restrict-numeric=""
+                               card-cvc-validator=""
+                               card-cvc-formatter="" ng-maxlength="4" ng-pattern="/\d*/"
+                               name="ccCvc" ng-model="p.cardCvc" required>
 
-                            <h6 style="margin:0 0 0 0;">Your item will be shipped to
-                                your address <strong>{{profile.address}}{{profile.apartment?' '+ profile.apartment:''}},
-                                    {{profile.city}}, {{profile.state}} {{profile.zipcode}}</strong></h6>
-                            <button ng-if="(paymentForm.$dirty && paymentForm.$valid)" type="submit"
-                                    class="btn btn-buy btn-post centered">&nbsp;Confirm&nbsp;</button>
-                        </div>
-                    </center>
-                </form>
-            </div>
-
+                        <h6 style="margin:0 0 0 0;">Your item will be shipped to
+                            your address <strong>{{profile.address}}{{profile.apartment?' '+ profile.apartment:''}},
+                                {{profile.city}}, {{profile.state}} {{profile.zipcode}}</strong></h6>
+                        <button ng-if="(paymentForm.$dirty && paymentForm.$valid)" type="submit"
+                                class="btn btn-buy btn-post centered">&nbsp;Confirm&nbsp;</button>
+                    </div>
+                </center>
+            </form>
         </div>
 
-        <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
-            <ol ui-tree-nodes="" ng-model="item.itemSells">
-                <li ng-repeat="isell in item.itemSells | orderBy:'-created_at' track by isell.id" ui-tree-node
-                    collapsed="true">
-                    <div ui-tree-handle class="first-transaction row">
-                        <div ng-click="toggle(this)" class="column arrow">
-                            <div class="hideLink arrow-position">&nbsp;</div>
-                        </div>
-                        <div ng-click="toggle(this)" class="column status">
-                            {{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |
-                            itemTransactionStatus}}
-                        </div>
-                        <div class="column label"
-                             ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.arrived
+    </div>
+
+    <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
+        <ol ui-tree-nodes="" ng-model="item.itemSells">
+            <li ng-repeat="isell in item.itemSells | orderBy:'-created_at' track by isell.id" ui-tree-node
+                collapsed="true">
+                <div ui-tree-handle class="first-transaction row">
+                    <div ng-click="toggle(this)" class="column arrow">
+                        <div class="hideLink arrow-position">&nbsp;</div>
+                    </div>
+                    <div ng-click="toggle(this)" class="column status">
+                        {{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |
+                        itemTransactionStatus}}
+                    </div>
+                    <div class="column label"
+                         ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.arrived
                              || isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.hurryup">
-                            <div class="btn btn-buy centered btn-label"
-                                 ng-click="changeItemStatus(isell.id, transactionStates.accepted)">Accept
-                            </div>
-                        </div>
-                        <div class="column img-column">
-                            <img class="profile-in-transaciton"
-                                 ng-src="{{isell.buyer.avatar_url}}" ng-click="goToStoreProfile(isell.buyer.store.store_url)">
+                        <div class="btn btn-buy centered btn-label"
+                             ng-click="changeItemStatus(isell.id, transactionStates.accepted)">Accept
                         </div>
                     </div>
-                    <ol ui-tree-nodes="" ng-model="isell.itemSellTransactions" ng-class="{hidden: collapsed}">
-                        <li ng-repeat="subIsell in isell.itemSellTransactions  | orderBy:'-created_at' track by subIsell.id"
-                            ui-tree-node
-                            data-collapsed="true"
-                            ng-if="subIsell.status | itemBuyerTransactionStatusVisibility">
-                            <div class="transaction-section-container past-transaction"
-                                 ui-tree-handle ng-class="{accepted: subIsell.status === transactionStates.accepted}">
-                                <div ng-if="subIsell.status !== transactionStates.accepted" class="left">
-                                    <a class="hideLink arrow-position" ng-click="toggle(this)">&nbsp;</a>
+                    <div class="column img-column">
+                        <img class="profile-in-transaciton"
+                             ng-src="{{isell.buyer.avatar_url}}"
+                             ng-click="goToStoreProfile(isell.buyer.store.store_url)">
+                    </div>
+                </div>
+                <ol ui-tree-nodes="" ng-model="isell.itemSellTransactions" ng-class="{hidden: collapsed}">
+                    <li ng-repeat="subIsell in isell.itemSellTransactions  | orderBy:'-created_at' track by subIsell.id"
+                        ui-tree-node
+                        data-collapsed="true"
+                        ng-if="subIsell.status | itemBuyerTransactionStatusVisibility">
+                        <div class="transaction-section-container past-transaction"
+                             ui-tree-handle ng-class="{accepted: subIsell.status === transactionStates.accepted}">
+                            <div ng-if="subIsell.status !== transactionStates.accepted" class="left">
+                                <a class="hideLink arrow-position" ng-click="toggle(this)">&nbsp;</a>
+                            </div>
+                            <div class="right">
+                                <div ng-click="toggle(this)" ng-if="subIsell.status !== transactionStates.accepted">
+                                    {{subIsell.status |
+                                    itemBuyerTransactionStatus}}
+                                    <f6>{{subIsell.created_at | amCalendar}}</f6>
                                 </div>
-                                <div class="right">
-                                    <div ng-click="toggle(this)" ng-if="subIsell.status !== transactionStates.accepted">
-                                        {{subIsell.status |
-                                        itemBuyerTransactionStatus}}
-                                        <f6>{{subIsell.created_at | amCalendar}}</f6>
-                                    </div>
-                                    <p ng-if="subIsell.status === transactionStates.accepted">Item accepted. Thanks for
-                                        supporting individual sellers!
+                                <p ng-if="subIsell.status === transactionStates.accepted">Item accepted. Thanks for
+                                    supporting individual sellers!
 
-                                    <div class="subtransaction-more-container" ng-class="{hidden: collapsed}">
-                                        <!--Hurryup state-->
-                                        <div ng-if="subIsell.status==transactionStates.hurryup &&
+                                <div class="subtransaction-more-container" ng-class="{hidden: collapsed}">
+                                    <!--Hurryup state-->
+                                    <div ng-if="subIsell.status==transactionStates.hurryup &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.hurryup
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6> Thanks for accepting item!</f6>
-                                        </div>
-                                        <div ng-if="subIsell.status==transactionStates.hurryup &&
+                                        <f6> Thanks for accepting item!</f6>
+                                    </div>
+                                    <div ng-if="subIsell.status==transactionStates.hurryup &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status===transactionStates.hurryup)"
-                                             ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
-                                            <f6>Please hurry up with your transaction and help us run a service that is
-                                                quick and efficient for our buys and sellers. Thank you.
-                                            </f6>
-                                        </div>
-                                        <!--Hurryup state-->
-                                        <!--Arrived state-->
-                                        <div ng-if="subIsell.status==transactionStates.arrived &&
+                                         ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
+                                        <f6>Please hurry up with your transaction and help us run a service that is
+                                            quick and efficient for our buys and sellers. Thank you.
+                                        </f6>
+                                    </div>
+                                    <!--Hurryup state-->
+                                    <!--Arrived state-->
+                                    <div ng-if="subIsell.status==transactionStates.arrived &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.receivedInPost
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Item has arrived! Please approve it: <b>{{isell.arrived}}</b></b>
-                                            </f6>
-                                        </div>
-                                        <!--Arrived state-->
-                                        <!--Received in post state-->
-                                        <div ng-if="subIsell.status==transactionStates.receivedInPost &&
+                                        <f6>Item has arrived! Please approve it: <b>{{isell.arrived}}</b></b>
+                                        </f6>
+                                    </div>
+                                    <!--Arrived state-->
+                                    <!--Received in post state-->
+                                    <div ng-if="subIsell.status==transactionStates.receivedInPost &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.label
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Postal label was scanned at: <b>{{isell.received_in_post}}</b></f6>
-                                        </div>
-                                        <!--Received in post state-->
-                                        <!--Label state-->
-                                        <div ng-if="subIsell.status==transactionStates.label &&
+                                        <f6>Postal label was scanned at: <b>{{isell.received_in_post}}</b></f6>
+                                    </div>
+                                    <!--Received in post state-->
+                                    <!--Label state-->
+                                    <div ng-if="subIsell.status==transactionStates.label &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.saleCanceled
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Seller printed the postal label</f6>
-                                            <!--TODO: remove in production-->
-                                            <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">
-                                                ^
-                                            </div>
+                                        <f6>Seller printed the postal label</f6>
+                                        <!--TODO: remove in production-->
+                                        <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">
+                                            ^
                                         </div>
-                                        <!--Label state-->
-                                        <div ng-if="subIsell.status==transactionStates.sendThirdRemainder &&
+                                    </div>
+                                    <!--Label state-->
+                                    <div ng-if="subIsell.status==transactionStates.sendThirdRemainder &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.sendSecondRemainder
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Seller has been warned three times. We'll cancel sale tomorrow!</f6>
-                                        </div>
-                                        <!--3xRemainder state-->
-                                        <!--2xRemainder state-->
-                                        <div ng-if="subIsell.status==transactionStates.sendSecondRemainder &&
+                                        <f6>Seller has been warned three times. We'll cancel sale tomorrow!</f6>
+                                    </div>
+                                    <!--3xRemainder state-->
+                                    <!--2xRemainder state-->
+                                    <div ng-if="subIsell.status==transactionStates.sendSecondRemainder &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.sendFirstRemainder
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Seller has been warned twice.</f6>
-                                        </div>
-                                        <!--2xRemainder state-->
-                                        <!--1xRemainder state-->
-                                        <div ng-if="subIsell.status==transactionStates.sendFirstRemainder &&
+                                        <f6>Seller has been warned twice.</f6>
+                                    </div>
+                                    <!--2xRemainder state-->
+                                    <!--1xRemainder state-->
+                                    <div ng-if="subIsell.status==transactionStates.sendFirstRemainder &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.send
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Seller has been warned once.</f6>
-                                        </div>
-                                        <!--1xRemainder state-->
-                                        <!--Item bought state-->
-                                        <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
-                                            <f6>Item wasn't place in the box</f6>
-                                        </div>
-                                        <div ng-if="subIsell.status==transactionStates.sold &&
+                                        <f6>Seller has been warned once.</f6>
+                                    </div>
+                                    <!--1xRemainder state-->
+                                    <!--Item bought state-->
+                                    <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
+                                        <f6>Item wasn't place in the box</f6>
+                                    </div>
+                                    <div ng-if="subIsell.status==transactionStates.sold &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.sold
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                            <f6>Item placed in <b>Medium size box</b></f6>
-                                        </div>
-                                        <!--Item bought state-->
+                                        <f6>Item placed in <b>Medium size box</b></f6>
                                     </div>
+                                    <!--Item bought state-->
                                 </div>
                             </div>
-                        </li>
-                    </ol>
-                </li>
-            </ol>
-        </div>
-
-        <br>
-
-        <table class="prev-customers">
-            <tr>
-                <td><h6>Previous customers</h6></td>
-            </tr>
-            <tr>
-                <td>
-                    <a ng-repeat="isell in item.customers | unique:'buyer.id' | limitTo: 5"><img
-                            class="buyer-profile-transaction" ng-src="{{isell.buyer.avatar_url}}" ng-click="goToStoreProfile(isell.buyer.store.store_url)"></a>
-                </td>
-            </tr>
-        </table>
+                        </div>
+                    </li>
+                </ol>
+            </li>
+        </ol>
     </div>
+
+    <br>
+
+    <table class="prev-customers">
+        <tr>
+            <td><h6>Previous customers</h6></td>
+        </tr>
+        <tr>
+            <td>
+                <a ng-repeat="isell in item.customers | unique:'buyer.id' | limitTo: 5"><img
+                        class="buyer-profile-transaction" ng-src="{{isell.buyer.avatar_url}}"
+                        ng-click="goToStoreProfile(isell.buyer.store.store_url)"></a>
+            </td>
+        </tr>
+    </table>
 </div>

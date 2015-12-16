@@ -1,4 +1,4 @@
-<div class="grid-container itemview">
+<div layout="column" layout="center center" class="itemview">
     <div class="itemview-stream-item-pic">
         <div ng-if="showHearts" class="rowfree">
             <div class="heartoverimage2 heart-reveal-large"></div>
@@ -16,140 +16,76 @@
         <div rn-carousel-indicators ng-if="item.images.length > 1" slides="item.images"
              rn-carousel-index="carouselIndex"></div>
     </div>
-
-    <div class="item-attrs-wrapper">
-        <p id="heart-position"><span class="heart-small" ng-class="isActiveTab ? 'center' : 'left'" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><b
-                class="price-text">454 </b>
-        </p>
-
-        <p id="location-position"><span class="location-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <b class="price-text">In-store </b>
-        </p>
-
-        <p id="price-position"><span class="buy-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <b class="price-text">${{item.price|itemPrice}}</b>
-        </p>
-    </div>
-
-    <div ng-controller="ItemViewTabsCtrl">
-
-        <div ng-if="!isYourStore || (isYourStore && !isSeller)" class="itemview-icon-cirle-wapper">
-
-            <div>
-                <md-tabs md-dynamic-height md-border-bottom md-selected="$stateParams.tab">
-                    <md-tab>
-                        <md-tab-label>
-                            <div class="buyer-message-circle"></div>
-                        </md-tab-label>
-                        <md-tab-body>
-                            <div ng-include="'app/components/item/view-tab-comment.html'"></div>
-                        </md-tab-body>
-                    </md-tab>
-                    <md-tab md-on-select="isGuest?login():''">
-                        <md-tab-label>
-                            <div class="buy-circle"></div>
-                        </md-tab-label>
-                        <md-tab-body>
-                            <div ng-include="'app/components/item/view-tab-buy.html'"></div>
-                        </md-tab-body>
-                    </md-tab>
-                    <md-tab md-on-select="likeItem()">
-                        <md-tab-label>
-                            <div class="heart-circle"></div>
-                        </md-tab-label>
-                    </md-tab>
-                    <md-tab>
-                        <md-tab-label>
-                            <div class="location-circle"></div>
-                        </md-tab-label>
-                        <md-tab-body>
-                            <div ng-if="renderMap" ng-include="'app/components/item/view-tab-location.html'"></div>
-                        </md-tab-body>
-                    </md-tab>
-                </md-tabs>
-            </div>
-
-            <!--<div class="action-icon"-->
-                 <!--ng-click="onClickTab({title: 'One', url: 'app/components/item/view-tab-comment.html', index: 1})">-->
-                <!--<div class="buyer-message-circle"-->
-                     <!--ng-class="isActiveTab('app/components/item/view-tab-comment.html') ? 'active' : ''"></div>-->
-            <!--</div>-->
-            <!--<div class="action-icon"-->
-                 <!--ng-click="onClickTab({title: 'Two', url: 'app/components/item/view-tab-buy.html', index: 2})">-->
-                <!--<div class="buy-circle"-->
-                     <!--ng-class="isActiveTab('app/components/item/view-tab-buy.html') ? 'active' : ''"></div>-->
-            <!--</div>-->
-            <!--<div class="action-icon" ng-click="likeItem()">-->
-                <!--<div class="heart-circle"></div>-->
-            <!--</div>-->
-            <!--<div class="action-icon"-->
-                 <!--ng-click="onClickTab({title: 'Four', url: 'app/components/item/view-tab-location.html', index: 4})">-->
-                <!--<div class="location-circle"-->
-                     <!--ng-class="isActiveTab('app/components/item/view-tab-location.html') ? 'active' : ''"></div>-->
-            <!--</div>-->
-
-        </div>
-
-        <div ng-if="isYourStore && isSeller" ng-cloak class="itemview-icon-cirle-wapper">
-            <md-tabs md-dynamic-height md-border-bottom md-selected="$stateParams.tab">
-                <md-tab>
-                    <md-tab-label>
-                        <div class="message-circle"></div>
-                    </md-tab-label>
-                    <md-tab-body>
-                        <div ng-include="'app/components/item/view-tab-comment.html'"></div>
-                    </md-tab-body>
-                </md-tab>
-                <md-tab>
-                    <md-tab-label>
-                        <div class="buy-circle"></div>
-                    </md-tab-label>
-                    <md-tab-body>
-                        <div ng-include="'app/components/item/view-tab-log.html'"></div>
-                    </md-tab-body>
-                </md-tab>
-                <md-tab>
-                    <md-tab-label>
-                        <div class="promote-circle"></div>
-                    </md-tab-label>
-                    <md-tab-body>
-                        <div ng-include="'app/components/item/view-tab-social.html'"></div>
-                    </md-tab-body>
-                </md-tab>
-                <md-tab>
-                    <md-tab-label>
-                        <div class="edit-circle"></div>
-                    </md-tab-label>
-                    <md-tab-body>
-                        <div ng-include="'app/components/item/view-tab-edit.html'"></div>
-                    </md-tab-body>
-                </md-tab>
-            </md-tabs>
-        </div>
-        <!--<div class="itemview-icon-cirle-wapper">-->
-            <!--<div class="action-icon"-->
-                 <!--ng-click="onClickTab({title: 'One', url: 'app/components/item/view-tab-comment.html', index: 1})">-->
-                <!--<div class="message-circle"-->
-                     <!--ng-class="isActiveTab('app/components/item/view-tab-comment.html') ? 'active' : ''"></div>-->
-            <!--</div>-->
-            <!--<div class="action-icon"-->
-                 <!--ng-click="onClickTab({title: 'Two', url: 'app/components/item/view-tab-log.html', index: 2})">-->
-                <!--<div class="buy-circle"-->
-                     <!--ng-class="isActiveTab('app/components/item/view-tab-log.html') ? 'active' : ''"></div>-->
-            <!--</div>-->
-            <!--<div class="action-icon"-->
-                 <!--ng-click="onClickTab({title: 'Three', url: 'app/components/item/view-tab-social.html', index: 3})">-->
-                <!--<div class="promote-circle"-->
-                     <!--ng-class="isActiveTab('app/components/item/view-tab-social.html') ? 'active' : ''"></div>-->
-            <!--</div>-->
-            <!--<div class="action-icon"-->
-                 <!--ng-click="onClickTab({title: 'Four', url: 'app/components/item/view-tab-edit.html', index: 4})">-->
-                <!--<div class="edit-circle"-->
-                     <!--ng-class="isActiveTab('app/components/item/view-tab-edit.html') ? 'active' : ''"></div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <div id="mainView" style="clear:both;">
-            <!--<div class="am-fade-and-slide-top" ng-include="currentTab"></div>-->
-        </div>
-    </div>
+    <md-content layout layout-align="center center" ng-controller="ItemViewTabsCtrl">
+        <md-tabs ng-if="!isYourStore || (isYourStore && !isSeller)" md-no-ink-bar md-dynamic-height md-border-bottom
+                 md-selected="$stateParams.tab">
+            <md-tab>
+                <md-tab-label>
+                    <div class="buyer-message-circle"></div>
+                </md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'app/components/item/view-tab-comment.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            <md-tab md-on-select="isGuest?login():''">
+                <md-tab-label>
+                    <div class="buy-circle"></div>
+                </md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'app/components/item/view-tab-buy.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            <md-tab md-on-select="likeItem()">
+                <md-tab-label>
+                    <div class="heart-circle"></div>
+                </md-tab-label>
+            </md-tab>
+            <md-tab>
+                <md-tab-label>
+                    <div class="location-circle"></div>
+                </md-tab-label>
+                <md-tab-body>
+                    <div ng-if="renderMap" ng-include="'app/components/item/view-tab-location.html'"></div>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+        <md-tabs ng-if="isYourStore && isSeller" md-center-tabs md-no-pagination md-stretch-tabs="always" md-no-ink-bar
+                 md-dynamic-height md-border-bottom md-selected="$stateParams.tab">
+            <md-tab md-on-select="changeStateAndUrlToTab('0');goToBottom()">
+                <md-tab-label>
+                    <div class="message-circle"></div>
+                </md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'app/components/item/view-tab-comment.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            <md-tab md-on-select="changeStateAndUrlToTab('1')">
+                <md-tab-label>
+                    <div ng-if="!item.price" class="buy-circle"></div>
+                    <span class="price-tag">${{item.price | itemPrice}}</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'app/components/item/view-tab-log.html'"></div>
+                </md-tab-body>
+            </md-tab >
+            <md-tab md-on-select="changeStateAndUrlToTab('2');goToBottom()">
+                <md-tab-label>
+                    <div class="promote-circle"></div>
+                </md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'app/components/item/view-tab-social.html'"></div>
+                </md-tab-body>
+            </md-tab>
+            <md-tab md-on-select="changeStateAndUrlToTab('3');goToBottom()">
+                <md-tab-label>
+                    <div class="edit-circle"></div>
+                </md-tab-label>
+                <md-tab-body>
+                    <div ng-include="'app/components/item/view-tab-edit.html'"></div>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+        <div id="mainView" style="clear:both;"></div>
+    </md-content>
 </div>
+<div id="bottom"></div>

@@ -2158,7 +2158,7 @@ p {
 
 .current-transaction {
     color: #000;
-    width: 314px;
+    width: 312px;
     margin-left: -2px;
     background-color: rgba(222, 222, 222, 0.5);
     border-top: 1px solid #bbb;
@@ -4114,9 +4114,3 @@ svg.svg-debit {
     border-radius: 50%;
     box-sizing: content-box;
 }
-
-/*Tabs override starts*/
-.md-tab{
-    padding: 0 13px;
-}
-/*Tabs override ends*/

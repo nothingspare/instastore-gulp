@@ -204,12 +204,16 @@ angular.module('instastore')
                 feedHelper.leaveComment = false;
             }
 
-            $scope.showCommentTabGoToBottom = function () {
+            $scope.showCommentTab = function () {
                 $scope.leaveComment = !$scope.leaveComment;
+                $scope.goToBottom();
+            };
+
+            $scope.goToBottom = function () {
                 $timeout(function () {
                     $location.hash('bottom');
                     $anchorScroll();
-                }, 100);
+                }, 450);
             };
 
             //Plupload-directive handlers
@@ -415,21 +419,18 @@ angular.module('instastore')
                         UserService.setProfile(res.data.profile);
                         $scope.profile = res.data.profile;
 
-                        changeStateAndUrlToTab(tab);
+                        $scope.changeStateAndUrlToTab(tab);
 
                     }, errorService.satellizerAlert);
                 }
                 else {
-                    changeStateAndUrlToTab(tab);
+                    $scope.changeStateAndUrlToTab(tab);
                 }
             };
 
-            function changeStateAndUrlToTab(tab) {
-                $stateParams['tab'] = tab.index;
-                $state.params['tab'] = tab.index;
-                $location.url($stateParams.storeurl + '/' + $stateParams.itemurl + '/' + tab.index);
-                $scope.currentTab = tab.url;
-            }
+            $scope.changeStateAndUrlToTab = function (tab) {
+                $location.url($stateParams.storeurl + '/' + $stateParams.itemurl + '/' + tab);
+            };
 
             $scope.isActiveTab = function (tabUrl) {
                 UserService.init();
