@@ -30,7 +30,8 @@
             </md-tab>
             <md-tab md-on-select="isGuest?login():''">
                 <md-tab-label>
-                    <div class="buy-circle"></div>
+                    <div ng-if="!item.price" class="buy-circle"></div>
+                    <span class="price-tag">${{item.price | itemPrice}}</span>
                 </md-tab-label>
                 <md-tab-body>
                     <div ng-include="'app/components/item/view-tab-buy.html'"></div>
@@ -40,6 +41,17 @@
                 <md-tab-label>
                     <div class="heart-circle"></div>
                 </md-tab-label>
+                <md-tab-body>
+                    <table class="prev-customers">
+                        <tr>
+                            <td>
+                                <a ng-repeat="isell in item.customers | unique:'buyer.id' | limitTo: 5"><img
+                                        class="buyer-profile-transaction" ng-src="{{isell.buyer.avatar_url}}"
+                                        ng-click="goToStoreProfile(isell.buyer.store.store_url)"></a>
+                            </td>
+                        </tr>
+                    </table>
+                </md-tab-body>
             </md-tab>
             <md-tab>
                 <md-tab-label>

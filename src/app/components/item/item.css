@@ -37,7 +37,11 @@
 
 .itemview .price-tag{
     color: black;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 48px;
+}
+
+.itemview.item-container{
+    margin-top: 0;
 }

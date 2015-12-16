@@ -3655,7 +3655,7 @@ ul.safearea a {
 /*add item popup end*/
 
 .itemfeed #item-large-pic {
-    margin-bottom: 21px;
+    margin-bottom: 0px;
 }
 
 .itemfeed #icon-cirle-wapper {
