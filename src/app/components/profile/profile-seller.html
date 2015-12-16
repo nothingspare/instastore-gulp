@@ -1,6 +1,6 @@
 <div layout>
-    <div flex="25" hide-sm></div>
-    <md-card layout="column" flex-sm layout-fill layout-wrap class="profile-tree">
+    <div flex-sm="0" flex-gt-sm="25" hide-sm></div>
+    <md-card layout="column" flex-sm="100" flex-gt-sm="50" layout-fill layout-wrap class="profile-tree">
         <form name="profileForm" layout="column">
             <div layout layout-align="center center" layout-padding>
                 <div flex="8" ng-click="goBack()" class="back"></div>
@@ -10,13 +10,18 @@
                 <md-divider></md-divider>
                 <ol ui-tree-nodes="" ng-model="treeConfig">
                     <li ng-repeat="unit in treeConfig" ui-tree-node collapsed="true">
-                        <div layout layout-padding ui-tree-handle ng-click="canToggle(unit.code)?toggle(this):''"
+                        <div layout layout-fill layout-wrap layout-padding ui-tree-handle
+                             ng-click="canToggle(unit.code)?toggle(this):''"
                              class="top-transaction">
-                            <div flex="15" layout layout-align="center center">
+                            <div
+                                    flex="15"
+                                    layout layout-align="center center">
                                 <ng-md-icon icon="{{unit.icon}}" style="fill: lightcoral" size="24"></ng-md-icon>
                             </div>
                             <!---->
-                            <div layout layout-align="start center" flex="65">
+                            <div
+                                    flex="70"
+                                    layout layout-align="start center">
                                 <div layout ng-if="unit.name === 'Phone number'" class="main-title">
                                     <span>{{profile.phone?(profile.phone|tel):'Phone Number'}}</span>
                                 </div>
@@ -34,7 +39,9 @@
                                 </div>
                                 <!---->
                             </div>
-                            <div flex layout layout-wrap layout-fill layout-align="center center">
+                            <div
+                                    flex="15"
+                                    layout layout-wrap layout-fill layout-align="center center">
                                 <div ng-if="unit.code==='phone' && profile.phone_validated_at" layout="column"
                                      layout-align="center center">
                                     <ng-md-icon ng-click="removePhone()" icon="cancel"
@@ -184,15 +191,19 @@
                 <ol ui-tree-nodes="" ng-model="treeStoreConfig">
                     <li ng-repeat="unit in treeStoreConfig" ui-tree-node collapsed="unit.collapsed">
                         <!--Top section-->
-                        <div layout layout-padding ui-tree-handle ng-click="canToggle(unit.code)?toggle(this):''"
+                        <div layout layout-fill layout-wrap layout-padding ui-tree-handle ng-click="canToggle(unit.code)?toggle(this):''"
                              class="top-transaction">
                             <!--Left icon-->
-                            <div flex="15" layout layout-align="center center">
+                            <div
+                                    flex="15"
+                                    layout layout-align="center center">
                                 <ng-md-icon icon="{{unit.icon}}" style="fill: lightcoral" size="24"></ng-md-icon>
                             </div>
                             <!--Left icon-->
                             <!--Main title-->
-                            <div layout layout-align="start center" flex="65">
+                            <div
+                                    flex="70"
+                                    layout layout-align="start center">
                                 <div ng-if="unit.code === 'specialities' || unit.code === 'instagram'" layout
                                      class="main-title">
                                     <span>{{unit.name}}</span>
@@ -208,7 +219,9 @@
                             </div>
                             <!--Main Title-->
                             <!--Right Icon-->
-                            <div flex layout layout-wrap layout-fill layout-align="center center">
+                            <div
+                                    flex="15"
+                                    layout layout-wrap layout-fill layout-align="center center">
                                 <ng-md-icon ng-if="unit.code==='instagram' && profile.instagramId" layout="column"
                                             layout-align="center center" icon="import_export"
                                             style="fill: lightcoral"
@@ -374,5 +387,5 @@
             </div>
         </div>
     </md-card>
-    <div flex="25" hide-sm></div>
+    <div flex-sm="0" flex-gt-sm="25" hide-sm></div>
 </div>
