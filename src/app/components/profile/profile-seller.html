@@ -16,7 +16,7 @@
                                 <ng-md-icon icon="{{unit.icon}}" style="fill: lightcoral" size="24"></ng-md-icon>
                             </div>
                             <!---->
-                            <div layout layout-align="start center" flex=65>
+                            <div layout layout-align="start center" flex="65">
                                 <div layout ng-if="unit.name === 'Phone number'" class="main-title">
                                     <span>{{profile.phone?(profile.phone|tel):'Phone Number'}}</span>
                                 </div>
@@ -174,12 +174,12 @@
                         <div layout layout-padding ui-tree-handle ng-click="canToggle(unit.code)?toggle(this):''"
                              class="top-transaction">
                             <!--Left icon-->
-                            <div flex="10" layout layout-align="center center">
+                            <div flex="15" layout layout-align="center center">
                                 <ng-md-icon icon="{{unit.icon}}" style="fill: lightcoral" size="24"></ng-md-icon>
                             </div>
                             <!--Left icon-->
                             <!--Main title-->
-                            <div layout layout-align="start center" flex>
+                            <div layout layout-align="start center" flex="65">
                                 <div ng-if="unit.code === 'specialities' || unit.code === 'instagram'" layout
                                      class="main-title">
                                     <span>{{unit.name}}</span>
@@ -195,26 +195,29 @@
                             </div>
                             <!--Main Title-->
                             <!--Right Icon-->
-                            <ng-md-icon ng-if="unit.code==='instagram' && profile.instagramId" layout="column"
-                                        layout-align="center center" flex="10" icon="import_export"
-                                        style="fill: lightcoral"
-                                        ui-sref="instaimport({storeurl:mainStoreUrl})"></ng-md-icon>
-                            <ng-md-icon ng-if="unit.code==='instagram' && !profile.instagramId" layout="column"
-                                        layout-align="center center" flex="10" icon="link"
-                                        style="fill: lightcoral" ng-click="linkInstagram()"></ng-md-icon>
-                            <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center" flex="10">
-                                <ng-md-icon ng-if="unit.code !== 'instagram'"
-                                            icon="{{collapsed?'expand_more':'expand_less'}}"
+                            <div flex layout layout-wrap layout-fill layout-align="center center">
+                                <ng-md-icon ng-if="unit.code==='instagram' && profile.instagramId" layout="column"
+                                            layout-align="center center" icon="import_export"
                                             style="fill: lightcoral"
-                                            size="24">
-                                </ng-md-icon>
+                                            ui-sref="instaimport({storeurl:mainStoreUrl})"></ng-md-icon>
+                                <ng-md-icon ng-if="unit.code==='instagram' && !profile.instagramId" layout="column"
+                                            layout-align="center center" icon="link"
+                                            style="fill: lightcoral" ng-click="linkInstagram()"></ng-md-icon>
+                                <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center">
+                                    <ng-md-icon ng-if="unit.code !== 'instagram'"
+                                                icon="{{collapsed?'expand_more':'expand_less'}}"
+                                                style="fill: lightcoral"
+                                                size="24">
+                                    </ng-md-icon>
+                                </div>
                             </div>
                             <!--Right Icon-->
                         </div>
                         <!--Top section-->
                         <md-divider></md-divider>
                         <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: collapsed}">
-                            <li ng-repeat="sub in unit.subs" ui-tree-node collapsed="unit.collapsed" ng-if="!collapsed"
+                            <li ng-repeat="sub in unit.subs" ui-tree-node collapsed="unit.collapsed"
+                                ng-if="!collapsed"
                                 class="am-collapse">
                                 <div ui-tree-handle>
                                     <div ng-if="unit.code === 'specialities'" layout="column" layout-padding>
@@ -279,7 +282,8 @@
                                         </md-button>
                                     </div>
                                     <div layout ng-if="unit.code === 'card'">
-                                        <md-button ng-if="profile.card_token_created_at" class="md-fab right-corner-btn"
+                                        <md-button ng-if="profile.card_token_created_at"
+                                                   class="md-fab right-corner-btn"
                                                    ng-click="removeSellerCard()" aria-label="Delete Card">
                                             <ng-md-icon icon="close"></ng-md-icon>
                                         </md-button>
@@ -336,7 +340,8 @@
                                                                ng-pattern="/\d*/"
                                                                name="ccCvc" ng-model="cardCvc" required>
                                                     </md-input-container>
-                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)" flex
+                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)"
+                                                         flex
                                                          layout="column" layout-align="center center">
                                                         <div layout layout-align="center center"
                                                              class="am-fade-and-scale">
