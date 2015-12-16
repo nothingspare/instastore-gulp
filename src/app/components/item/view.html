@@ -17,7 +17,8 @@
              rn-carousel-index="carouselIndex"></div>
     </div>
     <md-content layout layout-align="center center" ng-controller="ItemViewTabsCtrl">
-        <md-tabs ng-if="!isYourStore || (isYourStore && !isSeller)" md-no-ink-bar md-dynamic-height md-border-bottom
+        <md-tabs ng-if="!isYourStore || (isYourStore && !isSeller)" md-center-tabs md-no-pagination md-stretch-tabs="always" md-no-ink-bar
+                 md-dynamic-height md-border-bottom
                  md-selected="$stateParams.tab">
             <md-tab>
                 <md-tab-label>

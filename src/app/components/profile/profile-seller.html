@@ -1,6 +1,6 @@
 <div layout>
     <div flex="25" hide-sm></div>
-    <md-card layout="column" flex class="profile-tree">
+    <md-card layout="column" flex-sm layout-fill layout-wrap class="profile-tree">
         <form name="profileForm" layout="column">
             <div layout layout-align="center center" layout-padding>
                 <div flex="8" ng-click="goBack()" class="back"></div>
@@ -12,11 +12,11 @@
                     <li ng-repeat="unit in treeConfig" ui-tree-node collapsed="true">
                         <div layout layout-padding ui-tree-handle ng-click="canToggle(unit.code)?toggle(this):''"
                              class="top-transaction">
-                            <div flex="10" layout layout-align="center center">
+                            <div flex="15" layout layout-align="center center">
                                 <ng-md-icon icon="{{unit.icon}}" style="fill: lightcoral" size="24"></ng-md-icon>
                             </div>
                             <!---->
-                            <div layout layout-align="start center" flex>
+                            <div layout layout-align="start center" flex=65>
                                 <div layout ng-if="unit.name === 'Phone number'" class="main-title">
                                     <span>{{profile.phone?(profile.phone|tel):'Phone Number'}}</span>
                                 </div>
@@ -30,35 +30,34 @@
                                 </div>
                                 <div ng-if="unit.code === 'crop'" layout
                                      class="main-title">
-                                    <span>{{unit.name}}</span>
+                                    <span class="main-title">{{unit.name}}</span>
                                 </div>
                                 <!---->
                             </div>
-
-                            <div ng-if="unit.code==='phone' && profile.phone_validated_at" layout="column"
-                                 layout-align="center center" flex="10">
-                                <ng-md-icon ng-click="removePhone()" icon="cancel"
-                                            style="fill: lightcoral"></ng-md-icon>
+                            <div flex layout layout-wrap layout-fill layout-align="center center">
+                                <div ng-if="unit.code==='phone' && profile.phone_validated_at" layout="column"
+                                     layout-align="center center">
+                                    <ng-md-icon ng-click="removePhone()" icon="cancel"
+                                                style="fill: lightcoral"></ng-md-icon>
+                                </div>
+                                <div ng-if="unit.code === 'name'" layout="column"
+                                     layout-align="center center">
+                                    <img ng-src="{{store.avatar_url|storeAvatar}}"
+                                         class="io-avatar"/>
+                                </div>
+                                <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center">
+                                    <ng-md-icon ng-if="unit.name !== 'Phone number'"
+                                                icon="{{collapsed?'expand_more':'expand_less'}}"
+                                                style="fill: lightcoral"
+                                                size="24">
+                                    </ng-md-icon>
+                                    <ng-md-icon ng-if="unit.name === 'Phone number' && !profile.phone_validated_at"
+                                                icon="{{collapsed?'expand_more':'expand_less'}}"
+                                                style="fill: lightcoral"
+                                                size="24">
+                                    </ng-md-icon>
+                                </div>
                             </div>
-
-                            <div ng-if="unit.code === 'name'" layout="column"
-                                 layout-align="center center" flex="10">
-                                <img ng-src="{{store.avatar_url|storeAvatar}}"
-                                     class="io-avatar"/>
-                            </div>
-
-                            <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center" flex="10">
-                                <ng-md-icon ng-if="unit.name !== 'Phone number'"
-                                            icon="{{collapsed?'expand_more':'expand_less'}}"
-                                            style="fill: lightcoral"
-                                            size="24">
-                                </ng-md-icon>
-                                <ng-md-icon ng-if="unit.name === 'Phone number' && !profile.phone_validated_at"
-                                            icon="{{collapsed?'expand_more':'expand_less'}}" style="fill: lightcoral"
-                                            size="24">
-                                </ng-md-icon>
-                            </div>
-
                         </div>
                         <md-divider></md-divider>
                         <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: collapsed}">
@@ -198,7 +197,8 @@
                             <!--Right Icon-->
                             <ng-md-icon ng-if="unit.code==='instagram' && profile.instagramId" layout="column"
                                         layout-align="center center" flex="10" icon="import_export"
-                                        style="fill: lightcoral" ui-sref="instaimport({storeurl:mainStoreUrl})"></ng-md-icon>
+                                        style="fill: lightcoral"
+                                        ui-sref="instaimport({storeurl:mainStoreUrl})"></ng-md-icon>
                             <ng-md-icon ng-if="unit.code==='instagram' && !profile.instagramId" layout="column"
                                         layout-align="center center" flex="10" icon="link"
                                         style="fill: lightcoral" ng-click="linkInstagram()"></ng-md-icon>

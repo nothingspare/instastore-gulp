@@ -1,0 +1,43 @@
+.itemview {
+    margin-top: 60px;
+}
+
+.itemview md-tabs{
+    border: 2px solid lightgray;
+    border-top: none;
+}
+
+.itemview md-card, .itemview md-content {
+    background-color: transparent;
+}
+
+.itemview md-tabs .md-tab:not(.md-active) {
+    background-color: darkgrey;
+}
+
+.itemview md-tabs .md-tab {
+    min-width: 77px;
+    padding: 0 13px;
+    border-bottom: 2px solid lightgray;
+    border-left: 2px solid lightgray;
+}
+
+.itemview md-tabs .md-tab:first-child {
+    border-left: none;
+}
+
+.itemview md-tabs .md-active {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-bottom: 0;
+}
+
+.itemview md-tabs[md-border-bottom] md-tabs-wrapper {
+    border-style: none;
+}
+
+.itemview .price-tag{
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 48px;
+}
