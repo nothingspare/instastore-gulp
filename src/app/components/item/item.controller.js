@@ -95,10 +95,10 @@ angular.module('instastore')
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', 'ngDialog', '$window',
-        'uiGmapGoogleMapApi',
+        'uiGmapGoogleMapApi', '$auth',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi) {
+                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi, $auth) {
 
             uiGmapGoogleMapApi
                 .then(function () {
@@ -108,12 +108,39 @@ angular.module('instastore')
                     $scope.renderMap = true;
                 });
 
-            $scope.item = {};
+            if(!$scope.item){
+                $scope.item = {};
+                ////
+                if (!UserService.isGuest()) {
+                    rest.path = 'v1/user-items';
+                }
+                else {
+                    rest.path = 'v1/items';
+                }
+
+                if ($stateParams.itemurl) {
+                    $scope.itemUrl = CLIENT_URL + $stateParams.storeurl + '/' + $stateParams.itemurl;
+
+                    //rest.path is above
+                    rest.models({item_url: $stateParams.itemurl}).success(function (data) {
+                        $scope.item = data[0];
+                        $scope.pluploadConfig.multiParams = {itemId: data[0].id};
+                    }).error(errorService.alert);
+                }
+                else {
+                    errorService.simpleAlert('noitemwithurl');
+                    $state.go('grid');
+                }
+                ////
+            }
+
+            $scope.profile = UserService.getProfile();
 
             $scope.isGuest = UserService.isGuest();
+            $scope.isYourStore = UserService.isYourStore();
+            $scope.isSeller = $scope.profile.seller;
 
             $scope.transactionStates = ITEMSELLTRANSACTION_STATUS;
-            $scope.profile = UserService.getProfile();
 
             //init Plupload-directive vars
             $scope.plupfiles = [];
@@ -121,30 +148,7 @@ angular.module('instastore')
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
             $scope.pluploadConfig.resize = PLUPLOAD_RESIZE_CONFIG;
 
-            $scope.isYourStore = UserService.isYourStore();
 
-            ////
-            if (!UserService.isGuest()) {
-                rest.path = 'v1/user-items';
-            }
-            else {
-                rest.path = 'v1/items';
-            }
-
-            if ($stateParams.itemurl) {
-                $scope.itemUrl = CLIENT_URL + $stateParams.storeurl + '/' + $stateParams.itemurl;
-
-                //rest.path is above
-                rest.models({item_url: $stateParams.itemurl}).success(function (data) {
-                    $scope.item = data[0];
-                    $scope.pluploadConfig.multiParams = {itemId: data[0].id};
-                }).error(errorService.alert);
-            }
-            else {
-                errorService.simpleAlert('noitemwithurl');
-                $state.go('grid');
-            }
-            ////
 
             $scope.save = function () {
                 $scope.item.item_url = $scope.item.title;
@@ -283,10 +287,7 @@ angular.module('instastore')
                 } else {
                     $scope.showConfirm = true;
                 }
-
-
             };
-
 
             //Label section
             $scope.getLabel = function (isell) {
@@ -320,6 +321,29 @@ angular.module('instastore')
 
             $scope.goToStoreProfile = function (storeUrl) {
                 UserService.goToStoreProfile(storeUrl);
+            };
+
+            $scope.login = function () {
+                UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
+                $auth.authenticate('facebook').then(function (res) {
+                    if (UserService.getProfile().lastRoute) {
+                        var lastRoute = UserService.getProfile().lastRoute;
+                    }
+                    UserService.login(res.data.token);
+                    UserService.setFacebookProfile(res.data.facebookProfile);
+                    res.data.profile.stores = res.data.stores;
+                    if (res.data.store) {
+                        res.data.profile.store = res.data.store;
+                        UserService.setBg(res.data.store.bg_url);
+                        UserService.setAvatar(res.data.store.avatar_url);
+                    }
+                    res.data.profile.lastRoute = lastRoute;
+                    UserService.setProfile(res.data.profile);
+                    $scope.profile = res.data.profile;
+                    if($state.includes('itemview')){
+                        $state.go('itemview')
+                    }
+                });
             };
         }
     ])
@@ -378,26 +402,6 @@ angular.module('instastore')
         '$auth', 'errorService', '$state', '$location',
         function ($scope, $rootScope, $timeout, $stateParams, UserService, $auth, errorService, $state, $location) {
 
-            $scope.login = function () {
-                UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
-                $auth.authenticate('facebook').then(function (res) {
-                    if (UserService.getProfile().lastRoute) {
-                        var lastRoute = UserService.getProfile().lastRoute;
-                    }
-                    UserService.login(res.data.token);
-                    UserService.setFacebookProfile(res.data.facebookProfile);
-                    res.data.profile.stores = res.data.stores;
-                    if (res.data.store) {
-                        res.data.profile.store = res.data.store;
-                        UserService.setBg(res.data.store.bg_url);
-                        UserService.setAvatar(res.data.store.avatar_url);
-                    }
-                    res.data.profile.lastRoute = lastRoute;
-                    UserService.setProfile(res.data.profile);
-                    $scope.profile = res.data.profile;
-                });
-            };
-
             $scope.onClickTab = function (tab) {
                 if (UserService.isGuest() && tab.index == 2) {
                     UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
@@ -429,6 +433,8 @@ angular.module('instastore')
             };
 
             $scope.changeStateAndUrlToTab = function (tab) {
+                //$stateParams['tab'] = tab;
+                //$state.params['tab'] = tab;
                 $location.url($stateParams.storeurl + '/' + $stateParams.itemurl + '/' + tab);
             };
 
