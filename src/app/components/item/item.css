@@ -45,3 +45,12 @@
 .itemview.item-container{
     margin-top: 0;
 }
+
+.itemview md-list .md-subheader{
+    background-color: transparent;
+}
+
+.itemview md-list .md-subheader-inner{
+    background-color: transparent;
+    padding: 5px 20px;
+}

@@ -191,7 +191,7 @@ angular.module('instastore')
                 $scope.seeMore = true;
                 rest.postModel({content: comment, item_id: $scope.item.id}).success(function () {
                     toaster.pop('success', "Commented");
-                    $scope.item.comments.push({authorFullName: UserService.getUserFullName(), content: comment});
+                    $scope.item.comments.push({authorFullName: UserService.getUserFullName(), content: comment, authorFacebookAvatar:$scope.profile.avatar_url});
                     $scope.item.newComment = null;
                 }).error(errorService.alert);
             };

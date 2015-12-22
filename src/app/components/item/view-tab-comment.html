@@ -1,79 +1,76 @@
-<div layout="column" layout-fill layout-padding class="tab-comment">
-    <div layout="column" class="comment">
-        <div layout>
-            <div class="icon-message">
-                <span class="description-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<md-content>
+    <md-list>
+        <md-subheader class="md-no-sticky">
+            <div layout layout-align="start center">
+                <div class="icon-message">
+                    <span class="description-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </div>
+                <div><h6>&nbsp;{{item.description|itemDescription}}</h6></div>
             </div>
-            <div><p>&nbsp;{{item.description|itemDescription}}</p></div>
-        </div>
-        <div ng-if='!seeMore' ng-repeat="comment in item.comments | limitTo:2" layout layout-align="start center">
-            <div class="icon-message">
-                <span ng-class="item.userFullName==comment.authorFullName?'seller-message-small':'buyer-message-small'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            </div>
-            <p ui-sref="store({storeurl:comment.storeUrl})">
-                <b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'">{{item.userFullName!==comment.authorFullName?comment.authorFullName:''}}</b>
-                {{comment.content}}
-            </p>
-        </div>
-        <div ng-if='seeMore' ng-repeat="comment in item.comments" layout layout-align="start center" class="">
-            <div class="icon-message">
-                <span ng-class="item.userFullName==comment.authorFullName?'seller-message-small':'buyer-message-small'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            </div>
-            <p ui-sref="store({storeurl:comment.storeUrl})">
-                <b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'">{{item.userFullName!==comment.authorFullName?comment.authorFullName:''}}</b>
-                {{comment.content}}
-            </p>
-        </div>
-    </div>
-    <!--<table class="comment">-->
-        <!--<tr>-->
-            <!--<td class="icon-message">-->
-                <!--<span class="description-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<p>{{item.description|itemDescription}}</p>-->
-            <!--</td>-->
-        <!--</tr>-->
-        <!--<tr ng-if='!seeMore' ng-repeat="comment in item.comments | limitTo:2">-->
-            <!--<td class="icon-message">-->
-                <!--<span ng-class="item.userFullName==comment.authorFullName?'seller-message-small':'buyer-message-small'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<p ui-sref="store({storeurl:comment.storeUrl})">-->
-                    <!--<b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'">{{item.userFullName!==comment.authorFullName?comment.authorFullName:''}}</b>-->
-                    <!--{{comment.content}}-->
-                <!--</p>-->
-            <!--</td>-->
-        <!--</tr>-->
-        <!--<tr ng-if='seeMore' ng-repeat="comment in item.comments">-->
-            <!--<td class="icon-message">-->
-                <!--<span ng-class="item.userFullName==comment.authorFullName?'seller-message-small':'buyer-message-small'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<p>-->
-                    <!--<b ng-class="item.userFullName==comment.authorFullName?'seller-name-text':'buyer-name-text'">{{item.userFullName!==comment.authorFullName?comment.authorFullName:''}}</b>-->
-                    <!--{{comment.content}}-->
-                <!--</p>-->
-            <!--</td>-->
-        <!--</tr>-->
-    <!--</table>-->
-    <div class="seemore-leavecomment-container" style="margin: 5px 0 {{item.comments.length<3?'20px':'0'}} 10px;">
-        <div class="leavecomment">
-            <a style="color: #4c87f1; text-decoration: none !important;" ng-click="showCommentTab()">Leave
-                comment</a>
-        </div>
-        <div class="seemorecontainer">
-            <div class="seemore" style=" margin: -16px 0 0 0; text-align: right;">
-                <span ng-show="item.comments.length>2"
-                      ng-click="seeMore = !seeMore">See {{seeMore?' less':' more'}}...</span>
-            </div>
-        </div>
-    </div>
-    <div ng-class="item.comments.length==0?'mtop':''" class="leavecomment-container">
-        <div ng-show="leaveComment">
-            <input ng-model="item.newComment">
+        </md-subheader>
+        <md-list-item ng-if='!seeMore' ng-repeat="comment in item.comments | limitTo:2">
+            <img ng-src="{{comment.authorFacebookAvatar}}" class="md-avatar"
+                 alt="{{item.userFullName!==comment.authorFullName?comment.authorFullName:item.userFullName}}"/>
 
-            <div class="but sml" ng-click="saveComment(item.newComment)">Post</div>
-        </div>
+            <div class="md-list-item-text" layout="column" layout-align="center start"
+                 ui-sref="store({storeurl:comment.storeUrl})">
+                <h6>{{item.userFullName!==comment.authorFullName?comment.authorFullName:item.userFullName}}</h6>
+
+                <p>{{comment.content}}</p>
+            </div>
+        </md-list-item>
+        <md-list-item ng-if='seeMore' ng-repeat="comment in item.comments">
+            <img ng-src="{{comment.authorFacebookAvatar}}" class="md-avatar"
+                 alt="{{item.userFullName!==comment.authorFullName?comment.authorFullName:item.userFullName}}"/>
+
+            <div class="md-list-item-text" layout="column" layout-align="center start"
+                 ui-sref="store({storeurl:comment.storeUrl})">
+                <h6>{{item.userFullName!==comment.authorFullName?comment.authorFullName:item.userFullName}}</h6>
+
+                <p>{{comment.content}}</p>
+            </div>
+        </md-list-item>
+    </md-list>
+</md-content>
+
+<div layout>
+    <md-button ng-click="showCommentTab()" aria-label="{{seeMore?'See more':'See less'}}" class="md-fab md-primary">
+        <ng-md-icon style="fill:white"
+                    icon="comment"></ng-md-icon>
+    </md-button>
+    <md-button ng-click="seeMore = !seeMore" ng-if="item.comments.length>2" aria-label="{{seeMore?'See more':'See less'}}" class="md-fab"
+               style="background-color:lightcoral;">
+        <ng-md-icon style="fill:white"
+                    icon="{{seeMore?'expand_less':'expand_more'}}"></ng-md-icon>
+    </md-button>
+</div>
+
+<div ng-class="item.comments.length==0?'mtop':''" class="leavecomment-container">
+    <div ng-show="leaveComment">
+        <input ng-model="item.newComment">
+        <div class="but sml" ng-click="saveComment(item.newComment)">Post</div>
     </div>
 </div>
+
+<!--<div layout="column" layout-fill layout-padding class="tab-comment">-->
+    <!--<div class="seemore-leavecomment-container" style="margin: 5px 0 {{item.comments.length<3?'20px':'0'}} 10px;">-->
+        <!--<div class="leavecomment">-->
+            <!--&lt;!&ndash;<a style="color: #4c87f1; text-decoration: none !important;">Leave&ndash;&gt;-->
+            <!--&lt;!&ndash;comment</a>&ndash;&gt;-->
+            <!--<md-button ng-click="showCommentTab()" aria-label="{{seeMore?'See more':'See less'}}"-->
+                       <!--class="md-fab md-primary">-->
+                <!--<ng-md-icon style="fill:white"-->
+                            <!--icon="comment"></ng-md-icon>-->
+            <!--</md-button>-->
+        <!--</div>-->
+        <!--<div class="seemorecontainer">-->
+            <!--<div class="seemore" style=" margin: -16px 0 0 0; text-align: right;">-->
+                <!--<md-button ng-if="item.comments.length>2" aria-label="{{seeMore?'See more':'See less'}}" class="md-fab"-->
+                           <!--style="background-color:lightcoral;">-->
+                    <!--<ng-md-icon style="fill:white"-->
+                                <!--icon="{{seeMore?'expand_less':'expand_more'}}"></ng-md-icon>-->
+                <!--</md-button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->

@@ -4113,3 +4113,7 @@ svg.svg-debit {
     border-radius: 50%;
     box-sizing: content-box;
 }
+
+md-tab-content{
+    transition: none;
+}
