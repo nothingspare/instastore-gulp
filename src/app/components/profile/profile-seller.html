@@ -39,8 +39,7 @@
                                 </div>
                                 <!---->
                             </div>
-                            <div
-                                    flex="15"
+                            <div flex="15"
                                     layout layout-wrap layout-fill layout-align="center center">
                                 <div ng-if="unit.code==='phone' && profile.phone_validated_at" layout="column"
                                      layout-align="center center">
@@ -102,7 +101,7 @@
                                         <h4 ng-if="profile.phone_validated_at">Number is verified!</h4>
                                     </div>
                                     <div ng-if="unit.name === 'Postal address'" layout="column" layout-padding
-                                         layout-fill>
+                                         layout-fill class="postal-subs">
                                         <div layout layout-sm="column">
                                             <md-input-container flex-sm flex-gt-sm="70">
                                                 <label>Address</label>
@@ -247,7 +246,7 @@
                                 class="am-collapse">
                                 <div ui-tree-handle>
                                     <div ng-if="unit.code === 'specialities'" layout="column" layout-padding>
-                                        <ng-form name="specialitiesForm">
+                                        <ng-form name="specialitiesForm" class="specialities">
                                             <md-input-container class="md-block">
                                                 <label>Store name</label>
                                                 <input md-maxlength="30" required name="store_name"

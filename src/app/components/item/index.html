@@ -1,6 +1,6 @@
 <div ng-if="showPanel" ng-include="'app/components/item/newstore-panel.html'"></div>
-<div class="grid-container itemfeed">
-    <div ng-repeat="item in items track by $index" class="item-container itemview">
-        <div item-stream item="item" store="store"></div>
+<div layout="column" layout-align="center center" layout-fill class="grid-container itemfeed">
+    <div layout="column" ng-repeat="item in items track by $index" class="item-container itemview">
+        <md-card item-stream item="item" store="store"></md-card>
     </div>
 </div>
