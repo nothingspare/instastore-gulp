@@ -25,10 +25,13 @@
                                 <div layout ng-if="unit.name === 'Phone number'" class="main-title">
                                     <span>{{profile.phone?(profile.phone|tel):'Phone Number'}}</span>
                                 </div>
-                                <div ng-if="unit.name === 'Postal address'" class="main-title">{{profile.address}},
+                                <div ng-if="unit.name === 'Postal address' && profile.address" class="main-title">{{profile.address}},
                                     {{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},
                                     {{profile.state}},
                                     {{profile.zipcode}}
+                                </div>
+                                <div ng-if="unit.name === 'Postal address' && !profile.address" class="main-title">
+                                    ENTER YOUR POSTAL ADDRESS
                                 </div>
                                 <div ng-if="unit.name === 'Name'" class="main-title">
                                     {{profile.fullName}}
