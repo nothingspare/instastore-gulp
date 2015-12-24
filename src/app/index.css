@@ -600,9 +600,6 @@
 /** - - - - - - - global - - - - - - - - - - - **/
 
 body {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
-    width: 100%;
-    margin: 0px 0px 0px 0px;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
     font-size: 110%;
@@ -634,7 +631,6 @@ body {
 
 html {
     background-size: cover;
-    height: 100%;
     overflow: hidden;
 }
 
@@ -1215,7 +1211,7 @@ h3 {
 /* - - -below mid nav - - -*/
 
 .grid-container {
-    margin: 135px 0 0 0;
+    margin: 25px 0 0 0;
     margin-left: 0px;
 }
 
@@ -1595,6 +1591,7 @@ h3 {
 .newstore-panel .stream-item-slider h6 {
     line-height: 20px;
 }
+
 /*/ - - - - - - - app icons - - - - - - - - - - /*/
 
 .heart-small, .message-small, .buy-small, .location-small, .green-tick, .buyer-message-small, .box-small {
@@ -1843,11 +1840,11 @@ h3 {
     background: url(img/i2.jpg) center top;
     /* use center center fixed; at end if desired */
 
-    background-size: 310px 430px;
+    background-size: contain;
     /* or iPhone aspect ratio */
 
     /*width: 310px;*/
-    height: 280px;
+    /*height: 280px;*/
     border: 0 solid #fff;
     margin-bottom: 38px;
 }
@@ -4002,4 +3999,31 @@ svg.svg-debit {
     height: 40px;
     border-radius: 50%;
     box-sizing: content-box;
+}
+
+.io-bar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.io-bar > div {
+    padding: 10px 20px 5px 20px;
+}
+
+.io-bar > div.middle-section {
+    padding: 10px 0 5px 0;
+}
+
+.io-bar > div:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.io-sub-bar .profile-digits {
+    font-size: 14px;
+}
+
+.io-sub-bar-freeshipping div {
+    color: lightcoral;
+    font-weight: 600;
+    padding-bottom: 0;
 }

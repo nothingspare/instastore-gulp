@@ -108,7 +108,7 @@ angular.module('instastore')
                     $scope.renderMap = true;
                 });
 
-            if(!$scope.item){
+            if (!$scope.item) {
                 $scope.item = {};
                 ////
                 if (!UserService.isGuest()) {
@@ -147,7 +147,6 @@ angular.module('instastore')
             $scope.pluploadConfig = {};
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
             $scope.pluploadConfig.resize = PLUPLOAD_RESIZE_CONFIG;
-
 
 
             $scope.save = function () {
@@ -191,7 +190,11 @@ angular.module('instastore')
                 $scope.seeMore = true;
                 rest.postModel({content: comment, item_id: $scope.item.id}).success(function () {
                     toaster.pop('success', "Commented");
-                    $scope.item.comments.push({authorFullName: UserService.getUserFullName(), content: comment, authorFacebookAvatar:$scope.profile.avatar_url});
+                    $scope.item.comments.push({
+                        authorFullName: UserService.getUserFullName(),
+                        content: comment,
+                        authorFacebookAvatar: $scope.profile.avatar_url
+                    });
                     $scope.item.newComment = null;
                 }).error(errorService.alert);
             };
@@ -340,7 +343,7 @@ angular.module('instastore')
                     res.data.profile.lastRoute = lastRoute;
                     UserService.setProfile(res.data.profile);
                     $scope.profile = res.data.profile;
-                    if($state.includes('itemview')){
+                    if ($state.includes('itemview')) {
                         $state.go('itemview')
                     }
                 });
@@ -560,4 +563,85 @@ angular.module('instastore')
     }])
     .controller('PaymentCtrl', ['$scope', function ($scope) {
 
-    }]);
+    }]).controller('SubheaderAppCtrl', function ($scope) {
+        var imagePath = 'img/list/60.jpeg';
+        $scope.messages = [
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+            {
+                face: imagePath,
+                what: 'Brunch this weekend?',
+                who: 'Min Li Chan',
+                when: '3:08PM',
+                notes: " I'll be in your neighborhood doing errands"
+            },
+        ];
+    });

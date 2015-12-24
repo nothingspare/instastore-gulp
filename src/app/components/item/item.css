@@ -58,7 +58,8 @@
 /*Item container on feed*/
 .itemfeed > .item-container {
     margin-bottom: 10px;
-    width: 310px;
+    width: 100%;
+    max-width: 640px;
 }
 
 .itemfeed .comment .icon-message {

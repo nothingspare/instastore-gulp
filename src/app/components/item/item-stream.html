@@ -1,170 +1,25 @@
-<div style="position: relative">
-    <md-button ng-if="isSeller" ng-click="toggleItemStatus(item)"
-               style="position:absolute; top:0; right:0; background-color: lightcoral"
-               class="md-fab md-hue-1" aria-label="Use Android">
-        <ng-md-icon icon="close" style="fill:white"></ng-md-icon>
-    </md-button>
-</div>
-<div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})" id="item-large-pic"
-     ng-style="{'background-image': 'url(' + item.images[0].image_url + ')', 'opacity':item.status==10?0.3:1}">
-</div>
-<!--<img ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})"-->
-<!--ng-src="{{item.images[0].image_url}}" alt="Washed Out" ng-style="{'opacity':item.status==10?0.3:1}"-->
-<!--style="min-height: 280px">-->
-<md-content layout layout-align="start center" class="bottom-actions">
-    <div layout layout-align="center center" class="price-tag-wrapper" ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">
-        <div ng-if="!item.price" class="buy-circle"></div>
-        <span ng-if="item.price" class="price-tag">${{item.price | itemPrice}}</span>
+<md-content>
+    <div style="position: relative">
+        <md-button ng-if="isSeller" ng-click="toggleItemStatus(item)"
+                   style="position:absolute; top:0; right:0; background-color: lightcoral"
+                   class="md-fab md-hue-1" aria-label="Active/Unactive">
+            <ng-md-icon icon="close" style="fill:white"></ng-md-icon>
+        </md-button>
     </div>
-    <md-card-content flex layout layout-align="start start"
-                     ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:0})">
-        <p>{{item.description|itemDescription}}</p>
-    </md-card-content>
+    <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})" id="item-large-pic"
+         ng-style="{'background-image': 'url(' + item.images[0].image_url + ')', 'opacity':item.status==10?0.3:1}"
+         style="background-repeat: no-repeat;">
+        <img ng-src="{{item.images[0].image_url}}" style="visibility: hidden;">
+    </div>
+    <md-content layout layout-align="start center" class="bottom-actions">
+        <div layout layout-align="center center" class="price-tag-wrapper"
+             ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">
+            <div ng-if="!item.price" class="buy-circle"></div>
+            <span ng-if="item.price" class="price-tag">${{item.price | itemPrice}}</span>
+        </div>
+        <md-card-content flex layout layout-align="start start"
+                         ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:0})">
+            <p><b>{{item.description|itemDescription}}</b></p>
+        </md-card-content>
+    </md-content>
 </md-content>
-<div layout="column" layout-align="center center" ng-style="{'opacity':item.status==10?0.3:1}">
-    <!--<div ng-cloak>-->
-    <!--<md-tabs ng-if="(!isYourStore || (isYourStore && !isSeller))" md-center-tabs md-no-pagination-->
-    <!--md-stretch-tabs="always" md-no-ink-bar-->
-    <!--md-dynamic-height md-border-bottom>-->
-    <!--<md-tab>-->
-    <!--<md-tab-label>-->
-    <!--<div class="buyer-message-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div ng-include="'app/components/item/view-tab-comment.html'"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--<md-tab md-on-select="isGuest?login():''">-->
-    <!--<md-tab-label>-->
-    <!--<div ng-if="!item.price" class="buy-circle"></div>-->
-    <!--<span class="price-tag">${{item.price | itemPrice}}</span>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div ng-include="'app/components/item/view-tab-buy.html'"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--<md-tab md-on-select="likeItem()">-->
-    <!--<md-tab-label>-->
-    <!--<div class="heart-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div layout="column" style="height: 20px;"></div>-->
-    <!--<table class="prev-customers">-->
-    <!--<tr>-->
-    <!--<td>-->
-    <!--<a ng-repeat="isell in item.customers | unique:'buyer.id' | limitTo: 5"><img-->
-    <!--class="buyer-profile-transaction" ng-src="{{isell.buyer.avatar_url}}"-->
-    <!--ng-click="goToStoreProfile(isell.buyer.store.store_url)"></a>-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</table>-->
-    <!--<div layout="column" style="height: 20px;"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--<md-tab>-->
-    <!--<md-tab-label>-->
-    <!--<div class="location-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div ng-if="renderMap" ng-include="'app/components/item/view-tab-location.html'"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--</md-tabs>-->
-    <!--<md-tabs ng-if="isYourStore && isSeller" md-center-tabs md-no-pagination md-stretch-tabs="always"-->
-    <!--md-no-ink-bar-->
-    <!--md-dynamic-height md-border-bottom>-->
-    <!--<md-tab>-->
-    <!--<md-tab-label>-->
-    <!--<div class="message-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div ng-include="'app/components/item/view-tab-comment.html'"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--<md-tab>-->
-    <!--<md-tab-label>-->
-    <!--<div ng-if="!item.price" class="buy-circle"></div>-->
-    <!--<span class="price-tag">${{item.price | itemPrice}}</span>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div ng-include="'app/components/item/view-tab-log.html'"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--<md-tab>-->
-    <!--<md-tab-label>-->
-    <!--<div class="promote-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div ng-include="'app/components/item/view-tab-social.html'"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--<md-tab>-->
-    <!--<md-tab-label>-->
-    <!--<div class="edit-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div ng-include="'app/components/item/view-tab-edit.html'"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--</md-tabs>-->
-    <!--<div id="mainView" style="clear:both;"></div>-->
-    <!--</md-content>-->
-    <!--<md-tabs md-center-tabs md-no-pagination md-stretch-tabs="always" md-no-ink-bar-->
-    <!--md-dynamic-height md-border-bottom>-->
-    <!--<md-tab>-->
-    <!--<md-tab-label>-->
-    <!--<div class="message-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div ng-include="'app/components/item/item-feed-comments.html'"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--<md-tab ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">-->
-    <!--<md-tab-label>-->
-    <!--<div ng-if="!item.price" class="buy-circle"></div>-->
-    <!--<span class="price-tag">${{item.price | itemPrice}}</span>-->
-    <!--</md-tab-label>-->
-    <!--</md-tab>-->
-    <!--<md-tab ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:2})">-->
-    <!--<md-tab-label>-->
-    <!--<div class="promote-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--</md-tab>-->
-    <!--<md-tab ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:3})">-->
-    <!--<md-tab-label>-->
-    <!--<div class="edit-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--</md-tab>-->
-    <!--</md-tabs>-->
-    <!--</div>-->
-
-    <!--<div ng-if="!isSeller" ng-cloak>-->
-    <!--<md-tabs md-center-tabs md-no-pagination md-stretch-tabs="always" md-no-ink-bar-->
-    <!--md-dynamic-height md-border-bottom>-->
-    <!--<md-tab>-->
-    <!--<md-tab-label>-->
-    <!--<div class="buyer-message-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--<md-tab-body>-->
-    <!--<div ng-include="'app/components/item/item-feed-comments.html'"></div>-->
-    <!--</md-tab-body>-->
-    <!--</md-tab>-->
-    <!--<md-tab ng-click="goToBuyItem(store.store_url, item.item_url)">-->
-    <!--<md-tab-label>-->
-    <!--<div ng-if="!item.price" class="buy-circle"></div>-->
-    <!--<span class="price-tag">${{item.price | itemPrice}}</span>-->
-    <!--</md-tab-label>-->
-    <!--</md-tab>-->
-    <!--<md-tab ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:2})">-->
-    <!--<md-tab-label>-->
-    <!--<div class="heart-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--</md-tab>-->
-    <!--<md-tab ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:3})">-->
-    <!--<md-tab-label>-->
-    <!--<div class="location-circle"></div>-->
-    <!--</md-tab-label>-->
-    <!--</md-tab>-->
-    <!--</md-tabs>-->
-</div>
-</div>

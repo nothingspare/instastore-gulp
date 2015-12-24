@@ -1,63 +1,48 @@
-<div ng-controller="SiteHeader">
-    <div class="bar">
-        <div id="navigation1">
-            <ul>
-                <li>
-                    <a ng-click="logout()" style="height: 38px">
-                        <div class="back"></div>
-                    </a>
-                </li>
-                <li>
-                    <a ng-click="scrollToTop()" style="width: 70%; height: 38px">
-                        <img class="profile customheader-profile" ng-src="{{store.avatar_url|storeAvatar}}">
+<div layout="column" ng-controller="SiteHeader">
+    <div layout layout-align="center center" class="io-bar">
+        <div ng-click="logout()">
+            <div class="back"></div>
+        </div>
+        <div layout flex ng-click="scrollToTop()" class="middle-section">
+            <img class="profile customheader-profile" ng-src="{{store.avatar_url|storeAvatar}}">
 
-                        <div class="header-title">{{store.store_name}}</div>
-                    </a>
-                </li>
-                <li>
-                    <a ng-click="goToProfile()">
-                        <div class="user"></div>
-                        <h4></h4>
-                    </a>
-                </li>
-            </ul>
+            <div flex layout layout-align="center center">
+                <div class="header-title">{{store.store_name}}</div>
+            </div>
+        </div>
+        <div ng-click="goToProfile()">
+            <div class="user"></div>
         </div>
     </div>
-
-    <br>
-
-    <div id="profile-container1">
-
-        <ul>
-            <li>
-                <a ui-sref="store({storeurl:$stateParams.storeurl})" style="width: 25%;">
-                    <img class="profile" ng-src="{{store.avatar_url|storeAvatar}}">
-                </a>
-            </li>
-            <li>
-                <div id="items-data"><span class="profile-digits">Items</span><br>
-
-                    <h3>25</h3></div>
-            </li>
-            <li>
-                <div id="follower-data"><span class="profile-digits">Followers</span><br>
-
-                    <h3>25</h3></div>
-            </li>
-        </ul>
+    <div layout="column" class="io-sub-bar-freeshipping">
+        <div layout layout-align="center center" flex layout-padding class="">FREE SHEEPING ON ALL ITEMS</div>
     </div>
+    <div layout layout-padding class="io-sub-bar">
+        <div ui-sref="store({storeurl:$stateParams.storeurl})">
+            <img class="profile" ng-src="{{store.avatar_url|storeAvatar}}">
+        </div>
+        <div layout="column" flex>
+            <div layout>
+                <div layout="column" layout-align="center center" flex>
+                    <span class="profile-digits">Items</span>
 
-    <div id="profile-container2">
+                    <h3>25</h3>
+                </div>
+                <div layout="column" layout-align="center center" flex>
+                    <span class="profile-digits">Followers</span>
 
-        <a ng-if="!isSeller" href="#" id="profile-button" class="fast-tap btn">&nbsp;Follow&nbsp;+&nbsp;</a>
-        <a ng-if="isSeller" ui-sref="store({storeurl:$stateParams.storeurl})" id="profile-button" class="fast-tap btn">
-            &nbsp;Edit profile&nbsp;</a>
-
+                    <h3>44</h3>
+                </div>
+            </div>
+            <div flex layout layout-align="center center">
+                <div ng-if="!isSeller" class="fast-tap btn">&nbsp;Follow&nbsp;+&nbsp;</div>
+                <div ng-if="isSeller" ui-sref="store({storeurl:$stateParams.storeurl})"
+                     class="fast-tap btn">
+                    &nbsp;Edit profile&nbsp;</div>
+            </div>
+        </div>
     </div>
-
-
-    <div id="profile-text"><h5>{{store.description}}</h5></div>
-
+    <p layout-padding>{{store.description}}</p>
 
     <div id="container2">
         <div id="navigation2">
@@ -65,18 +50,22 @@
                 <li><a ng-click="clickToOpen()">
                     <div class="additem"></div>
                 </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
+                <li><a ui-sref-active="menu-item-active"
+                       ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
                     <div class="stream"></div>
                 </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                <li><a ui-sref-active="menu-item-active"
+                       ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
                     <div class="gridstream"></div>
                 </a></li>
             </ul>
             <ul ng-if="!isSeller">
-                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                <li><a ui-sref-active="menu-item-active"
+                       ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
                     <div class="gridstream"></div>
                 </a></li>
-                <li><a ui-sref-active="menu-item-active" ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
+                <li><a ui-sref-active="menu-item-active"
+                       ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
                     <div class="stream"></div>
                 </a></li>
                 <li><a ui-sref-active="menu-item-active" ui-sref="location({storeurl:$stateParams.storeurl})">
