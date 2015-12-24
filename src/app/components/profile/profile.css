@@ -1,0 +1,99 @@
+
+/*Profile tree starts*/
+
+.profile-tree .top-transaction {
+    background-color: rgba(222, 222, 222, 0.5);
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 500;
+    font-size: 110%;
+}
+
+.profile-tree .main-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    font-size: 14px;
+}
+
+.profile-tree .angular-ui-tree-nodes .angular-ui-tree-nodes {
+    padding-left: 0;
+}
+
+.profile-section h4 {
+    vertical-align: middle;
+    font-weight: 600;
+}
+
+.profile-tree .profile-header {
+    width: 80%;
+    font-size: 12pt;
+}
+
+.profile-tree .profile-store-icon {
+    padding: 10px 6px 3px 6px
+}
+
+.profile-tree input {
+    box-shadow: none;
+}
+
+
+.profile-tree .right-corner-btn {
+    position: absolute;
+    right: 0;
+    background-color: lightcoral;
+}
+
+.profile-tree .hint {
+    /* Position the hint */
+    position: absolute;
+    left: 2px;
+    right: auto;
+    bottom: 7px;
+    /* Copy styles from ng-messages */
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    /* Set our own color */
+    color: grey;
+}
+
+.profile-tree .hint.ng-hide,
+.profile-tree .hint.ng-enter,
+.profile-tree .hint.ng-leave.ng-leave-active {
+    bottom: 26px;
+    opacity: 0;
+}
+
+.profile-tree .hint.ng-leave,
+.profile-tree .hint.ng-enter.ng-enter-active {
+    bottom: 7px;
+    opacity: 1;
+}
+
+.profile-tree .crop-area {
+    height: 300px;
+}
+
+.profile-area .crop-area choose-file-button {
+    position: absolute;
+    right: 30px;
+}
+
+.profile-area md-button {
+    background-color: lightcoral;
+}
+
+.profile-tree .md-errors-spacer {
+    display: none;
+}
+
+.profile-tree md-input-container {
+    padding-bottom: 0;
+    margin: 5px 0 5px  0;
+}
+
+.profile-tree .specialities md-input-container  {
+    margin: 5px 0 15px  0;
+}
