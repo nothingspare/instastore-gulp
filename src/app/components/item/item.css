@@ -3,8 +3,8 @@
 }
 
 .itemview md-tabs {
-    border: 2px solid lightgray;
     border-top: none;
+    width: 100%;
 }
 
 .itemview md-card, .itemview md-content {
@@ -76,4 +76,16 @@
 
 md-card md-card-content {
     background-color: white;
+}
+
+.itemview.item-container input {
+    box-shadow: none;
+}
+
+.itemview.item-container md-input-container {
+    margin: 0 0;
+}
+
+.itemview.item-container md-list{
+    padding: 0;
 }

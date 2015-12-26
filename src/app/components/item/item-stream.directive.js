@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('instastore')
     .directive('itemStream', [function () {
         return {

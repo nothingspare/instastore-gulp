@@ -95,10 +95,12 @@ angular.module('instastore')
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', 'ngDialog', '$window',
-        'uiGmapGoogleMapApi', '$auth',
+        'uiGmapGoogleMapApi', '$auth', '$rootScope',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi, $auth) {
+                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi, $auth, $rootScope) {
+
+            $rootScope.curImageHeight = [];
 
             uiGmapGoogleMapApi
                 .then(function () {

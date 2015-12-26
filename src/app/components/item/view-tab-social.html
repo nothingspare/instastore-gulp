@@ -1,74 +1,50 @@
-<center>
+<md-content>
+    <section layout-padding>
+        <ng-form name="postForm" class="specialities">
+            <md-input-container class="md-block">
+                <label>Write social post</label>
+                <input md-maxlength="256" required name="post"
+                       ng-model="post.content"/>
+                <!--<div class="hint">Tell us what we should call you!</div>-->
+                <div ng-messages="postForm.post.$error">
+                    <div ng-message="md-maxlength">The name has to be less than 256
+                        characters long.
+                    </div>
+                </div>
+            </md-input-container>
+        </ng-form>
+    </section>
+    <md-list ng-cloak>
+        <md-list-item ng-click="post.facebook = !post.facebook">
+            <ng-md-icon icon="facebook" style="fill:darkgray"></ng-md-icon>
+            <p style="color:darkgray"><b>Facebook</b></p>
+            <md-switch ng-model="post.facebook"></md-switch>
+        </md-list-item>
+        <md-list-item ng-click="post.instagram = !post.instagram">
+            <ng-md-icon icon="instagram" style="fill:darkgray"></ng-md-icon>
+            <p style="color:darkgray"><b>Instagram</b></p>
+            <md-switch ng-model="post.instagram"></md-switch>
+        </md-list-item>
+        <md-list-item ng-click="post.twitter = !post.twitter">
+            <ng-md-icon icon="twitter" style="fill:darkgray"></ng-md-icon>
+            <p style="color:darkgray"><b>Twitter</b></p>
+            <md-switch ng-model="post.twitter"></md-switch>
+        </md-list-item>
+    </md-list>
+    <section layout="column" layout-align="center center" layout-padding>
+        <p>Link to this item</p>
 
-    <div id="content-popup">
-
-        <div style="margin: 10px 0px 0px -10px;">
-            <textarea class="input store-special-qualities" style="width: 240px;"
-                      placeholder="Write social post"></textarea>
+        <div class="url-text">
+            <h4>{{itemUrl}}</h4>
         </div>
-
-        <div style="display:inline-block;width:100%;margin:0 0 0 0;">
-
-            <div style=" margin: 22px 0 0px 0px; float: left;">
-                <p>Facebook</p>
-            </div>
-
-            <div style="margin: 15px 0 0 0px; float: right;">
-                <label class="switch-light switch" onclick="">
-                    <input type="checkbox">
-                            <span>
-				<span id="on">On</span>
-                            <span>Off</span>
-                            </span>
-                    <a></a>
-                </label>
-            </div>
-        </div>
-
-        <div style="display:inline-block;width:100%;margin:0 0 0 0;">
-
-            <div style=" margin: 22px 0 0px 0px; float: left;">
-                <p>Instagram</p>
-            </div>
-
-            <div style="margin: 15px 0 0 0; float: right;">
-                <label class="switch-light switch" onclick="">
-                    <input type="checkbox">
-                            <span>
-				<span id="on">On</span>
-                            <span>Off</span>
-                            </span>
-                    <a></a>
-                </label>
-            </div>
-        </div>
-
-        <div style="display:inline-block;width:100%;margin:0 0 0 0;">
-
-            <div style=" margin: 22px 0 0px 0px; float: left;">
-                <p>Twitter</p>
-            </div>
-
-            <div style="margin: 15px 0 0 0; float: right;">
-                <label class="switch-light switch" onclick="">
-                    <input type="checkbox">
-                            <span>
-				<span id="on">On</span>
-                            <span>Off</span>
-                            </span>
-                    <a></a>
-                </label>
-            </div>
-        </div>
-        <center>
-            <p style="margin: 10px 0px 0px 0px;">Link to this item</p>
-
-            <div class="url-text" style=" margin: 10px 0 20px 0;">
-                <h4>{{itemUrl}}</h4></div>
-            <div style="margin:5px 0px 20px 0px;"><a href="#" class="fast-tap btn sml">&nbsp;Share item&nbsp;</a>
-            </div>
-
+    </section>
+    <div layout layout-align="center center"
+         class="am-collapse">
+        <md-button ng-disabled="!post.content" class="md-accent md-raised md-hue-1 io-primary-btn"
+                   ng-click="">Share item
+        </md-button>
     </div>
-</center>
+    <br>
+</md-content>
 
             

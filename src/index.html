@@ -76,11 +76,8 @@
 
 <div id="start"></div>
 
-<div ng-if="$state.includes('feed') || $state.includes('grid') || $state.includes('location') || $state.includes('storeview')"
+<div ng-if="$state.includes('feed') || $state.includes('grid') || $state.includes('location') || $state.includes('storeview') || $state.includes('itemview') || $state.includes('store') || $state.includes('instaimport')"
      ng-include src="'app/components/site/header.html'"></div>
-
-<div ng-if="$state.includes('itemview') || $state.includes('store') || $state.includes('instaimport')"
-     ng-include src="'app/components/site/custom-header.html'"></div>
 
 <div ng-class="$state.includes('profile') || $state.includes('profilestore')?'am-fade-and-slide-top':'am-fade-and-slide-left'"
      class="page ng-cloak" ui-view></div>
