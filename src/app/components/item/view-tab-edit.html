@@ -1,76 +1,108 @@
-<center>
-    <div style="margin: 15px 0px 20px 0px;"><a href="#" class="btn sml delete" ng-click="removeItem()">
-        &nbsp;Delete item&nbsp;</a>
+<ng-form name="itemForm" class="itemview">
+    <div style="position: relative">
+        <md-button ng-click="removeItem()"
+                   style="position:absolute; top:0; right:0; background-color: lightcoral"
+                   class="md-fab md-hue-1" aria-label="Delete item">
+            <ng-md-icon icon="delete" style="fill:white"></ng-md-icon>
+        </md-button>
     </div>
-    <div style="width:240px;display: inline-block;margin-bottom: 10px">
-        <div class="btn sml hidden-desktop"
-             device-detector
-             pl-upload
-             pl-progress-model="percent"
-             pl-auto-upload="true"
-             pl-files-model="plupfiles"
-             pl-multi-params-model="pluploadConfig.multiParams"
-             pl-url="{{pluploadConfig.uploadPath}}"
-             on-file-uploaded="uploaded($response)"
-             on-file-added="added()"
-             on-file-progress="progress()"
-             pl-multi-selection="false"
-             pl-resize-model="pluploadConfig.resize">Photo
-        </div>
-        <div class="btn sml" pl-upload
-             pl-progress-model="percent"
-             pl-auto-upload="true"
-             pl-files-model="plupfiles"
-             pl-multi-params-model="pluploadConfig.multiParams"
-             pl-url="{{pluploadConfig.uploadPath}}"
-             on-file-uploaded="uploaded($response)"
-             on-file-added="added()"
-             on-file-progress="progress()"
-             pl-multi-selection="true"
-             pl-resize-model="pluploadConfig.resize">Multiple
-        </div>
+    <div style="position: relative">
+        <md-button style="position:absolute; top:0; left:0; background-color: lightcoral"
+                   class="md-fab md-hue-1" aria-label="Upload files"
+                   pl-upload
+                   pl-progress-model="percent"
+                   pl-auto-upload="true"
+                   pl-files-model="plupfiles"
+                   pl-multi-params-model="pluploadConfig.multiParams"
+                   pl-url="{{pluploadConfig.uploadPath}}"
+                   on-file-uploaded="uploaded($response)"
+                   on-file-added="added()"
+                   on-file-progress="progress()"
+                   pl-multi-selection="true"
+                   pl-resize-model="pluploadConfig.resize">
+            <ng-md-icon icon="file_upload" style="fill:white"></ng-md-icon>
+        </md-button>
+        <md-button style="position:absolute; top:0; left:0; background-color: lightcoral"
+                   class="md-fab md-hue-1 hidden-desktop" aria-label="Take a photo"
+                   device-detector
+                   pl-upload
+                   pl-progress-model="percent"
+                   pl-auto-upload="true"
+                   pl-files-model="plupfiles"
+                   pl-multi-params-model="pluploadConfig.multiParams"
+                   pl-url="{{pluploadConfig.uploadPath}}"
+                   on-file-uploaded="uploaded($response)"
+                   on-file-added="added()"
+                   on-file-progress="progress()"
+                   pl-multi-selection="false"
+                   pl-resize-model="pluploadConfig.resize">
+            <ng-md-icon icon="photo_camera" style="fill:white"></ng-md-icon>
+        </md-button>
     </div>
-    <div class="upload-pic-previews-wrapper">
+
+    <div layout layout-padding layout-align="center center">
         <div class="upload-pic-previews" ng-repeat="thumb in item.images">
             <img width="44" height="70" ng-src="{{thumb.image_url}}"/>
             <span class="x-but" ng-click="removeImage(thumb)">X</span>
         </div>
     </div>
-    <input style="width:210px;" class="regular-feild" ng-model="item.title" placeholder="title"/>
 
-    <div style="margin: 5px 0px 0px 0px;">
-                        <textarea ng-model="item.description" class="input item-desicription-input"
-                                  placeholder="Item description"></textarea>
+    <section layout-padding>
+        <md-input-container class="md-block">
+            <label>Item title</label>
+            <input md-maxlength="128" required name="title"
+                   ng-model="item.title"/>
+
+            <div ng-messages="itemForm.title.$error">
+                <div ng-message="md-maxlength">The name has to be less than 128
+                    characters long.
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Item description</label>
+            <input md-maxlength="512" required name="description"
+                   ng-model="item.description"/>
+
+            <div ng-messages="itemForm.description.$error">
+                <div ng-message="md-maxlength">The name has to be less than 512
+                    characters long.
+                </div>
+            </div>
+        </md-input-container>
+    </section>
+
+    <div layout flex layout-align="center center" layout-padding>
+        <md-input-container>
+            <label>Price</label>
+            <input ng-model="item.price">
+        </md-input-container>
+        <md-input-container>
+            <label>Size</label>
+            <input ng-model="item.size">
+        </md-input-container>
+        <md-input-container>
+            <label>Quantity</label>
+            <input type="number" ng-model="item.quantity">
+        </md-input-container>
     </div>
 
-    <div style="display:inline-block;width:220px;margin:0 0;">
-        <div style="float: left; margin: 0px 0px 0px 0px;"><input ng-model="item.price" id="textfield8"
-                                                                  type="number" placeholder="Price:">
-        </div>
-
-        <div style="float: left; margin: 0px 0px 0px 10px;"><input ng-model="item.size" id="textfield3"
-                                                                   type="text" placeholder="Size"></div>
-
-        <div style="float: left; margin: 0px 0px 0px 10px;"><input ng-model="item.quantity" id="textfield3"
-                                                                   type="number" placeholder="#"></div>
-
-    </div>
-
-    <select ng-model="item.box"
-            class="sml selector1" style="margin: -2px 0 20px 0; width: 220px;">
-        <option disabled value="">Pick up box size</option>
-        <option value="30">Large</option>
-        <option value="20">Medium</option>
-        <option value="10">Small</option>
-    </select>
-
-    <div style="width: 100%; margin: 6px 0 0 0;">
-        <select class="selector1" style="margin: -2px 0 20px 0; width: 220px;">
-            <option value="">Store pick up</option>
+    <div layout layout-padding>
+        <select ng-model="item.box" class="sml selector1">
+            <option disabled value="">Pick up box size</option>
+            <option value="30">Large</option>
+            <option value="20">Medium</option>
+            <option value="10">Small</option>
         </select>
     </div>
 
-    <div style="margin: 10px 0px 20px 0px;"><a ng-click="save()" class="btn sml">&nbsp;Post
-        changes&nbsp;</a>
+    <br>
+    <div layout layout-align="center center"
+         class="am-collapse">
+        <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"
+                   class="md-accent md-raised md-hue-1 io-primary-btn"
+                   ng-click="save()">Post changes
+        </md-button>
     </div>
-</center>
+    <br>
+</ng-form>
