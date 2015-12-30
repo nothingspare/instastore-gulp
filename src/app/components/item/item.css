@@ -1,5 +1,5 @@
 .itemview {
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .itemview md-tabs {
@@ -12,7 +12,7 @@
 }
 
 .itemview md-tabs .md-tab:not(.md-active) {
-    background-color: darkgrey;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .itemview md-tabs .md-tab {
@@ -67,7 +67,7 @@
 }
 
 .itemfeed .bottom-actions {
-    background-color: lightgray;
+    background-color: lightgray; 
 }
 
 .itemfeed .bottom-actions .price-tag-wrapper {
@@ -77,7 +77,7 @@
 }
 
 md-card md-card-content {
-    background-color: white;
+    background-color: white; 
 }
 
 .itemview.item-container input {
