@@ -13,12 +13,12 @@
     </div>
     <md-content layout layout-align="start center" class="bottom-actions">
         <div layout layout-align="center center" class="price-tag-wrapper"
-             ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">
+             ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:0})">
             <div ng-if="!item.price" class="buy-circle"></div>
             <span ng-if="item.price" class="price-tag">${{item.price | itemPrice}}</span>
         </div>
         <md-card-content flex layout layout-align="start start"
-                         ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:0})">
+                         ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">
             <p><b>{{item.description|itemDescription}}</b></p>
         </md-card-content>
     </md-content>

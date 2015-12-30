@@ -22,18 +22,18 @@
                             <div
                                     flex="70"
                                     layout layout-align="start center">
-                                <div layout ng-if="unit.name === 'Phone number'" class="main-title">
-                                    <span>{{profile.phone?(profile.phone|tel):'Phone Number'}}</span>
+                                <div layout ng-if="unit.code === 'phone'" class="main-title">
+                                    <span>{{profile.phone?(profile.phone|tel):'PHONE NUMBER'}}</span>
                                 </div>
-                                <div ng-if="unit.name === 'Postal address' && profile.address" class="main-title">{{profile.address}},
+                                <div ng-if="unit.code === 'address' && profile.address" class="main-title">{{profile.address}},
                                     {{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},
                                     {{profile.state}},
                                     {{profile.zipcode}}
                                 </div>
-                                <div ng-if="unit.name === 'Postal address' && !profile.address" class="main-title">
+                                <div ng-if="unit.code === 'address' && !profile.address" class="main-title">
                                     ENTER YOUR POSTAL ADDRESS
                                 </div>
-                                <div ng-if="unit.name === 'Name'" class="main-title">
+                                <div ng-if="unit.code === 'name'" class="main-title">
                                     {{profile.fullName}}
                                 </div>
                                 <div ng-if="unit.code === 'crop' || unit.code === 'own_store'" layout
@@ -54,12 +54,12 @@
                                          class="io-avatar"/>
                                 </div>
                                 <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center">
-                                    <ng-md-icon ng-if="unit.name !== 'Phone number'"
+                                    <ng-md-icon ng-if="unit.code !== 'phone'"
                                                 icon="{{collapsed?'expand_more':'expand_less'}}"
                                                 style="fill: lightcoral"
                                                 size="24">
                                     </ng-md-icon>
-                                    <ng-md-icon ng-if="unit.name === 'Phone number' && !profile.phone_validated_at"
+                                    <ng-md-icon ng-if="unit.code === 'phone' && !profile.phone_validated_at"
                                                 icon="{{collapsed?'expand_more':'expand_less'}}"
                                                 style="fill: lightcoral"
                                                 size="24">
@@ -72,7 +72,7 @@
                             <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true" ng-if="!collapsed"
                                 class="am-collapse">
                                 <div ui-tree-handle>
-                                    <div ng-if="unit.name === 'Phone number'" layout="column" layout-padding>
+                                    <div ng-if="unit.code === 'phone'" layout="column" layout-padding>
                                         <!--<div layout layout-padding><span class="md-caption">We will send you SMS with verification code</span></div>-->
                                         <div layout ng-if="!profile.phone_validated_at">
                                             <md-input-container flex>
@@ -102,7 +102,7 @@
                                         </div>
                                         <h4 ng-if="profile.phone_validated_at">Number is verified!</h4>
                                     </div>
-                                    <div ng-if="unit.name === 'Postal address'" layout="column" layout-padding
+                                    <div ng-if="unit.code === 'address'" layout="column" layout-padding
                                          layout-fill class="postal-subs">
                                         <div layout layout-sm="column">
                                             <md-input-container flex-sm flex-gt-sm="70">

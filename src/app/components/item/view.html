@@ -82,22 +82,22 @@
                     <md-tab md-on-select="changeStateAndUrlToTab('0');goToBottom()">
                         <md-tab-label>
                             <div layout layout-align="center center">
-                                <div class="message-circle"></div>
-                            </div>
-                        </md-tab-label>
-                        <md-tab-body>
-                            <div ng-include="'app/components/item/view-tab-comment.html'"></div>
-                        </md-tab-body>
-                    </md-tab>
-                    <md-tab md-on-select="changeStateAndUrlToTab('1')">
-                        <md-tab-label>
-                            <div layout layout-align="center center">
                                 <div ng-if="!item.price" class="buy-circle"></div>
                                 <span ng-if="item.price" class="price-tag">${{item.price}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
                             <div ng-include="'app/components/item/view-tab-log.html'"></div>
+                        </md-tab-body>
+                    </md-tab>
+                    <md-tab md-on-select="changeStateAndUrlToTab('1');goToBottom()">
+                        <md-tab-label>
+                            <div layout layout-align="center center">
+                                <div class="message-circle"></div>
+                            </div>
+                        </md-tab-label>
+                        <md-tab-body>
+                            <div ng-include="'app/components/item/view-tab-comment.html'"></div>
                         </md-tab-body>
                     </md-tab>
                     <md-tab md-on-select="changeStateAndUrlToTab('2');goToBottom()">

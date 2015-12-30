@@ -31,7 +31,7 @@ angular.module('instastore')
                 },
                 '2': {
                     code: 'phone',
-                    name: 'Phone number',
+                    name: 'PHONE NUMBER',
                     toggleThis: true,
                     icon: 'phone',
                     subs: [
@@ -40,7 +40,7 @@ angular.module('instastore')
                 },
                 '3': {
                     code: 'address',
-                    name: 'Postal address',
+                    name: 'ADDRESS',
                     toggleThis: true,
                     icon: 'location_city',
                     subs: [
@@ -49,7 +49,7 @@ angular.module('instastore')
                 },
                 '4': {
                     code: 'crop',
-                    name: 'Crop Background To Store Avatar',
+                    name: 'UPDATE STORE PHOTO',
                     toggleThis: true,
                     icon: 'crop',
                     subs: [{name: 'Upload and Crop'}],
@@ -290,7 +290,7 @@ angular.module('instastore')
             $scope.treeStoreConfig = {
                 '1': {
                     code: 'specialities',
-                    name: 'Name, Description, Specialities',
+                    name: 'STORE NAME, DESCRIPTION, DETAILS',
                     toggleThis: true,
                     icon: 'local_mall',
                     subs: [
@@ -300,7 +300,7 @@ angular.module('instastore')
                 },
                 '2': {
                     code: 'card',
-                    name: 'Your card',
+                    name: 'YOUR CARD',
                     toggleThis: true,
                     icon: 'credit_card',
                     subs: [
@@ -309,7 +309,7 @@ angular.module('instastore')
                 },
                 '3': {
                     code: 'location',
-                    name: 'Store Location',
+                    name: 'STORE LOCATION',
                     toggleThis: true,
                     icon: 'place',
                     subs: [
@@ -319,7 +319,7 @@ angular.module('instastore')
                 },
                 '4': {
                     code: 'instagram',
-                    name: 'Instagram Import',
+                    name: 'IMPORT FROM INSTAGRAM',
                     toggleThis: true,
                     icon: 'instagram',
                     subs: [{name: 'Instagram Import'}],
