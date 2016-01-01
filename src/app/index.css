@@ -882,7 +882,6 @@ p {
 
 h1 {
     font-family: "helvetica neue", "helvetica", "arial", "san-serif";
-    font-weight: 200;
     font-weight: 500;
     font-size: 10px;
     /*color: #999; - - - - - - - - - color assigind by a tag - - - */
@@ -899,7 +898,6 @@ h1 {
     font-weight: 100;
     margin-top: 5px;
     color: #000;
-    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1104,11 +1102,9 @@ h3 {
 
 #profile-container1 {
     position: relative;
-    left: 60px;
     top: 33px;
     left: 0px;
     right: 60px;
-    padding: 0px;
     padding: 0px;
     height: 100px;
     z-index: 1;
@@ -1852,7 +1848,7 @@ h3 {
 #icon-cirle-wapper-on-profile-page {
     position: relative;
     margin: 0 auto;
-    margin: -12 0 0 0;
+    margin: -12px 0 0 0;
     text-align: center;
     width: 312px;
     background: rgba(255, 255, 255, 0.0);
@@ -1902,9 +1898,9 @@ h3 {
 
 .grid-price-text {
     font-weight: 100;
-    color: #6199f1;
-    font-size: 80%;
-    margin-bottom: 10px;
+    color: ##202020;
+    font-size: 110%;
+    margin: 0 2px 0px 0px;
 }
 
 #icon-text {
@@ -2103,7 +2099,7 @@ p {
     position: relative;
     margin: 0 auto;
     padding: 1px;
-    pading-top: -10px;
+    padding-top: -10px;
     text-align: center;
     width: 312px;
     height: 55px;
@@ -2255,7 +2251,7 @@ p {
     height: 37px;
     margin: -21px 8px 0 3px;
     border-radius: 200px;
-    opacity: 0.6;
+    opacity: 0.9;
     border: 1px solid #ccc;
 }
 
@@ -2276,7 +2272,7 @@ p {
     height: 37px;
     margin: 5px;
     border-radius: 200px;
-    opacity: 0.6;
+    opacity: 0.9;
     border: 1px solid #ccc;
 }
 
@@ -2316,7 +2312,7 @@ p {
     font-size: 10.5pt;
     font-weight: 200;
     text-decoration: none;
-    margin: 0 0 0 0;
+    margin: 0 0 5px 0;
 }
 
 f3 {
@@ -2338,9 +2334,9 @@ h4 {
 }
 
 h6 {
-    color: #555;
+    color: lightcoral;
     font-size: 11pt;
-    font-weight: 200;
+    font-weight: 400;
     font-family: 'Helvetica neue';
     text-decoration: none;
     text-align: center;
@@ -2379,12 +2375,12 @@ select,
     font-family: "helvetica neue", "helvetica", "arial", "san-serif";
     text-align: center;
     font-weight: 200;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 0px;
     text-rendering: optimizelegibility;
     text-decoration: none;
     margin-bottom: 16px;
-    padding: 6px 10px 6px 10px;
+    padding: 6px 4px 6px 4px;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -3133,7 +3129,7 @@ input:-moz-placeholder {
     padding: 0 4px;
     color: #fff;
     font-size: 30px;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 
 .rn-carousel-indicator span.ng-leave {
@@ -3877,7 +3873,7 @@ div.rn-carousel-indicator span.active {
 .sell-transactions .angular-ui-tree-handle, .buy-transactions .angular-ui-tree-handle {
     cursor: pointer;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 400;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -3931,7 +3927,9 @@ div.rn-carousel-indicator span.active {
 }
 
 .sell-transactions .column.status, .buy-transactions .column.status {
-    padding: 9px 5px; width: 200px;
+    padding: 9px 5px; 
+    width: 130px;
+    font-weight: 600;
 }
 
 .sell-transactions .column.label .btn, .buy-transactions .column.label .btn, {
@@ -3946,7 +3944,7 @@ div.rn-carousel-indicator span.active {
 }
 
 .sell-transactions .column.label .btn.btn-label, .buy-transactions .column.label .btn.btn-label {
-    width: 100px;
+    width: 80px;
     margin: 0;
 }
 
@@ -4039,3 +4037,5 @@ svg.svg-debit {
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
 }
+
+.md-button.md-default-theme.md-fab, a.md-button.md-fab, .md-button.md-default-theme.md-fab, .md-button.md-fab { background-color: rgba(232, 117, 112, 0.87);}
