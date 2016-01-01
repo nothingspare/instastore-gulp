@@ -3841,6 +3841,7 @@ div.rn-carousel-indicator span.active {
 .sell-transactions .profile-in-transaciton, .buy-transactions .profile-in-transaciton {
     position: relative;
     top: 12px;
+left: 7px;
 }
 
 .sell-transactions .past-transaction, .buy-transactions .past-transaction {
@@ -4039,3 +4040,13 @@ svg.svg-debit {
 }
 
 .md-button.md-default-theme.md-fab, a.md-button.md-fab, .md-button.md-default-theme.md-fab, .md-button.md-fab { background-color: rgba(232, 117, 112, 0.87);}
+
+
+.usps-box-large {
+display: block;
+float: right;
+width: 250px; 
+height: 163px;
+background-image: url(../assets/images/usps-large.png);
+background-size: 250px;
+}
