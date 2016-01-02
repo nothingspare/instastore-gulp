@@ -112,28 +112,24 @@ angular.module('instastore')
 
             if (!$scope.item) {
                 $scope.item = {};
-                ////
                 if (!UserService.isGuest()) {
                     rest.path = 'v1/user-items';
                 }
                 else {
                     rest.path = 'v1/items';
                 }
-
                 if ($stateParams.itemurl) {
                     $scope.itemUrl = CLIENT_URL + $stateParams.storeurl + '/' + $stateParams.itemurl;
 
                     //rest.path is above
                     rest.models({item_url: $stateParams.itemurl}).success(function (data) {
                         $scope.item = data[0];
-                        $scope.pluploadConfig.multiParams = {itemId: data[0].id};
                     }).error(errorService.alert);
                 }
                 else {
                     errorService.simpleAlert('noitemwithurl');
                     $state.go('grid');
                 }
-                ////
             }
 
             $scope.profile = UserService.getProfile();
@@ -149,6 +145,7 @@ angular.module('instastore')
             $scope.pluploadConfig = {};
             $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
             $scope.pluploadConfig.resize = PLUPLOAD_RESIZE_CONFIG;
+            $scope.pluploadConfig.multiParams = {itemUrl: $stateParams.itemurl};
 
 
             $scope.save = function () {
@@ -389,7 +386,7 @@ angular.module('instastore')
                 var res = JSON.parse(data.response);
                 $scope.item.id = res.item_id;
                 $scope.item.images.push({id: res.id, 'image_url': res.image_url});
-                $scope.uploader.setOption('multipart_params', {itemId: res.item_id});
+                $scope.uploader.setOption('multipart_params', {itemUrl: res.item_url});
                 cfpLoadingBar.complete();
                 toaster.pop('success', 'File uploaded!');
             };

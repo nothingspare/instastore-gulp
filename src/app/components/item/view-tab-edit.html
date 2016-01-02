@@ -1,43 +1,42 @@
 <ng-form name="itemForm" class="itemview">
-    <div style="position: relative; top: 5px;">
-        <md-button ng-click="removeItem()"
-                   style="position:absolute; top:0; right:0; background-color: lightcoral"
-                   class="md-fab md-hue-1" aria-label="Delete item">
-            <ng-md-icon icon="delete" style="fill:white"></ng-md-icon>
+    <div layout>
+        <md-button class="md-fab md-hue-1" aria-label="Upload files">
+            <div layout-fill
+                 pl-upload
+                 pl-progress-model="percent"
+                 pl-auto-upload="true"
+                 pl-files-model="plupfiles"
+                 pl-multi-params-model="pluploadConfig.multiParams"
+                 pl-url="{{pluploadConfig.uploadPath}}"
+                 on-file-uploaded="uploaded($response)"
+                 on-file-added="added()"
+                 on-file-progress="progress()"
+                 pl-multi-selection="true"
+                 pl-resize-model="pluploadConfig.resize">
+                <ng-md-icon icon="file_upload" style="fill:white"></ng-md-icon>
+            </div>
         </md-button>
-    </div>
-    <div style="position: relative; top: 5px;">
-        <md-button style="position:absolute; top:0; left:0; background-color: lightcoral"
-                   class="md-fab md-hue-1" aria-label="Upload files"
-                   pl-upload
-                   pl-progress-model="percent"
-                   pl-auto-upload="true"
-                   pl-files-model="plupfiles"
-                   pl-multi-params-model="pluploadConfig.multiParams"
-                   pl-url="{{pluploadConfig.uploadPath}}"
-                   on-file-uploaded="uploaded($response)"
-                   on-file-added="added()"
-                   on-file-progress="progress()"
-                   pl-multi-selection="true"
-                   pl-resize-model="pluploadConfig.resize">
-            <ng-md-icon icon="file_upload" style="fill:white"></ng-md-icon>
+        <md-button class="md-fab md-hue-1 hidden-desktop" aria-label="Take a photo" device-detector>
+            <div layout-fill pl-upload
+                 pl-progress-model="percent"
+                 pl-auto-upload="true"
+                 pl-files-model="plupfiles"
+                 pl-multi-params-model="pluploadConfig.multiParams"
+                 pl-url="{{pluploadConfig.uploadPath}}"
+                 on-file-uploaded="uploaded($response)"
+                 on-file-added="added()"
+                 on-file-progress="progress()"
+                 pl-multi-selection="false"
+                 pl-resize-model="pluploadConfig.resize">
+                <ng-md-icon icon="photo_camera" style="fill:white;"></ng-md-icon>
+            </div>
         </md-button>
-        <md-button style="position:absolute; top:0; left:0; background-color: lightcoral"
-                   class="md-fab md-hue-1 hidden-desktop" aria-label="Take a photo"
-                   device-detector
-                   pl-upload
-                   pl-progress-model="percent"
-                   pl-auto-upload="true"
-                   pl-files-model="plupfiles"
-                   pl-multi-params-model="pluploadConfig.multiParams"
-                   pl-url="{{pluploadConfig.uploadPath}}"
-                   on-file-uploaded="uploaded($response)"
-                   on-file-added="added()"
-                   on-file-progress="progress()"
-                   pl-multi-selection="false"
-                   pl-resize-model="pluploadConfig.resize">
-            <ng-md-icon icon="photo_camera" style="fill:white;"></ng-md-icon>
-        </md-button>
+        <div layout flex layout-align="end center">
+            <md-button ng-click="removeItem()"
+                       class="md-fab md-hue-1" aria-label="Delete item">
+                <ng-md-icon icon="delete" style="fill:white"></ng-md-icon>
+            </md-button>
+        </div>
     </div>
 
     <div layout layout-padding layout-align="center center">
@@ -97,6 +96,7 @@
     </div>
 
     <br>
+
     <div layout layout-align="center center"
          class="am-collapse">
         <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"
