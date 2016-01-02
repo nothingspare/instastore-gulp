@@ -1,6 +1,6 @@
 <ng-form name="itemForm" class="itemview">
     <div layout>
-        <md-button class="md-fab md-hue-1" aria-label="Upload files">
+        <md-button class="md-fab md-primary" aria-label="Upload files">
             <div layout-fill
                  pl-upload
                  pl-progress-model="percent"
@@ -16,7 +16,7 @@
                 <ng-md-icon icon="file_upload" style="fill:white"></ng-md-icon>
             </div>
         </md-button>
-        <md-button class="md-fab md-hue-1 hidden-desktop" aria-label="Take a photo" device-detector>
+        <md-button class="md-fab md-primary hidden-desktop" aria-label="Take a photo" device-detector>
             <div layout-fill pl-upload
                  pl-progress-model="percent"
                  pl-auto-upload="true"
@@ -33,7 +33,7 @@
         </md-button>
         <div layout flex layout-align="end center">
             <md-button ng-click="removeItem()"
-                       class="md-fab md-hue-1" aria-label="Delete item">
+                       class="md-fab md-primary" aria-label="Delete item">
                 <ng-md-icon icon="delete" style="fill:white"></ng-md-icon>
             </md-button>
         </div>

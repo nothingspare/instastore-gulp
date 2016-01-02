@@ -9,9 +9,6 @@
 }
 
 .profile-tree .main-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     text-align: left;
     font-size: 14px;
     text-transform: uppercase;
