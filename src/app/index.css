@@ -3153,8 +3153,8 @@ input:-moz-placeholder {
     margin-top: -35px;
     opacity: 0.3;
     cursor: pointer;
-background-color: #fff;
-padding: 2px 10px 8px;
+    background-color: #fff;
+    padding: 2px 10px 8px;
 }
 
 .rn-carousel-control:hover {
@@ -3343,7 +3343,7 @@ ul.safearea a {
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-content {
-    width: 300px !important;
+    /*width: 300px !important;*/
     border-radius: 0px !important;
     border-color: #d0d0d0 #bbbbbb #a7a7a7 #bbbbbb;
     -webkit-border-radius: 0.0em;
@@ -3841,7 +3841,7 @@ div.rn-carousel-indicator span.active {
 .sell-transactions .profile-in-transaciton, .buy-transactions .profile-in-transaciton {
     position: relative;
     top: 12px;
-left: 7px;
+    left: 7px;
 }
 
 .sell-transactions .past-transaction, .buy-transactions .past-transaction {
@@ -3956,16 +3956,20 @@ left: 7px;
 
 @media print {
     .label-image {
+        position: fixed;
         background-color: white;
         height: 100%;
         width: 100%;
-        position: fixed;
         top: 0;
         left: 0;
         margin: 0;
         padding: 15px;
         font-size: 14px;
         line-height: 18px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
     }
 }
 
@@ -4034,19 +4038,18 @@ svg.svg-debit {
     padding-bottom: 0;
 }
 
-.itemview ul{
+.itemview ul {
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
 }
 
 /*.md-button.md-default-theme.md-fab, a.md-button.md-fab, .md-button.md-default-theme.md-fab, .md-button.md-fab { background-color: rgba(232, 117, 112, 0.87);}*/
 
-
 .usps-box-large {
-display: block;
-float: right;
-width: 250px;
-height: 163px;
-background-image: url(../assets/images/usps-large.png);
-background-size: 250px;
+    display: block;
+    float: right;
+    width: 250px;
+    height: 163px;
+    background-image: url(../assets/images/usps-large.png);
+    background-size: 250px;
 }

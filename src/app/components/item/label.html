@@ -1,52 +1,38 @@
-<div class="label-popup">
-<center>
-    <div class="centered">
+<div class="label-popup" layout="column" layout-align="center center">
+    <div>
         <div class="btn" ng-click="printLabel()">Print</div>
-        <div style = "margin-left:5px;"class="btn" ng-click="emailLabel(label.itemsell_id)">Email</div>
+        <div class="btn" ng-click="emailLabel(label.itemsell_id)">Email</div>
     </div>
-</center>
+
     <img class="label-image" ng-src={{label.url}}>
 
-<center>
-<p>Shipping label attaches to this size box.</p>
+    <h6>Shipping label attaches to this size box.</h6>
 
+    <div layout>
+        <div ng-class="{'usps-box-large':isellBox===30, 'usps-box-medium2':isellBox===20,'usps-box-small':isellBox===10}"></div>
+        <div layout layout-align="center center" layout-margin>
+            <p>
+                <b>{{isellBox | boxSizeTitle}}</b>
+                <br>
+                USPS Priority Mail
+                <br>
+                Inside dimensions:
+                <br>
+                {{isellBox | boxSizeDimensions}}
+            </p>
+        </div>
+    </div>
 
-<div class="usps-box-large"></div>
-<br>
-<p>
-<b>Large Box</b><br>
-USPS Priority Mail 
-<br>
-Inside dimensions: 
-<br>
-12" x 12" x 5.1/2"
-</p>
-</center>
+    <!-- Alt classes for other box sizes:
 
-<!-- Alt classes for other box sizes: 
+    usps-box-medium1 - <b>Medium Box 1</b><br>
+    USPS Priority Mail
+    <br>
+    Inside dimensions:
+    <br>
+    11" x 8-1/2" x 5-1/2"
 
-usps-box-medium2 - <b>Medium Box 1</b><br>
-USPS Priority Mail 
-<br>
-Inside dimensions: 
-<br>
-11" x 8-1/2" x 5-1/2"
-
-usps-box-medium2 - <b>Medium Box 2</b><br>
-USPS Priority Mail 
-<br>
-Inside dimensions: 
-<br>
-11.1/5" x 13.1/8" x 2.3/8"
-
-usps-box-small - <b>Small Box 2</b><br>
-USPS Priority Mail 
-<br>
-Inside dimensions: 
-<br>
-5.3/8" x 8.5/8" x 5.5/8"
-
--->
+    -->
 
 </div>
 
