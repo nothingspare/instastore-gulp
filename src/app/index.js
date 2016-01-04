@@ -137,9 +137,13 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
                 configInstagram.redirectUri = 'http://isopen.us';
                 break;
             case 'http://192.168.0.103:3000':
-                //configFacebook here
+                configFacebook.clientId = '752257218212006';
                 configInstagram.clientId = '7f744b4b4f844419bd49872ac67cf22a';
                 configInstagram.redirectUri = 'http://192.168.0.103:3000/';
+                break;
+            case 'http://localhost:3000':
+                configFacebook.clientId = '752257608211967';
+                configInstagram.redirectUri = 'http://localhost:3000/';
                 break;
         }
 
