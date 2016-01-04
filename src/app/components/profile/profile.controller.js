@@ -282,8 +282,8 @@ angular.module('instastore')
             };
 
         }])
-    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$rootScope',
-        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $rootScope) {
+    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$state',
+        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $state) {
 
             $scope.CLIENT_URL = CLIENT_URL;
 
@@ -411,8 +411,22 @@ angular.module('instastore')
                         }
                     });
             };
+
+            $scope.customFunction = function (code) {
+                switch (code) {
+                    case 'instagram':
+                        if ($scope.profile.instagramId) {
+                            $state.go('instaimport', {storeurl: UserService.getMainStoreUrl()});
+                        }
+                        else {
+                            $scope.linkInstagram();
+                        }
+                        break;
+                }
+            };
         }])
-    .controller('CropUploadCtrl', ['$scope', '$stateParams', 'Upload', 'API_URL', 'toaster', '$window', 'UserService',
+    .
+    controller('CropUploadCtrl', ['$scope', '$stateParams', 'Upload', 'API_URL', 'toaster', '$window', 'UserService',
         function ($scope, $stateParams, Upload, API_URL, toaster, $window, UserService) {
             $scope.myImage = '';
             $scope.myCroppedImage = '';

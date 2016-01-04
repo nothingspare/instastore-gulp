@@ -6,13 +6,13 @@
             </div>
             <ul rn-carousel rn-carousel-buffered rn-carousel-indicator
                 rn-carousel-controls
-                rn-carousel-index="carouselIndex" resize-carousel style="height:{{curImageHeight}}px;">
+                rn-carousel-index="carouselIndex"
+                style="background: url('https://s3.amazonaws.com/cuturia/mobbbi/VzmlN9iMnhH0VSyE8Vk6vP4QwrnN-i4b.gif') center center no-repeat;height:310px;">
                 <li ng-repeat="image in item.images">
-                    <div image-container-height
-                         ng-if="image.image_url" class="resizable-image"
+                    <div ng-if="image.image_url" class="resizable-image"
                          ng-style="{'background-image': 'url(' + image.image_url + ')'};"
-                         style="background-repeat: no-repeat; background-size: cover;">
-                        <img ng-src="{{image.image_url}}"
+                         style="background-repeat: no-repeat; background-size: contain;">
+                        <img image-container-height ng-src="{{image.image_url}}"
                              style="visibility:hidden"/>
                     </div>
                 </li>

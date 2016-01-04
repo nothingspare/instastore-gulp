@@ -111,7 +111,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         $authProvider.storage = 'sessionStorage';
 
         var configFacebook = {
-            clientId: '424453844422139',
+            clientId: '694297854007943',
             url: 'v1/user/auth',
             scope: 'email',
             scopeDelimiter: ',',
@@ -137,7 +137,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
                 configInstagram.redirectUri = 'http://isopen.us';
                 break;
             case 'http://192.168.0.103:3000':
-                //configFacebook.clientId = '694297854007943';
+                //configFacebook here
                 configInstagram.clientId = '7f744b4b4f844419bd49872ac67cf22a';
                 configInstagram.redirectUri = 'http://192.168.0.103:3000/';
                 break;
