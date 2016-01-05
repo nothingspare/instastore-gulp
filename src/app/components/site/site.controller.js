@@ -5,9 +5,9 @@ angular.module('instastore')
         function ($scope, $rootScope, rest, errorService, $state, $auth, UserService, SStorage) {
 
             if (!UserService.isGuest()) {
-                if (!UserService.goToLastRouteFromProfile()){
+                if (!UserService.goToLastRouteFromProfile()) {
                     UserService.goToMainStore();
-                };
+                }
             }
 
             $scope.isSession = SStorage.isSessionStorageAvailable();
@@ -84,7 +84,7 @@ angular.module('instastore')
                     UserService.goToMainStore();
                 }
                 else {
-                    $state.go('grid', {storeurl: $stateParams.storeurl, mode: 'feed'});
+                    $state.go('grid', {storeurl: $stateParams.storeurl, mode: $scope.profile.seller ? '' : 'feed'});
                 }
             };
 
@@ -108,7 +108,7 @@ angular.module('instastore')
 
         $scope.goAsSeller = function () {
             UserService.setIsSeller(true);
-            $state.go('grid', {storeurl: profile.store.store_url, mode: 'feed'});
+            $state.go('grid', {storeurl: profile.store.store_url});
         };
     }])
     .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'errorService', 'toaster', function ($scope, UserService, $state, rest, errorService, toaster) {

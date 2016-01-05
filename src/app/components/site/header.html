@@ -52,12 +52,12 @@
                         <div class="additem"></div>
                     </a></li>
                     <li><a ui-sref-active="menu-item-active"
-                           ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
-                        <div class="stream"></div>
-                    </a></li>
-                    <li><a ui-sref-active="menu-item-active"
                            ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
                         <div class="gridstream"></div>
+                    </a></li>
+                    <li><a ui-sref-active="menu-item-active"
+                           ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
+                        <div class="stream"></div>
                     </a></li>
                 </ul>
                 <ul ng-if="!isSeller">
