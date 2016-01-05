@@ -100,7 +100,7 @@ angular.module('instastore')
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
                   ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi, $auth, $rootScope) {
 
-            $rootScope.curImageHeight = [];
+            $scope.seeMore = false;
 
             uiGmapGoogleMapApi
                 .then(function () {
@@ -184,9 +184,14 @@ angular.module('instastore')
                     .error(errorService.alert);
             };
 
+            $scope.form = {};
             $scope.saveComment = function (comment) {
-                rest.path = 'v1/comments';
+                //$scope.form = {};
+                $scope.item.newComment = '';
+                $scope.form.postForm.$setPristine();
+                $scope.form.postForm.$setUntouched();
                 $scope.seeMore = true;
+                rest.path = 'v1/comments';
                 rest.postModel({content: comment, item_id: $scope.item.id}).success(function () {
                     toaster.pop('success', "Commented");
                     $scope.item.comments.push({
@@ -194,7 +199,6 @@ angular.module('instastore')
                         content: comment,
                         authorFacebookAvatar: $scope.profile.avatar_url
                     });
-                    $scope.item.newComment = null;
                 }).error(errorService.alert);
             };
 
