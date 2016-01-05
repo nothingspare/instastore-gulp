@@ -1,11 +1,10 @@
 <md-content>
     <section layout-padding>
         <ng-form name="postForm" class="specialities">
-            <md-input-container class="md-block">
+            <md-input-container class="md-block md-primary">
                 <label>Write social post</label>
                 <input md-maxlength="256" required name="post"
                        ng-model="post.content"/>
-                <!--<div class="hint">Tell us what we should call you!</div>-->
                 <div ng-messages="postForm.post.$error">
                     <div ng-message="md-maxlength">The name has to be less than 256
                         characters long.
