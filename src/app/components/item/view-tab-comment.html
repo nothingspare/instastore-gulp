@@ -30,34 +30,34 @@
                 </div>
             </md-list-item>
         </md-list>
-    </md-content>
-    <div layout layout-align="end center" ng-click="seeMore = !seeMore">
-        <div ng-if="item.comments.length>3" class="seemore-container" layout layout-align="end center">
-            <md-button class="md-primary" ng-click="seeMore = !seeMore"
-                       aria-label="{{seeMore?' less':' more'}}...">
-                <span class="md-body-1">See {{seeMore?' less':' more'}}</span>
-                <ng-md-icon icon="{{seeMore?'expand_less':'expand_more'}}"
-                            style="fill: lightcoral;"></ng-md-icon>
-            </md-button>
-        </div>
-    </div>
-    <ng-form layout layout-xs="column" name="form.postForm">
-        <md-input-container flex class="md-primary">
-            <label>Leave comment</label>
-            <input md-maxlength="256" required name="post"
-                   ng-model="item.newComment"/>
 
-            <div ng-messages="form.postForm.post.$error">
-                <div ng-message="md-maxlength">The name has to be less than 256
-                    characters long.
-                </div>
+        <div layout layout-align="end center" ng-click="seeMore = !seeMore" class="seemore-container">
+            <div ng-if="item.comments.length>3" layout layout-align="end center">
+                <md-button class="md-primary" ng-click="seeMore = !seeMore"
+                           aria-label="{{seeMore?' less':' more'}}...">
+                    <span class="md-body-1">See {{seeMore?' less':' more'}}</span>
+                    <ng-md-icon icon="{{seeMore?'expand_less':'expand_more'}}"
+                                style="fill: lightcoral;"></ng-md-icon>
+                </md-button>
             </div>
-        </md-input-container>
-        <div layout layout-padding layout-align="center center">
-            <md-button ng-disabled="!form.postForm.$valid" class="md-primary md-raised"
-                       ng-click="saveComment(item.newComment)">Post it!
-            </md-button>
         </div>
-    </ng-form>
-</div>
+        <ng-form layout layout-xs="column" name="form.postForm">
+            <md-input-container flex class="md-primary">
+                <label>Leave comment</label>
+                <input md-maxlength="256" required name="post"
+                       ng-model="item.newComment"/>
+
+                <div ng-messages="form.postForm.post.$error">
+                    <div ng-message="md-maxlength">The name has to be less than 256
+                        characters long.
+                    </div>
+                </div>
+            </md-input-container>
+            <div layout layout-padding layout-align="center center">
+                <md-button ng-disabled="!form.postForm.$valid" class="md-primary md-raised"
+                           ng-click="saveComment(item.newComment)">Post it!
+                </md-button>
+            </div>
+        </ng-form>
+    </md-content>
 </div>

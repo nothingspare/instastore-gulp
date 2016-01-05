@@ -99,11 +99,14 @@ md-card md-card-content {
 
 .itemview.item-container md-list {
     padding: 0;
+    margin-bottom: 0;
 }
 
 .seemore-container {
     font-family: Helvetica Neue, Helvetica, Arial;
     z-index: 1;
+    padding: 0;
+    margin: 0;
 }
 
 .seemore-container .md-button {
