@@ -1,11 +1,4 @@
 <md-content>
-    <div style="position: relative">
-        <md-button ng-if="isSeller" ng-click="toggleItemStatus(item)"
-                   style="position:absolute; top:5px; right:0; background-color: lightcoral"
-                   class="md-fab md-hue-1" aria-label="Active/Unactive">
-            <ng-md-icon icon="close" style="fill:white"></ng-md-icon>
-        </md-button>
-    </div>
     <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})" id="item-large-pic"
          ng-style="{'background-image': 'url(' + item.images[0].image_url + ')', 'opacity':item.status==10?0.3:1}"
          style="background-repeat: no-repeat;">
