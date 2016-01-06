@@ -41,7 +41,7 @@
                 </md-button>
             </div>
         </div>
-        <ng-form layout layout-xs="column" name="form.postForm">
+        <ng-form layout name="form.postForm">
             <md-input-container flex class="md-primary">
                 <label>Leave comment</label>
                 <input md-maxlength="256" required name="post"
@@ -53,9 +53,13 @@
                     </div>
                 </div>
             </md-input-container>
-            <div layout layout-padding layout-align="end end" layout-align-xs="center center">
-                <md-button ng-disabled="!form.postForm.$valid" class="md-primary md-raised"
-                           ng-click="saveComment(item.newComment)">Post it!
+            <div layout>
+                <!--<md-button ng-disabled="!form.postForm.$valid" class="md-primary md-raised"-->
+                           <!--ng-click="saveComment(item.newComment)">Post-->
+                <!--</md-button>-->
+                <md-button ng-disabled="!form.postForm.$valid" class="md-primary md-fab"
+                           ng-click="saveComment(item.newComment)">
+                    <ng-md-icon icon="comment" style="fill:white"></ng-md-icon>
                 </md-button>
             </div>
         </ng-form>
