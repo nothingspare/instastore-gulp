@@ -174,7 +174,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             '200': 'ef9a9a',
             '300': 'e57373',
             '400': 'f37878',
-            '500': 'f37878',
+            '500': 'f37878', //inputs with dirty state
             '600': 'e53935',
             '700': 'd32f2f',
             '800': 'c62828',
