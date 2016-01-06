@@ -10,9 +10,9 @@
             <div ng-if="!item.price" class="buy-circle"></div>
             <span ng-if="item.price" class="price-tag">${{item.price|num}}<sup class="price-decimal">{{item.price|decimalNum}}</sup></span>
         </div>
-        <md-card-content flex layout layout-align="start start"
+        <div class="io-item-stream-description" flex layout layout-fill layout-wrap layout-align="start center"
                          ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">
-            <p><b>{{item.description|itemDescription}}</b></p>
-        </md-card-content>
+            <p layout layout-fill><b>{{item.description|itemDescription}}</b></p>
+        </div>
     </md-content>
 </md-content>
