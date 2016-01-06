@@ -8,7 +8,7 @@
         <div layout layout-align="center center" class="price-tag-wrapper"
              ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:0})">
             <div ng-if="!item.price" class="buy-circle"></div>
-            <span ng-if="item.price" class="price-tag">${{item.price | itemPrice}}</span>
+            <span ng-if="item.price" class="price-tag">${{item.price|num}}<sup class="price-decimal">{{item.price|decimalNum}}</sup></span>
         </div>
         <md-card-content flex layout layout-align="start start"
                          ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">

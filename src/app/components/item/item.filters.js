@@ -29,4 +29,14 @@ app
                     break;
             }
         };
-    }]);
+    }])
+    .filter('num', function () {
+        return function (input) {
+            return parseInt(input, 10);
+        };
+    })
+    .filter('decimalNum', function () {
+        return function (input) {
+            return (((input - Math.floor(input)).toFixed(2)).toString()).substr(2,4);
+        };
+    });
