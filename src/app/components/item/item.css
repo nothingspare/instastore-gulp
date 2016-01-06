@@ -114,3 +114,16 @@ sup.price-decimal {
     text-decoration: underline;
     margin-left: 2px;
 }
+
+.itemview.item-container .md-io-price md-icon{
+    top: 12px;
+    left: 0px;
+    right: auto;
+    color: black;
+}
+
+.itemview.item-container md-input-container.md-has-icon.md-io-price > label {
+    left: 10px;
+    right: auto;
+}
+

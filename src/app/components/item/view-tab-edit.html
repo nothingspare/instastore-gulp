@@ -71,10 +71,11 @@
         </md-input-container>
     </section>
 
-    <div layout flex layout-align="center center" layout-padding>
-        <md-input-container flex>
+    <div layout flex layout-align="start center" layout-padding>
+        <md-input-container flex class="md-icon-float md-icon-right md-block md-io-price">
             <label>Price</label>
-            <input ng-model="item.price">
+            <md-icon ng-if="!itemForm.itemPrice.$pristine">$</md-icon>
+            <input ng-model="item.price" type="number" step="0.01" name="itemPrice">
         </md-input-container>
         <md-input-container flex>
             <label>Size</label>
