@@ -12,12 +12,16 @@ angular.module('instastore')
                     $scope.renderMap = true;
                 });
 
-            var initProfile;
-            $scope.profile = initProfile = UserService.getProfile();
+            $scope.profile = UserService.getProfile();
 
             $scope.p = {};
 
             var orderBy = $filter('orderBy');
+
+            $scope.logout = function () {
+                UserService.logout();
+                $state.go('login');
+            };
 
             $scope.treeConfig = {
                 '1': {
@@ -73,9 +77,9 @@ angular.module('instastore')
             $scope.canToggle = function (code) {
                 switch (code) {
                     case 'name':
-                        return false;
+                        return true;
                     case 'phone':
-                        return $scope.profile.phone_validated_at ? false : true;
+                        return true;
                     case 'address':
                         return true;
                     case 'crop':
