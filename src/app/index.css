@@ -1891,10 +1891,13 @@ h3 {
 }
 
 #grid-price-position {
-    float: right;
+    text-align: center;
     margin: -2px 0 0 0;
     padding: 0 0px 0 0px;
 }
+
+#lable-button-container, .padding {
+min-width: 70px; margin: 0 6px 0 6px;}
 
 .grid-price-text {
     font-weight: 100;
@@ -3990,13 +3993,15 @@ svg.svg-debit {
 }
 
 .item-cta {
-    border-radius: 5px;
-    background: #f00;
-    width: 10px;
-    height: 10px;
+    background: transparent;
+    width: 28px;
+    height: 28px;
     position: absolute;
-    bottom: 25px;
-    left: 5px;
+    bottom: 13px;
+    left: 0px;
+    background-image: url(../assets/images/icons.svg);
+    background-position: -207px -9px;
+    background-size: 900px 35px;
 }
 
 .io-primary-btn {

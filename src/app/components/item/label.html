@@ -1,12 +1,14 @@
 <div class="label-popup" layout="column" layout-align="center center">
     <div>
-        <div class="btn" ng-click="printLabel()">Print</div>
-        <div class="btn" ng-click="emailLabel(label.itemsell_id)">Email</div>
+<div id=lable-button-container>
+        <div class="btn padding" ng-click="printLabel()">Print</div>
+        <div class="btn padding" ng-click="emailLabel(label.itemsell_id)">Email</div>
     </div>
+</div>
 
     <img class="label-image" ng-src={{label.url}}>
-
-    <h6>Shipping label attaches to this size box.</h6>
+<br>
+    <p style="font-size: 75%; line-height: 110%; text-align: center;">Attach this shipping label to a <span style="font-weight: 400">USPS Flat Rate Box.</span> They don't need to be weighed and can be left for the mail man to pick up. No need to go to the post office.</p>
 
     <div layout>
         <div ng-class="{'usps-box-large':isellBox===30, 'usps-box-medium2':isellBox===20,'usps-box-small':isellBox===10}"></div>
