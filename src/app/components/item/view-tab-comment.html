@@ -30,7 +30,7 @@
                 </div>
             </md-list-item>
         </md-list>
-
+        <br ng-if="item.comments.length<3">
         <div layout layout-align="end center" ng-click="seeMore = !seeMore" class="seemore-container">
             <div ng-if="item.comments.length>3" layout layout-align="end center">
                 <md-button class="md-primary" ng-click="seeMore = !seeMore"
