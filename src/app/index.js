@@ -179,10 +179,10 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             '700': 'd32f2f',
             '800': 'c62828',
             '900': 'b71c1c',
-            'A100': 'ff8a80',
+            'A100': '9ec733',
             'A200': 'ff5252',
             'A400': 'ff1744',
-            'A700': 'd50000',
+            'A700': '9ec733',
             'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
                                                 // on this palette should be dark or light
             'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default

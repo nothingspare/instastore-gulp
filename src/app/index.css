@@ -3584,11 +3584,6 @@ ul.safearea a {
     padding-top: 18px;
 }
 
-.itemview .btn-post {
-    width: 40%;
-    margin-top: 15px;
-}
-
 .itemview .buyer-profile-transaction {
     display: inline-block;
     background-image: url('../assets/images/background2circle290x290px.jpg');

@@ -62,14 +62,13 @@
                                 class="am-collapse">
                                 <div ui-tree-handle>
                                     <div ng-if="unit.code === 'name'" layout layout-padding>
-                                        <md-button flex class="md-primary md-raised io-primary-btn">Order free Boxes
+                                        <md-button flex="60" class="md-primary md-raised io-primary-btn">Order free Boxes
                                         </md-button>
-                                        <md-button class="md-primary md-raised io-primary-btn" ng-click="logout()">
+                                        <md-button flex class="md-primary md-raised io-primary-btn" ng-click="logout()">
                                             <ng-md-icon icon="logout" style="fill:white"></ng-md-icon>
                                         </md-button>
                                     </div>
                                     <div ng-if="unit.code === 'phone'" layout="column" layout-padding>
-                                        <!--<div layout layout-padding><span class="md-caption">We will send you SMS with verification code</span></div>-->
                                         <div layout ng-if="!profile.phone_validated_at">
                                             <md-input-container flex>
                                                 <label>Phone number</label>
@@ -103,8 +102,8 @@
                                         </md-button>
                                         <div layout layout-margin layout-padding layout-align="center center"
                                              ng-if="profile.phone_validated_at">
-                                            <h4 class="md-whiteframe-4dp">{{profile.phone|tel}} is
-                                                verified!</h4>
+                                            <h4>{{profile.phone|tel}} <span class="phone-verified">is
+                                                verified!</span></h4>
                                         </div>
                                     </div>
                                     <div ng-if="unit.code === 'address'" layout="column" layout-padding
