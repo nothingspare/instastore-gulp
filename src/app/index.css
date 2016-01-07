@@ -4077,3 +4077,7 @@ svg.svg-debit {
     background-size: 250px;
     background-position: 200px 165px;
 }
+
+ng-md-icon{
+    fill:white;
+}

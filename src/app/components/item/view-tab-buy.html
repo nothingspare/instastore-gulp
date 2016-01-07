@@ -47,7 +47,7 @@
                     </div>
                     <div ng-click="toggle(this)" class="column status">
                         {{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |
-                        itemTransactionStatus}}
+                        itemBuyerTransactionStatus}}
                     </div>
                     <div class="column label"
                          ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.arrived
