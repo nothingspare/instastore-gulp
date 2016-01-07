@@ -4057,3 +4057,23 @@ svg.svg-debit {
     background-image: url(../assets/images/usps-large.png);
     background-size: 250px;
 }
+
+.usps-box-small {
+    display: block;
+    float: right;
+    width: 250px;
+    height: 163px;
+    background-image: url(../assets/images/usps-small.png);
+    background-size: 250px;
+    background-position: 200px 125px;
+}
+
+.usps-box-medium2{
+    display: block;
+    float: right;
+    width: 250px;
+    height: 163px;
+    background-image: url(../assets/images/usps-medium2.png);
+    background-size: 250px;
+    background-position: 200px 165px;
+}

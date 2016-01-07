@@ -38,7 +38,7 @@
                         <md-tab-label>
                             <div layout layout-align="center center">
                                 <div ng-if="!item.price" class="buy-circle"></div>
-                                <span ng-if="item.price" class="price-tag">${{item.price|num}}<sup class="price-decimal">{{item.price|decimalNum}}</sup></span>
+                                <span ng-if="item.price" class="price-tag">{{item.price|currency}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
@@ -83,7 +83,7 @@
                         <md-tab-label>
                             <div layout layout-align="center center">
                                 <div ng-if="!item.price" class="buy-circle"></div>
-                                <span ng-if="item.price" class="price-tag">${{item.price|num}}<sup class="price-decimal">{{item.price|decimalNum}}</sup></span>
+                                <span ng-if="item.price" class="price-tag">{{item.price|currency}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
