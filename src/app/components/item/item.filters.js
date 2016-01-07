@@ -29,4 +29,19 @@ app
                     break;
             }
         };
+    }])
+    .filter('boxSizeCost', [function () {
+        return function (input) {
+            switch (input) {
+                case 10:
+                    return 5.25;
+                    break;
+                case 20:
+                    return 11.30;
+                    break;
+                case 30:
+                    return 14.8;
+                    break;
+            }
+        };
     }]);

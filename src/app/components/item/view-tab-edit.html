@@ -71,7 +71,7 @@
         </md-input-container>
     </section>
 
-    <div layout flex layout-align="start center" layout-padding>
+    <div layout flex layout-align="start center" layout-padding class="io-input-layout">
         <md-input-container flex class="md-icon-float md-icon-right md-block md-io-price">
             <label>Price</label>
             <md-icon ng-if="!itemForm.itemPrice.$pristine">$</md-icon>
@@ -85,6 +85,13 @@
             <label>Quantity</label>
             <input type="number" ng-model="item.quantity">
         </md-input-container>
+    </div>
+
+    <div layout layout-padding layout-align="center center">
+        <div layout layout-align="center center" class="md-item-text md-whiteframe-z1">
+            <p>{{(item.price * 0.06 + (item.box | boxSizeCost)) | currency}}</p>
+        </div>
+        <p>Shipping and processing</p>
     </div>
 
     <div layout layout-padding>
@@ -101,7 +108,7 @@
     <div layout layout-align="center center"
          class="am-collapse">
         <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"
-                   class="md-accent md-raised md-hue-1 io-primary-btn"
+                   class="md-primary md-raised io-primary-btn"
                    ng-click="save()">Post changes
         </md-button>
     </div>

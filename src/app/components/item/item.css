@@ -128,3 +128,19 @@ sup.price-decimal {
     right: auto;
 }
 
+.io-input-layout{
+    padding-bottom: 0;
+}
+
+.io-input-layout md-input-container{
+    padding-bottom: 0 !important;
+}
+
+.io-input-layout md-input-container .md-errors-spacer{
+    display: none;
+}
+
+
+
+
+
