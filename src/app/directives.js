@@ -75,7 +75,7 @@ app
             return input ? input : 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
         };
     }])
-    .filter('itemTransactionStatus', ['ITEMSELLTRANSACTION_STATUS', function (ITEMSELLTRANSACTION_STATUS) {
+            .filter('itemTransactionStatus', ['ITEMSELLTRANSACTION_STATUS', function (ITEMSELLTRANSACTION_STATUS) {
         return function (input) {
             if (!input) {
                 return 'Sold!';
@@ -201,7 +201,7 @@ app
                 return false;
             }
             if (input === ITEMSELLTRANSACTION_STATUS.send) {
-                return false;
+                return true;
             }
             if (input === ITEMSELLTRANSACTION_STATUS.sendFirstRemainder) {
                 return true;
@@ -232,10 +232,10 @@ app
     .filter('itemSoldBoxSizeVisibility', ['ITEMSELLTRANSACTION_STATUS', function (ITEMSELLTRANSACTION_STATUS) {
         return function (input) {
             if (
-                input == ITEMSELLTRANSACTION_STATUS.sold
-                || input == ITEMSELLTRANSACTION_STATUS.sendFirstRemainder
-                || input == ITEMSELLTRANSACTION_STATUS.sendSecondRemainder
-                || input == ITEMSELLTRANSACTION_STATUS.sendThirdRemainder
+                input === ITEMSELLTRANSACTION_STATUS.sold
+                || input === ITEMSELLTRANSACTION_STATUS.sendFirstRemainder
+                || input === ITEMSELLTRANSACTION_STATUS.sendSecondRemainder
+                || input === ITEMSELLTRANSACTION_STATUS.sendThirdRemainder
             ) {
                 return true;
             }

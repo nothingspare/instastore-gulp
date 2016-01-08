@@ -144,6 +144,9 @@ sup.price-decimal {
     border-radius: 25px;
 }
 
+.itemview.item-container ng-form[name="form.postForm"] md-input-container {
+    margin-top: 12px;
+}
 
 
 

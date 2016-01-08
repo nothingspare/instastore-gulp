@@ -163,6 +163,9 @@
                                     </div>
                                     <!--1xRemainder state-->
                                     <!--Item bought state-->
+                                    <div ng-if="subIsell.status===transactionStates.send">
+                                        <f6>Waiting for seller to print shipping label and mail.</f6>
+                                    </div>
                                     <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
                                         <f6>Item wasn't place in the box</f6>
                                     </div>
