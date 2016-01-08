@@ -32,16 +32,13 @@ app
     }])
     .filter('boxSizeCost', [function () {
         return function (input) {
-            switch (input) {
+            switch (input * 1) {
                 case 10:
-                    return 5.25;
-                    break;
+                    return 6.5;
                 case 20:
-                    return 11.30;
-                    break;
+                    return 12.30;
                 case 30:
-                    return 14.8;
-                    break;
+                    return 16.2;
             }
         };
     }]);
