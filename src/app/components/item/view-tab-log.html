@@ -63,18 +63,6 @@
                                     items in Mobbbi and will be avialable to cash out in <b>10</b> days.</p>
 
                                 <div class="subtransaction-more-container" ng-class="{hidden: collapsed}">
-                                    <!--Hurryup state-->
-                                    <div ng-if="subIsell.status==transactionStates.hurryup &&
-                                         (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.arrived
-                                         && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                        <f6>Please hurry up with your transaction and help us run a service that is
-                                            quick and efficient for our buys and sellers. Thank you.
-                                        </f6>
-                                        <!--TODO: remove in production-->
-                                        <div ng-click="changeItemStatus(isell.id, transactionStates.accepted)">^
-                                        </div>
-                                    </div>
-                                    <!--Hurryup state-->
                                     <!--Arrived state-->
                                     <div ng-if="subIsell.status==transactionStates.arrived &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.receivedInPost
@@ -112,6 +100,9 @@
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.send
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
                                         <f6>Item placed in <b>{{subIsell.boxSizeTitle}}</b> box.</f6>
+                                        <!--TODO: remove in production-->
+                                        <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">^
+                                        </div>
                                     </div>
                                     <!--Send item state-->
                                     <!--Declined item state-->

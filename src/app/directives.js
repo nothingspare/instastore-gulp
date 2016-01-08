@@ -108,7 +108,7 @@ app
                 return 'Arrived!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.hurryup) {
-                return 'Hurry up!';
+                return 'Arrived!';
             }
             if (input === ITEMSELLTRANSACTION_STATUS.accepted) {
                 return 'Item accepted!';
