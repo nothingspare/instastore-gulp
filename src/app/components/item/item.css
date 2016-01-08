@@ -111,9 +111,11 @@
 }
 
 sup.price-decimal {
-    text-decoration: underline;
-    margin-left: 2px;
-    font-size: x-small;
+    text-decoration: none;
+    margin-left: 0px;
+    font-size: normal;
+vertical-align: baseline;
+font-size: 100%;
 }
 
 .itemview.item-container .md-io-price md-icon{
@@ -124,7 +126,7 @@ sup.price-decimal {
 }
 
 .itemview.item-container md-input-container.md-has-icon.md-io-price > label {
-    left: 10px;
+    left: 10mkmkk90 fvpx;
     right: auto;
 }
 
