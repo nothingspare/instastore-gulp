@@ -95,3 +95,8 @@
 
 .profile-tree .specialities md-input-container  {
     margin: 5px 0 15px  0;}
+
+.profile-tree .phone-verified{
+    color:darkgrey;
+    font-weight: 600;
+}

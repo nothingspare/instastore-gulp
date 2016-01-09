@@ -30,13 +30,18 @@ app
             }
         };
     }])
-    .filter('num', function () {
+    .filter('boxSizeCost', [function () {
         return function (input) {
-            return parseInt(input, 10);
+            switch (input) {
+                case 10:
+                    return 5.25;
+                    break;
+                case 20:
+                    return 11.30;
+                    break;
+                case 30:
+                    return 14.8;
+                    break;
+            }
         };
-    })
-    .filter('decimalNum', function () {
-        return function (input) {
-            return (((input - Math.floor(input)).toFixed(2)).toString()).substr(2,4);
-        };
-    });
+    }]);

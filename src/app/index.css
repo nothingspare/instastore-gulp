@@ -3584,11 +3584,6 @@ ul.safearea a {
     padding-top: 18px;
 }
 
-.itemview .btn-post {
-    width: 40%;
-    margin-top: 15px;
-}
-
 .itemview .buyer-profile-transaction {
     display: inline-block;
     background-image: url('../assets/images/background2circle290x290px.jpg');
@@ -4056,4 +4051,28 @@ svg.svg-debit {
     height: 163px;
     background-image: url(../assets/images/usps-large.png);
     background-size: 250px;
+}
+
+.usps-box-small {
+    display: block;
+    float: right;
+    width: 250px;
+    height: 163px;
+    background-image: url(../assets/images/usps-small.png);
+    background-size: 250px;
+    background-position: 200px 125px;
+}
+
+.usps-box-medium2{
+    display: block;
+    float: right;
+    width: 250px;
+    height: 163px;
+    background-image: url(../assets/images/usps-medium2.png);
+    background-size: 250px;
+    background-position: 200px 165px;
+}
+
+ng-md-icon{
+    fill:white;
 }

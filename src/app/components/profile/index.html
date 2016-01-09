@@ -62,14 +62,13 @@
                                 class="am-collapse">
                                 <div ui-tree-handle>
                                     <div ng-if="unit.code === 'name'" layout layout-padding>
-                                        <md-button flex class="md-primary md-raised io-primary-btn">Order free Boxes
+                                        <md-button flex="60" class="md-primary md-raised io-primary-btn">Order free Boxes
                                         </md-button>
-                                        <md-button class="md-primary md-raised io-primary-btn" ng-click="logout()">
+                                        <md-button flex class="md-primary md-raised io-primary-btn" ng-click="logout()">
                                             <ng-md-icon icon="logout" style="fill:white"></ng-md-icon>
                                         </md-button>
                                     </div>
                                     <div ng-if="unit.code === 'phone'" layout="column" layout-padding>
-                                        <!--<div layout layout-padding><span class="md-caption">We will send you SMS with verification code</span></div>-->
                                         <div layout ng-if="!profile.phone_validated_at">
                                             <md-input-container flex>
                                                 <label>Phone number</label>
@@ -78,7 +77,7 @@
                                             <div layout layout-align="center start"
                                                  ng-if="profile.phone.length>7 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                <md-button class="md-primary md-raised io-primary-btn"
                                                            ng-click="textToVerify()">Send Code
                                                 </md-button>
                                             </div>
@@ -91,7 +90,7 @@
                                             <div layout layout-align="center start"
                                                  ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                <md-button class="md-primary md-raised io-primary-btn"
                                                            ng-click="sendCode(verifyPhoneCode)">Confirm Code
                                                 </md-button>
                                             </div>
@@ -103,8 +102,8 @@
                                         </md-button>
                                         <div layout layout-margin layout-padding layout-align="center center"
                                              ng-if="profile.phone_validated_at">
-                                            <h4 class="md-whiteframe-4dp">{{profile.phone|tel}} is
-                                                verified!</h4>
+                                            <h4>{{profile.phone|tel}} <span class="phone-verified">is
+                                                verified!</span></h4>
                                         </div>
                                     </div>
                                     <div ng-if="unit.code === 'address'" layout="column" layout-padding
@@ -136,7 +135,7 @@
                                             </md-input-container>
                                             <div layout layout-align="center start"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                <md-button class="md-raised md-primary io-primary-btn"
                                                            ng-click="verifyAddress()">Verify Address
                                                 </md-button>
                                             </div>
@@ -151,15 +150,14 @@
                                             <div layout flex class="crop-area md-whiteframe-17dp" layout-margin>
                                                 <choose-file-button
                                                         style="position:absolute; right:{{myImage?75:15}}px">
-                                                    <md-button aria-label="Upload a file" class="md-fab"
-                                                               style="background-color:lightcoral;">
+                                                    <md-button aria-label="Upload a file" class="md-fab md-primary">
                                                         <ng-md-icon icon="photo_camera"></ng-md-icon>
                                                     </md-button>
                                                     <input id="fileInput" type="file">
                                                 </choose-file-button>
                                                 <md-button ng-if="myImage" ng-click="uploadCrop()" aria-label="Crop"
                                                            class="md-fab am-fade"
-                                                           style="background-color:lightcoral;position: absolute; right:15px">
+                                                           style="position: absolute; right:15px">
                                                     <ng-md-icon icon="crop"></ng-md-icon>
                                                 </md-button>
                                                 <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
@@ -174,7 +172,7 @@
                                             </md-input-container>
                                             <div layout layout-align="center start"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                <md-button class="md-primary md-raised io-primary-btn"
                                                            ng-click="makeMeSeller(inviteCode)">Get Store
                                                 </md-button>
                                             </div>
@@ -289,7 +287,7 @@
                                             </md-input-container>
                                             <div layout layout-align="center start"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                <md-button class="md-primary md-raised io-primary-btn"
                                                            ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
                                                 </md-button>
                                             </div>
@@ -299,13 +297,13 @@
                                         <div ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
                                         <div layout layout-align="center start"
                                              class="am-fade-and-scale">
-                                            <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                            <md-button class="md-primary md-raised io-primary-btn"
                                                        ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
                                             </md-button>
                                         </div>
                                     </div>
                                     <div ng-if="unit.code==='instagram'" layout layout-padding>
-                                        <md-button class="md-accent md-raised md-hue-1 io-primary-btn"
+                                        <md-button class="md-primary md-raised io-primary-btn"
                                                    ng-click="linkInstagram()">&nbsp;Link&nbsp;
                                         </md-button>
                                     </div>
@@ -372,7 +370,7 @@
                                                          layout="column" layout-align="start center"
                                                          class="am-fade-and-scale">
                                                         <md-button
-                                                                class="md-accent md-raised md-hue-1 io-primary-btn"
+                                                                class="md-primary md-raised io-primary-btn"
                                                                 ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
                                                                 type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
                                                         </md-button>

@@ -1,37 +1,57 @@
 <div class="buy-transactions">
-    <a ng-if="item.price" ng-click="confirmBuying()" class="btn btn-buy btn-post centered">&nbsp;Buy Item
-        ${{item.price}}&nbsp;</a>
+    <div layout layout-padding layout-align="center center">
+        <md-button ng-click="confirmBuying()" class="md-raised md-primary md-hue-3">
+            Buy Item {{item.price | currency}}
+        </md-button>
+    </div>
 
     <div ng-if="showConfirm">
 
-        <h6 style="margin:0 20px 15px 20px;">Enter your credit card requisites:</h6>
+        <h6 layout-padding>Enter your credit card requisites:</h6>
 
-        <div ng-controller="PaymentCtrl as p">
-            <form ng-submit="buyItem(p.cardNumber, p.cardExpiry, p.cardCvc)" class="payment-form" name="paymentForm"
-                  novalidate="">
-                <center>
-                    <div id="content-popup">
-                        <input placeholder="XXXX XXXX XXXX XXXX" class="regular-field" type="text"
-                               x-autocompletetype="cc-number" restrict-numeric=""
-                               card-number-validator=""
-                               card-number-formatter="" name="ccNumber" ng-model="p.cardNumber"
-                               card-type="cardType" required>
-                        <input placeholder="00 / 00" type="text" x-autocompletetype="cc-exp" maxlength="9"
+        <div layout="column" layout-align="center center" layout-fill layout-wrap layout-padding
+             ng-controller="PaymentCtrl as p">
+            <form layout="column" ng-submit="buyItem(p.cardNumber, p.cardExpiry, p.cardCvc)"
+                  name="paymentForm" novalidate="">
+                <md-input-container flex>
+                    <label>Card number</label>
+                    <input type="text"
+                           x-autocompletetype="cc-number" restrict-numeric=""
+                           card-number-validator=""
+                           card-number-formatter="" name="ccNumber" ng-model="p.cardNumber"
+                           card-type="cardType" required>
+                </md-input-container>
+                <div layout>
+                    <md-input-container flex>
+                        <label>00/00</label>
+                        <input type="text" x-autocompletetype="cc-exp" maxlength="9"
                                restrict-numeric=""
                                card-expiry-validator=""
                                card-expiry-formatter="" name="ccExpiry" ng-model="p.cardExpiry" required>
-                        <input placeholder="CVV" type="text" x-autocompletetype="cc-csc" restrict-numeric=""
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>CVV</label>
+                        <input type="text" x-autocompletetype="cc-csc" restrict-numeric=""
                                card-cvc-validator=""
                                card-cvc-formatter="" ng-maxlength="4" ng-pattern="/\d*/"
                                name="ccCvc" ng-model="p.cardCvc" required>
+                    </md-input-container>
+                </div>
 
-                        <h6 style="margin:0 0 0 0;">Your item will be shipped to
-                            your address <strong>{{profile.address}}{{profile.apartment?' '+ profile.apartment:''}},
-                                {{profile.city}}, {{profile.state}} {{profile.zipcode}}</strong></h6>
-                        <button ng-if="(paymentForm.$dirty && paymentForm.$valid)" type="submit"
-                                class="btn btn-buy btn-post centered">&nbsp;Confirm&nbsp;</button>
-                    </div>
-                </center>
+                <h6 layout-padding>Your item will be shipped to your address:</h6>
+
+                <div layout layout-padding layout-align="center center">
+                    <h1>{{profile.address}}{{profile.apartment?' '+
+                        profile.apartment:''}},
+                        {{profile.city}}, {{profile.state}} {{profile.zipcode}}</h1>
+                </div>
+                <div layout layout-padding
+                     layout-align="center center">
+                    <md-button ng-disabled="!(paymentForm.$dirty && paymentForm.$valid)" type="submit"
+                               class="md-raised md-primary md-hue-3">
+                        Confirm Buying
+                    </md-button>
+                </div>
             </form>
         </div>
 
@@ -47,7 +67,7 @@
                     </div>
                     <div ng-click="toggle(this)" class="column status">
                         {{isell.itemSellTransactions[isell.itemSellTransactions.length-1].status |
-                        itemTransactionStatus}}
+                        itemBuyerTransactionStatus}}
                     </div>
                     <div class="column label"
                          ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.arrived
@@ -163,7 +183,7 @@
 
     <br>
 
-    <table class="prev-customers">
+    <table class="prev-customers" ng-if="item.customers.length>0">
         <tr>
             <td><h6>Previous customers</h6></td>
         </tr>
