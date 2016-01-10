@@ -41,20 +41,17 @@
 
     <div layout layout-padding layout-align="center center">
         <div class="upload-pic-previews" ng-repeat="thumb in item.images">
-            <img width="44" height="70" ng-src="{{thumb.image_url}}"/>
-            <span class="x-but" ng-click="removeImage(thumb)">X</span>
-        </div>
+            <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but" ng-click="removeImage(thumb)">X</span>
     </div>
 
     <section layout-padding>
         <md-input-container class="md-block">
             <label>Item title</label>
-            <input md-maxlength="128" required name="title"
+            <input md-maxlength="28" required name="title"
                    ng-model="item.title"/>
 
             <div ng-messages="itemForm.title.$error">
-                <div ng-message="md-maxlength">The name has to be less than 128
-                    characters long.
+                <div ng-message="md-maxlength">The name has to be less than 28 characters long.
                 </div>
             </div>
         </md-input-container>
@@ -64,17 +61,15 @@
                    ng-model="item.description"/>
 
             <div ng-messages="itemForm.description.$error">
-                <div ng-message="md-maxlength">The name has to be less than 512
-                    characters long.
+                <div ng-message="md-maxlength">The name has to be less than 512 characters long.
                 </div>
             </div>
         </md-input-container>
     </section>
 
     <div layout flex layout-align="start center" layout-padding class="io-input-layout">
-        <md-input-container flex class="md-icon-float md-icon-right md-block md-io-price">
-            <label>Price</label>
-            <md-icon ng-if="!itemForm.itemPrice.$pristine" class="item$">$</md-icon>
+        <md-input-container flex>
+            <label>Price</label> <!-- I removed the $ symbol to clean up layout -->
             <input ng-model="item.price" type="number" step="0.01" name="itemPrice">
         </md-input-container>
         <md-input-container flex>
@@ -88,18 +83,19 @@
     </div>
 
     <div layout layout-padding layout-align="center center">
-        <div layout layout-align="center center" class="md-item-text md-whiteframe-z1 io-shipping-proccessing">
-            <p>{{(item.price * 0.06 + (item.box | boxSizeCost)) | currency}}</p>
+        <div layout layout-align="center center" class="md-item-text io-shipping-proccessing sell-transactions buy-transactions"><br><br> <!-- I added these classes to effect the text styling -->
+            <p style="color:darkgray;"><b>{{(item.price * 0.06 + (item.box | boxSizeCost)) | currency}}</b></p>
         </div>
-        <p>Shipping and processing</p>
+        <p style="color:darkgray;"> Shipping and processing</p>
     </div>
 
     <div layout layout-padding>
         <select ng-model="item.box" class="sml selector1">
-            <option disabled value="">Pick up box size</option>
+            <option disabled value="">Shipping box size</option>
             <option value="30">Large</option>
             <option value="20">Medium</option>
             <option value="10">Small</option>
+            <option value="0">Store pick up</option> <!-- I added this line -->
         </select>
     </div>
 
@@ -114,3 +110,5 @@
     </div>
     <br>
 </ng-form>
+            <span class="x-but" ng-click="removeImage(thumb)">X</span>
+        </div>

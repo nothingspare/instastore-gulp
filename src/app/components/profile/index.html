@@ -62,22 +62,22 @@
                                 class="am-collapse">
                                 <div ui-tree-handle>
                                     <div ng-if="unit.code === 'name'" layout layout-padding>
-                                        <md-button flex="60" class="md-primary md-raised io-primary-btn">Order free Boxes
+                                        <md-button flex="60" class="md-primary md-raised margin-above reduced-padding io-primary-btn">Order free Boxes
                                         </md-button>
-                                        <md-button flex class="md-primary md-raised io-primary-btn" ng-click="logout()">
-                                            <ng-md-icon icon="logout" style="fill:white"></ng-md-icon>
+                                        <md-button flex class="md-primary md-raised margin-above wide-padding io-primary-btn" ng-click="logout()">log Out
+                                        <ng-md-icon icon="logout" style="fill:white"></ng-md-icon>
                                         </md-button>
                                     </div>
                                     <div ng-if="unit.code === 'phone'" layout="column" layout-padding>
                                         <div layout ng-if="!profile.phone_validated_at">
                                             <md-input-container flex>
                                                 <label>Phone number</label>
-                                                <input ng-model="profile.phone" type="text">
+                                                <input ng-model="profile.phone" class="left-justified"type="text">
                                             </md-input-container>
-                                            <div layout layout-align="center start"
+                                            <div layout layout-align="start"
                                                  ng-if="profile.phone.length>7 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-primary md-raised io-primary-btn"
+                                                <md-button class="md-primary md-raised margin-above-plus io-primary-btn"
                                                            ng-click="textToVerify()">Send Code
                                                 </md-button>
                                             </div>
@@ -90,7 +90,7 @@
                                             <div layout layout-align="center start"
                                                  ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-primary md-raised io-primary-btn"
+                                                <md-button class="md-primary md-raised margin-above-plus io-primary-btn"
                                                            ng-click="sendCode(verifyPhoneCode)">Confirm Code
                                                 </md-button>
                                             </div>
@@ -102,8 +102,7 @@
                                         </md-button>
                                         <div layout layout-margin layout-padding layout-align="center center"
                                              ng-if="profile.phone_validated_at">
-                                            <h4>{{profile.phone|tel}} <span class="phone-verified">is
-                                                verified!</span></h4>
+                                            <type="text">{{profile.phone|tel}} <span class="phone-verified"><h6>   Verified</span></h6>
                                         </div>
                                     </div>
                                     <div ng-if="unit.code === 'address'" layout="column" layout-padding
@@ -135,16 +134,15 @@
                                             </md-input-container>
                                             <div layout layout-align="center start"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-raised md-primary io-primary-btn"
+                                                <md-button class="md-raised md-primary io-primary-btn bottom"
                                                            ng-click="verifyAddress()">Verify Address
                                                 </md-button>
                                             </div>
                                         </div>
                                     </div>
                                     <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
-                                        <h6>Upload a full-length background picture of yourself
-                                            in your store as your background image. Then crop your head to make your
-                                            profile.</h6>
+                                        <p style='text-align:center'>Upload a full-length background picture of yourself in your store as your background image. Then crop your head to make your
+                                            profile.</p>
 
                                         <div ng-controller="CropUploadCtrl">
                                             <div layout flex class="crop-area md-whiteframe-17dp" layout-margin>
@@ -256,8 +254,7 @@
                                                 <!--<div class="hint">Tell us what we should call you!</div>-->
                                                 <div ng-messages="specialitiesForm.store_name.$error"
                                                      ng-if="!showHints">
-                                                    <div ng-message="md-maxlength">The name has to be less than 30
-                                                        characters long.
+                                                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.
                                                     </div>
                                                 </div>
                                             </md-input-container>
@@ -268,8 +265,7 @@
                                                 <!--<div class="hint">Two lines</div>-->
                                                 <div ng-messages="specialitiesForm.store_name.$error"
                                                      ng-if="!showHints">
-                                                    <div ng-message="md-maxlength">The name has to be less than 60
-                                                        characters long.
+                                                    <div ng-message="md-maxlength">The name has to be less than 60 characters long.
                                                     </div>
                                                 </div>
                                             </md-input-container>
@@ -280,26 +276,31 @@
                                                 <!--<div class="hint">Tell us what we should call you!</div>-->
                                                 <div ng-messages="specialitiesForm.store_name.$error"
                                                      ng-if="!showHints">
-                                                    <div ng-message="md-maxlength">The name has to be less than 90
-                                                        characters long.
+                                                    <div ng-message="md-maxlength">The name has to be less than 90 characters long.
                                                     </div>
                                                 </div>
                                             </md-input-container>
                                             <div layout layout-align="center start"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-primary md-raised io-primary-btn"
-                                                           ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
+
+                                                <md-button class="md-primary md-raised io-primary-btn" ng-click="unit.collapsed = collapsed; save()">
+                                            &nbsp;Save&nbsp;
                                                 </md-button>
+
                                             </div>
                                         </ng-form>
                                     </div>
                                     <div ng-if="unit.code === 'location'" layout="column" layout-padding>
+
                                         <div ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
+
                                         <div layout layout-align="center start"
                                              class="am-fade-and-scale">
+
                                             <md-button class="md-primary md-raised io-primary-btn"
-                                                       ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
+                                                 ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
                                             </md-button>
+
                                         </div>
                                     </div>
                                     <div ng-if="unit.code==='instagram'" layout layout-padding>

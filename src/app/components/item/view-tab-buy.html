@@ -98,8 +98,7 @@
                                     itemBuyerTransactionStatus}}
                                     <f6>{{subIsell.created_at | amCalendar}}</f6>
                                 </div>
-                                <p ng-if="subIsell.status === transactionStates.accepted">Item accepted. Thanks for
-                                    supporting individual sellers!
+                                <p ng-if="subIsell.status === transactionStates.accepted">Item accepted. Thanks for supporting individual sellers!
 
                                 <div class="subtransaction-more-container" ng-class="{hidden: collapsed}">
                                     <!--Hurryup state-->
@@ -111,8 +110,7 @@
                                     <div ng-if="subIsell.status==transactionStates.hurryup &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status===transactionStates.hurryup)"
                                          ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
-                                        <f6>Please hurry up with your transaction and help us run a service that is
-                                            quick and efficient for our buys and sellers. Thank you.
+                                        <f6>Please hurry up with your transaction and help us run a service that is quick and efficient for our buys and sellers. Thank you.
                                         </f6>
                                     </div>
                                     <!--Hurryup state-->
@@ -120,7 +118,7 @@
                                     <div ng-if="subIsell.status==transactionStates.arrived &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.receivedInPost
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                        <f6>Item has arrived! Please approve it: <b>{{isell.arrived}}</b></b>
+                                        <f6>Item has arrived! Please approve it: <b>{{isell.arrived}}</b>
                                         </f6>
                                     </div>
                                     <!--Arrived state-->
@@ -163,6 +161,9 @@
                                     </div>
                                     <!--1xRemainder state-->
                                     <!--Item bought state-->
+                                    <div ng-if="subIsell.status===transactionStates.send">
+                                        <f6>Waiting for seller to print shipping label and mail.</f6>
+                                    </div>
                                     <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
                                         <f6>Item wasn't place in the box</f6>
                                     </div>
