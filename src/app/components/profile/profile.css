@@ -1,4 +1,3 @@
-
 /*Profile tree starts*/
 
 .profile-tree .top-transaction {
@@ -36,7 +35,6 @@
 .profile-tree input {
     box-shadow: none;
 }
-
 
 .profile-tree .right-corner-btn {
     position: absolute;
@@ -89,19 +87,31 @@
 }
 
 .profile-tree md-input-container {
-    margin: 5px 0 5px  0;
+    margin: 5px 0 5px 0;
 }
 
 @media (min-width: 0) and (max-width: 600px) {
-.profile-tree md-input-container {
-    padding-bottom: 0;
-    margin: 0px 0 0px  0;
+    .profile-tree md-input-container {
+        padding-bottom: 0;
+        margin: 0 0 0 0;
+    }
+
+    .profile-tree .specialities md-input-container {
+        margin: 5px 0 15px 0;
+    }
+
+    .profile-tree .phone-verified {
+        color: lightcoral;
+        font-weight: 400;
+    }
 }
 
-.profile-tree .specialities md-input-container  {
-    margin: 5px 0 15px  0;}
+.profile-tree .angular-google-map-container {
+    top: 0;
+    height: 150px;
+    width: 100%;
+}
 
-.profile-tree .phone-verified{
-    color:lightcoral;
-    font-weight: 400;
+md-switch.no-margin {
+    margin: 0 0;
 }

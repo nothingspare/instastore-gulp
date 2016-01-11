@@ -517,20 +517,23 @@ angular.module('instastore')
                         $scope.currentTab = 'app/components/item/view-tab-comment.html';
                 }
         }])
-    .controller('ItemLocation', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
-        uiGmapGoogleMapApi.then(function () {
-            if ($rootScope.store) {
-                $scope.map = {
-                    center: {latitude: $rootScope.store.store_long, longitude: $rootScope.store.store_lat},
-                    zoom: 14
-                };
-                $scope.staticMarker = {id: 'store-marker'};
-                $scope.staticMarker.coords = {
-                    latitude: $rootScope.store.store_long,
-                    longitude: $rootScope.store.store_lat
-                };
-            }
-        });
+    .controller('ItemLocation', ['$scope', 'UserService', 'uiGmapGoogleMapApi', function ($scope, UserService, uiGmapGoogleMapApi) {
+        uiGmapGoogleMapApi
+            .then(function () {
+                var profile = UserService.getProfile();
+                if (profile) {
+                    $scope.map = {
+                        center: {latitude: profile.store.store_long, longitude: profile.store.store_lat},
+                        zoom: 14
+                    };
+                    $scope.staticMarker = {id: 'store-marker1'};
+                    $scope.staticMarker.coords = {
+                        latitude: profile.store.store_long,
+                        longitude: profile.store.store_lat
+                    };
+                }
+                return uiGmapGoogleMapApi;
+            });
     }])
     .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', function ($scope, $http, API_URL, errorService) {
 

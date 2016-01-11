@@ -1,19 +1,17 @@
 'use strict';
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state',
-        '$rootScope', 'uiGmapGoogleMapApi', 'stripe', 'API_URL', '$http', '$filter',
+        '$rootScope', 'uiGmapGoogleMapApi', 'stripe', 'API_URL', '$http', '$filter', '$timeout',
         function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope,
-                  uiGmapGoogleMapApi, stripe, API_URL, $http, $filter) {
+                  uiGmapGoogleMapApi, stripe, API_URL, $http, $filter, $timeout) {
             uiGmapGoogleMapApi
-                .then(function () {
-                    return uiGmapGoogleMapApi;
-                })
                 .then(function () {
                     $scope.renderMap = true;
                 });
 
             $scope.profile = UserService.getProfile();
 
+            //for form
             $scope.p = {};
 
             var orderBy = $filter('orderBy');
@@ -286,8 +284,8 @@ angular.module('instastore')
             };
 
         }])
-    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$state',
-        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $state) {
+    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$state', '$timeout',
+        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $state, $timeout) {
 
             $scope.CLIENT_URL = CLIENT_URL;
 
@@ -347,14 +345,6 @@ angular.module('instastore')
                         return false;
                 }
             };
-
-            uiGmapGoogleMapApi
-                .then(function () {
-                    return uiGmapGoogleMapApi;
-                })
-                .then(function () {
-                    $scope.renderMap = true;
-                });
 
             var errorCallback = function (data) {
                 toaster.clear();
@@ -435,7 +425,7 @@ angular.module('instastore')
                 $scope.profile.store.show_store_location = $scope.showStoreLocation > 0 ? 0 : 1;
                 $scope.showStoreLocation = !$scope.showStoreLocation;
                 rest.putModel($scope.profile.store).success(function (store) {
-                        toaster.pop('success', 'Turned ' + (store.show_store_location > 0 ? 'on' : 'off') + '!');
+                        //toaster.pop('success', 'Turned ' + (store.show_store_location > 0 ? 'on' : 'off') + '!');
                         UserService.setProfile($scope.profile);
                     }
                 ).error(errorCallback);

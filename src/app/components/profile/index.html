@@ -219,7 +219,7 @@
                                     {{unit.name}}
                                 </div>
                                 <div layout layout-wrap layout-fill ng-if="unit.code==='location'" class="main-title">
-                                    {{profile.store.address?'Store Location':'Online only, no store location'}}
+                                    {{profile.store.show_store_location?'Store Location':'Online only, no store location'}}
                                 </div>
                                 <div ng-if="unit.code === 'card'" class="main-title">
                                     {{profile.card_token_created_at?'Debit Card Verified ' +
@@ -307,21 +307,32 @@
                                     </div>
                                     <div ng-if="unit.code === 'location'" layout="column" layout-padding>
 
-                                        <md-switch class="md-primary" aria-label="Show store location"
+                                        <md-switch class="md-primary no-margin" aria-label="Show store location"
                                                    ng-model="showStoreLocation" ng-change="changeShowStoreLocation()">
                                             <span class="main-title">Show store location</span>
                                         </md-switch>
 
-                                        <div ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
-
-                                        <div layout layout-align="center start"
-                                             class="am-fade-and-scale">
-
-                                            <md-button class="md-primary md-raised io-primary-btn"
-                                                       ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
-                                            </md-button>
-
+                                        <div ng-if="profile.store.show_store_location" class="am-fade-and-scale">
+                                            <div ng-if="!profile.store.address">
+                                                <div ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
+                                                <div layout layout-align="center start"
+                                                     class="am-fade-and-scale">
+                                                    <md-button class="md-primary md-raised io-primary-btn"
+                                                               ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                            <div layout="column" layout-aling="center center"
+                                                 ng-if="profile.store.address">
+                                                <div ng-include="renderMap?'app/components/item/view-tab-location.html':null"></div>
+                                                <div ng-if="!renderMap">Loading...</div>
+                                                <span layout-padding class="main-title">{{profile.store.address}}</span>
+                                                <md-button layout-padding class="md-primary md-raised io-primary-btn" ng-click="profile.store.address = ''; save()">
+                                                    REMOVE IT
+                                                </md-button>
+                                            </div>
                                         </div>
+
                                     </div>
                                     <div ng-if="unit.code==='instagram'" layout layout-padding>
                                         <md-button class="md-primary md-raised io-primary-btn"
