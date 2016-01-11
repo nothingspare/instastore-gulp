@@ -55,7 +55,7 @@
     line-height: 14px;
     transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
     /* Set our own color */
-    color: grey;
+    color: gray;
 }
 
 .profile-tree .hint.ng-hide,
@@ -89,8 +89,13 @@
 }
 
 .profile-tree md-input-container {
-    padding-bottom: 0;
     margin: 5px 0 5px  0;
+}
+
+@media (min-width: 0) and (max-width: 600px) {
+.profile-tree md-input-container {
+    padding-bottom: 0;
+    margin: 0px 0 0px  0;
 }
 
 .profile-tree .specialities md-input-container  {

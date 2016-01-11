@@ -1,17 +1,18 @@
 <div class="label-popup" layout="column" layout-align="center center">
     <div>
-<div id=lable-button-container>
-        <div class="btn padding" ng-click="printLabel()">Print</div>
-        <div class="btn padding" ng-click="emailLabel(label.itemsell_id)">Email</div>
+        <div id=lable-button-container>
+            <div class="btn padding" ng-click="printLabel()">Print</div>
+            <div class="btn padding" ng-click="emailLabel(label.itemsell_id)">Email</div>
+        </div>
     </div>
-</div>
 
     <img class="label-image" ng-src={{label.url}}>
-<br>
-    <p style="font-size: 75%; line-height: 110%; text-align: center;">Attach this shipping label to a <span style="font-weight: 400">USPS Flat Rate Box.</span> They don't need to be weighed and can be left for the mail man to pick up. No need to go to the post office.</p>
+    <br>
+
+    <p style="font-size: 75%; line-height: 110%; text-align: center;">Attach this shipping label to a <span
+            style="font-weight: 400">USPS Flat Rate Box.</span> They don't need to be weighed and can be left for the mail man to pick up. No need to go to the post office.</p>
 
     <div layout>
-        <div ng-class="{'usps-box-large':isellBox===30, 'usps-box-medium2':isellBox===20,'usps-box-small':isellBox===10}"></div>
         <div layout layout-align="center center" layout-margin>
             <p>
                 <b>{{isellBox | boxSizeTitle}}</b>
@@ -21,7 +22,14 @@
                 Inside dimensions:
                 <br>
                 {{isellBox | boxSizeDimensions}}
+                <br ng-if="isellBox===20">
+                {{isellBox===20?' Or 11" x 8-1/2" x 5-1/2"':''}}
             </p>
+        </div>
+        <div layout="column">
+            <div ng-class="{'usps-box-large':isellBox===30, 'usps-box-medium2':isellBox===20,'usps-box-small':isellBox===10}"></div>
+            <md-divider ng-if="isellBox===20"></md-divider>
+            <div ng-if="isellBox===20" class="usps-box-medium"></div>
         </div>
     </div>
 

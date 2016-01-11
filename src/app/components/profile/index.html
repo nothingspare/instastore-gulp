@@ -62,6 +62,7 @@
                                 class="am-collapse">
                                 <div ui-tree-handle>
                                     <div ng-if="unit.code === 'name'" layout layout-padding>
+
                                         <md-button flex="50" class="md-primary md-raised button-padding btns1 io-primary-btn">Order free Boxes
                                         </md-button>
                                         <md-button flex class="md-primary md-raised button-padding btns2 io-primary-btn" ng-click="logout()">Log-out
@@ -72,9 +73,9 @@
                                         <div layout ng-if="!profile.phone_validated_at">
                                             <md-input-container flex>
                                                 <label>Phone number</label>
-                                                <input ng-model="profile.phone" type="text">
+                                                <input ng-model="profile.phone" class="left-justified"type="text">
                                             </md-input-container>
-                                            <div layout layout-align="center start"
+                                            <div layout layout-align="start"
                                                  ng-if="profile.phone.length>7 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
                                                 <md-button class="md-primary md-raised io-primary-btn"
@@ -90,8 +91,10 @@
                                             <div layout layout-align="center start"
                                                  ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
+
                                                 <md-button class="md-primary md-raised io-primary-btn"
                                                            ng-click="sendCode(verifyPhoneCode)">Enter texted Code
+
                                                 </md-button>
                                             </div>
                                         </div>
@@ -102,7 +105,9 @@
                                         </md-button>
                                         <div layout layout-margin layout-padding layout-align="center center"
                                              ng-if="profile.phone_validated_at">
+
                                             <h3>{{profile.phone|tel}}</h3><br><br><h4 class="phone-verified">&nbsp;Verified!</h4>
+
                                         </div>
                                     </div>
                                     <div ng-if="unit.code === 'address'" layout="column" layout-padding
@@ -134,7 +139,9 @@
                                             </md-input-container>
                                             <div layout layout-align="center start"
                                                  class="am-fade-and-scale">
+
                                                 <md-button class="md-raised md-primary button-padding io-primary-btn"
+
                                                            ng-click="verifyAddress()">Verify Address
                                                 </md-button>
                                             </div>
@@ -281,19 +288,25 @@
                                             </md-input-container>
                                             <div layout layout-align="center start"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-primary md-raised io-primary-btn"
-                                                           ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
+
+                                                <md-button class="md-primary md-raised io-primary-btn" ng-click="unit.collapsed = collapsed; save()">
+                                            &nbsp;Save&nbsp;
                                                 </md-button>
+
                                             </div>
                                         </ng-form>
                                     </div>
                                     <div ng-if="unit.code === 'location'" layout="column" layout-padding>
+
                                         <div ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
+
                                         <div layout layout-align="center start"
                                              class="am-fade-and-scale">
+
                                             <md-button class="md-primary md-raised io-primary-btn"
-                                                       ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
+                                                 ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
                                             </md-button>
+
                                         </div>
                                     </div>
                                     <div ng-if="unit.code==='instagram'" layout layout-padding>
