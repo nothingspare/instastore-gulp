@@ -1,8 +1,8 @@
-<md-content>
+<div>
     <div ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})" id="item-large-pic"
          ng-style="{'background-image': 'url(' + item.images[0].image_url + ')', 'opacity':item.status==10?0.3:1}"
-         style="background-repeat: no-repeat;">
-        <img ng-src="{{item.images[0].image_url}}" style="visibility: hidden;">
+         style="background-repeat: no-repeat;background-size:cover;">
+        <img item-stream-card-height ng-src="{{item.images[0].image_url}}" style="visibility: hidden;">
     </div>
     <md-content layout layout-align="start center" class="bottom-actions">
         <div layout layout-align="center center" class="price-tag-wrapper"
@@ -11,8 +11,8 @@
             <span ng-if="item.price" class="price-tag">{{item.price|currency}}</span>
         </div>
         <div class="io-item-stream-description" flex layout layout-fill layout-wrap layout-align="start center"
-                         ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">
+             ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">
             <p layout layout-fill><b>{{item.description|itemDescription}}</b></p>
         </div>
     </md-content>
-</md-content>
+</div>
