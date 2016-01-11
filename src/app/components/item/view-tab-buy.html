@@ -7,7 +7,7 @@
 
     <div ng-if="showConfirm">
 
-        <h6 layout-padding>Enter your credit card requisites:</h6>
+        <h5 layout-padding>Enter your credit card details:</h5>
 
         <div layout="column" layout-align="center center" layout-fill layout-wrap layout-padding
              ng-controller="PaymentCtrl as p">
@@ -38,18 +38,18 @@
                     </md-input-container>
                 </div>
 
-                <h6 layout-padding>Your item will be shipped to your address:</h6>
+                <h5 layout-padding>Your item will be shipped to your address:</h5>
 
                 <div layout layout-padding layout-align="center center">
-                    <h1>{{profile.address}}{{profile.apartment?' '+
+                    <h3>{{profile.address}}{{profile.apartment?' '+
                         profile.apartment:''}},
-                        {{profile.city}}, {{profile.state}} {{profile.zipcode}}</h1>
+                        {{profile.city}}, {{profile.state}} {{profile.zipcode}}</h3>
                 </div>
                 <div layout layout-padding
                      layout-align="center center">
                     <md-button ng-disabled="!(paymentForm.$dirty && paymentForm.$valid)" type="submit"
                                class="md-raised md-primary md-hue-3">
-                        Confirm Buying
+                        Confirm Purchase
                     </md-button>
                 </div>
             </form>
