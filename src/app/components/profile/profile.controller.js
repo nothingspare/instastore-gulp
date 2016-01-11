@@ -434,9 +434,7 @@ angular.module('instastore')
                 rest.path = 'v1/my-stores';
                 $scope.profile.store.show_store_location = $scope.showStoreLocation > 0 ? 0 : 1;
                 $scope.showStoreLocation = !$scope.showStoreLocation;
-                console.log($scope.profile.store.show_store_location);
                 rest.putModel($scope.profile.store).success(function (store) {
-                        console.log(store);
                         toaster.pop('success', 'Turned ' + (store.show_store_location > 0 ? 'on' : 'off') + '!');
                         UserService.setProfile($scope.profile);
                     }
