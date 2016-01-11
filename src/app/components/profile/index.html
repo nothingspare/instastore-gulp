@@ -77,8 +77,8 @@
                                             <div layout layout-align="center start"
                                                  ng-if="profile.phone.length>7 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-primary md-raised button-padding io-primary-btn"
-                                                           ng-click="textToVerify()">Send Code
+                                                <md-button class="md-primary md-raised io-primary-btn"
+                                                           ng-click="textToVerify()">Send number
                                                 </md-button>
                                             </div>
                                         </div>
@@ -90,8 +90,8 @@
                                             <div layout layout-align="center start"
                                                  ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
-                                                <md-button class="md-primary md-raised button-padding io-primary-btn"
-                                                           ng-click="sendCode(verifyPhoneCode)">Confirm Code
+                                                <md-button class="md-primary md-raised io-primary-btn"
+                                                           ng-click="sendCode(verifyPhoneCode)">Enter texted Code
                                                 </md-button>
                                             </div>
                                         </div>
