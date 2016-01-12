@@ -13,7 +13,7 @@
                  on-file-progress="progress()"
                  pl-multi-selection="true"
                  pl-resize-model="pluploadConfig.resize">
-                <ng-md-icon icon="file_upload" style="fill:white"></ng-md-icon>
+                <ng-md-icon icon="file_upload"></ng-md-icon>
             </div>
         </md-button>
         <md-button class="md-fab md-primary hidden-desktop" aria-label="Take a photo" device-detector>
@@ -28,20 +28,15 @@
                  on-file-progress="progress()"
                  pl-multi-selection="false"
                  pl-resize-model="pluploadConfig.resize">
-                <ng-md-icon icon="photo_camera" style="fill:white;"></ng-md-icon>
+                <ng-md-icon icon="photo_camera"></ng-md-icon>
             </div>
         </md-button>
-        <div layout flex layout-align="end center">
-            <md-button ng-click="removeItem()"
-                       class="md-fab md-primary" aria-label="Delete item">
-                <ng-md-icon icon="delete" style="fill:white"></ng-md-icon>
-            </md-button>
-        </div>
     </div>
 
     <div layout layout-padding layout-align="center center">
         <div class="upload-pic-previews" ng-repeat="thumb in item.images">
-            <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but" ng-click="removeImage(thumb)">X</span></div>
+            <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but" ng-click="removeImage(thumb)">X</span>
+        </div>
     </div>
 
 
@@ -86,10 +81,11 @@
 
     <div layout layout-padding layout-align="center center">
 
-        <div layout layout-align="center center" class="md-item-text sell-transactions io-shipping-proccessing padding-above">
+        <div layout layout-align="center center"
+             class="md-item-text sell-transactions io-shipping-proccessing padding-above">
             <p><b>+ {{(item.price * 0.06 + (item.box | boxSizeCost)) | currency}}&nbsp;</b></p>
-        
-        <p> &nbsp;Shipping and Processing</p>
+
+            <p> &nbsp;Shipping and Processing</p>
         </div>
 
     </div>
@@ -101,7 +97,7 @@
             <option value="20">Medium</option>
             <option value="10">Small</option>
 
-           <!-- <option value="0">Store pick up</option> <!-- I added this line -->
+            <!-- <option value="0">Store pick up</option> <!-- I added this line -->
 
         </select>
     </div>
@@ -113,6 +109,16 @@
         <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"
                    class="md-primary md-raised io-primary-btn"
                    ng-click="save()">Post changes
+        </md-button>
+    </div>
+    <div layout flex layout-align="end center">
+        <md-button ng-click="duplicateItem()"
+                   class="md-fab md-primary" aria-label="Duplicate item">
+            <ng-md-icon icon="content_copy"></ng-md-icon>
+        </md-button>
+        <md-button ng-click="removeItem()"
+                   class="md-fab md-primary" aria-label="Delete item">
+            <ng-md-icon icon="delete"></ng-md-icon>
         </md-button>
     </div>
 </ng-form>

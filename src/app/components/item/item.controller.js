@@ -95,10 +95,10 @@ angular.module('instastore')
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', 'ngDialog', '$window',
-        'uiGmapGoogleMapApi', '$auth', '$rootScope',
+        'uiGmapGoogleMapApi', '$auth',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi, $auth, $rootScope) {
+                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi, $auth) {
 
             $scope.seeMore = false;
 
@@ -352,6 +352,17 @@ angular.module('instastore')
                     }
                 });
             };
+
+            $scope.duplicateItem = function () {
+                rest.path = 'v1/user-items';
+                var newItem = $scope.item;
+                delete(newItem.id);
+                rest.postModel(newItem).success(function (item) {
+                    console.log(item);
+                    toaster.pop('success', 'Duplicated');
+                }).error(errorService.alert);
+            };
+
         }
     ])
     .controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG',
