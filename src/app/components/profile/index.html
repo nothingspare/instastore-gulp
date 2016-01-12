@@ -61,17 +61,28 @@
                             <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true" ng-if="!collapsed"
                                 class="am-collapse">
                                 <div ui-tree-handle>
-                                    <div ng-if="unit.code === 'name'" layout layout-padding>
-
-                                        <md-button flex="50"
-                                                   class="md-primary md-raised button-padding btns1 io-primary-btn">
-                                            Order free Boxes
-                                        </md-button>
-                                        <md-button flex class="md-primary md-raised button-padding btns2 io-primary-btn"
-                                                   ng-click="logout()">Log-out
-                                            <ng-md-icon icon="logout" style="fill:white"></ng-md-icon>
-                                        </md-button>
+                                    <!--USER section starts-->
+                                    <div ng-if="unit.code === 'name'" layout="column" layout-padding>
+                                        <div layout>
+                                            <md-button flex="50"
+                                                       class="md-primary md-raised button-padding btns1 io-primary-btn">
+                                                Order free Boxes
+                                            </md-button>
+                                            <md-button flex
+                                                       class="md-primary md-raised button-padding btns2 io-primary-btn"
+                                                       ng-click="logout()">Log-out
+                                                <ng-md-icon icon="logout"></ng-md-icon>
+                                            </md-button>
+                                        </div>
+                                        <div layout layout-align="center center">
+                                            <md-button flex="50" href="mailto:support@isopen.us?subject=Contact Support"
+                                                       class="md-primary md-raised io-primary-btn">
+                                                Contact Support
+                                            </md-button>
+                                        </div>
                                     </div>
+                                    <!--USER section ends-->
+                                    <!--PHONE section starts-->
                                     <div ng-if="unit.code === 'phone'" layout="column" layout-padding>
                                         <div layout ng-if="!profile.phone_validated_at">
                                             <md-input-container flex>
@@ -94,25 +105,24 @@
                                             <div layout layout-align="center start"
                                                  ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
                                                  class="am-fade-and-scale">
-
                                                 <md-button class="md-primary md-raised io-primary-btn"
                                                            ng-click="sendCode(verifyPhoneCode)">Enter texted Code
-
                                                 </md-button>
                                             </div>
                                         </div>
-                                        <md-button ng-if="profile.phone_validated_at"
-                                                   class="md-fab right-corner-btn"
-                                                   ng-click="removePhone()" aria-label="Delete Card">
-                                            <ng-md-icon icon="close"></ng-md-icon>
-                                        </md-button>
-                                        <div layout layout-margin layout-padding layout-align="center center"
-                                             ng-if="profile.phone_validated_at">
-
-                                            <h3>{{profile.phone|tel}}</h3><br><br><h4 class="phone-verified">&nbsp;Verified!</h4>
-
+                                        <div layout="column" layout-margin layout-padding>
+                                            <div layout layout-align="center center"
+                                                 ng-if="profile.phone_validated_at">
+                                                <h3>{{profile.phone|tel}}</h3><br><br><h4 class="phone-verified">&nbsp;Verified!</h4>
+                                            </div>
+                                            <md-button ng-if="profile.phone_validated_at"
+                                                       class="md-primary md-raised io-primary-btn"
+                                                       ng-click="removePhone()" aria-label="Delete Card">
+                                                Remove Phone
+                                            </md-button>
                                         </div>
                                     </div>
+                                    <!--PHONE section ends-->
                                     <div ng-if="unit.code === 'address'" layout="column" layout-padding
                                          layout-fill class="postal-subs">
                                         <div layout layout-sm="column">
@@ -219,7 +229,8 @@
                                     {{unit.name}}
                                 </div>
                                 <div layout layout-wrap layout-fill ng-if="unit.code==='location'" class="main-title">
-                                    {{profile.store.show_store_location?'Store Location':'Online only, no store location'}}
+                                    {{profile.store.show_store_location?'Store Location':'Online only, no store
+                                    location'}}
                                 </div>
                                 <div ng-if="unit.code === 'card'" class="main-title">
                                     {{profile.card_token_created_at?'Debit Card Verified ' +
@@ -327,7 +338,8 @@
                                                 <div ng-include="renderMap?'app/components/item/view-tab-location.html':null"></div>
                                                 <div ng-if="!renderMap">Loading...</div>
                                                 <span layout-padding class="main-title">{{profile.store.address}}</span>
-                                                <md-button layout-padding class="md-primary md-raised io-primary-btn" ng-click="profile.store.address = ''; save()">
+                                                <md-button layout-padding class="md-primary md-raised io-primary-btn"
+                                                           ng-click="profile.store.address = ''; save()">
                                                     REMOVE IT
                                                 </md-button>
                                             </div>
