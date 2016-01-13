@@ -62,24 +62,22 @@
                                 class="am-collapse">
                                 <div ui-tree-handle>
                                     <!--USER section starts-->
-                                    <div ng-if="unit.code === 'name'" layout="column" layout-padding>
-                                        <div layout>
-                                            <md-button flex="50"
-                                                       class="md-primary md-raised button-padding btns1 io-primary-btn">
-                                                Order free Boxes
-                                            </md-button>
-                                            <md-button flex
-                                                       class="md-primary md-raised button-padding btns2 io-primary-btn"
-                                                       ng-click="logout()">Log-out
-                                                <ng-md-icon icon="logout"></ng-md-icon>
-                                            </md-button>
-                                        </div>
-                                        <div layout layout-align="center center">
-                                            <md-button flex="50" href="mailto:support@isopen.us?subject=Contact Support"
-                                                       class="md-primary md-raised io-primary-btn">
-                                                Contact Support
-                                            </md-button>
-                                        </div>
+                                    <div ng-if="unit.code === 'name'" layout="column"
+                                         layout-padding>
+                                        <md-button
+                                                class="md-primary md-raised io-primary-btn">
+                                            Order free Boxes
+                                        </md-button>
+                                        <md-button
+                                                class="md-primary md-raised io-primary-btn"
+                                                ng-click="logout()">Log-out
+                                            <ng-md-icon icon="logout"></ng-md-icon>
+                                        </md-button>
+
+                                        <md-button href="mailto:support@isopen.us?subject=Contact Support"
+                                                   class="md-primary md-raised io-primary-btn">
+                                            Contact Support
+                                        </md-button>
                                     </div>
                                     <!--USER section ends-->
                                     <!--PHONE section starts-->
@@ -280,6 +278,7 @@
                                                 <label>Store name (store url will be generated from it)</label>
                                                 <input md-maxlength="30" required name="store_name"
                                                        ng-model="profile.store.store_name"/>
+
                                                 <div ng-messages="specialitiesForm.store_name.$error">
                                                     <div ng-message="md-maxlength">The name has to be less than 30
                                                         characters long.
@@ -301,6 +300,7 @@
                                                 <label>Store specialities</label>
                                                 <input md-maxlength="90" required name="store_name"
                                                        ng-model="profile.store.specialities"/>
+
                                                 <div ng-messages="specialitiesForm.store_name.$error">
                                                     <div ng-message="md-maxlength">The name has to be less than 90
                                                         characters long.
