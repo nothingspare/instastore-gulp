@@ -1,9 +1,9 @@
 'use strict';
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state',
-        '$rootScope', 'uiGmapGoogleMapApi', 'stripe', 'API_URL', '$http', '$filter', '$timeout',
+        '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$timeout',
         function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope,
-                  uiGmapGoogleMapApi, stripe, API_URL, $http, $filter, $timeout) {
+                  uiGmapGoogleMapApi, API_URL, $http, $filter, $timeout) {
             uiGmapGoogleMapApi
                 .then(function () {
                     $scope.renderMap = true;
@@ -250,8 +250,8 @@ angular.module('instastore')
             };
 
         }])
-    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$state', '$timeout',
-        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $state, $timeout) {
+    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL',
+        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $state, stripe, $http, API_URL) {
 
             $scope.CLIENT_URL = CLIENT_URL;
 
