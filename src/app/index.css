@@ -3986,7 +3986,8 @@ div.rn-carousel-indicator span.active {
 }
 
 svg.svg-debit {
-    width: 100%;
+    width: 50%;
+    height: 50%;
 }
 
 .item-cta {

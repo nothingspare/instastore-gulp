@@ -1,9 +1,9 @@
 'use strict';
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state',
-        '$rootScope', 'uiGmapGoogleMapApi', 'stripe', 'API_URL', '$http', '$filter', '$timeout',
+        '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$timeout',
         function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope,
-                  uiGmapGoogleMapApi, stripe, API_URL, $http, $filter, $timeout) {
+                  uiGmapGoogleMapApi, API_URL, $http, $filter, $timeout) {
             uiGmapGoogleMapApi
                 .then(function () {
                     $scope.renderMap = true;
@@ -87,17 +87,6 @@ angular.module('instastore')
                     default:
                         return false;
                 }
-            };
-
-            $scope.removeSellerCard = function () {
-                rest.path = 'v1/link/remove-seller-card';
-                rest.deleteModel().success(function () {
-                        delete($scope.profile.recipient_id);
-                        delete($scope.profile.card_token);
-                        delete($scope.profile.card_token_created_at);
-                        UserService.setProfile($scope.profile);
-                    }
-                ).error(errorCallback);
             };
 
             $scope.removePhone = function () {
@@ -260,32 +249,9 @@ angular.module('instastore')
                 }).error(errorCallback);
             };
 
-            $scope.verifyCard = function (cardNumber, cardExpiry, cardCvc) {
-                var card = {
-                    number: cardNumber,
-                    exp_month: cardExpiry.month,
-                    exp_year: cardExpiry.year,
-                    cvc: cardCvc
-                };
-
-                stripe.card.createToken(card)
-                    .then(function (token) {
-                        return $http.post(API_URL + 'v1/link/save-tokenized-card?access-token=' + UserService.getToken(), {
-                            token: token.id,
-                            cardLastDigits: cardNumber.slice(cardNumber.length - 4, cardNumber.length)
-                        });
-                    }).then(function (res) {
-                        $scope.profile.card_token_created_at = res.data.card.card_token_created_at;
-                        $scope.profile.card_last_digits = res.data.card.card_last_digits;
-                        UserService.setProfile($scope.profile);
-                    }).catch(function (res) {
-                        toaster.pop('error', "Stripe error", res.data.message);
-                    });
-            };
-
         }])
-    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$state', '$timeout',
-        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $state, $timeout) {
+    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL',
+        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $state, stripe, $http, API_URL) {
 
             $scope.CLIENT_URL = CLIENT_URL;
 
@@ -374,6 +340,40 @@ angular.module('instastore')
             $scope.profile = UserService.getProfile();
 
             $scope.mainStoreUrl = UserService.getMainStoreUrl();
+
+            $scope.removeSellerCard = function () {
+                rest.path = 'v1/link/remove-seller-card';
+                rest.deleteModel().success(function () {
+                        delete($scope.profile.recipient_id);
+                        delete($scope.profile.card_token);
+                        delete($scope.profile.card_token_created_at);
+                        UserService.setProfile($scope.profile);
+                    }
+                ).error(errorCallback);
+            };
+
+            $scope.verifyCard = function (cardNumber, cardExpiry, cardCvc) {
+                var card = {
+                    number: cardNumber,
+                    exp_month: cardExpiry.month,
+                    exp_year: cardExpiry.year,
+                    cvc: cardCvc
+                };
+
+                stripe.card.createToken(card)
+                    .then(function (token) {
+                        return $http.post(API_URL + 'v1/link/save-tokenized-card?access-token=' + UserService.getToken(), {
+                            token: token.id,
+                            cardLastDigits: cardNumber.slice(cardNumber.length - 4, cardNumber.length)
+                        });
+                    }).then(function (res) {
+                        $scope.profile.card_token_created_at = res.data.card.card_token_created_at;
+                        $scope.profile.card_last_digits = res.data.card.card_last_digits;
+                        UserService.setProfile($scope.profile);
+                    }).catch(function (res) {
+                        toaster.pop('error', "Stripe error", res.data.message);
+                    });
+            };
 
             $scope.save = function () {
                 if ($scope.profile.store.place) {

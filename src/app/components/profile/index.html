@@ -62,24 +62,22 @@
                                 class="am-collapse">
                                 <div ui-tree-handle>
                                     <!--USER section starts-->
-                                    <div ng-if="unit.code === 'name'" layout="column" layout-padding>
-                                        <div layout>
-                                            <md-button flex="50"
-                                                       class="md-primary md-raised button-padding btns1 io-primary-btn">
-                                                Order free Boxes
-                                            </md-button>
-                                            <md-button flex
-                                                       class="md-primary md-raised button-padding btns2 io-primary-btn"
-                                                       ng-click="logout()">Log-out
-                                                <ng-md-icon icon="logout"></ng-md-icon>
-                                            </md-button>
-                                        </div>
-                                        <div layout layout-align="center center">
-                                            <md-button flex="50" href="mailto:support@isopen.us?subject=Contact Support"
-                                                       class="md-primary md-raised io-primary-btn">
-                                                Contact Support
-                                            </md-button>
-                                        </div>
+                                    <div ng-if="unit.code === 'name'" layout="column"
+                                         layout-padding>
+                                        <md-button
+                                                class="md-primary md-raised io-primary-btn">
+                                            Order free Boxes
+                                        </md-button>
+                                        <md-button
+                                                class="md-primary md-raised io-primary-btn"
+                                                ng-click="logout()">Log-out
+                                            <ng-md-icon icon="logout"></ng-md-icon>
+                                        </md-button>
+
+                                        <md-button href="mailto:support@isopen.us?subject=Contact Support"
+                                                   class="md-primary md-raised io-primary-btn">
+                                            Contact Support
+                                        </md-button>
                                     </div>
                                     <!--USER section ends-->
                                     <!--PHONE section starts-->
@@ -161,9 +159,9 @@
                                         </div>
                                     </div>
                                     <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
-                                        <h5 style="text-align: center">Upload a full-length picture of yourself in your
+                                        <p style="text-align: center">Upload a full-length picture of yourself in your
                                             store for your background image. Then crop your face to make your profile
-                                            pic.</h5>
+                                            pic.</p>
 
                                         <div ng-controller="CropUploadCtrl">
                                             <div layout flex class="crop-area md-whiteframe-17dp" layout-margin>
@@ -184,6 +182,12 @@
                                         </div>
                                     </div>
                                     <div ng-if="unit.code === 'own_store'" layout="column" layout-padding>
+                                        <div layout layout-align="center center">
+                                            <md-button flex="50" href="mailto:support@isopen.us?subject=Request a store"
+                                                       class="md-primary md-raised io-primary-btn">
+                                                Request a store
+                                            </md-button>
+                                        </div>
                                         <div layout>
                                             <md-input-container flex>
                                                 <label>Invite code</label>
@@ -269,13 +273,13 @@
                                 <div ui-tree-handle>
                                     <div ng-if="unit.code === 'specialities'" layout="column" layout-padding>
                                         <ng-form name="specialitiesForm" class="specialities">
+                                            <br hide-gt-xs>
                                             <md-input-container class="md-block">
-                                                <label>Store name</label>
+                                                <label>Store name (store url will be generated from it)</label>
                                                 <input md-maxlength="30" required name="store_name"
                                                        ng-model="profile.store.store_name"/>
 
-                                                <div ng-messages="specialitiesForm.store_name.$error"
-                                                     ng-if="!showHints">
+                                                <div ng-messages="specialitiesForm.store_name.$error">
                                                     <div ng-message="md-maxlength">The name has to be less than 30
                                                         characters long.
                                                     </div>
@@ -286,8 +290,7 @@
                                                 <input md-maxlength="60" required name="store_name"
                                                        ng-model="profile.store.description"/>
 
-                                                <div ng-messages="specialitiesForm.store_name.$error"
-                                                     ng-if="!showHints">
+                                                <div ng-messages="specialitiesForm.store_name.$error">
                                                     <div ng-message="md-maxlength">The name has to be less than 60
                                                         characters long.
                                                     </div>
@@ -297,9 +300,8 @@
                                                 <label>Store specialities</label>
                                                 <input md-maxlength="90" required name="store_name"
                                                        ng-model="profile.store.specialities"/>
-                                                <!--<div class="hint">Tell us what we should call you!</div>-->
-                                                <div ng-messages="specialitiesForm.store_name.$error"
-                                                     ng-if="!showHints">
+
+                                                <div ng-messages="specialitiesForm.store_name.$error">
                                                     <div ng-message="md-maxlength">The name has to be less than 90
                                                         characters long.
                                                     </div>
@@ -358,7 +360,7 @@
                                             <ng-md-icon icon="close"></ng-md-icon>
                                         </md-button>
                                         <div layout layout-fill layout-padding
-                                             ng-if="profile.card_token_created_at">
+                                             ng-if="profile.card_token_created_at" layout-align="center center">
                                             <svg class="svg-debit" viewBox="0 0 32 23">
                                                 <path fill="#e5e5e5" class="svg-debit-card"
                                                       d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
@@ -410,7 +412,7 @@
                                                                ng-pattern="/\d*/"
                                                                name="ccCvc" ng-model="cardCvc" required>
                                                     </md-input-container>
-                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)" flex
+                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)"
                                                          layout="column" layout-align="start center"
                                                          class="am-fade-and-scale">
                                                         <md-button

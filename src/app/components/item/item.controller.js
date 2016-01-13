@@ -292,6 +292,10 @@ angular.module('instastore')
                     $scope.showConfirm = false;
                 } else {
                     $scope.showConfirm = true;
+                    $timeout(function () {
+                        $location.hash('form-end');
+                        $anchorScroll();
+                    }, 450);
                 }
             };
 

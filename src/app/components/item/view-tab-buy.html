@@ -7,7 +7,9 @@
 
     <div ng-if="showConfirm">
 
-        <h5 layout-padding>Enter your credit card details:</h5>
+        <div layout layout-align="center center">
+            <p layout-padding>Enter your credit card details:</p>
+        </div>
 
         <div layout="column" layout-align="center center" layout-fill layout-wrap layout-padding
              ng-controller="PaymentCtrl as p">
@@ -37,13 +39,14 @@
                                name="ccCvc" ng-model="p.cardCvc" required>
                     </md-input-container>
                 </div>
+                <div flex layout layout-align="center center">
 
-                <h5 layout-padding>Your item will be shipped to your address:</h5>
-
-                <div layout layout-padding layout-align="center center">
-                    <h3>{{profile.address}}{{profile.apartment?' '+
+                </div>
+                <div layout="column" layout-align="center center">
+                    <p layout-padding>Your item will be shipped to your address:</p>
+                    <h6>{{profile.address}}{{profile.apartment?' '+
                         profile.apartment:''}},
-                        {{profile.city}}, {{profile.state}} {{profile.zipcode}}</h3>
+                        {{profile.city}}, {{profile.state}} {{profile.zipcode}}</h6>
                 </div>
                 <div layout layout-padding
                      layout-align="center center">
@@ -54,7 +57,7 @@
                 </div>
             </form>
         </div>
-
+        <div id="form-end"></div>
     </div>
 
     <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
@@ -98,7 +101,8 @@
                                     itemBuyerTransactionStatus}}
                                     <f6>{{subIsell.created_at | amCalendar}}</f6>
                                 </div>
-                                <p ng-if="subIsell.status === transactionStates.accepted">Item accepted. Thanks for supporting individual sellers!
+                                <p ng-if="subIsell.status === transactionStates.accepted">Item accepted. Thanks for
+                                    supporting individual sellers!
 
                                 <div class="subtransaction-more-container" ng-class="{hidden: collapsed}">
                                     <!--Hurryup state-->
@@ -110,7 +114,8 @@
                                     <div ng-if="subIsell.status==transactionStates.hurryup &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status===transactionStates.hurryup)"
                                          ng-click="changeItemStatus(isell.id, transactionStates.accepted)">
-                                        <f6>Please hurry up with your transaction and help us run a service that is quick and efficient for our buys and sellers. Thank you.
+                                        <f6>Please hurry up with your transaction and help us run a service that is
+                                            quick and efficient for our buys and sellers. Thank you.
                                         </f6>
                                     </div>
                                     <!--Hurryup state-->
