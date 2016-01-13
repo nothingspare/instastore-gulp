@@ -115,3 +115,9 @@
 md-switch.no-margin {
     margin: 0 0;
 }
+
+.layout, .layout-column, .layout-row {
+    margin: 0;
+
+.flex-gt-sm, .layout-padding,.flex-md, .flex-lt-lg {
+    padding: 8px; }
