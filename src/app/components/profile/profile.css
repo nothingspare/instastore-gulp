@@ -115,3 +115,8 @@
 md-switch.no-margin {
     margin: 0 0;
 }
+
+.profile-tree .angular-ui-tree-handle {
+    cursor: pointer;
+    font-weight: 500;
+}

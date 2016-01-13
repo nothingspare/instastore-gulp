@@ -184,6 +184,12 @@
                                         </div>
                                     </div>
                                     <div ng-if="unit.code === 'own_store'" layout="column" layout-padding>
+                                        <div layout layout-align="center center">
+                                            <md-button flex="50" href="mailto:support@isopen.us?subject=Request a store"
+                                                       class="md-primary md-raised io-primary-btn">
+                                                Request a store
+                                            </md-button>
+                                        </div>
                                         <div layout>
                                             <md-input-container flex>
                                                 <label>Invite code</label>
@@ -269,13 +275,12 @@
                                 <div ui-tree-handle>
                                     <div ng-if="unit.code === 'specialities'" layout="column" layout-padding>
                                         <ng-form name="specialitiesForm" class="specialities">
+                                            <br hide-gt-xs>
                                             <md-input-container class="md-block">
-                                                <label>Store name</label>
+                                                <label>Store name (store url will be generated from it)</label>
                                                 <input md-maxlength="30" required name="store_name"
                                                        ng-model="profile.store.store_name"/>
-
-                                                <div ng-messages="specialitiesForm.store_name.$error"
-                                                     ng-if="!showHints">
+                                                <div ng-messages="specialitiesForm.store_name.$error">
                                                     <div ng-message="md-maxlength">The name has to be less than 30
                                                         characters long.
                                                     </div>
@@ -286,8 +291,7 @@
                                                 <input md-maxlength="60" required name="store_name"
                                                        ng-model="profile.store.description"/>
 
-                                                <div ng-messages="specialitiesForm.store_name.$error"
-                                                     ng-if="!showHints">
+                                                <div ng-messages="specialitiesForm.store_name.$error">
                                                     <div ng-message="md-maxlength">The name has to be less than 60
                                                         characters long.
                                                     </div>
@@ -297,9 +301,7 @@
                                                 <label>Store specialities</label>
                                                 <input md-maxlength="90" required name="store_name"
                                                        ng-model="profile.store.specialities"/>
-                                                <!--<div class="hint">Tell us what we should call you!</div>-->
-                                                <div ng-messages="specialitiesForm.store_name.$error"
-                                                     ng-if="!showHints">
+                                                <div ng-messages="specialitiesForm.store_name.$error">
                                                     <div ng-message="md-maxlength">The name has to be less than 90
                                                         characters long.
                                                     </div>
