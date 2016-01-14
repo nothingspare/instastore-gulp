@@ -308,7 +308,8 @@ angular.module('instastore')
                     itemSellId: isell.id
                 }).success(function (label) {
                     if (label.label) {
-                        $scope.item.itemSells[0].itemSellTransactions.push({status: 30});
+                        var found = $filter('getById')($scope.item.itemSells, isell.id);
+                        found.itemSellTransactions.push({status: 30});
                     }
                     $scope.label = label;
                     ngDialog.open({
