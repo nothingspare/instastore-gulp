@@ -110,20 +110,6 @@
     padding: 0 0 0 5px;
 }
 
-
-
-.itemview.item-container .md-io-price md-icon {
-    top: 12px;
-    left: 0px;
-    right: auto;
-    color: black;
-}
-
-.itemview.item-container md-input-container.md-has-icon.md-io-price > label {
-    left: 10mkmkk90 fvpx;
-    right: auto;
-}
-
 .itemview.item-container .io-input-layout {
     padding-bottom: 0;
 }
@@ -142,6 +128,10 @@
 
 .itemview.item-container ng-form[name="form.postForm"] md-input-container {
     margin-top: 12px;
+}
+
+.add-item-container.itemview.item-container .hidden-add-item {
+    display: none;
 }
 
 

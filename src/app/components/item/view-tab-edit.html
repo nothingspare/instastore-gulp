@@ -82,7 +82,7 @@
     <div layout layout-padding layout-align="center center">
 
         <div layout layout-align="center center"
-             class="md-item-text sell-transactions io-shipping-proccessing padding-above">
+             class="md-item-text sell-transactions io-shipping-proccessing padding-above" ng-if="item.price">
             <p><b>+ {{(item.price * 0.06 + (item.box | boxSizeCost)) | currency}}&nbsp;</b></p>
 
             <p> &nbsp;Shipping and Processing</p>
@@ -91,7 +91,7 @@
     </div>
 
     <div layout layout-padding>
-        <select ng-model="item.box" class="sml selector1">
+        <select ng-model="item.box" class="sml selector1" required>
             <option disabled value="">Shipping box size</option>
             <option value="30">Large</option>
             <option value="20">Medium</option>
@@ -111,7 +111,7 @@
                    ng-click="save()">Post changes
         </md-button>
     </div>
-    <div layout flex layout-align="end center">
+    <div layout flex layout-align="end center" class="hidden-add-item">
         <md-button ng-click="duplicateItem()"
                    class="md-fab md-primary" aria-label="Duplicate item">
             <ng-md-icon icon="content_copy"></ng-md-icon>
