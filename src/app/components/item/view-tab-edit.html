@@ -108,7 +108,7 @@
          class="am-collapse">
         <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"
                    class="md-primary md-raised io-primary-btn"
-                   ng-click="save()">Post changes
+                   ng-click="save()">{{$state.includes('grid')?'ADD':'POST CHANGES'}}
         </md-button>
     </div>
     <div layout flex layout-align="end center" class="hidden-add-item">
