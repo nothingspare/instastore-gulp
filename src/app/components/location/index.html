@@ -1,10 +1,21 @@
 <center>
-	<div class="location-tab-content">
-<h5><b>Store location</b><br>
-418 W Ave 42, <br>LA, CA, 90065.</h5>
-<ui-gmap-google-map center='map.center' zoom='map.zoom' style="height: 200px;">
-    <ui-gmap-marker coords="staticMarker.coords" options="staticMarker.options" events="staticMarker.events" idKey="staticMarker.id">
-    </ui-gmap-marker>
-</ui-gmap-google-map>
-</div>
+    <div ng-if="store.show_store_location>0" class="location-tab-content">
+        <h5>
+            <b>Store location</b>
+            <br>
+            {{store.address}}
+        </h5>
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' style="height: 200px;">
+            <ui-gmap-marker coords="staticMarker.coords" options="staticMarker.options" events="staticMarker.events"
+                            idKey="staticMarker.id">
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
+    <div ng-if="store.show_store_location<1">
+        <h5>
+            <b>Store location</b>
+            <br>
+            ONLINE ONLY
+        </h5>
+    </div>
 </center>

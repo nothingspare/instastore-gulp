@@ -16,7 +16,9 @@
     </div>
     <div ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport'))">
         <div layout="column" class="io-sub-bar-freeshipping">
-            <div layout layout-align="center center" flex layout-padding class="free-shipping">FREE SHEEPING ON ALL ITEMS</div>
+            <div layout layout-align="center center" flex layout-padding class="free-shipping">FREE SHEEPING ON ALL
+                ITEMS
+            </div>
         </div>
         <div layout layout-padding class="io-sub-bar">
             <div ui-sref="store({storeurl:$stateParams.storeurl})">
@@ -69,7 +71,8 @@
                            ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
                         <div class="stream"></div>
                     </a></li>
-                    <li><a ui-sref-active="menu-item-active" ui-sref="location({storeurl:$stateParams.storeurl})">
+                    <li><a ui-sref-active="menu-item-active"
+                           ui-sref="location({storeurl:$stateParams.storeurl})">
                         <div class="location"></div>
                     </a></li>
                 </ul>
