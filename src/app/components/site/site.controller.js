@@ -37,8 +37,9 @@ angular.module('instastore')
 
         }])
     .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$stateParams', '$location', '$anchorScroll',
-        '$auth', 'errorService',
-        function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll, $auth, errorService) {
+        '$auth', 'errorService', '$mdDialog',
+        function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
+                  $mdDialog) {
             UserService.initStore();
 
             $scope.profile = UserService.getProfile();
@@ -79,6 +80,21 @@ angular.module('instastore')
                 ngDialog.open({template: 'app/components/item/view-tab-add.html', controller: 'ItemAdd'});
             };
 
+            $scope.showProfile = function (ev) {
+                $mdDialog.show({
+                    controller: 'ProfileIndex',
+                    templateUrl: 'app/components/profile/index.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                })
+                    .then(function (answer) {
+                        $scope.status = 'You said the information was "' + answer + '".';
+                    }, function () {
+                        $scope.status = 'Yo u cancelled the dialog.';
+                    });
+            };
+
             $scope.goBack = function () {
                 if ($state.includes('store')) {
                     UserService.goToMainStore();
@@ -94,6 +110,7 @@ angular.module('instastore')
             };
 
         }])
+
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
 
         $scope.facebookProfile = UserService.getFacebookProfile();

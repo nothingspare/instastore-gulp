@@ -1,14 +1,15 @@
 'use strict';
+
 angular.module('instastore')
-    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', 'PreviousState', '$state',
-        '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$timeout',
-        function ($scope, UserService, toaster, rest, PreviousState, $state, $rootScope,
-                  uiGmapGoogleMapApi, API_URL, $http, $filter, $timeout) {
+    .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', '$state',
+        '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter',
+        function ($scope, UserService, toaster, rest, $state, $rootScope,
+                  uiGmapGoogleMapApi, API_URL, $http, $filter) {
+
             uiGmapGoogleMapApi
                 .then(function () {
                     $scope.renderMap = true;
                 });
-
             $scope.profile = UserService.getProfile();
 
             //for form

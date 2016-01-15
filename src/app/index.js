@@ -58,24 +58,24 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/store/accounts.html'
         });
 
-        $stateProvider.state('profile', {
-            url: '/profile/',
-            resolve: {
-                PreviousState: [
-                    '$state',
-                    function ($state) {
-                        var currentStateData = {
-                            Name: $state.current.name,
-                            Params: $state.params,
-                            URL: $state.href($state.current.name, $state.params)
-                        };
-                        return currentStateData;
-                    }
-                ]
-            },
-            controller: 'ProfileIndex',
-            templateUrl: modulesPath + '/profile/index.html'
-        });
+        //$stateProvider.state('profile', {
+        //    url: '/profile/',
+        //    resolve: {
+        //        PreviousState: [
+        //            '$state',
+        //            function ($state) {
+        //                var currentStateData = {
+        //                    Name: $state.current.name,
+        //                    Params: $state.params,
+        //                    URL: $state.href($state.current.name, $state.params)
+        //                };
+        //                return currentStateData;
+        //            }
+        //        ]
+        //    },
+        //    controller: 'ProfileIndex',
+        //    templateUrl: modulesPath + '/profile/index.html'
+        //});
 
         $stateProvider.state('profilestore', {
             url: '/profilestore/',

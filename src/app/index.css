@@ -996,7 +996,6 @@ h3 {
     margin: 0 auto;
     width: 100%;
     opacity: 0.8;
-    z-index: 200;
     top: 10px;
 }
 
@@ -3266,7 +3265,7 @@ ul.safearea a {
     position: relative;
     right: 0;
     top: 0;
-    z-index: 9999;
+    z-index: 49;
 }
 
 .x-profile:before {
