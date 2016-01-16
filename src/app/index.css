@@ -895,7 +895,7 @@ h1 {
 
 .header-title {
     font-size: 20px;
-    font-weight: 100;
+    font-weight: 400;
     margin-top: 5px;
     color: #000;
     white-space: nowrap;
@@ -1922,7 +1922,7 @@ min-width: 70px; margin: 0 6px 0 6px;}
 .upload-pic-previews {
     float: left;
     height: 108px;
-    width: 65px;
+    width: 46px;
     border: 1px solid #cdcdcd;
     margin: 0 3px 0 0;
 }
@@ -3207,22 +3207,20 @@ input:-moz-placeholder {
 }
 
 .heart-reveal-large {
-    position: absolute;
-    margin: 0 auto;
-    width: 308px;
-    height: 390px;
-    left: 0px;
+    position: fixed;
+    /*margin: 0 auto;*/
+    width: 95%;
+    height: 280px;
     background-image: url(../assets/images/heart.png);
-    background-size: 308px 390px;
+    background-size: 100%;
     background-position: center center;
     background-repeat: no-repeat;   /* turn off for lots of hearts */
-    bottom: 0;
-    left: -108px;
+    top: 52px;
     -webkit-animation: myfirst 1.1s; /* Chrome, Safari, Opera */
     opacity: 0.0;
     display: block;
     z-index: 100;
-    margin-left: 112px;
+    /*margin-left: 70%;*/
 }
 
 /** - - - - heart reveal animation/position end - - - - - - **/
@@ -4010,12 +4008,16 @@ svg.svg-debit {
     height: 30px;
     border-radius: 50%;
     margin: 4px;
+    margin-right: 2px;
     box-sizing: content-box;
 }
 
 .io-bar {
-    /* position:fixed;  */
-    border-bottom: 1px solid rgba(225, 225, 225, 0.4);
+     position:fixed;  
+     z-index:1000;
+    border-bottom: 1px solid rgba(225, 225, 225, 0.7);
+    width: 100%;
+    background-color: rgba(225, 225, 225, 0.5);
 }
 
 .io-bar > div {
@@ -4027,7 +4029,7 @@ svg.svg-debit {
 }
 
 .io-bar > div:hover {
-    background: rgba(225, 225, 225, 0.4);
+    background: rgba(225, 225, 225, 0.8);
     color: #fff;
 }
 
@@ -4035,10 +4037,20 @@ svg.svg-debit {
     font-size: 14px;
 }
 
+.header-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 5px;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .io-sub-bar-freeshipping div {
     color: #111;
     font-weight: 400;
-    padding-bottom: 0;
+    padding-top: 70px;
 }
 
 .itemview ul {

@@ -135,6 +135,13 @@
 }
 
 
+.md-button {
+  border-radius: 3px;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 22px;
+  padding: 5px 14px 5px 14px; 
+  margin: 34px 10px 16px 10px; 
+}
 
-
-
+.reduce-margin { margin: 1px 0 1px 0; padding: 0px;}
