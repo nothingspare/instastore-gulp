@@ -37,9 +37,9 @@ angular.module('instastore')
 
         }])
     .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$stateParams', '$location', '$anchorScroll',
-        '$auth', 'errorService', '$mdDialog',
+        '$auth', 'errorService', '$mdDialog', '$mdMedia',
         function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
-                  $mdDialog) {
+                  $mdDialog, $mdMedia) {
             UserService.initStore();
 
             $scope.profile = UserService.getProfile();
@@ -83,10 +83,11 @@ angular.module('instastore')
             $scope.showProfile = function (ev) {
                 $mdDialog.show({
                     controller: 'ProfileIndex',
-                    templateUrl: 'app/components/profile/index.html',
+                    templateUrl: 'app/components/profile/profile.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
-                    clickOutsideToClose: true
+                    clickOutsideToClose: true,
+                    fullscreen: $mdMedia('xs')
                 })
                     .then(function (answer) {
                         $scope.status = 'You said the information was "' + answer + '".';

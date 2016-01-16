@@ -11,6 +11,9 @@
     text-align: left;
     font-size: 14px;
     text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .profile-tree .angular-ui-tree-nodes .angular-ui-tree-nodes {
@@ -120,4 +123,5 @@ md-switch.no-margin {
     cursor: pointer;
     font-weight: 500;
 }
+
 

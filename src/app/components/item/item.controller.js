@@ -370,7 +370,7 @@ angular.module('instastore')
 
         }
     ])
-    .controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG',
+        .controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog', 'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG',
         function ($scope, rest, toaster, ITEM_STATUS, API_URL, ngDialog, errorService, UserService, cfpLoadingBar, $rootScope, PLUPLOAD_RESIZE_CONFIG) {
             //TODO: remove hardcoded data
             $scope.item = {category_id: 9, brand_id: 1, description: ''};
