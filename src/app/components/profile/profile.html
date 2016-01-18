@@ -1,0 +1,436 @@
+<div layout>
+    <md-card layout="column" layout-fill layout-wrap class="profile-tree">
+        <ng-form name="profileForm" layout="column">
+            <div layout layout-align="center center" layout-padding>
+                <h4 flex class="profile-header">PERSONAL INFORMATION</h4>
+            </div>
+            <div ng-if="treeConfig" ui-tree data-drag-enabled="false">
+                <md-divider></md-divider>
+                <ol ui-tree-nodes="" ng-model="treeConfig">
+                    <li ng-repeat="unit in treeConfig" ui-tree-node collapsed="true">
+                        <div layout ng-class="unit.code==='address'?'crop-wrapper':''" layout-wrap layout-padding
+                             ui-tree-handle layout-align="center center"
+                             ng-click="canToggle(unit.code)?toggle(this):''"
+                             class="top-transaction">
+                            <div flex="15" layout layout-align="center center"
+                                 ng-if="unit.code !== 'name'">
+                                <ng-md-icon icon="{{unit.icon}}" style="fill: lightcoral" size="24"></ng-md-icon>
+                            </div>
+                            <div flex="15" layout layout-align="center center" ng-if="unit.code === 'name'"
+                                 layout="column">
+                                <img ng-src="{{store.avatar_url|storeAvatar}}"
+                                     class="io-avatar"/>
+                            </div>
+                            <!---->
+                            <div flex="70"
+                                 layout layout-align="start center">
+                                <div layout ng-if="unit.code === 'phone'" class="main-title">
+                                    <span>PHONE NUMBER</span>
+                                </div>
+                                <div ng-if="unit.code === 'address' && profile.address" class="main-title">
+                                    {{profile.address}},&nbsp;
+                                    {{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},&nbsp;
+                                    {{profile.state}},&nbsp;
+                                    {{profile.zipcode}}&nbsp;
+                                </div>
+                                <div ng-if="unit.code === 'address' && !profile.address" class="main-title">
+                                    ENTER YOUR POSTAL ADDRESS
+                                </div>
+                                <div ng-if="unit.code === 'name'" class="main-title">
+                                    {{profile.fullName}}
+                                </div>
+                                <div ng-if="unit.code === 'crop' || unit.code === 'own_store'" layout
+                                     class="main-title">
+                                    <span class="main-title">{{unit.name}}</span>
+                                </div>
+                                <!---->
+                            </div>
+                            <div flex="15"
+                                 layout layout-wrap layout-fill layout-align="center center">
+                                <div ng-if="canToggle(unit.code)" layout="column" layout-align="center center">
+                                    <ng-md-icon icon="{{collapsed?'expand_more':'expand_less'}}"
+                                                style="fill: lightcoral"
+                                                size="24">
+                                    </ng-md-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                        <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: collapsed}">
+                            <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true" ng-if="!collapsed"
+                                class="am-collapse">
+                                <div ui-tree-handle>
+                                    <!--USER section starts-->
+                                    <div ng-if="unit.code === 'name'" layout="column"
+                                         layout-padding>
+                                        <md-button href="mailto:support@isopen.us?subject=Order Free Boxes&body=Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
+                                                   class="md-primary md-raised io-primary-btn">
+                                            Order free Boxes
+                                        </md-button>
+                                        <md-button
+                                                class="md-primary md-raised io-primary-btn"
+                                                ng-click="logout()">Log-out
+                                            <ng-md-icon icon="logout"></ng-md-icon>
+                                        </md-button>
+
+                                        <md-button href="mailto:support@isopen.us?subject=Contact Support"
+                                                   class="md-primary md-raised io-primary-btn">
+                                            Contact Support
+                                        </md-button>
+                                    </div>
+                                    <!--USER section ends-->
+                                    <!--PHONE section starts-->
+                                    <div ng-if="unit.code === 'phone'" layout="column" layout-padding>
+                                        <div layout ng-if="!profile.phone_validated_at">
+                                            <md-input-container flex>
+                                                <label>Phone number</label>
+                                                <input ng-model="profile.phone" class="left-justified" type="text">
+                                            </md-input-container>
+                                            <div layout layout-align="start"
+                                                 ng-if="profile.phone.length>7 && !profile.phone_validated_at"
+                                                 class="am-fade-and-scale">
+                                                <md-button class="md-primary md-raised io-primary-btn"
+                                                           ng-click="textToVerify()">Send number
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                        <div layout ng-if="profile.phone.length>7 && !profile.phone_validated_at">
+                                            <md-input-container flex>
+                                                <label>Enter texted code</label>
+                                                <input ng-model="verifyPhoneCode" type="text">
+                                            </md-input-container>
+                                            <div layout layout-align="center start"
+                                                 ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
+                                                 class="am-fade-and-scale">
+                                                <md-button class="md-primary md-raised io-primary-btn"
+                                                           ng-click="sendCode(verifyPhoneCode)">Enter texted Code
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                        <div layout="column" layout-margin layout-padding>
+                                            <div layout layout-align="center center"
+                                                 ng-if="profile.phone_validated_at">
+                                                <h3>{{profile.phone|tel}}</h3><br><br><h4 class="phone-verified">&nbsp;Verified!</h4>
+                                            </div>
+                                            <md-button ng-if="profile.phone_validated_at"
+                                                       class="md-primary md-raised io-primary-btn"
+                                                       ng-click="removePhone()" aria-label="Delete Card">
+                                                Remove Phone
+                                            </md-button>
+                                        </div>
+                                    </div>
+                                    <!--PHONE section ends-->
+                                    <div ng-if="unit.code === 'address'" layout="column" layout-padding
+                                         layout-fill class="postal-subs">
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex-sm flex-gt-sm="70">
+                                                <label>Address</label>
+                                                <input ng-model="profile.address" type="text">
+                                            </md-input-container>
+                                            <md-input-container flex-sm flex-gt-sm="30">
+                                                <label>Apt</label>
+                                                <input ng-model="profile.apartment" type="text">
+                                            </md-input-container>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex-sm flex-gt-sm="70">
+                                                <label>City</label>
+                                                <input ng-model="profile.city" type="text">
+                                            </md-input-container>
+                                            <md-input-container flex flex-gt-sm="30">
+                                                <label>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                <input ng-model="profile.state" type="text">
+                                            </md-input-container>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Zipcode</label>
+                                                <input ng-model="profile.zipcode" type="text">
+                                            </md-input-container>
+                                            <div layout layout-align="center start"
+                                                 class="am-fade-and-scale">
+
+                                                <md-button class="md-raised md-primary button-padding io-primary-btn"
+
+                                                           ng-click="verifyAddress()">Verify Address
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
+                                        <p style="text-align: center">Upload a full-length picture of yourself in your
+                                            store for your background image. Then crop your face to make your profile
+                                            pic.</p>
+
+                                        <div ng-controller="CropUploadCtrl">
+                                            <div layout flex class="crop-area md-whiteframe-17dp" layout-margin>
+                                                <choose-file-button
+                                                        style="position:absolute; right:{{myImage?75:15}}px">
+                                                    <md-button aria-label="Upload a file" class="md-fab md-primary">
+                                                        <ng-md-icon icon="photo_camera"></ng-md-icon>
+                                                    </md-button>
+                                                    <input id="fileInput" type="file">
+                                                </choose-file-button>
+                                                <md-button ng-if="myImage" ng-click="uploadCrop()" aria-label="Crop"
+                                                           class="md-fab am-fade"
+                                                           style="position: absolute; right:15px">
+                                                    <ng-md-icon icon="crop"></ng-md-icon>
+                                                </md-button>
+                                                <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="unit.code === 'own_store'" layout="column" layout-padding>
+                                        <div layout layout-align="center center">
+                                            <md-button flex="50" href="mailto:support@isopen.us?subject=Request a store"
+                                                       class="md-primary md-raised io-primary-btn">
+                                                Request a store
+                                            </md-button>
+                                        </div>
+                                        <div layout>
+                                            <md-input-container flex>
+                                                <label>Invite code</label>
+                                                <input ng-model="inviteCode" type="text">
+                                            </md-input-container>
+                                            <div layout layout-align="center start"
+                                                 class="am-fade-and-scale">
+                                                <md-button class="md-primary md-raised io-primary-btn"
+                                                           ng-click="makeMeSeller(inviteCode)">Get Store
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider></md-divider>
+                                </div>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </ng-form>
+        <div ng-if="profile.seller" ng-controller="ProfileStoreIndex">
+            <div layout layout-align="center center" layout-padding>
+                <h4 class="profile-header">STORE INFORMATION</h4>
+            </div>
+            <div ng-if="treeStoreConfig" ui-tree data-drag-enabled="false">
+                <md-divider></md-divider>
+                <ol ui-tree-nodes="" ng-model="treeStoreConfig">
+                    <li ng-repeat="unit in treeStoreConfig" ui-tree-node collapsed="unit.collapsed">
+                        <!--Top section-->
+                        <div layout layout-fill layout-wrap layout-padding ui-tree-handle
+                             ng-click="canToggle(unit.code)?toggle(this):customFunction(unit.code)"
+                             class="top-transaction">
+                            <!--Left icon-->
+                            <div flex="15" layout layout-align="center center">
+                                <ng-md-icon icon="{{unit.icon}}" style="fill: lightcoral" size="24"></ng-md-icon>
+                            </div>
+                            <!--Left icon-->
+                            <!--Main title-->
+                            <div flex="70" layout layout-align="start center" layout-wrap layout-fill>
+                                <div ng-if="unit.code === 'specialities' || unit.code === 'instagram'" layout
+                                     class="main-title">
+                                    {{unit.name}}
+                                </div>
+                                <div layout layout-wrap layout-fill ng-if="unit.code==='location'" class="main-title">
+                                    {{profile.store.show_store_location?'Store Location':'Online only, no store
+                                    location'}}
+                                </div>
+                                <div ng-if="unit.code === 'card'" class="main-title">
+                                    {{profile.card_token_created_at?'Debit Card Verified ' +
+                                    (profile.card_token_created_at |
+                                    amCalendar):'Enter Debit Card Requisites'}}
+                                </div>
+                            </div>
+                            <!--Main Title-->
+                            <!--Right Icon-->
+                            <div flex="15" ng-if="unit.code==='instagram' && profile.instagramId" layout="column"
+                                 layout-align="center center"
+                                 ui-sref="instaimport({storeurl:profile.store.store_url})">
+                                <ng-md-icon icon="import_export" style="fill: lightcoral"></ng-md-icon>
+                            </div>
+                            <div flex="15" ng-if="unit.code==='instagram' && !profile.instagramId" layout="column"
+                                 ng-click="linkInstagram()">
+                                <ng-md-icon icon="link" style="fill: lightcoral"></ng-md-icon>
+                            </div>
+                            <div flex="15" ng-if="canToggle(unit.code)" layout="column">
+                                <div flex layout="column" layout-align="center center">
+                                    <ng-md-icon
+                                            icon="{{collapsed?'expand_more':'expand_less'}}"
+                                            style="fill: lightcoral"
+                                            size="24">
+                                    </ng-md-icon>
+                                </div>
+                            </div>
+                            <!--Right Icon-->
+                        </div>
+                        <!--Top section-->
+                        <md-divider></md-divider>
+                        <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: collapsed}">
+                            <li ng-repeat="sub in unit.subs" ui-tree-node collapsed="unit.collapsed"
+                                ng-if="!collapsed"
+                                class="am-collapse">
+                                <div ui-tree-handle>
+                                    <div ng-if="unit.code === 'specialities'" layout="column" layout-padding>
+                                        <ng-form name="specialitiesForm" class="specialities">
+                                            <br hide-gt-xs>
+                                            <md-input-container class="md-block">
+                                                <label>Store name (store url will be generated from it)</label>
+                                                <input md-maxlength="30" required name="store_name"
+                                                       ng-model="profile.store.store_name"/>
+
+                                                <div ng-messages="specialitiesForm.store_name.$error">
+                                                    <div ng-message="md-maxlength">The name has to be less than 30
+                                                        characters long.
+                                                    </div>
+                                                </div>
+                                            </md-input-container>
+                                            <md-input-container class="md-block">
+                                                <label>Store description</label>
+                                                <input md-maxlength="60" required name="store_name"
+                                                       ng-model="profile.store.description"/>
+
+                                                <div ng-messages="specialitiesForm.store_name.$error">
+                                                    <div ng-message="md-maxlength">The name has to be less than 60
+                                                        characters long.
+                                                    </div>
+                                                </div>
+                                            </md-input-container>
+                                            <md-input-container class="md-block">
+                                                <label>Store specialities</label>
+                                                <input md-maxlength="90" required name="store_name"
+                                                       ng-model="profile.store.specialities"/>
+
+                                                <div ng-messages="specialitiesForm.store_name.$error">
+                                                    <div ng-message="md-maxlength">The name has to be less than 90
+                                                        characters long.
+                                                    </div>
+                                                </div>
+                                            </md-input-container>
+                                            <div layout layout-align="center start"
+                                                 class="am-fade-and-scale">
+
+                                                <md-button class="md-primary md-raised io-primary-btn"
+                                                           ng-click="unit.collapsed = collapsed; save()">
+                                                    &nbsp;Save&nbsp;
+                                                </md-button>
+
+                                            </div>
+                                        </ng-form>
+                                    </div>
+                                    <div ng-if="unit.code === 'location'" layout="column" layout-padding>
+
+                                        <md-switch class="md-primary no-margin" aria-label="Show store location"
+                                                   ng-model="showStoreLocation" ng-change="changeShowStoreLocation()">
+                                            <span class="main-title">Show store location</span>
+                                        </md-switch>
+
+                                        <div ng-if="profile.store.show_store_location" class="am-fade-and-scale">
+                                            <div ng-if="!profile.store.address">
+                                                <div ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
+                                                <div layout layout-align="center start"
+                                                     class="am-fade-and-scale">
+                                                    <md-button class="md-primary md-raised io-primary-btn"
+                                                               ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                            <div layout="column" layout-aling="center center"
+                                                 ng-if="profile.store.address">
+                                                <div ng-include="renderMap?'app/components/item/view-tab-location.html':null"></div>
+                                                <div ng-if="!renderMap">Loading...</div>
+                                                <span layout-padding class="main-title">{{profile.store.address}}</span>
+                                                <md-button layout-padding class="md-primary md-raised io-primary-btn"
+                                                           ng-click="profile.store.address = ''; save()">
+                                                    REMOVE IT
+                                                </md-button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div ng-if="unit.code==='instagram'" layout layout-padding>
+                                        <md-button class="md-primary md-raised io-primary-btn"
+                                                   ng-click="linkInstagram()">&nbsp;Link&nbsp;
+                                        </md-button>
+                                    </div>
+                                    <div layout ng-if="unit.code === 'card'">
+                                        <md-button ng-if="profile.card_token_created_at"
+                                                   class="md-fab right-corner-btn"
+                                                   ng-click="removeSellerCard()" aria-label="Delete Card">
+                                            <ng-md-icon icon="close"></ng-md-icon>
+                                        </md-button>
+                                        <div layout layout-fill layout-padding
+                                             ng-if="profile.card_token_created_at" layout-align="center center">
+                                            <svg class="svg-debit" viewBox="0 0 32 23">
+                                                <path fill="#e5e5e5" class="svg-debit-card"
+                                                      d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
+                                                <path fill="#bbb" class="svg-debit-data"
+                                                      d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>
+                                                <path fill="#fff" class="svg-debit-sign"
+                                                      d="M2.993 9h26v3h-26v-3z"></path>
+                                                <path fill="#555" class="svg-debit-read"
+                                                      d="M-.007 3h32v3h-32v-3z"></path>
+                                                <text x="5" y="11.6" fill="black" style="font-size: 2.8px;">****
+                                                    ****
+                                                    ****
+                                                    {{profile.card_last_digits}}
+                                                </text>
+                                            </svg>
+                                        </div>
+                                        <div ng-if="!profile.card_token_created_at" layout="column" layout-fill
+                                             layout-padding>
+                                            <ng-form name="verifyCardForm" novalidate=""
+                                                     layout-wrap>
+                                                <div layout layout-sm="column" layout-fill>
+                                                    <md-input-container flex>
+                                                        <label>Card number</label>
+                                                        <input ng-model="cardNumber" type="text"
+                                                               card-number-validator=""
+                                                               x-autocompletetype="cc-number" restrict-numeric=""
+                                                               card-number-formatter="" name="ccNumber"
+                                                               ng-model="cardNumber"
+                                                               card-type="cardType" required>
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout layout-sm="column" layout-fill>
+                                                    <md-input-container flex>
+                                                        <label>00/00</label>
+                                                        <input type="text"
+                                                               x-autocompletetype="cc-exp"
+                                                               maxlength="9"
+                                                               restrict-numeric=""
+                                                               card-expiry-validator=""
+                                                               card-expiry-formatter="" name="ccExpiry"
+                                                               ng-model="cardExpiry" required>
+                                                    </md-input-container>
+                                                    <md-input-container flex>
+                                                        <label>CVV</label>
+                                                        <input type="text" x-autocompletetype="cc-csc"
+                                                               restrict-numeric=""
+                                                               card-cvc-validator=""
+                                                               card-cvc-formatter="" ng-maxlength="4"
+                                                               ng-pattern="/\d*/"
+                                                               name="ccCvc" ng-model="cardCvc" required>
+                                                    </md-input-container>
+                                                    <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)"
+                                                         layout="column" layout-align="start center"
+                                                         class="am-fade-and-scale">
+                                                        <md-button
+                                                                class="md-primary md-raised io-primary-btn"
+                                                                ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
+                                                                type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
+                                                        </md-button>
+                                                    </div>
+                                                </div>
+                                            </ng-form>
+                                        </div>
+                                    </div>
+                                    <md-divider></md-divider>
+                                </div>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </md-card>
+</div>
