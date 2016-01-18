@@ -257,9 +257,9 @@ angular.module('instastore')
 
         }])
     .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth',
-        'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL', '$mdDialog', '$location', '$stateParams',
+        'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL', '$mdDialog', '$location', '$stateParams', '$rootScope',
         function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL,
-                  $state, stripe, $http, API_URL, $mdDialog, $location, $stateParams) {
+                  $state, stripe, $http, API_URL, $mdDialog, $location, $stateParams, $rootScope) {
 
             $scope.CLIENT_URL = CLIENT_URL;
 
@@ -400,6 +400,7 @@ angular.module('instastore')
                     $stateParams['storeurl'] = store.store_url;
                     $state.params['storeurl'] = store.store_url;
                     $location.url(store.store_url + '/mode/');
+                    $rootScope.store.store_name = store.store_name;
 
                     toaster.pop('success', "Store saved");
                     delete $scope.profile.store.place;
