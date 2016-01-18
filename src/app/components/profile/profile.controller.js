@@ -251,8 +251,10 @@ angular.module('instastore')
             };
 
         }])
-    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth', 'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL',
-        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL, $state, stripe, $http, API_URL) {
+    .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth',
+        'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL', '$mdDialog',
+        function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL,
+                  $state, stripe, $http, API_URL, $mdDialog) {
 
             $scope.CLIENT_URL = CLIENT_URL;
 
@@ -412,6 +414,7 @@ angular.module('instastore')
                     case 'instagram':
                         if ($scope.profile.instagramId) {
                             $state.go('instaimport', {storeurl: UserService.getMainStoreUrl()});
+                            $mdDialog.hide();
                         }
                         else {
                             $scope.linkInstagram();
