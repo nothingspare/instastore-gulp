@@ -48,6 +48,7 @@ angular.module('instastore')
             $scope.logout = function () {
                 UserService.logout();
                 $state.go('login');
+                $mdDialog.hide();
             };
 
             $scope.goToProfile = function () {
