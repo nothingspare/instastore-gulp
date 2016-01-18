@@ -2,9 +2,9 @@
 
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', '$state',
-        '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$mdDialog',
+        '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$mdDialog', '$location', '$stateParams',
         function ($scope, UserService, toaster, rest, $state, $rootScope,
-                  uiGmapGoogleMapApi, API_URL, $http, $filter, $mdDialog) {
+                  uiGmapGoogleMapApi, API_URL, $http, $filter, $mdDialog, $location, $stateParams) {
 
             uiGmapGoogleMapApi
                 .then(function () {
@@ -19,6 +19,7 @@ angular.module('instastore')
 
             $scope.logout = function () {
                 UserService.logout();
+                $mdDialog.hide();
                 $state.go('login');
             };
 
@@ -155,7 +156,7 @@ angular.module('instastore')
 
             $scope.save = function () {
                 rest.path = 'v1/profiles';
-                rest.putModel($scope.profile).success(function () {
+                rest.putModel($scope.profile).success(function (profile) {
                         toaster.pop('success', "Profile saved");
                         UserService.setProfile($scope.profile);
                     }
@@ -256,9 +257,9 @@ angular.module('instastore')
 
         }])
     .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth',
-        'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL', '$mdDialog',
+        'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL', '$mdDialog', '$location', '$stateParams',
         function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL,
-                  $state, stripe, $http, API_URL, $mdDialog) {
+                  $state, stripe, $http, API_URL, $mdDialog, $location, $stateParams) {
 
             $scope.CLIENT_URL = CLIENT_URL;
 
@@ -395,9 +396,15 @@ angular.module('instastore')
                 $scope.profile.store.store_url = $scope.profile.store.store_name;
                 rest.path = 'v1/my-stores';
                 rest.putModel($scope.profile.store).success(function (store) {
+
+                    $stateParams['storeurl'] = store.store_url;
+                    $state.params['storeurl'] = store.store_url;
+                    $location.url(store.store_url + '/mode/');
+
                     toaster.pop('success', "Store saved");
                     delete $scope.profile.store.place;
                     $scope.profile.store = store;
+
                     UserService.setProfile($scope.profile);
                 }).error(errorCallback);
             };
