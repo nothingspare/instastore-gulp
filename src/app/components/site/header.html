@@ -1,10 +1,10 @@
 <div layout="column" ng-controller="SiteHeader">
     <div layout layout-align="center center" class="io-bar">
-        <div ng-click="$state.includes('grid')?logout():goBack()">
+        <div ng-if="!$state.includes('grid')" ng-click="goBack()">
             <div class="back"></div>
         </div>
         <div layout flex ng-click="scrollToTop()" class="middle-section">
-            <img class="profile customheader-profile" ng-src="{{store.avatar_url|storeAvatar}}">
+            <img class="profile customheader-profile" ng-class="{'profile-img-grid':$state.includes('grid')}" ng-src="{{store.avatar_url|storeAvatar}}">
 
             <div flex layout layout-align="center center">
                 <div class="header-title">{{store.store_name}}</div>

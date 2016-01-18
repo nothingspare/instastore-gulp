@@ -27,7 +27,7 @@ angular.module('instastore')
                     }
                     UserService.setProfile(res.data.profile);
                     if (UserService.getInvitedStatus()) {
-                        $state.go('sellorbuy');
+                        $state.go('grid', {mode: res.data.profile.seller ? '' : 'feed'});
                     }
                     else {
                         $state.go('storeselect');
