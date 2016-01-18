@@ -4016,7 +4016,7 @@ svg.svg-debit {
 
 .io-bar {
     position: fixed;
-    z-index: 1000;
+    z-index: 19;
     border-bottom: 1px solid rgba(225, 225, 225, 0.7);
     width: 100%;
     background-color: rgba(225, 225, 225, 0.5);
