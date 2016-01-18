@@ -2,9 +2,9 @@
 
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'toaster', 'rest', '$state',
-        '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter',
+        '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$mdDialog',
         function ($scope, UserService, toaster, rest, $state, $rootScope,
-                  uiGmapGoogleMapApi, API_URL, $http, $filter) {
+                  uiGmapGoogleMapApi, API_URL, $http, $filter, $mdDialog) {
 
             uiGmapGoogleMapApi
                 .then(function () {
@@ -88,6 +88,10 @@ angular.module('instastore')
                     default:
                         return false;
                 }
+            };
+
+            $scope.closeDialog = function () {
+                $mdDialog.hide();
             };
 
             $scope.removePhone = function () {
