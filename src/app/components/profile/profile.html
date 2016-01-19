@@ -1,6 +1,5 @@
-<md-button class="md-primary md-fab md-fab-top-right io-close-btn" ng-click="closeDialog()">
-    <ng-md-icon icon="close"></ng-md-icon>
-</md-button>
+<div class="x-profile" ng-click="closeDialog()">
+</div>
 <div layout>
     <md-card layout="column" layout-fill layout-wrap class="profile-tree">
         <ng-form name="profileForm" layout="column">
@@ -26,11 +25,11 @@
                             </div>
                             <!---->
                             <div flex="70"
-                                 layout layout-align="start center">
+                                 layout layout-align="start center" layout-wrap>
                                 <div layout ng-if="unit.code === 'phone'" class="main-title">
                                     <span>PHONE NUMBER</span>
                                 </div>
-                                <div ng-if="unit.code === 'address' && profile.address" class="main-title">
+                                <div ng-if="unit.code === 'address' && profile.address" layout layout-wrap class="main-title">
                                     {{profile.address}},&nbsp;
                                     {{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},&nbsp;
                                     {{profile.state}},&nbsp;
@@ -66,7 +65,7 @@
                                     <!--USER section starts-->
                                     <div ng-if="unit.code === 'name'" layout="column"
                                          layout-padding>
-                                        <md-button href="mailto:support@isopen.us?subject=Order Free Boxes&body=Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
+                                        <md-button ng-if="profile.seller" href="mailto:support@isopen.us?subject=Order Free Boxes&body=Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
                                                    class="md-primary md-raised io-primary-btn">
                                             Order free Boxes
                                         </md-button>
@@ -76,7 +75,7 @@
                                             <ng-md-icon icon="logout"></ng-md-icon>
                                         </md-button>
 
-                                        <md-button href="mailto:support@isopen.us?subject=Contact Support"
+                                        <md-button href="mailto:support@isopen.us?subject=Contact Support&body={{profile.address?'Address:':''}} {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
                                                    class="md-primary md-raised io-primary-btn">
                                             Contact Support
                                         </md-button>
@@ -229,16 +228,16 @@
                             </div>
                             <!--Left icon-->
                             <!--Main title-->
-                            <div flex="70" layout layout-align="start center" layout-wrap layout-fill>
+                            <div flex="70" layout layout-align="start center" layout-wrap>
                                 <div ng-if="unit.code === 'specialities' || unit.code === 'instagram'" layout
-                                     class="main-title">
+                                     class="main-title" layout-wrap>
                                     {{unit.name}}
                                 </div>
-                                <div layout layout-wrap layout-fill ng-if="unit.code==='location'" class="main-title">
+                                <div layout layout-wrap layout-fill ng-if="unit.code==='location'" class="main-title" layout-wrap>
                                     {{profile.store.show_store_location?'Store Location':'Online only, no store
                                     location'}}
                                 </div>
-                                <div ng-if="unit.code === 'card'" class="main-title">
+                                <div ng-if="unit.code === 'card'" class="main-title" layout layout-wrap>
                                     {{profile.card_token_created_at?'Debit Card Verified ' +
                                     (profile.card_token_created_at |
                                     amCalendar):'Enter Debit Card Requisites'}}
