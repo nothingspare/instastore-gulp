@@ -1,10 +1,11 @@
-<div class="x-profile" ng-click="closeDialog()">
-</div>
 <div layout>
     <md-card layout="column" layout-fill layout-wrap class="profile-tree">
         <ng-form name="profileForm" layout="column">
             <div layout layout-align="center center" layout-padding>
                 <h4 flex class="profile-header">PERSONAL INFORMATION</h4>
+                <md-button ng-click="closeDialog()" class="md-icon-button">
+                    <ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>
+                </md-button>
             </div>
             <div ng-if="treeConfig" ui-tree data-drag-enabled="false">
                 <md-divider></md-divider>
