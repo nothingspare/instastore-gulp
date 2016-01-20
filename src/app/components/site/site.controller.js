@@ -51,6 +51,8 @@ angular.module('instastore')
                 $state.go('login');
             };
 
+            $scope.isSeller = UserService.isYourStore();
+
             $scope.goToProfile = function () {
                 if (UserService.isGuest()) {
                     UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
