@@ -139,7 +139,7 @@ md-dialog.md-default-theme, md-dialog {
     }
 }
 
-@media only screen and (min-width: 380px) {
+@media only screen and (min-width: 375px) {
     .main-title {
         max-width: 100%;
         width: 100%;
