@@ -1,18 +1,15 @@
 <div layout>
     <md-card layout="column" layout-fill layout-wrap class="profile-tree">
-        <ng-form name="profileForm" layout="column">
+        <form name="profileForm" layout="column">
             <div layout layout-align="center center" layout-padding>
+                <div flex="8" ng-click="goBack()" class="back"></div>
                 <h4 flex class="profile-header">PERSONAL INFORMATION</h4>
-                <md-button ng-click="closeDialog()" class="md-icon-button x-out">
-                    <ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>
-                </md-button>
             </div>
             <div ng-if="treeConfig" ui-tree data-drag-enabled="false">
                 <md-divider></md-divider>
                 <ol ui-tree-nodes="" ng-model="treeConfig">
                     <li ng-repeat="unit in treeConfig" ui-tree-node collapsed="true">
-                        <div layout ng-class="unit.code==='address'?'crop-wrapper':''" layout-wrap layout-padding
-                             ui-tree-handle layout-align="center center"
+                        <div layout layout-fill layout-wrap layout-padding ui-tree-handle layout-align="center center"
                              ng-click="canToggle(unit.code)?toggle(this):''"
                              class="top-transaction">
                             <div flex="15" layout layout-align="center center"
@@ -26,15 +23,15 @@
                             </div>
                             <!---->
                             <div flex="70"
-                                 layout layout-align="start center" layout-wrap>
+                                 layout layout-align="start center">
                                 <div layout ng-if="unit.code === 'phone'" class="main-title">
                                     <span>PHONE NUMBER</span>
                                 </div>
-                                <div ng-if="unit.code === 'address' && profile.address" layout layout-wrap class="main-title">
-                                    {{profile.address}},&nbsp;
-                                    {{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},&nbsp;
-                                    {{profile.state}},&nbsp;
-                                    {{profile.zipcode}}&nbsp;
+                                <div ng-if="unit.code === 'address' && profile.address" class="main-title">
+                                    {{profile.address}},
+                                    {{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},
+                                    {{profile.state}},
+                                    {{profile.zipcode}}
                                 </div>
                                 <div ng-if="unit.code === 'address' && !profile.address" class="main-title">
                                     ENTER YOUR POSTAL ADDRESS
@@ -66,8 +63,8 @@
                                     <!--USER section starts-->
                                     <div ng-if="unit.code === 'name'" layout="column"
                                          layout-padding>
-                                        <md-button ng-if="profile.seller" href="mailto:support@isopen.us?subject=Order Free Boxes&body=Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
-                                                   class="md-primary md-raised io-primary-btn">
+                                        <md-button
+                                                class="md-primary md-raised io-primary-btn">
                                             Order free Boxes
                                         </md-button>
                                         <md-button
@@ -76,7 +73,7 @@
                                             <ng-md-icon icon="logout"></ng-md-icon>
                                         </md-button>
 
-                                        <md-button href="mailto:support@isopen.us?subject=Contact Support&body={{profile.address?'Address:':''}} {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
+                                        <md-button href="mailto:support@isopen.us?subject=Contact Support"
                                                    class="md-primary md-raised io-primary-btn">
                                             Contact Support
                                         </md-button>
@@ -210,7 +207,7 @@
                     </li>
                 </ol>
             </div>
-        </ng-form>
+        </form>
         <div ng-if="profile.seller" ng-controller="ProfileStoreIndex">
             <div layout layout-align="center center" layout-padding>
                 <h4 class="profile-header">STORE INFORMATION</h4>
@@ -229,16 +226,16 @@
                             </div>
                             <!--Left icon-->
                             <!--Main title-->
-                            <div flex="70" layout layout-align="start center" layout-wrap>
+                            <div flex="70" layout layout-align="start center" layout-wrap layout-fill>
                                 <div ng-if="unit.code === 'specialities' || unit.code === 'instagram'" layout
-                                     class="main-title" layout-wrap>
+                                     class="main-title">
                                     {{unit.name}}
                                 </div>
-                                <div layout layout-wrap layout-fill ng-if="unit.code==='location'" class="main-title" layout-wrap>
+                                <div layout layout-wrap layout-fill ng-if="unit.code==='location'" class="main-title">
                                     {{profile.store.show_store_location?'Store Location':'Online only, no store
                                     location'}}
                                 </div>
-                                <div ng-if="unit.code === 'card'" class="main-title" layout layout-wrap>
+                                <div ng-if="unit.code === 'card'" class="main-title">
                                     {{profile.card_token_created_at?'Debit Card Verified ' +
                                     (profile.card_token_created_at |
                                     amCalendar):'Enter Debit Card Requisites'}}
@@ -344,7 +341,7 @@
                                                 <span layout-padding class="main-title">{{profile.store.address}}</span>
                                                 <md-button layout-padding class="md-primary md-raised io-primary-btn"
                                                            ng-click="profile.store.address = ''; save()">
-                                                    REMOVE IT
+                                                    Remove Address
                                                 </md-button>
                                             </div>
                                         </div>
