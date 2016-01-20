@@ -26,15 +26,13 @@
                             </div>
                             <!---->
                             <div flex="70"
-                                 layout layout-align="start center" layout-wrap>
+                                 layout layout-align="start center" layout-wrap layout-fill>
                                 <div layout ng-if="unit.code === 'phone'" class="main-title">
                                     <span>PHONE NUMBER</span>
                                 </div>
-                                <div ng-if="unit.code === 'address' && profile.address" layout layout-wrap class="main-title">
-                                    {{profile.address}},&nbsp;
-                                    {{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},&nbsp;
-                                    {{profile.state}},&nbsp;
-                                    {{profile.zipcode}}&nbsp;
+                                <!--I should keep this style tag because of block width on mobile safari-->
+                                <div style="width:170px;" ng-if="unit.code === 'address' && profile.address" flex layout layout-wrap layout-fill class="main-title">
+                                    {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}
                                 </div>
                                 <div ng-if="unit.code === 'address' && !profile.address" class="main-title">
                                     ENTER YOUR POSTAL ADDRESS
@@ -229,7 +227,7 @@
                             </div>
                             <!--Left icon-->
                             <!--Main title-->
-                            <div flex="70" layout layout-align="start center" layout-wrap>
+                            <div flex="70" layout layout-align="start center" layout-wrap layout-fill>
                                 <div ng-if="unit.code === 'specialities' || unit.code === 'instagram'" layout
                                      class="main-title" layout-wrap>
                                     {{unit.name}}
