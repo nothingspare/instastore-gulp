@@ -34,11 +34,11 @@ app
         return function (input) {
             switch (input * 1) {
                 case 10:
-                    return 6.5;
+                    return 6.8;
                 case 20:
-                    return 12.30;
+                    return 13.45;
                 case 30:
-                    return 16.2;
+                    return 18.75;
             }
         };
     }]);
