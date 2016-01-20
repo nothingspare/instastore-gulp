@@ -1,36 +1,71 @@
 <ng-form name="itemForm" class="itemview">
     <div layout>
-        <md-button class="md-fab md-primary" aria-label="Upload files">
-            <div layout-fill
-                 pl-upload
-                 pl-progress-model="percent"
-                 pl-auto-upload="true"
-                 pl-files-model="plupfiles"
-                 pl-multi-params-model="pluploadConfig.multiParams"
-                 pl-url="{{pluploadConfig.uploadPath}}"
-                 on-file-uploaded="uploaded($response)"
-                 on-file-added="added()"
-                 on-file-progress="progress()"
-                 pl-multi-selection="true"
-                 pl-resize-model="pluploadConfig.resize">
-                <ng-md-icon icon="file_upload"></ng-md-icon>
-            </div>
-        </md-button>
-        <md-button class="md-fab md-primary hidden-desktop" aria-label="Take a photo" device-detector>
-            <div layout-fill pl-upload
-                 pl-progress-model="percent"
-                 pl-auto-upload="true"
-                 pl-files-model="plupfiles"
-                 pl-multi-params-model="pluploadConfig.multiParams"
-                 pl-url="{{pluploadConfig.uploadPath}}"
-                 on-file-uploaded="uploaded($response)"
-                 on-file-added="added()"
-                 on-file-progress="progress()"
-                 pl-multi-selection="false"
-                 pl-resize-model="pluploadConfig.resize">
-                <ng-md-icon icon="photo_camera"></ng-md-icon>
-            </div>
-        </md-button>
+        <div style="width:240px;display: inline-block;margin-bottom: 10px">
+            <button device-detector class="md-fab md-primary md-button md-ink-ripple hidden-desktop">
+                <div
+                        pl-upload
+                        pl-files-model="plupfiles"
+                        pl-multi-params-model="pluploadConfig.multiParams"
+                        pl-url="{{pluploadConfig.uploadPath}}"
+                        on-file-uploaded="uploaded($response)"
+                        on-file-added="added()"
+                        on-file-progress="progress()"
+                        pl-multi-selection="false"
+                        pl-instance="uploader"
+                        pl-resize-model="pluploadConfig.resize"
+                        pl-init-delay="true">
+                    <ng-md-icon icon="photo_camera"></ng-md-icon>
+                </div>
+            </button>
+            <button class="md-fab md-primary md-button md-ink-ripple">
+                <div pl-upload
+                     pl-progress-model="percent"
+                     pl-auto-upload="true"
+                     pl-files-model="plupfiles"
+                     pl-multi-params-model="pluploadConfig.multiParams"
+                     pl-url="{{pluploadConfig.uploadPath}}"
+                     on-file-uploaded="uploaded($response)"
+                     on-file-added="added()"
+                     on-file-progress="progress()"
+                     pl-multi-selection="true"
+                     pl-instance="uploader"
+                     pl-resize-model="pluploadConfig.resize"
+                     pl-init-delay="true">
+                    <ng-md-icon icon="file_upload"></ng-md-icon>
+                </div>
+            </button>
+        </div>
+        <!--<md-button class="md-fab md-primary" aria-label="Upload files">-->
+            <!--<div layout-fill-->
+                 <!--pl-upload-->
+                 <!--pl-progress-model="percent"-->
+                 <!--pl-auto-upload="true"-->
+                 <!--pl-files-model="plupfiles"-->
+                 <!--pl-multi-params-model="pluploadConfig.multiParams"-->
+                 <!--pl-url="{{pluploadConfig.uploadPath}}"-->
+                 <!--on-file-uploaded="uploaded($response)"-->
+                 <!--on-file-added="added()"-->
+                 <!--on-file-progress="progress()"-->
+                 <!--pl-multi-selection="true"-->
+                 <!--pl-resize-model="pluploadConfig.resize">-->
+                <!--<ng-md-icon icon="file_upload"></ng-md-icon>-->
+            <!--</div>-->
+        <!--</md-button>-->
+        <!--<md-button class="md-fab md-primary hidden-desktop" aria-label="Take a photo" device-detector>-->
+            <!--<div layout-fill pl-upload-->
+                 <!--pl-progress-model="percent"-->
+                 <!--pl-auto-upload="true"-->
+                 <!--pl-files-model="plupfiles"-->
+                 <!--pl-multi-params-model="pluploadConfig.multiParams"-->
+                 <!--pl-url="{{pluploadConfig.uploadPath}}"-->
+                 <!--on-file-uploaded="uploaded($response)"-->
+                 <!--on-file-added="added()"-->
+                 <!--on-file-progress="progress()"-->
+                 <!--pl-multi-selection="false"-->
+                 <!--pl-resize-model="pluploadConfig.resize">-->
+                <!--<ng-md-icon icon="photo_camera"></ng-md-icon>-->
+            <!--</div>-->
+        <!--</md-button>-->
     </div>
 
     <div layout layout-padding layout-align="center center">

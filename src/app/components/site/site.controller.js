@@ -80,7 +80,7 @@ angular.module('instastore')
             };
 
             $scope.clickToOpen = function () {
-                ngDialog.open({template: 'app/components/item/view-tab-add.html', controller: 'ItemAdd'});
+                ngDialog.open({template: 'app/components/item/view-tab-edit.html', controller: 'ItemAdd'});
             };
 
             $scope.showProfile = function (ev) {
