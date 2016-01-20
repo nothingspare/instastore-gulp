@@ -132,7 +132,7 @@ angular.module('instastore')
                 if (profile.seller || profile.inviter_url) {
                     state.go('grid', {
                         storeurl: profile.seller ? profile.store.store_url : profile.inviter_url,
-                        mode: 'feed'
+                        mode: profile.seller ? '' : 'feed'
                     });
                 }
             },
