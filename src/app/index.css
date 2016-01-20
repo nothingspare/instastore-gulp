@@ -1336,7 +1336,7 @@ h3 {
     height: 40%;
     bottom: 0px;
     margin: 0 auto;
-    padding: 0 5px 0 5px;
+    padding: 0 0px 0 0px;
     width: 100%;
 }
 
@@ -4205,4 +4205,8 @@ ng-md-icon {
 
 .profile.customheader-profile.profile-img-grid {
     margin-left: 15px
+}
+
+.x-out {
+    padding: 0 0 0 14px;
 }
