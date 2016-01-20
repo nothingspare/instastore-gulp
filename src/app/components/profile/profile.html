@@ -31,7 +31,7 @@
                                     <span>PHONE NUMBER</span>
                                 </div>
                                 <!--I should keep this style tag because of block width on mobile safari-->
-                                <div style="width:170px;" ng-if="unit.code === 'address' && profile.address" flex layout layout-wrap layout-fill class="main-title">
+                                <div style="width:200px;" ng-if="unit.code === 'address' && profile.address" flex layout layout-wrap layout-fill class="main-title">
                                     {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}
                                 </div>
                                 <div ng-if="unit.code === 'address' && !profile.address" class="main-title">
