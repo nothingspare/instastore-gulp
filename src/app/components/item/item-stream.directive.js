@@ -7,7 +7,8 @@ angular.module('instastore')
             templateUrl: 'app/components/item/item-stream.html',
             scope: {
                 item: '=',
-                store: '='
+                store: '=',
+                storeUrl: '='
             },
             controller: 'ItemView',
             link: function (scope, elem, attrs) {
