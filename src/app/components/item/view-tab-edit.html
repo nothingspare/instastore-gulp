@@ -1,125 +1,135 @@
-<p style="text-align: center;">Upload well lit portrait shots of your item for sale
-    or other insperational images related to your stores message.</p>
-<ng-form name="itemForm" class="itemview"
-         ng-class="{'add-item-container':$state.includes('grid'), 'item-container':$state.includes('grid')}">
-    <div layout>
-        <button device-detector class="md-fab md-primary md-button md-ink-ripple hidden-desktop">
-            <div pl-upload
-                 pl-files-model="plupfiles"
-                 pl-multi-params-model="pluploadConfig.multiParams"
-                 pl-url="{{pluploadConfig.uploadPath}}"
-                 on-file-uploaded="uploaded($response)"
-                 on-file-added="added()"
-                 on-file-progress="progress()"
-                 pl-multi-selection="false"
-                 pl-instance="uploader"
-                 pl-resize-model="pluploadConfig.resize"
-                 pl-init-delay="true">
-                <ng-md-icon icon="photo_camera"></ng-md-icon>
-            </div>
-        </button>
-        <button class="md-fab md-primary md-button md-ink-ripple">
-            <div pl-upload
-                 pl-progress-model="percent"
-                 pl-auto-upload="true"
-                 pl-files-model="plupfiles"
-                 pl-multi-params-model="pluploadConfig.multiParams"
-                 pl-url="{{pluploadConfig.uploadPath}}"
-                 on-file-uploaded="uploaded($response)"
-                 on-file-added="added()"
-                 on-file-progress="progress()"
-                 pl-multi-selection="true"
-                 pl-instance="uploader"
-                 pl-resize-model="pluploadConfig.resize"
-                 pl-init-delay="true">
-                <ng-md-icon icon="file_upload"></ng-md-icon>
-            </div>
-        </button>
-    </div>
+<div layout layout-align="end start" flex>
+    <md-button ng-click="closeDialog()" class="md-icon-button x-out">
+        <ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>
+    </md-button>
+</div>
+<div layout="column" layout-fill layout-align="center center" layout-padding>
+    <ng-form name="itemForm" class="itemview"
+             ng-class="{'add-item-container':!$state.includes('itemview'), 'item-container':!$state.includes('itemview')}">
+        <p ng-if="!$state.includes('itemview')" layout-padding style="text-align: center;">Upload well lit portrait shots of your item for sale
+            or other inspirational images related to your stores message.</p>
 
-    <div layout layout-padding layout-align="center center">
-        <div class="upload-pic-previews" ng-repeat="thumb in item.images">
-            <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but" ng-click="removeImage(thumb)">X</span>
+        <div layout>
+            <button device-detector class="md-fab md-primary md-button md-ink-ripple hidden-desktop">
+                <div pl-upload
+                     pl-files-model="plupfiles"
+                     pl-multi-params-model="pluploadConfig.multiParams"
+                     pl-url="{{pluploadConfig.uploadPath}}"
+                     on-file-uploaded="uploaded($response)"
+                     on-file-added="added()"
+                     on-file-progress="progress()"
+                     pl-multi-selection="false"
+                     pl-instance="uploader"
+                     pl-resize-model="pluploadConfig.resize"
+                     pl-init-delay="true">
+                    <ng-md-icon icon="photo_camera"></ng-md-icon>
+                </div>
+            </button>
+            <button class="md-fab md-primary md-button md-ink-ripple">
+                <div pl-upload
+                     pl-progress-model="percent"
+                     pl-auto-upload="true"
+                     pl-files-model="plupfiles"
+                     pl-multi-params-model="pluploadConfig.multiParams"
+                     pl-url="{{pluploadConfig.uploadPath}}"
+                     on-file-uploaded="uploaded($response)"
+                     on-file-added="added()"
+                     on-file-progress="progress()"
+                     pl-multi-selection="true"
+                     pl-instance="uploader"
+                     pl-resize-model="pluploadConfig.resize"
+                     pl-init-delay="true">
+                    <ng-md-icon icon="file_upload"></ng-md-icon>
+                </div>
+            </button>
         </div>
-    </div>
 
-
-    <section layout-padding>
-        <md-input-container class="md-block">
-            <label>Item title</label>
-            <input md-maxlength="28" required name="title"
-                   ng-model="item.title"/>
-
-            <div ng-messages="itemForm.title.$error">
-                <div ng-message="md-maxlength">The name has to be less than 28 characters long.
-                </div>
+        <div layout layout-padding layout-align="center center">
+            <div class="upload-pic-previews" ng-repeat="thumb in item.images">
+                <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but"
+                                                                                ng-click="removeImage(thumb)">X</span>
             </div>
-        </md-input-container>
-        <md-input-container class="md-block">
-            <label>Item description</label>
-            <input md-maxlength="512" required name="description"
-                   ng-model="item.description"/>
+        </div>
 
-            <div ng-messages="itemForm.description.$error">
-                <div ng-message="md-maxlength">The name has to be less than 512 characters long.
+
+        <section layout-padding>
+            <md-input-container class="md-block">
+                <label>Item title</label>
+                <input md-maxlength="28" required name="title"
+                       ng-model="item.title"/>
+
+                <div ng-messages="itemForm.title.$error">
+                    <div ng-message="md-maxlength">The name has to be less than 28 characters long.
+                    </div>
                 </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Item description</label>
+                <input md-maxlength="512" required name="description"
+                       ng-model="item.description"/>
+
+                <div ng-messages="itemForm.description.$error">
+                    <div ng-message="md-maxlength">The name has to be less than 512 characters long.
+                    </div>
+                </div>
+            </md-input-container>
+        </section>
+
+        <div layout flex layout-align="start center" layout-padding class="io-input-layout">
+            <md-input-container flex>
+                <label>Price</label>
+                <input ng-model="item.price" type="number" step="0.01" name="itemPrice">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Size</label>
+                <input ng-model="item.size">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Quantity</label>
+                <input type="number" ng-model="item.quantity">
+            </md-input-container>
+        </div>
+
+        <div layout layout-padding layout-align="center center">
+
+            <div layout layout-align="center center"
+                 class="md-item-text sell-transactions io-shipping-proccessing padding-above" ng-if="item.price">
+                <p><b>{{(item.price|processingAndShipping:item.box) | currency}}</b></p>
+
+                <p> &nbsp;Shipping and Processing</p>
             </div>
-        </md-input-container>
-    </section>
 
-    <div layout flex layout-align="start center" layout-padding class="io-input-layout">
-        <md-input-container flex>
-            <label>Price</label>
-            <input ng-model="item.price" type="number" step="0.01" name="itemPrice">
-        </md-input-container>
-        <md-input-container flex>
-            <label>Size</label>
-            <input ng-model="item.size">
-        </md-input-container>
-        <md-input-container flex>
-            <label>Quantity</label>
-            <input type="number" ng-model="item.quantity">
-        </md-input-container>
-    </div>
+        </div>
 
-    <div layout layout-padding layout-align="center center">
+        <div layout layout-padding>
+            <select ng-model="item.box" class="sml selector1" required>
+                <option disabled value="">Shipping box size</option>
+                <option value="30">Large</option>
+                <option value="20">Medium</option>
+                <option value="10">Small</option>
+                <option value="0">Pick up in store</option>
+            </select>
+        </div>
+
+        <br>
 
         <div layout layout-align="center center"
-             class="md-item-text sell-transactions io-shipping-proccessing padding-above" ng-if="item.price">
-            <p><b>{{(item.price|processingAndShipping:item.box) | currency}}</b></p>
-
-            <p> &nbsp;Shipping and Processing</p>
+             class="am-collapse">
+            <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"
+                       class="md-primary md-raised io-primary-btn"
+                       ng-click="save()">{{$state.includes('grid')?'ADD':'POST CHANGES'}}
+            </md-button>
         </div>
-
-    </div>
-
-    <div layout layout-padding>
-        <select ng-model="item.box" class="sml selector1" required>
-            <option disabled value="">Shipping box size</option>
-            <option value="30">Large</option>
-            <option value="20">Medium</option>
-            <option value="10">Small</option>
-            <option value="0">Pick up in store</option>
-        </select>
-    </div>
-
-    <br>
-
-    <div layout layout-align="center center"
-         class="am-collapse">
-        <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"
-                   class="md-primary md-raised io-primary-btn"
-                   ng-click="save()">{{$state.includes('grid')?'ADD':'POST CHANGES'}}
-        </md-button>
-    </div>
-    <div layout flex layout-align="end center" class="hidden-add-item">
-        <md-button ng-click="duplicateItem()"
-                   class="md-fab md-primary" aria-label="Duplicate item">
-            <ng-md-icon icon="content_copy"></ng-md-icon>
-        </md-button>
-        <md-button ng-click="removeItem()"
-                   class="md-fab md-primary" aria-label="Delete item">
-            <ng-md-icon icon="delete"></ng-md-icon>
-        </md-button>
-    </div>
-</ng-form>
+        <div layout flex layout-align="end center" class="hidden-add-item">
+            <md-button ng-click="duplicateItem()"
+                       class="md-fab md-primary" aria-label="Duplicate item">
+                <ng-md-icon icon="content_copy"></ng-md-icon>
+            </md-button>
+            <md-button ng-click="removeItem()"
+                       class="md-fab md-primary" aria-label="Delete item">
+                <ng-md-icon icon="delete"></ng-md-icon>
+            </md-button>
+        </div>
+    </ng-form>
+</div>
+<div ng-if="!$state.includes('itemview')" layout layout-align="end center" flex></div>

@@ -79,8 +79,16 @@ angular.module('instastore')
                 }
             };
 
-            $scope.clickToOpen = function () {
-                ngDialog.open({template: 'app/components/item/view-tab-edit.html', controller: 'ItemAdd'});
+            $scope.clickToOpen = function (ev) {
+                //ngDialog.open({template: 'app/components/item/view-tab-edit.html', controller: 'ItemAdd'});
+                $mdDialog.show({
+                    controller: 'ItemAdd',
+                    templateUrl: 'app/components/item/view-tab-edit.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: $mdMedia('xs')
+                });
             };
 
             $scope.showProfile = function (ev) {
@@ -91,12 +99,7 @@ angular.module('instastore')
                     targetEvent: ev,
                     clickOutsideToClose: true,
                     fullscreen: $mdMedia('xs')
-                })
-                    .then(function (answer) {
-                        $scope.status = 'You said the information was "' + answer + '".';
-                    }, function () {
-                        $scope.status = 'Yo u cancelled the dialog.';
-                    });
+                });
             };
 
             $scope.goBack = function () {
