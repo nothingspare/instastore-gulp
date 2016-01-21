@@ -21,7 +21,6 @@
     "ng-device-detector": "~1.1.7",
     "ng-file-upload": "~5.0.9",
     "ngImgCrop": "git@github.com:tairezzzz/ngImgCrop.git#ce326b0a3ea659479b9d9bb6dfd1263c919c5479",
-    "ngDialog": "~0.3.12",
     "plupload": "git@github.com:tairezzzz/plupload.git#b764f9db71ba5544cedb5c8448abb48fdf85c02c",
     "plupload-angular-directive": "git@github.com:tairezzzz/plupload-angular-directive.git#acd50805c29f4cc518c9a0d4a0987f14f6daf94b",
     "satellizer": "~0.11.3",

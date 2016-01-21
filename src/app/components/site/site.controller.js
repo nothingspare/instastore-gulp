@@ -36,9 +36,9 @@ angular.module('instastore')
             };
 
         }])
-    .controller('SiteHeader', ['$scope', '$state', 'ngDialog', 'UserService', '$stateParams', '$location', '$anchorScroll',
+    .controller('SiteHeader', ['$scope', '$state', 'UserService', '$stateParams', '$location', '$anchorScroll',
         '$auth', 'errorService', '$mdDialog', '$mdMedia',
-        function ($scope, $state, ngDialog, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
+        function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
                   $mdDialog, $mdMedia) {
             UserService.initStore();
 
