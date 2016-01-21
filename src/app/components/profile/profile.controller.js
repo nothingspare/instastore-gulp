@@ -31,7 +31,8 @@ angular.module('instastore')
                     icon: 'person',
                     subs: [
                         {name: 'FistName LastName'}
-                    ]
+                    ],
+                    collapsed: true
                 },
                 '2': {
                     code: 'phone',
@@ -40,7 +41,8 @@ angular.module('instastore')
                     icon: 'phone',
                     subs: [
                         {name: 'Verify phone number'}
-                    ]
+                    ],
+                    collapsed: true
                 },
                 '3': {
                     code: 'address',
@@ -49,7 +51,8 @@ angular.module('instastore')
                     icon: 'location_city',
                     subs: [
                         {name: 'Verify postal address'}
-                    ]
+                    ],
+                    collapsed: true
                 },
                 '4': {
                     code: 'crop',
@@ -221,6 +224,9 @@ angular.module('instastore')
                     apartment: $scope.profile.apartment
                 }).success(function (data) {
                     if (data.AddressValidateResponse.Address) {
+                        //collapsing address section in profile information
+                        $scope.treeConfig['3'].collapsed = true;
+
                         toaster.pop('success', "Address verified!");
                         $scope.profile.apartment = data.AddressValidateResponse.Address.Address1;
                         $scope.profile.address = data.AddressValidateResponse.Address.Address2;

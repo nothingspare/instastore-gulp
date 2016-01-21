@@ -16,7 +16,7 @@
                         <li ng-repeat="unit in treeConfig" ui-tree-node collapsed="true">
                             <div layout ng-class="unit.code==='address'?'crop-wrapper':''" layout-wrap layout-padding
                                  ui-tree-handle layout-align="center center"
-                                 ng-click="canToggle(unit.code)?toggle(this):''"
+                                 ng-click="canToggle(unit.code)?unit.collapsed = !unit.collapsed:''"
                                  class="top-transaction">
                                 <div flex="15" layout layout-align="center center"
                                      ng-if="unit.code !== 'name'">
@@ -62,8 +62,8 @@
                                 </div>
                             </div>
                             <md-divider></md-divider>
-                            <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: collapsed}">
-                                <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true" ng-if="!collapsed"
+                            <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: unit.collapsed}">
+                                <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true" ng-if="!unit.collapsed"
                                     class="am-collapse">
                                     <div ui-tree-handle>
                                         <!--USER section starts-->
@@ -123,7 +123,7 @@
                                                 </div>
                                                 <md-button ng-if="profile.phone_validated_at"
                                                            class="md-primary md-raised io-primary-btn"
-                                                           ng-click="removePhone()" aria-label="Delete Card">
+                                                           ng-click="unit.collapsed = !collapsed;removePhone()" aria-label="Delete Card">
                                                     Remove Phone
                                                 </md-button>
                                             </div>
@@ -231,7 +231,7 @@
                         <li ng-repeat="unit in treeStoreConfig" ui-tree-node collapsed="unit.collapsed">
                             <!--Top section-->
                             <div layout layout-fill layout-wrap layout-padding ui-tree-handle
-                                 ng-click="canToggle(unit.code)?toggle(this):customFunction(unit.code)"
+                                 ng-click="canToggle(unit.code)?(unit.collapsed = !unit.collapsed):customFunction(unit.code)"
                                  class="top-transaction">
                                 <!--Left icon-->
                                 <div flex="15" layout layout-align="center center">
@@ -279,7 +279,7 @@
                             </div>
                             <!--Top section-->
                             <md-divider></md-divider>
-                            <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: collapsed}">
+                            <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: unit.collapsed}">
                                 <li ng-repeat="sub in unit.subs" ui-tree-node collapsed="unit.collapsed"
                                     ng-if="!collapsed"
                                     class="am-collapse">
@@ -320,11 +320,12 @@
                                                         </div>
                                                     </div>
                                                 </md-input-container>
+
                                                 <div layout layout-align="center start"
                                                      class="am-fade-and-scale">
 
                                                     <md-button class="md-primary md-raised io-primary-btn"
-                                                               ng-click="unit.collapsed = collapsed; save()">
+                                                               ng-click="unit.collapsed = !collapsed; save()">
                                                         &nbsp;Save&nbsp;
                                                     </md-button>
 
