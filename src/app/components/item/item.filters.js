@@ -6,6 +6,8 @@ app
     .filter('boxSizeDimensions', [function () {
         return function (input) {
             switch (input) {
+                case 0:
+                    return 'Manual dimensions';
                 case 10:
                     return '5.3/8" x 8.5/8" x 5.5/8"';
                 case 20:
@@ -18,6 +20,9 @@ app
     .filter('boxSizeTitle', [function () {
         return function (input) {
             switch (input) {
+                case 0:
+                    return 'Store pick up';
+                    break;
                 case 10:
                     return 'Small Box';
                     break;
@@ -33,6 +38,8 @@ app
     .filter('boxSizeCost', [function () {
         return function (input) {
             switch (input * 1) {
+                case 0:
+                    return 0;
                 case 10:
                     return 6.8;
                 case 20:
@@ -41,4 +48,9 @@ app
                     return 18.75;
             }
         };
-    }]);
+    }])
+    .filter('processingAndShipping', function (boxSizeCostFilter) {
+        return function (input, boxType) {
+            return (((input + boxSizeCostFilter(boxType)) * 0.06) * 1.029) + 0.3 + boxSizeCostFilter(boxType);
+        }
+    });

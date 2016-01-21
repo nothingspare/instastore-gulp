@@ -86,7 +86,7 @@
 
         <div layout layout-align="center center"
              class="md-item-text sell-transactions io-shipping-proccessing padding-above" ng-if="item.price">
-            <p><b>+ {{(item.price * 0.06 + (item.box | boxSizeCost)) | currency}}&nbsp;</b></p>
+            <p><b>{{(item.price|processingAndShipping:item.box) | currency}}</b></p>
 
             <p> &nbsp;Shipping and Processing</p>
         </div>
@@ -99,6 +99,7 @@
             <option value="30">Large</option>
             <option value="20">Medium</option>
             <option value="10">Small</option>
+            <option value="0">Pick up in store</option>
         </select>
     </div>
 
