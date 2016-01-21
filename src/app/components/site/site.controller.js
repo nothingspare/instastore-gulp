@@ -80,7 +80,6 @@ angular.module('instastore')
             };
 
             $scope.clickToOpen = function (ev) {
-                //ngDialog.open({template: 'app/components/item/view-tab-edit.html', controller: 'ItemAdd'});
                 $mdDialog.show({
                     controller: 'ItemAdd',
                     templateUrl: 'app/components/item/view-tab-edit.html',

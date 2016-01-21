@@ -95,10 +95,10 @@ angular.module('instastore')
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', 'ngDialog', '$window',
-        'uiGmapGoogleMapApi', '$auth',
+        'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi, $auth) {
+                  ITEMSELLTRANSACTION_STATUS, $filter, $http, ngDialog, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia) {
 
             $scope.seeMore = false;
 
@@ -300,7 +300,7 @@ angular.module('instastore')
             };
 
             //Label section
-            $scope.getLabel = function (isell) {
+            $scope.getLabel = function (isell, ev) {
                 $scope.isellBox = isell.box;
                 $http.post(API_URL + 'v1/link/label', {
                     buyerId: isell.buyer.id,
@@ -312,11 +312,19 @@ angular.module('instastore')
                         found.itemSellTransactions.push({status: 30});
                     }
                     $scope.label = label;
-                    ngDialog.open({
-                        template: 'app/components/item/label.html',
-                        scope: $scope
+                    $mdDialog.show({
+                        templateUrl: 'app/components/item/label.html',
+                        parent: angular.element(document.body),
+                        scope: $scope,
+                        preserveScope: true,
+                        clickOutsideToClose: true,
+                        fullscreen: $mdMedia('xs')
                     });
                 }).error(errorService.alert);
+            };
+
+            $scope.closeDialog = function () {
+                $mdDialog.hide();
             };
 
             $scope.printLabel = function () {
@@ -368,11 +376,12 @@ angular.module('instastore')
                 }).error(errorService.alert);
             };
 
+
         }
     ])
-        .controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL', 'ngDialog',
+    .controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL',
         'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG', '$mdDialog',
-        function ($scope, rest, toaster, ITEM_STATUS, API_URL, ngDialog,
+        function ($scope, rest, toaster, ITEM_STATUS, API_URL,
                   errorService, UserService, cfpLoadingBar, $rootScope, PLUPLOAD_RESIZE_CONFIG, $mdDialog) {
             //TODO: remove hardcoded data
             $scope.item = {category_id: 9, brand_id: 1, description: ''};
@@ -401,7 +410,7 @@ angular.module('instastore')
                         $rootScope.$broadcast('newItem', item);
                     }).error(errorService.alert);
                 }
-                ngDialog.close();
+                $mdDialog.hide();
             };
 
             //Plupload-directive handlers

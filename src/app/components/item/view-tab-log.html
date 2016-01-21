@@ -21,7 +21,7 @@
                     <div class="column label" ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>=transactionStates.send &&
                         isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<transactionStates.saleCanceled">
                         <div class="btn btn-buy centered btn-label"
-                             ng-click="getLabel(isell)">Get Label
+                             ng-click="getLabel(isell, $event)">Get Label
                         </div>
                     </div>
                     <div ng-if="isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.sold"
