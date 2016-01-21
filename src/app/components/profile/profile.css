@@ -145,3 +145,9 @@ md-dialog.md-default-theme, md-dialog {
         width: 100%;
     }
 }
+
+md-dialog-actions.io-close-btn.io-profile-close-btn {
+    top: 5px;
+    right: -10px;
+    border-top-color: transparent;
+}
