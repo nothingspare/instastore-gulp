@@ -95,10 +95,11 @@ angular.module('instastore')
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', '$window',
-        'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia',
+        'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia', 'itemsAmount',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                  ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia) {
+                  ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
+                  itemsAmount) {
 
             $scope.seeMore = false;
 
@@ -178,6 +179,8 @@ angular.module('instastore')
                 rest.path = 'v1/user-items/' + $scope.item.id;
                 rest.deleteModel()
                     .success(function () {
+                        itemsAmount.decrementItemsAmount();
+                        toaster.pop('success', "Item deleted!");
                         toaster.pop('success', "Item deleted!");
                         $state.go('grid');
                     })
@@ -381,8 +384,10 @@ angular.module('instastore')
     ])
     .controller('ItemAdd', ['$scope', 'rest', 'toaster', 'ITEM_STATUS', 'API_URL',
         'errorService', 'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG', '$mdDialog',
+        'itemsAmount',
         function ($scope, rest, toaster, ITEM_STATUS, API_URL,
-                  errorService, UserService, cfpLoadingBar, $rootScope, PLUPLOAD_RESIZE_CONFIG, $mdDialog) {
+                  errorService, UserService, cfpLoadingBar, $rootScope, PLUPLOAD_RESIZE_CONFIG, $mdDialog,
+                  itemsAmount) {
             //TODO: remove hardcoded data
             $scope.item = {category_id: 9, brand_id: 1, description: ''};
             $scope.item.images = [];
@@ -401,12 +406,14 @@ angular.module('instastore')
                     rest.path = 'v1/user-items';
                     rest.putModel($scope.item).success(function (item) {
                         toaster.pop('success', 'Saved');
+                        itemsAmount.incrementItemsAmount();
                         $rootScope.$broadcast('newItem', item);
                     }).error(errorService.alert);
                 } else {
                     rest.path = 'v1/user-items';
                     rest.postModel($scope.item).success(function (item) {
                         toaster.pop('success', 'Saved');
+                        itemsAmount.incrementItemsAmount();
                         $rootScope.$broadcast('newItem', item);
                     }).error(errorService.alert);
                 }
@@ -566,7 +573,8 @@ angular.module('instastore')
                 return uiGmapGoogleMapApi;
             });
     }])
-    .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', function ($scope, $http, API_URL, errorService) {
+    .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', 'UserService', 'itemsAmount',
+        function ($scope, $http, API_URL, errorService, UserService, itemsAmount) {
 
         $http.get(API_URL + 'v1/link/instagram-media').success(function (data) {
             $scope.items = data;
@@ -584,6 +592,8 @@ angular.module('instastore')
                 }
             });
             $http.post(API_URL + 'v1/uploader/item-import', items).success(function (data) {
+                itemsAmount.addItemsAmount(items.length);
+                UserService.goToMainStore();
             }).error(errorService.alert);
         };
 
