@@ -34,11 +34,11 @@
                     <div layout="column" layout-align="center center" flex>
                         <span class="profile-digits">Followers</span>
 
-                        <h3>44</h3>
+                        <h3>{{store.followersAmount}}</h3>
                     </div>
                 </div>
                 <div flex layout layout-align="center center">
-                    <div ng-if="!isSeller" class="fast-tap btn">&nbsp;Follow&nbsp;+&nbsp;</div>
+                    <div ng-if="!isSeller" class="btn" ng-click="toggleFollowerState()">{{store.isFollower?'&nbsp;Unfollow Store&nbsp;':'Follow&nbsp;+'}}</div>
                     <div ng-if="isSeller" ui-sref="store({storeurl:$stateParams.storeurl})"
                          class="fast-tap btn">
                         &nbsp;Edit profile&nbsp;</div>

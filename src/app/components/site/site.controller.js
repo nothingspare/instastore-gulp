@@ -37,9 +37,9 @@ angular.module('instastore')
 
         }])
     .controller('SiteHeader', ['$scope', '$state', 'UserService', '$stateParams', '$location', '$anchorScroll',
-        '$auth', 'errorService', '$mdDialog', '$mdMedia',
+        '$auth', 'errorService', '$mdDialog', '$mdMedia', '$rootScope', 'rest',
         function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
-                  $mdDialog, $mdMedia) {
+                  $mdDialog, $mdMedia, $rootScope, rest) {
             UserService.initStore();
 
             $scope.profile = UserService.getProfile();
@@ -113,6 +113,22 @@ angular.module('instastore')
             $scope.scrollToTop = function () {
                 $location.hash('start');
                 $anchorScroll();
+            };
+
+            $scope.toggleFollowerState = function () {
+                if (!$rootScope.store.isFollower) {
+                    rest.path = 'v1/followers';
+                    rest.postModel({store_id: $rootScope.store.id}).success(function () {
+                        $rootScope.store.followersAmount++;
+                        $rootScope.store.isFollower = true;
+                    }).error(errorService.alert);
+                } else {
+                    rest.path = 'v1/followers/' + $rootScope.store.id;
+                    rest.deleteModel().success(function () {
+                        $rootScope.store.followersAmount--;
+                        $rootScope.store.isFollower = false;
+                    }).error(errorService.alert);
+                }
             };
 
         }])

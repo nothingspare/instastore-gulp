@@ -177,7 +177,7 @@ angular.module('instastore')
                     var stateParams = $injector.get('$stateParams');
                     var rest = $injector.get('rest');
                     if (!this.isYourStore(stateParams.storeurl)) {
-                        rest.path = 'v1/stores';
+                        rest.path = this.isGuest()?'v1/stores':'v1/my-stores';
                         rest.models({store_url: stateParams.storeurl}).success(function (data) {
                             var store = data[0];
                             if (!store) {
