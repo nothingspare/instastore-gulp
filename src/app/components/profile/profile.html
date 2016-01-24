@@ -67,24 +67,31 @@
                                     class="am-collapse">
                                     <div ui-tree-handle>
                                         <!--USER section starts-->
-                                        <div ng-if="unit.code === 'name'" layout="column"
-                                             layout-padding>
-                                            <md-button ng-if="profile.seller"
+                                        <div ng-if="unit.code === 'name'" layout="column" layout-padding>
+
+                                           <center><md-button ng-if="profile.seller"
                                                        href="mailto:support@isopen.us?subject=Order Free Boxes&body=Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
-                                                       class="md-primary md-raised io-primary-btn">
+                                                       class="md-primary md-raised less-margin io-primary-btn">
                                                 Order free Boxes
                                             </md-button>
+
+                                            <center><p>We can order a pack of USPS Flat Rate shipping boxes for you. They should be delivered within 10 days.</p></center>
+
+
                                             <md-button
-                                                    class="md-primary md-raised io-primary-btn"
+                                                    class="md-primary md-raised less-margin io-primary-btn"
                                                     ng-click="logout()">Log-out
                                                 <ng-md-icon icon="logout"></ng-md-icon>
-                                            </md-button>
+                                            </md-button><br>
 
                                             <md-button
                                                     href="mailto:support@isopen.us?subject=Contact Support&body={{profile.address?'Address:':''}} {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
-                                                    class="md-primary md-raised io-primary-btn">
+                                                    class="md-primary md-raised less-margin io-primary-btn">
                                                 Contact Support
-                                            </md-button>
+                                            </md-button></center>
+
+                                          
+
                                         </div>
                                         <!--USER section ends-->
                                         <!--PHONE section starts-->
@@ -120,12 +127,12 @@
                                                      ng-if="profile.phone_validated_at">
                                                     <h3>{{profile.phone|tel}}</h3><br><br><h4 class="phone-verified">
                                                     &nbsp;Verified!</h4>
-                                                </div>
+                                                </div><center>
                                                 <md-button ng-if="profile.phone_validated_at"
-                                                           class="md-primary md-raised io-primary-btn"
+                                                           class="md-primary md-raised less-margin io-primary-btn"
                                                            ng-click="unit.collapsed = !collapsed;removePhone()" aria-label="Delete Card">
                                                     Remove Phone
-                                                </md-button>
+                                                </md-button></center>
                                             </div>
                                         </div>
                                         <!--PHONE section ends-->
@@ -160,19 +167,14 @@
                                                      class="am-fade-and-scale">
 
                                                     <md-button
-                                                            class="md-raised md-primary button-padding io-primary-btn"
-
-                                                            ng-click="verifyAddress()">Verify Address
-                                                    </md-button>
+                                                            class="md-raised md-primary button-padding less-margin io-primary-btn" ng-click="verifyAddress()">Verify Address</md-button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
                                             <p style="text-align: center">Upload a full-length picture of yourself in
-                                                your
-                                                store for your background image. Then crop your face to make your
-                                                profile
-                                                pic.</p>
+                                                your store for your background image. Then crop your face to make your
+                                                profile pic.</p>
 
                                             <div ng-controller="CropUploadCtrl">
                                                 <div layout flex class="crop-area md-whiteframe-17dp" layout-margin>
@@ -194,11 +196,14 @@
                                         </div>
                                         <div ng-if="unit.code === 'own_store'" layout="column" layout-padding>
                                             <div layout layout-align="center center">
-                                                <md-button flex="50"
+
+                                                <p style="text-align: center">isOpen is looking for motivated sellers with great ideas or existing businesses. Tell us why you should be given one of our limited store accounts.</p>
+
+                                                <center><md-button flex="50"
                                                            href="mailto:support@isopen.us?subject=Request a store"
-                                                           class="md-primary md-raised io-primary-btn">
+                                                           class="md-primary md-raised less-margin io-primary-btn">
                                                     Request a store
-                                                </md-button>
+                                                </md-button></center>
                                             </div>
                                             <div layout>
                                                 <md-input-container flex>
@@ -207,9 +212,9 @@
                                                 </md-input-container>
                                                 <div layout layout-align="center start"
                                                      class="am-fade-and-scale">
-                                                    <md-button class="md-primary md-raised io-primary-btn"
+                                                    <center><md-button class="md-primary md-raised less-margin io-primary-btn"
                                                                ng-click="makeMeSeller(inviteCode)">Get Store
-                                                    </md-button>
+                                                    </md-button></center>
                                                 </div>
                                             </div>
                                         </div>
@@ -324,10 +329,10 @@
                                                 <div layout layout-align="center start"
                                                      class="am-fade-and-scale">
 
-                                                    <md-button class="md-primary md-raised io-primary-btn"
+                                                    <center><md-button class="md-primary md-raised less-margin io-primary-btn"
                                                                ng-click="unit.collapsed = !collapsed; save()">
                                                         &nbsp;Save&nbsp;
-                                                    </md-button>
+                                                    </md-button></center>
 
                                                 </div>
                                             </ng-form>
@@ -345,9 +350,8 @@
                                                     <div ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
                                                     <div layout layout-align="center start"
                                                          class="am-fade-and-scale">
-                                                        <md-button class="md-primary md-raised io-primary-btn"
-                                                                   ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;
-                                                        </md-button>
+                                                        <center><md-button class="md-primary md-raised less-margin io-primary-btn"
+                                                        ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;</md-button></center>
                                                     </div>
                                                 </div>
                                                 <div layout="column" layout-aling="center center"
@@ -356,11 +360,11 @@
                                                     <div ng-if="!renderMap">Loading...</div>
                                                     <span layout-padding
                                                           class="main-title">{{profile.store.address}}</span>
-                                                    <md-button layout-padding
-                                                               class="md-primary md-raised io-primary-btn"
+                                                    <center><md-button layout-padding
+                                                               class="md-primary md-raised less-margin io-primary-btn"
                                                                ng-click="profile.store.address = ''; save()">
                                                         REMOVE IT
-                                                    </md-button>
+                                                    </md-button></center>
                                                 </div>
                                             </div>
 
@@ -432,11 +436,11 @@
                                                         <div ng-if="(verifyCardForm.$dirty && verifyCardForm.$valid)"
                                                              layout="column" layout-align="start center"
                                                              class="am-fade-and-scale">
-                                                            <md-button
-                                                                    class="md-primary md-raised io-primary-btn"
+                                                            <center><md-button
+                                                                    class="md-primary md-raised less-margin io-primary-btn"
                                                                     ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
                                                                     type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
-                                                            </md-button>
+                                                            </md-button></center>
                                                         </div>
                                                     </div>
                                                 </ng-form>

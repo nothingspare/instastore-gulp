@@ -1,14 +1,15 @@
-<br>
-<div layout="column" layout-align="center center" layout-fill class="grid-container itemfeed no-print">
+
+<div layout="column" layout-align="center center" layout-fill class="grid-container itemfeed no-print top-margin">
     <div layout="column" class="item-container itemview">
         <md-card>
+
             <div ng-if="showHearts" class="rowfree">
                 <div class="heartoverimage2 heart-reveal-large"></div>
             </div>
             <ul rn-carousel rn-carousel-buffered rn-carousel-indicator
                 rn-carousel-controls
                 rn-carousel-index="carouselIndex"
-                style="background: url('https://s3.amazonaws.com/cuturia/mobbbi/VzmlN9iMnhH0VSyE8Vk6vP4QwrnN-i4b.gif') center center no-repeat; height:310px; background-image: 50px;">
+                style="background: url('../assets/images/icon.gif') center center no-repeat;"> 
 
                 <li ng-repeat="image in item.images">
                     <div ng-if="image.image_url" class="resizable-image"

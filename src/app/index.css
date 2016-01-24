@@ -1923,9 +1923,9 @@ h3 {
 
 .upload-pic-previews {
     float: left;
-    height: 108px;
-    width: 46px;
-    border: 1px solid #cdcdcd;
+    height: 78px;
+    width: 66px;
+    border: 0x-px solid #cdcdcd;
     margin: 0 3px 0 0;
 }
 
@@ -2378,13 +2378,13 @@ select,
 .crop-btn {
     font-family: "helvetica neue", "helvetica", "arial", "san-serif";
     text-align: center;
-    font-weight: 200;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 20px;
     letter-spacing: 0px;
     text-rendering: optimizelegibility;
     text-decoration: none;
     margin-bottom: 16px;
-    padding: 6px 4px 6px 4px;
+    padding: 5px 14px 5px 14px;   
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -2420,13 +2420,13 @@ select:active,
 .default .cropButton,
 crop-btn,
 .sml {
-    font-weight: 200;
-    font-size: 18px;
+    font-weight: 400;
+    font-size: 16px;
     color: #fff;
     background-color: #f37878;
     border: 1px solid #f37878;
     margin: -8px 0px 0 5px;
-    padding: 6px 10px 6px 10px;
+    padding: 4px 6px 4px 6px;   
     border-radius: 4px;
 }
 
@@ -3196,9 +3196,9 @@ input:-moz-placeholder {
         opacity: 1;
         display: block;
     }
-    99% {
+    90% {
         background-size: 200px 180px;
-        opacity: 0;
+        opacity: .6;
         display: block;
     }
     100% {
@@ -3218,7 +3218,7 @@ input:-moz-placeholder {
     background-position: center center;
     background-repeat: no-repeat; /* turn off for lots of hearts */
     top: 52px;
-    -webkit-animation: myfirst 1.1s; /* Chrome, Safari, Opera */
+    -webkit-animation: myfirst 2.1s; /* Chrome, Safari, Opera */
     opacity: 0.0;
     display: block;
     z-index: 100;
@@ -3256,7 +3256,8 @@ ul.safearea a {
     bottom: 2px;
     right: -32px;
     color: lightcoral;
-    font-size: 14px;
+    font-size: 20px;
+    font-weight: 600px;
 }
 
 .x-profile {
@@ -4147,6 +4148,7 @@ ng-md-icon {
 
 .free-shipping {
     color: #fff;
+    margin: -15px 0 0 0;
 }
 
 .full-width {
@@ -4202,4 +4204,9 @@ md-dialog-actions.io-close-btn {
 
 md-dialog.io-no-opacity {
     opacity: 1;
+}
+
+ng-md-icon {
+    padding: 0px;
+    margin:0px 0px 0 0;
 }

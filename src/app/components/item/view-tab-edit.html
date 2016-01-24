@@ -9,9 +9,7 @@
             <ng-form name="itemForm" class="itemview"
                      ng-class="{'add-item-container':!$state.includes('itemview'), 'item-container':!$state.includes('itemview')}">
                 <p ng-if="!$state.includes('itemview')" layout-padding style="text-align: center;">
-                    Upload well lit portrait
-                    shots of your item for sale
-                    or other inspirational images related to your stores message.</p>
+                    Upload portrait shots of your items for sale or other inspirational images related to your stores message.</p>
                 <div layout>
                     <button device-detector class="md-fab md-primary md-button md-ink-ripple hidden-desktop">
                         <div pl-upload
@@ -45,7 +43,22 @@
                             <ng-md-icon icon="file_upload"></ng-md-icon>
                         </div>
                     </button>
+
+                   <div layout flex layout-align="end center" class="hidden-add-item">
+                    <md-button ng-click="duplicateItem()"
+                               class="md-fab md-primary" aria-label="Duplicate item">
+                        <ng-md-icon icon="content_copy"></ng-md-icon>
+                    </md-button>
+                    <md-button ng-click="removeItem()"
+                               class="md-fab md-primary" aria-label="Delete item">
+                        <ng-md-icon icon="delete"></ng-md-icon>
+                    </md-button>
                 </div>
+
+                </div>
+
+
+
                 <div layout layout-padding layout-align="center center">
                     <div class="upload-pic-previews" ng-repeat="thumb in item.images">
                         <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but"
@@ -118,20 +131,11 @@
                 <div layout layout-align="center center"
                      class="am-collapse">
                     <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"
-                               class="md-primary md-raised io-primary-btn"
+                               class="md-primary md-raised less-margin io-primary-btn"
                                ng-click="save()">{{$state.includes('grid')?'ADD':'POST CHANGES'}}
                     </md-button>
                 </div>
-                <div layout flex layout-align="end center" class="hidden-add-item">
-                    <md-button ng-click="duplicateItem()"
-                               class="md-fab md-primary" aria-label="Duplicate item">
-                        <ng-md-icon icon="content_copy"></ng-md-icon>
-                    </md-button>
-                    <md-button ng-click="removeItem()"
-                               class="md-fab md-primary" aria-label="Delete item">
-                        <ng-md-icon icon="delete"></ng-md-icon>
-                    </md-button>
-                </div>
+               
             </ng-form>
         </div>
     </md-dialog-content>
