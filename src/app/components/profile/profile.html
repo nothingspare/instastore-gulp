@@ -375,10 +375,13 @@
                                             </md-button>
                                         </div>
                                         <div layout ng-if="unit.code === 'card'">
+
+
                                             <md-button ng-if="profile.card_token_created_at"
                                                        class="md-fab right-corner-btn"
                                                        ng-click="removeSellerCard()" aria-label="Delete Card">
                                                 <ng-md-icon icon="close"></ng-md-icon>
+
                                             </md-button>
                                             <div layout layout-fill layout-padding
                                                  ng-if="profile.card_token_created_at" layout-align="center center">
@@ -402,6 +405,9 @@
                                                  layout-padding>
                                                 <ng-form name="verifyCardForm" novalidate=""
                                                          layout-wrap>
+
+                                                         <p style="text-align: center">Simply add a depit card and payments your store recieves will be passed on automaticly.</p>
+
                                                     <div layout layout-sm="column" layout-fill>
                                                         <md-input-container flex>
                                                             <label>Card number</label>
