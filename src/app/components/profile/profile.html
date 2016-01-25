@@ -1,10 +1,10 @@
-<md-dialog>
-    <md-dialog-actions class="io-close-btn io-profile-close-btn" layout layout-align="end start">
-        <md-button ng-click="closeDialog()" class="md-icon-button" aria-label="close dialog" layout-fill>
-            <ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>
-        </md-button>
-    </md-dialog-actions>
+<md-dialog ng-class = "{'io-no-opacity':$state.includes('itemview')}" layout layout-align="center center">
     <md-dialog-content>
+        <md-dialog-actions class="io-close-btn" ng-if="!$state.includes('itemview')" layout layout-align="end start">
+            <md-button ng-click="closeDialog()" class="md-icon-button x-out" aria-label="close dialog">
+                <ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>
+            </md-button>
+        </md-dialog-actions>
         <md-card layout="column" layout-fill layout-wrap class="profile-tree">
             <ng-form name="profileForm" layout="column">
                 <div layout layout-align="center center" layout-padding>
@@ -459,7 +459,7 @@
                         </li>
                     </ol>
                 </div>
-            </div>
-        </md-card>
+            </ng-form>
+        </div>
     </md-dialog-content>
 </md-dialog>
