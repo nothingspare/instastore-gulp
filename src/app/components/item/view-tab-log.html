@@ -60,7 +60,7 @@
                                     itemTransactionStatus}}
                                     <f6>{{subIsell.created_at | amCalendar}}</f6>
                                 </div>
-                                <p ng-if="subIsell.status === transactionStates.accepted">Well done on your successful sale. The balance of <b>$134</b> is now able to be spent on other items in Mobbbi and will be avialable to cash out in <b>10</b> days.</p>
+                                <p ng-if="subIsell.status === transactionStates.accepted">Well done on your successful sale. <b>{{isell.price_seller | currency}}</b> is now able to be spent on other items in isOpen and will be available to cash out in <b>2</b> days.</p>
 
                                 <div class="subtransaction-more-container" ng-class="{hidden: collapsed}">
                                     <!--Arrived state-->
