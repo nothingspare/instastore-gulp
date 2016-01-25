@@ -139,10 +139,6 @@
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.saleCanceled
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
                                         <f6>Seller printed the postal label</f6>
-                                        <!--TODO: remove in production-->
-                                        <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">
-                                            ^
-                                        </div>
                                     </div>
                                     <!--Label state-->
                                     <div ng-if="subIsell.status==transactionStates.sendThirdRemainder &&

@@ -70,9 +70,6 @@
                                         <f6>Your item is with buyer at <b>{{isell.arrived?isell.arrived:'No location found'}}</b>. We will let you know as
                                             soon as it gets approval.
                                         </f6>
-                                        <!--TODO: remove in production-->
-                                        <div ng-click="changeItemStatus(isell.id, transactionStates.hurryup)">^
-                                        </div>
                                     </div>
                                     <!--Arrived state-->
                                     <!--Received in post state-->
@@ -80,9 +77,6 @@
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.label
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
                                         <f6>Your shipping label was scanned. <b>{{isell.received_in_post?isell.received_in_post:'No location found'}}</b></f6>
-                                        <!--TODO: remove in production-->
-                                        <div ng-click="changeItemStatus(isell.id, transactionStates.arrived)">^
-                                        </div>
                                     </div>
                                     <!--Received in post state-->
                                     <!--Remainders-->
@@ -98,9 +92,6 @@
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.send
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
                                         <f6>Item placed in <b>{{subIsell.boxSizeTitle}}</b> box.</f6>
-                                        <!--TODO: remove in production-->
-                                        <div ng-click="changeItemStatus(isell.id, transactionStates.receivedInPost)">^
-                                        </div>
                                     </div>
                                     <!--Send item state-->
                                     <!--Declined item state-->
