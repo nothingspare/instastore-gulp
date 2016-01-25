@@ -90,7 +90,7 @@
 }
 
 .profile-tree md-input-container {
-    margin: 5px 0 5px 0;
+    margin: 0px 0 0px 0;
 }
 
 @media (min-width: 0) and (max-width: 600px) {
@@ -100,7 +100,7 @@
     }
 
     .profile-tree .specialities md-input-container {
-        margin: 5px 0 15px 0;
+        margin: 0px 0 0px 0;
     }
 
     .profile-tree .phone-verified {
@@ -203,4 +203,16 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
 
 .layout-margin, .layout-margin > .flex, .layout-margin > .flex-gt-sm, .layout-margin > .flex-md, .layout-margin > .flex-lt-lg {
     margin: 2px;
+}
+
+.layout-padding, .layout-padding > .flex, .layout-padding > .flex-gt-sm, .layout-padding > .flex-md, .layout-padding > .flex-lt-lg {
+    padding: 0px 8px 0px 8px;
+}
+
+.main-title {
+    padding: 12px 8px 12px 8px;
+}
+
+.layout-padding .profile-header {
+    padding: 15px 8px 15px 8px;
 }

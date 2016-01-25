@@ -1355,6 +1355,9 @@ h3 {
     margin: 0px 0px 0px 0px;
 }
 
+#text-wrapper {
+    padding: 10px;
+}
 /** - - - - - - - text areas - - - - - - - - - - **/
 /* - - - - profile page 2 - - - */
 
@@ -4182,7 +4185,7 @@ ng-md-icon {
 .location-tab-content {
     background-color: rgba(225, 225, 225, 0.6);
     width: 100%;
-    height: 100%;
+    height: 200px%;
     margin-top: 10px;
     padding-top: 4px;
 }
@@ -4209,4 +4212,6 @@ md-dialog.io-no-opacity {
 ng-md-icon {
     padding: 0px;
     margin:0px 0px 0 0;
+    height:26px;
+    width:30px;
 }
