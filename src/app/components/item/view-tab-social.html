@@ -30,20 +30,52 @@
             <md-switch class="md-primary" ng-model="post.twitter"></md-switch>
         </md-list-item>
     </md-list>
-    <section layout="column" layout-align="center center" layout-padding>
+   
+    <div layout layout-align="center center"
+         class="am-collapse bottom-padding">
+        <md-button ng-disabled="!post.content" class="md-primary md-raised less-margin io-primary-btn"
+                   ng-click="">Share item
+        </md-button>
+    </div>
+
+     <section layout="column" layout-align="center center" layout-padding>
         <p>Item link</p>
 
         <div class="url-text">
             <h4>{{itemUrl}}</h4>
         </div>
     </section>
-    <div layout layout-align="center center"
-         class="am-collapse">
-        <md-button ng-disabled="!post.content" class="md-primary md-raised less-margin io-primary-btn"
-                   ng-click="">Share item
+    
+    <p style="text-align: center">Get your store in front of additional customers with these add on services.</p>
+
+        <!-- <a href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}">Weekly e-newsletter</a> -->
+
+
+    <md-list ng-cloak>
+        <md-list-item ng-click="boost">
+            <ng-md-icon icon="instagram" style="fill:darkgray"></ng-md-icon>
+            <p style="color:darkgray; font-size: 100% !important;">E-newsletter $12</p><md-switch class="md-primary" href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"></md-switch>
+        </md-list-item>
+
+        <md-list-item ng-click="boost">
+            <ng-md-icon icon="instagram" style="fill:darkgray"></ng-md-icon>
+            <p style="color:darkgray; font-size: 100% !important;">Post boosting $10</p>
+            <md-switch class="md-primary" href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"></md-switch>
+        </md-list-item>
+
+        <md-list-item ng-click="boost">
+            <ng-md-icon icon="instagram" style="fill:darkgray"></ng-md-icon>
+            <p style="color:darkgray; font-size: 100% !important;">Blog write ups $70</p>
+            <md-switch class="md-primary" href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"></md-switch>
+        </md-list-item>
+    </md-list>
+
+        <div layout layout-align="center center"
+         class="am-collapse bottom-padding">
+        <md-button ng-disabled="!boost" class="md-primary md-raised less-margin io-primary-btn"
+                   ng-click="">Request more info
         </md-button>
-    </div>
-    <br>
+               
 </md-content>
 
             

@@ -154,7 +154,7 @@
 
 .selector1 {
     font-size: 20px; 
-    padding-bottom: 1px;
+    margin-top: 10px;
 }
 
 .layout-padding, .layout-padding > .flex, .layout-padding > .flex-gt-sm, .layout-padding > .flex-md, .layout-padding > .flex-lt-lg {
@@ -162,11 +162,18 @@
 }
 
 .main-title {
-        padding: 12px 8px 12px 8px;
+    padding: 12px 8px 12px 8px;
 }
 
 .layout-padding .profile-header {
-        padding: 20px 8px 20px 8px;
+    padding: 20px 8px 20px 8px;
 }
 
+.description {
+    padding: 20px 8px 20px 8px;
+}
+
+.bottom-padding {
+    padding: 0px 0 15px 0;
+}
 

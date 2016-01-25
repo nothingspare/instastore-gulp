@@ -5,7 +5,7 @@
                 <div class="icon-message" flex="10">
                     <span class="description-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </div>
-                <p flex><b>{{item.description|itemDescription}}</b></p>
+                <p flex class="description"><b>{{item.description|itemDescription}}</b></p>
             </div>
             <md-list-item ng-if='!seeMore' ng-repeat="comment in item.comments | limitTo:2">
                 <img ng-src="{{comment.authorFacebookAvatar}}" class="md-avatar"

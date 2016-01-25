@@ -62,7 +62,7 @@
                 <div layout layout-padding layout-align="center center">
                     <div class="upload-pic-previews" ng-repeat="thumb in item.images">
                         <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but"
-                                                                                        ng-click="removeImage(thumb)">X</span>
+                                                                                        >
                     </div>
                 </div>
                 <section layout-padding>
@@ -129,10 +129,10 @@
                 <br>
 
                 <div layout layout-align="center center"
-                     class="am-collapse">
+                     class="am-collapse bottom-padding">
                     <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"
                                class="md-primary md-raised less-margin io-primary-btn"
-                               ng-click="save()">{{$state.includes('grid')?'ADD':'POST CHANGES'}}
+                               ng-click="save()">{{$state.includes('grid')?'ADD':'Post Changes'}}
                     </md-button>
                 </div>
                
