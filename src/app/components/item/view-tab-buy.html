@@ -44,9 +44,10 @@
                 </div>
                 <div layout="column" layout-align="center center">
                     <p layout-padding>Your item will be shipped to your address:</p>
-                    <h6>{{profile.address}}{{profile.apartment?' '+
+
+                    <h3 class="delivery-address">{{profile.address}}{{profile.apartment?' '+
                         profile.apartment:''}},
-                        {{profile.city}}, {{profile.state}} {{profile.zipcode}}</h6>
+                        {{profile.city}}, {{profile.state}} {{profile.zipcode}}</h3>
                 </div>
                 <div layout layout-padding
                      layout-align="center center">
@@ -123,7 +124,8 @@
                                     <div ng-if="subIsell.status==transactionStates.arrived &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.receivedInPost
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                        <f6>Please approve your item! Item has arrived:<b>{{isell.arrived?isell.arrived:'No location found'}}</b>
+                                        <f6>Please approve your item! Item has arrived:<b>{{isell.arrived?isell.arrived:'No
+                                            location found'}}</b>
                                         </f6>
                                     </div>
                                     <!--Arrived state-->
@@ -131,7 +133,8 @@
                                     <div ng-if="subIsell.status==transactionStates.receivedInPost &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.label
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                        <f6>Postal label was scanned at: <b>{{isell.received_in_post?isell.received_in_post:'No location found'}}</b></f6>
+                                        <f6>Postal label was scanned at: <b>{{isell.received_in_post?isell.received_in_post:'No
+                                            location found'}}</b></f6>
                                     </div>
                                     <!--Received in post state-->
                                     <!--Label state-->

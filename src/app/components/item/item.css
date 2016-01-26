@@ -171,3 +171,9 @@
     padding: 0 0 15px 0;
 }
 
+h3.delivery-address{
+    text-align: center;
+    line-height: 20px;
+    margin-top: 0;
+}
+
