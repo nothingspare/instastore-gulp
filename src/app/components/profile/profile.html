@@ -202,33 +202,29 @@
                                             </div>
                                         </div>
                                         <div ng-if="unit.code === 'own_store'" layout="column" layout-padding>
-                                            <div layout layout-align="center center">
-
-                                                <p style="text-align: center">isOpen is looking for motivated sellers
-                                                    with great ideas or existing businesses. Tell us why you should be
-                                                    given one of our limited store accounts.</p>
-
-                                                <center>
-                                                    <md-button flex="50"
-                                                               href="mailto:support@isopen.us?subject=Request a store"
-                                                               class="md-primary md-raised less-margin io-primary-btn">
-                                                        Request a store
-                                                    </md-button>
-                                                </center>
+                                            <div layout="column" layout-align="center center">
+                                                <div layout layout-align="center center">
+                                                    <p style="text-align: center">
+                                                        isOpen is looking for motivated sellers
+                                                        with great ideas or existing businesses. Tell us why you should
+                                                        begiven one of our limited store accounts.</p>
+                                                </div>
+                                                <md-button href="mailto:support@isopen.us?subject=Request a store"
+                                                           class="md-primary md-raised less-margin io-primary-btn">
+                                                    Request a store
+                                                </md-button>
                                             </div>
-                                            <div layout>
+                                            <div layout flex>
                                                 <md-input-container flex>
                                                     <label>Invite code</label>
                                                     <input ng-model="inviteCode" type="text">
                                                 </md-input-container>
                                                 <div layout layout-align="center start"
                                                      class="am-fade-and-scale">
-                                                    <center>
-                                                        <md-button
-                                                                class="md-primary md-raised less-margin io-primary-btn"
-                                                                ng-click="makeMeSeller(inviteCode)">Get Store
-                                                        </md-button>
-                                                    </center>
+                                                    <md-button
+                                                            class="md-primary md-raised less-margin io-primary-btn"
+                                                            ng-click="makeMeSeller(inviteCode)">Get Store
+                                                    </md-button>
                                                 </div>
                                             </div>
                                         </div>
