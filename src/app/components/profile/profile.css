@@ -164,7 +164,7 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
     display: none;
 }
 
-.md-button:not(.md-fab, .md-icon-button) {
+.md-button:not(.md-fab) {
     border-radius: 4px;
     text-transform: capitalize;
     font-weight: 400;
@@ -182,19 +182,6 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
     margin: 12px 0 12px 0;
     max-width: 180px;
 }
-
-/*Commented to fix https://trello.com/c/L57FZDhl/548-can-we-reduce-the-space-around-some-of-these-elements-so-they-look-balanced-and-are-generally-not-as-tall-so-they-fit-better-on-*/
-
-/*.md-button.md-icon-button {*/
-    /*margin: 0 6px;*/
-    /*height: 48px;*/
-    /*min-width: 0;*/
-    /*line-height: 48px;*/
-    /*padding-left: 4px;*/
-    /*padding-right: 4px;*/
-    /*width: 48px;*/
-    /*border-radius: 50%;*/
-/*}*/
 
 .main-title {
     padding: 12px 8px 12px 8px;

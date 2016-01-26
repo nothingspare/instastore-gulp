@@ -4203,12 +4203,3 @@ ng-md-icon {
 md-dialog.io-no-opacity {
     opacity: 1;
 }
-
-/*I'm not sure what's that code for, so I'm just commented it for fix this https://trello.com/c/BeDfvI22/546-can-we-fix-the-icons-and-replace-the-look-of-the-selector-to-match-our-new-style*/
-
-/*ng-md-icon {*/
-/*padding: 0;*/
-/*margin:0 0 0 0;*/
-/*height:26px;*/
-/*width:30px;*/
-/*}*/
