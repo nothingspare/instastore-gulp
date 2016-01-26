@@ -1,7 +1,8 @@
 <div class="sell-transactions no-print">
     <div layout layout-padding layout-align="center center">
-        <br><br>
-        <h5>This item isn't currently for sale.</h5>
+        {{item.quantity}}
+        <br><br ng-if="!item.price">
+        <h5 ng-if="!item.price">This item isn't currently for sale.</h5>
         <!-- <h5>2 items sold 3 left</h5> -->
     </div>
     <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
@@ -60,14 +61,17 @@
                                     itemTransactionStatus}}
                                     <f6>{{subIsell.created_at | amCalendar}}</f6>
                                 </div>
-                                <p ng-if="subIsell.status === transactionStates.accepted">Well done on your successful sale. <b>{{isell.price_seller | currency}}</b> is now able to be spent on other items in isOpen and will be available to cash out in <b>2</b> days.</p>
+                                <p ng-if="subIsell.status === transactionStates.accepted">Well done on your successful
+                                    sale. <b>{{isell.price_seller | currency}}</b> is now able to be spent on other
+                                    items in isOpen and will be available to cash out in <b>2</b> days.</p>
 
                                 <div class="subtransaction-more-container" ng-class="{hidden: collapsed}">
                                     <!--Arrived state-->
                                     <div ng-if="subIsell.status==transactionStates.arrived &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.receivedInPost
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                        <f6>Your item is with buyer at <b>{{isell.arrived?isell.arrived:'No location found'}}</b>. We will let you know as
+                                        <f6>Your item is with buyer at <b>{{isell.arrived?isell.arrived:'No location
+                                            found'}}</b>. We will let you know as
                                             soon as it gets approval.
                                         </f6>
                                     </div>
@@ -76,7 +80,8 @@
                                     <div ng-if="subIsell.status==transactionStates.receivedInPost &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.label
                                          && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status<=transactionStates.accepted)">
-                                        <f6>Your shipping label was scanned. <b>{{isell.received_in_post?isell.received_in_post:'No location found'}}</b></f6>
+                                        <f6>Your shipping label was scanned. <b>{{isell.received_in_post?isell.received_in_post:'No
+                                            location found'}}</b></f6>
                                     </div>
                                     <!--Received in post state-->
                                     <!--Remainders-->
@@ -86,7 +91,9 @@
                                     <!--Remainders-->
                                     <!--Send item state-->
                                     <div ng-if="subIsell.status==transactionStates.send && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.send">
-                                        <f6>Attach label to a <b>{{subIsell.boxSizeTitle}}</b> box.And give the box to your mailman asap.</f6>
+                                        <f6>Attach label to a <b>{{subIsell.boxSizeTitle}}</b> box.And give the box to
+                                            your mailman asap.
+                                        </f6>
                                     </div>
                                     <div ng-if="subIsell.status==transactionStates.send &&
                                          (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status>transactionStates.send
@@ -101,7 +108,9 @@
                                     <!--Declined item state-->
                                     <!--Item sold state-->
                                     <div ng-if="subIsell.status===transactionStates.sold && (isell.itemSellTransactions[isell.itemSellTransactions.length-1].status | itemSoldBoxSizeVisibility)">
-                                        <f6>isOpen boxes are supplied free to store owners but pleae allow 10 days for delivery. If you need a box now they are available from your local post office.
+                                        <f6>isOpen boxes are supplied free to store owners but pleae allow 10 days for
+                                            delivery. If you need a box now they are available from your local post
+                                            office.
                                         </f6>
                                     </div>
                                     <div ng-if="subIsell.status==transactionStates.sold && isell.itemSellTransactions[isell.itemSellTransactions.length-1].status==transactionStates.send">
