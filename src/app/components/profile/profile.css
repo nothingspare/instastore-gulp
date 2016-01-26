@@ -152,6 +152,14 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
     z-index: 51;
 }
 
+md-dialog-actions.io-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 0;
+    border-top-color: transparent;
+    z-index: 51;
+}
+
 .itemview.item-container .io-shipping-proccessing {
     border-radius: 25px;
 }
@@ -162,15 +170,6 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
 
 .add-item-container.itemview.item-container .hidden-add-item {
     display: none;
-}
-
-.md-button:not(.md-fab) {
-    border-radius: 4px;
-    text-transform: capitalize;
-    font-weight: 400;
-    font-size: 20px;
-    padding: 5px 14px 5px 14px;
-    margin: 34px 10px 16px 10px;
 }
 
 .reduce-margin {

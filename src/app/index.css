@@ -4002,13 +4002,17 @@ svg.svg-debit {
 
 .io-primary-btn:not(.md-fab) {
     color: white !important;
+}
+
+.md-button.md-raised.io-primary-btn {
     font-family: "helvetica neue", "helvetica", "arial", "san-serif";
     text-transform: none;
+    border-radius: 4px;
     font-weight: 400;
     font-size: 20px;
-    letter-spacing: 0;
     text-rendering: optimizelegibility;
     padding: 5px 14px 5px 14px;
+    margin: 5px 10px 16px 10px;
 }
 
 .io-avatar {
