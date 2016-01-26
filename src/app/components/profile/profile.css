@@ -145,9 +145,11 @@ md-dialog.md-default-theme, md-dialog {
 }
 
 md-dialog-actions.io-close-btn.io-profile-close-btn {
-    top: 3px;
-    right: -10px;
+    position: absolute;
+    top: 14px;
+    right: 0;
     border-top-color: transparent;
+    z-index: 51;
 }
 
 .itemview.item-container .io-shipping-proccessing {
@@ -193,14 +195,6 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
     /*width: 48px;*/
     /*border-radius: 50%;*/
 /*}*/
-
-.layout-margin, .layout-margin > .flex, .layout-margin > .flex-gt-sm, .layout-margin > .flex-md, .layout-margin > .flex-lt-lg {
-    margin: 2px;
-}
-
-.layout-padding, .layout-padding > .flex, .layout-padding > .flex-gt-sm, .layout-padding > .flex-md, .layout-padding > .flex-lt-lg {
-    padding: 0 8px 0 8px;
-}
 
 .main-title {
     padding: 12px 8px 12px 8px;

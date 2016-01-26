@@ -4193,13 +4193,6 @@ ng-md-icon {
     padding: 0 0 0 14px;
 }
 
-md-dialog-actions.io-close-btn {
-    position: absolute;
-    top: 15px;
-    right: 0;
-    z-index: 51;
-}
-
 md-dialog.io-no-opacity {
     opacity: 1;
 }
