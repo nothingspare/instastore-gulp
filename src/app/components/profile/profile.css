@@ -90,7 +90,7 @@
 }
 
 .profile-tree md-input-container {
-    margin: 0px 0 0px 0;
+    margin: 0 0 0 0;
 }
 
 @media (min-width: 0) and (max-width: 600px) {
@@ -100,7 +100,7 @@
     }
 
     .profile-tree .specialities md-input-container {
-        margin: 0px 0 0px 0;
+        margin: 0 0 0 0;
     }
 
     .profile-tree .phone-verified {
@@ -130,19 +130,17 @@ md-dialog.md-default-theme, md-dialog {
     background-color: rgb(255, 255, 255);
 }
 
-
 @media only screen and (min-height: 480px) {
-.main-title {
-    max-width: 200px;
-    width: 200px;
+    .main-title {
+        max-width: 200px;
+        width: 200px;
     }
 }
 
-
 @media only screen and (min-width: 375px) {
-.main-title {
-    max-width: 100%;
-    width: 100%;
+    .main-title {
+        max-width: 100%;
+        width: 100%;
     }
 }
 
@@ -151,7 +149,6 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
     right: -10px;
     border-top-color: transparent;
 }
-
 
 .itemview.item-container .io-shipping-proccessing {
     border-radius: 25px;
@@ -165,23 +162,23 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
     display: none;
 }
 
-.md-button {
-  border-radius: 4px;
-  text-transform: capitalize;
-  font-weight: 400;
-  font-size: 20px;
-  padding: 5px 14px 5px 14px; 
-  margin: 34px 10px 16px 10px; 
+.md-button:not(.md-fab) {
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 5px 14px 5px 14px;
+    margin: 34px 10px 16px 10px;
 }
 
-.reduce-margin { 
-margin: 1px 0 1px 0; 
-padding: 0px;
+.reduce-margin {
+    margin: 1px 0 1px 0;
+    padding: 0;
 }
 
-.less-margin { 
-margin: 12px 0 12px 0;
-max-width: 180px;
+.less-margin {
+    margin: 12px 0 12px 0;
+    max-width: 180px;
 }
 
 md-dialog-actions.io-close-btn.io-profile-close-btn {
@@ -195,8 +192,8 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
     height: 48px;
     min-width: 0;
     line-height: 48px;
-    padding-left: 4;
-    padding-right: 4;
+    padding-left: 4px;
+    padding-right: 4px;
     width: 48px;
     border-radius: 50%;
 }
@@ -206,7 +203,7 @@ md-dialog-actions.io-close-btn.io-profile-close-btn {
 }
 
 .layout-padding, .layout-padding > .flex, .layout-padding > .flex-gt-sm, .layout-padding > .flex-md, .layout-padding > .flex-lt-lg {
-    padding: 0px 8px 0px 8px;
+    padding: 0 8px 0 8px;
 }
 
 .main-title {

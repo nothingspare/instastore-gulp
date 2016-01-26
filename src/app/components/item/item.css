@@ -148,6 +148,12 @@
     display: none;
 }
 
+.location-tab-content .angular-google-map-container {
+    top: 9px;
+    height: 200px;
+    width: 100%;
+}
+
 .space { 
     margin: 10px;   
 }

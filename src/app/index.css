@@ -1358,6 +1358,7 @@ h3 {
 #text-wrapper {
     padding: 10px;
 }
+
 /** - - - - - - - text areas - - - - - - - - - - **/
 /* - - - - profile page 2 - - - */
 
@@ -1928,7 +1929,7 @@ h3 {
     float: left;
     height: 78px;
     width: 66px;
-    border: 0x-px solid #cdcdcd;
+    border: 0 x-px solid #cdcdcd;
     margin: 0 3px 0 0;
 }
 
@@ -2387,7 +2388,7 @@ select,
     text-rendering: optimizelegibility;
     text-decoration: none;
     margin-bottom: 16px;
-    padding: 5px 14px 5px 14px;   
+    padding: 5px 14px 5px 14px;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -2429,7 +2430,7 @@ crop-btn,
     background-color: #f37878;
     border: 1px solid #f37878;
     margin: -8px 0px 0 5px;
-    padding: 4px 6px 4px 6px;   
+    padding: 4px 6px 4px 6px;
     border-radius: 4px;
 }
 
@@ -3758,12 +3759,6 @@ ul.safearea a {
     opacity: 1;
 }
 
-.angular-google-map-container {
-    top: 9px;
-    height: 400px;
-    width: 100%;
-}
-
 html.full-opacity:before {
     opacity: 1;
 }
@@ -4115,7 +4110,7 @@ ng-md-icon {
 
 @media (min-width: 0) and (max-width: 600px) {
     .bottom {
-        bottom: 0px !important;
+        bottom: 0 !important;
         margin-top: 5px;
     }
 }
@@ -4185,7 +4180,7 @@ ng-md-icon {
 .location-tab-content {
     background-color: rgba(225, 225, 225, 0.6);
     width: 100%;
-    height: 200px%;
+    height: 200px;
     margin-top: 10px;
     padding-top: 4px;
 }
@@ -4209,9 +4204,11 @@ md-dialog.io-no-opacity {
     opacity: 1;
 }
 
-ng-md-icon {
-    padding: 0px;
-    margin:0px 0px 0 0;
-    height:26px;
-    width:30px;
-}
+/*I'm not sure what's that code for, so I'm just commented it for fix this https://trello.com/c/BeDfvI22/546-can-we-fix-the-icons-and-replace-the-look-of-the-selector-to-match-our-new-style*/
+
+/*ng-md-icon {*/
+/*padding: 0;*/
+/*margin:0 0 0 0;*/
+/*height:26px;*/
+/*width:30px;*/
+/*}*/
