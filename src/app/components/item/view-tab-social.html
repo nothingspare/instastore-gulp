@@ -5,6 +5,7 @@
                 <label>Write social post</label>
                 <input md-maxlength="256" required name="post"
                        ng-model="post.content"/>
+
                 <div ng-messages="postForm.post.$error">
                     <div ng-message="md-maxlength">The name has to be less than 256
                         characters long.
@@ -30,7 +31,7 @@
             <md-switch class="md-primary" ng-model="post.twitter"></md-switch>
         </md-list-item>
     </md-list>
-   
+
     <div layout layout-align="center center"
          class="am-collapse bottom-padding">
         <md-button ng-disabled="!post.content" class="md-primary md-raised less-margin io-primary-btn"
@@ -38,44 +39,30 @@
         </md-button>
     </div>
 
-     <section layout="column" layout-align="center center" layout-padding>
+    <section layout="column" layout-align="center center" layout-padding>
         <p>Item link</p>
 
         <div class="url-text">
             <h4>{{itemUrl}}</h4>
         </div>
     </section>
-    
+
     <p style="text-align: center">Expand your stores audience with these recurring services.</p>
 
-        <!-- <a href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}">Weekly e-newsletter</a> -->
-
-
-    <md-list ng-cloak>
-        <md-list-item ng-click="boost">
-            <ng-md-icon icon="instagram" style="fill:darkgray"></ng-md-icon>
-            <p style="color:darkgray; font-size: 100% !important;">Weekly email bulletin $12</p><md-switch class="md-primary" href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"></md-switch>
-        </md-list-item>
-
-        <md-list-item ng-click="boost">
-            <ng-md-icon icon="instagram" style="fill:darkgray"></ng-md-icon>
-            <p style="color:darkgray; font-size: 100% !important;">Social post boosting $24</p>
-            <md-switch class="md-primary" href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"></md-switch>
-        </md-list-item>
-
-        <md-list-item ng-click="boost">
-            <ng-md-icon icon="instagram" style="fill:darkgray"></ng-md-icon>
-            <p style="color:darkgray; font-size: 100% !important;">independent blog write ups $120</p>
-            <md-switch class="md-primary" href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"></md-switch>
-        </md-list-item>
-    </md-list>
-
-        <div layout layout-align="center center"
-         class="am-collapse bottom-padding">
-        <md-button ng-disabled="!boost" class="md-primary md-raised less-margin io-primary-btn"
-                   ng-click="">Request more info
+    <div layout="column" layout-align="center center" layout-padding>
+        <md-button layout-fill class="md-primary md-raised io-primary-btn"
+                   href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}">
+            Weekly e-newsletter $12
         </md-button>
-               
+        <md-button layout-fill class="md-primary md-raised io-primary-btn"
+                   href="mailto:support@isopen.us?subject=Social post boosting&body=I'm interested in your Social post boosting service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}">
+            Social post boosting $24
+        </md-button>
+        <md-button layout-fill class="md-primary md-raised io-primary-btn"
+                   href="mailto:support@isopen.us?subject=Independent blog write up&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}">
+            Independent blog write up $120
+        </md-button>
+    </div>
 </md-content>
 
             

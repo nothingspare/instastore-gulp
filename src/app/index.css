@@ -4000,8 +4000,15 @@ svg.svg-debit {
     background-size: 900px 35px;
 }
 
-.io-primary-btn {
+.io-primary-btn:not(.md-fab) {
     color: white !important;
+    font-family: "helvetica neue", "helvetica", "arial", "san-serif";
+    text-transform: none;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 0;
+    text-rendering: optimizelegibility;
+    padding: 5px 14px 5px 14px;
 }
 
 .io-avatar {
