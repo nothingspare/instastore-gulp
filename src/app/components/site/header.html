@@ -39,7 +39,7 @@
                 </div>
                 <div flex layout layout-align="center center">
                     <div ng-if="!isSeller" class="btn" ng-click="toggleFollowerState()">{{store.isFollower?'&nbsp;Unfollow Store&nbsp;':'Follow&nbsp;+'}}</div>
-                    <div ng-if="isSeller" ui-sref="store({storeurl:$stateParams.storeurl})"
+                    <div ng-if="isSeller" ng-click="showProfile()"
                          class="fast-tap btn">
                         &nbsp;Edit profile&nbsp;</div>
                 </div>
