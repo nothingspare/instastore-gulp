@@ -347,26 +347,30 @@ angular.module('instastore')
             };
 
             $scope.login = function () {
-                UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
-                $auth.authenticate('facebook').then(function (res) {
-                    if (UserService.getProfile().lastRoute) {
-                        var lastRoute = UserService.getProfile().lastRoute;
-                    }
-                    UserService.login(res.data.token);
-                    UserService.setFacebookProfile(res.data.facebookProfile);
-                    res.data.profile.stores = res.data.stores;
-                    if (res.data.store) {
-                        res.data.profile.store = res.data.store;
-                        UserService.setBg(res.data.store.bg_url);
-                        UserService.setAvatar(res.data.store.avatar_url);
-                    }
-                    res.data.profile.lastRoute = lastRoute;
-                    UserService.setProfile(res.data.profile);
-                    $scope.profile = res.data.profile;
-                    if ($state.includes('itemview')) {
-                        $state.go('itemview')
-                    }
-                });
+                if (UserService.isGuest()) {
+                    UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
+                    $auth.authenticate('facebook').then(function (res) {
+                        if (UserService.isGuest()) {
+                            if (UserService.getProfile().lastRoute) {
+                                var lastRoute = UserService.getProfile().lastRoute;
+                            }
+                            UserService.login(res.data.token);
+                            UserService.setFacebookProfile(res.data.facebookProfile);
+                            res.data.profile.stores = res.data.stores;
+                            if (res.data.store) {
+                                res.data.profile.store = res.data.store;
+                                UserService.setBg(res.data.store.bg_url);
+                                UserService.setAvatar(res.data.store.avatar_url);
+                            }
+                            res.data.profile.lastRoute = lastRoute;
+                            UserService.setProfile(res.data.profile);
+                            $scope.profile = res.data.profile;
+                            if ($state.includes('itemview')) {
+                                $state.go('itemview')
+                            }
+                        }
+                    });
+                }
             };
 
             $scope.duplicateItem = function () {
@@ -521,23 +525,25 @@ angular.module('instastore')
                         if (UserService.isGuest()) {
                             UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
                             $auth.authenticate('facebook').then(function (res) {
-                                if (UserService.getProfile().lastRoute) {
-                                    var lastRoute = UserService.getProfile().lastRoute;
-                                }
-                                UserService.login(res.data.token);
-                                UserService.setFacebookProfile(res.data.facebookProfile);
-                                res.data.profile.stores = res.data.stores;
-                                if (res.data.store) {
-                                    res.data.profile.store = res.data.store;
-                                    UserService.setBg(res.data.store.bg_url);
-                                    UserService.setAvatar(res.data.store.avatar_url);
-                                }
+                                if (UserService.isGuest()) {
+                                    UserService.login(res.data.token);
+                                    if (UserService.getProfile().lastRoute) {
+                                        var lastRoute = UserService.getProfile().lastRoute;
+                                    }
+                                    UserService.setFacebookProfile(res.data.facebookProfile);
+                                    res.data.profile.stores = res.data.stores;
+                                    if (res.data.store) {
+                                        res.data.profile.store = res.data.store;
+                                        UserService.setBg(res.data.store.bg_url);
+                                        UserService.setAvatar(res.data.store.avatar_url);
+                                    }
 
-                                res.data.profile.lastRoute = lastRoute;
+                                    res.data.profile.lastRoute = lastRoute;
 
-                                UserService.setProfile(res.data.profile);
-                                $scope.profile = res.data.profile;
-                                $scope.currentTab = 'app/components/item/view-tab-buy.html';
+                                    UserService.setProfile(res.data.profile);
+                                    $scope.profile = res.data.profile;
+                                    $scope.currentTab = 'app/components/item/view-tab-buy.html';
+                                }
                             }, errorService.satellizerAlert);
                         }
                         else {
@@ -576,39 +582,39 @@ angular.module('instastore')
     .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', 'UserService', 'itemsAmount',
         function ($scope, $http, API_URL, errorService, UserService, itemsAmount) {
 
-        $http.get(API_URL + 'v1/link/instagram-media').success(function (data) {
-            $scope.items = data;
-        }).error(errorService.alert);
-
-        $scope.importItems = function () {
-            var items = [];
-            angular.forEach($scope.items, function (value) {
-                if (value.isChecked === true) {
-                    var item = {
-                        description: value.caption ? value.caption.text : 'Item from Instagram',
-                        image_url: value.images.standard_resolution.url
-                    };
-                    items.push(item);
-                }
-            });
-            $http.post(API_URL + 'v1/uploader/item-import', items).success(function (data) {
-                itemsAmount.addItemsAmount(items.length);
-                UserService.goToMainStore();
+            $http.get(API_URL + 'v1/link/instagram-media').success(function (data) {
+                $scope.items = data;
             }).error(errorService.alert);
-        };
 
-        $scope.checkAll = function () {
-            angular.forEach($scope.items, function (value) {
-                value.isChecked = true;
-            });
-        };
+            $scope.importItems = function () {
+                var items = [];
+                angular.forEach($scope.items, function (value) {
+                    if (value.isChecked === true) {
+                        var item = {
+                            description: value.caption ? value.caption.text : 'Item from Instagram',
+                            image_url: value.images.standard_resolution.url
+                        };
+                        items.push(item);
+                    }
+                });
+                $http.post(API_URL + 'v1/uploader/item-import', items).success(function (data) {
+                    itemsAmount.addItemsAmount(items.length);
+                    UserService.goToMainStore();
+                }).error(errorService.alert);
+            };
 
-        $scope.uncheckAll = function () {
-            angular.forEach($scope.items, function (value) {
-                value.isChecked = false;
-            });
-        };
-    }])
+            $scope.checkAll = function () {
+                angular.forEach($scope.items, function (value) {
+                    value.isChecked = true;
+                });
+            };
+
+            $scope.uncheckAll = function () {
+                angular.forEach($scope.items, function (value) {
+                    value.isChecked = false;
+                });
+            };
+        }])
     .controller('PaymentCtrl', ['$scope', function ($scope) {
 
     }]);
