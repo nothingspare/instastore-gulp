@@ -1,68 +1,65 @@
-<md-dialog ng-class = "{'io-no-opacity':$state.includes('itemview')}" layout layout-align="center center">
+<md-dialog ng-class="{'io-no-opacity':$state.includes('itemview')}" layout layout-align="center center">
     <md-dialog-content>
         <md-dialog-actions class="io-close-btn" ng-if="!$state.includes('itemview')" layout layout-align="end start">
             <md-button ng-click="closeDialog()" class="md-icon-button x-out" aria-label="close dialog">
                 <ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>
             </md-button>
         </md-dialog-actions>
+        <p ng-if="!$state.includes('itemview')" layout-padding style="text-align: center;"><br>
+            Upload portrait shots of your items for sale or other inspirational images related to your stores
+            message.</p>
+
+        <div layout layout-align-xs="center center">
+            <button device-detector class="md-fab md-primary md-button md-ink-ripple hidden-desktop">
+                <div pl-upload
+                     pl-files-model="plupfiles"
+                     pl-multi-params-model="pluploadConfig.multiParams"
+                     pl-url="{{pluploadConfig.uploadPath}}"
+                     on-file-uploaded="uploaded($response)"
+                     on-file-added="added()"
+                     on-file-progress="progress()"
+                     pl-multi-selection="false"
+                     pl-instance="uploader"
+                     pl-resize-model="pluploadConfig.resize"
+                     pl-init-delay="true">
+                    <ng-md-icon icon="photo_camera"></ng-md-icon>
+                </div>
+            </button>
+            <button class="md-fab md-primary md-button md-ink-ripple">
+                <div pl-upload
+                     pl-progress-model="percent"
+                     pl-auto-upload="true"
+                     pl-files-model="plupfiles"
+                     pl-multi-params-model="pluploadConfig.multiParams"
+                     pl-url="{{pluploadConfig.uploadPath}}"
+                     on-file-uploaded="uploaded($response)"
+                     on-file-added="added()"
+                     on-file-progress="progress()"
+                     pl-multi-selection="true"
+                     pl-instance="uploader"
+                     pl-resize-model="pluploadConfig.resize"
+                     pl-init-delay="true">
+                    <ng-md-icon icon="file_upload"></ng-md-icon>
+                </div>
+            </button>
+
+            <div flex ng-if="$state.includes('itemview')" layout layout-align="end center">
+                <md-button ng-click="duplicateItem()"
+                           class="md-fab md-primary" aria-label="Duplicate item">
+                    <ng-md-icon icon="content_copy"></ng-md-icon>
+                </md-button>
+                <md-button ng-click="removeItem()"
+                           class="md-fab md-primary" aria-label="Delete item">
+                    <ng-md-icon icon="delete"></ng-md-icon>
+                </md-button>
+            </div>
+        </div>
         <div layout="column" layout-fill layout-align="center center" layout-padding>
             <ng-form name="itemForm" class="itemview"
                      ng-class="{'add-item-container':!$state.includes('itemview'), 'item-container':!$state.includes('itemview')}">
-                <p ng-if="!$state.includes('itemview')" layout-padding style="text-align: center;"><br>
-                    Upload portrait shots of your items for sale or other inspirational images related to your stores message.</p>
-                <div layout>
-                    <button device-detector class="md-fab md-primary md-button md-ink-ripple hidden-desktop">
-                        <div pl-upload
-                             pl-files-model="plupfiles"
-                             pl-multi-params-model="pluploadConfig.multiParams"
-                             pl-url="{{pluploadConfig.uploadPath}}"
-                             on-file-uploaded="uploaded($response)"
-                             on-file-added="added()"
-                             on-file-progress="progress()"
-                             pl-multi-selection="false"
-                             pl-instance="uploader"
-                             pl-resize-model="pluploadConfig.resize"
-                             pl-init-delay="true">
-                            <ng-md-icon icon="photo_camera"></ng-md-icon>
-                        </div>
-                    </button>
-                    <button class="md-fab md-primary md-button md-ink-ripple">
-                        <div pl-upload
-                             pl-progress-model="percent"
-                             pl-auto-upload="true"
-                             pl-files-model="plupfiles"
-                             pl-multi-params-model="pluploadConfig.multiParams"
-                             pl-url="{{pluploadConfig.uploadPath}}"
-                             on-file-uploaded="uploaded($response)"
-                             on-file-added="added()"
-                             on-file-progress="progress()"
-                             pl-multi-selection="true"
-                             pl-instance="uploader"
-                             pl-resize-model="pluploadConfig.resize"
-                             pl-init-delay="true">
-                            <ng-md-icon icon="file_upload"></ng-md-icon>
-                        </div>
-                    </button>
-
-                   <div layout flex layout-align="end center" class="hidden-add-item">
-                    <md-button ng-click="duplicateItem()"
-                               class="md-fab md-primary" aria-label="Duplicate item">
-                        <ng-md-icon icon="content_copy"></ng-md-icon>
-                    </md-button>
-                    <md-button ng-click="removeItem()"
-                               class="md-fab md-primary" aria-label="Delete item">
-                        <ng-md-icon icon="delete"></ng-md-icon>
-                    </md-button>
-                </div>
-
-                </div>
-
-
-
                 <div layout layout-padding layout-align="center center">
                     <div class="upload-pic-previews" ng-repeat="thumb in item.images">
-                        <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but"
-                                                                                        >
+                        <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but"></span>
                     </div>
                 </div>
                 <section layout-padding>
@@ -135,7 +132,6 @@
                                ng-click="save()">{{$state.includes('grid')?'ADD':'Post Changes'}}
                     </md-button>
                 </div>
-               
             </ng-form>
         </div>
     </md-dialog-content>
