@@ -47,10 +47,16 @@
         </div>
     </section>
 
-    <p style="text-align: center">Expand your stores audience with these recurring services.</p>
-
     <div layout="column" layout-align="center center" layout-padding>
-        <md-button layout-fill class="md-primary"
+        <p class="text-align-center" layout layout-margin>
+            Expand your stores audience with these recurring services.
+        </p>
+        <!--Have to keep it because bug on mobile safari-->
+        <div hide-gt-sm>
+            <br>
+            <br>
+        </div>
+        <md-button layout-fill
                    href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}">
             <h6>Weekly e-newsletter $12</h6>
         </md-button>

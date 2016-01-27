@@ -2312,15 +2312,16 @@ p {
 
 #content-popup {
     text-align: center;
-    display: height: 380px;
+    height: 380px;
     width: 240px;
 }
 
 p {
     font-size: 10.5pt;
+    line-height: 120%;
     font-weight: 200;
     text-decoration: none;
-    margin: 0 0 5px 0;
+    margin: 0 5px 5px 5px;
 }
 
 f3 {
@@ -4206,4 +4207,8 @@ ng-md-icon {
 
 md-dialog.io-no-opacity {
     opacity: 1;
+}
+
+.text-align-center{
+    text-align: center;
 }
