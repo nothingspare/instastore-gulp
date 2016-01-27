@@ -1,9 +1,10 @@
 <div class="sell-transactions no-print">
     <div layout layout-padding layout-align="center center">
-        {{item.quantity}}
-        <br><br ng-if="!item.price">
-        <h5 ng-if="!item.price">This item isn't currently for sale.</h5>
-        <!-- <h5>2 items sold 3 left</h5> -->
+        <h5 ng-if="item.itemSellsQuantity>0 && item.price && item.quantity>0">{{item.itemSellsQuantity}} sold
+            {{item.quantity-item.itemSellsQuantity}}
+            left</h5>
+        <h5 ng-if="!item.price || item.itemSellsQuantity<1 || !item.itemSellsQuantity || item.quantity<1 || !item.quantity">This item isn't currently for
+            sale.</h5>
     </div>
     <div ng-if="item.itemSells.length>0" class="current-transaction" ui-tree data-drag-enabled="false">
         <ol ui-tree-nodes="" ng-model="item.itemSells">

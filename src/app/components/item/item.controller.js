@@ -350,6 +350,7 @@ angular.module('instastore')
                 if (UserService.isGuest()) {
                     UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
                     $auth.authenticate('facebook').then(function (res) {
+                        //prevent multiple running
                         if (UserService.isGuest()) {
                             if (UserService.getProfile().lastRoute) {
                                 var lastRoute = UserService.getProfile().lastRoute;
