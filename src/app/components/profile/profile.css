@@ -181,11 +181,7 @@ md-dialog-actions.io-close-btn {
     max-width: 180px;
 }
 
-.main-title {
-    padding: 12px 8px 12px 8px;
-}
-
-.layout-padding .profile-header {
+.profile-tree .profile-header {
     padding: 15px 8px 15px 8px;
 }
 
