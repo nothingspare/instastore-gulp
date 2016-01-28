@@ -145,9 +145,8 @@ md-dialog.md-default-theme, md-dialog {
 }
 
 md-dialog-actions.io-close-btn.io-profile-close-btn {
-    position: absolute;
-    top: 14px;
-    right: 0;
+    position: fixed;
+    top: 0;
     border-top-color: transparent;
     z-index: 51;
 }
@@ -188,4 +187,14 @@ md-dialog-actions.io-close-btn {
 
 .layout-padding .profile-header {
     padding: 15px 8px 15px 8px;
+}
+
+.profile-tree .crop-area .io-profile-crop-btn{
+    position: absolute;
+    right:20px;
+}
+
+.profile-tree .crop-area choose-file-button.io-profile-upload-btn{
+    position: absolute;
+    right:15px;
 }

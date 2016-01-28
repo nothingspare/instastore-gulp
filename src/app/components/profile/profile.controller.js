@@ -515,6 +515,7 @@ angular.module('instastore')
                             }
                             toaster.pop('success', 'File uploaded!');
                             console.log('file uploaded. Response: ' + data.image_url);
+                            $scope.treeConfig['4'].collapsed = true;
                         });
                     }
                 }

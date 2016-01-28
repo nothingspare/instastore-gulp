@@ -3951,6 +3951,9 @@ svg.svg-debit {
 .io-primary-btn:not(.md-fab) {
     color: white !important;
 }
+.md-fab.md-mini.md-primary.io-secondary-btn{
+    background-color: white !important;
+}
 
 .md-button.md-raised.io-primary-btn {
     font-family: "helvetica neue", "helvetica", "arial", "san-serif";
@@ -4159,3 +4162,4 @@ md-dialog.io-no-opacity {
 .text-align-center{
     text-align: center;
 }
+
