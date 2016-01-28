@@ -102,26 +102,26 @@
                                             <div layout ng-if="!profile.phone_validated_at">
                                                 <md-input-container flex>
                                                     <label>Phone number</label>
-                                                    <input ng-model="profile.phone" class="left-justified" type="text">
+                                                    <input ng-model="profile.phone" class="left-justified" type="tel">
                                                 </md-input-container>
                                                 <div layout layout-align="start"
                                                      ng-if="profile.phone.length>7 && !profile.phone_validated_at"
                                                      class="am-fade-and-scale">
                                                     <md-button class="md-primary md-raised io-primary-btn"
-                                                               ng-click="textToVerify()">Send number
+                                                               ng-click="textToVerify()">Send to Verify
                                                     </md-button>
                                                 </div>
                                             </div>
                                             <div layout ng-if="profile.phone.length>7 && !profile.phone_validated_at">
                                                 <md-input-container flex>
                                                     <label>Enter texted code</label>
-                                                    <input ng-model="verifyPhoneCode" type="text">
+                                                    <input ng-model="verifyPhoneCode" type="tel">
                                                 </md-input-container>
                                                 <div layout layout-align="center start"
                                                      ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
                                                      class="am-fade-and-scale">
                                                     <md-button class="md-primary md-raised io-primary-btn"
-                                                               ng-click="sendCode(verifyPhoneCode)">Enter texted Code
+                                                               ng-click="sendCode(verifyPhoneCode);">Enter Texted Code
                                                     </md-button>
                                                 </div>
                                             </div>
@@ -204,7 +204,7 @@
                                         <div ng-if="unit.code === 'own_store'" layout="column" layout-padding>
                                             <div layout="column" layout-align="center center">
                                                 <div layout layout-align="center center">
-                                                    <p style="text-align: center">
+                                                    <p class="text-align-center">
                                                         isOpen is looking for motivated sellers
                                                         with great ideas or existing businesses. Tell us why you should
                                                         begiven one of our limited store accounts.</p>

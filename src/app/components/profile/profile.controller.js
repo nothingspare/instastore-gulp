@@ -258,6 +258,7 @@ angular.module('instastore')
                     $scope.profile.phone = res.phone;
                     $scope.profile.phone_validated_at = res.phone_validated_at;
                     UserService.setProfile($scope.profile);
+                    $scope.treeConfig['2'].collapsed = true;
                 }).error(errorCallback);
             };
 
