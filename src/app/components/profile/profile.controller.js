@@ -233,12 +233,27 @@ angular.module('instastore')
                         $scope.profile.state = data.AddressValidateResponse.Address.State;
                         $scope.profile.city = data.AddressValidateResponse.Address.City;
                         $scope.profile.zipcode = data.AddressValidateResponse.Address.Zip5;
+                        $scope.profile.address_verified_at = Math.floor(Date.now() / 1000)
                         UserService.setProfile($scope.profile);
                     }
                     else {
                         toaster.pop('error', "Address verification failed!");
                     }
                 }).error(errorCallback);
+            };
+
+            $scope.removeAddress = function () {
+                rest.path = 'v1/profiles';
+                $scope.profile.address_verified_at = null;
+                $scope.profile.address = '';
+                $scope.profile.city = '';
+                $scope.profile.state = '';
+                $scope.profile.zipcode = '';
+                rest.putModel($scope.profile).success(function (profile) {
+                        toaster.pop('success', "Profile saved");
+                        UserService.setProfile($scope.profile);
+                    }
+                ).error(errorCallback);
             };
 
             $scope.textToVerify = function () {
@@ -515,6 +530,8 @@ angular.module('instastore')
                             }
                             toaster.pop('success', 'File uploaded!');
                             console.log('file uploaded. Response: ' + data.image_url);
+
+                            //collapse profile
                             $scope.treeConfig['4'].collapsed = true;
                         });
                     }

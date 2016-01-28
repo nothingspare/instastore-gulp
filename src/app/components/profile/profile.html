@@ -35,13 +35,7 @@
                                     <div layout ng-if="unit.code === 'phone'" class="main-title">
                                         <span>PHONE NUMBER</span>
                                     </div>
-                                    <!--I should keep this style attribute because of block width on mobile safari-->
-                                    <div style="width:200px;" ng-if="unit.code === 'address' && profile.address" flex
-                                         layout layout-wrap layout-fill class="main-title">
-                                        {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}}
-                                        {{profile.city}},{{profile.state}},{{profile.zipcode}}
-                                    </div>
-                                    <div ng-if="unit.code === 'address' && !profile.address" class="main-title">
+                                    <div ng-if="unit.code === 'address'" class="main-title">
                                         ENTER YOUR POSTAL ADDRESS
                                     </div>
                                     <div ng-if="unit.code === 'name'" class="main-title">
@@ -144,45 +138,63 @@
                                         <div ng-if="unit.code === 'address'" layout="column" layout-padding
                                              layout-fill class="postal-subs">
                                             <br>
-
-                                            <div layout layout-sm="column">
-                                                <md-input-container flex-sm flex-gt-sm="70">
-                                                    <label>Address</label>
-                                                    <input ng-model="profile.address" type="text">
-                                                </md-input-container>
-                                                <md-input-container flex-sm flex-gt-sm="30">
-                                                    <label>Apt</label>
-                                                    <input ng-model="profile.apartment" type="text">
-                                                </md-input-container>
-                                            </div>
-                                            <div layout layout-sm="column">
-                                                <md-input-container flex-sm flex-gt-sm="70">
-                                                    <label>City</label>
-                                                    <input ng-model="profile.city" type="text">
-                                                </md-input-container>
-                                                <md-input-container flex flex-gt-sm="30">
-                                                    <label>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                                    <input ng-model="profile.state" type="text">
-                                                </md-input-container>
-                                            </div>
-                                            <div layout layout-sm="column">
-                                                <md-input-container flex>
-                                                    <label>Zipcode</label>
-                                                    <input ng-model="profile.zipcode" type="text">
-                                                </md-input-container>
-                                                <div layout layout-align="center center"
-                                                     class="am-fade-and-scale">
-                                                    <md-button
-                                                            class="md-raised md-primary button-padding less-margin io-primary-btn"
-                                                            ng-click="verifyAddress()">Verify Address
-                                                    </md-button>
+                                            <ng-form ng-if="!profile.address_verified_at" name="addressForm">
+                                                <div layout layout-sm="column">
+                                                    <md-input-container flex-sm flex-gt-sm="70">
+                                                        <label>Address</label>
+                                                        <input ng-model="profile.address" type="text">
+                                                    </md-input-container>
+                                                    <md-input-container flex-sm flex-gt-sm="30">
+                                                        <label>Apt</label>
+                                                        <input ng-model="profile.apartment" type="text">
+                                                    </md-input-container>
                                                 </div>
+                                                <div layout layout-sm="column">
+                                                    <md-input-container flex-sm flex-gt-sm="70">
+                                                        <label>City</label>
+                                                        <input ng-model="profile.city" type="text">
+                                                    </md-input-container>
+                                                    <md-input-container flex flex-gt-sm="30">
+                                                        <label>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                                        <input ng-model="profile.state" type="text">
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout layout-sm="column">
+                                                    <md-input-container flex>
+                                                        <label>Zipcode</label>
+                                                        <input ng-model="profile.zipcode" type="text">
+                                                    </md-input-container>
+                                                    <div layout layout-align="center center"
+                                                         class="am-fade-and-scale">
+                                                        <md-button
+                                                                class="md-raised md-primary button-padding less-margin io-primary-btn"
+                                                                ng-click="verifyAddress()">Verify Address
+                                                        </md-button>
+                                                    </div>
+                                                </div>
+                                            </ng-form>
+                                            <div ng-if="profile.address_verified_at" layout="column"
+                                                 layout-align="center center">
+                                                <div layout layout-wrap layout-fill layout-align="center center"
+                                                     class="text-align-center">
+                                                    <span>{{profile.address}}, {{profile.apartment ? profile.apartment + ', ' :''}}
+                                                    {{profile.city}}, {{profile.state}}, {{profile.zipcode}}<span
+                                                                class="phone-verified">&nbsp;Verified!</span></span>
+                                                </div>
+                                                <br>
+                                                <md-button layout
+                                                        class="md-primary md-raised less-margin io-primary-btn"
+                                                        ng-click="unit.collapsed = !collapsed;removeAddress()"
+                                                        aria-label="Remove Address">
+                                                    Remove Address
+                                                </md-button>
                                             </div>
                                         </div>
                                         <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
-                                            <p style="text-align: center">Upload a full-length picture of yourself in
+                                            <p class="text-align-center">Upload a full-length picture of yourself in
                                                 your store for your background image. Then crop your face to make your
-                                                profile pic.</p>
+                                                profile pic.
+                                            </p>
 
                                             <div ng-controller="CropUploadCtrl">
                                                 <div layout class="crop-area md-whiteframe-17dp">
