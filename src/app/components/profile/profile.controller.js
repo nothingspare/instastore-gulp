@@ -205,10 +205,14 @@ angular.module('instastore')
                     rest.path = 'v1/profiles';
                     rest.putModel($scope.profile).success(function (profile) {
                             toaster.pop('success', "Profile saved");
+
                             $scope.profile.seller = true;
-                            UserService.setProfile($scope.profile);
+                            UserService.setProfile(profile);
                             UserService.setIsSeller(true);
-                            $state.go('grid', {storeurl: $scope.profile.store.store_url});
+                            $rootScope.store = profile.store;
+                            UserService.goToMainStore();
+
+                            $scope.treeConfig['5'].collapsed = true;
                         }
                     ).error(errorCallback);
                 }
