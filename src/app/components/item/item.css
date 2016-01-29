@@ -177,3 +177,7 @@ h3.delivery-address{
     margin-top: 0;
 }
 
+.io-new-store-panel p{
+    line-height: 20px;
+    text-align: justify;
+}

@@ -4064,6 +4064,10 @@ ng-md-icon {
     fill: white;
 }
 
+ng-md-icon.secondary{
+    fill:lightcoral;
+}
+
 .bottom {
     bottom: -30px !important;
 }
@@ -4161,3 +4165,11 @@ md-dialog.io-no-opacity {
     text-align: center;
 }
 
+.icon-wrapper-for-text{
+    margin: auto;
+    background-repeat: no-repeat no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    height: 24px;
+    width: 24px;
+}

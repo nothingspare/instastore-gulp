@@ -1,44 +1,66 @@
-   <div class="newstore-panel">
-    <div ng-if="isSeller" class="stream-item-slider">
-        <h3>Congratulations new store owner! Let's get you set up.</h3>
-        <br>
-        <h4>
-        <b>Firstly: </b></h4><br>
-        <h6>Enter your stores details and background image via 
-            <div class="user" style=" position: absolute; margin-top: -28px; margin-left: 195px;"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; user profile.
-        </h6>
+<br>
+<div layout layout-align="center center" layout-fill class="io-new-store-panel">
+    <md-card layout="column" flex="60" flex-xs="95">
+        <div style="background: url(http://mollison.kssmail.com/sites/img/Mo3-768.jpg) center center no-repeat; background-size: cover; height:150px;"></div>
+        <!--<img src="http://mollison.kssmail.com/sites/img/Mo3-768.jpg" class="md-card-image" alt="Congrats Store Owner"/>-->
+        <md-card-content>
+            <h3 class="md-headline text-align-center">Congratulations new store owner!<br>Let's get you set up.</h3>
 
-        <h4><b>Secondly: </b></h4><br>
-        <h6>Stock your store. Upload item photos from Instagram 
-            <div class="user" style=" position: absolute; margin-top: -28px; margin-left: 195px;"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            in the user profile or via the add item button<div class="additem" style=" position: absolute; margin-top: -28px; margin-left: 150px;"></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and your phone's photo library. Add prices in the edit item tab.
-        </h6>
+            <div layout="column" layout-align="center center">
+                <ng-md-icon icon="looks_one" class="secondary" size="48"></ng-md-icon>
+                <br>
 
-        <h4><b>Thirdly: </b></h4><br>
-        <h6>Invite your friends and customers. Link your social accounts and paste your store and item page urls to your blogs. 
-        <br><br>
-        Then answer messages as they come in, you can edit item details at anytime and promote your items from the tabs on your item pages. 
+                <p>Enter your stores details and background image via
+                    <ng-md-icon icon="person" class="secondary" size="24"></ng-md-icon>
+                    user profile.
+                </p>
+            </div>
+            <div layout="column" layout-align="center center">
+                <ng-md-icon icon="looks_two" class="secondary" size="48"></ng-md-icon>
+                <br>
 
-        <br><br>
-        Once an item sells you'll get free shipping labels and instructions on which Free Flat Rate USPS Priority Mail box to stick it on. 
+                <p>Stock your store. Upload item photos from Instagram
+                    <ng-md-icon icon="person" class="secondary" size="24"></ng-md-icon>
+                    in the user profile or via
+                    <ng-md-icon icon="my_library_add" class="secondary" size="24"></ng-md-icon>
+                    the add item button.
+                    and your phone's photo library. Add prices in the edit item tab.
+                </p>
+            </div>
+            <div layout="column" layout-align="center center">
+                <ng-md-icon icon="looks_3" class="secondary" size="48"></ng-md-icon>
+                <br>
 
-        <br<<br>There's no weighing, no need to go to the post office and payments are automaticly paid to the debit card you link to your store.
-        </h6>
+                <p>Invite your friends and customers. Link your social accounts and paste your store and item page urls
+                    to your
+                    blogs.
+                </p>
 
-        <h4><b>Forthly: </b></h4><br>
-        <h6>Throw a party. Once your stores set up, put some special offers on your items and use the included promote tools to invite everyone to your sales event.
-        <h6>
+                <p>Then answer messages as they come in, you can edit item details at anytime and promote your items
+                    from the
+                    tabs on your item pages.
+                </p>
 
-        <h4><b>Best of luck from the isOpen team.</b></h4>
+                <p>Once an item sells you'll get free shipping labels and instructions on which Free Flat Rate USPS
+                    Priority
+                    Mail box to stick it on.
+                </p>
 
-    </div>
-    <div ng-if="!isSeller" class="stream-item-slider">
-        <br>
-        <h6>This store has no items yet.</h6>
-        <br>
-    </div>
+                <p>There's no weighing, no need to go to the post office and payments are automaticly paid to the debit
+                    card you link to your store.
+                </p>
+            </div>
+            <div layout="column" layout-align="center center">
+                <ng-md-icon icon="looks_4" class="secondary" size="48"></ng-md-icon>
+                <br>
+
+                <p>Throw a party. Once your stores set up, put some special offers on your items and use the included promote
+                    tools to invite everyone to your sales event.
+                </p>
+            </div>
+            <br>
+            <h4><b>Best of luck from the isOpen team.</b></h4>
+        </md-card-content>
+    </md-card>
 </div>
 
