@@ -54,14 +54,24 @@
                 </md-button>
             </div>
         </div>
+
+        <div layout layout-margin layout-align="center center">
+            <div layout flex="20" ng-repeat="thumb in item.images | limitTo:5"
+                 class="md-whiteframe-1dp io-picture-preview"
+                 style="background:url({{thumb.image_url}}) center center no-repeat;background-size: cover;"
+                 layout-align="end start">
+                <md-button ng-click="removeImage(thumb)"
+                           class="md-fab md-mini md-primary io-secondary-btn io-close-picture-preview"
+                           aria-label="close dialog">
+                    <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+                </md-button>
+            </div>
+        </div>
+        <br>
+
         <div layout="column" layout-fill layout-align="center center" layout-padding>
             <ng-form name="itemForm" class="itemview"
                      ng-class="{'add-item-container':!$state.includes('itemview'), 'item-container':!$state.includes('itemview')}">
-                <div layout layout-padding layout-align="center center">
-                    <div class="upload-pic-previews" ng-repeat="thumb in item.images">
-                        <img width="44" height="70" ng-src="{{thumb.image_url}}"/><span class="x-but"></span>
-                    </div>
-                </div>
                 <section layout-padding>
                     <md-input-container class="md-block">
                         <label>Item title</label>
