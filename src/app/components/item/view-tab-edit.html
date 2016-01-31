@@ -1,14 +1,15 @@
-<md-dialog ng-class="{'io-no-opacity':$state.includes('itemview')}" layout layout-align="center center">
+<md-dialog ng-class="{'io-no-opacity':$state.includes('itemview')}">
+    <md-dialog-actions class="io-close-btn" ng-if="!$state.includes('itemview')" layout layout-align="end start">
+        <md-button ng-click="closeDialog()"
+                   class="md-fab md-mini md-primary io-secondary-btn"
+                   aria-label="Close Dialog">
+            <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+        </md-button>
+    </md-dialog-actions>
     <md-dialog-content>
-        <md-dialog-actions class="io-close-btn" ng-if="!$state.includes('itemview')" layout layout-align="end start">
-            <md-button ng-click="closeDialog()" class="md-icon-button x-out" aria-label="close dialog">
-                <ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>
-            </md-button>
-        </md-dialog-actions>
-        <p ng-if="!$state.includes('itemview')" layout-padding style="text-align: center;"><br>
-            Upload portrait shots of your items for sale or other inspirational images related to your stores
-            message.</p>
-
+        <div class="dialog-header-container" ng-if="!$state.includes('itemview')" layout layout-align="center center" layout-padding>
+            <h4 flex class="dialog-header">ADD ITEM</h4>
+        </div>
         <div layout layout-align-xs="center center">
             <button device-detector class="md-fab md-primary md-button md-ink-ripple hidden-desktop">
                 <div pl-upload
@@ -42,7 +43,6 @@
                     <ng-md-icon icon="file_upload"></ng-md-icon>
                 </div>
             </button>
-
             <div flex ng-if="$state.includes('itemview')" layout layout-align="end center">
                 <md-button ng-click="duplicateItem()"
                            class="md-fab md-primary" aria-label="Duplicate item">
@@ -55,7 +55,14 @@
             </div>
         </div>
 
-        <div layout layout-margin layout-align="center center">
+        <div ng-if="!$state.includes('itemview')" layout layout-align="center center">
+            <p flex-xs="80" layout-padding layout-padding
+               style="text-align: justify">
+                Upload portrait shots of your items for sale or other inspirational images related to your stores
+                message.</p>
+        </div>
+
+        <div layout layout-align="center center">
             <div layout flex="20" ng-repeat="thumb in item.images | limitTo:5"
                  class="md-whiteframe-1dp io-picture-preview"
                  style="background:url({{thumb.image_url}}) center center no-repeat;background-size: cover;"
@@ -67,7 +74,8 @@
                 </md-button>
             </div>
         </div>
-        <br>
+
+        <br ng-if="$state.includes('itemview')">
 
         <div layout="column" layout-fill layout-align="center center" layout-padding>
             <ng-form name="itemForm" class="itemview"

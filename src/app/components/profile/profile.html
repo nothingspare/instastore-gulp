@@ -1,16 +1,17 @@
 <md-dialog ng-class="{'io-no-opacity':$state.includes('itemview')}">
+    <md-dialog-actions ng-if="!$state.includes('itemview')" class="io-close-btn" layout
+                       layout-align="end start">
+        <md-button ng-click="closeDialog()"
+                   class="md-fab md-mini md-primary io-secondary-btn"
+                   aria-label="Close Dialog">
+            <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+        </md-button>
+    </md-dialog-actions>
     <md-dialog-content>
-        <md-dialog-actions class="io-close-btn io-profile-close-btn" ng-if="!$state.includes('itemview')" layout
-                           layout-align="end start">
-            <md-button ng-click="closeDialog()" class="md-fab md-mini md-primary io-secondary-btn"
-                       aria-label="close dialog">
-                <ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>
-            </md-button>
-        </md-dialog-actions>
         <md-card layout="column" layout-fill layout-wrap class="profile-tree">
             <ng-form name="profileForm" layout="column">
                 <div layout layout-align="center center" layout-padding>
-                    <h4 flex class="profile-header">PERSONAL INFORMATION</h4>
+                    <h4 flex class="dialog-header">PERSONAL INFORMATION</h4>
                 </div>
                 <div ng-if="treeConfig" ui-tree data-drag-enabled="false">
                     <md-divider></md-divider>
@@ -183,9 +184,9 @@
                                                 </div>
                                                 <br>
                                                 <md-button layout
-                                                        class="md-primary md-raised less-margin io-primary-btn"
-                                                        ng-click="unit.collapsed = !collapsed;removeAddress()"
-                                                        aria-label="Remove Address">
+                                                           class="md-primary md-raised less-margin io-primary-btn"
+                                                           ng-click="unit.collapsed = !collapsed;removeAddress()"
+                                                           aria-label="Remove Address">
                                                     Remove Address
                                                 </md-button>
                                             </div>
@@ -250,7 +251,7 @@
             </ng-form>
             <div ng-if="profile.seller" ng-controller="ProfileStoreIndex">
                 <div layout layout-align="center center" layout-padding>
-                    <h4 class="profile-header">STORE INFORMATION</h4>
+                    <h4 class="dialog-header">STORE INFORMATION</h4>
                 </div>
                 <div ng-if="treeStoreConfig" ui-tree data-drag-enabled="false">
                     <md-divider></md-divider>
@@ -388,15 +389,17 @@
                                                      ng-if="profile.store.address">
                                                     <div ng-include="renderMap?'app/components/item/view-tab-location.html':null"></div>
                                                     <div ng-if="!renderMap">Loading...</div>
-                                                    <span layout-padding
-                                                          class="main-title">{{profile.store.address}}</span>
-                                                    <center>
+                                                    <!--keeping this style attr to prevent bug on profile dialog with fullscreen width-->
+                                                    <div style="width:300px" layout-padding
+                                                         class="main-title" layout-wrap>{{profile.store.address}}
+                                                    </div>
+                                                    <div layout layout-align="center center">
                                                         <md-button layout-padding
                                                                    class="md-primary md-raised less-margin io-primary-btn"
                                                                    ng-click="profile.store.address = ''; save()">
                                                             Remove It
                                                         </md-button>
-                                                    </center>
+                                                    </div>
                                                 </div>
                                             </div>
 

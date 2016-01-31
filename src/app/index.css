@@ -4177,3 +4177,14 @@ md-dialog.io-no-opacity {
 md-dialog{
     width: 50%;
 }
+
+.dialog-header-container{
+    background-color: whitesmoke;
+}
+
+.dialog-header {
+    width: 80%;
+    font-size: 12pt;
+    font-weight: 400;
+    padding: 15px 8px 15px 8px;
+}
