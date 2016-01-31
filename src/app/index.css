@@ -4173,3 +4173,7 @@ md-dialog.io-no-opacity {
     height: 24px;
     width: 24px;
 }
+
+md-dialog{
+    width: 50%;
+}
