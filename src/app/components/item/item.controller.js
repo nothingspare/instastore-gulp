@@ -149,12 +149,66 @@ angular.module('instastore')
             $scope.pluploadConfig.multiParams = {itemUrl: $stateParams.itemurl};
 
 
+            $scope.saveInstagramEnabled = function () {
+                if ($scope.profile.hasInstagramCredentials) {
+                    $scope.save();
+                } else {
+                    if ($scope.item.instagram_sharing_enabled) {
+                        $location.hash('start');
+                        $mdDialog.show({
+                            templateUrl: 'app/components/item/login-instagram.html',
+                            parent: angular.element(document.body),
+                            scope: $scope,
+                            preserveScope: true,
+                            clickOutsideToClose: true,
+                            fullscreen: $mdMedia('xs')
+                        });
+                    }
+                }
+            };
+
+            $scope.loginInstagram = function () {
+                $scope.item.instagram_sharing_enabled = false;
+                $http.post(API_URL + 'v1/link/instagram-login', {
+                    username: $scope.igUsername,
+                    password: $scope.igPassword
+                }).success(function (res) {
+                    if (res) {
+                        $mdDialog.hide();
+                        $scope.profile.hasInstagramCredentials = true;
+                        $scope.item.instagram_sharing_enabled = true;
+                        UserService.setProfile($scope.profile);
+                    }
+                }).error(errorService.alert);
+            };
+
+            $scope.postSocial = function () {
+                $http.post(API_URL + 'v1/link/instagram-login', {
+                    username: $scope.igUsername,
+                    password: $scope.igPassword
+                }).success(function (res) {
+                    if (res) {
+                        $mdDialog.hide();
+                        $scope.profile.hasInstagramCredentials = true;
+                        $scope.item.instagram_sharing_enabled = true;
+                        UserService.setProfile($scope.profile);
+                    }
+                }).error(errorService.alert);
+            };
+
             $scope.save = function () {
                 $scope.item.item_url = $scope.item.title;
                 rest.path = 'v1/user-items';
                 rest.putModel($scope.item).success(function (item) {
-                    toaster.pop('success', "Saved");
-                    $state.transitionTo('itemview', {storeurl: $stateParams.storeurl, itemurl: item.item_url, tab: 4});
+                    $scope.item = item;
+                    toaster.pop('success', 'Saved');
+                    if ($stateParams.tab === '4') {
+                        $state.transitionTo('itemview', {
+                            storeurl: $stateParams.storeurl,
+                            itemurl: item.item_url,
+                            tab: $stateParams.tab
+                        });
+                    }
                 }).error(errorService.alert);
             };
 
@@ -165,8 +219,7 @@ angular.module('instastore')
                 rest.deleteModel()
                     .success(function () {
                         toaster.pop('success', "Image deleted!");
-                    })
-                    .error(errorService.alert);
+                    }).error(errorService.alert);
             };
 
             $scope.removeItem = function () {

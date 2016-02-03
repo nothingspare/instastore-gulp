@@ -81,11 +81,11 @@
     min-height: 51px;
 }
 
-.itemview.item-container input {
+.itemview.item-container input, .login-instagram input{
     box-shadow: none;
 }
 
-.itemview.item-container md-input-container {
+.itemview.item-container md-input-container, .login-instagram input {
     margin: 0 0;
 }
 

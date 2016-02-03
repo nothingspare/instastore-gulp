@@ -1,0 +1,33 @@
+<md-dialog>
+    <md-dialog-actions class="io-close-btn" layout layout-align="end start">
+        <md-button ng-click="closeDialog()"
+                   class="md-fab md-mini md-primary io-secondary-btn"
+                   aria-label="Close Dialog">
+            <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+        </md-button>
+    </md-dialog-actions>
+    <md-dialog-content class="login-instagram">
+        <div class="dialog-header-container" layout layout-align="center center" layout-padding>
+            <h4 flex class="dialog-header">EXPORT TO INSTAGRAM</h4>
+        </div>
+        <br>
+        <h6>Please enter your Instagram credentials to have ability export item pictures</h6>
+        <ng-form name="contactForm" layout="column" layout-padding layout-margin>
+            <md-input-container>
+                <label>Username:</label>
+                <input type="text" ng-model="igUsername" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Password:</label>
+                <input type="password" ng-model="igPassword" required>
+            </md-input-container>
+            <div layout="row" layout-align="center">
+                <md-button type="submit" class="md-primary md-raised io-primary-btn"
+                           ng-disabled="!(contactForm.$dirty && contactForm.$valid)"
+                           ng-click="loginInstagram()"
+                           aria-label="Save">Save
+                </md-button>
+            </div>
+        </ng-form>
+    </md-dialog-content>
+</md-dialog>

@@ -15,20 +15,20 @@
         </ng-form>
     </section>
     <md-list ng-cloak>
-        <md-list-item ng-click="post.facebook = !post.facebook">
+        <md-list-item>
             <ng-md-icon icon="facebook" style="fill:darkgray"></ng-md-icon>
             <p style="color:darkgray; font-size: 100% !important;">Facebook</p>
-            <md-switch class="md-primary" ng-model="post.facebook"></md-switch>
+            <md-switch class="md-primary" ng-model="item.facebook_sharing_enabled" ng-change="save()"></md-switch>
         </md-list-item>
-        <md-list-item ng-click="post.instagram = !post.instagram">
+        <md-list-item id="popup-anchor">
             <ng-md-icon icon="instagram" style="fill:darkgray"></ng-md-icon>
             <p style="color:darkgray; font-size: 100% !important;">Instagram</p>
-            <md-switch class="md-primary" ng-model="post.instagram"></md-switch>
+            <md-switch class="md-primary" ng-model="item.instagram_sharing_enabled" ng-change="saveInstagramEnabled()"></md-switch>
         </md-list-item>
-        <md-list-item ng-click="post.twitter = !post.twitter">
+        <md-list-item>
             <ng-md-icon icon="twitter" style="fill:darkgray"></ng-md-icon>
             <p style="color:darkgray; font-size: 100% !important;">Twitter</p>
-            <md-switch class="md-primary" ng-model="post.twitter"></md-switch>
+            <md-switch class="md-primary" ng-model="item.twitter_sharing_enabled" ng-change="save()"></md-switch>
         </md-list-item>
     </md-list>
 
