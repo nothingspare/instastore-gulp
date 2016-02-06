@@ -182,17 +182,20 @@ angular.module('instastore')
                 }).error(errorService.alert);
             };
 
+            //for form in view view-tab-social
+            $scope.post = {};
+
             $scope.postSocial = function () {
-                $http.post(API_URL + 'v1/link/instagram-login', {
-                    username: $scope.igUsername,
-                    password: $scope.igPassword
-                }).success(function (res) {
-                    if (res) {
-                        $mdDialog.hide();
-                        $scope.profile.hasInstagramCredentials = true;
-                        $scope.item.instagram_sharing_enabled = true;
-                        UserService.setProfile($scope.profile);
-                    }
+                $http.post(API_URL + 'v1/link/instagram-export', {
+                    item_id: $scope.item.id,
+                    post: $scope.post.content
+                }).success(function () {
+                    toaster.pop('success', 'Shared');
+                    $scope.post.content = '';
+                    $timeout(function () {
+                        //TODO::remove it. Terrible solving md-input issue in that way8)))) https://github.com/angular/material/issues/1983
+                        document.getElementsByClassName("md-char-counter")[1].innerHTML = '0/256';
+                    }, 300);
                 }).error(errorService.alert);
             };
 
