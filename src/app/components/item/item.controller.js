@@ -177,6 +177,41 @@ angular.module('instastore')
                         $mdDialog.hide();
                         $scope.profile.hasInstagramCredentials = true;
                         $scope.item.instagram_sharing_enabled = true;
+                        $scope.save();
+                        UserService.setProfile($scope.profile);
+                    }
+                }).error(errorService.alert);
+            };
+
+            $scope.savePinterestEnabled = function () {
+                if ($scope.profile.hasPinterestToken) {
+                    $scope.save();
+                } else {
+                    if ($scope.item.pinterest_sharing_enabled) {
+                        $location.hash('start');
+                        $mdDialog.show({
+                            templateUrl: 'app/components/item/enable-pinterest.html',
+                            parent: angular.element(document.body),
+                            scope: $scope,
+                            preserveScope: true,
+                            clickOutsideToClose: true,
+                            fullscreen: $mdMedia('xs')
+                        });
+                    }
+                }
+            };
+
+
+            $scope.initPinterest = function () {
+                $scope.item.pinterest_sharing_enabled = false;
+                $http.post(API_URL + 'v1/link/init-pinterest', {
+                    token: $scope.pinToken
+                }).success(function (res) {
+                    if (res) {
+                        $mdDialog.hide();
+                        $scope.profile.hasPinterestToken = true;
+                        $scope.item.pinterest_sharing_enabled = true;
+                        $scope.save();
                         UserService.setProfile($scope.profile);
                     }
                 }).error(errorService.alert);
@@ -186,17 +221,19 @@ angular.module('instastore')
             $scope.post = {};
 
             $scope.postSocial = function () {
-                $http.post(API_URL + 'v1/link/instagram-export', {
-                    item_id: $scope.item.id,
-                    post: $scope.post.content
-                }).success(function () {
-                    toaster.pop('success', 'Shared');
-                    $scope.post.content = '';
-                    $timeout(function () {
-                        //TODO::remove it. Terrible solving md-input issue in that way8)))) https://github.com/angular/material/issues/1983
-                        document.getElementsByClassName("md-char-counter")[1].innerHTML = '0/256';
-                    }, 300);
-                }).error(errorService.alert);
+                if ($scope.item.instagram_sharing_enabled || $scope.item.pinterest_sharing_enabled) {
+                    $http.post(API_URL + 'v1/link/instagram-export', {
+                        item_id: $scope.item.id,
+                        post: $scope.post.content
+                    }).success(function () {
+                        toaster.pop('success', 'Shared');
+                        $scope.post.content = '';
+                        $timeout(function () {
+                            //TODO::remove it. Terrible solving md-input issue in that way8)))) https://github.com/angular/material/issues/1983
+                            document.getElementsByClassName("md-char-counter")[1].innerHTML = '0/256';
+                        }, 300);
+                    }).error(errorService.alert);
+                }
             };
 
             $scope.save = function () {
