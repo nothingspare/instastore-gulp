@@ -1,0 +1,40 @@
+<md-dialog>
+    <md-dialog-actions class="io-close-btn" layout layout-align="end start">
+        <md-button ng-click="closeDialog()"
+                   class="md-fab md-mini md-primary io-secondary-btn"
+                   aria-label="Close Dialog">
+            <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+        </md-button>
+    </md-dialog-actions>
+    <md-dialog-content class="login-instagram">
+        <div class="dialog-header-container" layout layout-align="center center" layout-padding>
+            <h4 flex class="dialog-header">SHARE TO PINTEREST</h4>
+        </div>
+        <br>
+
+        <div layout layout-padding layout-align="center center">
+            <h6>To enable this feature we should get your Pinterest
+                token, which you can generate
+                <a href="https://developers.pinterest.com/tools/access_token/" target="_blank"><b><u>here</u></b></a>:
+            </h6>
+        </div>
+        <ng-form name="pinterestForm" layout="column" layout-padding layout-margin>
+            <md-input-container>
+                <label>Token:</label>
+                <input type="text" ng-model="pinToken" required maxlength="255">
+            </md-input-container>
+
+            <div layout layout-padding layout-align="center center">
+                <h6>We would create board named <b>isOpen</b> to share your cool stuff.</h6>
+            </div>
+
+            <div layout="row" layout-align="center">
+                <md-button type="submit" class="md-primary md-raised io-primary-btn"
+                           ng-disabled="!(pinterestForm.$dirty && pinterestForm.$valid)"
+                           ng-click="initPinterest()"
+                           aria-label="Save">Save & Create Board
+                </md-button>
+            </div>
+        </ng-form>
+    </md-dialog-content>
+</md-dialog>
