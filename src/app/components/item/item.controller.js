@@ -11,32 +11,31 @@ angular.module('instastore')
             });
 
             var store;
-            if (!UserService.isYourStore()) {
-
-                $rootScope.isSeller = false;
-
-                rest.path = 'v1/stores';
-                rest.models({store_url: $stateParams.storeurl}).success(function (data) {
-                    $scope.store = store = data[0];
-                    if (!store) {
-                        errorService.simpleAlert('nostorewithurl');
-                        $state.go('grid');
-                        return;
-                    }
-                    rest.path = 'v1/items';
-                    rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
+            if ($stateParams.storeurl) {
+                if (!UserService.isYourStore()) {
+                    rest.path = 'v1/stores';
+                    rest.models({store_url: $stateParams.storeurl}).success(function (data) {
+                        $scope.store = store = data[0];
+                        if (!store) {
+                            errorService.simpleAlert('nostorewithurl');
+                            $state.go('grid');
+                            return;
+                        }
+                        rest.path = 'v1/items';
+                        rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
+                            if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
+                            $scope.items = data;
+                        });
+                    }).error(errorService.simpleAlert);
+                }
+                else {
+                    $rootScope.isSeller = true;
+                    rest.path = 'v1/my-items';
+                    rest.models().success(function (data) {
                         if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
                         $scope.items = data;
-                    });
-                }).error(errorService.simpleAlert);
-            }
-            else {
-                $rootScope.isSeller = true;
-                rest.path = 'v1/my-items';
-                rest.models().success(function (data) {
-                    if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
-                    $scope.items = data;
-                }).error(errorService.simpleAlert);
+                    }).error(errorService.simpleAlert);
+                }
             }
 
             $scope.seemore = function (go) {

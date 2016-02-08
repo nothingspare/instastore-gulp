@@ -80,7 +80,7 @@ angular.module('instastore')
         return {
             init: function () {
                 this.initBgAndAvatar();
-                this.initIsSeller();
+                //this.initIsSeller();
                 this.initBgFilter();
             },
             login: function (token) {
@@ -129,7 +129,11 @@ angular.module('instastore')
             goToMainStore: function () {
                 var profile = this.getProfile();
                 var state = $injector.get('$state');
+                var stateParams = $injector.get('$stateParams');
                 if (profile.seller || profile.inviter_url) {
+                    if (profile.store.store_url === stateParams.storeurl) {
+                        $rootScope.isSeller = true;
+                    }
                     state.go('grid', {
                         storeurl: profile.seller ? profile.store.store_url : profile.inviter_url,
                         mode: profile.seller ? '' : 'feed'
@@ -176,49 +180,51 @@ angular.module('instastore')
                     var facebookProfile = this.getFacebookProfile();
                     var stateParams = $injector.get('$stateParams');
                     var rest = $injector.get('rest');
-                    if (!this.isYourStore(stateParams.storeurl)) {
-                        rest.path = this.isGuest()?'v1/stores':'v1/my-stores';
-                        rest.models({store_url: stateParams.storeurl}).success(function (data) {
-                            var store = data[0];
-                            if (!store) {
-                                errorService.simpleAlert('nostorewithurl');
-                                state.go('grid');
-                                return;
-                            }
-                            if (!store.avatar_url) store.avatar_url = '../assets/images/background1circle290x290px.jpg';
-                            if (state.includes('store')) {
-                                rest.path = 'v1/user-lastitems';
-                                rest.models({user_id: store.user_id}).success(function (data) {
-                                    store.items = data;
-                                    $rootScope.bgUrl = store.bg_url;
-                                    $rootScope.avatarUrl = store.avatar_url;
+                    if (stateParams.storeurl) {
+                        if (!this.isYourStore(stateParams.storeurl)) {
+                            rest.path = this.isGuest() ? 'v1/stores' : 'v1/my-stores';
+                            rest.models({store_url: stateParams.storeurl}).success(function (data) {
+                                var store = data[0];
+                                if (!store) {
+                                    errorService.simpleAlert('nostorewithurl');
+                                    state.go('grid');
+                                    return;
+                                }
+                                if (!store.avatar_url) store.avatar_url = '../assets/images/background1circle290x290px.jpg';
+                                if (state.includes('store')) {
+                                    rest.path = 'v1/user-lastitems';
+                                    rest.models({user_id: store.user_id}).success(function (data) {
+                                        store.items = data;
+                                        $rootScope.bgUrl = store.bg_url;
+                                        $rootScope.avatarUrl = store.avatar_url;
+                                        $rootScope.isSeller = false;
+                                        $rootScope.store = store;
+                                    }).error(errorService.alert);
+                                }
+                                else {
                                     $rootScope.isSeller = false;
                                     $rootScope.store = store;
-                                }).error(errorService.alert);
-                            }
-                            else {
-                                $rootScope.isSeller = false;
-                                $rootScope.store = store;
-                                $rootScope.bgUrl = store.bg_url;
-                            }
+                                    $rootScope.bgUrl = store.bg_url;
+                                }
 
-                        }).error(errorService.alert);
-                    }
-                    else {
-                        if (!profile.seller && (state.includes('grid'))) state.go('grid', {storeurl: profile.inviter_url});
-                        if (profile.store) {
-                            if (!profile.store.avatar_url) profile.store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
-                            if (state.includes('store')) {
-                                rest.path = 'v1/user-lastitems';
-                                rest.models({user_id: profile.id}).success(function (data) {
+                            }).error(errorService.alert);
+                        }
+                        else {
+                            if (!profile.seller && (state.includes('grid'))) state.go('grid', {storeurl: profile.inviter_url});
+                            if (profile.store) {
+                                if (!profile.store.avatar_url) profile.store.avatar_url = 'http://graph.facebook.com/' + facebookProfile.id + '/picture?type=large';
+                                if (state.includes('store')) {
+                                    rest.path = 'v1/user-lastitems';
+                                    rest.models({user_id: profile.id}).success(function (data) {
+                                        $rootScope.store = profile.store;
+                                        if (!data) return;
+                                        $rootScope.store.items = data;
+                                    }).error(errorService.alert);
+                                }
+                                else {
                                     $rootScope.store = profile.store;
-                                    if (!data) return;
-                                    $rootScope.store.items = data;
-                                }).error(errorService.alert);
-                            }
-                            else {
-                                $rootScope.store = profile.store;
-                                $rootScope.bgUrl = profile.store.bg_url;
+                                    $rootScope.bgUrl = profile.store.bg_url;
+                                }
                             }
                         }
                     }
