@@ -222,7 +222,7 @@ angular.module('instastore')
 
             $scope.postSocial = function () {
                 if ($scope.item.instagram_sharing_enabled || $scope.item.pinterest_sharing_enabled) {
-                    $http.post(API_URL + 'v1/link/instagram-export', {
+                    $http.post(API_URL + 'v1/link/social-export', {
                         item_id: $scope.item.id,
                         post: $scope.post.content
                     }).success(function () {
