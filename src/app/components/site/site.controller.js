@@ -51,7 +51,7 @@ angular.module('instastore')
                 $state.go('login');
             };
 
-            $scope.isSeller = UserService.isYourStore();
+            $rootScope.isSeller = UserService.isYourStore();
 
             $scope.goToProfile = function () {
                 if (UserService.isGuest()) {

@@ -210,6 +210,7 @@ angular.module('instastore')
                             UserService.setProfile(profile);
                             UserService.setIsSeller(true);
                             $rootScope.store = profile.store;
+                            $rootScope.isSeller = true;
                             UserService.goToMainStore();
 
                             $scope.treeConfig['5'].collapsed = true;
