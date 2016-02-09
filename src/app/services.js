@@ -79,7 +79,7 @@ angular.module('instastore')
         var isInvited;
         return {
             init: function () {
-                this.initBgAndAvatar();
+                //this.initBgAndAvatar();
                 //this.initIsSeller();
                 this.initBgFilter();
             },
@@ -173,6 +173,12 @@ angular.module('instastore')
                     return false;
                 }
             },
+            initMyStoreSettings: function () {
+                var profile = this.getProfile();
+                $rootScope.store = profile.store;
+                this.setIsSeller(true);
+                this.initBgAndAvatar();
+            },
             initStore: function () {
                 if (this.routeStoreurlCheck()) {
                     var state = $injector.get('$state');
@@ -239,8 +245,8 @@ angular.module('instastore')
                 }
             },
             initBgAndAvatar: function () {
-                //var bgU = $cookies.bgUrl;
-                //if (bgU) $rootScope.bgUrl = bgU;
+                var bgU = $cookies.bgUrl;
+                if (bgU) $rootScope.bgUrl = bgU;
             },
             initBgFilter: function () {
                 var stateService = $injector.get('$state');

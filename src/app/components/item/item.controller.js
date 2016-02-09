@@ -10,6 +10,7 @@ angular.module('instastore')
                 $scope.showPanel = false;
             });
 
+
             var store;
             if ($stateParams.storeurl) {
                 if (!UserService.isYourStore()) {
@@ -29,7 +30,7 @@ angular.module('instastore')
                     }).error(errorService.simpleAlert);
                 }
                 else {
-                    $rootScope.isSeller = true;
+                    UserService.initMyStoreSettings();
                     rest.path = 'v1/my-items';
                     rest.models().success(function (data) {
                         if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
