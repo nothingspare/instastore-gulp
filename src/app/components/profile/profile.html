@@ -66,7 +66,11 @@
                                     <div ui-tree-handle>
                                         <!--USER section starts-->
                                         <div ng-if="unit.code === 'name'" layout="column" layout-padding>
-
+                                            <div layout layout-align="center center" layout-wrap>
+                                                <img ng-src="{{store.avatar_url|storeAvatar}}"
+                                                     class="io-avatar io-avatar-inside-name-draw"/>
+                                                <h3>&nbsp;&nbsp;{{::profile.email}}</h3>
+                                            </div>
                                             <div layout="column" layout-align="center center">
                                                 <md-button ng-if="profile.seller"
                                                            href="mailto:support@isopen.us?subject=Order Free Boxes&body=Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
