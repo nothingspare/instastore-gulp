@@ -150,10 +150,6 @@ md-dialog-actions.io-close-btn {
     border-radius: 25px;
 }
 
-.itemview.item-container ng-form[name="form.postForm"] md-input-container {
-    margin-top: 12px;
-}
-
 .add-item-container.itemview.item-container .hidden-add-item {
     display: none;
 }
