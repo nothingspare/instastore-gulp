@@ -25,10 +25,10 @@ angular.module('instastore')
     });
 
 switch (window.location.origin) {
-    case 'http://isopen.us':
+    case 'https://isopen.us':
         angular.module('instastore')
-            .constant('API_URL', 'http://api.isopen.us/')
-            .constant('CLIENT_URL', 'http://isopen.us/');
+            .constant('API_URL', 'https://api.isopen.us/')
+            .constant('CLIENT_URL', 'https://isopen.us/');
         break;
     case 'http://instastore.us':
         angular.module('instastore')

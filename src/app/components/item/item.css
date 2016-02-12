@@ -106,10 +106,6 @@
     margin-top: 28px;
 }
 
-/*.itemview.item-container ng-form[name="form.postForm"] md-input-container.md-input-focused {*/
-    /*margin-top: 17px;*/
-/*}*/
-
 .add-item-container.itemview.item-container .hidden-add-item {
     display: none;
 }

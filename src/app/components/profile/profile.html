@@ -69,6 +69,7 @@
                                             <div layout layout-align="center center" layout-wrap>
                                                 <img ng-src="{{store.avatar_url|storeAvatar}}"
                                                      class="io-avatar io-avatar-inside-name-draw"/>
+
                                                 <h3>&nbsp;&nbsp;{{::profile.email}}</h3>
                                             </div>
                                             <div layout="column" layout-align="center center">
@@ -414,15 +415,7 @@
                                             </md-button>
                                         </div>
                                         <div layout ng-if="unit.code === 'card'">
-
-
-                                            <md-button ng-if="profile.card_token_created_at"
-                                                       class="md-fab right-corner-btn"
-                                                       ng-click="removeSellerCard()" aria-label="Delete Card">
-                                                <ng-md-icon icon="close"></ng-md-icon>
-
-                                            </md-button>
-                                            <div layout layout-fill layout-padding
+                                            <div layout="column" layout-fill layout-padding
                                                  ng-if="profile.card_token_created_at" layout-align="center center">
                                                 <svg class="svg-debit" viewBox="0 0 32 23">
                                                     <path fill="#e5e5e5" class="svg-debit-card"
@@ -439,6 +432,11 @@
                                                         {{profile.card_last_digits}}
                                                     </text>
                                                 </svg>
+                                                <md-button layout-padding
+                                                           class="md-primary md-raised less-margin io-primary-btn"
+                                                           ng-click="removeSellerCard()" aria-label="Delete Card">
+                                                    Remove Card
+                                                </md-button>
                                             </div>
                                             <div ng-if="!profile.card_token_created_at" layout="column" layout-fill
                                                  layout-padding>

@@ -131,10 +131,10 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         };
 
         switch (window.location.origin) {
-            case 'http://isopen.us':
+            case 'https://isopen.us':
                 configFacebook.clientId = '801870543171280';
                 configInstagram.clientId = 'a7cf21e1b2dc47d1a77f5f7ce3bbcae5';
-                configInstagram.redirectUri = 'http://isopen.us';
+                configInstagram.redirectUri = 'https://isopen.us/';
                 break;
             case 'http://192.168.0.103:3000':
                 configFacebook.clientId = '752257218212006';
@@ -165,8 +165,8 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         plUploadServiceProvider.setConfig('silverLightPath', 'bower_components/plupload-angular-directive/plupload.silverlight.xap');
         plUploadServiceProvider.setConfig('resize', {width: 310, height: 390});
 
-        stripeProvider.setPublishableKey('pk_live_gAjzCf5vWrdKN8ycRSCbQDan');
-        //stripeProvider.setPublishableKey('pk_test_1tDqDLjRoJ6lkeyKoQsQ4ZX0');
+        //stripeProvider.setPublishableKey('pk_live_gAjzCf5vWrdKN8ycRSCbQDan');
+        stripeProvider.setPublishableKey('pk_test_1tDqDLjRoJ6lkeyKoQsQ4ZX0');
 
         $mdThemingProvider.definePalette('amazingPaletteName', {
             '50': 'ffebee',
