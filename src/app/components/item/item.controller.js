@@ -188,19 +188,17 @@ angular.module('instastore')
                     $scope.save();
                 } else {
                     if ($scope.item.pinterest_sharing_enabled) {
-                        $location.hash('start');
-                        $mdDialog.show({
-                            templateUrl: 'app/components/item/enable-pinterest.html',
-                            parent: angular.element(document.body),
-                            scope: $scope,
-                            preserveScope: true,
-                            clickOutsideToClose: true,
-                            fullscreen: $mdMedia('xs')
+                        $auth.link('pinterest').then(function (res) {
+                            if (res) {
+                                $scope.profile.hasPinterestToken = true;
+                                $scope.item.pinterest_sharing_enabled = true;
+                                $scope.save();
+                                UserService.setProfile($scope.profile);
+                            }
                         });
                     }
                 }
             };
-
 
             $scope.initPinterest = function () {
                 $scope.item.pinterest_sharing_enabled = false;
@@ -221,7 +219,7 @@ angular.module('instastore')
             $scope.post = {};
 
             $scope.postSocial = function () {
-                if ($scope.item.instagram_sharing_enabled || $scope.item.pinterest_sharing_enabled) {
+                if ($scope.item.instagram_sharing_enabled || $scope.item.pinterest_sharing_enabled || $scope.item.facebook_sharing_enabled) {
                     $http.post(API_URL + 'v1/link/social-export', {
                         item_id: $scope.item.id,
                         post: $scope.post.content

@@ -113,9 +113,21 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         var configFacebook = {
             clientId: '694297854007943',
             url: 'v1/user/auth',
-            scope: 'email',
+            scope: 'email, publish_actions',
             scopeDelimiter: ',',
             display: 'popup'
+        };
+
+        var configPinterest = {
+            name: 'pinterest',
+            url: '/v1/link/pinterest',
+            display: 'popup',
+            authorizationEndpoint: 'https://api.pinterest.com/oauth/',
+            defaultUrlParams: ['scope', 'redirect_uri', 'response_type', 'client_id'],
+            clientId: '4816720832223002845',
+            scope: 'read_public,write_public',
+            responseType: 'code',
+            redirectUri: 'http://instastore.us/'
         };
 
         var configInstagram = {
@@ -134,21 +146,22 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             case 'https://isopen.us':
                 configFacebook.clientId = '801870543171280';
                 configInstagram.clientId = 'a7cf21e1b2dc47d1a77f5f7ce3bbcae5';
-                configInstagram.redirectUri = 'https://isopen.us/';
+                configInstagram.redirectUri = configPinterest.redirectUri = 'https://isopen.us/';
                 break;
             case 'http://192.168.0.103:3000':
                 configFacebook.clientId = '752257218212006';
                 configInstagram.clientId = '7f744b4b4f844419bd49872ac67cf22a';
-                configInstagram.redirectUri = 'http://192.168.0.103:3000/';
+                configInstagram.redirectUri = configPinterest.redirectUri = 'http://192.168.0.103:3000/';
                 break;
             case 'http://localhost:3000':
                 configFacebook.clientId = '752257608211967';
-                configInstagram.redirectUri = 'http://localhost:3000/';
+                configInstagram.redirectUri = configPinterest.redirectUri = 'http://localhost:3000/';
                 break;
         }
 
         $authProvider.facebook(configFacebook);
         $authProvider.oauth2(configInstagram);
+        $authProvider.oauth2(configPinterest);
 
         $locationProvider.html5Mode(true).hashPrefix('!');
 
