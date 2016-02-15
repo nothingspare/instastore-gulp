@@ -224,7 +224,7 @@ angular.module('instastore')
                         item_id: $scope.item.id,
                         post: $scope.post.content
                     }).success(function () {
-                        toaster.pop('success', 'Shared');
+                        toaster.pop('success', 'Successfully posted');
                         $scope.post.content = '';
                         $timeout(function () {
                             //TODO::remove it. Terrible solving md-input issue in that way8)))) https://github.com/angular/material/issues/1983
