@@ -4141,14 +4141,6 @@ ng-md-icon[size="48"] {
     margin: 34px 16px 6px 16px;
 }
 
-.location-tab-content {
-    background-color: rgba(225, 225, 225, 0.6);
-    width: 100%;
-    height: 200px;
-    margin-top: 10px;
-    padding-top: 4px;
-}
-
 .profile.customheader-profile.profile-img-grid {
     margin-left: 15px
 }

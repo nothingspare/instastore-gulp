@@ -1,9 +1,18 @@
-<div>
-    <div ng-if="renderMap" class="itemmap-container" ng-controller="ItemLocation">
-        <ui-gmap-google-map center="map.center" zoom="map.zoom">
-            <ui-gmap-marker coords="staticMarker.coords" options="staticMarker.options" events="staticMarker.events"
-                            idKey="staticMarker.id">
-            </ui-gmap-marker>
-        </ui-gmap-google-map>
-    </div>
+<div ng-controller="LocationIndex" ng-if="store.show_store_location>0" class="location-tab-content">
+    <h5 layout="column" layout-align="center center">
+        <b>Store location</b>
+        <span>{{store.address}}</span>
+    </h5>
+    <ui-gmap-google-map center='map.center' zoom='map.zoom' height="200" style="height: 200px;">
+        <ui-gmap-marker coords="staticMarker.coords" options="staticMarker.options" events="staticMarker.events"
+                        idKey="staticMarker.id">
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
+</div>
+<div ng-if="store.show_store_location<1">
+    <h5>
+        <b>Store location</b>
+        <br>
+        This store is online only
+    </h5>
 </div>

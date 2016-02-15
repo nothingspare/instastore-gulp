@@ -282,9 +282,13 @@
                                         {{profile.store.show_store_location?'Store Location':'Online only, no store
                                         location'}}
                                     </div>
-                                    <div layout layout-wrap layout-fill ng-if="unit.code==='instagram'"
+                                    <div layout layout-wrap layout-fill ng-if="unit.code==='instagram' && !instagramProgress"
                                          class="main-title" layout-wrap>
-                                        {{profile.instagramId?'IMPORT FROM INSTAGRAM':'LINK INSTAGRAM ACCOUNT'}}
+                                        {{profile.instagramId?'IMPORT FROM INSTAGRAM':'LINK INSTAGRAM ACCOUNT'}} {{instagramProgress?'LINKING':''}}
+                                    </div>
+                                    <div layout layout-wrap layout-fill ng-if="unit.code==='instagram' && instagramProgress"
+                                         class="main-title loading" layout-wrap>
+                                        PREPARE EXPORT
                                     </div>
                                     <div ng-if="unit.code === 'card'" class="main-title" layout layout-wrap>
                                         {{profile.card_token_created_at?'Debit Card Verified ' +
@@ -410,8 +414,7 @@
 
                                         </div>
                                         <div ng-if="unit.code==='instagram'" layout layout-padding>
-                                            <md-button class="md-primary md-raised io-primary-btn"
-                                                       ng-click="linkInstagram()">&nbsp;Link&nbsp;
+                                            <md-button class="md-primary md-raised io-primary-btn">&nbsp;Link&nbsp;
                                             </md-button>
                                         </div>
                                         <div layout ng-if="unit.code === 'card'">

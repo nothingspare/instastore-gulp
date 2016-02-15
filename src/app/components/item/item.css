@@ -81,7 +81,7 @@
     min-height: 51px;
 }
 
-.itemview.item-container input, .login-instagram input{
+.itemview.item-container input, .login-instagram input {
     box-shadow: none;
 }
 
@@ -148,8 +148,7 @@
     display: none;
 }
 
-.location-tab-content .angular-google-map-container {
-    top: 9px;
+.location-tab-content .angular-google-map-container{
     height: 200px;
     width: 100%;
 }
@@ -192,7 +191,6 @@ h3.delivery-address {
     height: auto;
 }
 
-
 @media only screen and (min-height: 600px) {
     .io-picture-preview {
         min-height: 120px;
@@ -202,4 +200,3 @@ h3.delivery-address {
 .io-picture-preview .md-fab.md-mini.md-primary.io-secondary-btn.io-close-picture-preview {
     margin: -15px -10px 0 0;
 }
-
