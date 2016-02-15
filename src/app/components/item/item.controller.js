@@ -272,8 +272,7 @@ angular.module('instastore')
                     .success(function () {
                         itemsAmount.decrementItemsAmount();
                         toaster.pop('success', "Item deleted!");
-                        toaster.pop('success', "Item deleted!");
-                        $state.go('grid');
+                        UserService.goToMainStore();
                     })
                     .error(errorService.alert);
             };
@@ -387,8 +386,9 @@ angular.module('instastore')
                 } else {
                     $scope.showConfirm = true;
                     $timeout(function () {
-                        $location.hash('form-end');
-                        $anchorScroll();
+                        if ($stateParams !== '0') {
+                            $location.url($stateParams.storeurl + '/' + $stateParams.itemurl + '/0#form-end');
+                        }
                     }, 450);
                 }
             };
