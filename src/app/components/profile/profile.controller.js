@@ -453,7 +453,7 @@ angular.module('instastore')
             $scope.customFunction = function (code) {
                 switch (code) {
                     case 'instagram':
-                        if (!$mdMedia('xs') && $scope.profile.instagramId) {
+                        if (!$mdMedia('xs')) {
                             $scope.instagramProgress = true;
                             if ($scope.profile.instagramId) {
                                 $state.go('instaimport', {storeurl: UserService.getMainStoreUrl()});
