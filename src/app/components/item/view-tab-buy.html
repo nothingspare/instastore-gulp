@@ -5,6 +5,14 @@
         </md-button>
     </div>
 
+    <div layout="column" layout-align="center center" ng-if="item.box>0">
+        <p layout-padding>Delivered to:</p>
+
+        <h3 class="delivery-address">{{profile.address}}{{profile.apartment?' '+
+            profile.apartment:''}},
+            {{profile.city}}, {{profile.state}} {{profile.zipcode}}</h3>
+    </div>
+
     <div ng-if="showConfirm">
 
         <div layout layout-align="center center">
