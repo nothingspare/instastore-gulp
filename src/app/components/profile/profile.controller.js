@@ -285,8 +285,10 @@ angular.module('instastore')
         }])
     .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'toaster', 'uiGmapGoogleMapApi', '$auth',
         'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL', '$mdDialog', '$location', '$stateParams', '$rootScope',
+        '$mdMedia',
         function ($scope, UserService, rest, toaster, uiGmapGoogleMapApi, $auth, CLIENT_URL,
-                  $state, stripe, $http, API_URL, $mdDialog, $location, $stateParams, $rootScope) {
+                  $state, stripe, $http, API_URL, $mdDialog, $location, $stateParams, $rootScope,
+                  $mdMedia) {
 
             $scope.CLIENT_URL = CLIENT_URL;
 
@@ -451,13 +453,17 @@ angular.module('instastore')
             $scope.customFunction = function (code) {
                 switch (code) {
                     case 'instagram':
-                        $scope.instagramProgress = true;
-                        if ($scope.profile.instagramId) {
-                            $state.go('instaimport', {storeurl: UserService.getMainStoreUrl()});
-                            $mdDialog.hide();
-                        }
-                        else {
-                            $scope.linkInstagram();
+                        if (!$mdMedia('xs') && $scope.profile.instagramId) {
+                            $scope.instagramProgress = true;
+                            if ($scope.profile.instagramId) {
+                                $state.go('instaimport', {storeurl: UserService.getMainStoreUrl()});
+                                $mdDialog.hide();
+                            }
+                            else {
+                                $scope.linkInstagram();
+                            }
+                        } else {
+                            toaster.pop('warning', 'You can link account only from PC');
                         }
                         break;
                 }

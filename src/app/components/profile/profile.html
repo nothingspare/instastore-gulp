@@ -282,11 +282,14 @@
                                         {{profile.store.show_store_location?'Store Location':'Online only, no store
                                         location'}}
                                     </div>
-                                    <div layout layout-wrap layout-fill ng-if="unit.code==='instagram' && !instagramProgress"
-                                         class="main-title" layout-wrap>
-                                        {{profile.instagramId?'IMPORT FROM INSTAGRAM':'LINK INSTAGRAM ACCOUNT'}} {{instagramProgress?'LINKING':''}}
+                                    <div layout layout-wrap layout-fill
+                                         ng-if="unit.code==='instagram' && !instagramProgress"
+                                         class="main-title" layout-wrap show-gt-xs>
+                                        <span hide-xs>{{profile.instagramId?'IMPORT FROM INSTAGRAM':'LINK INSTAGRAM ACCOUNT'}}</span>
+                                        <span hide-gt-xs>AVAILABLE ONLY FROM PC</span>
                                     </div>
-                                    <div layout layout-wrap layout-fill ng-if="unit.code==='instagram' && instagramProgress"
+                                    <div layout layout-wrap layout-fill
+                                         ng-if="unit.code==='instagram' && instagramProgress"
                                          class="main-title loading" layout-wrap>
                                         PREPARE EXPORT
                                     </div>
