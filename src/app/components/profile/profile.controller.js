@@ -446,6 +446,7 @@ angular.module('instastore')
                             UserService.fromInstaimport = true;
                             $scope.profile.instagramId = response.data.user.id;
                             UserService.setProfile($scope.profile);
+                            $scope.instagramProgress = false;
                         }
                     });
             };
