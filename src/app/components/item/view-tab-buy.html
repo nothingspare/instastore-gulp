@@ -1,4 +1,14 @@
 <div class="buy-transactions">
+    <div layout layout-align="center center" class="item-sale-status">
+        <h5 ng-if="item.itemSellsQuantity>0 && item.price && item.quantity>0  && (item.quantity != item.itemSellsQuantity)">{{item.itemSellsQuantity}} sold
+            {{item.quantity-item.itemSellsQuantity}}
+            left</h5>
+        <h5 ng-if="item.quantity>0 && !item.itemSellsQuantity && (item.quantity != item.itemSellsQuantity)">{{item.quantity-item.itemSellsQuantity}} available</h5>
+        <h5 ng-if="!item.price || item.quantity<1 || !item.quantity || (item.quantity == item.itemSellsQuantity)">This
+            item isn't currently for
+            sale.</h5>
+    </div>
+
     <div layout layout-padding layout-align="center center">
         <md-button flex-xs="90" flex-gt-xs="60" ng-click="confirmBuying()" class="md-raised md-primary md-hue-3">
             Buy Item {{item.price | currency}}

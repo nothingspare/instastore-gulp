@@ -148,7 +148,7 @@
     display: none;
 }
 
-.location-tab-content .angular-google-map-container{
+.location-tab-content .angular-google-map-container {
     height: 200px;
     width: 100%;
 }
@@ -199,4 +199,9 @@ h3.delivery-address {
 
 .io-picture-preview .md-fab.md-mini.md-primary.io-secondary-btn.io-close-picture-preview {
     margin: -15px -10px 0 0;
+}
+
+div.item-sale-status h5 {
+    -webkit-margin-before: 0.6em;
+    -webkit-margin-after: 0em;
 }
