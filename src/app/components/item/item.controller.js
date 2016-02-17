@@ -540,8 +540,9 @@ angular.module('instastore')
         }
     ])
     .controller('ItemViewTabsCtrl', ['$scope', '$rootScope', '$timeout', '$stateParams', 'UserService',
-        '$auth', 'errorService', '$state', '$location',
-        function ($scope, $rootScope, $timeout, $stateParams, UserService, $auth, errorService, $state, $location) {
+        '$auth', 'errorService', '$state', '$location', 'rest',
+        function ($scope, $rootScope, $timeout, $stateParams, UserService, $auth, errorService, $state, $location,
+                  rest) {
 
             $scope.onClickTab = function (tab) {
                 if (UserService.isGuest() && tab.index == 2) {
@@ -584,11 +585,25 @@ angular.module('instastore')
                 return tabUrl == $scope.currentTab;
             };
 
-            $scope.likeItem = function () {
-                $rootScope.showHearts = true;
-                $timeout(function () {
-                    $rootScope.showHearts = false;
-                }, 1000);
+            $scope.toggleItemLike = function () {
+                if (!$scope.item.myLike) {
+                    $rootScope.showHearts = true;
+                    $timeout(function () {
+                        $rootScope.showHearts = false;
+                    }, 1000);
+                    rest.path = 'v1/my-likes';
+                    rest.postModel({item_id: $scope.item.id}).success(function (like) {
+                        $scope.item.myLike = like;
+                        $scope.item.likesAmount++;
+                    }).error(errorService.simpleAlert);
+                    $scope.item.myLike = {};
+                } else {
+                    rest.path = 'v1/my-likes/' + $scope.item.myLike.id;
+                    rest.deleteModel().success(function () {
+                        delete($scope.item.myLike);
+                        $scope.item.likesAmount--;
+                    }).error(errorService.simpleAlert);
+                }
             };
 
             if ($rootScope.isSeller)

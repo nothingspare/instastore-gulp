@@ -47,13 +47,14 @@
                             <div ng-include="'app/components/item/view-tab-comment.html'"></div>
                         </md-tab-body>
                     </md-tab>
-                    <md-tab md-on-select="likeItem()">
+                    <md-tab>
                         <md-tab-label>
                             <div layout layout-align="center center">
                                 <div class="heart-circle"></div>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
+                            <div ng-include="'app/components/item/view-tab-like.html'"></div>
                             <div layout="column" style="height: 20px;"></div>
                             <table class="prev-customers">
                                 <tr>
