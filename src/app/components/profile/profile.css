@@ -2,8 +2,8 @@
 
 .profile-tree .top-transaction {
     background-color: rgba(222, 222, 222, 0.5);
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-weight: 500;
+    /*font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;*/
+    font-weight: 700;
     font-size: 110%;
 }
 
@@ -22,11 +22,16 @@
 
 .profile-section h4 {
     vertical-align: middle;
-    font-weight: 600;
+    font-weight: 300;
 }
 
 .profile-tree .profile-store-icon {
-    padding: 10px 6px 3px 6px
+    padding: 6px 6px 3px 6px;
+}
+
+.md-button.md-fab.md-mini {
+    line-height: 30px;
+    margin-top: 2px;
 }
 
 .profile-tree input {
@@ -99,7 +104,7 @@
 
     .profile-tree .phone-verified {
         color: lightcoral;
-        font-weight: 400;
+        font-weight: 300;
     }
 }
 
@@ -115,7 +120,7 @@ md-switch.no-margin {
 
 .profile-tree .angular-ui-tree-handle {
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 300;
 }
 
 /* user profile pop up border radius */
@@ -162,6 +167,10 @@ md-dialog-actions.io-close-btn {
 .less-margin {
     margin: 12px 0 12px 0;
     max-width: 180px;
+}
+
+.top-margin {
+        padding: 132px 0 0 0; padding-top: 100px; margin-top: 100px;
 }
 
 .profile-tree .crop-area .io-profile-crop-btn {

@@ -600,9 +600,9 @@
 /** - - - - - - - global - - - - - - - - - - - **/
 
 body {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "Maven Pro", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
-    font-size: 110%;
+    font-size: 130%;
     /* prevent copy paste, to allow, change 'none' to 'text' */
 
     -webkit-user-select: none;
@@ -881,7 +881,6 @@ p {
 /* - - menu text - - */
 
 h1 {
-    font-family: "helvetica neue", "helvetica", "arial", "san-serif";
     font-weight: 500;
     font-size: 10px;
     /*color: #999; - - - - - - - - - color assigind by a tag - - - */
@@ -1470,7 +1469,6 @@ h3 {
 
 #prev,
 #next {
-    font-family: helvetica;
     font-weight: bold;
     font-size: 16px;
     color: #111;
@@ -2345,8 +2343,7 @@ h4 {
 h6 {
     color: lightcoral;
     font-size: 11pt;
-    font-weight: 400;
-    font-family: 'Helvetica neue';
+    font-weight: 700;
     text-decoration: none;
     text-align: center;
     margin: 0 0 0 0;
@@ -2354,19 +2351,19 @@ h6 {
 
 .seller-name-text {
     color: #4c87f1;
-    font-weight: 400;
+    font-weight: 700;
     cursor: pointer;
 }
 
 .buyer-name-text {
     color: #f37878;
-    font-weight: 400;
+    font-weight: 700;
     cursor: pointer;
 }
 
 .price-text {
     color: #6199f1;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 /** BUTTON MAIN STYLE **/
@@ -2381,9 +2378,9 @@ select,
 .sml,
 .cropButton,
 .crop-btn {
-    font-family: "helvetica neue", "helvetica", "arial", "san-serif";
+    /*font-family: "helvetica neue", "helvetica", "arial", "san-serif";*/
     text-align: center;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 20px;
     letter-spacing: 0px;
     text-rendering: optimizelegibility;
@@ -2425,7 +2422,7 @@ select:active,
 .default .cropButton,
 crop-btn,
 .sml {
-    font-weight: 400;
+    font-weight: 300;
     font-size: 16px;
     color: #fff;
     background-color: #f37878;
@@ -2511,7 +2508,7 @@ crop-btn,
 
 .url-text {
     width: 100%;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 18px;
     letter-spacing: 0px;
     text-rendering: optimizelegibility;
@@ -2680,7 +2677,7 @@ input,
     font-size: 85%;
     font-size: 11pt;
     font-weight: 200;
-    font-family: 'Helvetica neue';
+    /*font-family: 'Helvetica neue';*/
 }
 
 /** ON / OFF TOGGLE END **/
@@ -2872,9 +2869,9 @@ input:-moz-placeholder {
     padding: 5px 12px;
     margin: 0 auto;
     margin-bottom: 0;
-    font-family: "HelveticaNeue-Light";
+    /*font-family: "HelveticaNeue-Light";*/
     font-size: 18px;
-    font-weight: normal;
+    font-weight: 300;
     line-height: 1.36857143;
     text-align: center;
     white-space: nowrap;
@@ -3953,7 +3950,7 @@ svg.svg-debit {
 }
 
 .md-button.md-raised.io-primary-btn {
-    font-family: "helvetica neue", "helvetica", "arial", "san-serif";
+    /*font-family: "helvetica neue", "helvetica", "arial", "san-serif";*/
     text-transform: none;
     border-radius: 4px;
     font-weight: 400;
@@ -3973,9 +3970,9 @@ svg.svg-debit {
 .io-bar {
     position: fixed;
     z-index: 19;
-    border-bottom: 1px solid rgba(225, 225, 225, 0.7);
+    border-bottom: 1px solid rgba(225, 225, 225, 0.8);
     width: 100%;
-    background-color: rgba(225, 225, 225, 0.5);
+    background-color: rgba(225, 225, 225, 0.7);
 }
 
 .io-bar > div {
@@ -3987,7 +3984,7 @@ svg.svg-debit {
 }
 
 .io-bar > div:hover {
-    background: rgba(225, 225, 225, 0.8);
+    background: rgba(225, 225, 225, 0.9);
     color: #fff;
 }
 

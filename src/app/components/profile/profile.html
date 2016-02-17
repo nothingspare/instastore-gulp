@@ -73,6 +73,20 @@
                                                 <h3>&nbsp;&nbsp;{{::profile.email}}</h3>
                                             </div>
                                             <div layout="column" layout-align="center center">
+                                                
+
+                                                <md-button
+                                                        href="mailto:support@isopen.us?subject=Contact Support&body={{profile.address?'Address:':''}} {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
+                                                        class="md-primary md-raised less-margin io-primary-btn">
+                                                    Contact Support
+                                                </md-button>
+
+                                                <md-button
+                                                        class="md-primary md-raised less-margin io-primary-btn"
+                                                        ng-click="logout()">Log-out
+                                                    <ng-md-icon icon="logout"></ng-md-icon>
+                                                </md-button>
+
                                                 <md-button ng-if="profile.seller"
                                                            href="mailto:support@isopen.us?subject=Order Free Boxes&body=Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
                                                            class="md-primary md-raised less-margin io-primary-btn">
@@ -80,19 +94,9 @@
                                                 </md-button>
 
                                                 <div ng-if="profile.seller" layout layout-align="center center">
-                                                    <p>We can order a pack of USPS Flat Rate shipping boxes for you.
-                                                        They should be delivered within 10 days.</p>
+                                                    <p class="text-align-center">isOpen can order packs of USPS Flat Rate shipping boxes for you at no cost. Allow 10 days for delivery.</p>
                                                 </div>
-                                                <md-button
-                                                        class="md-primary md-raised less-margin io-primary-btn"
-                                                        ng-click="logout()">Log-out
-                                                    <ng-md-icon icon="logout"></ng-md-icon>
-                                                </md-button>
-                                                <md-button
-                                                        href="mailto:support@isopen.us?subject=Contact Support&body={{profile.address?'Address:':''}} {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
-                                                        class="md-primary md-raised less-margin io-primary-btn">
-                                                    Contact Support
-                                                </md-button>
+
                                             </div>
 
 
@@ -133,7 +137,7 @@
                                                     <span class="phone-verified">&nbsp;Verified!</span>
                                                 </div>
                                                 <md-button
-                                                        class="md-primary md-raised less-margin io-primary-btn"
+                                                        class="md-primary md-raised less-margin io-primary-btn" style="margin-top:20px;"
                                                         ng-click="unit.collapsed = !collapsed;removePhone()"
                                                         aria-label="Remove Phone">
                                                     Remove Phone
@@ -185,7 +189,7 @@
                                                      class="text-align-center">
                                                     <span>{{profile.address}}, {{profile.apartment ? profile.apartment + ', ' :''}}
                                                     {{profile.city}}, {{profile.state}}, {{profile.zipcode}}<span
-                                                                class="phone-verified">&nbsp;Verified!</span></span>
+                                                                class="phone-verified">Verified!</span></span>
                                                 </div>
                                                 <br>
                                                 <md-button layout
@@ -197,9 +201,7 @@
                                             </div>
                                         </div>
                                         <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
-                                            <p class="text-align-center">Upload a full-length picture of yourself in
-                                                your store for your background image. Then crop your face to make your
-                                                profile pic.
+                                            <p class="text-align-center">Upload a full-length picture of yourself for your background image. Then crop your face to create your profile.
                                             </p>
 
                                             <div ng-controller="CropUploadCtrl">
@@ -223,9 +225,7 @@
                                             <div layout="column" layout-align="center center">
                                                 <div layout layout-align="center center">
                                                     <p class="text-align-center">
-                                                        isOpen is looking for motivated sellers
-                                                        with great ideas or existing businesses. Tell us why you should
-                                                        begiven one of our limited store accounts.</p>
+                                                        isOpen is looking for motivated sellers with great ideas or existing businesses. Please tell us a few words about yourself so we can consider you for one of our free beta store accounts.</p>
                                                 </div>
                                                 <md-button href="mailto:support@isopen.us?subject=Request a store"
                                                            class="md-primary md-raised less-margin io-primary-btn">
@@ -409,7 +409,7 @@
                                                         <md-button layout-padding
                                                                    class="md-primary md-raised less-margin io-primary-btn"
                                                                    ng-click="profile.store.address = ''; save()">
-                                                            Remove It
+                                                            Remove Address
                                                         </md-button>
                                                     </div>
                                                 </div>
@@ -439,7 +439,7 @@
                                                     </text>
                                                 </svg>
                                                 <md-button layout-padding
-                                                           class="md-primary md-raised less-margin io-primary-btn"
+                                                           class="md-primary md-raised less-margin io-primary-btn" style="margin-top:20px;"
                                                            ng-click="removeSellerCard()" aria-label="Delete Card">
                                                     Remove Card
                                                 </md-button>
@@ -449,8 +449,7 @@
                                                 <ng-form name="verifyCardForm" novalidate=""
                                                          layout-wrap>
 
-                                                    <p style="text-align: center">Simply add a depit card and payments
-                                                        your store recieves will be passed on automaticly.</p>
+                                                    <p style="text-align: center">Simply add a depit card and payments your store recieves will be passed on automaticly.</p>
 
                                                     <div layout layout-sm="column" layout-fill>
                                                         <md-input-container flex>
@@ -490,7 +489,7 @@
                                                                 <md-button
                                                                         class="md-primary md-raised less-margin io-primary-btn"
                                                                         ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
-                                                                        type="submit">&nbsp;&nbsp;Verify Card&nbsp;&nbsp;
+                                                                        type="submit">Verify Card
                                                                 </md-button>
                                                             </center>
                                                         </div>
