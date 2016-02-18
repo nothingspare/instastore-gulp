@@ -129,15 +129,28 @@ md-dialog.md-default-theme, md-dialog {
     background-color: rgb(255, 255, 255);
 }
 
+h3.profile-email {
+    line-height: 22px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+}
+
 @media only screen and (min-height: 480px) {
     .main-title {
         max-width: 200px;
         width: 200px;
     }
+
+    h3.profile-email {
+        max-width: 300px;
+        width: 300px;
+    }
 }
 
 @media only screen and (min-width: 375px) {
-    .main-title {
+    .main-title, h3.profile-email {
         max-width: 100%;
         width: 100%;
     }
@@ -188,8 +201,8 @@ md-dialog-actions.io-close-btn {
     overflow: hidden;
     display: inline-block;
     vertical-align: bottom;
-    -webkit-animation: ellipsis steps(4,end) 900ms infinite;
-    animation: ellipsis steps(4,end) 900ms infinite;
+    -webkit-animation: ellipsis steps(4, end) 900ms infinite;
+    animation: ellipsis steps(4, end) 900ms infinite;
     content: "\2026"; /* ascii code for the ellipsis character */
     width: 0;
 }
