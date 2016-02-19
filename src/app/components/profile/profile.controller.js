@@ -454,13 +454,13 @@ angular.module('instastore')
             $scope.customFunction = function (code) {
                 switch (code) {
                     case 'instagram':
-                        $scope.instagramProgress = true;
                         if ($scope.profile.instagramId) {
                             $state.go('instaimport', {storeurl: UserService.getMainStoreUrl()});
                             $mdDialog.hide();
                         }
                         else {
                             if (!$mdMedia('xs')) {
+                                $scope.instagramProgress = true;
                                 $scope.linkInstagram();
                             }
                             else {
