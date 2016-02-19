@@ -73,7 +73,7 @@
                                                 <h3 style="width:200px" class="profile-email">&nbsp;&nbsp;{{::profile.email}}</h3>
                                             </div>
                                             <div layout="column" layout-align="center center">
-                                                
+
 
                                                 <md-button
                                                         href="mailto:support@isopen.us?subject=Contact Support&body={{profile.address?'Address:':''}} {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
@@ -94,7 +94,9 @@
                                                 </md-button>
 
                                                 <div ng-if="profile.seller" layout layout-align="center center">
-                                                    <p class="text-align-center">isOpen can order packs of USPS Flat Rate shipping boxes for you at no cost. Allow 10 days for delivery.</p>
+                                                    <p class="text-align-center">isOpen can order packs of USPS Flat
+                                                        Rate shipping boxes for you at no cost. Allow 10 days for
+                                                        delivery.</p>
                                                 </div>
 
                                             </div>
@@ -137,7 +139,8 @@
                                                     <span class="phone-verified">&nbsp;Verified!</span>
                                                 </div>
                                                 <md-button
-                                                        class="md-primary md-raised less-margin io-primary-btn" style="margin-top:20px;"
+                                                        class="md-primary md-raised less-margin io-primary-btn"
+                                                        style="margin-top:20px;"
                                                         ng-click="unit.collapsed = !collapsed;removePhone()"
                                                         aria-label="Remove Phone">
                                                     Remove Phone
@@ -201,7 +204,8 @@
                                             </div>
                                         </div>
                                         <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
-                                            <p class="text-align-center">Upload a full-length picture of yourself for your background image. Then crop your face to create your profile.
+                                            <p class="text-align-center">Upload a full-length picture of yourself for
+                                                your background image. Then crop your face to create your profile.
                                             </p>
 
                                             <div ng-controller="CropUploadCtrl">
@@ -225,7 +229,10 @@
                                             <div layout="column" layout-align="center center">
                                                 <div layout layout-align="center center">
                                                     <p class="text-align-center">
-                                                        isOpen is looking for motivated sellers with great ideas or existing businesses. Please tell us a few words about yourself so we can consider you for one of our free beta store accounts.</p>
+                                                        isOpen is looking for motivated sellers with great ideas or
+                                                        existing businesses. Please tell us a few words about yourself
+                                                        so we can consider you for one of our free beta store
+                                                        accounts.</p>
                                                 </div>
                                                 <md-button href="mailto:support@isopen.us?subject=Request a store"
                                                            class="md-primary md-raised less-margin io-primary-btn">
@@ -420,27 +427,31 @@
                                             <md-button class="md-primary md-raised io-primary-btn">&nbsp;Link&nbsp;
                                             </md-button>
                                         </div>
-                                        <div layout ng-if="unit.code === 'card'">
-                                            <div layout="column" layout-fill layout-padding
-                                                 ng-if="profile.card_token_created_at" layout-align="center center">
-                                                <svg class="svg-debit" viewBox="0 0 32 23">
-                                                    <path fill="#e5e5e5" class="svg-debit-card"
-                                                          d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
-                                                    <path fill="#bbb" class="svg-debit-data"
-                                                          d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>
-                                                    <path fill="#fff" class="svg-debit-sign"
-                                                          d="M2.993 9h26v3h-26v-3z"></path>
-                                                    <path fill="#555" class="svg-debit-read"
-                                                          d="M-.007 3h32v3h-32v-3z"></path>
-                                                    <text x="5" y="11.6" fill="black" style="font-size: 2.8px;">****
-                                                        ****
-                                                        ****
-                                                        {{profile.card_last_digits}}
-                                                    </text>
-                                                </svg>
-                                                <md-button layout-padding
-                                                           class="md-primary md-raised less-margin io-primary-btn" style="margin-top:20px;"
-                                                           ng-click="removeSellerCard()" aria-label="Delete Card">
+                                        <div ng-if="unit.code === 'card'">
+                                            <div layout="column" layout-align="center center">
+                                                <div ng-if="profile.card_token_created_at" layout
+                                                     layout-align="center center">
+                                                    <svg layout-margin
+                                                         class="svg-debit" viewBox="0 0 32 23">
+                                                        <path fill="#e5e5e5" class="svg-debit-card"
+                                                              d="M1.993 0h28c1.104 0 2 .895 2 2v18.999c0 1.104-.896 2.001-2 2.001h-28c-1.104 0-2-.896-2-2.001v-18.999c0-1.105.895-2 2-2z"></path>
+                                                        <path fill="#bbb" class="svg-debit-data"
+                                                              d="M12.993 15v2h16v-2h-16zm0 5h10v-2h-10v2zm-4-5h-4c-1.104 0-2 .896-2 2v1c0 1.104.896 2 2 2h4c1.104 0 2-.896 2-2v-1c0-1.104-.896-2-2-2z"></path>
+                                                        <path fill="#fff" class="svg-debit-sign"
+                                                              d="M2.993 9h26v3h-26v-3z"></path>
+                                                        <path fill="#555" class="svg-debit-read"
+                                                              d="M-.007 3h32v3h-32v-3z"></path>
+                                                        <text x="5" y="11.6" fill="black" style="font-size: 2.8px;">****
+                                                            ****
+                                                            ****
+                                                            {{::profile.card_last_digits}}
+                                                        </text>
+                                                    </svg>
+                                                </div>
+                                                <md-button ng-if="profile.card_token_created_at" layout-padding
+                                                           class="md-primary md-raised less-margin io-primary-btn"
+                                                           ng-click="removeSellerCard()"
+                                                           aria-label="Delete Card">
                                                     Remove Card
                                                 </md-button>
                                             </div>
@@ -449,7 +460,10 @@
                                                 <ng-form name="verifyCardForm" novalidate=""
                                                          layout-wrap>
 
-                                                    <p style="text-align: center">Simply add a depit card and payments your store recieves will be passed on automaticly.</p>
+                                                    <p style="text-align: center">Simply add a debit card and payments
+                                                        your store recieves will be passed on automaticly.</p>
+
+                                                    <br>
 
                                                     <div layout layout-sm="column" layout-fill>
                                                         <md-input-container flex>
