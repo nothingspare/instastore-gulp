@@ -454,17 +454,18 @@ angular.module('instastore')
             $scope.customFunction = function (code) {
                 switch (code) {
                     case 'instagram':
-                        if (!$mdMedia('xs')) {
-                            $scope.instagramProgress = true;
-                            if ($scope.profile.instagramId) {
-                                $state.go('instaimport', {storeurl: UserService.getMainStoreUrl()});
-                                $mdDialog.hide();
-                            }
-                            else {
+                        $scope.instagramProgress = true;
+                        if ($scope.profile.instagramId) {
+                            $state.go('instaimport', {storeurl: UserService.getMainStoreUrl()});
+                            $mdDialog.hide();
+                        }
+                        else {
+                            if (!$mdMedia('xs')) {
                                 $scope.linkInstagram();
                             }
-                        } else {
-                            toaster.pop('warning', 'You can link account only from PC');
+                            else {
+                                toaster.pop('warning', 'You can link account only from PC');
+                            }
                         }
                         break;
                 }
@@ -483,7 +484,8 @@ angular.module('instastore')
             };
 
         }])
-    .controller('CropUploadCtrl', ['$scope', '$stateParams', 'Upload', 'API_URL', 'toaster', '$window', 'UserService',
+    .
+    controller('CropUploadCtrl', ['$scope', '$stateParams', 'Upload', 'API_URL', 'toaster', '$window', 'UserService',
         function ($scope, $stateParams, Upload, API_URL, toaster, $window, UserService) {
             $scope.myImage = '';
             $scope.myCroppedImage = '';
