@@ -66,11 +66,11 @@
                                     <div ui-tree-handle>
                                         <!--USER section starts-->
                                         <div ng-if="unit.code === 'name'" layout="column" layout-padding>
-                                            <div layout layout-align="center center" layout-wrap>
+                                            <div layout="column" layout-align="center center">
                                                 <img ng-src="{{store.avatar_url|storeAvatar}}"
                                                      class="io-avatar io-avatar-inside-name-draw"/>
-
-                                                <h3 class="profile-email">&nbsp;&nbsp;{{::profile.email}}</h3>
+                                                <!--I should keep style tag style attr to avoid bug with extra margin in popup container-->
+                                                <h3 style="width:200px" class="profile-email">&nbsp;&nbsp;{{::profile.email}}</h3>
                                             </div>
                                             <div layout="column" layout-align="center center">
                                                 
