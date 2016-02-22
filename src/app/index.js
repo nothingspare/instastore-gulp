@@ -1,5 +1,14 @@
 'use strict';
 
+//function isFacebookApp() {
+//    var ua = navigator.userAgent || navigator.vendor || window.opera;
+//    return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+//}
+//
+//if (isFacebookApp()) {
+//    window.location = 'googlechromes://' + window.location.href.replace(/.*?:\/\//g, "");
+//}
+
 var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
         'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
