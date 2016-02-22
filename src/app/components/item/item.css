@@ -205,3 +205,19 @@ div.item-sale-status h5 {
     -webkit-margin-before: 0.6em;
     -webkit-margin-after: 0em;
 }
+
+.item-sold-text {
+    background-color: rgba(255, 0, 0, 0.7);
+    top: 34px;
+    color: #000;
+    font-size: 18px;
+    letter-spacing: .2em;
+    line-height: 1.2em;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    -webkit-transform: rotate(-33deg);
+    transform: rotate(-33deg);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}

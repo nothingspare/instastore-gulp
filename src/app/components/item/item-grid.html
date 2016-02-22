@@ -8,6 +8,7 @@
                      style="background-image:url({{item.images[0].image_url}});"
                      class="grid-image">
                     <div ng-if="item.hasActions" class="item-cta"></div>
+                    <div ng-if="item.itemSellsQuantity == item.quantity" class="item-sold-text">SOLD</div>
                 </div>
                 <p id="grid-price-position"><b
                         class="grid-price-text">${{item.price|itemPrice}}</b></p>
