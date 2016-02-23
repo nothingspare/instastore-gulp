@@ -218,3 +218,7 @@ md-dialog-actions.io-close-btn {
         width: 20px;
     }
 }
+
+.profile-tree .io-primary-btn.io-profile-btn-margin-above.md-raised.md-primary {
+    margin: 30px 0 0 0;
+}
