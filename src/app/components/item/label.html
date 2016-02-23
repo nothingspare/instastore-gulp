@@ -1,54 +1,72 @@
 <md-dialog flex="30" class="label-popup" layout="column" layout-align="center center">
     <md-dialog-content>
-        <div layout layout-align="end start" flex>
-            <md-button ng-click="closeDialog()" class="md-icon-button x-out" aria-label="close dialog">
-                <ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>
+        <!--<div layout layout-align="end start" flex>-->
+        <!--<md-button ng-click="closeDialog()" class="md-icon-button x-out" aria-label="close dialog">-->
+        <!--<ng-md-icon icon="close" style="fill:lightcoral"></ng-md-icon>-->
+        <!--</md-button>-->
+        <!--</div>-->
+
+        <!--<md-dialog-actions class="io-close-btn" layout layout-align="end start">-->
+        <!--<div>-->
+        <!--<div id=lable-button-container>-->
+        <!--<div class="btn padding" ng-click="printLabel()">Print</div>-->
+        <!--<div class="btn padding" ng-click="emailLabel(label.itemsell_id)">Email</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</md-dialog-actions>-->
+        <div layout class="no-print">
+            <md-button ng-click="printLabel()"
+                       class="md-fab md-mini md-primary io-secondary-btn"
+                       aria-label="Print Label">
+                <ng-md-icon icon="print" class="secondary"></ng-md-icon>
+            </md-button>
+            <md-button ng-click="emailLabel(label.itemsell_id)"
+                       class="md-fab md-mini md-primary io-secondary-btn"
+                       aria-label="Email Label">
+                <ng-md-icon icon="email" class="secondary"></ng-md-icon>
+            </md-button>
+            <div flex></div>
+            <md-button ng-click="closeDialog()"
+                       class="md-fab md-mini md-primary io-secondary-btn"
+                       aria-label="Close Dialog">
+                <ng-md-icon icon="close" class="secondary"></ng-md-icon>
             </md-button>
         </div>
-        <div>
-            <div id=lable-button-container>
-                <div class="btn padding" ng-click="printLabel()">Print</div>
-                <div class="btn padding" ng-click="emailLabel(label.itemsell_id)">Email</div>
+        <!--<div style="background: url({{label.url}}) no-repeat center center; background-size: contain; height: 20em"></div>-->
+        <div layout layout-align="center center">
+            <img class="label-image" ng-src="{{label.url}}">
+        </div>
+        <br class="no-print">
+
+        <div class="no-print">
+            <p style="font-size: 75%; line-height: 110%; text-align: center; padding: 0 10px 0 10px;">Attach this
+                shipping
+                label to a <span
+                        style="font-weight: 400">USPS Flat Rate Box.</span> They don't need to be weighed and can be
+                left
+                for the mail man to pick up. No need to go to the post office.</p>
+
+            <div class="no-print" layout layout-xs="column">
+                <div layout layout-align="center center" layout-margin>
+                    <p>
+                        <b>{{isellBox | boxSizeTitle}}</b>
+                        <br>
+                        USPS Priority Mail
+                        <br>
+                        Inside dimensions:
+                        <br>
+                        {{isellBox | boxSizeDimensions}}
+                        <br ng-if="isellBox===20">
+                        {{isellBox===20?' Or 11" x 8-1/2" x 5-1/2"':''}}
+                    </p>
+                </div>
+                <div layout="column" layout-wrap layout-align="center center">
+                    <div ng-class="{'usps-box-large':isellBox===30, 'usps-box-medium2':isellBox===20,'usps-box-small':isellBox===10}"></div>
+                    <md-divider ng-if="isellBox===20"></md-divider>
+                    <div ng-if="isellBox===20" class="usps-box-medium"></div>
+                </div>
             </div>
         </div>
-
-        <img class="label-image" ng-src={{label.url}}>
-        <br>
-
-        <p style="font-size: 75%; line-height: 110%; text-align: center; padding: 0 10px 0 10px;">Attach this shipping label to a <span
-                style="font-weight: 400">USPS Flat Rate Box.</span> They don't need to be weighed and can be left for the mail man to pick up. No need to go to the post office.</p>
-
-        <div layout>
-            <div layout layout-align="center center" layout-margin>
-                <p>
-                    <b>{{isellBox | boxSizeTitle}}</b>
-                    <br>
-                    USPS Priority Mail
-                    <br>
-                    Inside dimensions:
-                    <br>
-                    {{isellBox | boxSizeDimensions}}
-                    <br ng-if="isellBox===20">
-                    {{isellBox===20?' Or 11" x 8-1/2" x 5-1/2"':''}}
-                </p>
-            </div>
-            <div layout="column">
-                <div ng-class="{'usps-box-large':isellBox===30, 'usps-box-medium2':isellBox===20,'usps-box-small':isellBox===10}"></div>
-                <md-divider ng-if="isellBox===20"></md-divider>
-                <div ng-if="isellBox===20" class="usps-box-medium"></div>
-            </div>
-        </div>
-
-        <!-- Alt classes for other box sizes:
-
-        usps-box-medium1 - <b>Medium Box 1</b><br>
-        USPS Priority Mail
-        <br>
-        Inside dimensions:
-        <br>
-        11" x 8-1/2" x 5-1/2"
-
-        -->
     </md-dialog-content>
 </md-dialog>
 

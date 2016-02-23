@@ -3889,13 +3889,13 @@ div.rn-carousel-indicator span.active {
 }
 
 .label-popup .label-image {
-    max-width: 100%;
+    width: 60%;
     max-height: 100%;
 }
 
 @media print {
     .label-image {
-        position: fixed;
+        position: static;
         background-color: white;
         height: 100%;
         width: 100%;
