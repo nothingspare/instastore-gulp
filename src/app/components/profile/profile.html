@@ -300,7 +300,8 @@
                                          class="main-title loading" layout-wrap>
                                         PREPARING EXPORT
                                     </div>
-                                    <div ng-if="unit.code === 'card'" class="main-title" layout layout-wrap>
+                                    <!--should keep style tag because of bug on mobile safari-->
+                                    <div ng-if="unit.code === 'card'" class="main-title" layout layout-wrap style="width:250px">
                                         {{profile.card_token_created_at?'Debit Card Verified ' +
                                         (profile.card_token_created_at |
                                         amCalendar):'Enter Debit Card Requisites'}}
@@ -385,7 +386,6 @@
                                             </ng-form>
                                         </div>
                                         <div ng-if="unit.code === 'location'" layout="column" layout-padding>
-
                                             <md-switch class="md-primary no-margin" aria-label="Show store location"
                                                        ng-model="showStoreLocation"
                                                        ng-change="changeShowStoreLocation()">
@@ -406,10 +406,8 @@
                                                 </div>
                                                 <div layout="column" layout-aling="center center"
                                                      ng-if="profile.store.address">
-                                                    <div ng-include="renderMap?'app/components/item/view-tab-location.html':null"></div>
-                                                    <div ng-if="!renderMap">Loading...</div>
                                                     <!--keeping this style attr to prevent bug on profile dialog with fullscreen width-->
-                                                    <div style="width:300px" layout-padding
+                                                    <div style="width:250px" layout-padding
                                                          class="main-title" layout-wrap>{{profile.store.address}}
                                                     </div>
                                                     <div layout layout-align="center center">
