@@ -692,8 +692,10 @@ angular.module('instastore')
                 return uiGmapGoogleMapApi;
             });
     }])
-    .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', 'UserService', 'itemsAmount',
-        function ($scope, $http, API_URL, errorService, UserService, itemsAmount) {
+    .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', 'UserService',
+        'itemsAmount', '$mdDialog', '$mdMedia',
+        function ($scope, $http, API_URL, errorService, UserService, itemsAmount,
+        $mdDialog, $mdMedia) {
 
             $http.get(API_URL + 'v1/link/instagram-media').success(function (data) {
                 $scope.items = data;
@@ -712,7 +714,15 @@ angular.module('instastore')
                 });
                 $http.post(API_URL + 'v1/uploader/item-import', items).success(function (data) {
                     itemsAmount.addItemsAmount(items.length);
+                    $mdDialog.show({
+                        controller: 'ProfileIndex',
+                        templateUrl: 'app/components/profile/profile.html',
+                        parent: angular.element(document.body),
+                        clickOutsideToClose: true,
+                        fullscreen: $mdMedia('xs')
+                    });
                     UserService.goToMainStore();
+
                 }).error(errorService.alert);
             };
 

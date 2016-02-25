@@ -45,6 +45,18 @@ angular.module('instastore')
         '$auth', 'errorService', '$mdDialog', '$mdMedia', '$rootScope', 'rest',
         function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
                   $mdDialog, $mdMedia, $rootScope, rest) {
+
+            $scope.showProfile = function (ev) {
+                $mdDialog.show({
+                    controller: 'ProfileIndex',
+                    templateUrl: 'app/components/profile/profile.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: $mdMedia('xs')
+                });
+            };
+
             UserService.initStore();
 
             $scope.profile = UserService.getProfile();
@@ -88,17 +100,6 @@ angular.module('instastore')
                 $mdDialog.show({
                     controller: 'ItemAdd',
                     templateUrl: 'app/components/item/view-tab-edit.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: $mdMedia('xs')
-                });
-            };
-
-            $scope.showProfile = function (ev) {
-                $mdDialog.show({
-                    controller: 'ProfileIndex',
-                    templateUrl: 'app/components/profile/profile.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true,

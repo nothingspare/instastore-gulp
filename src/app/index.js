@@ -34,7 +34,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('grid', {
-            url: '/:storeurl/mode/:mode',
+            url: '/:storeurl/mode/:mode?profile=true',
             controller: 'ItemIndex',
             templateUrl: function ($stateParams) {
                 return $stateParams.mode !== 'feed' ? modulesPath + '/item/item-grid.html' : modulesPath + '/item/index.html';
