@@ -2,9 +2,12 @@
 
 angular.module('instastore')
     .controller('ItemIndex', ['$scope', 'rest', 'toaster', 'UserService', '$stateParams', '$rootScope',
-        '$state', 'feedHelper', 'errorService', '$filter', 'ITEM_STATUS', '$auth',
+        '$state', 'feedHelper', 'errorService', '$filter', 'ITEM_STATUS', '$auth', 'InAppService',
         function ($scope, rest, toaster, UserService, $stateParams, $rootScope,
-                  $state, feedHelper, errorService, $filter, ITEM_STATUS, $auth) {
+                  $state, feedHelper, errorService, $filter, ITEM_STATUS, $auth, InAppService) {
+
+            InAppService.warnIfInApp();
+
             $scope.$on('newItem', function (event, item) {
                 if (item) $scope.items.unshift(item);
                 $scope.showPanel = false;
@@ -95,11 +98,13 @@ angular.module('instastore')
     .controller('ItemView', ['$scope', 'rest', 'toaster', '$state', 'feedHelper', 'errorService',
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', '$window',
-        'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia', 'itemsAmount',
+        'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia', 'itemsAmount', 'InAppService',
         function ($scope, rest, toaster, $state, feedHelper, errorService, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
                   ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
-                  itemsAmount) {
+                  itemsAmount, InAppService) {
+
+            InAppService.warnIfInApp();
 
             $scope.seeMore = false;
 

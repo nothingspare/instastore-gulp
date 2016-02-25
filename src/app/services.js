@@ -324,7 +324,13 @@ angular.module('instastore')
             noitemwithurl: {status: 404, name: 'error', message: 'There is no item with such url'},
             fileisntuploaded: {status: 500, name: 'Ooops!', code: 500, message: 'File is not uploaded!'},
             noinviterwithurl: {status: 404, name: 'error', message: 'There is no inviter store with such url'},
-            lstorageisnotavailable: {status: 'Ooops!', name: 'error', message: 'Session Storage is not available'}
+            lstorageisnotavailable: {status: 'Ooops!', name: 'error', message: 'Session Storage is not available'},
+            inapp: {
+                status: 'Ooops',
+                name: 'warning',
+                message: 'You are using isOpen in Facebook in-app browser, which cuts isopen functionality.' +
+                ' You would not be able to login, buy item, etc. Please open isOpen in regular browser. You can click "Share" when viewing the link and choose "Open in Safari"'
+            }
         };
         return {
             alert: function (data) {
@@ -386,6 +392,19 @@ angular.module('instastore')
             };
         }
     ])
+    .service('InAppService', ['errorService', function (errorService) {
+        return {
+            isFacebookInApp: function () {
+                var ua = navigator.userAgent || navigator.vendor || window.opera;
+                return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+            },
+            warnIfInApp: function () {
+                if (this.isFacebookInApp()) {
+                    errorService.simpleAlert('inapp');
+                }
+            }
+        }
+    }])
     .factory('RouterTracker', ['$rootScope', function ($rootScope) {
         var routeHistory = [];
         var service = {

@@ -10,19 +10,20 @@
                 <br>
 
 
-                <a ng-if="isSession" ng-click="authenticate('facebook')" class="btn btn-blu">Enter with Facebook</a>
+                <a ng-if="isSession && !isInApp" ng-click="authenticate('facebook')" class="btn btn-blu">Enter
+                    with Facebook</a>
 
-               <!--  <div class="seemorecontainer">
+                <!--  <div class="seemorecontainer">
 
-                    <div  ng-if="isSession" class="seemore" id="ii"><span ng-click="showFacebookTip=!showFacebookTip">Why Facebook?</span>
-                    </div>
-                    <div ng-if="showFacebookTip" class="seemorecontent am-fade-and-slide-left"
-                         style="display:block;margin: -5px 8px 4px 8px; padding: 10px; width: 280px;">
+                     <div  ng-if="isSession" class="seemore" id="ii"><span ng-click="showFacebookTip=!showFacebookTip">Why Facebook?</span>
+                     </div>
+                     <div ng-if="showFacebookTip" class="seemorecontent am-fade-and-slide-left"
+                          style="display:block;margin: -5px 8px 4px 8px; padding: 10px; width: 280px;">
 
-                        <p>We use Facebook to match Mobbbi stores with the friends they have invited. You can click <a href="#">here</a> to unlink your account after you have looked around.</p>
+                         <p>We use Facebook to match Mobbbi stores with the friends they have invited. You can click <a href="#">here</a> to unlink your account after you have looked around.</p>
 
-                    </div>
-                </div> -->
+                     </div>
+                 </div> -->
             </center>
         </div>
     </div>

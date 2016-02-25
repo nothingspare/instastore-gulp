@@ -1,8 +1,13 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'errorService', '$state', '$auth', 'UserService', 'SStorage',
-        function ($scope, $rootScope, rest, errorService, $state, $auth, UserService, SStorage) {
+    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'errorService', '$state',
+        '$auth', 'UserService', 'SStorage', 'InAppService',
+        function ($scope, $rootScope, rest, errorService, $state,
+                  $auth, UserService, SStorage, InAppService) {
+
+            InAppService.warnIfInApp();
+            $scope.isInApp = InAppService.isFacebookInApp();
 
             if (!UserService.isGuest()) {
                 if (!UserService.goToLastRouteFromProfile()) {
