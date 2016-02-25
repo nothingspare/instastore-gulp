@@ -14,7 +14,7 @@
             </md-input-container>
         </ng-form>
     </section>
-    <md-list ng-cloak>
+    <md-list ng-cloak class="share-list">
         <md-list-item>
             <ng-md-icon icon="facebook" style="fill:darkgray"></ng-md-icon>
             <p style="color:darkgray; font-size: 100% !important;">Facebook</p>
@@ -34,8 +34,7 @@
         </md-list-item>
     </md-list>
 
-    <div layout layout-align="center center"
-         class="am-collapse bottom-padding">
+    <div layout layout-align="center center">
         <md-button ng-disabled="!post.content" class="md-primary md-raised less-margin io-primary-btn"
                    ng-click="postSocial()">Share item
         </md-button>
@@ -44,17 +43,18 @@
     <section layout="column" layout-align="center center" layout-padding>
         <p>Item link</p>
 
-        <div class="url-text">
+        <div class="url-text share-url">
             <h4>{{itemUrl}}</h4>
         </div>
     </section>
 
-    <div layout="column" layout-align="center center" layout-padding>
+    <div layout="column" layout-align="center center" layout-padding class="share-custom-services">
         <p class="text-align-center" layout layout-margin>
             Expand your stores audience with these recurring services.
         </p>
         <!--Have to keep it because bug on mobile safari-->
-        <div hide-gt-sm>
+        <div hide-gt-xs>
+            <br>
             <br>
             <br>
         </div>

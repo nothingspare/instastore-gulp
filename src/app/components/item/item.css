@@ -98,6 +98,22 @@
     margin-bottom: 0;
 }
 
+.itemview.item-container md-list.share-list {
+    margin-top: -25px;
+}
+
+.itemview.item-container md-list.share-list md-switch {
+    margin: 10px 0;
+}
+
+.itemview.item-container .url-text.share-url {
+    margin-bottom: 0;
+}
+
+.itemview.item-container .share-custom-services .md-button {
+    margin: 0 8px;
+}
+
 .itemview.item-container .io-shipping-proccessing {
     border-radius: 25px;
 }
