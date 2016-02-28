@@ -1,14 +1,5 @@
 'use strict';
 
-//function isFacebookApp() {
-//    var ua = navigator.userAgent || navigator.vendor || window.opera;
-//    return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
-//}
-//
-//if (isFacebookApp()) {
-//    window.location = 'googlechromes://' + window.location.href.replace(/.*?:\/\//g, "");
-//}
-
 var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
         'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
@@ -53,38 +44,17 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/site/storeselect.html'
         });
 
-
         $stateProvider.state('itemview', {
             url: '/:storeurl/:itemurl/:tab',
             controller: 'ItemView',
             templateUrl: modulesPath + '/item/view.html'
         });
 
-
         $stateProvider.state('accounts', {
             url: '/accounts/',
             controller: 'StoreAccounts',
             templateUrl: modulesPath + '/store/accounts.html'
         });
-
-        //$stateProvider.state('profile', {
-        //    url: '/profile/',
-        //    resolve: {
-        //        PreviousState: [
-        //            '$state',
-        //            function ($state) {
-        //                var currentStateData = {
-        //                    Name: $state.current.name,
-        //                    Params: $state.params,
-        //                    URL: $state.href($state.current.name, $state.params)
-        //                };
-        //                return currentStateData;
-        //            }
-        //        ]
-        //    },
-        //    controller: 'ProfileIndex',
-        //    templateUrl: modulesPath + '/profile/index.html'
-        //});
 
         $stateProvider.state('profilestore', {
             url: '/profilestore/',
@@ -187,8 +157,8 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         plUploadServiceProvider.setConfig('silverLightPath', 'bower_components/plupload-angular-directive/plupload.silverlight.xap');
         plUploadServiceProvider.setConfig('resize', {width: 310, height: 390});
 
-        //stripeProvider.setPublishableKey('pk_live_gAjzCf5vWrdKN8ycRSCbQDan');
-        stripeProvider.setPublishableKey('pk_test_1tDqDLjRoJ6lkeyKoQsQ4ZX0');
+        stripeProvider.setPublishableKey('pk_live_gAjzCf5vWrdKN8ycRSCbQDan');
+        //stripeProvider.setPublishableKey('pk_test_1tDqDLjRoJ6lkeyKoQsQ4ZX0');
 
         $mdThemingProvider.definePalette('amazingPaletteName', {
             '50': 'ffebee',
