@@ -3949,7 +3949,7 @@ svg.svg-debit {
     background-color: white !important;
 }
 
-.md-button.md-raised.io-primary-btn {
+.md-button.md-raised.io-primary-btn, .md-raised.md-primary.md-hue-3.io-primary-btn {
     /*font-family: "helvetica neue", "helvetica", "arial", "san-serif";*/
     text-transform: none;
     border-radius: 4px;
@@ -4148,8 +4148,8 @@ ng-md-icon[size="48"] {
 
 md-dialog.io-dialog-no-opacity {
     opacity: 1;
-    max-width:100%;
-    width:100%;
+    max-width: 100%;
+    width: 100%;
 }
 
 .text-align-center {
@@ -4165,11 +4165,11 @@ md-dialog.io-dialog-no-opacity {
     width: 24px;
 }
 
-md-dialog{
+md-dialog {
     width: 50%;
 }
 
-.dialog-header-container{
+.dialog-header-container {
     background-color: whitesmoke;
 }
 
