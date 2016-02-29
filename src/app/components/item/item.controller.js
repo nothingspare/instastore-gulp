@@ -108,14 +108,6 @@ angular.module('instastore')
 
             $scope.seeMore = false;
 
-            uiGmapGoogleMapApi
-                .then(function () {
-                    return uiGmapGoogleMapApi;
-                })
-                .then(function () {
-                    $scope.renderMap = true;
-                });
-
             if (!$scope.item) {
                 $scope.item = {};
                 if (!UserService.isGuest()) {
@@ -137,6 +129,14 @@ angular.module('instastore')
                     $state.go('grid');
                 }
             }
+
+            uiGmapGoogleMapApi
+                .then(function () {
+                    return uiGmapGoogleMapApi;
+                })
+                .then(function () {
+                    $scope.renderMap = true;
+                });
 
             $scope.profile = UserService.getProfile();
 

@@ -10,7 +10,7 @@ angular.module('instastore')
                 store: '=',
                 storeUrl: '='
             },
-            controller: 'ItemView',
+            //controller: 'ItemView',
             link: function (scope, elem, attrs) {
 
             }
