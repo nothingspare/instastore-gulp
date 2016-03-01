@@ -126,7 +126,7 @@ angular.module('instastore')
                 }
                 else {
                     errorService.simpleAlert('noitemwithurl');
-                    $state.go('grid');
+                    UserService.goToMainStore();
                 }
             }
 

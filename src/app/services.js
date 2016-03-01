@@ -404,7 +404,6 @@ angular.module('instastore')
                         templateUrl: 'app/components/item/inapp-warning.html',
                         parent: angular.element(document.body),
                         clickOutsideToClose: true,
-                        fullscreen: $mdMedia('xs'),
                         controller: function ($scope, $mdDialog) {
                             $scope.closeDialog = function () {
                                 $mdDialog.hide();

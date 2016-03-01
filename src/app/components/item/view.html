@@ -29,8 +29,8 @@
                     <md-tab md-on-select="isGuest?login():''">
                         <md-tab-label>
                             <div layout layout-align="center center">
-                                <div ng-if="!item.price" class="buy-circle"></div>
-                                <span ng-if="item.price" class="price-tag">${{item.price|number:0}}</span>
+                                <div ng-if="!item.price || !item.quantity || !item.box" class="buy-circle"></div>
+                                <span ng-if="item.price && item.quantity || item.box" class="price-tag">${{item.price|number:0}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
