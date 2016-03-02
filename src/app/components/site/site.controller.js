@@ -42,19 +42,24 @@ angular.module('instastore')
 
         }])
     .controller('SiteHeader', ['$scope', '$state', 'UserService', '$stateParams', '$location', '$anchorScroll',
-        '$auth', 'errorService', '$mdDialog', '$mdMedia', '$rootScope', 'rest',
+        '$auth', 'errorService', '$mdDialog', '$mdMedia', '$rootScope', 'rest', 'InAppService',
         function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
-                  $mdDialog, $mdMedia, $rootScope, rest) {
+                  $mdDialog, $mdMedia, $rootScope, rest, InAppService) {
 
             $scope.showProfile = function (ev) {
-                $mdDialog.show({
-                    controller: 'ProfileIndex',
-                    templateUrl: 'app/components/profile/profile.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: $mdMedia('xs')
-                });
+                if (!InAppService.isFacebookInApp()) {
+                    $mdDialog.show({
+                        controller: 'ProfileIndex',
+                        templateUrl: 'app/components/profile/profile.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                        fullscreen: $mdMedia('xs')
+                    });
+                }
+                else {
+                    InAppService.warnIfInApp();
+                }
             };
 
             UserService.initStore();

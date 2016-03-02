@@ -3897,14 +3897,19 @@ div.rn-carousel-indicator span.active {
     .label-image {
         position: static;
         background-color: white;
-        height: 100%;
-        width: 100%;
+        height: 3.5in;
+        width: 3.5in;
         top: 0;
         left: 0;
         margin: 0;
         padding: 15px;
         font-size: 14px;
         line-height: 18px;
+    }
+
+    md-dialog {
+        width: 3.5in;
+        height: 3.5in;
     }
 
     .no-print, .no-print * {

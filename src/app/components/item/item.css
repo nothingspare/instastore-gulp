@@ -238,9 +238,12 @@ div.item-sale-status h5 {
     transform-origin: 50% 50%;
 }
 
+.inapp-warning-dialog {
+    top: -70px;
+}
+
 .inapp-warning p {
     margin: 16px 16px;
-    text-indent: 1.5em;
-    text-align: justify;
+    text-align: center;
     line-height: 24px;
 }

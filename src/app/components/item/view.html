@@ -1,7 +1,6 @@
 <div layout="column" layout-align="center center" layout-fill class="grid-container itemfeed no-print top-margin">
     <div layout="column" class="item-container itemview">
         <md-card>
-
             <div ng-if="showHearts" class="rowfree">
                 <div class="heartoverimage2 heart-reveal-large"></div>
             </div>
@@ -30,7 +29,8 @@
                         <md-tab-label>
                             <div layout layout-align="center center">
                                 <div ng-if="!item.price || !item.quantity || !item.box" class="buy-circle"></div>
-                                <span ng-if="item.price && item.quantity || item.box" class="price-tag">${{item.price|number:0}}</span>
+                                <span ng-if="item.price && item.quantity && item.box && item.price > 0"
+                                      class="price-tag">${{item.price|number:0}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
@@ -47,14 +47,14 @@
                             <div ng-include="'app/components/item/view-tab-comment.html'"></div>
                         </md-tab-body>
                     </md-tab>
-                    <md-tab>
+                    <md-tab md-on-select="isFacebookInApp?warnIfInApp():''">
                         <md-tab-label>
                             <div layout layout-align="center center">
                                 <div class="heart-circle"></div>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
-                            <div ng-include="'app/components/item/view-tab-like.html'"></div>
+                            <div ng-if="!isFacebookInApp" ng-include="'app/components/item/view-tab-like.html'"></div>
                             <div layout="column" style="height: 20px;"></div>
                             <table class="prev-customers">
                                 <tr>
@@ -85,8 +85,9 @@
                     <md-tab md-on-select="changeStateAndUrlToTab('0');goToBottom()">
                         <md-tab-label>
                             <div layout layout-align="center center">
-                                <div ng-if="!item.price" class="buy-circle"></div>
-                                <span ng-if="item.price" class="price-tag">${{item.price|number:0}}</span>
+                                <div ng-if="!item.price || !item.quantity || !item.box" class="buy-circle"></div>
+                                <span ng-if="item.price && item.quantity && item.box && item.price > 0"
+                                      class="price-tag">${{item.price|number:0}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>

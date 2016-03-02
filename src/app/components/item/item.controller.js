@@ -104,7 +104,10 @@ angular.module('instastore')
                   ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
                   itemsAmount, InAppService) {
 
-            InAppService.warnIfInApp();
+            $scope.isFacebookInApp = InAppService.isFacebookInApp();
+            $scope.warnIfInApp = function () {
+                InAppService.warnIfInApp();
+            };
 
             $scope.seeMore = false;
 
@@ -695,7 +698,7 @@ angular.module('instastore')
     .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', 'UserService',
         'itemsAmount', '$mdDialog', '$mdMedia',
         function ($scope, $http, API_URL, errorService, UserService, itemsAmount,
-        $mdDialog, $mdMedia) {
+                  $mdDialog, $mdMedia) {
 
             $http.get(API_URL + 'v1/link/instagram-media').success(function (data) {
                 $scope.items = data;
