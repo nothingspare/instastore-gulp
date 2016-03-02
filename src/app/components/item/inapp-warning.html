@@ -1,0 +1,19 @@
+<md-dialog class="inapp-warning-dialog">
+    <md-dialog-actions class="io-close-btn" layout layout-align="end start">
+        <md-button ng-click="closeDialog()"
+                   class="md-fab md-mini md-primary io-secondary-btn"
+                   aria-label="Close Dialog">
+            <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+        </md-button>
+    </md-dialog-actions>
+    <md-dialog-content class="inapp-warning">
+        <div class="dialog-header-container" layout layout-align="center center" layout-padding>
+            <h4 flex class="dialog-header">WARNING</h4>
+        </div>
+        <div layout="column">
+            <p>To view this &nbsp;<u>isOpen</u>&nbsp;page with full functionality open it in your browser&nbsp;
+                <ng-md-icon icon="safari"></ng-md-icon>
+            </p>
+        </div>
+    </md-dialog-content>
+</md-dialog>
