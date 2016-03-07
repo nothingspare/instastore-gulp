@@ -28,9 +28,8 @@
                     <md-tab md-on-select="isGuest?login():''">
                         <md-tab-label>
                             <div layout layout-align="center center">
-                                <div ng-if="!item.price || !item.quantity || !item.box" class="buy-circle"></div>
-                                <span ng-if="item.price && item.quantity && item.box && item.price > 0"
-                                      class="price-tag">${{item.price|number:0}}</span>
+                                <div ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)" class="buy-circle"></div>
+                                <span ng-if="(item.price && item.quantity && item.box && item.price > 0) && !(item.itemSellsQuantity == item.quantity)" class="price-tag">${{item.price|number:0}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
@@ -85,9 +84,8 @@
                     <md-tab md-on-select="changeStateAndUrlToTab('0');goToBottom()">
                         <md-tab-label>
                             <div layout layout-align="center center">
-                                <div ng-if="!item.price || !item.quantity || !item.box" class="buy-circle"></div>
-                                <span ng-if="item.price && item.quantity && item.box && item.price > 0"
-                                      class="price-tag">${{item.price|number:0}}</span>
+                                <div ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)" class="buy-circle"></div>
+                                <span ng-if="(item.price && item.quantity && item.box && item.price > 0) && !(item.itemSellsQuantity == item.quantity)" class="price-tag">${{item.price|number:0}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>

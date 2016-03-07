@@ -301,7 +301,8 @@
                                         PREPARING EXPORT
                                     </div>
                                     <!--should keep style tag because of bug on mobile safari-->
-                                    <div ng-if="unit.code === 'card'" class="main-title" layout layout-wrap style="width:250px">
+                                    <div ng-if="unit.code === 'card'" class="main-title" layout layout-wrap
+                                         style="width:250px">
                                         {{profile.card_token_created_at?'Debit Card Verified ' +
                                         (profile.card_token_created_at |
                                         amCalendar):'Enter Debit Card Requisites'}}
@@ -461,9 +462,7 @@
                                                     <p style="text-align: center">Simply add a debit card and payments
                                                         your store recieves will be passed on automaticly.</p>
 
-                                                    <br>
-
-                                                    <div layout layout-sm="column" layout-fill>
+                                                    <div layout layout-sm="column" layout-fill layout-padding>
                                                         <md-input-container flex>
                                                             <label>Card number</label>
                                                             <input ng-model="cardNumber" type="text"
@@ -474,7 +473,8 @@
                                                                    card-type="cardType" required>
                                                         </md-input-container>
                                                     </div>
-                                                    <div layout layout-sm="column" layout-fill>
+
+                                                    <div layout layout-sm="column" layout-fill layout-padding>
                                                         <md-input-container flex>
                                                             <label>00/00</label>
                                                             <input type="text"
