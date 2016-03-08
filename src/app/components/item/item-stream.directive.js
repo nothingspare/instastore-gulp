@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('instastore')
-    .directive('itemStream', [function () {
+    .directive('itemStream', ['$state', function ($state) {
         return {
             restrict: 'A',
             templateUrl: 'app/components/item/item-stream.html',
@@ -10,9 +10,8 @@ angular.module('instastore')
                 store: '=',
                 storeUrl: '='
             },
-            //controller: 'ItemView',
-            link: function (scope, elem, attrs) {
-
+            link: function (scope) {
+                scope.$state = $state;
             }
         }
     }]);

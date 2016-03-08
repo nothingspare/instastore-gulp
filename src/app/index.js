@@ -32,6 +32,14 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             }
         });
 
+        $stateProvider.state('stream', {
+                url: '/stream/view/:mode?profile=true',
+            controller: 'ItemStream',
+            templateUrl: function ($stateParams) {
+                return $stateParams.mode !== 'feed' ? modulesPath + '/item/item-grid.html' : modulesPath + '/item/index.html';
+            }
+        });
+
         $stateProvider.state('sellorbuy', {
             url: '/sellorbuy/',
             controller: 'SellOrBuy',

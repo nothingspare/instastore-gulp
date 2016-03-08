@@ -1,3 +1,8 @@
+<div ng-if="$state.includes('stream')" layout layout-padding ui-sref="store({storeurl:item.user.store.store_url})">
+    <img ng-src="{{item.user.store.avatar_url|storeAvatar}}" class="io-avatar"/>
+
+    <h3>{{item.user.store.store_name}}</h3>
+</div>
 <div>
     <div ui-sref="itemview({storeurl:storeUrl,itemurl:item.item_url,tab:1})" id="item-large-pic"
          ng-style="{'background-image': 'url(' + item.images[0].image_url + ')', 'opacity':item.status==10?0.3:1}"
@@ -8,8 +13,10 @@
         <div layout layout-align="center center" class="price-tag-wrapper"
              ui-sref="itemview({storeurl:storeUrl,itemurl:item.item_url,tab:0})">
             <div layout layout-align="center center">
-                <div ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)" class="buy-circle"></div>
-                <span ng-if="(item.price && item.quantity && item.box && item.price > 0) && !(item.itemSellsQuantity == item.quantity)" class="price-tag">${{item.price|number:0}}</span>
+                <div ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)"
+                     class="buy-circle"></div>
+                <span ng-if="(item.price && item.quantity && item.box && item.price > 0) && !(item.itemSellsQuantity == item.quantity)"
+                      class="price-tag">${{item.price|number:0}}</span>
             </div>
         </div>
         <div class="io-item-stream-description" flex layout layout-fill layout-wrap layout-align="start center"
