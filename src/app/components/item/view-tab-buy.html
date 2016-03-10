@@ -13,13 +13,13 @@
 
     <div ng-if="!(!item.price || item.quantity<1 || !item.quantity || (item.quantity == item.itemSellsQuantity))">
         <div layout layout-padding layout-align="center center">
-            <md-button flex-xs="90" flex-gt-xs="60" ng-click="confirmBuying()"
+            <md-button flex-xs="90" flex-gt-xs="60" ng-click="isGuest?login():confirmBuying()"
                        class="md-raised md-primary md-hue-3 io-primary-btn">
                 Buy {{item.price | currency}}
             </md-button>
         </div>
 
-        <div layout="column" layout-align="center center" ng-if="item.box>0">
+        <div layout="column" layout-align="center center" ng-if="item.box>0 && !isGuest">
             <p layout-padding>Delivered to:</p>
 
             <h3 class="delivery-address">{{profile.address}}{{profile.apartment?' '+
