@@ -25,7 +25,7 @@
                          md-stretch-tabs="always" md-no-ink-bar
                          md-dynamic-height md-border-bottom
                          md-selected="$stateParams.tab">
-                    <md-tab md-on-select="isGuest?login():''">
+                    <md-tab>
                         <md-tab-label>
                             <div layout layout-align="center center">
                                 <div ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)" class="buy-circle"></div>

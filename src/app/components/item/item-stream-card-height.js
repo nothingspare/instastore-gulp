@@ -8,7 +8,7 @@ angular.module('instastore')
                 element.parent().css('height', element[0].width + 'px');
 
                 angular.element($window).bind('resize', function () {
-                    scope.width = $window.innerWidth;
+                    //scope.width = $window.innerWidth;
                     // manual $digest required as resize event
                     // is outside of angular
                     console.log(element[0].width);

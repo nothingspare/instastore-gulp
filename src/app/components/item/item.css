@@ -247,3 +247,11 @@ div.item-sale-status h5 {
     text-align: center;
     line-height: 24px;
 }
+
+.multistore-content {
+    background: transparent;
+}
+
+.io-stream-card {
+    margin: 0;
+}

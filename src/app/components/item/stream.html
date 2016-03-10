@@ -1,14 +1,19 @@
 <md-toolbar md-scroll-shrink>
     <div class="md-toolbar-tools">My Store</div>
 </md-toolbar>
-<md-content style="height: 570px;">
+<md-content class="multistore-content" multistore-stream-container-height>
     <section ng-repeat="item in items track by $index">
         <md-subheader class="md-primary">
             <div layout>
                 <img ng-src="{{item.user.store.avatar_url|storeAvatar}}" class="io-avatar"/>
 
-                <h3>{{item.user.store.store_name}}</h3></div>
+                <h3>{{item.user.store.store_name}}</h3>
+            </div>
         </md-subheader>
-        <md-card item-stream item="item" store="store" store-url="$stateParams.storeurl"></md-card>
+        <div>
+            <md-card class="io-stream-card" item-stream item="item" store="store"
+                     style="max-width: 600px; max-height: 600px; margin: 0 auto;"
+                     store-url="$stateParams.storeurl"></md-card>
+        </div>
     </section>
 </md-content>
