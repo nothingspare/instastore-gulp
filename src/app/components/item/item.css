@@ -255,3 +255,12 @@ div.item-sale-status h5 {
 .io-stream-card {
     margin: 0;
 }
+
+.md-subheader .md-subheader-inner{
+    padding: 0;
+}
+
+.md-sticky-clone[sticky-state="active"]:not(.md-sticky-no-effect) .md-subheader-inner {
+    -webkit-animation: none;
+    animation: none;
+}

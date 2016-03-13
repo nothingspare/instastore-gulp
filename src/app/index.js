@@ -33,10 +33,10 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('stream', {
-            url: '/stream/view/:mode?profile=true',
+            url: '/stream/view/:view?profile=true',
             controller: 'ItemStream',
             templateUrl: function ($stateParams) {
-                return $stateParams.mode !== 'feed' ? modulesPath + '/item/item-grid.html' : modulesPath + '/item/stream.html';
+                return $stateParams.view !== 'feed' ? modulesPath + '/item/item-grid.html' : modulesPath + '/item/stream.html';
             }
         });
 

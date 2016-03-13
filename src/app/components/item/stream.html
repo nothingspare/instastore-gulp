@@ -1,19 +1,40 @@
-<md-toolbar md-scroll-shrink>
-    <div class="md-toolbar-tools">My Store</div>
+<md-button class="md-fab md-primary md-fab-bottom-right io-primary-btn">
+    <span style="color:white; font-size:28px;">+</span>
+</md-button>
+<md-toolbar style="background-color: transparent">
+    <div class="md-toolbar-tools md-whiteframe-1dp" style="max-width: 600px;margin: 0 auto; background-color: rgba(255,255,255, 0.4)">
+        <img ng-src="{{profile.store.avatar_url|storeAvatar}}" class="io-avatar"/>
+        &nbsp;&nbsp;&nbsp;
+        <h3>{{profile.store.store_name}}</h3>
+
+        <div flex></div>
+        <div class="user"></div>
+    </div>
 </md-toolbar>
 <md-content class="multistore-content" multistore-stream-container-height>
-    <section ng-repeat="item in items track by $index">
-        <md-subheader class="md-primary">
-            <div layout>
+    <section ng-repeat="item in items track by $index" class="itemfeed">
+        <md-subheader class="md-primary" style="background-color: transparent">
+            <div layout layout-padding style="max-width:600px;margin: 0 auto; background-color: whitesmoke;"
+                 class="md-whiteframe-1dp">
                 <img ng-src="{{item.user.store.avatar_url|storeAvatar}}" class="io-avatar"/>
-
+                &nbsp;&nbsp;
                 <h3>{{item.user.store.store_name}}</h3>
+
+                <div flex></div>
+                <!--<md-button class="md-primary md-raised io-primary-btn">Follow+</md-button>-->
+                <!--<h4 style="line-height: 38px; color:darkgray">{{item.created_at | amCalendar}}</h4>-->
+
+                <div class="gridstream multistream-icon"></div>
+                <div class="stream multistream-icon"></div>
+                <div class="location multistream-icon"></div>
+                <ng-md-icon icon="plus_one" style="fill:black"></ng-md-icon>
             </div>
         </md-subheader>
         <div>
             <md-card class="io-stream-card" item-stream item="item" store="store"
-                     style="max-width: 600px; max-height: 600px; margin: 0 auto;"
+                     style="max-width: 600px; margin: 0 auto;"
                      store-url="$stateParams.storeurl"></md-card>
+            <br>
         </div>
     </section>
 </md-content>

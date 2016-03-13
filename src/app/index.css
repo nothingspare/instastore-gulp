@@ -4184,3 +4184,15 @@ md-dialog {
     font-weight: 400;
     padding: 15px 8px 15px 8px;
 }
+
+.gridstream.multistream-icon {
+    background-position: -209px 0;
+}
+
+.stream.multistream-icon {
+    background-position: -259px 0;
+}
+
+.location.multistream-icon {
+    background-position: -157px 0;
+}

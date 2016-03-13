@@ -11,6 +11,9 @@ app.controller('ItemStream', [
               rest,
               errorService,
               UserService) {
+
+        $scope.profile = UserService.getProfile();
+
         rest.path = 'v1/streams';
         rest.models().success(function (data) {
             $scope.items = data;
