@@ -4,7 +4,7 @@ var app = angular.module('instastore',
     ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
         'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
         'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive', 'ui.tree',
-        'angularMoment', 'payment', 'angular-stripe', 'ngMdIcons', 'ngMaterial', 'ngMessages'
+        'angularMoment', 'payment', 'angular-stripe', 'ngMdIcons', 'ngMaterial', 'ngMessages', 'angular-parallax'
     ]);
 
 app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider',
@@ -37,6 +37,14 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             controller: 'ItemStream',
             templateUrl: function ($stateParams) {
                 return $stateParams.view !== 'feed' ? modulesPath + '/item/item-grid.html' : modulesPath + '/item/stream.html';
+            }
+        });
+
+        $stateProvider.state('parallax', {
+            url: '/parallax/?profile=true',
+            controller: 'ItemStream',
+            templateUrl: function () {
+                return modulesPath + '/item/stream-parallax.html';
             }
         });
 

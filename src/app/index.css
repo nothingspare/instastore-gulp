@@ -631,7 +631,7 @@ body {
 
 html {
     background-size: cover;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 html:before {
