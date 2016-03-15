@@ -48,6 +48,12 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             }
         });
 
+        $stateProvider.state('subscriptions', {
+            url: '/subscriptions/:storeurl',
+            controller: 'SubscriptionsMain',
+            templateUrl: modulesPath + '/subscriptions/subscriptions.html'
+        });
+
         $stateProvider.state('sellorbuy', {
             url: '/sellorbuy/',
             controller: 'SellOrBuy',

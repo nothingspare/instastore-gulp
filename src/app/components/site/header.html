@@ -45,8 +45,6 @@
                     <div ng-if="isSeller" ng-click="showProfile()"
                          class="fast-tap btn">
                         &nbsp;Edit profile&nbsp;</div>
-                    <md-button class="md-primary md-raised io-primary-btn" ui-sref="stream({view:'feed'})">Multistream
-                    </md-button>
                 </div>
             </div>
         </div>
@@ -54,33 +52,58 @@
 
         <div id="container2">
             <div id="navigation2">
-                <ul ng-if="isSeller">
-                    <li><a ng-click="clickToOpen()">
+                <div ng-if="isSeller" layout layout-align="center center">
+                    <div layout flex
+                         class="subheader-menu-item"
+                         ng-click="clickToOpen()">
                         <div class="additem"></div>
-                    </a></li>
-                    <li><a ui-sref-active="menu-item-active"
-                           ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                    </div>
+                    <div layout flex
+                         class="subheader-menu-item"
+                         ui-sref-active="menu-item-active"
+                         ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
                         <div class="gridstream"></div>
-                    </a></li>
-                    <li><a ui-sref-active="menu-item-active"
-                           ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
+                    </div>
+                    <div layout flex
+                         class="subheader-menu-item"
+                         ui-sref-active="menu-item-active"
+                         ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
                         <div class="stream"></div>
-                    </a></li>
-                </ul>
-                <ul ng-if="!isSeller">
-                    <li><a ui-sref-active="menu-item-active"
-                           ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                    </div>
+                    <div layout flex
+                         class="subheader-menu-item"
+                         ui-sref-active="menu-item-active"
+                         ui-sref="subscriptions({storeurl:$stateParams.storeurl})">
                         <div class="gridstream"></div>
-                    </a></li>
-                    <li><a ui-sref-active="menu-item-active"
-                           ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
+                    </div>
+                </div>
+                <div ng-if="!isSeller"
+                     layout layout-align="center center">
+                    <div layout flex
+                         class="subheader-menu-item"
+                         ui-sref-active="menu-item-active"
+                         ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                        <div class="gridstream"></div>
+                    </div>
+                    <div layout flex
+                         class="subheader-menu-item"
+                         ui-sref-active="menu-item-active"
+                         ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
                         <div class="stream"></div>
-                    </a></li>
-                    <li><a ui-sref-active="menu-item-active"
-                           ui-sref="location({storeurl:$stateParams.storeurl})">
+                    </div>
+                    <div layout flex
+                         class="subheader-menu-item"
+                         ui-sref-active="menu-item-active"
+                         ui-sref="location({storeurl:$stateParams.storeurl})">
                         <div class="location"></div>
-                    </a></li>
-                </ul>
+                    </div>
+                    <div layout flex
+                         class="subheader-menu-item"
+                         ui-sref-active="menu-item-active"
+                         ui-sref="subscriptions({storeurl:$stateParams.storeurl})">
+                        <div class="gridstream"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
