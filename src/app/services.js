@@ -20,7 +20,7 @@ angular.module('instastore')
             }
         };
     })
-// Need set url REST Api in controller!
+    // Need set url REST Api in controller!
     .service('rest', function ($http, $location, $stateParams, API_URL) {
         return {
             baseUrl: API_URL,

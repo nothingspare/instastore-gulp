@@ -1,0 +1,6 @@
+<div ng-repeat="item in items track by $index"
+     parallax-background="" parallax-vertical-offset="100" parallax-ratio="0.4"
+     ng-style="{'background-image': 'url(' + item.images[0].image_url + ')'}"
+     style="background-size: cover; background-position: center center; max-height: 600px; max-width:600px;">
+    <img item-stream-card-height ng-src="{{item.images[0].image_url}}" style="visibility: hidden;">
+</div>

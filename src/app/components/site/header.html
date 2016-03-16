@@ -64,17 +64,17 @@
                          ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
                         <div class="gridstream"></div>
                     </div>
-                    <div layout flex
+                    <div layout flex layout-align="center center"
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
-                        <div class="stream"></div>
+                         ui-sref="stream({storeurl:$stateParams.storeurl, mode:'feed'})">
+                        <span>MStream</span>
                     </div>
-                    <div layout flex
+                    <div layout flex layout-align="center center"
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
                          ui-sref="subscriptions({storeurl:$stateParams.storeurl})">
-                        <div class="gridstream"></div>
+                        <span>Subs</span>
                     </div>
                 </div>
                 <div ng-if="!isSeller"

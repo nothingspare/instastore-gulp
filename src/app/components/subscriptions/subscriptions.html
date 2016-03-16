@@ -1,0 +1,9 @@
+<div layout layout-wrap layout-margin layout-padding>
+    <div layout="column" layout-align="center center"
+         flex-xs="33" flex-sm="15" flex-md="10" flex="8"
+         ng-repeat="sub in subs track by $index"
+         ui-sref="grid({storeurl:sub.store.store_url, mode:'feed'})">
+        <img class="profile" ng-src="{{sub.store.avatar_url}}"/>
+        <span class="md-button">{{sub.store.store_name}}</span>
+    </div>
+</div>
