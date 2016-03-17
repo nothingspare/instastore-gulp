@@ -1,4 +1,4 @@
-<md-toolbar style="background-color: transparent" md-scroll-shrink>
+<div id="header_nav" ng-class="navClass" style="background-color: transparent">
     <div layout="column" ng-controller="SiteHeader" class="no-print">
         <div layout layout-align="center center" class="io-bar">
             <div ng-if="!$state.includes('grid')" ng-click="goBack()">
@@ -16,7 +16,7 @@
                 <div class="user"></div>
             </div>
         </div>
-        <div ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport'))">
+        <div ng-if="showSubheader">
             <div layout="column" class="io-sub-bar-freeshipping">
                 <div layout layout-align="center center" flex layout-padding class="free-shipping">FREE SHIPPING ON ALL
                     ITEMS
@@ -109,20 +109,20 @@
             </div>
         </div>
     </div>
-</md-toolbar>
-<md-content class="multistore-content" multistore-stream-container-height>
+</div>
+<md-content class="multistore-content">
     <section ng-repeat="item in items track by $index" class="itemfeed">
-        <md-subheader class="md-primary" style="background-color: transparent">
-            <div layout layout-padding style="max-width:600px;margin: 0 auto; background-color: whitesmoke;"
-                 class="md-whiteframe-1dp">
-                <img ng-src="{{item.user.store.avatar_url|storeAvatar}}" class="io-avatar"/>
-                &nbsp;&nbsp;
-                <h3>{{item.user.store.store_name}}</h3>
+        <!--<md-subheader class="md-primary" style="background-color: transparent">-->
+            <!--<div layout layout-padding style="max-width:600px;margin: 0 auto; background-color: whitesmoke;"-->
+                 <!--class="md-whiteframe-1dp">-->
+                <!--<img ng-src="{{item.user.store.avatar_url|storeAvatar}}" class="io-avatar"/>-->
+                <!--&nbsp;&nbsp;-->
+                <!--<h3>{{item.user.store.store_name}}</h3>-->
 
-                <div flex></div>
-                <h4 style="line-height: 38px; color:darkgray">{{item.created_at | amCalendar}}</h4>
-            </div>
-        </md-subheader>
+                <!--<div flex></div>-->
+                <!--<h4 style="line-height: 38px; color:darkgray">{{item.created_at | amCalendar}}</h4>-->
+            <!--</div>-->
+        <!--</md-subheader>-->
         <div>
             <md-card class="io-stream-card" item-stream item="item" store="store"
                      style="max-width: 600px; margin: 0 auto;"
