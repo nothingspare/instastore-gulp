@@ -177,7 +177,11 @@ angular.module('instastore')
             initMyStoreSettings: function () {
                 var profile = this.getProfile();
                 $rootScope.store = profile.store;
-                this.setIsSeller(true);
+                if (profile.seller) {
+                    $rootScope.isSeller = true;
+                } else {
+                    $rootScope.isSeller = false;
+                }
                 this.initBgAndAvatar();
             },
             initStore: function () {
@@ -246,8 +250,10 @@ angular.module('instastore')
                 }
             },
             initBgAndAvatar: function () {
-                var bgU = $cookies.bgUrl;
-                if (bgU) $rootScope.bgUrl = bgU;
+                var profile = this.getProfile();
+                if (profile.store.store_url) {
+                    $rootScope.bgUrl = profile.store.bg_url;
+                }
             },
             initBgFilter: function () {
                 var stateService = $injector.get('$state');

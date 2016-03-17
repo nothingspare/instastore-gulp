@@ -118,7 +118,9 @@ angular.module('instastore')
 
             $scope.goBack = function () {
                 if ($state.includes('store')) {
-                    UserService.goToMainStore();
+                    UserService.initMyStoreSettings();
+                    //$rootScope.bgUrl = $scope.profile.store.bg_url;
+                    $state.go('stream', {storeurl: $scope.profile.store.store_url})
                 }
                 else {
                     $state.go('grid', {storeurl: $stateParams.storeurl, mode: $scope.profile.seller ? '' : 'feed'});
