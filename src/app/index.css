@@ -4203,22 +4203,7 @@ md-dialog {
     color: #222;
 }
 
-#header_nav {
-    width: 100%;
-    background-color: #666;
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    -webkit-transition: 0.5s linear all;
-    -moz-transition: 0.5s linear all;
-    -o-transition: 0.5s linear all;
-    transition: 0.5s linear all;
-}
-
-.big {
-    height: 290px;
-}
-
-.small {
-    height: 40px;
+.subheader-menu-item span {
+    font-size: 9pt;
+    text-align: center
 }

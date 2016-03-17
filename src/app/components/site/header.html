@@ -42,9 +42,9 @@
                     <div ng-if="!isSeller" class="btn" ng-click="toggleFollowerState()">{{store.isFollower?'&nbsp;Unfollow
                         Store&nbsp;':'Follow&nbsp;+'}}
                     </div>
-                    <div ng-if="isSeller" ng-click="showProfile()"
-                         class="fast-tap btn">
-                        &nbsp;Edit profile&nbsp;</div>
+                    <md-button ng-if="isSeller" ng-click="showProfile()"
+                               class="md-primary md-raised io-primary-btn">
+                        &nbsp;Edit profile&nbsp;</md-button>
                 </div>
             </div>
         </div>
@@ -67,8 +67,8 @@
                     <div layout flex layout-align="center center"
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="stream({storeurl:$stateParams.storeurl, view:'feed'})">
-                        <span>MStream</span>
+                         ui-sref="stream({storeurl:$stateParams.storeurl})">
+                        <span>Multi<br>Stream</span>
                     </div>
                     <div layout flex layout-align="center center"
                          class="subheader-menu-item"
@@ -85,11 +85,11 @@
                          ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
                         <div class="gridstream"></div>
                     </div>
-                    <div layout flex
+                    <div layout flex layout-align="center center"
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
-                        <div class="stream"></div>
+                         ui-sref="stream({storeurl:$stateParams.storeurl})">
+                        <span>Multi<br>Stream</span>
                     </div>
                     <div layout flex
                          class="subheader-menu-item"
@@ -97,11 +97,11 @@
                          ui-sref="location({storeurl:$stateParams.storeurl})">
                         <div class="location"></div>
                     </div>
-                    <div layout flex
+                    <div layout flex layout-align="center center"
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
                          ui-sref="subscriptions({storeurl:$stateParams.storeurl})">
-                        <div class="gridstream"></div>
+                        <span>Subs</span>
                     </div>
                 </div>
             </div>

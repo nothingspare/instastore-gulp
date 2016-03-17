@@ -32,7 +32,7 @@ angular.module('instastore')
                     }
                     UserService.setProfile(res.data.profile);
                     if (UserService.getInvitedStatus()) {
-                        $state.go('grid', {mode: res.data.profile.seller ? '' : 'feed'});
+                        $state.go('stream', {storeurl: res.data.store.store_url});
                     }
                     else {
                         $state.go('storeselect');
@@ -45,6 +45,15 @@ angular.module('instastore')
         '$auth', 'errorService', '$mdDialog', '$mdMedia', '$rootScope', 'rest', 'InAppService',
         function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
                   $mdDialog, $mdMedia, $rootScope, rest, InAppService) {
+
+            $scope.profile = UserService.getProfile();
+            if (!$state.includes('stream')) {
+                UserService.initStore();
+                $rootScope.isSeller = UserService.isYourStore();
+            } else {
+                UserService.initMyStoreSettings();
+                $rootScope.isSeller = $scope.profile.seller;
+            }
 
             $scope.showProfile = function (ev) {
                 if (!InAppService.isFacebookInApp()) {
@@ -62,9 +71,6 @@ angular.module('instastore')
                 }
             };
 
-            UserService.initStore();
-
-            $scope.profile = UserService.getProfile();
             $scope.sellerAllowed = $scope.profile.seller;
 
             $scope.logout = function () {
@@ -72,8 +78,6 @@ angular.module('instastore')
                 $mdDialog.hide();
                 $state.go('login');
             };
-
-            $rootScope.isSeller = UserService.isYourStore();
 
             $scope.goToProfile = function () {
                 if (UserService.isGuest()) {
