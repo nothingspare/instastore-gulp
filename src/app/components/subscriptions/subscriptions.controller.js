@@ -10,6 +10,9 @@ angular.module('instastore')
                   rest,
                   UserService,
                   errorService) {
+
+            UserService.initMyStoreSettings();
+
             rest.path = 'v1/subscriptions';
             rest.models().success(function (data) {
                 $scope.subs = data;

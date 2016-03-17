@@ -179,8 +179,10 @@ angular.module('instastore')
                 $rootScope.store = profile.store;
                 if (profile.seller) {
                     $rootScope.isSeller = true;
+                    //this.setIsSeller(true);
                 } else {
                     $rootScope.isSeller = false;
+                    //this.setIsSeller(false);
                 }
                 this.initBgAndAvatar();
             },

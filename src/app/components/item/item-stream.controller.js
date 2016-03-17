@@ -7,12 +7,13 @@ app.controller('ItemStream', [
     'rest',
     'errorService',
     'UserService',
+    '$rootScope',
     function ($scope,
               rest,
               errorService,
               UserService) {
 
-        $scope.profile = UserService.getProfile();
+        UserService.initMyStoreSettings();
 
         rest.path = 'v1/streams';
         rest.models().success(function (data) {

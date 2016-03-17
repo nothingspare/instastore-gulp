@@ -16,6 +16,7 @@ angular.module('instastore')
 
             var store;
             if ($stateParams.storeurl) {
+                UserService.initStore();
                 if (!UserService.isYourStore()) {
                     rest.path = 'v1/stores';
                     rest.models({store_url: $stateParams.storeurl}).success(function (data) {

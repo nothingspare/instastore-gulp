@@ -61,19 +61,19 @@
                     <div layout flex
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                         ui-sref="grid({storeurl:profile.store.store_url, mode:''})">
                         <div class="gridstream"></div>
                     </div>
                     <div layout flex layout-align="center center"
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="stream({storeurl:$stateParams.storeurl})">
+                         ui-sref="stream({storeurl:profile.store.store_url})">
                         <span>Multi<br>Stream</span>
                     </div>
                     <div layout flex layout-align="center center"
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="subscriptions({storeurl:$stateParams.storeurl})">
+                         ui-sref="subscriptions({storeurl:profile.store.store_url})">
                         <span>Subs</span>
                     </div>
                 </div>
@@ -82,25 +82,19 @@
                     <div layout flex
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="grid({storeurl:$stateParams.storeurl, mode:''})">
+                         ui-sref="grid({storeurl:profile.inviter_url, mode:''})">
                         <div class="gridstream"></div>
                     </div>
                     <div layout flex layout-align="center center"
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="stream({storeurl:$stateParams.storeurl})">
+                         ui-sref="stream({storeurl:profile.store.store_url})">
                         <span>Multi<br>Stream</span>
-                    </div>
-                    <div layout flex
-                         class="subheader-menu-item"
-                         ui-sref-active="menu-item-active"
-                         ui-sref="location({storeurl:$stateParams.storeurl})">
-                        <div class="location"></div>
                     </div>
                     <div layout flex layout-align="center center"
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="subscriptions({storeurl:$stateParams.storeurl})">
+                         ui-sref="subscriptions({storeurl:profile.store.store_url})">
                         <span>Subs</span>
                     </div>
                 </div>

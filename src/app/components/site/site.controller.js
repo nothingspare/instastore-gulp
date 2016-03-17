@@ -31,6 +31,8 @@ angular.module('instastore')
                         res.data.profile.store = {};
                     }
                     UserService.setProfile(res.data.profile);
+                    console.log(res.data.profile.seller);
+                    UserService.setIsSeller(res.data.profile.seller);
                     if (UserService.getInvitedStatus()) {
                         $state.go('stream', {storeurl: res.data.store.store_url});
                     }
@@ -47,12 +49,10 @@ angular.module('instastore')
                   $mdDialog, $mdMedia, $rootScope, rest, InAppService) {
 
             $scope.profile = UserService.getProfile();
-            if (!$state.includes('stream')) {
+            if (!$state.includes('stream') || (!$state.includes('subscriptions'))) {
                 UserService.initStore();
-                $rootScope.isSeller = UserService.isYourStore();
             } else {
                 UserService.initMyStoreSettings();
-                $rootScope.isSeller = $scope.profile.seller;
             }
 
             $scope.showProfile = function (ev) {
@@ -119,7 +119,6 @@ angular.module('instastore')
             $scope.goBack = function () {
                 if ($state.includes('store')) {
                     UserService.initMyStoreSettings();
-                    //$rootScope.bgUrl = $scope.profile.store.bg_url;
                     $state.go('stream', {storeurl: $scope.profile.store.store_url})
                 }
                 else {
