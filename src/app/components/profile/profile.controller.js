@@ -10,6 +10,7 @@ angular.module('instastore')
                 .then(function () {
                     $scope.renderMap = true;
                 });
+
             $scope.profile = UserService.getProfile();
 
             //for form
@@ -109,22 +110,6 @@ angular.module('instastore')
                     }
                 ).error(errorCallback);
             };
-
-            if ($scope.profile.seller) {
-                $scope.slides = [
-                    {title: 'first'},
-                    {title: 'second'},
-                    {title: 'third'},
-                    {title: 'fourth'}
-                ];
-            } else {
-                $scope.slides = [
-                    {title: 'first'},
-                    {title: 'second'},
-                    {title: 'third'},
-                    {title: 'fourth'}
-                ];
-            }
 
             $scope.fullName = $scope.profile.first_name + ' ' + $scope.profile.last_name;
 

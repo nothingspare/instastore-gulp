@@ -129,6 +129,9 @@ angular.module('instastore')
                 var state = $injector.get('$state');
                 var stateParams = $injector.get('$stateParams');
                 if (profile.seller || profile.inviter_url) {
+                    if (profile.seller && $rootScope.bgUrl !== profile.store.bg_url) {
+                        $rootScope.bgUrl = profile.store.bg_url
+                    }
                     if (profile.store.store_url === stateParams.storeurl) {
                         $rootScope.isSeller = true;
                     }
