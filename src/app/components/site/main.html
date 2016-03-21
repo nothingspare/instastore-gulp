@@ -1,30 +1,274 @@
-<div class="outer">
-    <div class="middle">
-        <div class="inner">
-            <center>
-                <h3>Welcome to</h3>
-                <img src="assets/images/isopeniconlogo368px.png" width="130">
-
-                <br>
-                <br>
-                <br>
-
-
-                <a ng-if="isSession && !isInApp" ng-click="authenticate('facebook')" class="btn btn-blu">Enter
-                    with Facebook</a>
-
-                <!--  <div class="seemorecontainer">
-
-                     <div  ng-if="isSession" class="seemore" id="ii"><span ng-click="showFacebookTip=!showFacebookTip">Why Facebook?</span>
-                     </div>
-                     <div ng-if="showFacebookTip" class="seemorecontent am-fade-and-slide-left"
-                          style="display:block;margin: -5px 8px 4px 8px; padding: 10px; width: 280px;">
-
-                         <p>We use Facebook to match Mobbbi stores with the friends they have invited. You can click <a href="#">here</a> to unlink your account after you have looked around.</p>
-
-                     </div>
-                 </div> -->
-            </center>
+<div layout="column" class="land-main">
+    <div layout="row" class="navbar-default" layout-align="space-between center">
+        <div>
+            <md-button class="io-bold-btn">Logo</md-button>
+        </div>
+        <div class="">
+            <md-button class="io-bold-btn">Demo</md-button>
+            <md-button class="io-bold-btn">About</md-button>
+            <md-button class="io-bold-btn" ng-if="isSession && !isInApp"
+                       ng-click="authenticate('facebook')">Sign In</md-button>
+            <md-button class="io-bold-btn">Sign Out</md-button>
         </div>
     </div>
+    <header layout="column" layout-align="center center">
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 style="font-size: 65px;">
+                    Create your own store app
+                </h1>
+                <hr/>
+                <p>Take a look around at the same fucking bootstrap page you've seen ten million times before! Featuring all the same things as those pages!</p>
+                <md-button du-smooth-scroll
+                           du-scrollspy
+                           offset="30"
+                           class="md-primary md-raised io-primary-btn" flex="20" layout-fill
+                           href="#demo">Demo
+                </md-button>
+            </div>
+        </div>
+    </header>
+    <section layout="column" layout-align="center center" class="bg-primary" id="demo">
+        <h2 class="section-heading">Try the demo now</h2>
+        <hr class="light">
+        <div layout="row" layout-margin layout-align="center center">
+            <div flex="10"></div>
+            <p flex="80">
+                Get a SMS link now.
+            </p>
+            <div flex="10"></div>
+        </div>
+
+        <div layout="column" layout-align="center center" class="user-tree">
+            <md-input-container flex>
+                <label>Phone number</label>
+                <input ng-model="user.phone" class="left-justified" type="tel">
+            </md-input-container>
+            <md-button layout-fill flex="10" layout-margin href="http://google.com" target="_blank"
+                       class="md-raised io-raised-btn">
+                Submit
+            </md-button>
+        </div>
+
+    </section>
+    <section layout="column" layout-align="center center" class="bg-section" id="demo">
+        <h2 class="section-heading">So Fucking Creative</h2>
+        <hr/>
+        <div layout="row" layout-xs="column" layout-margin layout-align="center center">
+            <div class="service-box" layout="column" flex>
+                <div class="message-circle-main icon"></div>
+                <h3>Set up</h3>
+                <p class="text-muted">
+                    Sign in with Facebook. Verify your store location and upload your stores background image. You can set up a store and reach out to customers in just two minutes.
+                </p>
+            </div>
+            <div class="service-box" layout="column" flex>
+                <div class="heart-circle-main icon"></div>
+                <h3>Item Hosting</h3>
+                <p class="text-muted">
+                    Import your existing photos from Instagram and add a prices to items to make them purchasable. For new items upload pictures straight from your phone.
+                </p>
+            </div>
+            <div class="service-box" layout="column" flex>
+                <div class="location-circle-main icon"></div>
+                <h3>Mailing Labels</h3>
+                <p class="text-muted">
+                    When an item is sold sellers print free pre-addressed shipping labels. The labels are then stuck on free shipping boxes and mailed.
+                </p>
+            </div>
+        </div>
+        <div layout="row" layout-xs="column" layout-margin layout-align="center center">
+            <div class="service-box" layout="column" flex>
+                <div class="buy-circle-main icon"></div>
+                <h3>Inventory</h3>
+                <p class="text-muted">
+                    Find things you love and fill a store with them. Once you have sold a few items make a deal to buy them in bulk to get them for less. DonвЂ™t worry about making sales, make connections with people.
+                </p>
+            </div>
+            <div class="service-box" layout="column" flex>
+                <div class="photo-circle-main icon"></div>
+                <h3>Sharing</h3>
+                <p class="text-muted">
+                    Invite your friends to download your personal store app. Send SMS notifications to your best customers and easily share item posts on Instagram and your other social networks and blogs.
+                </p>
+            </div>
+            <div class="service-box" layout="column" flex>
+                <div class="key-circle-main icon"></div>
+                <h3>Support</h3>
+                <p class="text-muted">
+                    Our simple approach to out-reach and technology enables us and our sellers to building better relationships with our customers. We work with our seller partners so we can build the updates our audiences really want.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section layout="column" layout-align="center center" class="bg-primary" id="demo">
+        <h2 class="section-heading">Get a notification when we go live</h2>
+        <hr class="light">
+        <div layout="row" layout-margin layout-align="center center">
+            <div flex="10"></div>
+            <p flex="80">
+                Apply to see if you can set-up your store now.
+            </p>
+            <div flex="10"></div>
+        </div>
+
+        <div layout="column" layout-align="center center" class="user-tree">
+            <md-input-container flex>
+                <label>Email</label>
+                <input ng-model="user.phone" class="left-justified" type="tel">
+            </md-input-container>
+            <md-button layout-fill flex="20" layout-margin href="http://google.com" target="_blank"
+                       class="md-raised io-raised-btn">
+                Submit
+            </md-button>
+        </div>
+
+    </section>
+    <section layout="row" layout-align="center center" class="bg-section" id="demo">
+        <div flex>
+            <div class="portfolio-box">
+                <img src="../../../assets/images/land/main/Mo1.jpg" class="img-responsive" alt="">
+                <div class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content">
+                        <div class="project-category text-faded">
+                            One Thing
+                        </div>
+                        <div class="project-name">
+                            Look
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div flex>
+            <div class="portfolio-box">
+                <img src="../../../assets/images/land/main/Mo2.jpg" class="img-responsive" alt="">
+                <div class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content">
+                        <div class="project-category text-faded">
+                            One Thing
+                        </div>
+                        <div class="project-name">
+                            Look
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div flex>
+            <div class="portfolio-box">
+                <img src="../../../assets/images/land/main/Mo3.jpg" class="img-responsive" alt="">
+                <div class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content">
+                        <div class="project-category text-faded">
+                            One Thing
+                        </div>
+                        <div class="project-name">
+                            Look
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div flex>
+            <div class="portfolio-box">
+                <img src="../../../assets/images/land/main/Mo4.jpg" class="img-responsive" alt="">
+                <div class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content">
+                        <div class="project-category text-faded">
+                            One Thing
+                        </div>
+                        <div class="project-name">
+                            Look
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section layout="column" layout-align="center center" class="bg-section" id="demo">
+        <div layout="row" layout-margin layout-align="center center">
+            <div class="service-box" layout="column" flex>
+                <div class="edit-circle-main icon"></div>
+                <h2>Who we are</h2>
+                <p class="text-muted">
+                    IsOpen is created and run by a small team of developers, digital marketers and advertisers based near Downtown Los Angeles. We think of our store owners as team members as we are all connected, share ideas and dedicated to growing our businesses together. IвЂ™ve always loved selling and found the most interesting people in the world do too. We want to help independent sellers make better connections with their audience and customers. And extend online that attention your able to give a customer in a store and the connection you share when a customer buys something you yourself love. With a super simple e-commerce app, great sellers with great stores we will build our businesses together and deliver a cooler, edgier, simpler experience than the trading giants can. We might be small but thats our strength.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section layout="column" layout-align="center center" class="bg-primary" id="demo">
+        <div class="delete-circle-main icon"></div>
+        <h2 class="section-heading">Say Hi</h2>
+        <hr class="light">
+        <div layout="row" layout-margin layout-align="center center">
+            <div flex="10"></div>
+            <p flex="80">
+                Send us and email if you just want to connect but include your mobile number and stores Facebook page if you already have a store you would like to open up on isOpen.
+            </p>
+            <div flex="10"></div>
+        </div>
+
+        <div layout="column" layout-align="center center" class="user-tree">
+            <div layout="row" layout-xs="column" layout-margin>
+                <md-input-container flex>
+                    <label>Email</label>
+                    <input ng-model="user.phone" class="left-justified" type="tel">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Phone number</label>
+                    <input ng-model="user.phone" class="left-justified" type="tel">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Facebook page</label>
+                    <input ng-model="user.phone" class="left-justified" type="tel">
+                </md-input-container>
+            </div>
+            <div layout="row" flex="50">
+                <md-button  layout-fill flex="20" layout-margin href="http://google.com" target="_blank"
+                           class="md-raised io-raised-btn">
+                    Submit
+                </md-button>
+            </div>
+        </div>
+
+    </section>
+    <section layout="column" layout-align="center center" class="bg-dark" id="demo">
+        <h2 class="section-heading">Feed Back</h2>
+        <div layout="row" layout-margin layout-align="center center">
+            <div flex="10"></div>
+            <p flex="80">
+                We are defiantly looking for feed back.
+                <br>
+                So please check out are demo and pass on any thoughts.
+            </p>
+            <div flex="10"></div>
+        </div>
+
+        <div layout="column" layout-align="center center" class="user-tree">
+            <md-button layout-fill flex="20" layout-margin href="http://google.com" target="_blank"
+                       class="md-raised io-raised-btn">
+                Demo
+            </md-button>
+        </div>
+
+    </section>
+    <section layout="column" layout-align="center center" class="bg-section" id="demo">
+        <div layout="row" layout-margin layout-align="center center">
+            <div class="service-box" layout="column" flex>
+                <h2>My Contact Information</h2>
+                <hr/>
+                <p class="text-muted">
+                    Here's my phone number and email address, because hey that's part of the template and why would you not include that on your webpage? You'd be a fool not to! I can't wait for all the job offers to come pouring in from all the companies wanting my insane website design skills.
+                </p>
+                <div class="message-circle-main icon"></div>
+                <h3>
+                    <a href="mailto:test@gmail.com">test@gmail.com</a>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+
 </div>
+
