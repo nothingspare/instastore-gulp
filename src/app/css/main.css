@@ -1,0 +1,245 @@
+header {
+    position: relative;
+    min-height: 100%;
+    height: 775px;
+    text-align: center;
+    color: #fff;
+}
+
+header:before {
+    position: absolute;
+    top: 0;
+    z-index: -2;
+    height: 100%;
+    width: 100%;
+    content: "";
+    background-image: url("../../assets/images/land/main/Mo3.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+header:after {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    content: "";
+    opacity: 0.5;
+    background-color: #000;
+    background-position: center;
+    background-size: cover;
+}
+
+header .header-content {
+}
+
+header .header-content .header-content-inner h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.header-content-inner a{
+    margin-top: 90px;
+}
+
+.parallax-two {
+    background-image: url("../../assets/images/land/main/Mo4.jpg");
+    background-attachment: fixed;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    height: 450px;
+    position: relative;
+}
+
+.main-logo {
+    background-image: url("../../assets/images/land/main/isopen-logo.jpg");
+    height: 241px;
+}
+
+.btn {
+    width: 170px;
+    background-color: #f17668;
+}
+
+hr {
+    width: 50px;
+    border: 1px solid #eee;
+    border-color: #f17668;
+    border-width: 3px;
+}
+
+hr.light {
+    border-color: #fff;
+}
+
+header .header-content .header-content-inner hr {
+    margin: 30px auto;
+}
+
+p {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 80%;
+    font-size: 18px;
+    margin-bottom: 50px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, .7);
+}
+
+section.bg-primary {
+    text-align: center;
+    color: #fff;
+    background-color: #F37878;
+    padding: 30px;
+}
+
+section.bg-dark {
+    color: #fff;
+    background-color: #222;
+    text-align: center;
+    padding: 30px;
+}
+
+section.bg-section {
+}
+
+.bg-section p {
+    color: #000;
+}
+
+.icon {
+    width: 100%;
+    max-width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.message-circle-main {
+    background: url("../../assets/images/icons.svg");
+    background-position: -825px -1px;
+    background-size: 2700px 105px;
+}
+
+.heart-circle-main {
+    background: url("../../assets/images/icons.svg");
+    background-position: -930px -1px;
+    background-size: 2700px 105px;
+}
+
+.location-circle-main {
+    background: url("../../assets/images/icons.svg");
+    background-position: -1035px -1px;
+    background-size: 2700px 105px;
+}
+
+.buy-circle-main {
+    background: url("../../assets/images/icons.svg");
+    background-position: -1138px -1px;
+    background-size: 2700px 105px;
+}
+
+.photo-circle-main {
+    background: url("../../assets/images/icons.svg");
+    background-position: -1242px -1px;
+    background-size: 2700px 105px;
+}
+
+.key-circle-main {
+    background: url("../../assets/images/icons.svg");
+    background-position: -1350px -1px;
+    background-size: 2700px 105px;
+}
+
+.edit-circle-main {
+    background: url("../../assets/images/icons.svg");
+    background-position: -1450px -1px;
+    background-size: 2700px 105px;
+}
+
+.delete-circle-main {
+    background: url("../../assets/images/icons.svg");
+    background-position: -1562px -1px;
+    background-size: 2700px 105px;
+}
+
+.service-box {
+    text-align: center;
+}
+
+.portfolio-box {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    max-width: 650px;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.portfolio-box .portfolio-box-caption {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+    background: rgba(240, 95, 64, .9);
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+}
+
+.user-tree input {
+    box-shadow: none;
+}
+
+.land-main md-input-container.md-default-theme label, md-input-container label, md-input-container.md-default-theme .md-placeholder, md-input-container .md-placeholder {
+    color: #fff !important;
+}
+
+.land-main .md-input-container.md-default-theme .md-input, md-input-container .md-input {
+    border-color: #fff !important;
+}
+
+.md-input-container.md-default-theme .md-input, md-input-container .md-input {
+    color: #fff !important;
+}
+
+.md-button.md-raised.io-raised-btn {
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 20px;
+    text-rendering: optimizelegibility;
+    padding: 5px 14px 5px 14px;
+    margin: 5px 10px 16px 10px;
+}
+
+.md-button.md-raised.io-primary-btn {
+    text-transform: uppercase;
+}
+
+.md-button.io-bold-btn {
+    font-weight: bold;
+}
+
+.navbar-default {
+    border-color: rgba(255,255,255,.3);
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.menu-logo {
+    width: 72px;
+}
+
