@@ -697,13 +697,25 @@ angular.module('instastore')
             });
     }])
     .controller('InstagramImport', ['$scope', '$http', 'API_URL', 'errorService', 'UserService',
-        'itemsAmount', '$mdDialog', '$mdMedia',
+        'itemsAmount', '$mdDialog', '$mdMedia', 'rest',
         function ($scope, $http, API_URL, errorService, UserService, itemsAmount,
-                  $mdDialog, $mdMedia) {
+                  $mdDialog, $mdMedia, rest) {
 
-            $http.get(API_URL + 'v1/link/instagram-media').success(function (data) {
-                $scope.items = data;
-            }).error(errorService.alert);
+            $scope.loadInstagramItems = function (maxId) {
+                var source = 'v1/link/instagram-media';
+                if (maxId) {
+                    source = source + '?' + rest.serialize({'max_id': maxId});
+                }
+                $http.get(API_URL + source).success(function (data) {
+                    if ($scope.items) {
+                        $scope.items = $scope.items.concat(data);
+                    } else {
+                        $scope.items = data;
+                    }
+                }).error(errorService.alert);
+            };
+
+            $scope.loadInstagramItems();
 
             $scope.importItems = function () {
                 var items = [];
@@ -741,6 +753,7 @@ angular.module('instastore')
                     value.isChecked = false;
                 });
             };
+
         }])
     .controller('PaymentCtrl', ['$scope', function ($scope) {
 

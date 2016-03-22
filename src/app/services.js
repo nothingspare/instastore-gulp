@@ -26,7 +26,7 @@ angular.module('instastore')
             baseUrl: API_URL,
             path: undefined,
 
-            serialize: function (obj, prefix) {
+                serialize: function (obj, prefix) {
                 var str = [];
                 for (var p in obj) {
                     if (obj.hasOwnProperty(p)) {

@@ -12,4 +12,7 @@
             </div>
         </div>
     </div>
+    <div ng-if="items" layout layout-align="center center">
+        <md-button ng-click="loadInstagramItems(items[items.length-1].id)">Load more...</md-button>
+    </div>
 </div>

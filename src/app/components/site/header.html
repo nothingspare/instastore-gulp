@@ -1,5 +1,5 @@
 <div layout="column" ng-controller="SiteHeader" class="no-print">
-    <div layout layout-align="center center" class="io-bar">
+    <div layout layout-align="center center" class="io-bar" ng-class="{'instaimport-bar':$state.includes('instaimport')}">
         <div ng-if="!$state.includes('grid')" ng-click="goBack()">
             <div class="back"></div>
         </div>

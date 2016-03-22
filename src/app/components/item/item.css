@@ -273,3 +273,8 @@ div.item-sale-status h5 {
     /*position: relative;*/
     background-image: url("https://s3.amazonaws.com/cuturia/mobbbi/OVvZmckHqwdyFCqPyiZIPqYS6CMfpNcd.12558382_498711613641867_81093223_n.jpg");
 }
+
+.profile.item-stream-profile{
+    width: 45px;
+    height: 45px;
+}

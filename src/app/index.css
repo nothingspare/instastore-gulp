@@ -3980,6 +3980,10 @@ svg.svg-debit {
     background-color: rgba(225, 225, 225, 0.7);
 }
 
+.io-bar.instaimport-bar{
+    position: static;
+}
+
 .io-bar > div {
     padding: 10px 20px 11px 20px;
 }
