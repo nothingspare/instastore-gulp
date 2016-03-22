@@ -197,19 +197,24 @@ section.bg-section {
     box-shadow: none;
 }
 
-.land-main md-input-container.md-default-theme label, md-input-container label, md-input-container.md-default-theme .md-placeholder, md-input-container .md-placeholder {
+.land-main md-input-container.md-default-theme label,
+.land-main md-input-container label,
+.land-main md-input-container.md-default-theme .md-placeholder,
+.land-main md-input-container .md-placeholder {
     color: #fff !important;
 }
 
-.land-main .md-input-container.md-default-theme .md-input, md-input-container .md-input {
+.land-main .md-input-container.md-default-theme .md-input,
+.land-main md-input-container .md-input {
     border-color: #fff !important;
 }
 
-.md-input-container.md-default-theme .md-input, md-input-container .md-input {
+.md-input-container.md-default-theme .md-input,
+.land-main md-input-container .md-input {
     color: #fff !important;
 }
 
-.md-button.md-raised.io-raised-btn {
+.land-main .md-button.md-raised.io-raised-btn {
     border-radius: 4px;
     font-weight: 400;
     font-size: 20px;
@@ -218,11 +223,11 @@ section.bg-section {
     margin: 5px 10px 16px 10px;
 }
 
-.md-button.md-raised.io-primary-btn {
+.land-main .md-button.md-raised.io-primary-btn {
     text-transform: uppercase;
 }
 
-.md-button.io-bold-btn {
+.land-main .md-button.io-bold-btn {
     font-weight: bold;
 }
 
@@ -243,6 +248,6 @@ section.bg-section {
     cursor: pointer;
     background-color: #415e9b !important;
 }
-.md-icon-button {
-    margin-top: -12px;
+.land-main .enter-facebook .md-icon-button {
+    margin-top: -12px !important;
 }
