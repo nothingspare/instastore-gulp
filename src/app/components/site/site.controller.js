@@ -15,6 +15,7 @@ angular.module('instastore')
                 }
             }
 
+
             $scope.isSession = SStorage.isSessionStorageAvailable();
 
             $scope.authenticate = function (provider) {

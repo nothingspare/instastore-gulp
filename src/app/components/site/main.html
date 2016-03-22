@@ -1,14 +1,16 @@
 <div layout="column" class="land-main">
     <div layout="row" class="navbar-default" layout-align="space-between center">
-        <div>
-            <md-button class="io-bold-btn">Logo</md-button>
+        <div layout="row" layout-padding layout-align="center center">
+            <img class="menu-logo" src="assets/images/land/main/isopen-logo.jpg" alt="">
         </div>
-        <div class="">
-            <md-button class="io-bold-btn">Demo</md-button>
-            <md-button class="io-bold-btn">About</md-button>
-            <md-button class="io-bold-btn" ng-if="isSession && !isInApp"
-                       ng-click="authenticate('facebook')">Sign In</md-button>
-            <md-button class="io-bold-btn">Sign Out</md-button>
+        <div layout="row" layout-align="center center">
+            <md-button href="#demo" class="io-bold-btn">Demo</md-button>
+            <md-button href="#services" class="io-bold-btn">Services</md-button>
+            <md-button href="#contacts" class="io-bold-btn">Contacs</md-button>
+            <md-button class="md-icon-button launch" ng-if="isSession && !isInApp"
+                       ng-click="authenticate('facebook')">
+                <ng-md-icon icon="facebook-box" style="fill: #415e9b"></ng-md-icon>
+            </md-button>
         </div>
     </div>
     <header layout="column" layout-align="center center">
@@ -18,12 +20,10 @@
                     Create your own store app
                 </h1>
                 <hr/>
-                <p>Take a look around at the same fucking bootstrap page you've seen ten million times before! Featuring all the same things as those pages!</p>
-                <md-button du-smooth-scroll
-                           du-scrollspy
-                           offset="30"
-                           class="md-primary md-raised io-primary-btn" flex="20" layout-fill
-                           href="#demo">Demo
+                <p>Take a look around at the same bootstrap page you've seen ten million times before! Featuring all the same things as those pages!</p>
+                <md-button href="#demo"
+                           class="md-primary md-raised io-primary-btn" flex="30" layout-fill>
+                    Demo
                 </md-button>
             </div>
         </div>
@@ -32,11 +32,9 @@
         <h2 class="section-heading">Try the demo now</h2>
         <hr class="light">
         <div layout="row" layout-margin layout-align="center center">
-            <div flex="10"></div>
-            <p flex="80">
+            <p>
                 Get a SMS link now.
             </p>
-            <div flex="10"></div>
         </div>
 
         <div layout="column" layout-align="center center" class="user-tree">
@@ -51,8 +49,8 @@
         </div>
 
     </section>
-    <section layout="column" layout-align="center center" class="bg-section" id="demo">
-        <h2 class="section-heading">So Fucking Creative</h2>
+    <section layout="column" layout-align="center center" class="bg-section" id="services">
+        <h2 class="section-heading">So Creative</h2>
         <hr/>
         <div layout="row" layout-xs="column" layout-margin layout-align="center center">
             <div class="service-box" layout="column" flex>
@@ -101,7 +99,7 @@
             </div>
         </div>
     </section>
-    <section layout="column" layout-align="center center" class="bg-primary" id="demo">
+    <section layout="column" layout-align="center center" class="bg-primary" id="notification">
         <h2 class="section-heading">Get a notification when we go live</h2>
         <hr class="light">
         <div layout="row" layout-margin layout-align="center center">
@@ -124,7 +122,7 @@
         </div>
 
     </section>
-    <section layout="row" layout-align="center center" class="bg-section" id="demo">
+    <section layout="row" layout-align="center center" class="bg-section" id="images">
         <div flex>
             <div class="portfolio-box">
                 <img src="../../../assets/images/land/main/Mo1.jpg" class="img-responsive" alt="">
@@ -186,7 +184,7 @@
             </div>
         </div>
     </section>
-    <section layout="column" layout-align="center center" class="bg-section" id="demo">
+    <section layout="column" layout-align="center center" class="bg-section" id="desc">
         <div layout="row" layout-margin layout-align="center center">
             <div class="service-box" layout="column" flex>
                 <div class="edit-circle-main icon"></div>
@@ -197,7 +195,7 @@
             </div>
         </div>
     </section>
-    <section layout="column" layout-align="center center" class="bg-primary" id="demo">
+    <section layout="column" layout-align="center center" class="bg-primary" id="sayhi">
         <div class="delete-circle-main icon"></div>
         <h2 class="section-heading">Say Hi</h2>
         <hr class="light">
@@ -224,8 +222,8 @@
                     <input ng-model="user.phone" class="left-justified" type="tel">
                 </md-input-container>
             </div>
-            <div layout="row" flex="50">
-                <md-button  layout-fill flex="20" layout-margin href="http://google.com" target="_blank"
+            <div layout="row" layout-align="center center" layout-fill >
+                <md-button flex="30" href="http://google.com" target="_blank"
                            class="md-raised io-raised-btn">
                     Submit
                 </md-button>
@@ -233,7 +231,7 @@
         </div>
 
     </section>
-    <section layout="column" layout-align="center center" class="bg-dark" id="demo">
+    <section layout="column" layout-align="center center" class="bg-dark" id="feedme">
         <h2 class="section-heading">Feed Back</h2>
         <div layout="row" layout-margin layout-align="center center">
             <div flex="10"></div>
@@ -245,15 +243,15 @@
             <div flex="10"></div>
         </div>
 
-        <div layout="column" layout-align="center center" class="user-tree">
-            <md-button layout-fill flex="20" layout-margin href="http://google.com" target="_blank"
+        <div layout="row" layout-align="center center" layout-fill class="user-tree">
+            <md-button layout-fill flex="30" layout-margin href="http://google.com" target="_blank"
                        class="md-raised io-raised-btn">
                 Demo
             </md-button>
         </div>
 
     </section>
-    <section layout="column" layout-align="center center" class="bg-section" id="demo">
+    <section layout="column" layout-align="center center" class="bg-section" id="contacts">
         <div layout="row" layout-margin layout-align="center center">
             <div class="service-box" layout="column" flex>
                 <h2>My Contact Information</h2>
@@ -268,7 +266,5 @@
             </div>
         </div>
     </section>
-
-
 </div>
 
