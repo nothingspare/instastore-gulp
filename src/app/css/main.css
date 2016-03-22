@@ -41,10 +41,6 @@ header .header-content .header-content-inner h1 {
     font-weight: 700;
 }
 
-.header-content-inner a{
-    margin-top: 90px;
-}
-
 .parallax-two {
     background-image: url("../../assets/images/land/main/Mo4.jpg");
     background-attachment: fixed;
@@ -243,3 +239,10 @@ section.bg-section {
     width: 72px;
 }
 
+.enter-facebook {
+    cursor: pointer;
+    background-color: #415e9b !important;
+}
+.md-icon-button {
+    margin-top: -12px;
+}

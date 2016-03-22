@@ -21,9 +21,21 @@
                 </h1>
                 <hr/>
                 <p>Take a look around at the same bootstrap page you've seen ten million times before! Featuring all the same things as those pages!</p>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md-raised md-primary io-primary-btn enter-facebook" layout="row"
+                               layout-align="center center"
+                               ng-click="authenticate('facebook')">
+                        <b>Enter with</b>&nbsp;
+                        <a class="md-icon-button launch" ng-if="isSession && !isInApp">
+                            <ng-md-icon icon="facebook-box" size="32" style="fill: #fff"></ng-md-icon>
+                        </a>
+                    </md-button>
+                </div>
+
+                <br/>
                 <md-button href="#demo"
-                           class="md-primary md-raised io-primary-btn" flex="30" layout-fill>
-                    Demo
+                           class="md-fab md-primary io-primary-btn launch" flex="30" layout-fill>
+                    <ng-md-icon icon="expand_more" size="24" style="fill: #fff"></ng-md-icon>
                 </md-button>
             </div>
         </div>
@@ -48,6 +60,68 @@
             </md-button>
         </div>
 
+    </section>
+    <section layout="row" layout-align="center center" class="bg-section" id="images">
+        <div flex>
+            <div class="portfolio-box">
+                <img src="../../../assets/images/land/main/Mo1.jpg" class="img-responsive" alt="">
+                <div class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content">
+                        <div class="project-category text-faded">
+                            One Thing
+                        </div>
+                        <div class="project-name">
+                            Look
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div flex>
+            <div class="portfolio-box">
+                <img src="../../../assets/images/land/main/Mo2.jpg" class="img-responsive" alt="">
+                <div class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content">
+                        <div class="project-category text-faded">
+                            One Thing
+                        </div>
+                        <div class="project-name">
+                            Look
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div flex>
+            <div class="portfolio-box">
+                <img src="../../../assets/images/land/main/Mo3.jpg" class="img-responsive" alt="">
+                <div class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content">
+                        <div class="project-category text-faded">
+                            One Thing
+                        </div>
+                        <div class="project-name">
+                            Look
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div flex>
+            <div class="portfolio-box">
+                <img src="../../../assets/images/land/main/Mo4.jpg" class="img-responsive" alt="">
+                <div class="portfolio-box-caption">
+                    <div class="portfolio-box-caption-content">
+                        <div class="project-category text-faded">
+                            One Thing
+                        </div>
+                        <div class="project-name">
+                            Look
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <section layout="column" layout-align="center center" class="bg-section" id="services">
         <h2 class="section-heading">So Creative</h2>
@@ -122,68 +196,6 @@
         </div>
 
     </section>
-    <section layout="row" layout-align="center center" class="bg-section" id="images">
-        <div flex>
-            <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo1.jpg" class="img-responsive" alt="">
-                <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                        <div class="project-category text-faded">
-                            One Thing
-                        </div>
-                        <div class="project-name">
-                            Look
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div flex>
-            <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo2.jpg" class="img-responsive" alt="">
-                <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                        <div class="project-category text-faded">
-                            One Thing
-                        </div>
-                        <div class="project-name">
-                            Look
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div flex>
-            <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo3.jpg" class="img-responsive" alt="">
-                <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                        <div class="project-category text-faded">
-                            One Thing
-                        </div>
-                        <div class="project-name">
-                            Look
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div flex>
-            <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo4.jpg" class="img-responsive" alt="">
-                <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                        <div class="project-category text-faded">
-                            One Thing
-                        </div>
-                        <div class="project-name">
-                            Look
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section layout="column" layout-align="center center" class="bg-section" id="desc">
         <div layout="row" layout-margin layout-align="center center">
             <div class="service-box" layout="column" flex>
@@ -222,7 +234,7 @@
                     <input ng-model="user.phone" class="left-justified" type="tel">
                 </md-input-container>
             </div>
-            <div layout="row" layout-align="center center" layout-fill >
+            <div layout="row" layout-align="center center" layout-fill>
                 <md-button flex="30" href="http://google.com" target="_blank"
                            class="md-raised io-raised-btn">
                     Submit
