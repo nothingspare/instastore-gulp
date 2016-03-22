@@ -1,5 +1,5 @@
 <div ng-if="$state.includes('stream') && isSeller" layout-margin ui-sref="store({storeurl:item.user.store.store_url})" style="position: absolute; ">
-    <img class="profile" ng-src="{{item.user.store.avatar_url}}">
+    <img class="profile item-stream-profile" ng-src="{{item.user.store.avatar_url}}">
 </div>
 <div ui-sref="itemview({storeurl:storeUrl,itemurl:item.item_url,tab:1})"
      ng-style="{'background-image': 'url(' + item.images[0].image_url + ')', 'opacity':item.status==10?0.3:1}"
