@@ -251,3 +251,12 @@ section.bg-section {
 .land-main .enter-facebook .md-icon-button {
     margin-top: -12px !important;
 }
+.sidenav-header {
+    margin-top: 56px;
+}
+
+.menu-buttons {
+    position: fixed;
+    right: 0;
+    z-index: 70;
+}

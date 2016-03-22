@@ -1,5 +1,36 @@
 <div layout="column" class="land-main">
-    <div layout="row" class="navbar-default" layout-align="space-between center">
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+        <md-content layout="column" layout-wrap layout-padding>
+            <div layout="row" layout-padding layout-align="center center">
+                <img class="menu-logo" src="assets/images/land/main/isopen-logo.jpg" alt="">
+            </div>
+            <md-button href="#demo" class="io-bold-btn">Demo</md-button>
+            <md-button href="#services" class="io-bold-btn">Services</md-button>
+            <md-button href="#contacts" class="io-bold-btn">Contacs</md-button>
+            <md-button style="width: 100%" flex class="md-icon-button launch" ng-if="isSession && !isInApp"
+                       ng-click="authenticate('facebook')">
+                <ng-md-icon icon="facebook-box" style="fill: #415e9b"></ng-md-icon>
+            </md-button>
+        </md-content>
+    </md-sidenav>
+
+    <div layout="row" layout-align="end center" class="menu-buttons">
+        <md-button hide-gt-sm
+                   ng-click="toggleRight()"
+                   ng-hide="isOpenRight()"
+                   class="md-icon-button launch">
+            <ng-md-icon icon="menu" style="fill: #fff"></ng-md-icon>
+        </md-button>
+        <md-button hide-gt-sm
+                   ng-click="toggleRight()"
+                   ng-hide="!isOpenRight()"
+                   class="md-icon-button launch">
+            <ng-md-icon icon="close" style="fill: #000"></ng-md-icon>
+        </md-button>
+    </div>
+
+    <div layout="row" hide show-gt-sm
+         class="navbar-default" layout-align="space-between center">
         <div layout="row" layout-padding layout-align="center center">
             <img class="menu-logo" src="assets/images/land/main/isopen-logo.jpg" alt="">
         </div>
@@ -12,8 +43,15 @@
                 <ng-md-icon icon="facebook-box" style="fill: #415e9b"></ng-md-icon>
             </md-button>
         </div>
+
+
+
     </div>
-    <header layout="column" layout-align="center center">
+
+
+
+    <header layout="column"
+            layout-align="center center">
         <div class="header-content">
             <div class="header-content-inner">
                 <h1 style="font-size: 65px;">

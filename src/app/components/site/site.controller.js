@@ -2,9 +2,9 @@
 
 angular.module('instastore')
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'errorService', '$state',
-        '$auth', 'UserService', 'SStorage', 'InAppService',
+        '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav',
         function ($scope, $rootScope, rest, errorService, $state,
-                  $auth, UserService, SStorage, InAppService) {
+                  $auth, UserService, SStorage, InAppService, $mdSidenav) {
 
             InAppService.warnIfInApp();
             $scope.isInApp = InAppService.isFacebookInApp();
@@ -12,6 +12,21 @@ angular.module('instastore')
             if (!UserService.isGuest()) {
                 if (!UserService.goToLastRouteFromProfile()) {
                     UserService.goToMainStore();
+                }
+            }
+
+            $scope.toggleRight = buildToggler('right');
+            $scope.isOpenRight = function(){
+                return $mdSidenav('right').isOpen();
+            };
+
+            function buildToggler(navID) {
+                return function() {
+                    $mdSidenav(navID)
+                        .toggle()
+                        .then(function () {
+                            //$log.debug("toggle " + navID + " is done");
+                        });
                 }
             }
 
