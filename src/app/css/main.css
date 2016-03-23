@@ -1,7 +1,7 @@
 header {
     position: relative;
     min-height: 100%;
-    height: 775px;
+    height: 782px;
     text-align: center;
     color: #fff;
 }
@@ -35,10 +35,16 @@ header .header-content {
 }
 
 header .header-content .header-content-inner h1 {
-    margin-top: 0;
+    margin-top: -80px;
     margin-bottom: 0;
     text-transform: uppercase;
     font-weight: 700;
+    font-size: 40px;
+}
+
+header .header-content .header-content-inner h1.header-title-land {
+    margin-top: 0;
+    font-size: 65px;
 }
 
 .parallax-two {
@@ -219,7 +225,8 @@ section.bg-section {
     font-weight: 400;
     font-size: 20px;
     text-rendering: optimizelegibility;
-    padding: 5px 14px 5px 14px;
+    padding: 5px 70px 5px 70px;
+
     margin: 5px 10px 16px 10px;
 }
 
@@ -248,8 +255,8 @@ section.bg-section {
     cursor: pointer;
     background-color: #415e9b !important;
 }
-.land-main .enter-facebook .md-icon-button {
-    margin-top: -12px !important;
+.land-main .enter-facebook .md-icon-button ng-md-icon svg{
+    margin-top: -6px !important;
 }
 .sidenav-header {
     margin-top: 56px;
@@ -259,4 +266,12 @@ section.bg-section {
     position: fixed;
     right: 0;
     z-index: 70;
+}
+
+.land-main md-sidenav {
+    position: fixed;
+}
+
+.land-main .link-demo {
+    margin-top: 100px;
 }

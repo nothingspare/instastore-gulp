@@ -211,9 +211,10 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             });
     }]);
 
-app.run(function ($rootScope, $state, $stateParams) {
+app.run(function ($rootScope, $state, $stateParams, $mdMedia) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.$mdMedia = $mdMedia;
 });
 
 

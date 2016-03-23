@@ -43,18 +43,13 @@
                 <ng-md-icon icon="facebook-box" style="fill: #415e9b"></ng-md-icon>
             </md-button>
         </div>
-
-
-
     </div>
-
-
 
     <header layout="column"
             layout-align="center center">
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 style="font-size: 65px;">
+                <h1 ng-class="{ 'header-title-land' : $mdMedia('gt-sm') }">
                     Create your own store app
                 </h1>
                 <hr/>
@@ -63,7 +58,7 @@
                     <md-button class="md-raised md-primary io-primary-btn enter-facebook" layout="row"
                                layout-align="center center"
                                ng-click="authenticate('facebook')">
-                        <b>Enter with</b>&nbsp;
+                        <b>Login with</b>&nbsp;
                         <a class="md-icon-button launch" ng-if="isSession && !isInApp">
                             <ng-md-icon icon="facebook-box" size="32" style="fill: #fff"></ng-md-icon>
                         </a>
@@ -72,7 +67,7 @@
 
                 <br/>
                 <md-button href="#demo"
-                           class="md-fab md-primary io-primary-btn launch" flex="30" layout-fill>
+                           class="md-fab md-primary io-primary-btn launch link-demo" flex="30" layout-fill>
                     <ng-md-icon icon="expand_more" size="24" style="fill: #fff"></ng-md-icon>
                 </md-button>
             </div>
@@ -92,7 +87,7 @@
                 <label>Phone number</label>
                 <input ng-model="user.phone" class="left-justified" type="tel">
             </md-input-container>
-            <md-button layout-fill flex="10" layout-margin href="http://google.com" target="_blank"
+            <md-button href="http://google.com" target="_blank"
                        class="md-raised io-raised-btn">
                 Submit
             </md-button>
@@ -227,7 +222,7 @@
                 <label>Email</label>
                 <input ng-model="user.phone" class="left-justified" type="tel">
             </md-input-container>
-            <md-button layout-fill flex="20" layout-margin href="http://google.com" target="_blank"
+            <md-button href="http://google.com" target="_blank"
                        class="md-raised io-raised-btn">
                 Submit
             </md-button>
@@ -272,8 +267,8 @@
                     <input ng-model="user.phone" class="left-justified" type="tel">
                 </md-input-container>
             </div>
-            <div layout="row" layout-align="center center" layout-fill>
-                <md-button flex="30" href="http://google.com" target="_blank"
+            <div layout="row" layout-align="center center">
+                <md-button href="http://google.com" target="_blank"
                            class="md-raised io-raised-btn">
                     Submit
                 </md-button>
@@ -293,8 +288,8 @@
             <div flex="10"></div>
         </div>
 
-        <div layout="row" layout-align="center center" layout-fill class="user-tree">
-            <md-button layout-fill flex="30" layout-margin href="http://google.com" target="_blank"
+        <div layout="column" layout-align="center center" class="user-tree">
+            <md-button flex href="http://google.com" target="_blank"
                        class="md-raised io-raised-btn">
                 Demo
             </md-button>
