@@ -6,16 +6,13 @@ header {
     color: #fff;
 }
 
-header:before {
-    position: absolute;
+header {
     top: 0;
-    z-index: -2;
-    height: 100%;
     width: 100%;
     content: "";
     background-image: url("../../assets/images/land/main/Mo3.jpg");
     background-position: center;
-    background-size: cover;
+    /*background-size: cover;*/
 }
 
 header:after {
@@ -239,7 +236,7 @@ section.bg-section {
 }
 
 .navbar-default {
-    border-color: rgba(255,255,255,.3);
+    border-color: rgba(255, 255, 255, .3);
     background-color: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     position: fixed;
@@ -251,13 +248,19 @@ section.bg-section {
     width: 72px;
 }
 
+.menu-logo-right {
+    width: 150px;
+}
+
 .enter-facebook {
     cursor: pointer;
     background-color: #415e9b !important;
 }
-.land-main .enter-facebook .md-icon-button ng-md-icon svg{
+
+.land-main .enter-facebook .md-icon-button ng-md-icon svg {
     margin-top: -6px !important;
 }
+
 .sidenav-header {
     margin-top: 56px;
 }
@@ -274,4 +277,20 @@ section.bg-section {
 
 .land-main .link-demo {
     margin-top: 100px;
+}
+
+.land-main .menu-bar a.active {
+    border-bottom: 3px solid #f17668;
+    border-radius: 0;
+}
+.land-main .menu-bar-right a.active {
+    border-bottom: 3px solid #f17668;
+    border-radius: 0;
+    color: #fff;
+    background-color: #f17668;
+}
+
+.link-demo-back {
+    margin: 24px;
+    background-color: #222 !important;
 }
