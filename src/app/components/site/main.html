@@ -1,12 +1,12 @@
 <div layout="column" class="land-main">
     <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-        <md-content layout="column" layout-wrap layout-padding>
+        <md-content class="menu-bar-right" layout="column" layout-wrap layout-padding>
             <div layout="row" layout-padding layout-align="center center">
-                <img class="menu-logo" src="assets/images/land/main/isopen-logo.jpg" alt="">
+                <img class="menu-logo-right" src="assets/images/land/main/isopen-logo.jpg" alt="">
             </div>
-            <md-button href="#demo" class="io-bold-btn">Demo</md-button>
-            <md-button href="#services" class="io-bold-btn">Services</md-button>
-            <md-button href="#contacts" class="io-bold-btn">Contacs</md-button>
+            <md-button du-smooth-scroll du-scrollspy href="#demo" class="io-bold-btn">Demo</md-button>
+            <md-button du-smooth-scroll du-scrollspy href="#services" class="io-bold-btn">Services</md-button>
+            <md-button du-smooth-scroll du-scrollspy href="#contacts" class="io-bold-btn">Contacs</md-button>
             <md-button style="width: 100%" flex class="md-icon-button launch" ng-if="isSession && !isInApp"
                        ng-click="authenticate('facebook')">
                 <ng-md-icon icon="facebook-box" style="fill: #415e9b"></ng-md-icon>
@@ -34,27 +34,25 @@
         <div layout="row" layout-padding layout-align="center center">
             <img class="menu-logo" src="assets/images/land/main/isopen-logo.jpg" alt="">
         </div>
-        <div layout="row" layout-align="center center">
-            <md-button href="#demo" class="io-bold-btn">Demo</md-button>
-            <md-button href="#services" class="io-bold-btn">Services</md-button>
-            <md-button href="#contacts" class="io-bold-btn">Contacs</md-button>
+        <div class="menu-bar" layout="row" layout-align="center center">
+            <md-button du-smooth-scroll du-scrollspy offset="68" href="#demo" class="io-bold-btn">Demo</md-button>
+            <md-button du-smooth-scroll du-scrollspy offset="68" href="#services" class="io-bold-btn">Services
+            </md-button>
+            <md-button du-smooth-scroll du-scrollspy offset="68" href="#contacts" class="io-bold-btn">Contacs
+            </md-button>
             <md-button class="md-icon-button launch" ng-if="isSession && !isInApp"
                        ng-click="authenticate('facebook')">
                 <ng-md-icon icon="facebook-box" style="fill: #415e9b"></ng-md-icon>
             </md-button>
         </div>
-
-
-
     </div>
 
-
-
     <header layout="column"
+            parallax-background parallax-ratio="0.2"
             layout-align="center center">
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 style="font-size: 65px;">
+                <h1 ng-class="{ 'header-title-land' : $mdMedia('gt-sm') }">
                     Create your own store app
                 </h1>
                 <hr/>
@@ -63,7 +61,7 @@
                     <md-button class="md-raised md-primary io-primary-btn enter-facebook" layout="row"
                                layout-align="center center"
                                ng-click="authenticate('facebook')">
-                        <b>Enter with</b>&nbsp;
+                        <b>Login with</b>&nbsp;
                         <a class="md-icon-button launch" ng-if="isSession && !isInApp">
                             <ng-md-icon icon="facebook-box" size="32" style="fill: #fff"></ng-md-icon>
                         </a>
@@ -72,7 +70,8 @@
 
                 <br/>
                 <md-button href="#demo"
-                           class="md-fab md-primary io-primary-btn launch" flex="30" layout-fill>
+                           du-smooth-scroll du-scrollspy
+                           class="md-fab md-primary io-primary-btn launch link-demo" flex="30" layout-fill>
                     <ng-md-icon icon="expand_more" size="24" style="fill: #fff"></ng-md-icon>
                 </md-button>
             </div>
@@ -92,7 +91,7 @@
                 <label>Phone number</label>
                 <input ng-model="user.phone" class="left-justified" type="tel">
             </md-input-container>
-            <md-button layout-fill flex="10" layout-margin href="http://google.com" target="_blank"
+            <md-button href="http://google.com" target="_blank"
                        class="md-raised io-raised-btn">
                 Submit
             </md-button>
@@ -225,9 +224,9 @@
         <div layout="column" layout-align="center center" class="user-tree">
             <md-input-container flex>
                 <label>Email</label>
-                <input ng-model="user.phone" class="left-justified" type="tel">
+                <input ng-model="user.email" class="left-justified" type="email">
             </md-input-container>
-            <md-button layout-fill flex="20" layout-margin href="http://google.com" target="_blank"
+            <md-button href="http://google.com" target="_blank"
                        class="md-raised io-raised-btn">
                 Submit
             </md-button>
@@ -261,7 +260,7 @@
             <div layout="row" layout-xs="column" layout-margin>
                 <md-input-container flex>
                     <label>Email</label>
-                    <input ng-model="user.phone" class="left-justified" type="tel">
+                    <input ng-model="user.email" class="left-justified" type="email">
                 </md-input-container>
                 <md-input-container flex>
                     <label>Phone number</label>
@@ -269,11 +268,11 @@
                 </md-input-container>
                 <md-input-container flex>
                     <label>Facebook page</label>
-                    <input ng-model="user.phone" class="left-justified" type="tel">
+                    <input ng-model="user.facebook" class="left-justified" type="text">
                 </md-input-container>
             </div>
-            <div layout="row" layout-align="center center" layout-fill>
-                <md-button flex="30" href="http://google.com" target="_blank"
+            <div layout="row" layout-align="center center">
+                <md-button href="http://google.com" target="_blank"
                            class="md-raised io-raised-btn">
                     Submit
                 </md-button>
@@ -293,8 +292,8 @@
             <div flex="10"></div>
         </div>
 
-        <div layout="row" layout-align="center center" layout-fill class="user-tree">
-            <md-button layout-fill flex="30" layout-margin href="http://google.com" target="_blank"
+        <div layout="column" layout-align="center center" class="user-tree">
+            <md-button flex href="http://google.com" target="_blank"
                        class="md-raised io-raised-btn">
                 Demo
             </md-button>
@@ -303,12 +302,17 @@
     </section>
     <section layout="column" layout-align="center center" class="bg-section" id="contacts">
         <div layout="row" layout-margin layout-align="center center">
-            <div class="service-box" layout="column" flex>
+            <div class="service-box" layout="column" layout-align="center center" flex>
                 <h2>My Contact Information</h2>
                 <hr/>
                 <p class="text-muted">
                     Here's my phone number and email address, because hey that's part of the template and why would you not include that on your webpage? You'd be a fool not to! I can't wait for all the job offers to come pouring in from all the companies wanting my insane website design skills.
                 </p>
+                <md-button du-smooth-scroll du-scrollspy
+                           ng-click="toTheTop()"
+                           class="md-fab md-primary io-primary-btn launch link-demo-back">
+                    <ng-md-icon icon="expand_less" size="24" style="fill: #fff"></ng-md-icon>
+                </md-button>
                 <div class="message-circle-main icon"></div>
                 <h3>
                     <a href="mailto:test@gmail.com">test@gmail.com</a>
