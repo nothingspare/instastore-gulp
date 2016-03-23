@@ -2,15 +2,23 @@
     <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
         <md-content class="menu-bar-right" layout="column" layout-wrap layout-padding>
             <div layout="row" layout-padding layout-align="center center">
-                <img class="menu-logo-right" src="assets/images/land/main/isopen-logo.jpg" alt="">
+                <a href="/" ng-click="toTheTop()">
+                    <img class="menu-logo-right" src="assets/images/land/main/isopen-logo.jpg" alt="">
+                </a>
             </div>
             <md-button du-smooth-scroll du-scrollspy href="#demo" class="io-bold-btn">Demo</md-button>
             <md-button du-smooth-scroll du-scrollspy href="#services" class="io-bold-btn">Services</md-button>
             <md-button du-smooth-scroll du-scrollspy href="#contacts" class="io-bold-btn">Contacs</md-button>
-            <md-button style="width: 100%" flex class="md-icon-button launch" ng-if="isSession && !isInApp"
-                       ng-click="authenticate('facebook')">
-                <ng-md-icon icon="facebook-box" style="fill: #415e9b"></ng-md-icon>
-            </md-button>
+            <div layout="row" layout-align="center center">
+                <md-button class="md-raised md-primary io-primary-btn enter-facebook facebook-icon-btn" layout="row"
+                           layout-align="center center"
+                           ng-click="authenticate('facebook')">
+                    <b>Login with</b>&nbsp;
+                    <a class="md-icon-button launch" ng-if="isSession && !isInApp">
+                        <ng-md-icon icon="facebook-box" size="32" style="fill: #fff"></ng-md-icon>
+                    </a>
+                </md-button>
+            </div>
         </md-content>
     </md-sidenav>
 
@@ -32,7 +40,9 @@
     <div layout="row" hide show-gt-sm
          class="navbar-default" layout-align="space-between center">
         <div layout="row" layout-padding layout-align="center center">
-            <img class="menu-logo" src="assets/images/land/main/isopen-logo.jpg" alt="">
+            <a href="/" ng-click="toTheTop()">
+                <img class="menu-logo" src="assets/images/land/main/isopen-logo.jpg" alt="">
+            </a>
         </div>
         <div class="menu-bar" layout="row" layout-align="center center">
             <md-button du-smooth-scroll du-scrollspy offset="68" href="#demo" class="io-bold-btn">Demo</md-button>
@@ -40,7 +50,7 @@
             </md-button>
             <md-button du-smooth-scroll du-scrollspy offset="68" href="#contacts" class="io-bold-btn">Contacs
             </md-button>
-            <md-button class="md-icon-button launch" ng-if="isSession && !isInApp"
+            <md-button class="md-icon-button launch facebook-icon-btn" ng-if="isSession && !isInApp"
                        ng-click="authenticate('facebook')">
                 <ng-md-icon icon="facebook-box" style="fill: #415e9b"></ng-md-icon>
             </md-button>
@@ -58,7 +68,7 @@
                 <hr/>
                 <p>Take a look around at the same bootstrap page you've seen ten million times before! Featuring all the same things as those pages!</p>
                 <div layout="row" layout-align="center center">
-                    <md-button class="md-raised md-primary io-primary-btn enter-facebook" layout="row"
+                    <md-button class="md-raised md-primary io-primary-btn enter-facebook facebook-icon-btn" layout="row"
                                layout-align="center center"
                                ng-click="authenticate('facebook')">
                         <b>Login with</b>&nbsp;
@@ -101,7 +111,8 @@
     <section layout="row" layout-xs="column" layout-align="center center" class="bg-section" id="images">
         <div flex>
             <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo1.jpg" class="img-responsive" alt="">
+                <img parallax parallax-ratio="0.4" src="../../../assets/images/land/main/Mo1.jpg" class="img-responsive"
+                     alt="">
                 <div class="portfolio-box-caption">
                     <div class="portfolio-box-caption-content">
                         <div class="project-category text-faded">
@@ -116,7 +127,8 @@
         </div>
         <div flex>
             <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo2.jpg" class="img-responsive" alt="">
+                <img parallax parallax-ratio="0.3" src="../../../assets/images/land/main/Mo2.jpg" class="img-responsive"
+                     alt="">
                 <div class="portfolio-box-caption">
                     <div class="portfolio-box-caption-content">
                         <div class="project-category text-faded">
