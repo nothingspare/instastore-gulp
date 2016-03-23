@@ -16,12 +16,12 @@ angular.module('instastore')
             }
 
             $scope.toggleRight = buildToggler('right');
-            $scope.isOpenRight = function(){
+            $scope.isOpenRight = function () {
                 return $mdSidenav('right').isOpen();
             };
 
             function buildToggler(navID) {
-                return function() {
+                return function () {
                     $mdSidenav(navID)
                         .toggle()
                         .then(function () {
@@ -161,7 +161,6 @@ angular.module('instastore')
                     }).error(errorService.alert);
                 }
             };
-
         }])
 
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
