@@ -1,7 +1,11 @@
 <div layout="column" ng-controller="SiteHeader" class="no-print">
-    <div layout layout-align="center center" class="io-bar" ng-class="{'instaimport-bar':$state.includes('instaimport')}">
-        <div ng-if="!$state.includes('grid')" ng-click="goBack()">
+    <div layout layout-align="center center" class="io-bar"
+         ng-class="{'instaimport-bar':$state.includes('instaimport')}">
+        <div ng-if="!$state.includes('grid') && isSeller" ng-click="goBack()">
             <div class="back"></div>
+        </div>
+        <div ng-if="!isSeller" ng-click="goToMainStore()">
+            <div class="store"></div>
         </div>
         <div layout flex ng-click="scrollToTop()" class="middle-section">
             <img class="profile customheader-profile" ng-class="{'profile-img-grid':$state.includes('grid')}"
@@ -85,17 +89,17 @@
                          ui-sref="grid({storeurl:profile.inviter_url, mode:''})">
                         <div class="gridstream"></div>
                     </div>
-                    <div layout flex layout-align="center center"
+                    <div layout flex
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="stream({storeurl:profile.store.store_url})">
-                        <span>Multi<br>Stream</span>
+                         ui-sref="grid({storeurl:$stateParams.storeurl, mode:'feed'})">
+                        <div class="stream"></div>
                     </div>
-                    <div layout flex layout-align="center center"
+                    <div layout flex
                          class="subheader-menu-item"
                          ui-sref-active="menu-item-active"
-                         ui-sref="subscriptions({storeurl:profile.store.store_url})">
-                        <span>Subs</span>
+                         ui-sref="location({storeurl:$stateParams.storeurl})">
+                        <div class="location"></div>
                     </div>
                 </div>
             </div>
