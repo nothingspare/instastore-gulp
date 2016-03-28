@@ -222,7 +222,6 @@ app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector) {
         && deviceDetector.browser === 'unknown'
         && deviceDetector.browser_version === '0'
         && deviceDetector.os_version === 'unknown';
-    console.log(deviceDetector);
 });
 
 
