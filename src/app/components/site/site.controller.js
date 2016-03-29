@@ -18,17 +18,28 @@ angular.module('instastore')
           }
         }
 
+        $scope.selected = function () {
+          sideNavClose();
+        };
+
         $scope.toggleRight = buildToggler('right');
         $scope.isOpenRight = function () {
           return $mdSidenav('right').isOpen();
         };
+        
+        function sideNavClose() {
+          var sidenav = $mdSidenav('right');
+
+          if(sidenav.isOpen()) {
+            sidenav.close();
+          }
+        }
 
         function buildToggler(navID) {
           return function () {
             $mdSidenav(navID)
                 .toggle()
                 .then(function () {
-                  //$log.debug("toggle " + navID + " is done");
                 });
           }
         }
@@ -41,6 +52,7 @@ angular.module('instastore')
         $scope.isSession = SStorage.isSessionStorageAvailable();
 
         $scope.authenticate = function (provider) {
+          sideNavClose();
           $auth.authenticate(provider).then(function (res) {
             UserService.login(res.data.token);
             UserService.setFacebookProfile(res.data.facebookProfile);
