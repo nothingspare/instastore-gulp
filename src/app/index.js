@@ -5,7 +5,7 @@ var app = angular.module('instastore',
         'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
         'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive', 'ui.tree',
         'angularMoment', 'payment', 'angular-stripe', 'ngMdIcons', 'ngMaterial', 'ngMessages',
-        'angular-parallax', 'duScroll'
+        'angular-parallax', 'duScroll', 'md.data.table', 'ngResource'
     ]);
 
 app.value('duScrollDuration', 1000);
@@ -107,6 +107,12 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             url: '/instaimport/:storeurl',
             controller: 'InstagramImport',
             templateUrl: modulesPath + '/item/instaimport.html'
+        });
+
+        $stateProvider.state('transaction', {
+            url: '/transaction/',
+            controller: 'TransactionCtrl',
+            templateUrl: modulesPath + '/transaction/transaction.html'
         });
 
         $authProvider.baseUrl = API_URL;

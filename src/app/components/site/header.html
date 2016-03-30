@@ -15,11 +15,16 @@
                 <div class="header-title">{{store.store_name}}</div>
             </div>
         </div>
+        <div>
+            <a href="/transaction/">
+                <ng-md-icon icon="error" size="24" style="fill: #545052"></ng-md-icon>
+            </a>
+        </div>
         <div ng-click="showProfile()">
             <div class="user"></div>
         </div>
     </div>
-    <div ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport'))">
+    <div ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
         <div layout="column" class="io-sub-bar-freeshipping">
             <div layout layout-align="center center" flex layout-padding class="free-shipping">FREE SHIPPING ON ALL
                 ITEMS
