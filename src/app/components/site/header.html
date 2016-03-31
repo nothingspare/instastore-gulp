@@ -17,7 +17,7 @@
             <div flex layout layout-align="center center">
                 <div class="header-title">
                     {{configSiteHeader.isManageStore && ($state.includes('stream') || $state.includes('stream-grid') ||
-                    $state.includes('subscriptions'))?'Multi store':store.store_name}}
+                    $state.includes('subscriptions'))?'All Store':store.store_name}}
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                                 Edit Store
                             </md-option>
                             <md-option value="storestream">
-                                Store Stream
+                                All Store Stream
                             </md-option>
                             <md-option value="editprofile">
                                 Edit Profile
