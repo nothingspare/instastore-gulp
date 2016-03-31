@@ -5,17 +5,20 @@
             <div class="back"></div>
         </div>
         <!--<div ng-if="!isSeller && !$state.includes('stream')" ng-click="goBack()" layout>-->
-            <!--<ng-md-icon icon="view_carousel" style="fill:black"></ng-md-icon>-->
+        <!--<ng-md-icon icon="view_carousel" style="fill:black"></ng-md-icon>-->
         <!--</div>-->
         <!--<div ng-if="!isSeller && $state.includes('stream')" ng-click="goBack()" layout>-->
-            <!--<div class="store"></div>-->
+        <!--<div class="store"></div>-->
         <!--</div>-->
         <div layout flex ng-click="scrollToTop()" class="middle-section">
             <!--<img class="profile customheader-profile" ng-class="{'profile-img-grid':$state.includes('grid')}"-->
             <!--ng-src="{{store.avatar_url|storeAvatar}}">-->
 
             <div flex layout layout-align="center center">
-                <div class="header-title">{{!configSiteHeader.isManageStore?store.store_name:'Multi store'}}</div>
+                <div class="header-title">
+                    {{configSiteHeader.isManageStore && ($state.includes('stream') || $state.includes('stream-grid') ||
+                    $state.includes('subscriptions'))?'Multi store':store.store_name}}
+                </div>
             </div>
         </div>
         <div ng-click="showProfile()">
