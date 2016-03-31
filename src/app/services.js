@@ -26,7 +26,7 @@ angular.module('instastore')
             baseUrl: API_URL,
             path: undefined,
 
-                serialize: function (obj, prefix) {
+            serialize: function (obj, prefix) {
                 var str = [];
                 for (var p in obj) {
                     if (obj.hasOwnProperty(p)) {
@@ -75,6 +75,7 @@ angular.module('instastore')
     .factory('UserService', function ($rootScope, $injector, $cookies, $window, errorService) {
         var currentUser;
         var isInvited;
+        var isManageStore;
         return {
             init: function () {
                 //this.initBgAndAvatar();
@@ -92,12 +93,24 @@ angular.module('instastore')
             },
             isGuest: function () {
                 var token = $cookies._auth;
-                if (token) {
-                    return false;
+                return !token;
+            },
+            getIsManageStore: function () {
+                return isManageStore;
+            },
+            toggleIsManageStore: function () {
+                isManageStore = !isManageStore;
+                if (isManageStore) {
+                    this.goToMainStore();
                 }
                 else {
-                    return true;
+                    this.goToStream();
                 }
+            },
+            goToStream: function () {
+                var profile = this.getProfile();
+                var state = $injector.get('$state');
+                state.go('stream', {storeurl: profile.store.store_url, view: 'ms'});
             },
             getUserRole: function () {
                 var profile = this.getProfile();
@@ -423,19 +436,38 @@ angular.module('instastore')
             }
         }
     }])
-    .factory('RouterTracker', ['$rootScope', function ($rootScope) {
+    .factory('RouterTracker', ['$rootScope', 'UserService', '$state', function ($rootScope, UserService, $state) {
+        var profile = UserService.getProfile();
         var routeHistory = [];
         var service = {
-            getRouteHistory: getRouteHistory
+            getRouteHistory: getRouteHistory,
+            goToLastRoute: goToLastRoute
         };
 
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+            console.log({route: from, routeParams: fromParams});
             routeHistory.push({route: from, routeParams: fromParams});
         });
 
         function getRouteHistory() {
             return routeHistory;
-        }
+        };
+
+        function goToLastRoute() {
+            var lastRoute = getLastRoute();
+            $state.go(lastRoute.route.name, lastRoute.routeParams);
+        };
+
+        function getLastRoute() {
+            return routeHistory[routeHistory.length - 1] ? routeHistory[routeHistory.length - 1] : {
+                route: {
+                    name: 'stream'
+                },
+                routeParams: {
+                    storeurl: profile.store.store_url
+                }
+            };
+        };
 
         return service;
     }]);
