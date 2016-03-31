@@ -1204,8 +1204,8 @@ h3 {
 
 /* - - -below mid nav - - -*/
 
-.grid-container {
-    margin: 0 0 0 0;
+.grid-container.itemgrid.grid.s-grid.s-grid--divide-3.m-grid--divide-4.l-grid--divide-7 {
+    margin: 15px 0 0 0;
     margin-left: 0px;
 }
 
