@@ -1056,24 +1056,24 @@ h3 {
   width: 101%;
 }
 
-#navigation h4 {  
-  font-family: 'Josefin Sans', sans-serif; 
-  font-weight:300; 
-  font-size:15px; 
-  line-height:60%; 
+#navigation h4 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight:300;
+  font-size:15px;
+  line-height:60%;
   margin-top: 5px;
 }
 
 #navigation ul {
   margin: 0;
-  padding: 0; 
+  padding: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.3);
   opacity: 0.9;
 }
 
 #navigation ul li {
   list-style-type: none;
-  display: inline;  
+  display: inline;
 }
 
 #navigation li a {
@@ -1087,13 +1087,13 @@ h3 {
   color: #222;
 }
 
-#navigation li a:hover { 
-  background:rgba(0, 0, 0, 0.1); 
+#navigation li a:hover {
+  background:rgba(0, 0, 0, 0.1);
   color: #fff;
 }
 
-#navigation li a:active { 
-  background:rgba(0, 0, 0, 0.3); 
+#navigation li a:active {
+  background:rgba(0, 0, 0, 0.3);
   color: #fff;
 }*/
 /** - - - - - - - profile page elements - - - - - - - - - - - **/

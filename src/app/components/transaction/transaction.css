@@ -44,7 +44,7 @@
 .transaction .md-table tbody tr:hover,
 .transaction .md-table tbody tr:focus {
     cursor: pointer;
-    background-color: rgba(243, 120, 120, 0.2);
+    background-color: rgba(0, 0, 0, 0.15);
 }
 .transaction .md-table-header {
     border-bottom: 1px solid #e6e6e6;
@@ -60,19 +60,17 @@
 }
 .transaction .md-table-content {
     white-space: nowrap;
-    font-size: 0.8em;
+    font-size: 0.7em;
     padding: 16px 16px 16px 0;
-    height: 72px;
 }
 .transaction .md-table-td-more {
-    max-width: 72px;
     width: 72px;
-    padding: 16px;
+    padding: 10px;
 }
 .transaction .md-table-thumbs {
     max-width: 104px;
     width: 104px;
-    padding: 16px 32px;
+    padding: 0 32px;
 }
 .transaction .md-table-thumbs div {
     overflow: hidden;
@@ -121,4 +119,14 @@
 .transaction .btn-pagination button {
     min-width: 0;
     margin: 0;
+}
+
+.transaction md-toolbar.md-tall {
+    height: initial;
+    min-height: initial;
+    max-height: 128px;
+}
+
+.transaction ng-md-icon {
+    height: 18px;
 }

@@ -22,6 +22,7 @@
                 </span>
             </th>
             <th class="md-table-header"></th>
+            <th class="md-table-header"></th>
         </tr>
         </thead>
         <tbody>
@@ -36,11 +37,21 @@
                 class="md-table-content">{{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
             </td>
             <td class="md-table-td-more">
-                <md-button aria-label="Info">
-                    <ng-md-icon icon="more_vert"
-                                size="24"
+                <md-button class="io-accept" aria-label="Info">
+                    <ng-md-icon icon="check"
+                                size="16"
                                 style="fill: #545052">
                     </ng-md-icon>
+                    accept
+                </md-button>
+            </td>
+            <td class="md-table-td-more">
+                <md-button class="md-warn io-decline" aria-label="Info">
+                    <ng-md-icon icon="close"
+                                size="16"
+                                style="fill: #545052">
+                    </ng-md-icon>
+                    decline
                 </md-button>
             </td>
         </tr>

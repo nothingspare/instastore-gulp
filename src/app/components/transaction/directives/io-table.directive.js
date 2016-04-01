@@ -10,7 +10,7 @@
   function ioTable() {
     return {
       restrict: 'E',
-      templateUrl: 'app/components/transaction/directives/table.html',
+      templateUrl: 'app/components/transaction/directives/io-table.html',
       scope: {
         headers: '=',
         content: '=',

@@ -58,7 +58,7 @@
         last_modified: 'Jun 5, 2014'
       },
       {
-        thumb: 'http://25.media.tumblr.com/61ebf04c3cc7a84944aa0246e902f2a7/tumblr_mm35b87dGz1qmwrnuo1_1280.jpg',
+        thumb: 'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
         name: 'Daft Punk',
         description: 'Human-Robot',
         last_modified: 'Jun 5, 2014'
