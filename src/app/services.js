@@ -443,10 +443,22 @@ angular.module('instastore')
             getRouteHistory: getRouteHistory,
             goToLastRoute: goToLastRoute
         };
+        var streamRoute = {
+            route: {
+                name: 'stream'
+            },
+            routeParams: {
+                storeurl: profile.store.store_url
+            }
+        };
 
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-            console.log({route: from, routeParams: fromParams});
-            routeHistory.push({route: from, routeParams: fromParams});
+            routeHistory.push({route: from, routeParams: fromParams, to: to});
+            if (routeHistory[routeHistory.length - 2]
+                && routeHistory[routeHistory.length - 2].route.name === 'itemview'
+                && routeHistory[routeHistory.length - 1].to.name === 'itemview') {
+                goToStreamRoute();
+            }
         });
 
         function getRouteHistory() {
@@ -458,16 +470,20 @@ angular.module('instastore')
             $state.go(lastRoute.route.name, lastRoute.routeParams);
         };
 
-        function getLastRoute() {
-            return routeHistory[routeHistory.length - 1] ? routeHistory[routeHistory.length - 1] : {
-                route: {
-                    name: 'stream'
-                },
-                routeParams: {
-                    storeurl: profile.store.store_url
-                }
-            };
-        };
+        function goToStreamRoute() {
+            $state.go(streamRoute.route.name, streamRoute.routeParams);
+        }
 
+        function getLastRoute() {
+
+            //if page reloading
+            if (!routeHistory[routeHistory.length - 1]) {
+                return streamRoute;
+            }
+            else {
+                return routeHistory[routeHistory.length - 1];
+            }
+
+        };
         return service;
     }]);
