@@ -72,6 +72,12 @@ angular.module('instastore')
                   $mdDialog, $mdMedia, $rootScope, rest, InAppService, $timeout, RouterTracker) {
 
 
+            if (!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))) {
+                UserService.initStore();
+            } else {
+                UserService.initMyStoreSettings();
+            }
+
             $scope.configSiteHeader = {
                 isManageStore: UserService.isYourStore() && $state.includes('grid') ? true : false,
                 headerMode: UserService.isYourStore() && $state.includes('grid') ? 'editstore' : 'storestream'
@@ -99,12 +105,6 @@ angular.module('instastore')
                     }
                 }
             };
-
-            if (!$state.includes('stream') || (!$state.includes('subscriptions'))) {
-                UserService.initStore();
-            } else {
-                UserService.initMyStoreSettings();
-            }
 
             $scope.showProfile = function (ev) {
                 if (!InAppService.isFacebookInApp()) {

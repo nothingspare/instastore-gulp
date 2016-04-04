@@ -453,10 +453,11 @@ angular.module('instastore')
         };
 
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-            routeHistory.push({route: from, routeParams: fromParams, to: to});
-            if (routeHistory[routeHistory.length - 2]
-                && routeHistory[routeHistory.length - 2].route.name === 'itemview'
-                && routeHistory[routeHistory.length - 1].to.name === 'itemview') {
+            routeHistory.push({route: from, routeParams: fromParams, to: to, toParams: toParams});
+            if (routeHistory[routeHistory.length - 3]
+                && routeHistory[routeHistory.length - 1]
+                && angular.equals(routeHistory[routeHistory.length - 3], routeHistory[routeHistory.length - 1])) {
+                console.log('ffasdfa');
                 goToStreamRoute();
             }
         });

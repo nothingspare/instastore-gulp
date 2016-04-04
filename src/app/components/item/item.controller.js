@@ -404,6 +404,7 @@ angular.module('instastore')
 
             //Label section
             $scope.getLabel = function (isell, ev) {
+                $location.hash('start');
                 $scope.isellBox = isell.box;
                 $http.post(API_URL + 'v1/link/label', {
                     buyerId: isell.buyer.id,

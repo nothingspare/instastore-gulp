@@ -6,9 +6,12 @@
         </div>
         <div layout flex ng-click="scrollToTop()" class="middle-section">
             <div flex layout layout-align="center center">
-                <div class="header-title">
-                    {{($state.includes('stream') || $state.includes('stream-grid') ||
-                    $state.includes('subscriptions'))?'All Store':store.store_name}}
+                <div class="header-title" ng-if="isYourStore">
+                    {{$state.includes('stream') || $state.includes('stream-grid') ||
+                    $state.includes('subscriptions')?'All Store':store.store_name}}
+                </div>
+                <div class="header-title" ng-if="!isYourStore">
+                    {{store.store_name}}
                 </div>
             </div>
         </div>
@@ -77,7 +80,7 @@
                         <!--</md-button>-->
                         <md-select ng-model="configSiteHeader.headerMode" md-on-close="toggleMenuState()">
                             <md-option value="editstore">
-                                Edit Store
+                                Your Store
                             </md-option>
                             <md-option value="storestream">
                                 All Store Stream
