@@ -6,19 +6,25 @@
     min-width: 0;
     margin: 0;
 }
+
 .transaction a {
     text-decoration: none;
+    text-align: center;
 }
+
 .transaction a:hover {
     text-decoration: none;
 }
+
 .transaction i {
     vertical-align: middle;
     font-size: 24px;
 }
+
 .transaction input, .transaction .input {
     box-shadow: none;
 }
+
 .transaction .main-fab {
     position: absolute;
     z-index: 20;
@@ -27,25 +33,31 @@
     left: 24px;
     transform: scale(0.88, 0.88);
 }
+
 .transaction .md-breadcrumb {
     padding-left: 88px;
 }
+
 .transaction .JCLRgrip:first-child {
     left: 105px !important;
     display: none !important;
 }
+
 .transaction .JColResizer th:first-child {
     width: 105px !important;
 }
+
 .transaction .md-table {
     min-width: 100%;
     border-collapse: collapse;
 }
+
 .transaction .md-table tbody tr:hover,
 .transaction .md-table tbody tr:focus {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.15);
 }
+
 .transaction .md-table-header {
     border-bottom: 1px solid #e6e6e6;
     color: #828282;
@@ -53,28 +65,35 @@
     font-size: 0.75em;
     font-weight: 700;
     padding: 16px 16px 16px 0;
+    text-align: center;
 }
+
 .transaction .md-table-header a {
     text-decoration: none;
     color: inherit;
 }
+
 .transaction .md-table-content {
     white-space: nowrap;
     font-size: 0.7em;
     padding: 16px 16px 16px 0;
+    text-align: center;
 }
+
 .transaction .md-table-td-more {
     width: 72px;
     padding: 10px;
+    text-align: center;
 }
+
 .transaction .md-table-thumbs {
-    max-width: 104px;
-    width: 104px;
+    width: 40px;
     padding: 0 32px;
 }
+
 .transaction .md-table-thumbs div {
     overflow: hidden;
-    width: 40px;
+    max-width: 40px;
     height: 40px;
     border-radius: 20px;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -82,40 +101,50 @@
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
 }
+
 .transaction .md-table-footer {
     height: 40px;
     padding-left: 32px;
     padding-right: 32px;
 }
+
 .transaction .md-table-count-info {
     line-height: 40px;
     font-size: .75em;
 }
+
 .transaction .md-table-footer-item {
     width: 40px;
     height: 40px;
     vertical-align: middle;
 }
+
 .transaction .md-table-active-page {
     font-weight: 700;
 }
+
 .transaction .bold {
     font-weight: 700;
 }
+
 .transaction .grey {
     color: grey;
 }
+
 .transaction md-input-container .md-input {
     color: white;
     border-color: white;
     margin-top: 40px;
 }
+
 .transaction .md-toolbar-tools .md-toolbar-item span {
     color: white !important;
 }
+
 .transaction md-content {
     overflow: hidden;
 }
+
 .transaction .btn-pagination button {
     min-width: 0;
     margin: 0;

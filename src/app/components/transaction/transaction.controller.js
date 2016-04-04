@@ -20,17 +20,11 @@
       name: '',
       field: 'thumb'
     }, {
-      name: 'Name',
-      field: 'name'
-    }, {
-      name: 'Description',
-      field: 'description'
-    }, {
-      name: 'Last Modified',
-      field: 'last_modified'
+      name: 'Status',
+      field: 'status'
     }];
 
-    $scope.sortable = ['name', 'description', 'last_modified'];
+    $scope.sortable = ['status'];
 
     $scope.custom = {
       name: 'bold',
@@ -40,86 +34,92 @@
 
     $scope.content = [
       {
-        thumb: 'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
-        name: 'Bruno Mars',
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/12965864_1759789007574561_1920660264_n.jpg?ig_cache_key=MTIyMDYxOTcyMjYyNzcwMDI4Mg%3D%3D.2.c',
+        status: 'Item bought!',
         description: 'Human',
         last_modified: 'Jun 5, 2014'
       },
       {
-        thumb: 'http://www.otakia.com/wp-content/uploads/V_1/article_3573/7405.jpg',
-        name: 'AT-AT',
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/12912804_444559819075394_1782400617_n.jpg?ig_cache_key=MTIxODM1NjM1MDg0NjcxOTIxNw%3D%3D.2.c',
+        status: 'Item bought!',
         description: 'Robot',
         last_modified: 'Jun 5, 2014'
       },
       {
-        thumb: 'https://speakerdata.s3.amazonaws.com/photo/image/774492/Mark-Ronson-r24.jpg',
-        name: 'Mark Ronson',
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/12479062_1695457517379592_1502191868_n.jpg?ig_cache_key=MTIxOTQ3NjgwMDkwMTQzNjk1OQ%3D%3D.2',
+        status: 'Item bought!',
         description: 'Human',
         last_modified: 'Jun 5, 2014'
       },
       {
-        thumb: 'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
-        name: 'Daft Punk',
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/12905215_252924808387308_537305983_n.jpg?ig_cache_key=MTIxOTU2NjAwMjkyNjIxMjIwMA%3D%3D.2.c',
+        status: 'Item bought!',
         description: 'Human-Robot',
         last_modified: 'Jun 5, 2014'
       },
       {
         thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
+        status: 'Item bought!',
         description: 'Undefined',
         last_modified: 'Jun 5, 2014'
       },
       {
-        thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
-        description: 'Undefined',
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/12965864_1759789007574561_1920660264_n.jpg?ig_cache_key=MTIyMDYxOTcyMjYyNzcwMDI4Mg%3D%3D.2.c',
+        status: 'Item bought!',
+        description: 'Human',
+        last_modified: 'Jun 5, 2014'
+      },
+      {
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/12912804_444559819075394_1782400617_n.jpg?ig_cache_key=MTIxODM1NjM1MDg0NjcxOTIxNw%3D%3D.2.c',
+        status: 'Item bought!',
+        description: 'Robot',
+        last_modified: 'Jun 5, 2014'
+      },
+      {
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/12479062_1695457517379592_1502191868_n.jpg?ig_cache_key=MTIxOTQ3NjgwMDkwMTQzNjk1OQ%3D%3D.2',
+        status: 'Item bought!',
+        description: 'Human',
+        last_modified: 'Jun 5, 2014'
+      },
+      {
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/12905215_252924808387308_537305983_n.jpg?ig_cache_key=MTIxOTU2NjAwMjkyNjIxMjIwMA%3D%3D.2.c',
+        status: 'Item bought!',
+        description: 'Human-Robot',
         last_modified: 'Jun 5, 2014'
       },
       {
         thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
+        status: 'Item bought!',
         description: 'Undefined',
         last_modified: 'Jun 5, 2014'
       },
       {
-        thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
-        description: 'Undefined',
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/12965864_1759789007574561_1920660264_n.jpg?ig_cache_key=MTIyMDYxOTcyMjYyNzcwMDI4Mg%3D%3D.2.c',
+        status: 'Item bought!',
+        description: 'Human',
+        last_modified: 'Jun 5, 2014'
+      },
+      {
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/12912804_444559819075394_1782400617_n.jpg?ig_cache_key=MTIxODM1NjM1MDg0NjcxOTIxNw%3D%3D.2.c',
+        status: 'Item bought!',
+        description: 'Robot',
+        last_modified: 'Jun 5, 2014'
+      },
+      {
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/12479062_1695457517379592_1502191868_n.jpg?ig_cache_key=MTIxOTQ3NjgwMDkwMTQzNjk1OQ%3D%3D.2',
+        status: 'Item bought!',
+        description: 'Human',
+        last_modified: 'Jun 5, 2014'
+      },
+      {
+        thumb: 'https://scontent.cdninstagram.com/t51.2885-15/s150x150/e35/c0.134.1080.1080/12905215_252924808387308_537305983_n.jpg?ig_cache_key=MTIxOTU2NjAwMjkyNjIxMjIwMA%3D%3D.2.c',
+        status: 'Item bought!',
+        description: 'Human-Robot',
         last_modified: 'Jun 5, 2014'
       },
       {
         thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
-        description: 'Undefined',
-        last_modified: 'Jun 5, 2014'
-      },
-      {
-        thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
-        description: 'Undefined',
-        last_modified: 'Jun 5, 2014'
-      },
-      {
-        thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
-        description: 'Undefined',
-        last_modified: 'Jun 5, 2014'
-      },
-      {
-        thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
-        description: 'Undefined',
-        last_modified: 'Jun 5, 2014'
-      },
-      {
-        thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
-        description: 'Undefined',
-        last_modified: 'Jun 5, 2014'
-      },
-      {
-        thumb: 'http://thatgrapejuice.net/wp-content/uploads/2014/03/lady-gaga-that-grape-juice-televisionjpg.jpg',
-        name: 'Lady Gaga',
+        status: 'Item bought!',
         description: 'Undefined',
         last_modified: 'Jun 5, 2014'
       }

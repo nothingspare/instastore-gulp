@@ -165,6 +165,11 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
                 configFacebook.clientId = '752257608211967';
                 configInstagram.redirectUri = configPinterest.redirectUri = 'http://localhost:3000/';
                 break;
+            case 'http://192.168.0.104:3000':
+                configFacebook.clientId = '787537388017322';
+                configInstagram.clientId = '7f744b4b4f844419bd49872ac67cf22a';
+                configInstagram.redirectUri = configPinterest.redirectUri = 'http://192.168.0.104:3000/';
+                break;
         }
 
         $authProvider.facebook(configFacebook);

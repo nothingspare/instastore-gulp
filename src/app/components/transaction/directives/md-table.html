@@ -8,12 +8,12 @@
                     {{h.name}}
                     <ng-md-icon ng-show="!reverse && h.field == predicate"
                                 icon="keyboard_arrow_down"
-                                size="24"
+                                size="16"
                                 style="fill: #545052">
                     </ng-md-icon>
                     <ng-md-icon ng-show="reverse && h.field == predicate"
                                 icon="keyboard_arrow_up"
-                                size="24"
+                                size="16"
                                 style="fill: #545052">
                     </ng-md-icon>
                 </a>
@@ -21,8 +21,7 @@
                     ng-if="!handleSort(h.field)">{{h.name}}
                 </span>
             </th>
-            <th class="md-table-header"></th>
-            <th class="md-table-header"></th>
+            <th class="md-table-header">Accept</th>
         </tr>
         </thead>
         <tbody>
@@ -40,33 +39,24 @@
                 <md-button class="io-accept" aria-label="Info">
                     <ng-md-icon icon="check"
                                 size="16"
-                                style="fill: #545052">
+                                style="fill: #15A025">
                     </ng-md-icon>
-                    accept
-                </md-button>
-            </td>
-            <td class="md-table-td-more">
-                <md-button class="md-warn io-decline" aria-label="Info">
-                    <ng-md-icon icon="close"
-                                size="16"
-                                style="fill: #545052">
-                    </ng-md-icon>
-                    decline
+
                 </md-button>
             </td>
         </tr>
         </tbody>
     </table>
-    <div layout="row" class="md-table-footer">
-        <span class="md-table-count-info">Rows per page : <a href="#"
-                                                             ng-click="goToPage(0); count=10">10</a>,<a
-                href="#" ng-click="goToPage(0); count=25">25</a>,<a href="#" ng-click="goToPage(0); count=50">50</a>,<a
-                href="#" ng-click="goToPage(0); count=100">100</a>(current is {{count}})</span><span
-            flex="flex">
-        </span>
+    <div layout="row" layout-fill class="md-table-footer">
+        <!--<span class="md-table-count-info">Rows per page : <a href="#"-->
+        <!--                                                     ng-click="goToPage(0); count=10">10</a>,<a-->
+        <!--        href="#" ng-click="goToPage(0); count=25">25</a>,<a href="#" ng-click="goToPage(0); count=50">50</a>,<a-->
+        <!--        href="#" ng-click="goToPage(0); count=100">100</a>(current is {{count}})</span><span-->
+        <!--    flex="flex">-->
+        <!--</span>-->
 
-        <span class="btn-pagination" ng-show="nbOfPages() > 1">
-            <md-button ng-disabled="tablePage==0" icon="keyboard_arrow_left" ng-click="tablePage=tablePage-1"
+        <span flex layout="row" class="btn-pagination" ng-show="nbOfPages() > 1">
+            <md-button flex ng-disabled="tablePage==0" icon="keyboard_arrow_left" ng-click="tablePage=tablePage-1"
                        aria-label="Previous Page"
                        class="md-primary">
                 <ng-md-icon icon="keyboard_arrow_left"
@@ -74,11 +64,11 @@
                             style="fill: #545052">
                 </ng-md-icon>
             </md-button>
-            <a href="#" ng-repeat="i in getNumber(nbOfPages()) track by $index">
+            <a flex href="#" ng-repeat="i in getNumber(nbOfPages()) track by $index">
                 <md-button ng-click="goToPage($index)" class="md-primary md-table-footer-item"><span
                         ng-class="{ 'md-table-active-page': tablePage==$index}">{{$index+1}}</span></md-button>
             </a>
-            <md-button ng-disabled="tablePage==nbOfPages()-1" ng-click="tablePage=tablePage+1"
+            <md-button flex ng-disabled="tablePage==nbOfPages()-1" ng-click="tablePage=tablePage+1"
                        aria-label="Next Page" class="md-primary">
                 <ng-md-icon icon="keyboard_arrow_right"
                             size="24"
