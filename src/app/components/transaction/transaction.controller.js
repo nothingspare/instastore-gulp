@@ -16,15 +16,26 @@
       console.log($scope.content2);
     });
 
-    $scope.headers = [{
-      name: '',
-      field: 'thumb'
-    }, {
-      name: 'Status',
-      field: 'status'
-    }];
+    $scope.headers = [
+      {
+        name: '',
+        field: 'thumb'
+      },
+      {
+        name: 'Name',
+        field: 'description'
+      },
+      {
+        name: 'Status',
+        field: 'status'
+      },
+      {
+        name: 'Last modified',
+        field: 'last_modified'
+      }
+    ];
 
-    $scope.sortable = ['status'];
+    $scope.sortable = ['status', 'description'];
 
     $scope.custom = {
       name: 'bold',
