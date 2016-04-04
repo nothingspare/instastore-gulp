@@ -35,7 +35,7 @@
       }
     ];
 
-    $scope.sortable = ['status', 'description'];
+    $scope.sortable = ['status', 'description', 'last_modified'];
 
     $scope.custom = {
       name: 'bold',

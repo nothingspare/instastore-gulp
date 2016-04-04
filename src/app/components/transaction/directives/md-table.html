@@ -36,13 +36,15 @@
                 class="md-table-content">{{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
             </td>
             <td class="md-table-td-more">
-                <md-button class="io-accept" aria-label="Info">
-                    <ng-md-icon icon="check"
-                                size="16"
-                                style="fill: #15A025">
-                    </ng-md-icon>
-
-                </md-button>
+                <md-checkbox md-no-ink aria-label="Accept" ng-model="data.accept" class="md-primary">
+                </md-checkbox>
+                <!--<md-button class="io-accept" aria-label="Info">-->
+                <!--    <ng-md-icon icon="check"-->
+                <!--                size="16"-->
+                <!--                style="fill: #15A025">-->
+                <!--    </ng-md-icon>-->
+                <!---->
+                <!--</md-button>-->
             </td>
         </tr>
         </tbody>
