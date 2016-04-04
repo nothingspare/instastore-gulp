@@ -58,8 +58,12 @@
     background-color: rgba(0, 0, 0, 0.15);
 }
 
+.transaction tr {
+    border-bottom: 1px solid #bbb;
+}
+
 .transaction .md-table-header {
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 2px solid #bbb;
     color: #828282;
     text-align: left;
     font-size: 0.75em;
@@ -163,17 +167,21 @@
 .transaction md-checkbox {
     margin-bottom: 0;
 }
-.transaction  td.md-table-content:nth-child(2) {
+
+.transaction td.md-table-content:nth-child(2) {
     text-align: left;
 }
 
-.transaction  th.md-table-header:nth-child(2) {
+.transaction th.md-table-header:nth-child(2) {
     text-align: left;
 }
 
+.transaction md-content.md-default-theme,
+.transaction md-content {
+    background-color: rgba(222, 222, 222, 0.5);
+}
 
-
-@media screen and (max-width:400px) {
+@media screen and (max-width: 400px) {
     .transaction table th:nth-child(2) {
         display: none;
     }
@@ -183,12 +191,12 @@
     }
 }
 
-@media screen and (max-width:500px) {
-    .transaction  table th:nth-child(4) {
+@media screen and (max-width: 500px) {
+    .transaction table th:nth-child(4) {
         display: none;
     }
 
-    .transaction  table td:nth-child(4) {
+    .transaction table td:nth-child(4) {
         display: none;
     }
 }
