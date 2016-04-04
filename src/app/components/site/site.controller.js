@@ -73,9 +73,8 @@ angular.module('instastore')
 
 
             $scope.configSiteHeader = {
-                isManageStore: UserService.isYourStore() ? true : false,
-                navTransition: false,
-                headerMode: 'editstore'
+                isManageStore: UserService.isYourStore() && $state.includes('grid') ? true : false,
+                headerMode: UserService.isYourStore() && $state.includes('grid') ? 'editstore' : 'storestream'
             };
 
             $scope.profile = UserService.getProfile();
@@ -83,7 +82,6 @@ angular.module('instastore')
             $scope.toggleMenuState = function () {
 
                 if ($scope.configSiteHeader.headerMode !== $scope.configSiteHeader.isManageStore) {
-
                     switch ($scope.configSiteHeader.headerMode) {
                         case 'editstore':
                             $scope.configSiteHeader.isManageStore = true;
@@ -96,20 +94,10 @@ angular.module('instastore')
                         case 'editprofile':
                             $scope.configSiteHeader.isManageStore = true;
                             $scope.configSiteHeader.headerMode = 'editstore';
-                            // delete($scope.configSiteHeader.isManageStore);
                             $scope.showProfile();
                             break;
                     }
                 }
-
-
-                // UserService.toggleIsManageStore();
-                // $scope.configSiteHeader.isManageStore = UserService.getIsManageStore();
-                $scope.configSiteHeader.navTransition = true;
-
-                $timeout(function () {
-                    $scope.configSiteHeader.navTransition = false;
-                }, 300);
             };
 
             if (!$state.includes('stream') || (!$state.includes('subscriptions'))) {
