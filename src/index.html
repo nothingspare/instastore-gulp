@@ -1,6 +1,8 @@
 <!doctype html>
-<html ng-app="instastore" lang="en" background-image="{{bgUrl}}" background-filter="{{bgFilter}}"
-      ng-class="$state.includes('store')?'full-opacity':''">
+<html ng-app="instastore" lang="en"
+      background-image="{{bgUrl}}"
+      background-filter="{{bgFilter}}"
+      ng-class="{ 'full-opacity' : $state.includes('store') }"
 <head>
     <base href="/">
 
@@ -12,7 +14,6 @@
     <meta http-equiv="cleartype" content="on">
 
     <link rel="icon" type="image/x-icon" href="http://instastore.us/assets/images/favicon.ico">
-
 
     <!-- Save to home screen icon image links -->
 
@@ -67,20 +68,22 @@
     <!-- Google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 </head>
-<body>
-
-<div style="position: fixed; width:30%; background: url('https://s3.amazonaws.com/cuturia/mobbbi/VzmlN9iMnhH0VSyE8Vk6vP4QwrnN-i4b.gif') center center no-repeat;"
-     ng-if="!$state"></div>
+<body ng-class="{ 'ios-header' : isHomeScreen }">
+<div ng-class="{ 'ios-header' : isHomeScreen }"></div>
+<div
+    style="position: fixed; width:30%; background: url('https://s3.amazonaws.com/cuturia/mobbbi/VzmlN9iMnhH0VSyE8Vk6vP4QwrnN-i4b.gif') center center no-repeat;"
+    ng-if="!$state"></div>
 
 <!--[if lt IE 10]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
+                                                                                                                    your browser</a> to improve your experience.
+</p>
 <![endif]-->
 
 <div id="start"></div>
 
 <div du-scroll-container
-    ng-if="
+     ng-if="
     $state.includes('feed')
  || $state.includes('grid')
  || $state.includes('location')
@@ -93,8 +96,9 @@
  || $state.includes('stream-grid')"
      ng-include src="'app/components/site/header.html'"></div>
 
-<div ng-class="$state.includes('profile') || $state.includes('profilestore')?'am-fade-and-slide-top':'am-fade-and-slide-left'"
-     class="page ng-cloak" ui-view></div>
+<div
+    ng-class="$state.includes('profile') || $state.includes('profilestore')?'am-fade-and-slide-top':'am-fade-and-slide-left'"
+    class="page ng-cloak" ui-view></div>
 
 <toaster-container toaster-options="{'position-class': 'toast-top-right'}"></toaster-container>
 
@@ -103,9 +107,9 @@
     (function (b, o, i, l, e, r) {
         b.GoogleAnalyticsObject = l;
         b[l] || (b[l] =
-                function () {
-                    (b[l].q = b[l].q || []).push(arguments)
-                });
+            function () {
+                (b[l].q = b[l].q || []).push(arguments)
+            });
         b[l].l = +new Date;
         e = o.createElement(i);
         r = o.getElementsByTagName(i)[0];
