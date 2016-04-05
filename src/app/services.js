@@ -436,55 +436,66 @@ angular.module('instastore')
             }
         }
     }])
-    .factory('RouterTracker', ['$rootScope', 'UserService', '$state', function ($rootScope, UserService, $state) {
-        var profile = UserService.getProfile();
-        var routeHistory = [];
-        var service = {
-            getRouteHistory: getRouteHistory,
-            goToLastRoute: goToLastRoute
-        };
-        var streamRoute = {
-            route: {
-                name: 'stream'
-            },
-            routeParams: {
-                storeurl: profile.store.store_url
-            }
-        };
+    .factory('RouterTracker', [
+        '$rootScope',
+        'UserService',
+        '$state',
+        '$stateParams',
+        function ($rootScope,
+                  UserService,
+                  $state,
+                  $stateParams) {
+            var profile = UserService.getProfile();
+            var routeHistory = [];
+            var service = {
+                getRouteHistory: getRouteHistory,
+                goToLastRoute: goToLastRoute
+            };
+            var streamRoute = {
+                route: {
+                    name: 'stream'
+                },
+                routeParams: {
+                    storeurl: !UserService.isGuest() ? profile.store.store_url : $stateParams.storeurl
+                }
+            };
 
-        $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-            routeHistory.push({route: from, routeParams: fromParams, to: to, toParams: toParams});
-            if (routeHistory[routeHistory.length - 3]
-                && routeHistory[routeHistory.length - 1]
-                && angular.equals(routeHistory[routeHistory.length - 3], routeHistory[routeHistory.length - 1])) {
-                console.log('ffasdfa');
-                goToStreamRoute();
-            }
-        });
+            $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+                routeHistory.push({route: from, routeParams: fromParams, to: to, toParams: toParams});
+                if (routeHistory[routeHistory.length - 3]
+                    && routeHistory[routeHistory.length - 1]
+                    && angular.equals(routeHistory[routeHistory.length - 3], routeHistory[routeHistory.length - 1])) {
+                    routeHistory[routeHistory.length - 4] ? goToRoute(routeHistory[routeHistory.length - 4]) : goToStreamRoute();
+                }
+            });
 
-        function getRouteHistory() {
-            return routeHistory;
-        };
+            function getRouteHistory() {
+                return routeHistory;
+            };
 
-        function goToLastRoute() {
-            var lastRoute = getLastRoute();
-            $state.go(lastRoute.route.name, lastRoute.routeParams);
-        };
+            function goToLastRoute() {
+                var lastRoute = getLastRoute();
+                $state.go(lastRoute.route.name, lastRoute.routeParams);
+            };
 
-        function goToStreamRoute() {
-            $state.go(streamRoute.route.name, streamRoute.routeParams);
-        }
+            function goToRoute(route) {
+                $state.go(route.route.name, route.routeParams);
+            };
 
-        function getLastRoute() {
+            function goToStreamRoute() {
+                $state.go(streamRoute.route.name, streamRoute.routeParams);
+            };
 
-            //if page reloading
-            if (!routeHistory[routeHistory.length - 1]) {
-                return streamRoute;
-            }
-            else {
-                return routeHistory[routeHistory.length - 1];
-            }
+            function getLastRoute() {
 
-        };
-        return service;
-    }]);
+                //if page reloading
+                if (!routeHistory[routeHistory.length - 1]) {
+                    return streamRoute;
+                }
+                else {
+                    return routeHistory[routeHistory.length - 1];
+                }
+
+            };
+            return service;
+        }]);
