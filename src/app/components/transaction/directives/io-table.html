@@ -20,6 +20,7 @@
 <!--    </div>-->
 <!--</md-toolbar>-->
 <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
+    <ng-transclude></ng-transclude>
     <md-table headers="headers" content="content" sortable="sortable" filters="search" custom-class="custom"
               thumbs="thumbs" count="count">
     </md-table>

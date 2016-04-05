@@ -1,29 +1,31 @@
-<div class="transaction" ng-controller="TransactionCtrl">
+<div class="transaction">
     <div ng-cloak>
         <md-content>
             <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Active">
+                    <md-content>
+                        <io-table content="vm.active"
+                                  headers="vm.headers"
+                                  sortable="vm.sortable">
+                            <p ng-hide="vm.active" class="loading">Please wait. Loading</p>
+                        </io-table>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Archive">
+                    <md-content>
+                        <io-table content="vm.archive"
+                                  headers="vm.headers"
+                                  sortable="vm.sortable">
+                            <p ng-hide="vm.archive" class="loading">Please wait. Loading</p>
+                        </io-table>
+                    </md-content>
+                </md-tab>
                 <md-tab label="All">
                     <md-content>
-                        <io-table content="content"
-                                  search-label="Search"
-                                  headers="headers"
-                                  sortable="sortable">
-                        </io-table>
-                    </md-content>
-                </md-tab>
-                <md-tab label="two">
-                    <md-content>
-                        <io-table content="content"
-                                  headers="headers"
-                                  sortable="sortable">
-                        </io-table>
-                    </md-content>
-                </md-tab>
-                <md-tab label="something">
-                    <md-content>
-                        <io-table content="content"
-                                  headers="headers"
-                                  sortable="sortable">
+                        <io-table content="vm.all"
+                                  headers="vm.headers"
+                                  sortable="vm.sortable">
+                            <p ng-hide="vm.all" class="loading">Please wait. Loading</p>
                         </io-table>
                     </md-content>
                 </md-tab>

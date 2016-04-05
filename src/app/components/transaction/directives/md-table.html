@@ -29,11 +29,14 @@
             class="md-table-content-row">
             <td>
                 <div ng-repeat="h in headers" ng-if="h.field == thumbs" class="md-table-thumbs">
-                    <div style="background-image:url({{c.thumb}})"></div>
+                    <div style="background-image:url({{c.image_url}})"></div>
                 </div>
             </td>
             <td ng-repeat="h in headers" ng-class="customClass[h.field]" ng-if="h.field != thumbs"
-                class="md-table-content">{{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
+                class="md-table-content">
+                {{(h.field.indexOf('status') > 0)
+                ? $filter('itemTransactionStatus')(c[h.field])
+                : ((h.field.indexOf('created_at') > 0) ? $filter('amCalendar')(c[h.field]) : c[h.field]);}}
             </td>
             <td class="md-table-td-more">
                 <md-checkbox md-no-ink aria-label="Accept" ng-model="data.accept" class="md-primary">

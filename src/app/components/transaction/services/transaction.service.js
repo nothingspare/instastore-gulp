@@ -4,33 +4,48 @@
   angular.module('instastore')
       .service('transactionService', TransactionService);
 
-  TransactionService.$inject = ['$http'];
+  TransactionService.$inject = ['rest', 'API_URL', 'UserService', 'errorService'];
 
-  function TransactionService($http) {
-    return {
-      pagination: function (page, pageSize) {
-        var offset = (page-1) * pageSize;
-        
-        return $http.post('https://api.nutritionix.com/v1_1/search', {
-          'appId': 'a03ba45f',
-          'appKey': 'b4c78c1472425c13f9ce0e5e45aa1e16',
-          'offset': offset,
-          'limit': pageSize,
-          'query': '*',
-          'fields': ['*'],
-          'sort': {
-            'field': 'nf_iron_dv',
-            'order': 'desc'
-          }
-        }).then(function (result) {
-          return {
-            results: result.data.hits,
-            totalResultCount: result.data.total
-          }
-        });
-      }
+  function TransactionService(rest) {
+    var service = {
+      all: all,
+      active: active,
+      archive: archive
     };
+    return service;
 
+    ////////////
+
+    function all() {
+      rest.path = 'v1/my-transactions';
+      return rest.models({}).then(function (result) {
+        if (result) {
+          return result.data;
+        }
+      });
+    }
+
+    function active() {
+      rest.path = 'v1/my-transactions';
+      return rest.models({
+        type: 'active'
+      }).then(function (result) {
+        if (result) {
+          return result.data;
+        }
+      });
+    }
+
+    function archive() {
+      rest.path = 'v1/my-transactions';
+      return rest.models({
+        type: 'archive'
+      }).then(function (result) {
+        if (result) {
+          return result.data;
+        }
+      });
+    }
   }
 
 })(angular);
