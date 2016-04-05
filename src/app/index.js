@@ -1,11 +1,11 @@
 'use strict';
 
 var app = angular.module('instastore',
-    ['ui.router', 'ngAnimate', 'toaster', 'ngSanitize', 'angular-carousel', 'satellizer',
+    ['ui.router', 'ngAnimate', 'ngSanitize', 'angular-carousel', 'satellizer',
         'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
         'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive', 'ui.tree',
         'angularMoment', 'payment', 'angular-stripe', 'ngMdIcons', 'ngMaterial', 'ngMessages',
-        'angular-parallax', 'duScroll'
+        'angular-parallax', 'duScroll', 'io.services'
     ]);
 
 app.value('duScrollDuration', 1000);

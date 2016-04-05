@@ -4207,17 +4207,3 @@ md-dialog {
     font-size: 9pt;
     text-align: center
 }
-
-body.ios-header {
-    margin-top: 20px;
-    /*top:20px;*/
-}
-
-div.ios-header {
-    height: 20px;
-    position: fixed;
-    background: #000;
-    z-index: 9999;
-    width: 100%;
-    top: 0;
-}

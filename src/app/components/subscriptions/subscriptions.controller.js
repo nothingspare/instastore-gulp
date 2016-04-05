@@ -5,11 +5,11 @@ angular.module('instastore')
         '$scope',
         'rest',
         'UserService',
-        'errorService',
+        'messageService',
         function ($scope,
                   rest,
                   UserService,
-                  errorService) {
+                  messageService) {
 
             UserService.initMyStoreSettings();
 
@@ -17,7 +17,7 @@ angular.module('instastore')
             rest.models().success(function (data) {
                 $scope.subs = data;
             }).error(function (e) {
-                errorService.alert(e);
+                messageService.alert(e);
                 UserService.goToMainStore();
             });
         }]);

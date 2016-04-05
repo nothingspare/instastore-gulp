@@ -68,8 +68,7 @@
     <!-- Google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 </head>
-<body ng-class="{ 'ios-header' : isHomeScreen }">
-<div ng-class="{ 'ios-header' : isHomeScreen }"></div>
+<body>
 <div
     style="position: fixed; width:30%; background: url('https://s3.amazonaws.com/cuturia/mobbbi/VzmlN9iMnhH0VSyE8Vk6vP4QwrnN-i4b.gif') center center no-repeat;"
     ng-if="!$state"></div>
@@ -99,8 +98,6 @@
 <div
     ng-class="$state.includes('profile') || $state.includes('profilestore')?'am-fade-and-slide-top':'am-fade-and-slide-left'"
     class="page ng-cloak" ui-view></div>
-
-<toaster-container toaster-options="{'position-class': 'toast-top-right'}"></toaster-container>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>

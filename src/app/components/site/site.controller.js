@@ -4,10 +4,10 @@ angular.module('instastore')
     .controller('MyCtrl', function ($scope, $document) {
 
     })
-    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', 'errorService', '$state',
-      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document',
-      function ($scope, $rootScope, rest, errorService, $state,
-                $auth, UserService, SStorage, InAppService, $mdSidenav, $document) {
+    .controller('SiteLogin', ['$scope', '$rootScope', 'rest', '$state',
+      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService',
+      function ($scope, $rootScope, rest, $state,
+                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService) {
 
         InAppService.warnIfInApp();
         $scope.isInApp = InAppService.isFacebookInApp();
@@ -75,12 +75,12 @@ angular.module('instastore')
             else {
               $state.go('storeselect');
             }
-          }, errorService.satellizerAlert);
+          }, messageService.satellizerAlert);
         };
 
       }])
     .controller('SiteHeader', ['$scope', '$state', 'UserService', '$stateParams', '$location', '$anchorScroll',
-      '$auth', 'errorService', '$mdDialog', '$mdMedia', '$rootScope', 'rest', 'InAppService', '$timeout', 'RouterTracker',
+      '$auth', 'messageService', '$mdDialog', '$mdMedia', '$rootScope', 'rest', 'InAppService', '$timeout', 'RouterTracker',
       function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
                 $mdDialog, $mdMedia, $rootScope, rest, InAppService, $timeout, RouterTracker) {
 
@@ -162,7 +162,7 @@ angular.module('instastore')
               UserService.setProfile(res.data.profile);
               $scope.profile = res.data.profile;
               $state.go('profile');
-            }, errorService.satellizerAlert);
+            }, messageService.satellizerAlert);
           }
           else {
             $state.go('profile');
@@ -203,13 +203,13 @@ angular.module('instastore')
             rest.postModel({store_id: $rootScope.store.id}).success(function () {
               $rootScope.store.followersAmount++;
               $rootScope.store.isFollower = true;
-            }).error(errorService.alert);
+            }).error(messageService.alert);
           } else {
             rest.path = 'v1/followers/' + $rootScope.store.id;
             rest.deleteModel().success(function () {
               $rootScope.store.followersAmount--;
               $rootScope.store.isFollower = false;
-            }).error(errorService.alert);
+            }).error(messageService.alert);
           }
         };
 
@@ -235,15 +235,16 @@ angular.module('instastore')
         $state.go('grid', {storeurl: profile.store.store_url});
       };
     }])
-    .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'errorService', 'toaster', function ($scope, UserService, $state, rest, errorService, toaster) {
+    .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'messageService',
+      function ($scope, UserService, $state, rest, messageService) {
       $scope.profile = UserService.getProfile();
       $scope.selectStore = function (inviter_id) {
         $scope.profile.inviter_id = inviter_id;
         rest.path = 'v1/profiles';
         rest.putModel($scope.profile).success(function (profile) {
           UserService.setProfile(profile);
-          toaster.pop('success', 'Saved');
+            messageService.simpleByCode('store', 'saved');
           $state.go('sellorbuy');
-        }).error(errorService.alert);
+          }).error(messageService.alert);
       };
     }]);

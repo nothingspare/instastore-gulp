@@ -5,12 +5,12 @@ var app = angular.module('instastore');
 app.controller('ItemStream', [
     '$scope',
     'rest',
-    'errorService',
+    'messageService',
     'UserService',
     '$rootScope',
     function ($scope,
               rest,
-              errorService,
+              messageService,
               UserService) {
 
         UserService.initMyStoreSettings();
@@ -19,7 +19,7 @@ app.controller('ItemStream', [
         rest.models().success(function (data) {
             $scope.items = data;
         }).error(function (e) {
-            errorService.alert(e);
+            messageService.alert(e);
             UserService.goToMainStore();
         });
     }]);
