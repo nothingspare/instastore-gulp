@@ -41,6 +41,12 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             templateUrl: modulesPath + '/item/stream.html'
         });
 
+        $stateProvider.state('stream-grid', {
+            url: '/stream-grid/:storeurl',
+            controller: 'ItemStream',
+            templateUrl: modulesPath + '/item/item-grid.html'
+        });
+
         $stateProvider.state('parallax', {
             url: '/parallax/?profile=true',
             controller: 'ItemStream',

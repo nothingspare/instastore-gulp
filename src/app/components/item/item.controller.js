@@ -23,7 +23,7 @@ angular.module('instastore')
                         $scope.store = store = data[0];
                         if (!store) {
                             errorService.simpleAlert('nostorewithurl');
-                            $state.go('grid');
+                            UserService.goToMainStore();
                             return;
                         }
                         rest.path = 'v1/items';
@@ -105,6 +105,7 @@ angular.module('instastore')
                   ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
                   itemsAmount, InAppService) {
 
+
             $scope.isFacebookInApp = InAppService.isFacebookInApp();
             $scope.warnIfInApp = function () {
                 InAppService.warnIfInApp();
@@ -145,8 +146,7 @@ angular.module('instastore')
             $scope.profile = UserService.getProfile();
 
             $scope.isGuest = UserService.isGuest();
-            $scope.isYourStore = UserService.isYourStore();
-            $scope.isSeller = $scope.profile.seller;
+            $scope.isYourStore = $scope.isSeller = UserService.isYourStore();
 
             $scope.transactionStates = ITEMSELLTRANSACTION_STATUS;
 
@@ -404,6 +404,7 @@ angular.module('instastore')
 
             //Label section
             $scope.getLabel = function (isell, ev) {
+                $location.hash('start');
                 $scope.isellBox = isell.box;
                 $http.post(API_URL + 'v1/link/label', {
                     buyerId: isell.buyer.id,

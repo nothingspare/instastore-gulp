@@ -67,16 +67,44 @@ angular.module('instastore')
 
         }])
     .controller('SiteHeader', ['$scope', '$state', 'UserService', '$stateParams', '$location', '$anchorScroll',
-        '$auth', 'errorService', '$mdDialog', '$mdMedia', '$rootScope', 'rest', 'InAppService',
+        '$auth', 'errorService', '$mdDialog', '$mdMedia', '$rootScope', 'rest', 'InAppService', '$timeout', 'RouterTracker',
         function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
-                  $mdDialog, $mdMedia, $rootScope, rest, InAppService) {
+                  $mdDialog, $mdMedia, $rootScope, rest, InAppService, $timeout, RouterTracker) {
 
-            $scope.profile = UserService.getProfile();
-            if (!$state.includes('stream') || (!$state.includes('subscriptions'))) {
+
+            if (!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))) {
                 UserService.initStore();
             } else {
                 UserService.initMyStoreSettings();
             }
+
+            $scope.configSiteHeader = {
+                isManageStore: UserService.isYourStore() && $state.includes('grid') ? true : false,
+                headerMode: UserService.isYourStore() && $state.includes('grid') ? 'editstore' : 'storestream'
+            };
+
+            $scope.profile = UserService.getProfile();
+
+            $scope.toggleMenuState = function () {
+
+                if ($scope.configSiteHeader.headerMode !== $scope.configSiteHeader.isManageStore) {
+                    switch ($scope.configSiteHeader.headerMode) {
+                        case 'editstore':
+                            $scope.configSiteHeader.isManageStore = true;
+                            UserService.goToMainStore();
+                            break;
+                        case 'storestream':
+                            $scope.configSiteHeader.isManageStore = false;
+                            UserService.goToStream();
+                            break;
+                        case 'editprofile':
+                            $scope.configSiteHeader.isManageStore = true;
+                            $scope.configSiteHeader.headerMode = 'editstore';
+                            $scope.showProfile();
+                            break;
+                    }
+                }
+            };
 
             $scope.showProfile = function (ev) {
                 if (!InAppService.isFacebookInApp()) {
@@ -140,17 +168,15 @@ angular.module('instastore')
             };
 
             $scope.goBack = function () {
-                if ($state.includes('store')) {
-                    UserService.initMyStoreSettings();
-                    $state.go('stream', {storeurl: $scope.profile.store.store_url})
-                }
-                else {
-                    $state.go('grid', {storeurl: $stateParams.storeurl, mode: $scope.profile.seller ? '' : 'feed'});
-                }
+                RouterTracker.goToLastRoute();
             };
 
             $scope.goToMainStore = function () {
-                UserService.goToMainStore();    
+                UserService.goToMainStore();
+            };
+
+            $scope.goToStream = function () {
+                UserService.goToStream();
             };
 
             $scope.scrollToTop = function () {

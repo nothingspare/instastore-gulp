@@ -1,4 +1,5 @@
-<div ng-if="$state.includes('stream') && isSeller" layout-margin ui-sref="store({storeurl:item.user.store.store_url})" style="position: absolute; ">
+<div ng-if="$state.includes('stream') && isSeller" layout-margin
+     ui-sref="grid({storeurl:item.user.store.store_url, mode:'feed'})" style="position: absolute; ">
     <img class="profile item-stream-profile" ng-src="{{item.user.store.avatar_url}}">
 </div>
 <div ui-sref="itemview({storeurl:storeUrl,itemurl:item.item_url,tab:1})"
