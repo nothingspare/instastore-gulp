@@ -69,9 +69,6 @@
     <link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div
-    style="position: fixed; width:30%; background: url('https://s3.amazonaws.com/cuturia/mobbbi/VzmlN9iMnhH0VSyE8Vk6vP4QwrnN-i4b.gif') center center no-repeat;"
-    ng-if="!$state"></div>
 
 <!--[if lt IE 10]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
@@ -92,7 +89,8 @@
  || $state.includes('instaimport')
  || $state.includes('subscriptions')
  || $state.includes('stream')
- || $state.includes('stream-grid')"
+ || $state.includes('stream-grid')
+ || $state.includes('transaction')"
      ng-include src="'app/components/site/header.html'"></div>
 
 <div
