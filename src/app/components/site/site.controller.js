@@ -30,7 +30,7 @@ angular.module('instastore')
         function sideNavClose() {
           var sidenav = $mdSidenav('right');
 
-          if(sidenav.isOpen()) {
+          if (sidenav.isOpen()) {
             sidenav.close();
           }
         }
@@ -81,9 +81,9 @@ angular.module('instastore')
       }])
     .controller('SiteHeader', ['$scope', '$state', 'UserService', '$stateParams', '$location', '$anchorScroll',
       '$auth', 'messageService', '$mdDialog', '$mdMedia', '$rootScope', 'rest', 'InAppService', '$timeout', 'RouterTracker',
+      'profileService',
       function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
-                $mdDialog, $mdMedia, $rootScope, rest, InAppService, $timeout, RouterTracker) {
-
+                $mdDialog, $mdMedia, $rootScope, rest, InAppService, $timeout, RouterTracker, profileService) {
 
         if (!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))) {
           UserService.initStore();
@@ -120,19 +120,7 @@ angular.module('instastore')
         };
 
         $scope.showProfile = function (ev) {
-          if (!InAppService.isFacebookInApp()) {
-            $mdDialog.show({
-              controller: 'ProfileIndex',
-              templateUrl: 'app/components/profile/profile.html',
-              parent: angular.element(document.body),
-              targetEvent: ev,
-              clickOutsideToClose: true,
-              fullscreen: $mdMedia('xs')
-            });
-          }
-          else {
-            InAppService.warnIfInApp();
-          }
+          profileService.show(ev);
         };
 
         $scope.sellerAllowed = $scope.profile.seller;
@@ -237,14 +225,14 @@ angular.module('instastore')
     }])
     .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'messageService',
       function ($scope, UserService, $state, rest, messageService) {
-      $scope.profile = UserService.getProfile();
-      $scope.selectStore = function (inviter_id) {
-        $scope.profile.inviter_id = inviter_id;
-        rest.path = 'v1/profiles';
-        rest.putModel($scope.profile).success(function (profile) {
-          UserService.setProfile(profile);
+        $scope.profile = UserService.getProfile();
+        $scope.selectStore = function (inviter_id) {
+          $scope.profile.inviter_id = inviter_id;
+          rest.path = 'v1/profiles';
+          rest.putModel($scope.profile).success(function (profile) {
+            UserService.setProfile(profile);
             messageService.simpleByCode('store', 'saved');
-          $state.go('sellorbuy');
+            $state.go('sellorbuy');
           }).error(messageService.alert);
-      };
-    }]);
+        };
+      }]);
