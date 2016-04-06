@@ -12,10 +12,18 @@ app.value('duScrollDuration', 1000);
 
 app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpProvider', '$authProvider',
     'API_URL', 'ngClipProvider', 'uiGmapGoogleMapApiProvider', 'cfpLoadingBarProvider',
-    'plUploadServiceProvider', 'stripeProvider', '$mdThemingProvider',
+    'plUploadServiceProvider', 'stripeProvider', '$mdThemingProvider', 'ngMdIconServiceProvider',
     function ($locationProvider, $urlRouterProvider, $stateProvider, $httpProvider,
               $authProvider, API_URL, ngClipProvider, uiGmapGoogleMapApiProvider, cfpLoadingBarProvider,
-              plUploadServiceProvider, stripeProvider, $mdThemingProvider) {
+              plUploadServiceProvider, stripeProvider, $mdThemingProvider, ngMdIconServiceProvider) {
+
+        ngMdIconServiceProvider
+            .addShapes({
+                'alert-off' : '<circle fill="#545052" stroke="#545052" stroke-miterlimit="10" cx="12" cy="12" r="11.394"/><path fill="#FFFFFF" d="M13.891,18.762c-0.019,0.512-0.221,0.938-0.605,1.285c-0.386,0.349-0.834,0.512-1.351,0.493 c-0.516-0.02-0.956-0.214-1.322-0.591c-0.36-0.376-0.521-0.815-0.503-1.326s0.214-0.943,0.599-1.298 c0.392-0.36,0.848-0.528,1.365-0.511c0.513,0.02,0.949,0.221,1.307,0.608C13.739,17.806,13.909,18.25,13.891,18.762z"/><path fill="#FFFFFF" d="M13.951,4.785c-0.017,0.457,0.143,1.431-0.285,4.032c-0.424,2.6-0.802,5.004-1.032,5.6 c-0.268,0.692-0.921,0.692-1.167-0.043c-0.26-0.779-1.08-3.179-1.315-5.802C9.927,5.947,10.088,5.1,10.105,4.643 c0.02-0.516,0.217-0.958,0.593-1.293c0.374-0.345,0.843-0.505,1.404-0.486c0.559,0.022,1.011,0.21,1.36,0.581 C13.804,3.807,13.973,4.254,13.951,4.785z"/>',
+                'alert-on' : '<circle fill="#EF6262" stroke="#EF6262" stroke-miterlimit="10" cx="12" cy="12" r="11.394"/><path fill="#FFFFFF" d="M13.891,18.762c-0.019,0.512-0.221,0.938-0.605,1.285c-0.386,0.349-0.834,0.512-1.351,0.493 c-0.516-0.02-0.956-0.214-1.322-0.591c-0.36-0.376-0.521-0.815-0.503-1.326s0.214-0.943,0.599-1.298 c0.392-0.36,0.848-0.528,1.365-0.511c0.513,0.02,0.949,0.221,1.307,0.608C13.739,17.806,13.909,18.25,13.891,18.762z"/><path fill="#FFFFFF" d="M13.951,4.785c-0.017,0.457,0.143,1.431-0.285,4.032c-0.424,2.6-0.802,5.004-1.032,5.6 c-0.268,0.692-0.921,0.692-1.167-0.043c-0.26-0.779-1.08-3.179-1.315-5.802C9.927,5.947,10.088,5.1,10.105,4.643 c0.02-0.516,0.217-0.958,0.593-1.293c0.374-0.345,0.843-0.505,1.404-0.486c0.559,0.022,1.011,0.21,1.36,0.581 C13.804,3.807,13.973,4.254,13.951,4.785z"/>',
+                'multi-stream' : '<g><rect x="3.94" y="2.094" fill="none" stroke="#000000" stroke-miterlimit="10" width="16.246" height="20.322" /><rect x="20.217" y="4.293" fill="none" stroke="#000000" stroke-miterlimit="10" width="3.018" height="15.924" /><rect x="0.827" y="4.293" fill="none" stroke="#000000" stroke-miterlimit="10" width="3.018" height="15.924" /><circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="8.37" cy="6.385" r="1.956" /></g>',
+                'following' : '<g><circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="5.087" cy="4.959" r="4.407" /><circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="19.002" cy="4.959" r="4.407" /><circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="5.087" cy="18.496" r="4.407" /><circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="19.002" cy="18.496" r="4.407" /></g>',
+            });
 
         var modulesPath = 'app/components';
 
@@ -116,7 +124,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('transaction', {
-            url: '/transaction/:storeurl',
+            url: '/transaction/',
             controller: 'TransactionCtrl as vm',
             templateUrl: modulesPath + '/transaction/transaction.html'
         });

@@ -15,12 +15,12 @@
                 </div>
             </div>
         </div>
-        <!--<div>-->
-        <!--    <a href="/transaction/">-->
-        <!--        <ng-md-icon icon="error" size="24" style="fill: #545052"></ng-md-icon>-->
-        <!--    </a>-->
-        <!--</div>-->
-        <div ng-click="showProfile()">
+        <div>
+            <a ng-if="!$state.includes('transaction')" href="/transaction/">
+                <ng-md-icon icon="alert-off" size="24" style="fill: #545052"></ng-md-icon>
+            </a>
+        </div>
+        <div ng-if="$state.includes('transaction')" ng-click="showProfile()">
             <div class="user"></div>
         </div>
     </div>
@@ -131,7 +131,7 @@
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
                              ui-sref="stream({storeurl:profile.store.store_url})">
-                            <ng-md-icon icon="view_carousel" style="fill:black"></ng-md-icon>
+                            <ng-md-icon icon="multi-stream" style="fill:black"></ng-md-icon>
                         </div>
                         <div layout flex
                              class="subheader-menu-item"
@@ -143,7 +143,7 @@
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
                              ui-sref="subscriptions({storeurl:profile.store.store_url})">
-                            <span>Subs</span>
+                            <ng-md-icon icon="following" style="fill:black"></ng-md-icon>
                         </div>
                     </div>
 

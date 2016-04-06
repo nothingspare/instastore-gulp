@@ -4,7 +4,8 @@
             <md-tabs md-dynamic-height md-border-bottom>
                 <md-tab label="Active">
                     <md-content>
-                        <io-table content="vm.active"
+                        <io-table ng-show="vm.active"
+                                  content="vm.active"
                                   headers="vm.headers"
                                   sortable="vm.sortable">
                             <p ng-hide="vm.active" class="loading">Please wait. Loading</p>
@@ -13,7 +14,8 @@
                 </md-tab>
                 <md-tab label="Archive">
                     <md-content>
-                        <io-table content="vm.archive"
+                        <io-table ng-show="vm.archive"
+                                  content="vm.archive"
                                   headers="vm.headers"
                                   sortable="vm.sortable">
                             <p ng-hide="vm.archive" class="loading">Please wait. Loading</p>
@@ -22,7 +24,8 @@
                 </md-tab>
                 <md-tab label="All">
                     <md-content>
-                        <io-table content="vm.all"
+                        <io-table ng-show="vm.all"
+                                  content="vm.all"
                                   headers="vm.headers"
                                   sortable="vm.sortable">
                             <p ng-hide="vm.all" class="loading">Please wait. Loading</p>
