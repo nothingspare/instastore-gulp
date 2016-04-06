@@ -6,9 +6,9 @@
 
   app.controller('TransactionCtrl', TransactionCtrl);
 
-  TransactionCtrl.$inject = ['transactionService', 'errorService'];
+  TransactionCtrl.$inject = ['transactionService', 'messageService'];
 
-  function TransactionCtrl(TransactionService, errorService) {
+  function TransactionCtrl(TransactionService, messageService) {
     var vm = this;
 
     vm.all = false;
@@ -18,23 +18,19 @@
     init();
 
     function init() {
-      TransactionService.all()
-          .then(function (result) {
-            vm.all = result;
-          })
-          .catch(errorService.alert);
-
       TransactionService.active()
-          .then(function (result) {
+          .success(function (result) {
             vm.active = result;
+            return TransactionService.all()
           })
-          .catch(errorService.alert);
-
-      TransactionService.archive()
-          .then(function (result) {
+          .success(function (result) {
+            vm.all = result;
+            return TransactionService.archive()
+          })
+          .success(function (result) {
             vm.archive = result;
           })
-          .catch(errorService.alert);
+          .error(messageService.alert);
     }
 
     vm.headers = [

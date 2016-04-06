@@ -116,7 +116,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
 
         $stateProvider.state('transaction', {
-            url: '/transaction/',
+            url: '/transaction/:storeurl',
             controller: 'TransactionCtrl as vm',
             templateUrl: modulesPath + '/transaction/transaction.html'
         });

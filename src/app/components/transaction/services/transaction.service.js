@@ -4,7 +4,7 @@
   angular.module('instastore')
       .service('transactionService', TransactionService);
 
-  TransactionService.$inject = ['rest', 'API_URL', 'UserService', 'errorService'];
+  TransactionService.$inject = ['rest'];
 
   function TransactionService(rest) {
     var service = {
@@ -18,7 +18,7 @@
 
     function all() {
       rest.path = 'v1/my-transactions';
-      return rest.models({}).then(function (result) {
+      return rest.models({}).success(function (result) {
         if (result) {
           return result.data;
         }
@@ -29,7 +29,7 @@
       rest.path = 'v1/my-transactions';
       return rest.models({
         type: 'active'
-      }).then(function (result) {
+      }).success(function (result) {
         if (result) {
           return result.data;
         }
@@ -40,7 +40,7 @@
       rest.path = 'v1/my-transactions';
       return rest.models({
         type: 'archive'
-      }).then(function (result) {
+      }).success(function (result) {
         if (result) {
           return result.data;
         }
