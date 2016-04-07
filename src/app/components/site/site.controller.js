@@ -114,7 +114,6 @@ angular.module('instastore')
                             UserService.goToStream();
                             break;
                         case 'editprofile':
-                            // $scope.configSiteHeader.isManageStore = true;
                             $scope.configSiteHeader.headerMode = $scope.configSiteHeader.headerPrevState;
                             $scope.showProfile();
                             break;
