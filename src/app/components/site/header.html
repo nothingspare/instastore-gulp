@@ -15,8 +15,8 @@
                 </div>
             </div>
         </div>
-        <div>
-            <a ng-if="!$state.includes('transaction')" href="/transaction/">
+        <div ng-if="!$state.includes('transaction')">
+            <a href="/transaction/{{$stateParams.storeurl}}">
                 <ng-md-icon icon="alert-off" size="24" style="fill: #545052"></ng-md-icon>
             </a>
         </div>
@@ -24,10 +24,11 @@
             <div class="user"></div>
         </div>
     </div>
-    <div ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
+    <div
+        ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
         <div layout="column" class="io-sub-bar-freeshipping">
             <div layout layout-align="center center" flex layout-padding class="free-shipping">FREE SHIPPING ON ALL
-                ITEMS
+                                                                                               ITEMS
             </div>
         </div>
         <div layout layout-padding class="io-sub-bar">
@@ -103,9 +104,10 @@
         <div id="container2">
             <div id="navigation2">
                 <div ng-if="isSeller">
-                    <div ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
-                         layout layout-align="center center"
-                         class="am-fade-and-slide-left am-fade-and-slide-left-add">
+                    <div
+                        ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
+                        layout layout-align="center center"
+                        class="am-fade-and-slide-left am-fade-and-slide-left-add">
                         <div layout flex
                              class="subheader-menu-item"
                              ng-click="clickToOpen()">
@@ -124,9 +126,10 @@
                             <div class="stream"></div>
                         </div>
                     </div>
-                    <div ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
-                         layout layout-align="center center"
-                         class="am-fade-and-slide-right am-fade-and-slide-right-add">
+                    <div
+                        ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
+                        layout layout-align="center center"
+                        class="am-fade-and-slide-right am-fade-and-slide-right-add">
                         <div layout flex layout-align="center center"
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"

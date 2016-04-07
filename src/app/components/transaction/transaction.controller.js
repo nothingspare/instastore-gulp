@@ -37,20 +37,12 @@
 
       vm.headers = [
         {
-          name: '',
-          field: 'image_url'
-        },
-        {
-          name: 'Title',
-          field: 'title'
-        },
-        {
           name: 'Status',
           field: 'last_status'
         },
         {
-          name: 'Last date',
-          field: 'last_created_at'
+          name: '',
+          field: 'image_url'
         }
       ];
 

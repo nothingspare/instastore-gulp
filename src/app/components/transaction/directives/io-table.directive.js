@@ -3,11 +3,11 @@
 
   angular
       .module('instastore')
-      .directive('ioTable', ioTable);
+      .directive('ioTable', IoTable);
 
-  ioTable.$inject = [];
+  IoTable.$inject = [];
 
-  function ioTable() {
+  function IoTable() {
     var directive = {
       link: link,
       templateUrl: 'app/components/transaction/directives/io-table.html',

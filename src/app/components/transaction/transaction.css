@@ -68,8 +68,7 @@
     text-align: left;
     font-size: 0.75em;
     font-weight: 700;
-    padding: 16px 16px 16px 0;
-    text-align: center;
+    padding: 16px;
 }
 
 .transaction .md-table-header a {
@@ -80,8 +79,7 @@
 .transaction .md-table-content {
     white-space: nowrap;
     font-size: 0.7em;
-    padding: 16px 16px 16px 0;
-    text-align: center;
+    padding: 16px;
 }
 
 .transaction .md-table-td-more {
@@ -91,19 +89,29 @@
 }
 
 .transaction .md-table-thumbs {
-    width: 40px;
-    padding: 0 32px;
+    padding: 0 16px;
+    text-align: right;
 }
 
 .transaction .md-table-thumbs div {
     overflow: hidden;
-    max-width: 40px;
+    display: inline-block;
+    width: 40px;
     height: 40px;
     border-radius: 20px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-size: cover;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+.transaction .md-table-td-action {
+    width: 140px;
+    text-align: center;
+}
+
+.transaction .md-table-td-action select {
+    height: 30px;
 }
 
 .transaction .md-table-footer {
@@ -187,7 +195,11 @@
     color: #333;
 }
 
-@media screen and (max-width: 400px) {
+.transaction .sml {
+    margin: 0;
+}
+
+@media screen and (max-width: 300px) {
     .transaction table th:nth-child(2) {
         display: none;
     }

@@ -2,7 +2,7 @@
     <table md-colresize="md-colresize" class="md-table">
         <thead>
         <tr class="md-table-headers-row">
-            <th ng-repeat="h in headers" class="md-table-header">
+            <th ng-repeat="h in headers" ng-if="h.field != thumbs" class="md-table-header">
                 <a href="#" ng-if="handleSort(h.field)"
                    ng-click="reverse=!reverse;order(h.field,reverse)">
                     {{h.name}}
@@ -22,32 +22,27 @@
                 </span>
             </th>
             <th class="md-table-header">Accept</th>
+            <th class="md-table-header"></th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="c in content | filter:filters | startFrom:tablePage*count | limitTo: count"
             class="md-table-content-row">
-            <td>
-                <div ng-repeat="h in headers" ng-if="h.field == thumbs" class="md-table-thumbs">
-                    <div style="background-image:url({{c.image_url}})"></div>
-                </div>
-            </td>
             <td ng-repeat="h in headers" ng-class="customClass[h.field]" ng-if="h.field != thumbs"
                 class="md-table-content">
                 {{(h.field.indexOf('status') > 0)
                 ? $filter('itemTransactionStatus')(c[h.field])
                 : ((h.field.indexOf('created_at') > 0) ? $filter('amCalendar')(c[h.field]) : c[h.field]);}}
             </td>
-            <td class="md-table-td-more">
-                <md-checkbox md-no-ink aria-label="Accept" ng-model="data.accept" class="md-primary">
-                </md-checkbox>
-                <!--<md-button class="io-accept" aria-label="Info">-->
-                <!--    <ng-md-icon icon="check"-->
-                <!--                size="16"-->
-                <!--                style="fill: #15A025">-->
-                <!--    </ng-md-icon>-->
-                <!---->
-                <!--</md-button>-->
+            <td class="md-table-td-action">
+                <io-transaction-action transaction="c"></io-transaction-action>
+            </td>
+            <td class="td-md-table-thumbs">
+                <div ng-repeat="h in headers" ng-if="h.field == thumbs" class="md-table-thumbs">
+                    <!--<a href="{{$stateParams.storeurl}}/{{c.title}}/1">-->
+                        <div style="background-image:url({{c.image_url}})"></div>
+                    <!--</a>-->
+                </div>
             </td>
         </tr>
         </tbody>
