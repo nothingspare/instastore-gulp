@@ -18,7 +18,7 @@
                     </ng-md-icon>
                 </a>
                 <span
-                    ng-if="!handleSort(h.field)">{{h.name}}
+                        ng-if="!handleSort(h.field)">{{h.name}}
                 </span>
             </th>
             <th class="md-table-header">Accept</th>
@@ -40,7 +40,8 @@
             <td class="td-md-table-thumbs">
                 <div ng-repeat="h in headers" ng-if="h.field == thumbs" class="md-table-thumbs">
                     <!--<a href="{{$stateParams.storeurl}}/{{c.title}}/1">-->
-                        <div style="background-image:url({{c.image_url}})"></div>
+                    <div ui-sref="itemview({storeurl: c.store_url, itemurl: c.item_url, tab: 0})"
+                         style="background-image:url({{c.image_url}})"></div>
                     <!--</a>-->
                 </div>
             </td>
