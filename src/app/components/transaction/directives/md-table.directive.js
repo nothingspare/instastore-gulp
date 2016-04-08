@@ -41,7 +41,7 @@
         $scope.content = orderBy($scope.content, predicate, reverse);
         $scope.predicate = predicate;
       };
-      $scope.order($scope.sortable[0], false);
+      $scope.order($scope.sortable[0]);
       $scope.getNumber = function (num) {
         return new Array(num);
       };

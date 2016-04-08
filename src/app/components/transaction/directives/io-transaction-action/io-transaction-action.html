@@ -1,14 +1,14 @@
-<div ng-show="transaction.last_status == IT_STATUS.label"
+<div ng-if="transaction.last_status == IT_STATUS.label"
     class="btn centered btn-label sml" ng-click="getLabel()">
     View Label
 </div>
 
-<div ng-show="transaction.last_status >= IT_STATUS.send && transaction.last_status < IT_STATUS.saleCanceled" class="btn btn-buy centered btn-label sml"
+<div ng-if="transaction.last_status >= IT_STATUS.send && transaction.last_status < IT_STATUS.saleCanceled" class="btn btn-buy centered btn-label sml"
      ng-click="getLabel()">
     Get Label
 </div>
 
-<div ng-show="transaction.last_status == IT_STATUS.sold" class="column label">
+<div ng-if="transaction.last_status == IT_STATUS.sold" class="column label">
     <select ng-model="boxSize"
             ng-change="changeItemStatus(boxSize)"
             class="sml">

@@ -46,7 +46,7 @@
       }
     ];
 
-    vm.sortable = ['status', 'description', 'last_modified'];
+    vm.sortable = ['last_status'];
 
     vm.custom = {
       name: 'bold',
