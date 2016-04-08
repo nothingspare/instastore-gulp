@@ -1,18 +1,18 @@
-<md-dialog flex="30" class="label-popup" layout="column" layout-align="center center">
-    <md-dialog-content>
+<md-dialog flex="50" class="label-popup" layout="column" layout-align="center center">
+    <md-content>
         <div layout class="no-print">
-            <md-button ng-click=""
+            <md-button ng-click="printLabel()"
                        class="md-fab md-mini md-primary io-secondary-btn"
                        aria-label="Print Label">
                 <ng-md-icon icon="print" class="secondary"></ng-md-icon>
             </md-button>
-            <md-button ng-click=""
+            <md-button ng-click="emailLabel(label.itemsell_id)"
                        class="md-fab md-mini md-primary io-secondary-btn"
                        aria-label="Email Label">
                 <ng-md-icon icon="email" class="secondary"></ng-md-icon>
             </md-button>
             <div flex></div>
-            <md-button ng-click=""
+            <md-button ng-click="closeDialog()"
                        class="md-fab md-mini md-primary io-secondary-btn"
                        aria-label="Close Dialog">
                 <ng-md-icon icon="close" class="secondary"></ng-md-icon>
@@ -54,6 +54,17 @@
                 </div>
             </div>
         </div>
-    </md-dialog-content>
+    </md-content>
 </md-dialog>
 
+<!--<md-dialog>-->
+<!--    <md-content>-->
+<!--        <md-button class="md-fab md-primary" ng-click="showAdvanced($event)" aria-label="AddClient">-->
+<!--            <md-icon md-svg-src="content/images/68448.svg" style="width: 48px; height: 48px;"></md-icon>-->
+<!---->
+<!--            <md-tooltip md-visible="demo.showTooltip">-->
+<!--                Add Client-->
+<!--            </md-tooltip>-->
+<!--        </md-button>-->
+<!--    </md-content>-->
+<!--</md-dialog>-->

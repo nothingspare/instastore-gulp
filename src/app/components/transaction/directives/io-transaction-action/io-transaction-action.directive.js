@@ -5,21 +5,16 @@
       .module('instastore')
       .directive('ioTransactionAction', IoTransactionAction);
 
-  IoTransactionAction.$inject = ['ITEMSELLTRANSACTION_STATUS', 'transactionActionService'];
+  IoTransactionAction.$inject = [
+    'ITEMSELLTRANSACTION_STATUS',
+    'transactionActionService',
+    '$mdDialog',
+    '$mdMedia',
+    'messageService',
+    '$window'
+  ];
 
-  function IoTransactionAction(IT_STATUS, transactionActionService) {
-    var templates = {
-      viewLabel: {
-        url: 'app/components/transaction/directives/io-transaction-action/view-label.html'
-      },
-      getLabel: {
-        url: 'app/components/transaction/directives/io-transaction-action/get-label.html'
-      },
-      boxSize: {
-        url: 'app/components/transaction/directives/io-transaction-action/sold-box-size.html'
-      }
-    };
-
+  function IoTransactionAction(IT_STATUS, transactionActionService, $mdDialog, $mdMedia, messageService, $window) {
     var directive = {
       link: link,
       templateUrl: 'app/components/transaction/directives/io-transaction-action/io-transaction-action.html',
@@ -33,25 +28,53 @@
 
     function link(scope, element, attrs) {
       scope.IT_STATUS = IT_STATUS;
-      
+      scope.status = scope.transaction.last_status;
+
       scope.getLabel = getLabel;
+      scope.closeDialog = closeDialog;
+      scope.printLabel = printLabel;
+      scope.emailLabel = emailLabel;
+      scope.changeItemStatus = changeItemStatus;
 
-      function getLabel() {
-        transactionActionService.getLabel(scope.transaction).success(function () {
-
-        });
+      function closeDialog() {
+        $mdDialog.hide();
       }
 
-      scope.template = getTemplate(scope.transaction.last_status);
-    }
-    
-    function getTemplate(status) {
-      if (status == IT_STATUS.label) {
-        return templates.viewLabel.url;
-      } else if(status == IT_STATUS.sold) {
-        return templates.boxSize.url;
-      } else if (status >= IT_STATUS.send && status < IT_STATUS.saleCanceled) {
-        return templates.getLabel.url;
+      function printLabel() {
+        $window.print();
+      }
+
+      function emailLabel() {
+        transactionActionService.emailLabel(scope.transaction.itemsell_id)
+            .success(function () {
+              messageService.simpleByCode('item', 'labelSent');
+            })
+            .error(messageService.alert);
+      }
+
+      function getLabel() {
+        transactionActionService.getLabel(scope.transaction)
+            .success(function (label) {
+              scope.label = label;
+              scope.isellBox = parseInt(scope.transaction.itemsell_box);
+
+              $mdDialog.show({
+                templateUrl: 'app/components/item/label.html',
+                parent: angular.element(document.body),
+                scope: scope,
+                clickOutsideToClose: true,
+                fullscreen: $mdMedia('sm')
+              });
+            })
+            .error(messageService.alert);
+      }
+
+      function changeItemStatus(boxSize) {
+        transactionActionService.changeItemStatus(boxSize, scope.transaction)
+            .success(function (result) {
+              scope.transaction.last_status = result.status;
+            })
+            .error(messageService.alert);
       }
     }
   }

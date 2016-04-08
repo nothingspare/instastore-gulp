@@ -35,27 +35,25 @@
           .error(messageService.alert);
     }
 
-      vm.headers = [
-        {
-          name: 'Status',
-          field: 'last_status'
-        },
-        {
-          name: '',
-          field: 'image_url'
-        }
-      ];
+    vm.headers = [
+      {
+        name: 'Status',
+        field: 'last_status'
+      },
+      {
+        name: '',
+        field: 'image_url'
+      }
+    ];
 
-      vm.sortable = ['status', 'description', 'last_modified'];
+    vm.sortable = ['status', 'description', 'last_modified'];
 
-      vm.custom = {
-        name: 'bold',
-        description: 'grey',
-        last_modified: 'grey'
-      };
-
-    }
+    vm.custom = {
+      name: 'bold',
+      description: 'grey',
+      last_modified: 'grey'
+    };
 
   }
 
-  )(angular);
+})(angular);

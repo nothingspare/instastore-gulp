@@ -2207,6 +2207,8 @@ p {
 
 .past-transaction f6 {
     font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* - - drop down text - -*/
@@ -4052,10 +4054,11 @@ svg.svg-debit {
     display: block;
     float: right;
     width: 250px;
-    height: 118px;
+    height: 217px;
     background-image: url(../assets/images/usps-medium1.png);
-    background-size: 249px;
-    background-position: 195px 119px;
+    background-size: 301px;
+    background-position: -54px -48px;
+    background-repeat: no-repeat;
 }
 
 ng-md-icon {
