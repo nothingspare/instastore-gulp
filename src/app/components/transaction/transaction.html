@@ -2,7 +2,7 @@
     <div ng-cloak>
         <md-content>
             <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="Seller" ng-if="vm.isSeller" md-on-select="vm.selectTab('seller')">
+                <md-tab label="Selling" ng-if="vm.isSeller" md-on-select="vm.selectTab('seller')">
                     <md-content>
                         <io-table ng-show="vm.seller"
                                   content="vm.seller"
@@ -12,7 +12,7 @@
                         </io-table>
                     </md-content>
                 </md-tab>
-                <md-tab label="Buyer" md-on-select="vm.selectTab('buyer')">
+                <md-tab label="Buying" md-on-select="vm.selectTab('buyer')">
                     <md-content>
                         <io-table ng-show="vm.buyer"
                                   content="vm.buyer"
