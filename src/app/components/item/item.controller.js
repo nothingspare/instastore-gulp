@@ -100,10 +100,16 @@ angular.module('instastore')
         'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
         'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', '$window',
         'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia', 'itemsAmount', 'InAppService', 'messageService',
+        'urlsThere',
         function ($scope, rest, $state, feedHelper, UserService, $stateParams,
                   $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
                   ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
-                  itemsAmount, InAppService, messageService) {
+                  itemsAmount, InAppService, messageService, urlsThere) {
+
+            if (!urlsThere) {
+                messageService.simpleByCode('item', 'urlWrongFormat');
+                // goToMainStore();
+            }
 
             $scope.isFacebookInApp = InAppService.isFacebookInApp();
             $scope.warnIfInApp = function () {
