@@ -2,33 +2,23 @@
     <div ng-cloak>
         <md-content>
             <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="Active">
+                <md-tab label="Seller" ng-if="vm.isSeller" md-on-select="vm.selectTab('seller')">
                     <md-content>
-                        <io-table ng-show="vm.active"
-                                  content="vm.active"
+                        <io-table ng-show="vm.seller"
+                                  content="vm.seller"
                                   headers="vm.headers"
                                   sortable="vm.sortable">
-                            <p ng-hide="vm.active" class="loading">Please wait. Loading</p>
+                            <p ng-hide="vm.seller" class="loading">Please wait. Loading</p>
                         </io-table>
                     </md-content>
                 </md-tab>
-                <md-tab label="Archive">
+                <md-tab label="Buyer" md-on-select="vm.selectTab('buyer')">
                     <md-content>
-                        <io-table ng-show="vm.archive"
-                                  content="vm.archive"
+                        <io-table ng-show="vm.buyer"
+                                  content="vm.buyer"
                                   headers="vm.headers"
                                   sortable="vm.sortable">
-                            <p ng-hide="vm.archive" class="loading">Please wait. Loading</p>
-                        </io-table>
-                    </md-content>
-                </md-tab>
-                <md-tab label="All">
-                    <md-content>
-                        <io-table ng-show="vm.all"
-                                  content="vm.all"
-                                  headers="vm.headers"
-                                  sortable="vm.sortable">
-                            <p ng-hide="vm.all" class="loading">Please wait. Loading</p>
+                            <p ng-hide="vm.buyer" class="loading">Please wait. Loading</p>
                         </io-table>
                     </md-content>
                 </md-tab>

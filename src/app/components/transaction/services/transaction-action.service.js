@@ -39,13 +39,16 @@
           });
     }
 
-    function changeItemStatus(boxSize, transaction) {
+    function changeItemStatus(transaction, status, boxSize) {
       rest.path = 'v1/item-sell-transactions';
       var req = {
         itemsell_id: transaction.itemsell_id,
-        status: IT_STATUS.send,
-        box: parseInt(boxSize)
+        status: status
       };
+
+      if (status === IT_STATUS.send && boxSize) {
+        req.box = parseInt(boxSize)
+      }
 
       return rest.postModel(req)
           .success(function (transaction) {
