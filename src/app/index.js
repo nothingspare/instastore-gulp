@@ -80,7 +80,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
             controller: 'ItemView',
             resolve: {
                 urlsThere: function ($stateParams) {
-                    return ($stateParams.storeurl !== undefined && $stateParams.itemurl !== undefined);
+                    return ($stateParams.storeurl !== undefined && $stateParams.itemurl !== undefined && $stateParams.itemurl !== 'undefined' && $stateParams.storeurl !== 'undefined');
                 }
             },
             templateUrl: modulesPath + '/item/view.html'
