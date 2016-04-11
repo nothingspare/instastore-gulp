@@ -1,20 +1,31 @@
-<div ng-if="transaction.last_status == IT_STATUS.label"
-    class="btn centered btn-label sml" ng-click="getLabel()">
+<div ng-if="transaction.last_status == IT_STATUS.label && transaction.type == 'seller'"
+     class="btn centered btn-label sml" ng-click="getLabel()">
     View Label
 </div>
 
-<div ng-if="transaction.last_status >= IT_STATUS.send && transaction.last_status < IT_STATUS.saleCanceled" class="btn btn-buy centered btn-label sml"
+<div ng-if="transaction.last_status >= IT_STATUS.send
+    && transaction.last_status < IT_STATUS.saleCanceled
+    && transaction.type == 'seller'"
+     class="btn btn-buy centered btn-label sml"
      ng-click="getLabel()">
     Get Label
 </div>
 
-<div ng-if="transaction.last_status == IT_STATUS.sold" class="column label">
-    <select ng-model="boxSize"
-            ng-change="changeItemStatus(boxSize)"
-            class="sml">
-        <option disabled value="">Pick up box size</option>
-        <option value="30">Large</option>
-        <option value="20">Medium</option>
-        <option value="10">Small</option>
-    </select>
+<div ng-if="transaction.last_status == IT_STATUS.sold && transaction.type == 'seller'" class="column label">
+    <label title="Pick up box size">
+        <select ng-model="boxSize"
+                ng-change="changeItemStatus(IT_STATUS.send, boxSize)"
+                class="sml">
+            <option disabled value="">Pick up box size</option>
+            <option value="30">Large</option>
+            <option value="20">Medium</option>
+            <option value="10">Small</option>
+        </select>
+    </label>
+</div>
+
+<div ng-if="(transaction.last_status == IT_STATUS.arrived || transaction.last_status == IT_STATUS.hurryup)
+    && transaction.type == 'buyer'"
+     class="btn btn-buy centered btn-label sml"
+     ng-click="changeItemStatus(IT_STATUS.accepted)">Accept
 </div>

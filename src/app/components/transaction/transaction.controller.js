@@ -6,33 +6,30 @@
 
   app.controller('TransactionCtrl', TransactionCtrl);
 
-  TransactionCtrl.$inject = ['transactionService', 'messageService'];
+  TransactionCtrl.$inject = ['transactionService', 'messageService', 'UserService'];
 
-  function TransactionCtrl(TransactionService, messageService) {
+  function TransactionCtrl(TransactionService, messageService, UserService) {
     var vm = this;
 
-    vm.all = false;
-    vm.active = false;
-    vm.archive = false;
+    vm.seller = false;
+    vm.buyer = false;
+    vm.isSeller = UserService.isSeller();
+    vm.selectTab = selectTab;
 
-    init();
-
-    function init() {
-      TransactionService.active()
-          .success(function (result) {
-            vm.active = result;
-            TransactionService.all()
-                .success(function (result) {
-                  vm.all = result;
-                  TransactionService.archive()
-                      .success(function (result) {
-                        vm.archive = result;
-                      })
-                      .error(messageService.alert);
-                })
-                .error(messageService.alert);
-          })
-          .error(messageService.alert);
+    function selectTab(type) {
+      if(type == 'buyer') {
+        TransactionService.buyer()
+            .success(function (result) {
+              vm.buyer = result;
+            })
+            .error(messageService.alert);
+      } else if (type == 'seller') {
+        TransactionService.seller()
+            .success(function (result) {
+              vm.seller = result;
+            })
+            .error(messageService.alert);
+      }
     }
 
     vm.headers = [

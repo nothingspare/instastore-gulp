@@ -18,10 +18,10 @@
                     </ng-md-icon>
                 </a>
                 <span
-                        ng-if="!handleSort(h.field)">{{h.name}}
+                    ng-if="!handleSort(h.field)">{{h.name}}
                 </span>
             </th>
-            <th class="md-table-header">Accept</th>
+            <th class="md-table-header"></th>
             <th class="md-table-header"></th>
         </tr>
         </thead>
@@ -30,32 +30,23 @@
             class="md-table-content-row">
             <td ng-repeat="h in headers" ng-class="customClass[h.field]" ng-if="h.field != thumbs"
                 class="md-table-content">
-                {{(h.field.indexOf('status') > 0)
+                {{(h.field.indexOf('status') > 0 && c.type == 'seller')
                 ? $filter('itemTransactionStatus')(c[h.field])
-                : ((h.field.indexOf('created_at') > 0) ? $filter('amCalendar')(c[h.field]) : c[h.field]);}}
+                : ((h.field.indexOf('status') > 0 && c.type == 'buyer') ? $filter('itemBuyerTransactionStatus')(c[h.field]) : ((h.field.indexOf('created_at') > 0) ? $filter('amCalendar')(c[h.field]) : c[h.field]))}}
             </td>
             <td class="md-table-td-action">
                 <io-transaction-action transaction="c"></io-transaction-action>
             </td>
             <td class="td-md-table-thumbs">
                 <div ng-repeat="h in headers" ng-if="h.field == thumbs" class="md-table-thumbs">
-                    <!--<a href="{{$stateParams.storeurl}}/{{c.title}}/1">-->
                     <div ui-sref="itemview({storeurl: c.store_url, itemurl: c.item_url, tab: 0})"
                          style="background-image:url({{c.image_url}})"></div>
-                    <!--</a>-->
                 </div>
             </td>
         </tr>
         </tbody>
     </table>
     <div layout="row" layout-fill class="md-table-footer">
-        <!--<span class="md-table-count-info">Rows per page : <a href="#"-->
-        <!--                                                     ng-click="goToPage(0); count=10">10</a>,<a-->
-        <!--        href="#" ng-click="goToPage(0); count=25">25</a>,<a href="#" ng-click="goToPage(0); count=50">50</a>,<a-->
-        <!--        href="#" ng-click="goToPage(0); count=100">100</a>(current is {{count}})</span><span-->
-        <!--    flex="flex">-->
-        <!--</span>-->
-
         <span flex layout="row" class="btn-pagination" ng-show="nbOfPages() > 1">
             <md-button flex ng-disabled="tablePage==0" icon="keyboard_arrow_left" ng-click="tablePage=tablePage-1"
                        aria-label="Previous Page"

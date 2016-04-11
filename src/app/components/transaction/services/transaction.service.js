@@ -8,27 +8,17 @@
 
   function TransactionService(rest) {
     var service = {
-      all: all,
-      active: active,
-      archive: archive
+      seller: seller,
+      buyer: buyer
     };
     return service;
 
     ////////////
 
-    function all() {
-      rest.path = 'v1/my-transactions';
-      return rest.models({}).success(function (result) {
-        if (result) {
-          return result.data;
-        }
-      });
-    }
-
-    function active() {
+    function seller() {
       rest.path = 'v1/my-transactions';
       return rest.models({
-        type: 'active'
+        type: 'seller'
       }).success(function (result) {
         if (result) {
           return result.data;
@@ -36,10 +26,10 @@
       });
     }
 
-    function archive() {
+    function buyer() {
       rest.path = 'v1/my-transactions';
       return rest.models({
-        type: 'archive'
+        type: 'buyer'
       }).success(function (result) {
         if (result) {
           return result.data;

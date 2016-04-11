@@ -119,6 +119,8 @@ app
     }])
     .filter('itemBuyerTransactionStatus', ['ITEMSELLTRANSACTION_STATUS', function (ITEMSELLTRANSACTION_STATUS) {
       return function (input) {
+        input = parseInt(input);
+
         if (!input) {
           return 'Item bought!';
         }

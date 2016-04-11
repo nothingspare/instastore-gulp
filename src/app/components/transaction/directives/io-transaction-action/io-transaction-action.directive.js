@@ -69,8 +69,8 @@
             .error(messageService.alert);
       }
 
-      function changeItemStatus(boxSize) {
-        transactionActionService.changeItemStatus(boxSize, scope.transaction)
+      function changeItemStatus(status, boxSize) {
+        transactionActionService.changeItemStatus(scope.transaction, status, boxSize)
             .success(function (result) {
               scope.transaction.last_status = result.status;
             })
