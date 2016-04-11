@@ -43,7 +43,8 @@
         success: 'Success!',
         verifyAddress: 'You should enter and verify your address in profile section',
         labelSent: 'Label sent!',
-        duplicated: 'Duplicated!'
+        duplicated: 'Duplicated!',
+        urlWrongFormat: 'Item or Store url undefined!'
       },
       /* Other */
       nourl: {status: 500, name: '', message: 'No url specified!'},
