@@ -63,7 +63,7 @@
                 parent: angular.element(document.body),
                 scope: scope,
                 clickOutsideToClose: true,
-                fullscreen: $mdMedia('sm')
+                fullscreen: $mdMedia('xs')
               });
             })
             .error(messageService.alert);

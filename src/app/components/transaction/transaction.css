@@ -1,5 +1,5 @@
 .transaction {
-    margin-top: 52px;
+    padding-top: 51px;
 }
 
 .transaction button {
@@ -106,12 +106,13 @@
 }
 
 .transaction .md-table-td-action {
-    width: 140px;
     text-align: center;
+    width: 100px;
 }
 
 .transaction .md-table-td-action select {
     height: 30px;
+    width: 100px;
 }
 
 .transaction .md-table-footer {
@@ -197,6 +198,13 @@
 
 .transaction .sml {
     margin: 0;
+    padding: 5px 0 5px 0;
+}
+
+.transaction .transaction-dont-have {
+    text-align: center;
+    font-size: 13px !important;
+    color: #333;
 }
 
 @media screen and (max-width: 300px) {
