@@ -3886,7 +3886,7 @@ div.rn-carousel-indicator span.active {
     margin: 0;
 }
 
-.label-popup .label-image {
+.label-image {
     width: 60%;
     max-height: 100%;
 }
@@ -3895,8 +3895,8 @@ div.rn-carousel-indicator span.active {
     .label-image {
         position: static;
         background-color: white;
-        height: 3.5in;
-        width: 3.5in;
+        height: 15cm;
+        width: 10.5cm;
         top: 0;
         left: 0;
         margin: 0;
@@ -3906,8 +3906,8 @@ div.rn-carousel-indicator span.active {
     }
 
     md-dialog {
-        width: 3.5in;
-        height: 3.5in;
+        width: 15cm;
+        height: 10.5cm;
     }
 
     .no-print, .no-print * {
