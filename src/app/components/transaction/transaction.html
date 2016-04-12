@@ -3,7 +3,7 @@
         <md-content>
             <md-tabs md-border-bottom md-swipe-content>
                 <md-tab label="Selling" ng-if="vm.isSeller" md-on-select="vm.selectTab('seller')">
-                    <md-content>
+                    <md-content class="transaction-tab-content">
                         <p ng-hide="!!vm.seller.length" class="transaction-dont-have">No data</p>
                         <io-table ng-show="!!vm.seller.length"
                                   content="vm.seller"
@@ -14,7 +14,7 @@
                     </md-content>
                 </md-tab>
                 <md-tab label="Buying" md-on-select="vm.selectTab('buyer')">
-                    <md-content>
+                    <md-content class="transaction-tab-content">
                         <div ng-hide="!!vm.buyer.length" layout="column" layout-align="center center" layout-fill class="transaction-dont-have">No data</div>
                         <io-table ng-show="!!vm.buyer.length"
                                   content="vm.buyer"

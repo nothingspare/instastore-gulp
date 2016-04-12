@@ -60,7 +60,7 @@
 }
 
 .transaction tr {
-    height: calc((100vh - 206px)/10);
+    height: calc((100vh - 206px) / 10);
     border-bottom: 1px solid #bbb;
 }
 
@@ -202,8 +202,10 @@
 
 .transaction .transaction-dont-have {
     text-align: center;
-    font-size: 13px !important;
     color: #333;
+    margin-top: 50%;
+    font-size: 16px;
+    text-transform: uppercase;
 }
 
 .transaction md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
@@ -216,6 +218,10 @@
 
 .transaction td-md-table-thumbs {
     padding-right: 10px;
+}
+
+.transaction .transaction-tab-content {
+    background: transparent;
 }
 
 @media screen and (max-width: 300px) {
