@@ -21,6 +21,7 @@
         TransactionService.buyer()
             .success(function (result) {
               vm.buyer = result;
+              console.log(vm.buyer);
             })
             .error(messageService.alert);
       } else if (type == 'seller') {

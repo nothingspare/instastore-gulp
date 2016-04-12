@@ -3972,7 +3972,6 @@ svg.svg-debit {
 
 .io-bar {
     position: fixed;
-    top: 0;
     z-index: 19;
     border-bottom: 1px solid rgba(225, 225, 225, 0.8);
     width: 100%;
@@ -3985,10 +3984,6 @@ svg.svg-debit {
 
 .io-bar > div {
     padding: 10px 20px 11px 20px;
-}
-
-.io-bar > div.middle-section {
-    padding: 10px 0 5px 0;
 }
 
 .io-bar > div:hover {
@@ -4214,7 +4209,6 @@ md-dialog {
 
 body.ios-header {
     margin-top: 20px;
-    /*top:20px;*/
 }
 
 div.ios-header {
@@ -4224,4 +4218,28 @@ div.ios-header {
     z-index: 9999;
     width: 100%;
     top: 0;
+}
+
+@media (max-width: 959px) {
+    md-toast {
+        left: auto;
+        right: 0;
+        width: 400px;
+        max-width: 100%;
+        min-width: 0;
+        border-radius: 0;
+        bottom: inherit;
+    }
+}
+
+@media (max-width: 425px) {
+    md-toast {
+        left: auto;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        border-radius: 0;
+        bottom: inherit;
+    }
 }

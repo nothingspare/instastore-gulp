@@ -4,7 +4,8 @@
             <md-tabs md-dynamic-height md-border-bottom>
                 <md-tab label="Selling" ng-if="vm.isSeller" md-on-select="vm.selectTab('seller')">
                     <md-content>
-                        <io-table ng-show="vm.seller"
+                        <p ng-hide="!!vm.seller.length" class="transaction-dont-have">No data</p>
+                        <io-table ng-show="!!vm.seller.length"
                                   content="vm.seller"
                                   headers="vm.headers"
                                   sortable="vm.sortable">
@@ -14,7 +15,8 @@
                 </md-tab>
                 <md-tab label="Buying" md-on-select="vm.selectTab('buyer')">
                     <md-content>
-                        <io-table ng-show="vm.buyer"
+                        <p ng-hide="!!vm.buyer.length" class="transaction-dont-have">No data</p>
+                        <io-table ng-show="!!vm.buyer.length"
                                   content="vm.buyer"
                                   headers="vm.headers"
                                   sortable="vm.sortable">
