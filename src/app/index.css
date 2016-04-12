@@ -4220,6 +4220,10 @@ div.ios-header {
     top: 0;
 }
 
+md-toast {
+    position: fixed;
+}
+
 @media (max-width: 959px) {
     md-toast {
         left: auto;

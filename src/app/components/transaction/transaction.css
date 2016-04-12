@@ -1,5 +1,6 @@
 .transaction {
     padding-top: 51px;
+    padding-bottom: 49px;
 }
 
 .transaction button {
@@ -59,6 +60,7 @@
 }
 
 .transaction tr {
+    height: calc((100vh - 206px)/10);
     border-bottom: 1px solid #bbb;
 }
 
@@ -116,9 +118,12 @@
 }
 
 .transaction .md-table-footer {
-    height: 40px;
-    padding-left: 32px;
-    padding-right: 32px;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    min-height: 20px;
+    background-color: #E2E2E2;
+    border-top: 1px solid #B9B9B9;
 }
 
 .transaction .md-table-count-info {
@@ -127,8 +132,6 @@
 }
 
 .transaction .md-table-footer-item {
-    width: 40px;
-    height: 40px;
     vertical-align: middle;
 }
 
@@ -169,10 +172,6 @@
     max-height: 128px;
 }
 
-.transaction ng-md-icon {
-    height: 18px;
-}
-
 .transaction md-checkbox {
     margin-bottom: 0;
 }
@@ -205,6 +204,18 @@
     text-align: center;
     font-size: 13px !important;
     color: #333;
+}
+
+.transaction md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+    min-height: calc(100vh - 100px);
+}
+
+.transaction .transaction-table {
+    /*margin-bottom: 49px;*/
+}
+
+.transaction td-md-table-thumbs {
+    padding-right: 10px;
 }
 
 @media screen and (max-width: 300px) {

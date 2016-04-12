@@ -1,7 +1,7 @@
 <div class="transaction" layout="column" flex-sm="100" flex-gt-sm="60" flex-offset-gt-sm="20">
     <div ng-cloak>
         <md-content>
-            <md-tabs md-dynamic-height md-border-bottom>
+            <md-tabs md-border-bottom md-swipe-content>
                 <md-tab label="Selling" ng-if="vm.isSeller" md-on-select="vm.selectTab('seller')">
                     <md-content>
                         <p ng-hide="!!vm.seller.length" class="transaction-dont-have">No data</p>
@@ -15,7 +15,7 @@
                 </md-tab>
                 <md-tab label="Buying" md-on-select="vm.selectTab('buyer')">
                     <md-content>
-                        <p ng-hide="!!vm.buyer.length" class="transaction-dont-have">No data</p>
+                        <div ng-hide="!!vm.buyer.length" layout="column" layout-align="center center" layout-fill class="transaction-dont-have">No data</div>
                         <io-table ng-show="!!vm.buyer.length"
                                   content="vm.buyer"
                                   headers="vm.headers"
