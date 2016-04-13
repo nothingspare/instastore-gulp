@@ -11,7 +11,7 @@
             sale.</h5>
     </div>
 
-    <div ng-if="!(!item.price || item.quantity<1 || !item.quantity || (item.quantity == item.itemSellsQuantity))">
+    <div ng-if="!(!item.price || item.quantity<1 || !item.quantity || (item.quantity == item.itemSellsQuantity)) && (item.quantity > item.itemSellsQuantity)">
         <div layout layout-padding layout-align="center center">
             <md-button flex-xs="90" flex-gt-xs="60" ng-click="isGuest?login():confirmBuying()"
                        class="md-raised md-primary md-hue-3 io-primary-btn">
