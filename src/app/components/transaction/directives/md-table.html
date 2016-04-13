@@ -62,6 +62,7 @@
             </md-button>
             <md-button flex ng-repeat="i in getNumber(nbOfPages()) track by $index"
                        ng-click="goToPage($index)"
+                       ng-class="{ 'md-table-active-page-btn': tablePage==$index}"
                        class="md-primary md-table-footer-item">
                 <span ng-class="{ 'md-table-active-page': tablePage==$index}">{{$index+1}}</span>
             </md-button>

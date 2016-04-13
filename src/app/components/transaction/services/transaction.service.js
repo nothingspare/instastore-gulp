@@ -9,11 +9,18 @@
   function TransactionService(rest) {
     var service = {
       seller: seller,
-      buyer: buyer
+      buyer: buyer,
+      checkActive: checkActive
     };
     return service;
 
     ////////////
+
+    function checkActive() {
+      setInterval(function () {
+        console.log("yoyoyo");
+      }, 2000);
+    }
 
     function seller() {
       rest.path = 'v1/my-transactions';

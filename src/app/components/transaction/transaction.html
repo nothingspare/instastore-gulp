@@ -1,7 +1,7 @@
 <div class="transaction" layout="column" flex-sm="100" flex-gt-sm="60" flex-offset-gt-sm="20">
     <div ng-cloak>
         <md-content>
-            <md-tabs md-border-bottom md-swipe-content>
+            <md-tabs md-border-bottom md-swipe-content md-stretch-tabs="always">
                 <md-tab label="Selling" ng-if="vm.isSeller" md-on-select="vm.selectTab('seller')">
                     <md-content class="transaction-tab-content">
                         <p ng-hide="!!vm.seller.length" class="transaction-dont-have">No data</p>

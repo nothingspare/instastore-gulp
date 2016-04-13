@@ -1,6 +1,7 @@
 .transaction {
     padding-top: 51px;
     padding-bottom: 49px;
+    background: #E2E2E2;
 }
 
 .transaction button {
@@ -60,7 +61,7 @@
 }
 
 .transaction tr {
-    height: calc((100vh - 206px) / 10);
+    height: calc((100vh - 222px) / 10);
     border-bottom: 1px solid #bbb;
 }
 
@@ -126,6 +127,10 @@
     border-top: 1px solid #B9B9B9;
 }
 
+.transaction .md-table-footer button[disabled="disabled"] ng-md-icon {
+    fill: #ABABAB !important;
+}
+
 .transaction .md-table-count-info {
     line-height: 40px;
     font-size: .75em;
@@ -137,6 +142,27 @@
 
 .transaction .md-table-active-page {
     font-weight: 700;
+}
+
+.transaction .btn-pagination button {
+    border-radius: 0;
+}
+
+.transaction .btn-pagination button::before {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 2px;
+    background-color: #FF4081;
+    transition: transform .5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+}
+
+.transaction .btn-pagination button.md-table-active-page-btn::before {
+   transform: scale(1);
 }
 
 .transaction .bold {

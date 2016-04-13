@@ -970,7 +970,6 @@ h3 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
-    display: -moz-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-transform: translate3d(0, 0, 0);
@@ -1278,7 +1277,6 @@ h3 {
     margin-bottom: 0px;
     background-repeat: no-repeat;
     border-radius: 200px;
-    border: 3 solid #f37878;
 }
 
 .item-circle-1 {
@@ -1544,8 +1542,6 @@ h3 {
     position: relative;
     display: -webkit-box;
     display: -moz-box;
-    display: -ms-box;
-    display: -o-box;
     display: box;
     -webkit-box-orient: vertical;
     -moz-box-orient: vertical;
@@ -1927,7 +1923,7 @@ h3 {
     float: left;
     height: 78px;
     width: 66px;
-    border: 0 x-px solid #cdcdcd;
+    border: 0 solid #cdcdcd;
     margin: 0 3px 0 0;
 }
 
@@ -2011,7 +2007,6 @@ h3 {
 #message-transaction-position {
     margin: 0 auto;
     position: relative;
-    margin: -103px 0 0 105;
     padding: 0 5px 0 5px;
 }
 
@@ -2157,7 +2152,6 @@ p {
 }
 
 .current-transaction f1 {
-    font-weight: medium;
     margin-left: 10px;
 }
 
@@ -2176,8 +2170,7 @@ p {
     color: #555;
     width: 98%;
     left: -20px;
-    background-color: none;
-    border-top: 0px solid #bbb;
+    border-top: 0 solid #bbb;
     border-bottom: 1px solid #ccc;
 }
 
@@ -3261,7 +3254,6 @@ ul.safearea a {
     right: -32px;
     color: lightcoral;
     font-size: 20px;
-    font-weight: 600px;
 }
 
 .x-profile {
@@ -3870,7 +3862,7 @@ div.rn-carousel-indicator span.active {
     font-weight: 600;
 }
 
-.sell-transactions .column.label .btn, .buy-transactions .column.label .btn, {
+.sell-transactions .column.label .btn, .buy-transactions .column.label .btn {
     margin-bottom: 0px;
     width: 100%;
 }
@@ -3961,6 +3953,9 @@ svg.svg-debit {
     text-rendering: optimizelegibility;
     padding: 5px 14px 5px 14px;
     margin: 5px 10px 16px 10px;
+}
+
+.page {
 }
 
 .io-avatar {
