@@ -4224,6 +4224,11 @@ md-toast {
     position: fixed;
 }
 
+md-toast .md-toast-content {
+    padding: 5px 10px;
+    height: auto;
+}
+
 @media (max-width: 959px) {
     md-toast {
         left: auto;
