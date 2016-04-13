@@ -4,8 +4,8 @@
         <tr class="md-table-headers-row">
             <th ng-repeat="h in headers" ng-if="h.field != thumbs" class="md-table-header">
                 <!--<a href="#" ng-if="handleSort(h.field)"-->
-                   <!--ng-click="reverse=!reverse;order(h.field,reverse)">-->
-                    <!--{{h.name}}-->
+                <!--ng-click="reverse=!reverse;order(h.field,reverse)">-->
+                <!--{{h.name}}-->
                 <a href="#">
                     <ng-md-icon ng-show="!reverse && h.field == predicate"
                                 ng-click="reverse=!reverse;order(h.field,reverse)"
@@ -34,9 +34,9 @@
             class="md-table-content-row">
             <td ng-repeat="h in headers" ng-class="customClass[h.field]" ng-if="h.field != thumbs"
                 class="md-table-content">
-                {{(h.field.indexOf('status') > 0 && c.type == 'seller')
+                {{(h.field.indexOf('status') >= 0 && c.type == 'seller')
                 ? $filter('itemTransactionStatus')(c[h.field])
-                : ((h.field.indexOf('status') > 0 && c.type == 'buyer') ? $filter('itemBuyerTransactionStatus')(c[h.field]) : ((h.field.indexOf('created_at') > 0) ? $filter('amCalendar')(c[h.field]) : c[h.field]))}}
+                : ((h.field.indexOf('status') >= 0 && c.type == 'buyer') ? $filter('itemBuyerTransactionStatus')(c[h.field]) : ((h.field.indexOf('created_at') > 0) ? $filter('amCalendar')(c[h.field]) : c[h.field]))}}
             </td>
             <td class="md-table-td-action">
                 <io-transaction-action transaction="c"></io-transaction-action>
@@ -62,9 +62,9 @@
             </md-button>
             <md-button flex ng-repeat="i in getNumber(nbOfPages()) track by $index"
                        ng-click="goToPage($index)"
-                       ng-class="{ 'md-table-active-page-btn': tablePage==$index}"
+                       ng-class="{ 'md-table-active-page-btn': tablePage == $index }"
                        class="md-primary md-table-footer-item">
-                <span ng-class="{ 'md-table-active-page': tablePage==$index}">{{$index+1}}</span>
+                <span ng-class="{ 'md-table-active-page': tablePage == $index }">{{ $index + 1 }}</span>
             </md-button>
             <md-button flex ng-disabled="tablePage==nbOfPages()-1" ng-click="tablePage=tablePage+1"
                        aria-label="Next Page" class="md-primary">

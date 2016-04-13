@@ -91,7 +91,7 @@ angular.module('instastore')
           UserService.initMyStoreSettings();
         }
 
-        // transactionService.checkActive();
+        transactionService.checkActive();
 
         $scope.configSiteHeader = {
           isManageStore: UserService.isYourStore() && $state.includes('grid') ? true : false,

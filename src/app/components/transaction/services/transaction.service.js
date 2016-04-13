@@ -17,9 +17,17 @@
     ////////////
 
     function checkActive() {
-      setInterval(function () {
-        console.log("yoyoyo");
-      }, 2000);
+      // setInterval(function () {
+      //   rest.path = 'v1/my-transactions';
+      //   return rest.models({
+      //     type: 'seller'
+      //   }).success(function (result) {
+      //     if (result) {
+      //       return result.data;
+      //     }
+      //   });
+      //   console.log("yoyoyo");
+      // }, 2000);
     }
 
     function seller() {

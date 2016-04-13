@@ -1,8 +1,10 @@
 .transaction {
-    padding-top: 51px;
-    padding-bottom: 49px;
+    /*padding-top: 51px;*/
+    /*padding-bottom: 49px;*/
     background: #E2E2E2;
 }
+
+.transaction
 
 .transaction button {
     min-width: 0;
@@ -235,7 +237,7 @@
 }
 
 .transaction md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 51px);
 }
 
 .transaction .transaction-table {

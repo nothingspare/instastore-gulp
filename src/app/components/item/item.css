@@ -42,10 +42,6 @@
     line-height: 48px;
 }
 
-.itemview.item-container {
-    margin-top: 20px;
-}
-
 .itemview md-list .md-subheader {
     background-color: transparent;
 }
