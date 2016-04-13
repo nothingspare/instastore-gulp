@@ -95,8 +95,12 @@
      ng-include src="'app/components/site/header.html'"></div>
 
 <div
-    ng-class="$state.includes('profile') || $state.includes('profilestore')?'am-fade-and-slide-top':'am-fade-and-slide-left'"
-    class="page ng-cloak" ui-view></div>
+    class="page ng-cloak"
+    ng-class="{
+    'transaction-main' : $state.includes('transaction'),
+    'am-fade-and-slide-left' : !($state.includes('profile') || $state.includes('profilestore')),
+    'am-fade-and-slide-top' : $state.includes('profile') || $state.includes('profilestore')
+    }" ui-view></div>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>

@@ -3402,7 +3402,7 @@ ul.safearea a {
     margin: 15px 0 0 0;
 }
 
-.page {
+.page.transaction-main {
     padding-top: 51px;
 }
 
