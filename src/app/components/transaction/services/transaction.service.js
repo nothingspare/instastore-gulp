@@ -10,13 +10,13 @@
     var service = {
       seller: seller,
       buyer: buyer,
-      checkActive: checkActive
+      getCount: getCount
     };
     return service;
 
     ////////////
 
-    function checkActive() {
+    function getCount() {
         rest.path = 'v1/my-transactions';
         return rest.models({
           type: 'active'
