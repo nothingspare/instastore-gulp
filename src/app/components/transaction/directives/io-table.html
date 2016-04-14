@@ -1,24 +1,3 @@
-<!--<md-toolbar layout="column" class="md-tall"><span flex="flex"></span>-->
-<!--    <div class="md-toolbar-tools">-->
-<!--        <div layout="row" flex="flex" class="fill-height">-->
-<!--            <div ng-hide="toggleSearch" class="md-toolbar-item md-breadcrumb"><span-->
-<!--                    ng-click="toggleSearch = !toggleSearch" ng-bind="::searchLabel"></span></div>-->
-<!--            <span flex="flex" ng-hide="toggleSearch"></span>-->
-<!--            <md-input-container flex="flex" style="padding-left:88px;" ng-show="toggleSearch">-->
-<!--                <input type="text" ng-model="search"/>-->
-<!--            </md-input-container>-->
-<!--            <div layout="row" class="md-toolbar-item md-tools">-->
-<!--                <a href="#" ng-click="toggleSearch = !toggleSearch"-->
-<!--                   class="md-button md-default-theme">-->
-<!--                    <ng-md-icon icon="search"-->
-<!--                                size="24"-->
-<!--                                style="fill: #fff">-->
-<!--                    </ng-md-icon>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</md-toolbar>-->
 <md-content layout="column" flex="flex" ng-click="toggleSearch=false">
     <ng-transclude></ng-transclude>
     <md-table class="transaction-table" headers="headers" content="content" sortable="sortable" filters="search" custom-class="custom"

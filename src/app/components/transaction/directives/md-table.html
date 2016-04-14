@@ -1,34 +1,5 @@
 <div id="md-table-template">
     <table md-colresize="md-colresize" class="md-table">
-        <thead>
-        <tr class="md-table-headers-row">
-            <th ng-repeat="h in headers" ng-if="h.field != thumbs" class="md-table-header">
-                <!--<a href="#" ng-if="handleSort(h.field)"-->
-                <!--ng-click="reverse=!reverse;order(h.field,reverse)">-->
-                <!--{{h.name}}-->
-                <a href="#">
-                    <ng-md-icon ng-show="!reverse && h.field == predicate"
-                                ng-click="reverse=!reverse;order(h.field,reverse)"
-                                icon="keyboard_arrow_down"
-                                size="24"
-                                style="fill: #545052">
-                    </ng-md-icon>
-                    <ng-md-icon ng-show="reverse && h.field == predicate"
-                                ng-click="reverse=!reverse;order(h.field,reverse)"
-                                icon="keyboard_arrow_up"
-                                size="24"
-                                style="fill: #545052">
-                    </ng-md-icon>
-                </a>
-                <!--</a>-->
-                <span
-                    ng-if="!handleSort(h.field)">{{h.name}}
-                </span>
-            </th>
-            <th class="md-table-header"></th>
-            <th class="md-table-header"></th>
-        </tr>
-        </thead>
         <tbody>
         <tr ng-repeat="c in content | orderBy:'-last_created_at' | filter:filters | startFrom:tablePage*count | limitTo: count"
             class="md-table-content-row">
