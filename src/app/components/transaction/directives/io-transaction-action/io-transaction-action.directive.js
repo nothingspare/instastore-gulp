@@ -54,9 +54,10 @@
 
       function getLabel() {
         transactionActionService.getLabel(scope.transaction)
-            .success(function (label) {
-              scope.label = label;
+            .success(function (result) {
+              scope.label = result.label;
               scope.isellBox = parseInt(scope.transaction.itemsell_box);
+              scope.transaction.last_status = IT_STATUS.label;
 
               $mdDialog.show({
                 templateUrl: 'app/components/item/label.html',

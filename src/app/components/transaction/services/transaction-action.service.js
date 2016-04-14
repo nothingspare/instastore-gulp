@@ -25,6 +25,7 @@
         itemSellId: transaction.itemsell_id
       }).success(function (label) {
         if (label) {
+
           return label;
         }
       });
