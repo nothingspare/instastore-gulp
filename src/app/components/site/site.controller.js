@@ -84,7 +84,7 @@ angular.module('instastore')
       function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
                 $mdDialog, $mdMedia, $rootScope, rest, InAppService, $timeout, RouterTracker, profileService, transactionService) {
 
-        var time = 20000;
+        var time = 120000;
         checkActiveTransaction(time);
 
         function checkActiveTransaction($time) {
