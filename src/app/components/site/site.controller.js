@@ -70,7 +70,6 @@ angular.module('instastore')
                     UserService.setIsSeller(res.data.profile.seller);
                     if (UserService.getInvitedStatus()) {
                         res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
-
                     }
                     else {
                         $state.go('storeselect');
