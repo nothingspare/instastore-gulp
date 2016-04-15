@@ -4244,6 +4244,12 @@ div.ios-header {
     border-radius: 32%;
 }
 
+#__bs_notify__ {
+    top: 95% !important;
+    background-color: rgba(85, 170, 204, 0.64) !important;
+    right: 10px !important;
+}
+
 md-toast {
     position: fixed;
 }

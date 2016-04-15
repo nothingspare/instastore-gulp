@@ -23,21 +23,14 @@
         buyerId: transaction.buyer_id,
         itemId: transaction.item_id,
         itemSellId: transaction.itemsell_id
-      }).success(function (label) {
-        if (label) {
-
-          return label;
-        }
       });
     }
 
     function emailLabel(isellId) {
       rest.path = 'v1/link/label-send';
       return rest.postModel({
-            isellId: isellId
-          })
-          .success(function (res) {
-          });
+        isellId: isellId
+      });
     }
 
     function changeItemStatus(transaction, status, boxSize) {
@@ -51,9 +44,7 @@
         req.box = parseInt(boxSize)
       }
 
-      return rest.postModel(req)
-          .success(function (transaction) {
-          });
+      return rest.postModel(req);
     }
 
   }
