@@ -40,7 +40,6 @@ angular.module('instastore')
             $mdSidenav(navID)
                 .toggle()
                 .then(function () {
-                  //$log.debug("toggle " + navID + " is done");
                 });
           }
         }
@@ -84,6 +83,7 @@ angular.module('instastore')
       function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, errorService,
                 $mdDialog, $mdMedia, $rootScope, rest, InAppService, $timeout, RouterTracker, profileService, transactionService) {
 
+        $scope.transactionService = transactionService;
         var time = 120000;
         checkActiveTransaction(time);
 
@@ -95,10 +95,7 @@ angular.module('instastore')
         }
 
         function getTransactionCount() {
-          transactionService.getCount()
-              .success(function (count) {
-                $scope.transactionCount = count;
-              });
+          transactionService.getCount();
         }
 
         if (!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))) {
