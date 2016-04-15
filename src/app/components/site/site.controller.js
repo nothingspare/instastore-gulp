@@ -35,7 +35,14 @@ angular.module('instastore')
                         UserService.goToMainStore();
                     }
                     else {
-                        $state.go('storeselect');
+                        //I've implemented this only for temp version of isopen without multistore
+                        //that inviter_id valid only for isopen db
+                        res.data.profile.inviter_id = 6;
+                        rest.path = 'v1/profiles';
+                        rest.putModel(res.data.profile).success(function (profile) {
+                            UserService.setProfile(profile);
+                            UserService.goToMainStore();
+                        }).error(errorService.alert);
                     }
                 }, errorService.satellizerAlert);
             };
