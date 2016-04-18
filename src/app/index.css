@@ -1131,7 +1131,6 @@ h3 {
 
     background-repeat: no-repeat;
     width: 90px;
-    height: 90px;
     border-radius: 200px;
     opacity: 0.6;
     border: 1px solid #eee;
@@ -3974,7 +3973,6 @@ svg.svg-debit {
 .io-bar {
     position: fixed;
     z-index: 19;
-    border-bottom: 1px solid #E1E1E1;
     width: 100%;
     background-color: #E1E1E1;
 }
@@ -3985,10 +3983,12 @@ svg.svg-debit {
 
 .io-bar > div {
     padding: 10px 20px 11px 20px;
+    cursor: pointer;
+    height: 55px;
 }
 
 .io-bar > div:hover {
-    background: rgba(225, 225, 225, 0.9);
+    background: #CECECE;
     color: #fff;
 }
 
@@ -4232,6 +4232,11 @@ div.ios-header {
     top: 0;
 }
 
+.transaction-icon {
+    position: relative;
+    top: 3px;
+}
+
 .transaction-count {
     border-radius: 50%;
     color: white;
@@ -4241,9 +4246,9 @@ div.ios-header {
     width: 20px;
     text-align: center;
     font-weight: bold;
-    position: absolute;
-    top: 7px;
-    right: 7px;
+    position: relative;
+    top: -30px;
+    right: -16px;
     line-height: 19px;
     transition: transform .5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
     transform: scale(0);
