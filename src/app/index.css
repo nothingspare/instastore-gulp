@@ -1135,6 +1135,7 @@ h3 {
     border-radius: 200px;
     opacity: 0.6;
     border: 1px solid #eee;
+    cursor: pointer;
 }
 
 .profile:hover {
@@ -2249,7 +2250,7 @@ p {
 
     background-repeat: no-repeat;
     width: 37px;
-    height: 37px;
+    max-height: 37px;
     margin: -21px 8px 0 3px;
     border-radius: 200px;
     opacity: 0.9;
@@ -3538,7 +3539,7 @@ ul.safearea a {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 37px;
-    height: 37px;
+    height: 37px !important;
     margin: 0 4px 0 4px;
     border-radius: 200px;
     opacity: 0.6;
@@ -3631,6 +3632,7 @@ ul.safearea a {
     overflow: hidden;
     background-position: center center;
     margin-bottom: 4px;
+    cursor: pointer;
 }
 
 /*Seller comment starts*/
@@ -3972,9 +3974,9 @@ svg.svg-debit {
 .io-bar {
     position: fixed;
     z-index: 19;
-    border-bottom: 1px solid rgba(225, 225, 225, 0.8);
+    border-bottom: 1px solid #E1E1E1;
     width: 100%;
-    background-color: rgba(225, 225, 225, 0.7);
+    background-color: #E1E1E1;
 }
 
 .io-bar.instaimport-bar {
@@ -4195,10 +4197,21 @@ md-dialog {
     background-position: -157px 0;
 }
 
-.subheader-menu-item {
-    height: 38px;
+.subheader-menu-items {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.subheader-menu-item {
     color: #222;
+    padding: .2em;
+    cursor: pointer;
+    height: 59px;
+}
+
+.subheader-menu-item .title {
+    text-align: center;
+    font-size: .7em;
+    margin-top: 3px;
 }
 
 .subheader-menu-item span {

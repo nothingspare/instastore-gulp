@@ -1,4 +1,6 @@
+
 <div layout="column" layout-align="center center" layout-fill class="grid-container itemfeed no-print top-margin">
+
     <div layout="column" class="item-container itemview">
         <md-card>
             <div ng-if="showHearts" class="rowfree">
@@ -10,6 +12,10 @@
                 style="background: url('../assets/images/icon100.gif') center center no-repeat;">
 
                 <li ng-repeat="image in item.images">
+                    <div layout-margin
+                         ui-sref="store({storeurl:item.user.store.store_url})" style="position: absolute; ">
+                        <img class="profile item-stream-profile" ng-src="{{item.user.store.avatar_url}}">
+                    </div>
                     <div ng-if="image.image_url" class="resizable-image"
                          ng-style="{'background-image': 'url(' + image.image_url + ')'};"
                          style="background-repeat: no-repeat; background-size: contain;">

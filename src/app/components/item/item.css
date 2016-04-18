@@ -69,6 +69,7 @@
 .itemfeed .bottom-actions .price-tag-wrapper {
     padding: 0 15px 0 15px;
     min-width: 30%;
+    cursor: pointer;
 }
 
 .io-item-stream-description {
@@ -272,5 +273,5 @@ div.item-sale-status h5 {
 
 .profile.item-stream-profile{
     width: 45px;
-    height: 45px;
+    height: 45px !important;
 }
