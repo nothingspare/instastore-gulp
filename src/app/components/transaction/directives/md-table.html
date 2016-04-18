@@ -2,6 +2,7 @@
     <table md-colresize="md-colresize" class="md-table">
         <tbody>
         <tr ng-repeat="c in content | orderBy:'-last_created_at' | filter:filters | startFrom:tablePage*count | limitTo: count"
+            ng-show="c.last_status != IT_STATUS.label"
             class="md-table-content-row">
             <td ng-repeat="h in headers" ng-class="customClass[h.field]" ng-if="h.field != thumbs"
                 class="md-table-content">
