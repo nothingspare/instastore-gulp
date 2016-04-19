@@ -4199,6 +4199,7 @@ md-dialog {
 
 .subheader-menu-items {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .subheader-menu-item {
@@ -4260,6 +4261,23 @@ div.ios-header {
 
 .more.transaction-count {
     border-radius: 32%;
+}
+
+.store-description {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 60px;
+    transition: max-height .5s ease-in;
+}
+.store-description.active {
+    white-space: normal;
+    max-height: 500px;
+    transition: max-height .5s ease-in;
+}
+
+.store-description-more-less {
+    font-size: 13px;
 }
 
 #__bs_notify__ {

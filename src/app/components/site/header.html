@@ -77,7 +77,17 @@
                 </div>
             </div>
         </div>
-        <p layout-padding>{{store.description}}</p>
+
+        <div layout="column" layout-align="center center">
+            <p ng-init="isMore = true" flex class="store-description" ng-class="{'active': !isMore}"
+               layout-padding>{{store.description}}</p>
+            <a ng-click="isMore = !isMore" ng-show="isMore" href="#">
+                <ng-md-icon icon="expand_more" size="24" style="fill: #545052"></ng-md-icon>
+            </a>
+            <a href="#" ng-show="!isMore" ng-click="isMore = !isMore">
+                <ng-md-icon icon="expand_less" size="24" style="fill: #545052"></ng-md-icon>
+            </a>
+        </div>
 
         <div id="container2">
             <div id="navigation2">
