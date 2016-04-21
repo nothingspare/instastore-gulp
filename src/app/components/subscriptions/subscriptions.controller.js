@@ -11,6 +11,10 @@
   function SubscriptionsMain(UserService, SubscriptionService) {
     var vm = this;
 
+    vm.searchText = '';
+    vm.following = following;
+    vm.querySearch = querySearch;
+
     activate();
 
     ////////////////
@@ -28,6 +32,22 @@
                   vm.subsRecommended = data;
                 })
           });
+    }
+
+    function following(name) {
+      console.log(name);
+    }
+
+    function querySearch (query) {
+      // var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
+      //     deferred;
+      // if (self.simulateQuery) {
+      //   deferred = $q.defer();
+      //   $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+      //   return deferred.promise;
+      // } else {
+      //   return results;
+      // }
     }
   }
 

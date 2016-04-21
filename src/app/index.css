@@ -4285,6 +4285,37 @@ div.ios-header {
     max-width: initial;
 }
 
+.store_avatar {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 1 px solid #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    vertical-align: middle;
+    zoom: .7;
+    -webkit-transform: scale(.7);
+    -moz-transform: scale(.7);
+    -ms-transform: scale(.7);
+    -o-transform: scale(.7);
+    transform: translateZ(0);
+}
+
+.following_btn {
+    min-height: 31px;
+    margin-top: 8px;
+    float: right;
+    line-height: initial;
+    color: lightcoral;
+    border: 1px solid lightcoral;
+}
+.following_btn:hover {
+    background-color: lightcoral !important;
+    color: white;
+}
+
 .sub_category {
     text-align: left;
     color: #222;

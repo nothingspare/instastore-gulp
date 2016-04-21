@@ -1,3 +1,18 @@
+<br>
+<md-autocomplete
+    md-search-text="vm.searchText"
+    md-items="sub in vm.querySearch(vm.searchText)"
+    md-item-text="sub.store.store_name"
+    placeholder="Search stores">
+<md-item-template layout="row" >
+    <img class="store_avatar" ng-src="{{sub.store.avatar_url}}"/>
+    <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{sub.store.store_name}}</span>
+    <md-button class="following_btn" ng-click="vm.following(sub.store.store_name)">Following</md-button>
+</md-item-template>
+<md-not-found>
+    No stor matching "{{vm.searchText}}" were found.
+</md-not-found>
+</md-autocomplete>
 <h4 class="sub_category">Following</h4>
 <div layout layout-wrap layout-margin layout-padding>
     <div layout="column" layout-align="center center"
