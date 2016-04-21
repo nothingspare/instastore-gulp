@@ -4264,7 +4264,7 @@ div.ios-header {
 }
 
 .store-description {
-    text-align: left ;
+    text-align: left;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
