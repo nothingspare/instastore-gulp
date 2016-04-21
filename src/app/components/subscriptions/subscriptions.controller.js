@@ -1,23 +1,34 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('instastore')
-    .controller('SubscriptionsMain', [
-        '$scope',
-        'rest',
-        'UserService',
-        'messageService',
-        function ($scope,
-                  rest,
-                  UserService,
-                  messageService) {
+  angular
+      .module('instastore')
+      .controller('SubscriptionsMain', SubscriptionsMain);
 
-            UserService.initMyStoreSettings();
+  SubscriptionsMain.$inject = ['UserService', 'SubscriptionService'];
 
-            rest.path = 'v1/subscriptions';
-            rest.models().success(function (data) {
-                $scope.subs = data;
-            }).error(function (e) {
-                messageService.alert(e);
-                UserService.goToMainStore();
-            });
-        }]);
+  /* @ngInject */
+  function SubscriptionsMain(UserService, SubscriptionService) {
+    var vm = this;
+
+    activate();
+
+    ////////////////
+
+    function activate() {
+      UserService.initMyStoreSettings();
+
+      SubscriptionService.all()
+          .success(function (data) {
+            vm.subs = data;
+          })
+          .then(function () {
+            SubscriptionService.recommended()
+                .success(function (data) {
+                  vm.subsRecommended = data;
+                })
+          });
+    }
+  }
+
+})();

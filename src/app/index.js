@@ -59,7 +59,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
         $stateProvider.state('subscriptions', {
             url: '/subscriptions/:storeurl',
-            controller: 'SubscriptionsMain',
+            controller: 'SubscriptionsMain as vm',
             templateUrl: modulesPath + '/subscriptions/subscriptions.html'
         });
 

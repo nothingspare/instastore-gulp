@@ -4264,7 +4264,7 @@ div.ios-header {
 }
 
 .store-description {
-    text-align: left;
+    text-align: left ;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -4279,6 +4279,17 @@ div.ios-header {
 
 .store-description-more-less {
     font-size: 13px;
+}
+
+.sub_store_name {
+    max-width: initial;
+}
+
+.sub_category {
+    text-align: left;
+    color: #222;
+    padding-left: 30px;
+    margin-top: 45px;
 }
 
 #__bs_notify__ {
