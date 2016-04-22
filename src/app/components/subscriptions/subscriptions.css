@@ -1,0 +1,79 @@
+.sub_store_name {
+    max-width: 130px;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.store_avatar {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    vertical-align: middle;
+    zoom: .7;
+    -webkit-transform: scale(.7);
+    -moz-transform: scale(.7);
+    -ms-transform: scale(.7);
+    -o-transform: scale(.7);
+    transform: translateZ(0);
+}
+
+.store-avatar-followin {
+    min-width: 120px;
+    height: 120px;
+    opacity: .8;
+}
+.block-store-follow {
+    /*padding-right:20px;*/
+}
+
+.block-store-follow-btn {
+    opacity: 0;
+    font-size: 12px;
+    min-height: 25px !important;
+}
+
+.block-store-follow:hover .block-store-follow-btn {
+    opacity: 1;
+}
+
+.io-btn-follow {
+    min-height: 31px;
+    margin-top: 8px;
+    float: right;
+    line-height: initial;
+    border: 1px solid lightcoral;
+    background-color: lightcoral !important;
+    color: white;
+}
+
+.io-btn-follow:hover {
+
+}
+
+.io-btn-unfollow {
+    background-color: white !important;
+    color: lightcoral;
+}
+
+.sub_category {
+    text-align: left;
+    color: #222;
+    padding-left: 30px;
+    margin-top: 45px;
+}
+
+.io-truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: normal;
+}
+
+.search-store {
+    margin-top: 10px;
+}
