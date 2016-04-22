@@ -273,5 +273,5 @@ div.item-sale-status h5 {
 
 .profile.item-stream-profile{
     width: 45px;
-    height: 45px !important;
+    min-height: 45px !important;
 }
