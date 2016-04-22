@@ -1,5 +1,11 @@
 /* - - - ingrid - - - - */
+html {
+    overflow-x: hidden !important;
+}
 
+body {
+    overflow-x: hidden !important;
+}
 .grid {
     letter-spacing: -0.31em
 }
@@ -1126,21 +1132,20 @@ h3 {
 .profile {
     float: left;
     background-image: url('../assets/images/background1circle290x290px.jpg');
-    background-size: 100% 100%;
-    /* - - - - How you bring in retena graphics - - - */
-
+    background-size: 106% 106%;
     background-repeat: no-repeat;
+    background-position: -3px -3px;
     width: 90px;
-    border-radius: 200px;
+    border-radius: 50%;
     opacity: 0.6;
-    border: 1px solid #eee;
+    border: 2px solid #fff;
     cursor: pointer;
+    min-height: 90px;
 }
 
 .profile:hover {
-    background-image: url('../assets/images/background1circle290x290px.jpg');
     opacity: 1;
-    border: 1px solid #f37878;
+    /*border: 1px solid #f37878;*/
 }
 
 .profile.customheader-profile {
@@ -4264,13 +4269,14 @@ div.ios-header {
 }
 
 .store-description {
-    text-align: left ;
+    text-align: left;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     max-height: 60px;
     transition: max-height .5s ease-in;
 }
+
 .store-description.active {
     white-space: normal;
     max-height: 500px;
@@ -4279,48 +4285,6 @@ div.ios-header {
 
 .store-description-more-less {
     font-size: 13px;
-}
-
-.sub_store_name {
-    max-width: initial;
-}
-
-.store_avatar {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    border: 1 px solid #ddd;
-    border-radius: 50%;
-    display: inline-block;
-    overflow: hidden;
-    margin: 0;
-    vertical-align: middle;
-    zoom: .7;
-    -webkit-transform: scale(.7);
-    -moz-transform: scale(.7);
-    -ms-transform: scale(.7);
-    -o-transform: scale(.7);
-    transform: translateZ(0);
-}
-
-.following_btn {
-    min-height: 31px;
-    margin-top: 8px;
-    float: right;
-    line-height: initial;
-    color: lightcoral;
-    border: 1px solid lightcoral;
-}
-.following_btn:hover {
-    background-color: lightcoral !important;
-    color: white;
-}
-
-.sub_category {
-    text-align: left;
-    color: #222;
-    padding-left: 30px;
-    margin-top: 45px;
 }
 
 #__bs_notify__ {
@@ -4360,4 +4324,9 @@ md-toast .md-toast-content {
         border-radius: 0;
         bottom: inherit;
     }
+}
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    max-width: 100% !important;
+    min-width: 100% !important;
 }
