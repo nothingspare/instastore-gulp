@@ -1,7 +1,7 @@
 .land-main header {
     position: relative;
-    min-height: 100%;
-    height: 782px;
+    min-height: 740px;
+    height: 100vh;
     text-align: center;
     color: #fff;
 }
@@ -10,24 +10,96 @@
     top: 0;
     width: 100%;
     content: "";
-    background-image: url("/assets/images/land/main/Mo3.jpg");
+    background: #f98c71;
+    background: -moz-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, #f98c71), color-stop(100%, #f5006e));
+    background: -webkit-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    background: -o-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    background: -ms-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    background: linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f98c71', endColorstr='#f5006e', GradientType=1);
     background-position: center;
     -webkit-filter: brightness(100%);
     /* Chrome, Safari, Opera */
     filter: brightness(100%);
 }
 
-.land-main header:after {
-    position: absolute;
-    top: 0;
-    z-index: -1;
+.land-main .phones {
+    width: 425px;
+    height: 560px;
+    background-image: url("../../../assets/images/land/main/Phones.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.land-main .login {
+    background-color: white;
+    width: 357px;
+    height: 490px;
+    padding: 20px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.land-main .logo {
     height: 100%;
     width: 100%;
-    content: "";
-    opacity: 0.5;
-    background-color: #000;
-    background-position: center;
-    background-size: cover;
+    background-image: url("/assets/images/land/main/isopen-logo.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.land-main .login .logo {
+    height: 100px;
+    width: 154px;
+}
+
+.land-main .login .login-title {
+    margin: 20px 0;
+    margin-bottom: 23px;
+    color: #000;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+.land-main .login .login-avatar {
+    width: 100px;
+    height: 100px;
+    background-image: url('../../../assets/images/land/main/avatar-facebook.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.land-main .login .login-facebook {
+    margin: 10px;
+}
+
+.land-main ng-md-icon {
+    width: initial;
+    height: initial;
+}
+
+/*.land-main header:after {*/
+/*position: absolute;*/
+/*top: 0;*/
+/*z-index: -1;*/
+/*height: 100%;*/
+/*width: 100%;*/
+/*content: "";*/
+/*opacity: 0.5;*/
+/*background-color: #000;*/
+/*background-position: center;*/
+/*background-size: cover;*/
+/*}*/
+
+.land-main .header-content-inner {
+    margin-top: 90px;
 }
 
 .land-main header .header-content .header-content-inner h1 {
@@ -50,11 +122,6 @@
     background-repeat: no-repeat;
     height: 450px;
     position: relative;
-}
-
-.land-main .main-logo {
-    background-image: url("/assets/images/land/main/isopen-logo.jpg");
-    height: 241px;
 }
 
 .land-main .btn {
@@ -277,7 +344,8 @@
 }
 
 .land-main .link-demo {
-    margin-top: 100px;
+    margin-top: 15px;
+    background-color: rgba(255,255,255, 0.3) !important;
 }
 
 .land-main .menu-bar a.active {

@@ -66,30 +66,35 @@
     <header layout="column"
             layout-align="center center">
         <div class="header-content">
-            <div class="header-content-inner">
-                <h1 ng-class="{ 'header-title-land' : $mdMedia('gt-sm') }">
-                    Create your own store app
-                </h1>
-                <hr/>
-                <p>Take a look around at the same bootstrap page you've seen ten million times before! Featuring all the same things as those pages!</p>
-                <div layout="row" layout-align="center center">
-                    <md-button class="md-raised md-primary io-primary-btn enter-facebook facebook-icon-btn" layout="row"
-                               layout-align="center center"
-                               ng-click="authenticate('facebook')">
-                        <b>Login with</b>&nbsp;
-                        <a class="md-icon-button launch" ng-if="isSession && !isInApp">
-                            <ng-md-icon icon="facebook-box" size="32" style="fill: #fff"></ng-md-icon>
-                        </a>
-                    </md-button>
+            <div layout="row" layout-align="center center" class="header-content-inner">
+                <div class="phones"></div>
+                <div layout="column" layout-align="center center" class="login">
+                    <div class="logo"></div>
+                    <h2 class="login-title">Create your own free store app</h2>
+                    <div class="login-avatar"></div>
+                    <div class="login-facebook">
+                        <md-button class="md-raised md-primary io-primary-btn enter-facebook facebook-icon-btn"
+                                   layout="row"
+                                   layout-align="center center"
+                                   ng-click="authenticate('facebook')">
+                            <b>Login with</b>&nbsp;
+                            <a class="md-icon-button launch" ng-if="isSession && !isInApp">
+                                <ng-md-icon icon="facebook-box" size="32" style="fill: #fff"></ng-md-icon>
+                            </a>
+                        </md-button>
+                    </div>
+                    <h5>
+                        Free account, item hosting,
+                        payment processing, shipping labels and boxes.
+                    </h5>
                 </div>
-
-                <br/>
-                <md-button href="#demo"
-                           du-smooth-scroll du-scrollspy
-                           class="md-fab md-primary io-primary-btn launch link-demo" flex="30" layout-fill>
-                    <ng-md-icon icon="expand_more" size="24" style="fill: #fff"></ng-md-icon>
-                </md-button>
             </div>
+            <md-button href="#demo"
+                       du-smooth-scroll du-scrollspy
+                       class="md-fab link-demo" flex="30" layout-fill>
+                <ng-md-icon icon="expand_more" size="40" style="fill: #fff">
+                </ng-md-icon>
+            </md-button>
         </div>
     </header>
     <section layout="column" layout-align="center center" class="bg-primary" id="demo">
