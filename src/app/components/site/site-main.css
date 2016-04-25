@@ -6,10 +6,7 @@
     color: #fff;
 }
 
-.land-main header {
-    top: 0;
-    width: 100%;
-    content: "";
+.land-main .background-gradient {
     background: #f98c71;
     background: -moz-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
     background: -webkit-gradient(left bottom, right top, color-stop(0%, #f98c71), color-stop(100%, #f5006e));
@@ -19,9 +16,12 @@
     background: linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f98c71', endColorstr='#f5006e', GradientType=1);
     background-position: center;
-    -webkit-filter: brightness(100%);
-    /* Chrome, Safari, Opera */
-    filter: brightness(100%);
+}
+
+.land-main header {
+    top: 0;
+    width: 100%;
+    content: "";
 }
 
 .land-main .phones {
@@ -37,7 +37,7 @@
     width: 357px;
     height: 490px;
     padding: 20px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .land-main .logo {
@@ -83,6 +83,17 @@
 .land-main ng-md-icon {
     width: initial;
     height: initial;
+}
+
+.land-main .video-section {
+
+}
+
+.land-main .video {
+    width: 250px;
+    height: 250px;
+    border: 6px solid #fff;
+    margin: 20px 0;
 }
 
 /*.land-main header:after {*/
@@ -131,9 +142,7 @@
 
 .land-main hr {
     width: 50px;
-    border: 1px solid #eee;
-    border-color: #f17668;
-    border-width: 3px;
+    border: 3px solid #f86370;
 }
 
 .land-main hr.light {
@@ -145,19 +154,52 @@
 }
 
 .land-main p {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 80%;
+    text-align: left;
     font-size: 18px;
-    margin-bottom: 50px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.7);
+    margin: 50px 0;
+}
+
+.land-main h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.land-main h3 {
+    text-transform: uppercase;
+}
+
+.land-main .text-column-left {
+    padding-right: 60px
+}
+
+.land-main .text-column-right {
+    padding-left: 60px
+}
+
+.land-main section.bg-default {
+    text-align: center;
+    color: #000;
+    background-color: #f7f8f8;
+    padding: 40px 84px;
+}
+
+.land-main section.bg-girl-with-phone {
+    height: 800px;
+    background: url("../../../assets/images/land/main/Mo1_with_phone.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.land-main .bg-width {
+    width: 1000px;
 }
 
 .land-main section.bg-primary {
     text-align: center;
     color: #fff;
-    background-color: #F37878;
+    background-color: #f7f8f8;
     padding: 30px;
 }
 
@@ -168,63 +210,96 @@
     padding: 30px;
 }
 
-.land-main .bg-section p {
+.land-main section.bg-images {
+    text-align: center;
     color: #000;
+    background-color: #f7f8f8;
 }
 
-.land-main .icon {
+.land-main .bg-images h3 {
+    margin: 25px 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+.land-main .bg-section p, .land-main .bg-section h3 {
+    color: #fff;
+}
+
+.land-main .icon-white {
+    background: url("../../../assets/images/land/main/icons-white.svg");
     width: 100%;
     max-width: 100px;
     height: 100px;
     margin: auto;
 }
 
+.land-main .icon-black {
+    background: url("../../../assets/images/icons.svg");
+}
+
+.land-main .md-button.md-fab.io-large {
+    line-height: 4rem;
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.7em;
+}
+
 .land-main .message-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -825px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .heart-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -930px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .location-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1035px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .buy-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1138px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .photo-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1242px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .key-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1350px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .edit-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1450px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .delete-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1562px -1px;
     background-size: 2700px 105px;
+}
+
+.land-main .icon-people-group {
+    background: url('../../../assets/images/land/main/people-group.svg');
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.land-main .icon-thumb {
+    background: url('../../../assets/images/land/main/thumb.svg');
+    background-size: contain;
+    width: 80px;
+    height: 80px;
 }
 
 .land-main .service-box {
@@ -317,8 +392,19 @@
 .land-main .enter-facebook {
     cursor: pointer;
     background-color: #415e9b !important;
-    padding: 5px 40px 5px 40px !important;
-    border-radius: 24px !important;
+    border-radius: 0 !important;
+}
+
+.land-main .send-email {
+    cursor: pointer;
+    background-color: #36b654 !important;
+    font-weight: bold !important;
+    border-radius: 0 !important;
+}
+
+.land-main .link-email {
+    margin-top: -62px;
+    background-color: #36b654 !important;
 }
 
 .land-main .facebook-icon-btn .md-icon-button ng-md-icon svg {
@@ -344,8 +430,11 @@
 }
 
 .land-main .link-demo {
-    margin-top: 15px;
-    background-color: rgba(255,255,255, 0.3) !important;
+    margin-top: 50px;
+    background-color: #fff !important;
+    width: 4em;
+    height: 4em;
+    line-height: 4em;
 }
 
 .land-main .menu-bar a.active {

@@ -1,4 +1,5 @@
 <div layout="column" class="land-main">
+    <link rel="stylesheet" type="text/css" href="/bower_components/Ionicons/css/ionicons.min.css">
     <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
         <md-content class="menu-bar-right" layout="column" layout-wrap layout-padding>
             <div layout="row" layout-padding layout-align="center center">
@@ -63,11 +64,11 @@
         </div>
     </div>
 
-    <header layout="column"
+    <header layout="column" class="background-gradient"
             layout-align="center center">
         <div class="header-content">
             <div layout="row" layout-align="center center" class="header-content-inner">
-                <div class="phones"></div>
+                <div hide-xs class="phones"></div>
                 <div layout="column" layout-align="center center" class="login">
                     <div class="logo"></div>
                     <h2 class="login-title">Create your own free store app</h2>
@@ -92,255 +93,236 @@
             <md-button href="#demo"
                        du-smooth-scroll du-scrollspy
                        class="md-fab link-demo" flex="30" layout-fill>
-                <ng-md-icon icon="expand_more" size="40" style="fill: #fff">
+                <ng-md-icon icon="expand_more" size="40" style="fill: #000">
                 </ng-md-icon>
             </md-button>
         </div>
     </header>
-    <section layout="column" layout-align="center center" class="bg-primary" id="demo">
-        <h2 class="section-heading">Try the demo now</h2>
-        <hr class="light">
-        <div layout="row" layout-margin layout-align="center center">
-            <p>
-                Get a SMS link now.
-            </p>
+    <!-- Video section -->
+    <section layout="column" layout-align="center center" class="bg-default" id="demo">
+        <div class="bg-width">
+            <h1>
+                We want to fill the internet with millions of Mom & Pop stores where interesting people, sell interesting things
+            </h1>
+            <hr>
+            <div layout="column" layout-gt-sm="row" layout-align="space-between center"
+                 class="video-section">
+                <div layout-align="center center">
+                    <div class="video background-gradient">
+                    </div>
+                    <h3>Sell Something</h3>
+                </div>
+                <div layout-align="center center">
+                    <div class="video background-gradient">
+                    </div>
+                    <h3>Easy Shipping</h3>
+                </div>
+                <div layout-align="center center">
+                    <div class="video background-gradient">
+                    </div>
+                    <h3>Get buyers</h3>
+                </div>
+            </div>
+            <br>
+            <h1>
+                People are more alive when they are selling something they love
+            </h1>
+            <br>
+            <div layout="row" hide-xs>
+                <div class="text-column-left">
+                    <p>
+                        isOpen.us is a selling app that lets you build and operate an e-commerce business from your phone.
+                    </p>
+                    <p>
+                        You can take pictures and list items from your phone or computer as well as batch import pics from Instagram.
+                    </p>
+                    <p>
+                        Post items to Facebook, Instagram and Pinterest and when your items sell you get text messages with a link to free shipping labels.
+                    </p>
+                </div>
+                <div class="text-column-right">
+                    <p>
+                        isOpen.us app gives you USPS flat rate boxes so there’s no weighing items, just leave the boxes for your mailman to pick up.
+                    </p>
+                    <p>
+                        Once item are accepted by the buyer you get paid directly to your debit card via a 100% secure service.
+                    </p>
+                </div>
+            </div>
         </div>
-
-        <div layout="column" layout-align="center center" class="user-tree">
-            <md-input-container flex>
-                <label>Phone number</label>
-                <input ng-model="user.phone" class="left-justified" type="tel">
-            </md-input-container>
-            <md-button href="http://google.com" target="_blank"
-                       class="md-raised io-raised-btn">
-                Submit
-            </md-button>
-        </div>
-
     </section>
-    <section layout="row" layout-xs="column" layout-align="center center" class="bg-section" id="images">
-        <div flex>
-            <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo1.jpg" class="img-responsive"
-                     alt="">
-                <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                        <div class="project-category text-faded">
-                            One Thing
+    <!-- Image girl section -->
+    <section class="bg-girl-with-phone">
+    </section>
+    <!-- Icons section -->
+    <section layout="column" layout-align="center center" class="bg-primary bg-section background-gradient"
+             id="services">
+        <div class="bg-width">
+            <h1>
+                Wouldn’t it be great if every Mom & Pop business had
+                an online store app that was just as easy to find.
+            </h1>
+            <hr class="light"/>
+            <div hide-xs>
+                <div layout="row" layout-xs="column" layout-margin layout-align="center center">
+                    <div class="service-box" layout="column" flex>
+                        <div class="message-circle-main icon-white"></div>
+                        <h3>Set up</h3>
+                        <p class="text-muted">
+                            It’s simple to set up your online store app. Verify your phone number, location and upload your stores background image.
+                        </p>
+                    </div>
+                    <div class="service-box" layout="column" flex>
+                        <div class="heart-circle-main icon-white"></div>
+                        <h3>Item Hosting</h3>
+                        <p class="text-muted">
+                            It’s free to list items for sale. You can do it from your phone or import pics from Instagram and add a price.
+                        </p>
+                    </div>
+                    <div class="service-box" layout="column" flex>
+                        <div class="location-circle-main icon-white"></div>
+                        <h3>Shipping</h3>
+                        <p class="text-muted">
+                            When your item sells print free pre-addressed shipping labels and send them in USPS boxes the app provides.
+                        </p>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column" layout-margin layout-align="center center">
+                    <div class="service-box" layout="column" flex>
+                        <div class="buy-circle-main icon-white"></div>
+                        <h3>Inventory</h3>
+                        <p class="text-muted">
+                            It so much more interesting to buy from someone that loves what they are selling. Sell what you love.
+                        </p>
+                    </div>
+                    <div class="service-box" layout="column" flex>
+                        <div class="photo-circle-main icon-white"></div>
+                        <h3>Sharing</h3>
+                        <p class="text-muted">
+                            Post items to your social networks and blogs and invite friends to follow your store. We can help you find your audience.
+                        </p>
+                    </div>
+                    <div class="service-box" layout="column" flex>
+                        <div class="key-circle-main icon-white"></div>
+                        <h3>Support</h3>
+                        <p class="text-muted">
+                            We want our sellers to building great relationships with their customers. Contact us anytime with questions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Images section -->
+    <section class="bg-images" id="images">
+        <div layout="row" layout-xs="column" layout-align="center center">
+            <div layout-xs="row" layout-gt-xs>
+                <div >
+                    <div class="portfolio-box">
+                        <img src="../../../assets/images/land/main/Mo1.jpg" class="img-responsive"
+                             alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    One Thing
+                                </div>
+                                <div class="project-name">
+                                    Look
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-name">
-                            Look
+                    </div>
+                </div>
+                <div >
+                    <div class="portfolio-box">
+                        <img src="../../../assets/images/land/main/Mo2.jpg" class="img-responsive"
+                             alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    One Thing
+                                </div>
+                                <div class="project-name">
+                                    Look
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div layout-xs="row" layout-gt-xs>
+                <div >
+                    <div class="portfolio-box">
+                        <img src="../../../assets/images/land/main/Mo3.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    One Thing
+                                </div>
+                                <div class="project-name">
+                                    Look
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div >
+                    <div class="portfolio-box">
+                        <img src="../../../assets/images/land/main/Mo4.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    One Thing
+                                </div>
+                                <div class="project-name">
+                                    Look
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div flex>
-            <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo2.jpg" class="img-responsive"
-                     alt="">
-                <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                        <div class="project-category text-faded">
-                            One Thing
-                        </div>
-                        <div class="project-name">
-                            Look
-                        </div>
-                    </div>
+        <h3>Photos: Mo using isOpen from her fashion consignment store Buttons & Bows in DTLA.</h3>
+    </section>
+
+    <!-- Who we are section -->
+    <section layout="column" hide-xs layout-align="center center" class="bg-default">
+        <div class="bg-width" layout="column" align="center center">
+            <div flex class="icon-people-group"></div>
+            <h1>Who we are</h1>
+            <div layout="row">
+                <div class="text-column-left">
+                    <p>
+                        IsOpen is run by a Mom & Pop - David and Tona and a small team of developers, digital marketers and advertisers. We are based in Mt Washington near Los Angeles’s Downtown and have three kids.
+                    </p>
+                    <p>
+                        We are really into supporting small independent sellers and businesses and want to do our part to make the internet a place where by doing things better small sellers can compete with huge online stores and trading giants.
+                    </p>
                 </div>
-            </div>
-        </div>
-        <div flex>
-            <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo3.jpg" class="img-responsive" alt="">
-                <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                        <div class="project-category text-faded">
-                            One Thing
-                        </div>
-                        <div class="project-name">
-                            Look
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div flex>
-            <div class="portfolio-box">
-                <img src="../../../assets/images/land/main/Mo4.jpg" class="img-responsive" alt="">
-                <div class="portfolio-box-caption">
-                    <div class="portfolio-box-caption-content">
-                        <div class="project-category text-faded">
-                            One Thing
-                        </div>
-                        <div class="project-name">
-                            Look
-                        </div>
-                    </div>
+                <div class="text-column-right">
+                    <p>
+                        We love to connect with our store owners and get feedback on the service and hear any other ways we can help promote their businesses.
+                    </p>
+                    <p>
+                        If we are all connected, share ideas and are dedicated to growing our businesses together we will all be stronger for it. Please drop us and email and we really hope you love operating your store on isOpen.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-    <section layout="column" layout-align="center center" class="bg-section" id="services">
-        <h2 class="section-heading">So Creative</h2>
-        <hr/>
-        <div layout="row" layout-xs="column" layout-margin layout-align="center center">
-            <div class="service-box" layout="column" flex>
-                <div class="message-circle-main icon"></div>
-                <h3>Set up</h3>
-                <p class="text-muted">
-                    Sign in with Facebook. Verify your store location and upload your stores background image. You can set up a store and reach out to customers in just two minutes.
-                </p>
-            </div>
-            <div class="service-box" layout="column" flex>
-                <div class="heart-circle-main icon"></div>
-                <h3>Item Hosting</h3>
-                <p class="text-muted">
-                    Import your existing photos from Instagram and add a prices to items to make them purchasable. For new items upload pictures straight from your phone.
-                </p>
-            </div>
-            <div class="service-box" layout="column" flex>
-                <div class="location-circle-main icon"></div>
-                <h3>Mailing Labels</h3>
-                <p class="text-muted">
-                    When an item is sold sellers print free pre-addressed shipping labels. The labels are then stuck on free shipping boxes and mailed.
-                </p>
-            </div>
-        </div>
-        <div layout="row" layout-xs="column" layout-margin layout-align="center center">
-            <div class="service-box" layout="column" flex>
-                <div class="buy-circle-main icon"></div>
-                <h3>Inventory</h3>
-                <p class="text-muted">
-                    Find things you love and fill a store with them. Once you have sold a few items make a deal to buy them in bulk to get them for less. DonвЂ™t worry about making sales, make connections with people.
-                </p>
-            </div>
-            <div class="service-box" layout="column" flex>
-                <div class="photo-circle-main icon"></div>
-                <h3>Sharing</h3>
-                <p class="text-muted">
-                    Invite your friends to download your personal store app. Send SMS notifications to your best customers and easily share item posts on Instagram and your other social networks and blogs.
-                </p>
-            </div>
-            <div class="service-box" layout="column" flex>
-                <div class="key-circle-main icon"></div>
-                <h3>Support</h3>
-                <p class="text-muted">
-                    Our simple approach to out-reach and technology enables us and our sellers to building better relationships with our customers. We work with our seller partners so we can build the updates our audiences really want.
-                </p>
-            </div>
-        </div>
-    </section>
-    <section layout="column" layout-align="center center" class="bg-primary" id="notification">
-        <h2 class="section-heading">Get a notification when we go live</h2>
-        <hr class="light">
-        <div layout="row" layout-margin layout-align="center center">
-            <div flex="10"></div>
-            <p flex="80">
-                Apply to see if you can set-up your store now.
-            </p>
-            <div flex="10"></div>
-        </div>
-
-        <div layout="column" layout-align="center center" class="user-tree">
-            <md-input-container flex>
-                <label>Email</label>
-                <input ng-model="user.email" class="left-justified" type="email">
-            </md-input-container>
-            <md-button href="http://google.com" target="_blank"
-                       class="md-raised io-raised-btn">
-                Submit
-            </md-button>
-        </div>
-
-    </section>
-    <section layout="column" layout-align="center center" class="bg-section" id="desc">
-        <div layout="row" layout-margin layout-align="center center">
-            <div class="service-box" layout="column" flex>
-                <div class="edit-circle-main icon"></div>
-                <h2>Who we are</h2>
-                <p class="text-muted">
-                    IsOpen is created and run by a small team of developers, digital marketers and advertisers based near Downtown Los Angeles. We think of our store owners as team members as we are all connected, share ideas and dedicated to growing our businesses together. IвЂ™ve always loved selling and found the most interesting people in the world do too. We want to help independent sellers make better connections with their audience and customers. And extend online that attention your able to give a customer in a store and the connection you share when a customer buys something you yourself love. With a super simple e-commerce app, great sellers with great stores we will build our businesses together and deliver a cooler, edgier, simpler experience than the trading giants can. We might be small but thats our strength.
-                </p>
-            </div>
-        </div>
-    </section>
-    <section layout="column" layout-align="center center" class="bg-primary" id="sayhi">
-        <div class="delete-circle-main icon"></div>
-        <h2 class="section-heading">Say Hi</h2>
-        <hr class="light">
-        <div layout="row" layout-margin layout-align="center center">
-            <div flex="10"></div>
-            <p flex="80">
-                Send us and email if you just want to connect but include your mobile number and stores Facebook page if you already have a store you would like to open up on isOpen.
-            </p>
-            <div flex="10"></div>
-        </div>
-
-        <div layout="column" layout-align="center center" class="user-tree">
-            <div layout="row" layout-xs="column" layout-margin>
-                <md-input-container flex>
-                    <label>Email</label>
-                    <input ng-model="user.email" class="left-justified" type="email">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Phone number</label>
-                    <input ng-model="user.phone" class="left-justified" type="tel">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Facebook page</label>
-                    <input ng-model="user.facebook" class="left-justified" type="text">
-                </md-input-container>
-            </div>
-            <div layout="row" layout-align="center center">
-                <md-button href="http://google.com" target="_blank"
-                           class="md-raised io-raised-btn">
-                    Submit
-                </md-button>
-            </div>
-        </div>
-
-    </section>
-    <section layout="column" layout-align="center center" class="bg-dark" id="feedme">
-        <h2 class="section-heading">Feed Back</h2>
-        <div layout="row" layout-margin layout-align="center center">
-            <div flex="10"></div>
-            <p flex="80">
-                We are defiantly looking for feed back.
-                <br>
-                So please check out are demo and pass on any thoughts.
-            </p>
-            <div flex="10"></div>
-        </div>
-
-        <div layout="column" layout-align="center center" class="user-tree">
-            <md-button flex href="http://google.com" target="_blank"
-                       class="md-raised io-raised-btn">
-                Demo
-            </md-button>
-        </div>
-
-    </section>
-    <section layout="column" layout-align="center center" class="bg-section" id="contacts">
-        <div layout="row" layout-margin layout-align="center center">
-            <div class="service-box" layout="column" layout-align="center center" flex>
-                <h2>My Contact Information</h2>
-                <hr/>
-                <p class="text-muted">
-                    Here's my phone number and email address, because hey that's part of the template and why would you not include that on your webpage? You'd be a fool not to! I can't wait for all the job offers to come pouring in from all the companies wanting my insane website design skills.
-                </p>
-                <md-button du-smooth-scroll du-scrollspy
-                           ng-click="toTheTop()"
-                           class="md-fab md-primary io-primary-btn launch link-demo-back">
-                    <ng-md-icon icon="expand_less" size="24" style="fill: #fff"></ng-md-icon>
-                </md-button>
-                <div class="message-circle-main icon"></div>
-                <h3>
-                    <a href="mailto:test@gmail.com">test@gmail.com</a>
-                </h3>
-            </div>
-        </div>
+    <!-- Say Hi -->
+    <section layout="column" layout-align="center center" class="bg-dark" id="desc">
+        <!--<div class="icon-thumb"></div>-->
+        <md-button
+            href="mailto:test@gmail.com"
+            du-smooth-scroll du-scrollspy
+            class="md-fab io-large link-email" flex="30" layout-fill>
+            <i class="icon ion-paper-airplane"></i>
+        </md-button>
+        <h1>Say Hi</h1>
+        <md-button href="mailto:test@gmail.com" class="md-raised md-primary io-primary-btn send-email">Send Email
+        </md-button>
     </section>
 </div>
 
