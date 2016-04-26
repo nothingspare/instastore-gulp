@@ -1,51 +1,54 @@
-<div layout="column" class="land-main" k-scroll>
+<div layout="column" class="land-main" k-scroll k-scroll-offset="150">
     <link rel="stylesheet" type="text/css" href="/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Menu section -->
     <div>
-        <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-            <md-content class="menu-bar-right" layout="column" layout-wrap layout-padding>
-                <div layout="row" layout-padding layout-align="center center">
-                    <a href="/" ng-click="toTheTop()">
-                        <img class="menu-logo-right" src="assets/images/land/main/isopen-logo.jpg" alt="">
-                    </a>
-                </div>
-                <md-button du-smooth-scroll du-scrollspy ng-click="selected()" href="#demo"
-                           class="io-bold-btn">Demo
-                </md-button>
-                <md-button du-smooth-scroll du-scrollspy ng-click="selected()" href="#services"
-                           class="io-bold-btn">Services
-                </md-button>
-                <md-button du-smooth-scroll du-scrollspy ng-click="selected()" href="#contacts"
-                           class="io-bold-btn">Contacs
-                </md-button>
-                <div layout="row" layout-align="center center">
-                    <md-button class="md-raised md-primary io-primary-btn enter-facebook facebook-icon-btn" layout="row"
-                               layout-align="center center"
-                               ng-click="authenticate('facebook')">
-                        <b>Login with</b>&nbsp;
-                        <a class="md-icon-button launch" ng-if="isSession && !isInApp">
-                            <ng-md-icon icon="facebook-box" size="32" style="fill: #fff"></ng-md-icon>
+        <!-- Mobile menu -->
+        <div>
+            <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+                <md-content class="menu-bar-right" layout="column" layout-wrap layout-padding>
+                    <div layout="row" layout-padding layout-align="center center">
+                        <a href="/" ng-click="toTheTop()">
+                            <img class="menu-logo-right" src="assets/images/land/main/isopen-logo.jpg" alt="">
                         </a>
+                    </div>
+                    <md-button du-smooth-scroll du-scrollspy ng-click="selected()" href="#demo"
+                               class="io-bold-btn">Demo
                     </md-button>
-                </div>
-            </md-content>
-        </md-sidenav>
-        <div layout="row" layout-align="end center" class="menu-buttons">
-            <md-button hide-gt-sm
-                       ng-click="toggleRight()"
-                       ng-hide="isOpenRight()"
-                       class="md-icon-button launch">
-                <ng-md-icon icon="menu" style="fill: #fff"></ng-md-icon>
-            </md-button>
-            <md-button hide-gt-sm
-                       ng-click="toggleRight()"
-                       ng-hide="!isOpenRight()"
-                       class="md-icon-button launch">
-                <ng-md-icon icon="close" style="fill: #000"></ng-md-icon>
-            </md-button>
+                    <md-button du-smooth-scroll du-scrollspy ng-click="selected()" href="#services"
+                               class="io-bold-btn">Services
+                    </md-button>
+                    <md-button du-smooth-scroll du-scrollspy ng-click="selected()" href="#contacts"
+                               class="io-bold-btn">Contacs
+                    </md-button>
+                    <div layout="row" layout-align="center center">
+                        <md-button class="md-raised md-primary io-primary-btn enter-facebook facebook-icon-btn" layout="row"
+                                   layout-align="center center"
+                                   ng-click="authenticate('facebook')">
+                            <b>Login with</b>&nbsp;
+                            <a class="md-icon-button launch" ng-if="isSession && !isInApp">
+                                <ng-md-icon icon="facebook-box" size="32" style="fill: #fff"></ng-md-icon>
+                            </a>
+                        </md-button>
+                    </div>
+                </md-content>
+            </md-sidenav>
+            <div layout="row" layout-align="end center" class="menu-buttons">
+                <md-button hide-gt-sm
+                           ng-click="toggleRight()"
+                           ng-hide="isOpenRight()"
+                           class="md-icon-button launch">
+                    <ng-md-icon icon="menu" style="fill: #fff"></ng-md-icon>
+                </md-button>
+                <md-button hide-gt-sm
+                           ng-click="toggleRight()"
+                           ng-hide="!isOpenRight()"
+                           class="md-icon-button launch">
+                    <ng-md-icon icon="close" style="fill: #000"></ng-md-icon>
+                </md-button>
+            </div>
         </div>
-
-        <div layout="row" hide show-gt-sm hide-header
+        <!-- Bar menu -->
+        <div layout="row" show-gt-sm hide hide-header hide-offset="50"
              ng-class="{full: boolChangeClass }"
              class="navbar-default" layout-align="space-between center">
             <div layout="row" layout-align="center center">
@@ -76,7 +79,7 @@
                 <div flex="10" hide-xs></div>
                 <div layout="row" layout-align="center center" class="header-content-inner">
                     <div hide-xs class="phones"></div>
-                    <div layout="column" layout-align="center center" class="login">
+                    <div layout="column" layout-align="center center" class="login shadow">
                         <div class="logo"></div>
                         <h2 class="login-title">Create your own free store app</h2>
                         <div class="login-avatar"></div>
@@ -117,17 +120,17 @@
                 <div layout="column" layout-gt-sm="row" layout-align="space-between center"
                      class="video-section">
                     <div layout-align="center center">
-                        <div class="video background-gradient">
+                        <div class="video background-gradient shadow">
                         </div>
                         <h3>Sell Something</h3>
                     </div>
                     <div layout-align="center center">
-                        <div class="video background-gradient">
+                        <div class="video background-gradient shadow">
                         </div>
                         <h3>Easy Shipping</h3>
                     </div>
                     <div layout-align="center center">
-                        <div class="video background-gradient">
+                        <div class="video background-gradient shadow">
                         </div>
                         <h3>Get buyers</h3>
                     </div>

@@ -16,8 +16,9 @@
     return directive;
 
     function link(scope, element, attrs) {
+      var kScrollOffset = parseInt(attrs.kScrollOffset) || 100;
       angular.element($window).bind("scroll", function () {
-        if (this.pageYOffset >= 100) {
+        if (this.pageYOffset >= kScrollOffset) {
           scope.boolChangeClass = true;
         } else {
           scope.boolChangeClass = false;
