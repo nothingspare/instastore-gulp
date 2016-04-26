@@ -17,7 +17,6 @@
 
     function link(scope, element, attrs) {
       angular.element($window).bind("scroll", function () {
-        console.log(this.pageYOffset);
         if (this.pageYOffset >= 100) {
           scope.boolChangeClass = true;
         } else {
