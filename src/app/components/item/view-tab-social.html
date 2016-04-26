@@ -68,21 +68,15 @@
         <p class="text-align-center" layout layout-margin>
             Expand your stores audience with these recurring services.
         </p>
-        <!--Have to keep it because of bug on mobile safari-->
-        <div hide-gt-xs>
-            <br>
-            <br>
-            <br>
-        </div>
-        <md-button layout-fill
+        <md-button
                    href="mailto:support@isopen.us?subject=Weekly e-newsletter&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}">
             <h6>Weekly e-newsletter $12</h6>
         </md-button>
-        <md-button layout-fill
+        <md-button
                    href="mailto:support@isopen.us?subject=Social post boosting&body=I'm interested in your Social post boosting service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}">
             <h6>Social post boosting $24</h6>
         </md-button>
-        <md-button layout-fill
+        <md-button
                    href="mailto:support@isopen.us?subject=Independent blog write up&body=I'm interested in your e-newsletter service. Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}">
             <h6>Independent blog write up $120</h6>
         </md-button>

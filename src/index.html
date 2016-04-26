@@ -79,8 +79,8 @@
 
 <div id="start"></div>
 
-<div du-scroll-container
-     ng-if="
+<div
+    ng-if="
     $state.includes('feed')
  || $state.includes('grid')
  || $state.includes('location')
@@ -92,7 +92,7 @@
  || $state.includes('stream')
  || $state.includes('stream-grid')
  || $state.includes('transaction')"
-     ng-include src="'app/components/site/header.html'"></div>
+    ng-include src="'app/components/site/header.html'"></div>
 
 <div
     class="page ng-cloak"

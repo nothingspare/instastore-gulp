@@ -26,8 +26,6 @@
     vm.querySearch = querySearch;
     vm.change = change;
 
-    console.log(vm.profile.store.id);
-
     UserService.initMyStoreSettings();
     activate();
 
