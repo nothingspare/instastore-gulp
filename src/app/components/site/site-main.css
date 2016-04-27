@@ -1,6 +1,6 @@
 .land-main header {
     position: relative;
-    height: 100vh;
+    height: 80vh;
     text-align: center;
     color: #fff;
 }
@@ -37,9 +37,10 @@
 
 .land-main .login {
     background-color: white;
-    width: 300px;
-    height: 490px;
+    width: 290px;
+    height: 390px;
     padding: 20px;
+    margin-top: 25px;
 }
 
 .land-main h1 {
@@ -57,19 +58,20 @@
 
 .land-main .login .logo {
     height: 100px;
-    width: 59%;
+    width: 50%;
 }
 
 .land-main .login h5 {
     margin-bottom: 0;
-    font-size: 15px;
+    margin-top: 0px;
+    font-size: 14px;
 }
 
 .land-main .login .login-title {
-    margin: 20px 0;
-    margin-bottom: 23px;
+    margin: 7px 0;
+    margin-bottom: 12px;
     color: #000;
-    font-size: 17px;
+    font-size: 13px;
     text-transform: uppercase;
 }
 
@@ -184,11 +186,11 @@
 }
 
 .land-main .text-column-left {
-    padding-right: 60px
+    /*padding-right: 60px*/
 }
 
 .land-main .text-column-right {
-    padding-left: 60px
+    /*padding-left: 60px*/
 }
 
 .land-main section.bg-default {
@@ -425,7 +427,7 @@
 }
 
 .land-main .menu-logo-right {
-    width: 150px;
+    width: 120px;
 }
 
 .land-main .enter-facebook {
