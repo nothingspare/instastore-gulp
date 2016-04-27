@@ -105,6 +105,11 @@
     margin: 20px 0;
 }
 
+.land-main .video video {
+    height: 100%;
+    width: 100%;
+}
+
 .land-main .header-content {
     height: 100%;
 }
