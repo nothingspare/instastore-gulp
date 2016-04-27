@@ -108,7 +108,7 @@ angular.module('instastore')
 
             if (!urlsThere) {
                 messageService.simpleByCode('item', 'urlWrongFormat');
-                goToMainStore();
+                UserService.goToMainStore();
             }
 
             $scope.isFacebookInApp = InAppService.isFacebookInApp();

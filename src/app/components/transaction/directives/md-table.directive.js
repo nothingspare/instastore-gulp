@@ -5,9 +5,9 @@
       .module('instastore')
       .directive('mdTable', mdTable);
 
-  mdTable.$inject = ['$filter'];
+  mdTable.$inject = ['$filter', 'ITEMSELLTRANSACTION_STATUS'];
 
-  function mdTable($filter) {
+  function mdTable($filter, IT_STATUS) {
     var directive = {
       link: link,
       templateUrl: 'app/components/transaction/directives/md-table.html',
@@ -26,6 +26,7 @@
 
     function link($scope) {
       $scope.$filter = $filter;
+      $scope.IT_STATUS = IT_STATUS;
 
       var orderBy = $filter('orderBy');
       $scope.tablePage = 0;

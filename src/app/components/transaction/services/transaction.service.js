@@ -10,7 +10,9 @@
     var service = {
       seller: seller,
       buyer: buyer,
-      getCount: getCount
+      getCount: getCount,
+      viewCount: viewCount,
+      count: null
     };
     return service;
 
@@ -20,7 +22,17 @@
         rest.path = 'v1/my-transactions';
         return rest.models({
           type: 'active'
+        }).success(function (res) {
+          service.count = res;
+          return res;
         });
+    }
+
+    function viewCount(ids) {
+      rest.path = 'v1/my-transactions/update-view';
+      return rest.postModel({
+        ids: ids
+      });
     }
 
     function seller() {

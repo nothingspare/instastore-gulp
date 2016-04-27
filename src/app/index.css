@@ -1,5 +1,11 @@
 /* - - - ingrid - - - - */
+html {
+    /*overflow-x: hidden !important;*/
+}
 
+body {
+    overflow-x: hidden !important;
+}
 .grid {
     letter-spacing: -0.31em
 }
@@ -1126,21 +1132,20 @@ h3 {
 .profile {
     float: left;
     background-image: url('../assets/images/background1circle290x290px.jpg');
-    background-size: 100% 100%;
-    /* - - - - How you bring in retena graphics - - - */
-
+    background-size: 106% 106%;
     background-repeat: no-repeat;
+    background-position: -3px -3px;
     width: 90px;
-    height: 90px;
-    border-radius: 200px;
+    border-radius: 50%;
     opacity: 0.6;
-    border: 1px solid #eee;
+    border: 2px solid #fff;
+    cursor: pointer;
+    min-height: 90px;
 }
 
 .profile:hover {
-    background-image: url('../assets/images/background1circle290x290px.jpg');
     opacity: 1;
-    border: 1px solid #f37878;
+    /*border: 1px solid #f37878;*/
 }
 
 .profile.customheader-profile {
@@ -2249,7 +2254,7 @@ p {
 
     background-repeat: no-repeat;
     width: 37px;
-    height: 37px;
+    max-height: 37px;
     margin: -21px 8px 0 3px;
     border-radius: 200px;
     opacity: 0.9;
@@ -3538,7 +3543,7 @@ ul.safearea a {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 37px;
-    height: 37px;
+    height: 37px !important;
     margin: 0 4px 0 4px;
     border-radius: 200px;
     opacity: 0.6;
@@ -3631,6 +3636,7 @@ ul.safearea a {
     overflow: hidden;
     background-position: center center;
     margin-bottom: 4px;
+    cursor: pointer;
 }
 
 /*Seller comment starts*/
@@ -3960,6 +3966,7 @@ svg.svg-debit {
 }
 
 .page {
+    margin-top: 10px;
 }
 
 .io-avatar {
@@ -3972,9 +3979,9 @@ svg.svg-debit {
 .io-bar {
     position: fixed;
     z-index: 19;
-    border-bottom: 1px solid rgba(225, 225, 225, 0.8);
     width: 100%;
-    background-color: rgba(225, 225, 225, 0.7);
+    background-color: #E1E1E1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .io-bar.instaimport-bar {
@@ -3983,10 +3990,12 @@ svg.svg-debit {
 
 .io-bar > div {
     padding: 10px 20px 11px 20px;
+    cursor: pointer;
+    height: 55px;
 }
 
 .io-bar > div:hover {
-    background: rgba(225, 225, 225, 0.9);
+    background: #CECECE;
     color: #fff;
 }
 
@@ -4195,10 +4204,22 @@ md-dialog {
     background-position: -157px 0;
 }
 
-.subheader-menu-item {
-    height: 38px;
+.subheader-menu-items {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.subheader-menu-item {
     color: #222;
+    padding: .2em;
+    cursor: pointer;
+    height: 59px;
+}
+
+.subheader-menu-item .title {
+    text-align: center;
+    font-size: .7em;
+    margin-top: 3px;
 }
 
 .subheader-menu-item span {
@@ -4219,6 +4240,11 @@ div.ios-header {
     top: 0;
 }
 
+.transaction-icon {
+    position: relative;
+    top: 3px;
+}
+
 .transaction-count {
     border-radius: 50%;
     color: white;
@@ -4228,9 +4254,9 @@ div.ios-header {
     width: 20px;
     text-align: center;
     font-weight: bold;
-    position: absolute;
-    top: 7px;
-    right: 7px;
+    position: relative;
+    top: -30px;
+    right: -16px;
     line-height: 19px;
     transition: transform .5s cubic-bezier(0.175, 0.885, 0.320, 1.275);
     transform: scale(0);
@@ -4242,6 +4268,31 @@ div.ios-header {
 
 .more.transaction-count {
     border-radius: 32%;
+}
+
+.store-description {
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 60px;
+    transition: max-height .5s ease-in;
+}
+
+.store-description.active {
+    white-space: normal;
+    max-height: 500px;
+    transition: max-height .5s ease-in;
+}
+
+.store-description-more-less {
+    font-size: 13px;
+}
+
+#__bs_notify__ {
+    top: 95% !important;
+    background-color: rgba(85, 170, 204, 0.64) !important;
+    right: 10px !important;
 }
 
 md-toast {
@@ -4275,4 +4326,9 @@ md-toast .md-toast-content {
         border-radius: 0;
         bottom: inherit;
     }
+}
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    max-width: 100% !important;
+    min-width: 100% !important;
 }

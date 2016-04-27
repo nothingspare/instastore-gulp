@@ -1,5 +1,4 @@
 .itemview {
-    margin-top: 20px;
 }
 
 .itemview md-tabs {
@@ -63,12 +62,13 @@
 }
 
 .itemfeed .bottom-actions {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #ccc;
 }
 
 .itemfeed .bottom-actions .price-tag-wrapper {
     padding: 0 15px 0 15px;
     min-width: 30%;
+    cursor: pointer;
 }
 
 .io-item-stream-description {
@@ -271,6 +271,6 @@ div.item-sale-status h5 {
 }
 
 .profile.item-stream-profile{
-    width: 45px;
-    height: 45px;
+    width: 3.6em;
+    min-height: 3.6em !important;
 }

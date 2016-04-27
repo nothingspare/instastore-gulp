@@ -1,34 +1,129 @@
 .land-main header {
     position: relative;
-    min-height: 100%;
-    height: 782px;
+    height: 100vh;
     text-align: center;
     color: #fff;
+}
+
+.land-main .background-gradient {
+    background: #f98c71;
+    background: -moz-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, #f98c71), color-stop(100%, #f5006e));
+    background: -webkit-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    background: -o-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    background: -ms-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    background: linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f98c71', endColorstr='#f5006e', GradientType=1);
+    background-position: center;
 }
 
 .land-main header {
     top: 0;
     width: 100%;
     content: "";
-    background-image: url("/assets/images/land/main/Mo3.jpg");
-    background-position: center;
-    -webkit-filter: brightness(100%);
-    /* Chrome, Safari, Opera */
-    filter: brightness(100%);
 }
 
-.land-main header:after {
-    position: absolute;
-    top: 0;
-    z-index: -1;
+.land-main .phones {
+    width: 425px;
+    height: 560px;
+    background-image: url("../../../assets/images/land/main/Phones.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.land-main .shadow {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.land-main .login {
+    background-color: white;
+    width: 300px;
+    height: 490px;
+    padding: 20px;
+}
+
+.land-main h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.land-main .logo {
     height: 100%;
     width: 100%;
-    content: "";
-    opacity: 0.5;
-    background-color: #000;
-    background-position: center;
-    background-size: cover;
+    background-image: url("/assets/images/land/main/isopen-logo.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
+
+.land-main .login .logo {
+    height: 100px;
+    width: 59%;
+}
+
+.land-main .login h5 {
+    margin-bottom: 0;
+    font-size: 15px;
+}
+
+.land-main .login .login-title {
+    margin: 20px 0;
+    margin-bottom: 23px;
+    color: #000;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+.land-main .login .login-avatar {
+    width: 100px;
+    min-height: 100px;
+    background-image: url('../../../assets/images/land/main/avatar-facebook.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.land-main .login .login-facebook {
+    margin: 10px;
+}
+
+.land-main ng-md-icon {
+    width: initial;
+    height: initial;
+}
+
+.land-main .video-section {
+
+}
+
+.land-main .video {
+    width: 250px;
+    height: 250px;
+    border: 6px solid #fff;
+    margin: 20px 0;
+}
+
+.land-main .header-content {
+    height: 100%;
+}
+
+/*.land-main header:after {*/
+/*position: absolute;*/
+/*top: 0;*/
+/*z-index: -1;*/
+/*height: 100%;*/
+/*width: 100%;*/
+/*content: "";*/
+/*opacity: 0.5;*/
+/*background-color: #000;*/
+/*background-position: center;*/
+/*background-size: cover;*/
+/*}*/
 
 .land-main header .header-content .header-content-inner h1 {
     margin-top: -80px;
@@ -52,11 +147,6 @@
     position: relative;
 }
 
-.land-main .main-logo {
-    background-image: url("/assets/images/land/main/isopen-logo.jpg");
-    height: 241px;
-}
-
 .land-main .btn {
     width: 170px;
     background-color: #f17668;
@@ -64,9 +154,7 @@
 
 .land-main hr {
     width: 50px;
-    border: 1px solid #eee;
-    border-color: #f17668;
-    border-width: 3px;
+    border: 3px solid #f86370;
 }
 
 .land-main hr.light {
@@ -78,19 +166,49 @@
 }
 
 .land-main p {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 80%;
+    text-align: left;
     font-size: 18px;
-    margin-bottom: 50px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.7);
+    margin: 50px 0;
+}
+
+.land-main h3 {
+    text-transform: uppercase;
+    margin-top: 30px;
+    font-size: 15px;
+}
+
+.land-main .text-column-left {
+    padding-right: 60px
+}
+
+.land-main .text-column-right {
+    padding-left: 60px
+}
+
+.land-main section.bg-default {
+    text-align: center;
+    color: #000;
+    background-color: #f7f8f8;
+    padding: 40px 84px;
+}
+
+.land-main section.bg-girl-with-phone {
+    height: 800px;
+    background: url("../../../assets/images/land/main/Mo1_with_phone.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.land-main .bg-width {
+    width: 1000px;
 }
 
 .land-main section.bg-primary {
     text-align: center;
     color: #fff;
-    background-color: #F37878;
+    background-color: #f7f8f8;
     padding: 30px;
 }
 
@@ -101,63 +219,99 @@
     padding: 30px;
 }
 
-.land-main .bg-section p {
+.land-main section.bg-images {
+    text-align: center;
     color: #000;
+    background-color: #f7f8f8;
+    height: 100%;
 }
 
-.land-main .icon {
+.land-main .bg-images h3 {
+    margin: 25px 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    padding: 0 50px;
+}
+
+.land-main .bg-section p, .land-main .bg-section h3 {
+    color: #fff;
+}
+
+.land-main .icon-white {
+    background: url("../../../assets/images/land/main/icons-white.svg");
     width: 100%;
     max-width: 100px;
     height: 100px;
     margin: auto;
 }
 
+.land-main .icon-black {
+    background: url("../../../assets/images/icons.svg");
+}
+
+.land-main .md-button.md-fab.io-large {
+    line-height: 3.6rem;
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.7em;
+}
+
 .land-main .message-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -825px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .heart-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -930px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .location-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1035px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .buy-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1138px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .photo-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1242px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .key-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1350px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .edit-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1450px -1px;
     background-size: 2700px 105px;
 }
 
 .land-main .delete-circle-main {
-    background: url("/assets/images/icons.svg");
     background-position: -1562px -1px;
     background-size: 2700px 105px;
+}
+
+.land-main .icon-people-group {
+    background: url('../../../assets/images/land/main/people-group.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    margin-bottom: -25px;
+}
+
+.land-main .icon-thumb {
+    background: url('../../../assets/images/land/main/thumb.svg');
+    background-size: contain;
+    width: 80px;
+    height: 80px;
 }
 
 .land-main .service-box {
@@ -231,16 +385,41 @@
 }
 
 .land-main .navbar-default {
-    border-color: rgba(255, 255, 255, 0.3);
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     position: fixed;
+    background-color: transparent;
     width: 100%;
     z-index: 1000;
+    transition: .2s ease-out;
 }
 
+.land-main .navbar-default.full {
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: .2s ease-out;
+}
+
+.land-main .navbar-default .menu-bar {
+    color: #fff;
+}
+
+.land-main .navbar-default .menu-bar .facebook-icon-btn ng-md-icon {
+    fill: #fff !important;
+}
+
+.land-main .navbar-default.full .menu-bar .facebook-icon-btn ng-md-icon {
+    fill: #415e9b !important;
+}
+
+.land-main .navbar-default.full .menu-bar {
+    color: #000;
+}
+
+
+
 .land-main .menu-logo {
-    width: 72px;
+    width: 60px;
+    padding: 5px;
+    padding-left: 15px;
 }
 
 .land-main .menu-logo-right {
@@ -250,8 +429,26 @@
 .land-main .enter-facebook {
     cursor: pointer;
     background-color: #415e9b !important;
-    padding: 5px 40px 5px 40px !important;
-    border-radius: 24px !important;
+    border-radius: 0 !important;
+}
+
+.land-main .send-email {
+    cursor: pointer;
+    background-color: #36b654 !important;
+    font-weight: bold !important;
+    border-radius: 0 !important;
+}
+
+.land-main .link-email {
+    margin-top: -62px;
+    background-color: #36b654 !important;
+}
+
+.land-main .link-email md-icon {
+    height: 32px;
+    width: 32px;
+    min-height: 32px;
+    min-width: 32px;
 }
 
 .land-main .facebook-icon-btn .md-icon-button ng-md-icon svg {
@@ -277,7 +474,10 @@
 }
 
 .land-main .link-demo {
-    margin-top: 100px;
+    background-color: #fff !important;
+    width: 4em;
+    height: 4em;
+    line-height: 4em;
 }
 
 .land-main .menu-bar a.active {
@@ -304,4 +504,56 @@
 
 .land-main md-backdrop {
     position: fixed;
+}
+
+.land-main .io-paper-airplane {
+    background: url('../../../assets/images/land/main/send.svg');
+}
+
+.land-main section.bg-who-we-are {
+    padding-top: 0;
+}
+
+@media only screen and (max-device-width: 425px) {
+    .land-main section.bg-default {
+        padding: 40px 30px;
+    }
+
+    .land-main h1 {
+        font-size: 22px;
+    }
+
+    .land-main h3 {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-device-width: 320px) {
+    .land-main .login {
+        margin-top: 57px;
+    }
+
+    .land-main .link-demo {
+        margin-top: -6px;
+    }
+
+    .land-main h1 {
+        font-size: 20px;
+    }
+
+    .land-main section.bg-default {
+        padding: 40px 20px;
+    }
+}
+
+@media only screen and (max-device-width: 599px) {
+    .land-main .bg-images h3 {
+        margin-bottom: 50px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .land-main .header-content-inner {
+        margin-top: 9vh;
+    }
 }

@@ -6,9 +6,9 @@
 
   app.controller('TransactionCtrl', TransactionCtrl);
 
-  TransactionCtrl.$inject = ['transactionService', 'messageService', 'UserService'];
+  TransactionCtrl.$inject = ['transactionService', 'messageService', 'UserService', '$q'];
 
-  function TransactionCtrl(TransactionService, messageService, UserService) {
+  function TransactionCtrl(TransactionService, messageService, UserService, $q) {
     var vm = this;
 
     vm.seller = false;
@@ -17,20 +17,34 @@
     vm.selectTab = selectTab;
 
     function selectTab(type) {
-      if(type == 'buyer') {
+      if (type == 'buyer') {
         TransactionService.buyer()
             .success(function (result) {
               vm.buyer = result;
-              console.log(vm.buyer);
             })
-            .error(messageService.alert);
+            .error(messageService.alert)
+            .then(changeViewCount);
       } else if (type == 'seller') {
         TransactionService.seller()
             .success(function (result) {
               vm.seller = result;
+              return vm.seller;
             })
-            .error(messageService.alert);
+            .error(messageService.alert)
+            .then(changeViewCount);
       }
+    }
+
+    function changeViewCount(res) {
+      var ids = _.map(_.filter(res.data, {is_view: "0"}), 'itemselltransaction_id');
+      if(!ids.length){
+        return $q.when(false);
+      }
+      return TransactionService.viewCount(ids)
+          .then(function (response) {
+            TransactionService.count -= ids.length;
+            return response;
+          });
     }
 
     vm.headers = [

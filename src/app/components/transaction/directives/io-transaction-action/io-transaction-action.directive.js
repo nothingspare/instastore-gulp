@@ -55,7 +55,7 @@
       function getLabel() {
         transactionActionService.getLabel(scope.transaction)
             .success(function (result) {
-              scope.label = result.label;
+              scope.label = result;
               scope.isellBox = parseInt(scope.transaction.itemsell_box);
               scope.transaction.last_status = IT_STATUS.label;
 
