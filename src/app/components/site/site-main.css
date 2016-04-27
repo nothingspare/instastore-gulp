@@ -1,6 +1,6 @@
 .land-main header {
     position: relative;
-    height: 100vh;
+    height: 80vh;
     text-align: center;
     color: #fff;
 }
@@ -37,9 +37,10 @@
 
 .land-main .login {
     background-color: white;
-    width: 300px;
-    height: 490px;
+    width: 290px;
+    height: 390px;
     padding: 20px;
+    margin-top: 25px;
 }
 
 .land-main h1 {
@@ -57,19 +58,20 @@
 
 .land-main .login .logo {
     height: 100px;
-    width: 59%;
+    width: 50%;
 }
 
 .land-main .login h5 {
     margin-bottom: 0;
-    font-size: 15px;
+    margin-top: 0px;
+    font-size: 14px;
 }
 
 .land-main .login .login-title {
-    margin: 20px 0;
-    margin-bottom: 23px;
+    margin: 7px 0;
+    margin-bottom: 12px;
     color: #000;
-    font-size: 17px;
+    font-size: 13px;
     text-transform: uppercase;
 }
 
@@ -106,6 +108,11 @@
     height: 250px;
     border: 6px solid #fff;
     margin: 20px 0;
+}
+
+.land-main .video video {
+    height: 100%;
+    width: 100%;
 }
 
 .land-main .header-content {
@@ -169,7 +176,7 @@
     text-align: left;
     font-size: 18px;
     font-weight: 300;
-    margin: 50px 0;
+    margin: 20px 0;
 }
 
 .land-main h3 {
@@ -179,11 +186,11 @@
 }
 
 .land-main .text-column-left {
-    padding-right: 60px
+    /*padding-right: 60px*/
 }
 
 .land-main .text-column-right {
-    padding-left: 60px
+    /*padding-left: 60px*/
 }
 
 .land-main section.bg-default {
@@ -298,11 +305,8 @@
 }
 
 .land-main .icon-people-group {
-    background: url('../../../assets/images/land/main/people-group.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
     width: 80px;
-    height: 80px;
+    height: auto;
     margin: 0 auto;
     margin-bottom: -25px;
 }
@@ -423,7 +427,7 @@
 }
 
 .land-main .menu-logo-right {
-    width: 150px;
+    width: 120px;
 }
 
 .land-main .enter-facebook {
@@ -445,10 +449,9 @@
 }
 
 .land-main .link-email md-icon {
-    height: 32px;
-    width: 32px;
-    min-height: 32px;
-    min-width: 32px;
+    height: auto;
+    width: 43px;
+    margin-top: -10px;
 }
 
 .land-main .facebook-icon-btn .md-icon-button ng-md-icon svg {
