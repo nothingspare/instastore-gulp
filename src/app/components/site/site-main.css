@@ -48,11 +48,8 @@
 }
 
 .land-main .logo {
-    height: 100%;
-    width: 100%;
-    background-image: url("/assets/images/land/main/isopen-logo.jpg");
-    background-repeat: no-repeat;
-    background-size: contain;
+    height: auto;
+    width: 120px;
 }
 
 .land-main .login .logo {
@@ -418,12 +415,14 @@
 
 .land-main .menu-logo {
     width: 60px;
+    height: auto;
     padding: 5px;
     padding-left: 15px;
 }
 
 .land-main .menu-logo-right {
-    width: 150px;
+    width: 110px;
+    height: auto;
 }
 
 .land-main .enter-facebook {
