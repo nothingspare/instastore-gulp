@@ -295,11 +295,8 @@
 }
 
 .land-main .icon-people-group {
-    background: url('../../../assets/images/land/main/people-group.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
     width: 80px;
-    height: 80px;
+    height: auto;
     margin: 0 auto;
     margin-bottom: -25px;
 }
@@ -444,10 +441,9 @@
 }
 
 .land-main .link-email md-icon {
-    height: 32px;
-    width: 32px;
-    min-height: 32px;
-    min-width: 32px;
+    height: auto;
+    width: 43px;
+    margin-top: -10px;
 }
 
 .land-main .facebook-icon-btn .md-icon-button ng-md-icon svg {
