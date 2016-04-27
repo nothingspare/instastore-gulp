@@ -8,32 +8,20 @@
   SubscriptionsMain.$inject = [
     'UserService',
     'SubscriptionService',
-    'StoreService',
-    'FollowerService',
-    '$rootScope'
+    'FollowerService'
   ];
 
   /* @ngInject */
-  function SubscriptionsMain(UserService, SubscriptionService, StoreService, FollowerService, $rootScope) {
+  function SubscriptionsMain(UserService, SubscriptionService, FollowerService) {
     var vm = this;
-
-    vm.searchText = '';
-    vm.selectedStore;
-    vm.profile = UserService.getProfile();
 
     vm.follow = follow;
     vm.unfollow = unfollow;
-    vm.querySearch = querySearch;
-    vm.change = change;
 
     UserService.initMyStoreSettings();
     activate();
 
     ////////////////
-
-    function change() {
-      console.log(vm.selectedStore);
-    }
 
     function activate() {
       getAll().then(function () {
@@ -76,13 +64,6 @@
           .then(function () {
             vm.searchText = '';
             activate();
-          });
-    }
-
-    function querySearch(text) {
-      return StoreService.search(text)
-          .then(function (data) {
-            return data;
           });
     }
   }

@@ -1,0 +1,17 @@
+<md-autocomplete
+    class="search-store"
+    md-search-text="vm.searchText"
+    md-items="store in vm.querySearch(vm.searchText)"
+    md-item-text="store.store_name"
+    md-delay="500"
+    md-selected-item="vm.selectedStore"
+    md-selected-item-change="vm.change()"
+    placeholder="{{vm.placeholder}}">
+  <md-item-template layout="row">
+    <img class="store_avatar" ng-src="{{store.avatar_url}}"/>
+    <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{store.store_name}}</span>
+  </md-item-template>
+  <md-not-found>
+    No stor matching "{{vm.searchText}}" were found.
+  </md-not-found>
+</md-autocomplete>
