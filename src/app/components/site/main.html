@@ -8,7 +8,7 @@
                 <md-content class="menu-bar-right" layout="column" layout-wrap layout-padding>
                     <div layout="row" layout-padding layout-align="center center">
                         <a href="/" ng-click="toTheTop()">
-                            <md-icon md-svg-src="assets/images/land/main/isopen-logo.svg" class="menu-logo-right"></md-icon>
+                            <img class="menu-logo-right" src="assets/images/land/main/isopen-logo.jpg" alt="">
                         </a>
                     </div>
                     <md-button du-smooth-scroll du-scrollspy ng-click="selected()" href="#demo"
@@ -53,7 +53,7 @@
              class="navbar-default" layout-align="space-between center">
             <div layout="row" layout-align="center center">
                 <a href="/" ng-click="toTheTop()">
-                    <md-icon md-svg-src="assets/images/land/main/isopen-logo.svg" class="menu-logo"></md-icon>
+                    <img class="menu-logo" src="assets/images/land/main/isopen-logo.jpg" alt="">
                 </a>
             </div>
             <div class="menu-bar" layout="row" layout-align="center center">
@@ -80,7 +80,7 @@
                 <div layout="row" layout-align="center center" class="header-content-inner">
                     <div hide-xs class="phones"></div>
                     <div layout="column" layout-align="center center" class="login shadow">
-                        <md-icon md-svg-src="assets/images/land/main/isopen-logo.svg" class="logo"></md-icon>
+                        <div class="logo"></div>
                         <h2 class="login-title">Create your own free store app</h2>
                         <div class="login-avatar"></div>
                         <div class="login-facebook">
@@ -121,16 +121,28 @@
                      class="video-section">
                     <div layout-align="center center">
                         <div class="video background-gradient shadow">
+                            <video controls>
+                                <source src="assets/video/file1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                         <h3>Sell Something</h3>
                     </div>
                     <div layout-align="center center">
                         <div class="video background-gradient shadow">
+                            <video width="100%" height="100%" controls>
+                                <source src="assets/video/file2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                         <h3>Easy Shipping</h3>
                     </div>
                     <div layout-align="center center">
                         <div class="video background-gradient shadow">
+                            <video width="100%" height="100%" controls>
+                                <source src="assets/video/file3.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                         <h3>Get buyers</h3>
                     </div>
@@ -138,8 +150,9 @@
                 <h1>
                     People are more alive when they are selling something they love
                 </h1>
-                <div layout="row" hide-xs>
-                    <div class="text-column-left">
+                <!--<div layout="row" hide-xs>-->
+                <div layout="row" layout-xs="column">
+                    <div class="text-column-left" flex>
                         <p>
                             isOpen.us is a selling app that lets you build and operate an e-commerce business from your phone.
                         </p>
@@ -150,7 +163,8 @@
                             Post items to Facebook, Instagram and Pinterest and when your items sell you get text messages with a link to free shipping labels.
                         </p>
                     </div>
-                    <div class="text-column-right">
+                    <div flex="10"></div>
+                    <div class="text-column-right" flex>
                         <p>
                             isOpen.us app gives you USPS flat rate boxes so there’s no weighing items, just leave the boxes for your mailman to pick up.
                         </p>
@@ -299,7 +313,8 @@
         <!-- Who we are section -->
         <section layout="column" hide-xs layout-align="center center" class="bg-default bg-who-we-are">
             <div class="bg-width" layout="column" align="center center">
-                <div flex class="icon-people-group"></div>
+                <!--<div flex class="icon-people-group"></div>-->
+                <md-icon md-svg-src="assets/images/land/main/group.svg" flex class="icon-people-group"></md-icon>
                 <h1>Who we are</h1>
                 <hr/>
                 <div layout="row">
@@ -326,10 +341,9 @@
         <section layout="column" layout-align="center center" class="bg-dark" id="desc">
             <!--<div class="icon-thumb"></div>-->
             <md-button
-                href="mailto:test@gmail.com"
                 du-smooth-scroll du-scrollspy
                 class="md-fab io-large link-email">
-                <md-icon md-svg-src="../../../assets/images/land/main/send.svg"></md-icon>
+                <md-icon md-svg-src="assets/images/land/main/thumb.svg"></md-icon>
             </md-button>
             <h1>Say Hi</h1>
             <md-button href="mailto:test@gmail.com" class="md-raised md-primary io-primary-btn send-email">Send Email
