@@ -6,10 +6,10 @@
         </div>
         <div layout flex ng-click="scrollToTop()" class="middle-section">
             <div flex layout layout-align="center center">
-                <div class="header-title">
-                    {{$state.includes('stream') || $state.includes('stream-grid') ||
-                    $state.includes('subscriptions')?'All Store':store.store_name}}
+                <div ng-if="!$state.includes('subscriptions')" class="header-title">
+                    {{$state.includes('stream') || $state.includes('stream-grid') ? 'All Store': store.store_name}}
                 </div>
+                <search-store class="search-store" ng-if="$state.includes('subscriptions')" placeholder="Search store"></search-store>
             </div>
         </div>
         <div ng-if="!$state.includes('transaction')">

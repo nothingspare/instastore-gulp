@@ -1,28 +1,4 @@
-<md-autocomplete
-    class="search-store"
-    md-search-text="vm.searchText"
-    md-items="store in vm.querySearch(vm.searchText)"
-    md-item-text="store.store_name"
-    md-delay="500"
-    md-selected-item="vm.selectedStore"
-    md-selected-item-change="vm.change()"
-    placeholder="Search stores">
-    <md-item-template layout="row">
-        <img class="store_avatar" ng-src="{{store.avatar_url}}"/>
-        <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{store.store_name}}</span>
-        <span ng-if="vm.profile.store.id != store.id">
-            <md-button ng-if="!store.isFollower" title="Follow" class="io-btn-follow io-btn-following"
-                       ng-click="vm.follow(store.id, $event)">Follow
-            </md-button>
-            <md-button ng-if="store.isFollower" title="Unfollow" class="io-btn-follow io-btn-unfollow"
-                       ng-click="vm.unfollow(store.id, $event)">Following
-            </md-button>
-        </span>
-    </md-item-template>
-    <md-not-found>
-        No stor matching "{{vm.searchText}}" were found.
-    </md-not-found>
-</md-autocomplete>
+
 <div ng-if="vm.subs.length">
     <h4 class="sub_category">Following</h4>
     <div layout layout-wrap layout-padding>
@@ -35,10 +11,6 @@
                 <img class="profile store-avatar-followin" ng-src="{{sub.store.avatar_url}}"/>
                 <span class="sub_store_name io-truncate">{{sub.store.store_name}}</span>
             </div>
-            <!--<md-button ng-if="sub.store.isFollower" title="Unfollow"-->
-            <!--           class="io-btn-follow io-btn-unfollow block-store-follow-btn"-->
-            <!--           ng-click="vm.unfollow(sub.store.id)">Following-->
-            <!--</md-button>-->
         </div>
     </div>
 </div>
@@ -55,10 +27,6 @@
                 <img class="profile store-avatar-followin" ng-src="{{sub.store.avatar_url}}"/>
                 <span class="sub_store_name io-truncate">{{sub.store.store_name}}</span>
             </div>
-            <!--<md-button ng-if="!sub.store.isFollower" title="Follow"-->
-            <!--           class="io-btn-follow io-btn-following block-store-follow-btn"-->
-            <!--           ng-click="vm.follow(sub.store.id)">Follow-->
-            <!--</md-button>-->
         </div>
     </div>
 </div>

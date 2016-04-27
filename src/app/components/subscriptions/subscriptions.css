@@ -27,6 +27,7 @@
     height: 120px;
     opacity: .8;
 }
+
 .block-store-follow {
     /*padding-right:20px;*/
 }
@@ -76,5 +77,13 @@
 }
 
 .search-store {
-    margin-top: 10px;
+    min-width: 100%;
+}
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    left: 0 !important;
+}
+
+.md-scroll-mask {
+    display: none;
 }
