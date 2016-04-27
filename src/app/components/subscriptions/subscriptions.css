@@ -87,3 +87,40 @@
 .md-scroll-mask {
     display: none;
 }
+
+.md-whiteframe-1dp, .md-whiteframe-z1 {
+    box-shadow: none;
+}
+
+md-autocomplete {
+    border-radius: 0;
+}
+
+.dialog-item-preview {
+    box-shadow: none;
+    cursor: pointer;
+}
+
+img.md-card-image {
+    border-radius: 50%;
+}
+
+.dialog-close-btn {
+    margin: 5px !important;
+    position: absolute;
+    right: 0;
+}
+
+.store-item md-dialog-actions {
+    padding: 0 !important;
+}
+
+md-dialog.md-dialog-fullscreen.store-item {
+    min-height: 0 !important;
+    position: fixed;
+    left: 0;
+}
+
+.subscribtion-main {
+    margin-top: 10px;
+}

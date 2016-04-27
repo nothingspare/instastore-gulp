@@ -1,11 +1,16 @@
 /* - - - ingrid - - - - */
 html {
     /*overflow-x: hidden !important;*/
+    height: auto;
 }
 
 body {
     overflow-x: hidden !important;
 }
+
+.stream-main {
+}
+
 .grid {
     letter-spacing: -0.31em
 }
@@ -3311,6 +3316,10 @@ ul.safearea a {
     margin-left: 0px;
 }
 
+.grid-container {
+    margin-top: 10px;
+}
+
 .store-footer {
     position: fixed;
     bottom: 0px;
@@ -3966,7 +3975,6 @@ svg.svg-debit {
 }
 
 .page {
-    margin-top: 10px;
 }
 
 .io-avatar {
