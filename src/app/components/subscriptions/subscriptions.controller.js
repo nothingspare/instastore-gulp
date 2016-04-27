@@ -8,11 +8,12 @@
   SubscriptionsMain.$inject = [
     'UserService',
     'SubscriptionService',
-    'FollowerService'
+    'FollowerService',
+    '$mdBottomSheet'
   ];
 
   /* @ngInject */
-  function SubscriptionsMain(UserService, SubscriptionService, FollowerService) {
+  function SubscriptionsMain(UserService, SubscriptionService, FollowerService, $mdBottomSheet) {
     var vm = this;
 
     vm.follow = follow;
@@ -44,7 +45,7 @@
     }
 
     function follow(storeId, event) {
-      if(event) {
+      if (event) {
         event.stopPropagation();
       }
 
@@ -56,7 +57,7 @@
     }
 
     function unfollow(storeId, event) {
-      if(event) {
+      if (event) {
         event.stopPropagation();
       }
 

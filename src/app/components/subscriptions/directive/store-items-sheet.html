@@ -1,0 +1,27 @@
+<md-dialog aria-label="Stores Items" class="store-item" ng-cloak>
+    <form>
+        <div layout="row">
+            <h4 flex class="dialog-header">STORES ITEMS</h4>
+            <md-button ng-click="vm.hide()"
+                       class="md-fab md-mini md-primary io-secondary-btn dialog-close-btn"
+                       aria-label="Close Dialog">
+                <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+            </md-button>
+        </div>
+        <md-dialog-content>
+            <div layout="row" layout-align="space-around center">
+                <md-card flex
+                         class="dialog-item-preview"
+                         ng-repeat="item in items"
+                         ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})">
+                    <img ng-src="{{item.coverImage}}" class="md-card-image" alt="Washed Out">
+                </md-card>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="column">
+            <md-button ui-sref="grid({storeurl:store.store_url, mode:'feed'})" md-autofocus>
+                Go to store
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

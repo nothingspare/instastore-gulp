@@ -1,11 +1,16 @@
 /* - - - ingrid - - - - */
 html {
     /*overflow-x: hidden !important;*/
+    height: auto;
 }
 
 body {
     overflow-x: hidden !important;
 }
+
+.stream-main {
+}
+
 .grid {
     letter-spacing: -0.31em
 }
@@ -3963,6 +3968,10 @@ svg.svg-debit {
     text-rendering: optimizelegibility;
     padding: 5px 14px 5px 14px;
     margin: 5px 10px 16px 10px;
+}
+
+.page {
+    margin-top: 10px;
 }
 
 .io-avatar {
