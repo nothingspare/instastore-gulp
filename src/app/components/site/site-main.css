@@ -1,6 +1,6 @@
 .land-main header {
     position: relative;
-    height: 80vh;
+    height: 100vh;
     text-align: center;
     color: #fff;
 }
@@ -528,6 +528,10 @@
 
     .land-main h3 {
         font-size: 15px;
+    }
+
+    .land-main .login {
+        margin-top: 12vh;
     }
 }
 
