@@ -23,13 +23,17 @@
 }
 
 .store-avatar-followin {
-    min-width: 120px;
-    height: 120px;
+    min-width: 90px;
+    height: 90px;
     opacity: .8;
 }
 
+/*@media screen and (min-width: 300px) {*/
+
+/*}*/
+
 .block-store-follow {
-    /*padding-right:20px;*/
+    /*margin:8px;*/
 }
 
 .block-store-follow-btn {
@@ -123,4 +127,11 @@ md-dialog.md-dialog-fullscreen.store-item {
 
 .subscribtion-main {
     margin-top: 10px;
+}
+
+.flat-btn {
+    width: 100%;
+    margin: 0 !important;
+    padding: 5px;
+    border: 0;
 }
