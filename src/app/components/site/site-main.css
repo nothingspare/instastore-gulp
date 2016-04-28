@@ -420,6 +420,10 @@
     width: 60px;
     padding: 5px;
     padding-left: 15px;
+    display: none;
+}
+.land-main .navbar-default.full .menu-logo {
+    display: block;
 }
 
 .land-main .menu-logo-right {
