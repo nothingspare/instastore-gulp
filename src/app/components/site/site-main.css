@@ -1,20 +1,16 @@
 .land-main header {
     position: relative;
-    height: 80vh;
+    height: 100vh;
     text-align: center;
     color: #fff;
 }
 
 .land-main .background-gradient {
-    background: #f98c71;
-    background: -moz-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
-    background: -webkit-gradient(left bottom, right top, color-stop(0%, #f98c71), color-stop(100%, #f5006e));
-    background: -webkit-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
-    background: -o-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
-    background: -ms-linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
-    background: linear-gradient(45deg, #f98c71 0%, #f5006e 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f98c71', endColorstr='#f5006e', GradientType=1);
-    background-position: center;
+    background: #f98c71; /* Old browsers */
+    background: -moz-linear-gradient(45deg,  #f98c71 53%, #f98c71 64%, #f5006e 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg,  #f98c71 53%,#f98c71 64%,#f5006e 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg,  #f98c71 53%,#f98c71 64%,#f5006e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f98c71', endColorstr='#f5006e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .land-main header {
@@ -424,6 +420,10 @@
     width: 60px;
     padding: 5px;
     padding-left: 15px;
+    display: none;
+}
+.land-main .navbar-default.full .menu-logo {
+    display: block;
 }
 
 .land-main .menu-logo-right {
@@ -438,14 +438,14 @@
 
 .land-main .send-email {
     cursor: pointer;
-    background-color: #36b654 !important;
+    background-color: rgb(243,120,120) !important;
     font-weight: bold !important;
     border-radius: 0 !important;
 }
 
 .land-main .link-email {
     margin-top: -62px;
-    background-color: #36b654 !important;
+    background-color: rgb(243,120,120) !important;
 }
 
 .land-main .link-email md-icon {
@@ -528,6 +528,10 @@
 
     .land-main h3 {
         font-size: 15px;
+    }
+
+    .land-main .login {
+        margin-top: 12vh;
     }
 }
 
