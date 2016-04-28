@@ -67,7 +67,7 @@
                                 Your Store
                             </md-option>
                             <md-option value="storestream">
-                                All Store Stream
+                                All Store
                             </md-option>
                             <md-option value="editprofile">
                                 Edit Profile
@@ -175,24 +175,28 @@
                     </div>
                     <div ng-if="$state.includes('stream') || $state.includes('subscriptions')"
                          layout layout-align="center center"
-                         class="am-fade-and-slide-right am-fade-and-slide-right-add">
-                        <div layout flex layout-align="center center"
+                         class="subheader-menu-items"
+                         >
+                        <div layout="column" flex layout-align="center center"
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
                              ui-sref="stream({storeurl:profile.store.store_url})">
-                            <span>Multi<br>Stream</span>
+                            <ng-md-icon icon="multi-stream" style="fill:black"></ng-md-icon>
+                            <div class="title">Multi Stream</div>
                         </div>
-                        <div layout flex
+                        <div layout="column" flex
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
                              ui-sref="grid({storeurl:profile.store.store_url, mode:''})">
-                            <div class="gridstream"></div>
+                            <ng-md-icon icon="grid" style="fill:black"></ng-md-icon>
+                            <div class="title">Grid</div>
                         </div>
-                        <div layout flex layout-align="center center"
+                        <div layout="column" flex layout-align="center center"
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
                              ui-sref="subscriptions({storeurl:profile.store.store_url})">
-                            <span>Subs</span>
+                            <ng-md-icon icon="following" style="fill:black"></ng-md-icon>
+                            <div class="title">Stores</div>
                         </div>
                     </div>
                 </div>
