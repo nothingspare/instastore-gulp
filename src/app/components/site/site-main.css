@@ -434,14 +434,14 @@
 
 .land-main .send-email {
     cursor: pointer;
-    background-color: #36b654 !important;
+    background-color: rgb(243,120,120) !important;
     font-weight: bold !important;
     border-radius: 0 !important;
 }
 
 .land-main .link-email {
     margin-top: -62px;
-    background-color: #36b654 !important;
+    background-color: rgb(243,120,120) !important;
 }
 
 .land-main .link-email md-icon {
