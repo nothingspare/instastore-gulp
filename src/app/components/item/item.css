@@ -252,7 +252,7 @@ div.item-sale-status h5 {
     margin: 0;
 }
 
-.md-subheader .md-subheader-inner{
+.md-subheader .md-subheader-inner {
     padding: 0;
 }
 
@@ -270,7 +270,15 @@ div.item-sale-status h5 {
     background-image: url("https://s3.amazonaws.com/cuturia/mobbbi/OVvZmckHqwdyFCqPyiZIPqYS6CMfpNcd.12558382_498711613641867_81093223_n.jpg");
 }
 
-.profile.item-stream-profile{
+.profile.item-stream-profile {
     width: 3.6em;
     min-height: 3.6em !important;
+}
+
+.item__img-view-block {
+    background-color: #fff;
+}
+
+.progress-margin {
+    margin: 20px;
 }

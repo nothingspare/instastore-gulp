@@ -26,7 +26,9 @@
 
     function activate() {
       getAll().then(function () {
-        getAllRecommended();
+        getAllRecommended().then(function () {
+          getOther();
+        });
       });
     }
 
@@ -38,9 +40,16 @@
     }
 
     function getAllRecommended() {
-      SubscriptionService.recommended()
+      return SubscriptionService.recommended()
           .success(function (data) {
             vm.subsRecommended = data;
+          })
+    }
+
+    function getOther() {
+      return SubscriptionService.other()
+          .success(function (data) {
+            vm.subsOther = data;
           })
     }
 

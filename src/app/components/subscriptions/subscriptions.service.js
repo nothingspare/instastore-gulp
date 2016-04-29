@@ -11,6 +11,7 @@
   function SubscriptionService(rest, messageService, UserService) {
     this.all = all;
     this.recommended = recommended;
+    this.other = other;
 
     ////////////////
 
@@ -29,7 +30,21 @@
       rest.path = 'v1/subscriptions';
       return rest.models({
             type: 'recommended',
-            'per-page': 10
+            'per-page': 3
+          })
+          .success(function (data) {
+          })
+          .error(function (e) {
+            messageService.alert(e);
+            UserService.goToMainStore();
+          });
+    }
+
+    function other() {
+      rest.path = 'v1/subscriptions';
+      return rest.models({
+            type: 'other',
+            'per-page': 9
           })
           .success(function (data) {
           })
