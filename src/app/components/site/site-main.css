@@ -517,6 +517,10 @@
     padding-top: 0;
 }
 
+.land-main .block-three .delimiter{
+    margin-top: -20px;
+}
+
 @media only screen and (max-device-width: 425px) {
     .land-main section.bg-default {
         padding: 40px 30px;
