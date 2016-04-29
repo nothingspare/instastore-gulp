@@ -12,7 +12,7 @@
       buyer: buyer,
       getCount: getCount,
       viewCount: viewCount,
-      count: null
+      count: 0
     };
     return service;
 
