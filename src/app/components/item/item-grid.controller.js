@@ -3,16 +3,16 @@
 
   angular
       .module('instastore')
-      .controller('ItemStream', ItemStream);
+      .controller('ItemGrid', ItemGrid);
 
-  ItemStream.$inject = [
+  ItemGrid.$inject = [
     '$scope',
     'UserService',
     'StreamService'
   ];
 
   /* @ngInject */
-  function ItemStream($scope,
+  function ItemGrid($scope,
                       UserService,
                       StreamService) {
 
@@ -32,8 +32,8 @@
       if (pageCount >= page) {
         if (this.busy) return;
         vm.busy = true;
-        StreamService.all(page).success(function (data) {
-          vm.items = vm.items.concat(data);
+        StreamService.all(page, 20).success(function (data) {
+          $scope.items = $scope.items.concat(data);
           vm.busy = false;
         });
       }
@@ -41,9 +41,9 @@
 
     function activate() {
       UserService.initMyStoreSettings();
-      StreamService.all().then(function (data) {
+      StreamService.all(page, 20).then(function (data) {
         pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
-        vm.items = data.data;
+        $scope.items = data.data;
         vm.busy = false;
       });
     }

@@ -273,3 +273,11 @@ div.item-sale-status h5 {
     width: 3.6em;
     min-height: 3.6em !important;
 }
+
+.item__img-view-block {
+    background-color: #fff;
+}
+
+.progress-margin {
+    margin: 20px;
+}
