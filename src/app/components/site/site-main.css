@@ -196,12 +196,10 @@
     padding: 40px 84px;
 }
 
-.land-main section.bg-girl-with-phone {
-    height: 800px;
-    background: url("../../../assets/images/land/main/Mo1_with_phone.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+.land-main section.bg-girl-with-phone img {
+    height: auto;
+    width: 100%;
+    margin-bottom: -5px;
 }
 
 .land-main .bg-width {
