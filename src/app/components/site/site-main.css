@@ -74,7 +74,7 @@
 .land-main .login .login-avatar {
     width: 100px;
     min-height: 100px;
-    background-image: url('../../../assets/images/land/main/avatar-facebook.jpg');
+    background-image: url('../../../assets/images/background1circle290x290px.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     position: relative;
@@ -196,12 +196,10 @@
     padding: 40px 84px;
 }
 
-.land-main section.bg-girl-with-phone {
-    height: 800px;
-    background: url("../../../assets/images/land/main/Mo1_with_phone.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+.land-main section.bg-girl-with-phone img {
+    height: auto;
+    width: 100%;
+    margin-bottom: -5px;
 }
 
 .land-main .bg-width {
@@ -515,6 +513,10 @@
 
 .land-main section.bg-who-we-are {
     padding-top: 0;
+}
+
+.land-main .block-three .delimiter{
+    margin-top: -20px;
 }
 
 @media only screen and (max-device-width: 425px) {

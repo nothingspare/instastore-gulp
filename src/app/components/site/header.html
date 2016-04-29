@@ -7,7 +7,7 @@
         <div layout flex ng-click="scrollToTop()" class="middle-section">
             <div flex layout layout-align="center center">
                 <div ng-if="!$state.includes('subscriptions')" class="header-title">
-                    {{$state.includes('stream') || $state.includes('stream-grid') ? 'All Store': store.store_name}}
+                    {{$state.includes('stream') || $state.includes('stream-grid') ? 'All Stores': store.store_name}}
                 </div>
                 <search-store class="search-store" ng-if="$state.includes('subscriptions')" placeholder="Search store"></search-store>
             </div>
@@ -67,7 +67,7 @@
                                 Your Store
                             </md-option>
                             <md-option value="storestream">
-                                All Store
+                                All Stores
                             </md-option>
                             <md-option value="editprofile">
                                 Edit Profile
