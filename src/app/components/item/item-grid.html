@@ -12,9 +12,12 @@
                          class="item-sold-text">SOLD
                     </div>
                 </div>
-                <p id="grid-price-position" ng-if="(item.price && item.quantity && item.box && item.price > 0) && !(item.itemSellsQuantity == item.quantity)"><b
-                        class="grid-price-text">${{item.price|itemPrice}}</b></p>
-                <p id="grid-price-position" ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)"><b
+                <p id="grid-price-position"
+                   ng-if="(item.price && item.quantity && item.box>=0 && item.price > 0) && !(item.itemSellsQuantity == item.quantity)">
+                    <b
+                            class="grid-price-text">${{item.price|itemPrice}}</b></p>
+                <p id="grid-price-position"
+                   ng-if="!item.price || !item.quantity || item.box<0 || (item.itemSellsQuantity == item.quantity)"><b
                         class="grid-price-text">$---</b></p>
             </div>
         </div>
