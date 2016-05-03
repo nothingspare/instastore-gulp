@@ -24,7 +24,7 @@
           type: 'active'
         }).success(function (res) {
           service.count = res;
-          return res;
+          return 0;
         });
     }
 
