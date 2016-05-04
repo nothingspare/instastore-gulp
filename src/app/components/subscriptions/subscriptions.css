@@ -68,7 +68,7 @@
 .sub_category {
     text-align: left;
     color: #222;
-    background-color: #fcfcfc;
+    background-color: rgba(252, 252, 252, 0.7);
     padding: 6px;
     font-size: 14px;
 }
