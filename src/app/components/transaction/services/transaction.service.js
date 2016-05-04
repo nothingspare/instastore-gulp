@@ -12,7 +12,7 @@
       buyer: buyer,
       getCount: getCount,
       viewCount: viewCount,
-      count: null
+      count: 0
     };
     return service;
 
@@ -24,7 +24,7 @@
           type: 'active'
         }).success(function (res) {
           service.count = res;
-          return res;
+          return 0;
         });
     }
 
