@@ -438,6 +438,8 @@ angular.module('instastore')
               });
         };
 
+        $scope.isVerify = isVerify;
+
         function isVerify() {
           return ($scope.profile.address
               && $scope.profile.city

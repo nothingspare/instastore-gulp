@@ -19,7 +19,7 @@
             </md-button>
         </div>
 
-        <div layout="column" layout-align="center center" ng-if="item.box>0 && !isGuest">
+        <div layout="column" layout-align="center center" ng-if="item.box>0 && !isGuest && isVerify()">
             <p layout-padding>Delivered to:</p>
 
             <h3 class="delivery-address">{{profile.address}}{{profile.apartment?' '+
