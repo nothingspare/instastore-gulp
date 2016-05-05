@@ -13,8 +13,8 @@
 
   /* @ngInject */
   function ItemGrid($scope,
-                      UserService,
-                      StreamService) {
+                    UserService,
+                    StreamService) {
 
     var vm = this;
     vm.busy = true;
@@ -32,7 +32,7 @@
       if (pageCount >= page) {
         if (this.busy) return;
         vm.busy = true;
-        StreamService.all(page, 20).success(function (data) {
+        StreamService.all(page).success(function (data) {
           $scope.items = $scope.items.concat(data);
           vm.busy = false;
         });
@@ -41,7 +41,7 @@
 
     function activate() {
       UserService.initMyStoreSettings();
-      StreamService.all(page, 20).then(function (data) {
+      StreamService.all(page).then(function (data) {
         pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
         $scope.items = data.data;
         vm.busy = false;
