@@ -2,9 +2,9 @@
 
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'rest', '$state',
-      '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$mdDialog', 'messageService',
+      '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$mdDialog', 'messageService', 'VerifyService',
       function ($scope, UserService, rest, $state, $rootScope,
-                uiGmapGoogleMapApi, API_URL, $http, $filter, $mdDialog, messageService) {
+                uiGmapGoogleMapApi, API_URL, $http, $filter, $mdDialog, messageService, VerifyService) {
 
         uiGmapGoogleMapApi
             .then(function () {
@@ -229,24 +229,17 @@ angular.module('instastore')
         };
 
         $scope.textToVerify = function () {
-          rest.path = 'v1/link/verify-phone';
-          var params = {
-            phone: $scope.profile.phone
-          };
-          if ($scope.profile.phone.substring(0, 4) === '+380') {
-            params.country = 'UA';
-          }
-          rest.models(params).error(messageService.profile);
+          VerifyService.phone($scope.profile.phone);
         };
 
         $scope.sendCode = function (code) {
-          rest.path = 'v1/link/confirm-phone';
-          rest.models({code: code}).success(function (res) {
-            $scope.profile.phone = res.phone;
-            $scope.profile.phone_validated_at = res.phone_validated_at;
-            UserService.setProfile($scope.profile);
-            $scope.treeConfig['2'].collapsed = true;
-          }).error(messageService.profile);
+          VerifyService.sendCode(code)
+              .success(function (res) {
+                $scope.profile.phone = res.phone;
+                $scope.profile.phone_validated_at = res.phone_validated_at;
+                UserService.setProfile($scope.profile);
+                $scope.treeConfig['2'].collapsed = true;
+              });
         };
 
       }])

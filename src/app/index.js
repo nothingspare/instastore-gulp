@@ -32,7 +32,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
     $stateProvider.state('grid', {
       url: '/:storeurl/mode/:mode?profile=true',
-      controller: 'ItemIndex',
+      controller: 'ItemIndex as vm',
       templateUrl: function ($stateParams) {
         return $stateParams.mode !== 'feed' ? modulesPath + '/item/item-grid.html' : modulesPath + '/item/index.html';
       }
@@ -78,7 +78,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
     $stateProvider.state('itemview', {
       url: '/:storeurl/:itemurl/:tab',
-      controller: 'ItemView',
+      controller: 'ItemView as vm',
       resolve: {
         urlsThere: function ($stateParams) {
           return ($stateParams.storeurl !== undefined && $stateParams.itemurl !== undefined && $stateParams.itemurl !== 'undefined' && $stateParams.storeurl !== 'undefined');

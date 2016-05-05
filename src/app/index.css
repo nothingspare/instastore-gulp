@@ -9,6 +9,7 @@ body {
 }
 
 .stream-main {
+    margin-top: 10px;
 }
 
 .grid {
@@ -3313,10 +3314,6 @@ ul.safearea a {
 .grid-container1 {
     margin: 20px 0 0 0;
     margin-left: 0px;
-}
-
-.grid-container {
-    margin-top: 10px;
 }
 
 .store-footer {

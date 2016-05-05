@@ -46,6 +46,10 @@
         duplicated: 'Duplicated!',
         urlWrongFormat: 'Item or Store url undefined!'
       },
+      /* Verify */
+      verify: {
+        success: 'Verified!'
+      },
       /* Other */
       nourl: {status: 500, name: '', message: 'No url specified!'},
       nostorewithurl: {status: 404, name: 'error', message: 'There is no store with such url'},
