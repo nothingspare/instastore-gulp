@@ -13,7 +13,7 @@
     var pageCount;
     var path = '';
 
-    var service = function(path) {
+    var service = function (path) {
       this.items = [];
       this.busy = true;
       this.after = '';
@@ -35,17 +35,19 @@
         getItems();
       }
     }
-    
+
     function activate() {
       getItems();
     }
 
     function getItems() {
-      all(page).then(function (response) {
-        pageCount = parseInt(response.headers('X-Pagination-Page-Count'));
-        service.items = service.items.concat(response.data);
-        service.busy = false;
-      });
+      if (path) {
+        all(page).then(function (response) {
+          pageCount = parseInt(response.headers('X-Pagination-Page-Count'));
+          service.items = service.items.concat(response.data);
+          service.busy = false;
+        });
+      }
     }
 
     function all(page, perPage) {
@@ -61,6 +63,7 @@
             messageService.alert(e);
             UserService.goToMainStore();
           });
+
     }
   }
 
