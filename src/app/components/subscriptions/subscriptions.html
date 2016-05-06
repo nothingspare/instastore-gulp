@@ -1,4 +1,7 @@
-<div class="subscribtion-main">
+<div class="subscribtion-main" >
+    <div layout-align="center center" layout="column">
+        <md-progress-circular ng-hide='vm.subs.length || vm.subsRecommended.length || vm.subsRecommended.length' class="io-primary-btn progress-margin" md-diameter="40"></md-progress-circular>
+    </div>
     <div ng-if="vm.subs.length">
         <h4 class="sub_category">Following</h4>
         <div layout layout-wrap layout-padding >
