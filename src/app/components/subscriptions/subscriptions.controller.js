@@ -25,11 +25,11 @@
     ////////////////
 
     function activate() {
-      SubscriptionService.isFollowing();
-
-      getAll().then(function () {
-        getAllRecommended().then(function () {
-          getOther();
+      SubscriptionService.isFollowing().then(function () {
+        getAll().then(function () {
+          getAllRecommended().then(function () {
+            getOther();
+          });
         });
       });
     }

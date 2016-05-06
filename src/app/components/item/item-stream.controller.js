@@ -42,12 +42,12 @@
 
     function activate() {
       UserService.initMyStoreSettings();
-      SubscriptionService.isFollowing();
-
-      StreamService.all().then(function (data) {
-        pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
-        vm.items = data.data;
-        vm.busy = false;
+      SubscriptionService.isFollowing().then(function () {
+        StreamService.all().then(function (data) {
+          pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
+          vm.items = data.data;
+          vm.busy = false;
+        });
       });
     }
   }

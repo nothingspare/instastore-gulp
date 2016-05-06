@@ -62,7 +62,7 @@
     }
 
     function isFollowing() {
-      count().then(function (count) {
+      return count().then(function (count) {
         if (!count) {
           var perPage = 6;
           other(perPage)

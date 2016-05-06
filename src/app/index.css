@@ -8,12 +8,12 @@ body {
     overflow-x: hidden !important;
 }
 
-.stream-main {
-    margin-top: 10px;
-}
-
 .grid {
     letter-spacing: -0.31em
+}
+
+#navigation2 {
+    background: none !important;
 }
 
 .grid {
@@ -4209,6 +4209,8 @@ md-dialog {
 .subheader-menu-items {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+    background: rgba(225, 225, 225, 0.3);
 }
 
 .subheader-menu-item {
