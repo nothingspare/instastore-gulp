@@ -25,6 +25,8 @@
     ////////////////
 
     function activate() {
+      SubscriptionService.isFollowing();
+
       getAll().then(function () {
         getAllRecommended().then(function () {
           getOther();

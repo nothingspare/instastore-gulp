@@ -4190,7 +4190,8 @@ md-dialog {
     width: 80%;
     font-size: 12pt;
     font-weight: 400;
-    padding: 15px 8px 15px 8px;
+    padding: 15px 55px;
+    text-transform: uppercase;
 }
 
 .gridstream.multistream-icon {

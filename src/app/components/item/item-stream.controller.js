@@ -8,13 +8,14 @@
   ItemStream.$inject = [
     '$scope',
     'UserService',
-    'StreamService'
+    'StreamService',
+    'SubscriptionService',
+    '$mdDialog',
+    '$mdMedia'
   ];
 
   /* @ngInject */
-  function ItemStream($scope,
-                      UserService,
-                      StreamService) {
+  function ItemStream($scope, UserService, StreamService, SubscriptionService, $mdDialog, $mdMedia) {
 
     var vm = this;
     vm.busy = true;
@@ -41,6 +42,8 @@
 
     function activate() {
       UserService.initMyStoreSettings();
+      SubscriptionService.isFollowing();
+
       StreamService.all().then(function (data) {
         pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
         vm.items = data.data;
