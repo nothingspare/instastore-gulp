@@ -27,10 +27,10 @@
         </div>
     </div>
     <div
-        ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
+            ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
         <div layout="column" class="io-sub-bar-freeshipping">
             <div layout layout-align="center center" flex layout-padding class="free-shipping">FREE SHIPPING ON ALL
-                                                                                               ITEMS
+                ITEMS
             </div>
         </div>
         <div layout layout-padding class="io-sub-bar">
@@ -38,18 +38,6 @@
                 <img class="profile" ng-src="{{store.avatar_url|storeAvatar}}">
             </div>
             <div layout="column" flex>
-                <div layout>
-                    <div layout="column" layout-align="center center" flex>
-                        <span class="profile-digits">Items</span>
-
-                        <h3>{{store.userItemsAmount}}</h3>
-                    </div>
-                    <div layout="column" layout-align="center center" flex>
-                        <span class="profile-digits">Followers</span>
-
-                        <h3>{{store.followersAmount}}</h3>
-                    </div>
-                </div>
                 <div flex layout layout-align="center center">
                     <div ng-if="!isSeller">
                         <div ng-if="!($state.includes('stream') || $state.includes('subscriptions'))" class="btn"
@@ -63,24 +51,39 @@
                         </div>
                     </div>
                     <div ng-if="isSeller">
-                        <md-select ng-model="configSiteHeader.headerMode" md-on-close="toggleMenuState()">
-                            <md-option value="editstore">
-                                Your Store
-                            </md-option>
-                            <md-option value="storestream">
-                                All Stores
-                            </md-option>
-                            <md-option value="editprofile">
-                                Edit Profile
-                            </md-option>
-                        </md-select>
+                        <div class="md-button md-primary md-raised io-primary-btn io-mode-selector">
+                            <md-select ng-model="configSiteHeader.headerMode" md-on-close="toggleMenuState()">
+                                <md-option value="editstore">
+                                    Your Store
+                                </md-option>
+                                <md-option value="storestream">
+                                    All Stores
+                                </md-option>
+                                <md-option value="editprofile">
+                                    Edit Profile
+                                </md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                </div>
+                <div layout>
+                    <div layout="column" layout-align="center center" flex>
+                        <span class="profile-digits">Items</span>
+
+                        <h3>{{store.userItemsAmount}}</h3>
+                    </div>
+                    <div layout="column" layout-align="center center" flex>
+                        <span class="profile-digits">Followers</span>
+
+                        <h3>{{store.followersAmount}}</h3>
                     </div>
                 </div>
             </div>
         </div>
 
         <div>
-            <p ng-init="isMore = true" flex class="store-description" ng-class="{'active': !isMore}"
+            <p ng-init="isMore = true" ng-click="isMore = !isMore" flex class="store-description"
+               ng-class="{'active': !isMore}"
                layout-padding>{{store.description}}</p>
         </div>
         <diiv layout="column" layout-align="center center">
@@ -96,9 +99,9 @@
             <div id="navigation2">
                 <div ng-if="isSeller">
                     <div
-                        ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
-                        layout layout-align="center center"
-                        class="am-fade-and-slide-left am-fade-and-slide-left-add subheader-menu-items">
+                            ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
+                            layout layout-align="center center"
+                            class="am-fade-and-slide-left am-fade-and-slide-left-add subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"
                              ng-click="clickToOpen()">
@@ -121,9 +124,9 @@
                         </div>
                     </div>
                     <div
-                        ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
-                        layout layout-align="center center"
-                        class="am-fade-and-slide-right am-fade-and-slide-right-add subheader-menu-items">
+                            ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
+                            layout layout-align="center center"
+                            class="am-fade-and-slide-right am-fade-and-slide-right-add subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
@@ -177,7 +180,7 @@
                     <div ng-if="$state.includes('stream') || $state.includes('subscriptions')"
                          layout layout-align="center center"
                          class="subheader-menu-items"
-                    >
+                            >
                         <div layout="column" flex layout-align="center center"
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
