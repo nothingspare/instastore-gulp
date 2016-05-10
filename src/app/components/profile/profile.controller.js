@@ -358,8 +358,8 @@ angular.module('instastore')
         $scope.save = function () {
           if ($scope.profile.store.place) {
             if ($scope.profile.store.place.types) {
-              $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k || $scope.profile.store.place.geometry.location.G;
-              $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D || $scope.profile.store.place.geometry.location.K;
+              $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.lat();
+              $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.lng();
               $scope.profile.store.address = $scope.profile.store.place.formatted_address;
             } else {
               messageService.simpleByCode('profileStore','addressInvalid');
