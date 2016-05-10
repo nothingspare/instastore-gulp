@@ -4340,7 +4340,7 @@ md-toast .md-toast-content {
 }
 
 .io-mode-selector md-select {
-    margin: 0;
+    margin: 0 0 4px 0;
 }
 
 .io-mode-selector md-select-value {
