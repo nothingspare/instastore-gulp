@@ -26,11 +26,10 @@
             <div class="user"></div>
         </div>
     </div>
-    <div
-            ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
+    <div ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
         <div layout="column" class="io-sub-bar-freeshipping">
-            <div layout layout-align="center center" flex layout-padding class="free-shipping">FREE SHIPPING ON ALL
-                ITEMS
+            <div layout layout-align="center center" flex layout-padding class="free-shipping">
+                FREE SHIPPING ON ALL ITEMS
             </div>
         </div>
         <div layout layout-padding class="io-sub-bar">
@@ -51,7 +50,8 @@
                         </div>
                     </div>
                     <div ng-if="isSeller">
-                        <div class="md-button md-primary md-raised io-primary-btn io-mode-selector" layout layout-align="center center">
+                        <div class="md-button md-primary md-raised io-primary-btn io-mode-selector" layout
+                             layout-align="center center">
                             <md-select ng-model="configSiteHeader.headerMode" md-on-close="toggleMenuState()">
                                 <md-option value="editstore">
                                     Your Store
@@ -98,10 +98,9 @@
         <div id="container2">
             <div id="navigation2">
                 <div ng-if="isSeller">
-                    <div
-                            ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
-                            layout layout-align="center center"
-                            class="am-fade-and-slide-left am-fade-and-slide-left-add subheader-menu-items">
+                    <div ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
+                         layout layout-align="center center"
+                         class="am-fade-and-slide-left am-fade-and-slide-left-add subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"
                              ng-click="clickToOpen()">
@@ -123,10 +122,9 @@
                             <div class="title">Stream</div>
                         </div>
                     </div>
-                    <div
-                            ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
-                            layout layout-align="center center"
-                            class="am-fade-and-slide-right am-fade-and-slide-right-add subheader-menu-items">
+                    <div ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
+                         layout layout-align="center center"
+                         class="am-fade-and-slide-right am-fade-and-slide-right-add subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
@@ -152,7 +150,7 @@
 
                 </div>
                 <div ng-if="!isSeller">
-                    <div ng-if="!($state.includes('stream') || $state.includes('subscriptions'))"
+                    <div ng-if="!configSiteHeader.isYourStore"
                          class="subheader-menu-items"
                          layout layout-align="center center">
                         <div layout="column" flex
@@ -177,10 +175,8 @@
                             <div class="title">Location</div>
                         </div>
                     </div>
-                    <div ng-if="$state.includes('stream') || $state.includes('subscriptions')"
-                         layout layout-align="center center"
-                         class="subheader-menu-items"
-                            >
+                    <div ng-if="configSiteHeader.isYourStore" layout layout-align="center center"
+                         class="subheader-menu-items">
                         <div layout="column" flex layout-align="center center"
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
@@ -191,7 +187,7 @@
                         <div layout="column" flex
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
-                             ui-sref="grid({storeurl:profile.store.store_url, mode:''})">
+                             ui-sref="stream-grid({storeurl:profile.store.store_url, mode:''})">
                             <ng-md-icon icon="grid" style="fill:black"></ng-md-icon>
                             <div class="title">Grid</div>
                         </div>
