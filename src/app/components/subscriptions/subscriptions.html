@@ -1,6 +1,6 @@
 <div class="subscribtion-main" >
     <div layout-align="center center" layout="column">
-        <md-progress-circular ng-hide='vm.subs.length || vm.subsRecommended.length || vm.subsRecommended.length' class="io-primary-btn progress-margin" md-diameter="40"></md-progress-circular>
+        <md-progress-circular ng-hide='vm.subs.length || vm.subsRecommended.length || vm.subsOther.length' class="io-primary-btn progress-margin" md-diameter="40"></md-progress-circular>
     </div>
     <div ng-if="vm.subs.length">
         <h4 class="sub_category">Following</h4>
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div ng-if="vm.subsRecommended.length">
+    <div ng-if="vm.subsOther.length">
         <h4 class="sub_category">All</h4>
         <div layout layout-wrap layout-padding>
             <div ng-repeat="store in vm.subsOther track by $index"

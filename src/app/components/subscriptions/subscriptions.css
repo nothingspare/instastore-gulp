@@ -23,9 +23,15 @@
 }
 
 .store-avatar-followin {
+    border: 0;
     min-width: 90px;
     height: 90px;
     opacity: .8;
+}
+
+.store-avatar-followin.selected {
+    border: 2px solid lightcoral;
+    opacity: 1;
 }
 
 .block-store-follow {
@@ -129,4 +135,43 @@ md-dialog.md-dialog-fullscreen.store-item {
     margin: 0 !important;
     padding: 5px;
     border: 0;
+}
+
+.store-avatar-block {
+    position: relative;
+}
+
+.store-avatar-block:hover .store-avatar-followin-selected {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.store-avatar-followin-selected {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 1000;
+    top: 0;
+    cursor: pointer;
+    transform: scale(0);
+    transition: all 0.4s ease-in-out;
+}
+
+.store-avatar-block.selected .store-avatar-followin-selected {
+    background: rgba(240, 128, 128, 0.6);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.store-avatar-block.selected .store-avatar-followin {
+    opacity: 1;
+}
+
+.store-avatar-icon-done {
+    position: absolute;
+    left: 34px;
+    top: 34px;
 }
