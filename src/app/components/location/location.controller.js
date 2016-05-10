@@ -8,6 +8,8 @@ angular.module('instastore')
             })
             .then(function () {
                 if ($rootScope.store) {
+                    var regexp = /(\w+),/g;
+                    $scope.city = $rootScope.store.address.match(regexp)[2].replace(',','');
                     $scope.map = {
                         center: {latitude: $rootScope.store.store_long, longitude: $rootScope.store.store_lat},
                         zoom: 14

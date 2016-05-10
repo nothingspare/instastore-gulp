@@ -14,7 +14,8 @@
         emailTaken: 'Field: Email has already been taken',
         saved: 'Profile saved!',
         addressSuccess: 'Address verified!',
-        addressError: 'Address verification failed!'
+        addressError: 'Address verification failed!',
+        location: 'Your address wrong'
       },
       /* Profile store */
       profileStore: {
