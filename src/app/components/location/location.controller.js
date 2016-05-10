@@ -8,6 +8,7 @@ angular.module('instastore')
             })
             .then(function () {
                 if ($rootScope.store) {
+                    debugger;
                     $scope.map = {
                         center: {latitude: $rootScope.store.store_long, longitude: $rootScope.store.store_lat},
                         zoom: 14

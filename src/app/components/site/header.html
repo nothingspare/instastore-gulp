@@ -119,6 +119,13 @@
                             <div class="stream"></div>
                             <div class="title">Stream</div>
                         </div>
+                        <div layout="column" flex
+                             class="subheader-menu-item"
+                             ui-sref-active="menu-item-active"
+                             ui-sref="location({storeurl:$stateParams.storeurl})">
+                            <div class="location"></div>
+                            <div class="title">Location</div>
+                        </div>
                     </div>
                     <div
                         ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
