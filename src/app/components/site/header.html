@@ -10,23 +10,24 @@
                     {{$state.includes('stream') || $state.includes('stream-grid') ? 'All Stores': store.store_name}}
                 </div>
                 <search-store class="search-store" ng-if="$state.includes('subscriptions')"
-                              placeholder="Search store"></search-store>
+                              placeholder="Search Stores"></search-store>
             </div>
         </div>
-        <div ng-if="!$state.includes('transaction')">
+        <div ng-if="transactionService.count" ng-show="!$state.includes('transaction')">
             <a class="transaction-icon" href="/transaction/{{$stateParams.storeurl}}">
                 <ng-md-icon icon="alert-off" size="24"
                             style="fill: #545052"></ng-md-icon>
-                <div ng-show="transactionService.count" ng-class="{'active': transactionService.count > 0}"
-                     class="transaction-count am-slide-right">{{transactionService.count}}
+                <div ng-show="transactionService.activeCount" ng-class="{'active': transactionService.activeCount > 0}"
+                     class="transaction-count am-slide-right">{{transactionService.activeCount}}
                 </div>
             </a>
         </div>
-        <div ng-if="$state.includes('transaction')" ng-click="showProfile()">
+        <div ng-if="$state.includes('transaction') || !transactionService.count" ng-click="showProfile()">
             <div class="user"></div>
         </div>
     </div>
-    <div ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
+    <div
+        ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
         <div layout="column" class="io-sub-bar-freeshipping">
             <div layout layout-align="center center" flex layout-padding class="free-shipping">
                 FREE SHIPPING ON ALL ITEMS
@@ -50,7 +51,7 @@
                         </div>
                     </div>
                     <div ng-if="isSeller">
-                        <div class="md-button md-primary md-raised io-primary-btn io-mode-selector" layout
+                        <div class="md-button md-primary md-raised io-primary-btn io-mode-selector io-small-btn" layout
                              layout-align="center center">
                             <md-select ng-model="configSiteHeader.headerMode" md-on-close="toggleMenuState()">
                                 <md-option value="editstore">
@@ -98,9 +99,10 @@
         <div id="container2">
             <div id="navigation2">
                 <div ng-if="isSeller">
-                    <div ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
-                         layout layout-align="center center"
-                         class="am-fade-and-slide-left am-fade-and-slide-left-add subheader-menu-items">
+                    <div
+                        ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
+                        layout layout-align="center center"
+                        class="am-fade-and-slide-left am-fade-and-slide-left-add subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"
                              ng-click="clickToOpen()">
@@ -122,9 +124,10 @@
                             <div class="title">Stream</div>
                         </div>
                     </div>
-                    <div ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
-                         layout layout-align="center center"
-                         class="am-fade-and-slide-right am-fade-and-slide-right-add subheader-menu-items">
+                    <div
+                        ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
+                        layout layout-align="center center"
+                        class="am-fade-and-slide-right am-fade-and-slide-right-add subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"

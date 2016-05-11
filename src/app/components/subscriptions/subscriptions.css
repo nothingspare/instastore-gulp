@@ -149,8 +149,8 @@ md-dialog.md-dialog-fullscreen.store-item {
 .store-avatar-followin-selected {
     position: absolute;
     background: rgba(0, 0, 0, 0.6);
-    width: 90px;
-    height: 90px;
+    min-width: 90px;
+    min-height: 90px;
     border-radius: 50%;
     opacity: 0;
     z-index: 1000;
@@ -168,10 +168,4 @@ md-dialog.md-dialog-fullscreen.store-item {
 
 .store-avatar-block.selected .store-avatar-followin {
     opacity: 1;
-}
-
-.store-avatar-icon-done {
-    position: absolute;
-    left: 34px;
-    top: 34px;
 }

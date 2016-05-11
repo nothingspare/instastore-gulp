@@ -93,14 +93,16 @@ angular.module('instastore')
             }
 
             function checkActiveTransaction($time) {
-                getTransactionCount();
+                getActiveTransactionCount();
                 setInterval(function () {
-                    getTransactionCount();
+                    getActiveTransactionCount();
                 }, $time);
             }
 
-            function getTransactionCount() {
-                transactionService.getCount();
+            function getActiveTransactionCount() {
+                transactionService.getCount().then(function () {
+                    transactionService.getActiveCount();
+                });
             }
 
             if (!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))) {

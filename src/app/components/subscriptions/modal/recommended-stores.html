@@ -2,7 +2,7 @@
     <form>
 
         <div layout="row">
-            <h4 flex class="dialog-header">Here are some recommended stores to follow</h4>
+            <h4 flex class="dialog-header top">Here are some recommended stores to follow</h4>
             <md-button ng-click="vm.hide()"
                        class="md-fab md-mini md-primary io-secondary-btn dialog-close-btn"
                        aria-label="Close Dialog">
@@ -23,8 +23,6 @@
                             <img class="profile store-avatar-followin"
                                  ng-src="{{store.avatar_url}}"/>
                             <div class="store-avatar-followin-selected" layout-align="center center" layout="column">
-                                <ng-md-icon ng-if="!store.isSelected" icon="check_circle" class="store-avatar-icon-done"></ng-md-icon>
-                                <ng-md-icon ng-if="store.isSelected" icon="cancel" class="store-avatar-icon-done"></ng-md-icon>
                             </div>
                         </div>
                         <span class="sub_store_name io-truncate">{{store.store_name}}</span>

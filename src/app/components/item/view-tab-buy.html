@@ -50,6 +50,7 @@
                            card-number-formatter="" name="ccNumber" ng-model="p.cardNumber"
                            card-type="cardType" required>
                 </md-input-container>
+                <br>
                 <div layout>
                     <md-input-container flex>
                         <label>00/00</label>
@@ -68,13 +69,6 @@
                 </div>
                 <div flex layout layout-align="center center">
 
-                </div>
-                <div layout="column" layout-align="center center">
-                    <p layout-padding>Your item will be shipped to your address:</p>
-
-                    <h3 class="delivery-address">{{profile.address}}{{profile.apartment?' '+
-                        profile.apartment:''}},
-                        {{profile.city}}, {{profile.state}} {{profile.zipcode}}</h3>
                 </div>
                 <div layout layout-padding
                      layout-align="center center">
