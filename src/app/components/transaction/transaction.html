@@ -1,4 +1,5 @@
-<div class="transaction" layout="column" flex-sm="100" flex-gt-sm="60" flex-offset-gt-sm="20">
+<div class="transaction" layout="column" flex-sm="100" flex-gt-sm="50"
+     flex-offset-gt-sm="25">
     <div ng-cloak>
         <md-content>
             <md-tabs md-border-bottom md-swipe-content md-stretch-tabs="always">
@@ -15,7 +16,9 @@
                 </md-tab>
                 <md-tab label="Buying" md-on-select="vm.selectTab('buyer')">
                     <md-content class="transaction-tab-content">
-                        <div ng-hide="!!vm.buyer.length" layout="column" layout-align="center center" layout-fill class="transaction-dont-have">No data</div>
+                        <div ng-hide="!!vm.buyer.length" layout="column" layout-align="center center" layout-fill
+                             class="transaction-dont-have">No data
+                        </div>
                         <io-table ng-show="!!vm.buyer.length"
                                   content="vm.buyer"
                                   headers="vm.headers"

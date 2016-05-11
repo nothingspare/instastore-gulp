@@ -3970,6 +3970,11 @@ svg.svg-debit {
     margin: 5px 10px 16px 10px;
 }
 
+.md-button.io-small-btn {
+    font-size: 16px !important;
+    padding: 0 14px !important;
+}
+
 .io-avatar {
     width: 28px;
     height: 28px;
@@ -4191,8 +4196,11 @@ md-dialog {
     width: 80%;
     font-size: 12pt;
     font-weight: 400;
-    padding: 15px 55px;
     text-transform: uppercase;
+}
+
+.dialog-header.top {
+    padding: 15px 55px;
 }
 
 .gridstream.multistream-icon {
@@ -4283,6 +4291,7 @@ div.ios-header {
     max-height: 60px;
     transition: max-height .5s ease-in;
     cursor: pointer;
+    margin-top: -7px;
 }
 
 .store-description.active {
