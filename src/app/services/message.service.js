@@ -15,7 +15,7 @@
         saved: 'Profile saved!',
         addressSuccess: 'Address verified!',
         addressError: 'Address verification failed!',
-        location: 'Your address wrong'
+        location: 'Your address is wrong! Please make sure that you have entered correct one!'
       },
       /* Profile store */
       profileStore: {
