@@ -4,7 +4,7 @@
         <div class="item-preview-small-grid">
             <div class="x-profile" ng-if="isSeller" ng-click="toggleItemStatus(item)"></div>
             <div ng-class="item.status|itemStatus">
-                <div ui-sref="itemview({storeurl:$stateParams.storeurl,itemurl:item.item_url,tab:1})"
+                <div ui-sref="itemview({storeurl:item.user.store.store_url,itemurl:item.item_url,tab:1})"
                      style="background-image:url({{item.images[0].image_url}});"
                      class="grid-image">
                     <div ng-if="item.hasActions" class="item-cta"></div>
@@ -16,6 +16,7 @@
                    ng-if="(item.price && item.quantity && item.box>=0 && item.price > 0) && !(item.itemSellsQuantity == item.quantity)">
                     <b
                             class="grid-price-text">${{item.price|itemPrice}}</b></p>
+
                 <p id="grid-price-position"
                    ng-if="!item.price || !item.quantity || item.box<0 || (item.itemSellsQuantity == item.quantity)"><b
                         class="grid-price-text">$---</b></p>
