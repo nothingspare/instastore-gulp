@@ -100,10 +100,10 @@
       .module('instastore')
       .controller('DialogController', DialogController);
 
-  DialogController.$inject = ['$mdDialog', 'SubscriptionService'];
+  DialogController.$inject = ['$mdDialog', 'SubscriptionService', '$state'];
 
   /* @ngInject */
-  function DialogController($mdDialog, SubscriptionService) {
+  function DialogController($mdDialog, SubscriptionService, $state) {
     var vm = this;
 
     vm.selectedItem = [];
@@ -128,7 +128,6 @@
         vm.selectedItem.push(store);
         store.isSelected = true;
       }
-      console.log(vm.selectedItem);
     }
 
     function hide() {
@@ -137,9 +136,9 @@
     
     function following() {
       SubscriptionService.following(vm.selectedItem).success(function (response) {
-        console.log(response);
         if(response) {
           hide();
+          $state.go($state.current, {}, {reload: true});
         }
       })
     }
