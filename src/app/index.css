@@ -3979,7 +3979,7 @@ svg.svg-debit {
 
 .io-bar {
     position: fixed;
-    z-index: 19;
+    z-index: 51;
     width: 100%;
     background-color: #E1E1E1;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
