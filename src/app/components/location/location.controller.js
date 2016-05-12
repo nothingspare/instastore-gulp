@@ -10,6 +10,7 @@ angular.module('instastore')
                 if ($rootScope.store) {
                     var regexp = /(^\s)?(\w\s?)+\s?,/g;
                     var city = $rootScope.store.address.match(regexp)[2].replace(',','');
+                    debugger;
 
                     if(/\d+/.test(city)) {
                         $scope.city = $rootScope.store.address.match(regexp)[1].replace(',','');
