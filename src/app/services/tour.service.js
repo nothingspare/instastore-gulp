@@ -88,7 +88,6 @@
     function buy() {
       hide();
       SubscriptionService.isFollowing().then(function () {
-        ModalService.showFinishSettings();
       });
     }
 
