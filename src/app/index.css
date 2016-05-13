@@ -4229,6 +4229,11 @@ md-dialog {
     height: 59px;
 }
 
+.subheader-menu-item.not-items {
+    border: 3px solid #F37878;
+    padding: 0;
+}
+
 .subheader-menu-item .title {
     text-align: center;
     font-size: .7em;
@@ -4354,4 +4359,12 @@ md-toast .md-toast-content {
 
 .io-mode-selector md-select-value {
     border-bottom-width: 0 !important;
+}
+ul.finish-settings {
+    margin-top: 20px !important;
+}
+
+ul.finish-settings li {
+    font-size: 16px;
+    line-height:3em;
 }

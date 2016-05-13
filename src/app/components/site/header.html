@@ -105,6 +105,7 @@
                         class="am-fade-and-slide-left am-fade-and-slide-left-add subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"
+                             ng-class="{ 'not-items': tour.addItem && !store.userItemsAmount }"
                              ng-click="clickToOpen()">
                             <div class="additem"></div>
                             <div class="title">Add item</div>

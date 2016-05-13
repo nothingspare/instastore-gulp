@@ -5,10 +5,10 @@
       .module('instastore')
       .service('SubscriptionService', SubscriptionService);
 
-  SubscriptionService.$inject = ['rest', 'messageService', 'UserService', '$mdDialog', '$mdMedia'];
+  SubscriptionService.$inject = ['rest', 'messageService', 'UserService', '$mdDialog', '$mdMedia', 'ModalService', '$q'];
 
   /* @ngInject */
-  function SubscriptionService(rest, messageService, UserService, $mdDialog, $mdMedia) {
+  function SubscriptionService(rest, messageService, UserService, $mdDialog, $mdMedia, ModalService, $q) {
     this.all = all;
     this.count = count;
     this.recommended = recommended;
@@ -63,7 +63,8 @@
     }
 
     function isFollowing() {
-      return count().then(function (count) {
+      var deferred = $q.defer();
+      count().then(function (count) {
         if (!count) {
           var perPage = 6;
           other(perPage)
@@ -77,11 +78,15 @@
                   locals: {
                     subsOther: data
                   },
-                  fullscreen: $mdMedia('xs')
+                  fullscreen: $mdMedia('xs'),
+                  onRemoving: function () {
+                    deferred.resolve();
+                  }
                 });
               });
         }
       });
+      return deferred.promise;
     }
 
     function following(stores) {
@@ -138,7 +143,7 @@
       SubscriptionService.following(vm.selectedItem).success(function (response) {
         if(response) {
           hide();
-          $state.go($state.current, {}, {reload: true});
+          $state.go('subscriptions', {}, {reload: true});
         }
       })
     }

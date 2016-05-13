@@ -5,9 +5,9 @@ angular.module('instastore')
 
     })
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', '$state',
-      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService',
+      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService','TourService',
       function ($scope, $rootScope, rest, $state,
-                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService) {
+                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService, TourService) {
 
         InAppService.warnIfInApp();
         $scope.isInApp = InAppService.isFacebookInApp();
@@ -58,6 +58,7 @@ angular.module('instastore')
             UserService.setFacebookProfile(res.data.facebookProfile);
             res.data.profile.stores = res.data.stores;
             if (res.data.store) {
+              TourService.init();
               res.data.profile.store = res.data.store;
               UserService.setBg(res.data.store.bg_url);
               UserService.setAvatar(res.data.store.avatar_url);
@@ -92,7 +93,8 @@ angular.module('instastore')
                 $scope.configSiteHeader.headerMode = 'storestream';
               }
             });
-
+        
+        
         if (!UserService.isGuest()) {
           $scope.transactionService = transactionService;
           var time = 120000;

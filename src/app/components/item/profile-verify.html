@@ -1,89 +1,90 @@
-<md-dialog ng-class="{'io-no-opacity':$state.includes('itemview')}">
-  <md-dialog-actions ng-if="!$state.includes('itemview')" class="io-close-btn" layout
-                     layout-align="end start">
-    <md-button ng-click="closeDialog()"
-               class="md-fab md-mini md-primary io-secondary-btn"
-               aria-label="Close Dialog">
-      <ng-md-icon icon="close" class="secondary"></ng-md-icon>
-    </md-button>
-  </md-dialog-actions>
-  <md-dialog-content>
-    <md-card layout="column" layout-fill layout-wrap class="profile-tree">
-      <ng-form name="profileForm" layout="column">
-        <div layout layout-align="center center" layout-padding>
-          <h4 flex class="dialog-header">Take a minute to set up your profile</h4>
-        </div>
-        <div>
-          <!--PHONE section starts-->
-          <div layout="column" layout-padding>
-            <div layout ng-if="!profile.phone_validated_at">
-              <md-input-container flex>
-                <label>Phone number</label>
-                <input ng-model="profile.phone" class="left-justified" type="tel">
-              </md-input-container>
-              <div layout layout-align="start"
-                   ng-if="profile.phone.length>7 && !profile.phone_validated_at"
-                   class="am-fade-and-scale">
-                <md-button class="md-primary md-raised io-primary-btn"
-                           ng-click="VerifyService.phone(profile.phone)">Send to Verify
-                </md-button>
-              </div>
-            </div>
-            <div layout ng-if="profile.phone.length>7 && !profile.phone_validated_at">
-              <md-input-container flex>
-                <label>Enter texted code</label>
-                <input ng-model="verifyPhoneCode" type="tel">
-              </md-input-container>
-              <div layout layout-align="center start"
-                   ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
-                   class="am-fade-and-scale">
-                <md-button class="md-primary md-raised io-primary-btn"
-                           ng-click="sendCodePhone(verifyPhoneCode);">Enter Texted Code
-                </md-button>
-              </div>
-            </div>
-          </div>
-          <!--PHONE section ends-->
-          <div layout="column" layout-padding
-               layout-fill class="postal-subs">
-            <br>
-            <ng-form ng-if="!profile.address_verified_at" name="addressForm">
-              <div layout layout-sm="column">
-                <md-input-container flex-sm flex-gt-sm="70">
-                  <label>Address</label>
-                  <input ng-model="profile.address" type="text">
-                </md-input-container>
-                <md-input-container flex-sm flex-gt-sm="30">
-                  <label>Apt</label>
-                  <input ng-model="profile.apartment" type="text">
-                </md-input-container>
-              </div>
-              <div layout layout-sm="column">
-                <md-input-container flex-sm flex-gt-sm="70">
-                  <label>City</label>
-                  <input ng-model="profile.city" type="text">
-                </md-input-container>
-                <md-input-container flex flex-gt-sm="30">
-                  <label>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                  <input ng-model="profile.state" type="text">
-                </md-input-container>
-              </div>
-              <div layout layout-sm="column">
-                <md-input-container flex>
-                  <label>Zipcode</label>
-                  <input ng-model="profile.zipcode" type="text">
-                </md-input-container>
-                <div layout layout-align="center center"
-                     class="am-fade-and-scale">
-                  <md-button
-                      class="md-raised md-primary button-padding less-margin io-primary-btn"
-                      ng-click="address()">Verify Address
-                  </md-button>
+<md-dialog ng-class="{'io-no-opacity':$state.includes('itemview')}" class="store-item">
+    <md-dialog-actions ng-if="!$state.includes('itemview')" class="io-close-btn" layout
+                       layout-align="end start">
+        <md-button ng-click="vm.hide()"
+                   class="md-fab md-mini md-primary io-secondary-btn"
+                   aria-label="Close Dialog">
+            <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+        </md-button>
+    </md-dialog-actions>
+    <md-dialog-content>
+        <md-card layout="column" layout-fill layout-wrap class="profile-tree">
+            <ng-form name="profileForm" layout="column">
+                <div layout layout-align="center center" layout-padding>
+                    <h4 flex class="dialog-header top">Take a minute to set up your profile</h4>
                 </div>
-              </div>
+                <div>
+                    <!--PHONE section starts-->
+                    <div layout="column" layout-padding>
+                        <div layout="column" ng-if="!vm.profile.phone_validated_at">
+                            <md-input-container flex>
+                                <label>Phone number</label>
+                                <input ng-model="vm.profile.phone" class="left-justified" type="tel">
+                            </md-input-container>
+                            <div layout layout-align="center center"
+                                 ng-if="vm.profile.phone.length>7 && !vm.profile.phone_validated_at"
+                                 class="am-fade-and-scale">
+                                <md-button class="md-primary md-raised io-primary-btn io-small-btn"
+                                           ng-click="vm.VerifyService.phone(vm.profile.phone)">
+                                    Send to Verify
+                                </md-button>
+                            </div>
+                        </div>
+                        <div layout="column" ng-if="vm.profile.phone.length>7 && !vm.profile.phone_validated_at">
+                            <md-input-container flex>
+                                <label>Enter texted code</label>
+                                <input ng-model="verifyPhoneCode" type="tel">
+                            </md-input-container>
+                            <div layout layout-align="center center"
+                                 ng-if="verifyPhoneCode.length>5 && !vm.profile.phone_validated_at"
+                                 class="am-fade-and-scale">
+                                <md-button class="md-primary md-raised io-primary-btn io-small-btn"
+                                           ng-click="vm.sendCodePhone(verifyPhoneCode);">Enter Texted Code
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--PHONE section ends-->
+                    <div layout="column" layout-padding
+                         layout-fill class="postal-subs">
+                        <br>
+                        <ng-form ng-if="!vm.profile.address_verified_at" name="addressForm">
+                            <div layout="column" layout-sm="column">
+                                <md-input-container flex-sm flex-gt-sm="70">
+                                    <label>Address</label>
+                                    <input ng-model="vm.profile.address" type="text">
+                                </md-input-container>
+                                <md-input-container flex-sm flex-gt-sm="30">
+                                    <label>Apt</label>
+                                    <input ng-model="vm.profile.apartment" type="text">
+                                </md-input-container>
+                            </div>
+                            <div layout layout-sm="column">
+                                <md-input-container flex-sm flex-gt-sm="70">
+                                    <label>City</label>
+                                    <input ng-model="vm.profile.city" type="text">
+                                </md-input-container>
+                                <md-input-container flex flex-gt-sm="30">
+                                    <label>State</label>
+                                    <input ng-model="vm.profile.state" type="text">
+                                </md-input-container>
+                            </div>
+                            <div layout layout-sm="column">
+                                <md-input-container flex>
+                                    <label>Zipcode</label>
+                                    <input ng-model="vm.profile.zipcode" type="text">
+                                </md-input-container>
+                            </div>
+                            <div layout layout-align="center center"
+                                 class="am-fade-and-scale">
+                                <md-button
+                                    class="md-raised md-primary button-padding less-margin io-primary-btn io-small-btn"
+                                    ng-click="vm.address()">Verify Address
+                                </md-button>
+                            </div>
+                        </ng-form>
+                    </div>
+                </div>
             </ng-form>
-          </div>
-        </div>
-      </ng-form>
-  </md-dialog-content>
+    </md-dialog-content>
 </md-dialog>

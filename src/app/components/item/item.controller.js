@@ -396,69 +396,15 @@ angular.module('instastore')
           scope.toggle();
         };
 
-        $scope.sendCodePhone = function (code) {
-          VerifyService.sendCode(code)
-              .success(function (res) {
-                $scope.profile.phone = res.phone;
-                $scope.profile.phone_validated_at = res.phone_validated_at;
-                UserService.setProfile($scope.profile);
-                $scope.treeConfig['2'].collapsed = true;
-
-                messageService.simpleByCode('verify', 'success');
-                if(isVerify()) {
-                  $mdDialog.hide();
-                  $scope.showConfirm = true;
-                }
-              });
-        };
-
-        $scope.address = function () {
-          VerifyService.address($scope.profile)
-              .success(function (data) {
-                if (data.AddressValidateResponse.Address) {
-                  //collapsing address section in profile information
-                  $scope.treeConfig['3'].collapsed = true;
-
-                  messageService.simpleByCode('profile', 'addressSuccess');
-                  $scope.profile.apartment = data.AddressValidateResponse.Address.Address1;
-                  $scope.profile.address = data.AddressValidateResponse.Address.Address2;
-                  $scope.profile.state = data.AddressValidateResponse.Address.State;
-                  $scope.profile.city = data.AddressValidateResponse.Address.City;
-                  $scope.profile.zipcode = data.AddressValidateResponse.Address.Zip5;
-                  $scope.profile.address_verified_at = Math.floor(Date.now() / 1000);
-                  UserService.setProfile($scope.profile);
-                  if(isVerify()) {
-                    $mdDialog.hide();
-                    $scope.showConfirm = true;
-                  }
-                }
-                else {
-                  messageService.simpleByCode('profile', 'addressError');
-                }
-              });
-        };
-
-        $scope.isVerify = isVerify;
-
-        function isVerify() {
-          return ($scope.profile.address
-              && $scope.profile.city
-              && $scope.profile.state
-              && $scope.profile.zipcode)
-              && $scope.profile.phone;
-        }
-
         $scope.confirmBuying = function () {
-          if (!isVerify()) {
-            $mdDialog.show({
-              controller: 'ProfileIndex',
-              templateUrl: 'app/components/item/profile-verify.html',
-              parent: angular.element(document.body),
-              scope: $scope,
-              preserveScope: true,
-              clickOutsideToClose: true,
-              fullscreen: $mdMedia('xs')
-            });
+          if (!VerifyService.isVerify()) {
+            VerifyService.showModalAddressPhone()
+                .then(function () {
+                  $scope.showConfirm = true;
+                })
+                .catch(function (err) {
+                  $scope.showConfirm = false;
+                });
           } else {
             $scope.showConfirm = true;
             $timeout(function () {

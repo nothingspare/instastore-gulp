@@ -248,7 +248,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
   }]);
 
-app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector) {
+app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector, TourService) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.$mdMedia = $mdMedia;
