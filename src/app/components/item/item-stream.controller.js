@@ -42,13 +42,31 @@
 
     function activate() {
       UserService.initMyStoreSettings();
-      SubscriptionService.isFollowing().then(function () {
+      SubscriptionService.count().then(function (count) {
+        if(!count && UserService.isSeller()) {
+          SubscriptionService.isFollowing()
+        }
         StreamService.all().then(function (data) {
           pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
           vm.items = data.data;
           vm.busy = false;
         });
       });
+      // if (UserService.isSeller()) {
+      //   SubscriptionService.isFollowing().then(function () {
+      //     StreamService.all().then(function (data) {
+      //       pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
+      //       vm.items = data.data;
+      //       vm.busy = false;
+      //     });
+      //   });
+      // } else {
+      //   StreamService.all().then(function (data) {
+      //     pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
+      //     vm.items = data.data;
+      //     vm.busy = false;
+      //   });
+      // }
     }
   }
 

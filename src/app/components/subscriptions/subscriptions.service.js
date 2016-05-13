@@ -64,30 +64,28 @@
 
     function isFollowing() {
       var deferred = $q.defer();
-      count().then(function (count) {
-        if (!count) {
-          var perPage = 6;
-          other(perPage)
-              .success(function (data) {
-                $mdDialog.show({
-                  controller: 'DialogController as vm',
-                  templateUrl: 'app/components/subscriptions/modal/recommended-stores.html',
-                  parent: angular.element(document.body),
-                  clickOutsideToClose: true,
-                  bindToController: true,
-                  locals: {
-                    subsOther: data
-                  },
-                  fullscreen: $mdMedia('xs'),
-                  onRemoving: function () {
-                    deferred.resolve();
-                  }
-                });
-              });
-        } else {
-          deferred.resolve();
-        }
-      });
+      // count().then(function (count) {
+      //   if (!count) {
+      var perPage = 6;
+      other(perPage)
+          .success(function (data) {
+            $mdDialog.show({
+              controller: 'DialogController as vm',
+              templateUrl: 'app/components/subscriptions/modal/recommended-stores.html',
+              parent: angular.element(document.body),
+              clickOutsideToClose: true,
+              bindToController: true,
+              locals: {
+                subsOther: data
+              },
+              fullscreen: $mdMedia('xs'),
+              onRemoving: function () {
+                deferred.resolve();
+              }
+            });
+          });
+      // }
+      // });
       return deferred.promise;
     }
 
@@ -140,10 +138,10 @@
     function hide() {
       $mdDialog.hide();
     }
-    
+
     function following() {
       SubscriptionService.following(vm.selectedItem).success(function (response) {
-        if(response) {
+        if (response) {
           hide();
           $state.go('subscriptions', {}, {reload: true});
         }
