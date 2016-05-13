@@ -37,9 +37,6 @@
 
     function addItem() {
       $rootScope.tour = {addItem: true};
-
-      console.log($rootScope.store);
-
       isGetItems().then(function (count) {
         if (!count) {
           $mdDialog.show({
@@ -62,7 +59,6 @@
     }
 
     function isGetFollowers() {
-      console.log($rootScope.store);
       return $rootScope.store.followersAmount;
       // return SubscriptionService.count();
     }
