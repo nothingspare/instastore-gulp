@@ -40,12 +40,14 @@
             <div layout="column" flex>
                 <div flex layout layout-align="center center">
                     <div ng-if="!isSeller">
-                        <div ng-if="!($state.includes('stream') || $state.includes('subscriptions'))" class="btn"
+                        <div ng-if="!($state.includes('stream') || $state.includes('subscriptions') || $state.includes('stream-grid'))"
+                             class="btn"
                              ng-click="toggleFollowerState()">
                             {{store.isFollower?'&nbsp;Unfollow
                             Store&nbsp;':'Follow&nbsp;+'}}
                         </div>
-                        <div ng-if="$state.includes('stream') || $state.includes('subscriptions')" class="btn"
+                        <div ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
+                             class="btn"
                              ng-click="showProfile()">
                             Edit Profile
                         </div>
