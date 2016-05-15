@@ -13,13 +13,18 @@
         <md-dialog-content>
             <div layout="column" layout-wrap layout-padding layout-align="center center">
                 <img class="profile store-avatar-followin"
-                     ng-src="{{store.avatar_url}}"/>
-                <h3>DAVID MOLLISON</h3>
+                     ng-src="{{vm.profile.avatar_url|storeAvatar}}"/>
+
+                <h3>{{vm.profile.fullName}}</h3>
+
                 <p>Let's get you set up. Do you want to</p>
+
                 <div>
-                    <md-button ng-click="vm.buy()" class="md-primary md-raised io-primary-btn io-small-btn">Buy</md-button>
+                    <md-button ng-click="vm.buy()" class="md-primary md-raised io-primary-btn io-small-btn">Buy
+                    </md-button>
                     or
-                    <md-button ng-click="vm.sell()" class="md-primary md-raised io-primary-btn io-small-btn">Sell</md-button>
+                    <md-button ng-click="vm.sell()" class="md-primary md-raised io-primary-btn io-small-btn">Sell
+                    </md-button>
                 </div>
                 <!--<div ng-repeat="store in vm.subsOther track by $index"-->
                 <!--     layout-align="center center" layout="column"-->
