@@ -14,12 +14,11 @@
     ////////////////
 
     function init() {
-      $rootScope.$on('$stateChangeStart',
-          function (event, toState, toParams, fromState, fromParams, options) {
+            // $rootScope.$on('$stateChangeStart',
+            //     function (event, toState, toParams, fromState, fromParams, options) {
             // isGetFollowers().then(function (countFollowers) {
             isGetItems().then(function (countItems) {
               var countFollowers = isGetFollowers();
-              debugger;
               if (!countItems && !countFollowers && !VerifyService.isVerify()) {
                 $mdDialog.show({
                   controller: 'DialogController2 as vm',
@@ -31,7 +30,7 @@
                 });
               }
             });
-          });
+            // });
       // });
     }
 
@@ -71,8 +70,10 @@
   DialogController.$inject = ['$mdDialog', 'SubscriptionService', 'VerifyService', 'TourService', 'ModalService'];
 
   /* @ngInject */
-  function DialogController($mdDialog, SubscriptionService, VerifyService, TourService, ModalService) {
+    function DialogController($mdDialog, SubscriptionService, VerifyService, TourService, UserService) {
     var vm = this;
+
+        vm.profile = UserService.getProfile();
 
     vm.selectedItem = [];
 
