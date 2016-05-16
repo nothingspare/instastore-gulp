@@ -5,9 +5,9 @@
       .module('instastore')
       .service('TourService', TourService);
 
-  TourService.$inject = ['$rootScope', 'VerifyService', '$mdDialog', '$mdMedia', 'ItemService', 'ModalService', 'UserService'];
+  TourService.$inject = ['$rootScope', 'VerifyService', '$mdDialog', '$mdMedia', 'ItemService', 'ModalService', 'UserService', 'SubscriptionService'];
   /* @ngInject */
-  function TourService($rootScope, VerifyService, $mdDialog, $mdMedia, ItemService, ModalService, UserService) {
+  function TourService($rootScope, VerifyService, $mdDialog, $mdMedia, ItemService, ModalService, UserService, SubscriptionService) {
     this.init = init;
     this.addItem = addItem;
 
@@ -16,16 +16,19 @@
     function init() {
       var profile = UserService.getProfile();
       if (profile.seller) {
-        isGetItems().then(function (countItems) {
-          var countFollowers = isGetFollowers();
-          if (!countItems && !countFollowers && !VerifyService.isVerify()) {
-            $mdDialog.show({
-              controller: 'DialogController2 as vm',
-              templateUrl: 'app/components/modal/welcome.html',
-              parent: angular.element(document.body),
-              clickOutsideToClose: true,
-              bindToController: true,
-              fullscreen: $mdMedia('xs')
+        ItemService.count().then(function (countItems) {
+          if(!countItems) {
+            SubscriptionService.count().then(function (countFollowers) {
+              if (!countFollowers && !VerifyService.isVerify()) {
+                $mdDialog.show({
+                  controller: 'DialogController2 as vm',
+                  templateUrl: 'app/components/modal/welcome.html',
+                  parent: angular.element(document.body),
+                  clickOutsideToClose: true,
+                  bindToController: true,
+                  fullscreen: $mdMedia('xs')
+                });
+              }
             });
           }
         });
@@ -34,7 +37,7 @@
 
     function addItem() {
       $rootScope.tour = {addItem: true};
-      isGetItems().then(function (count) {
+      ItemService.count().then(function (count) {
         if (!count) {
           $mdDialog.show({
             controller: 'DialogController2 as vm',
@@ -50,15 +53,6 @@
         }
       });
     }
-
-    function isGetItems() {
-      return ItemService.count();
-    }
-
-    function isGetFollowers() {
-      return $rootScope.store.followersAmount;
-    }
-
   }
 
   angular
@@ -85,8 +79,7 @@
 
     function buy() {
       hide();
-      SubscriptionService.isFollowing().then(function () {
-      });
+      SubscriptionService.isFollowing();
     }
 
     function sell() {
