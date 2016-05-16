@@ -13,14 +13,14 @@
     var pageCount;
     var path = '';
 
-    var service = function (path) {
-      this.items = [];
-      this.busy = true;
-      this.after = '';
-      this.nextPage = nextPage;
-      this.all = all;
-      path = path;
-      this.activate = activate;
+    var service = {
+      items : [],
+      busy : true,
+      after : '',
+      path : path,
+      nextPage : nextPage,
+      all : all,
+      init : init
     };
     return service;
 
@@ -36,12 +36,13 @@
       }
     }
 
-    function activate() {
+    function init(path) {
+      service.path = path;
       getItems();
     }
 
     function getItems() {
-      if (path) {
+      if (service.path) {
         all(page).then(function (response) {
           pageCount = parseInt(response.headers('X-Pagination-Page-Count'));
           service.items = service.items.concat(response.data);
@@ -54,7 +55,7 @@
       var page = page || 1;
       var perPage = perPage || 5;
 
-      rest.path = path;
+      rest.path = service.path;
       return rest.models({
             'per-page': perPage,
             'page': page
@@ -63,7 +64,6 @@
             messageService.alert(e);
             UserService.goToMainStore();
           });
-
     }
   }
 

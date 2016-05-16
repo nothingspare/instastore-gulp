@@ -27,18 +27,6 @@
 
     ////////////////
 
-    function nextPage() {
-      ++page;
-      if (pageCount >= page) {
-        if (this.busy) return;
-        vm.busy = true;
-        StreamService.all(page).success(function (data) {
-          $scope.items = $scope.items.concat(data);
-          vm.busy = false;
-        });
-      }
-    }
-
     function activate() {
       UserService.initMyStoreSettings();
       StreamService.all(page).then(function (data) {
