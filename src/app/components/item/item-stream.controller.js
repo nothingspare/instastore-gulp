@@ -6,12 +6,9 @@
       .controller('ItemStream', ItemStream);
 
   ItemStream.$inject = [
-    '$scope',
     'UserService',
     'StreamService',
-    'SubscriptionService',
-    '$mdDialog',
-    '$mdMedia'
+    'SubscriptionService'
   ];
 
   /* @ngInject */
@@ -42,6 +39,7 @@
 
     function activate() {
       UserService.initMyStoreSettings();
+      
       SubscriptionService.count().then(function (count) {
         if(!count) {
           SubscriptionService.isFollowing()
