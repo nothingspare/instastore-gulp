@@ -28,17 +28,20 @@
 
     function nextPage() {
       console.log("next page");
-      ++page;
-      if (pageCount >= page || page == 1) {
-        if (this.busy && page != 1) return;
-        service.busy = true;
-        getItems();
-      }
+      // if(service.busy) {
+        if (pageCount >= page || page == 1) {
+          if (service.busy && page != 1) return;
+          service.busy = true;
+          getItems();
+        }
+      // }
     }
 
     function init(path) {
+      page = 1;
+      service.items = [];
       service.path = path;
-      getItems();
+      nextPage();
     }
 
     function getItems() {
@@ -47,6 +50,7 @@
           pageCount = parseInt(response.headers('X-Pagination-Page-Count'));
           service.items = service.items.concat(response.data);
           service.busy = false;
+          ++page;
         });
       }
     }

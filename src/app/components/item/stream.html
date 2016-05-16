@@ -7,5 +7,5 @@
     <div layout="column" ng-repeat="item in vm.StreamService.items track by $index" class="item-container itemview">
         <md-card item-stream item="item" store="store" store-url="item.user.store.store_url"></md-card>
     </div>
-    <md-progress-circular ng-show='vm.stream.busy' class="io-primary-btn progress-margin" md-diameter="40"></md-progress-circular>
+    <md-progress-circular ng-show='vm.StreamService.busy' class="io-primary-btn progress-margin" md-diameter="40"></md-progress-circular>
 </div>

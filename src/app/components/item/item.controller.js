@@ -2,13 +2,57 @@
 
 angular.module('instastore')
     .controller('ItemIndex', ['$scope', 'rest', 'UserService', '$stateParams', '$rootScope',
-      '$state', 'feedHelper', 'messageService', '$filter', 'ITEM_STATUS', '$auth', 'InAppService',
+      '$state', 'feedHelper', 'messageService', '$filter', 'ITEM_STATUS', '$auth', 'InAppService', 'StreamService',
       function ($scope, rest, UserService, $stateParams, $rootScope,
-                $state, feedHelper, messageService, $filter, ITEM_STATUS, $auth, InAppService) {
+                $state, feedHelper, messageService, $filter, ITEM_STATUS, $auth, InAppService, StreamService) {
 
         InAppService.warnIfInApp();
 
         var vm = this;
+        vm.StreamService = StreamService;
+
+        //////////////
+
+        activate();
+
+        function activate() {
+          if ($stateParams.storeurl) {
+            UserService.initStore();
+
+            if (!UserService.isYourStore()) {
+              rest.path = 'v1/stores';
+              rest.models({store_url: $stateParams.storeurl}).success(function (data) {
+                $scope.store = store = data[0];
+                if (!store) {
+                  messageService.simpleAlert('nostorewithurl');
+                  UserService.goToMainStore();
+                  return;
+                }
+                StreamService.init('v1/items');
+                if (UserService.isSeller()) {
+                  $scope.showPanel = true;
+                }
+
+                // rest.path = 'v1/items';
+                // rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
+                //   if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
+                //   $scope.items = data;
+                // });
+              }).error(messageService.alert);
+            }
+            else {
+              UserService.initMyStoreSettings();
+
+              StreamService.init('v1/my-items');
+
+              // rest.path = 'v1/my-items';
+              // rest.models().success(function (data) {
+              //   if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
+              //   $scope.items = data;
+              // }).error(messageService.alert);
+            }
+          }
+        }
 
         $scope.$on('newItem', function (event, item) {
           if (item) $scope.items.unshift(item);
@@ -16,33 +60,6 @@ angular.module('instastore')
         });
 
         var store;
-        if ($stateParams.storeurl) {
-          UserService.initStore();
-          if (!UserService.isYourStore()) {
-            rest.path = 'v1/stores';
-            rest.models({store_url: $stateParams.storeurl}).success(function (data) {
-              $scope.store = store = data[0];
-              if (!store) {
-                messageService.simpleAlert('nostorewithurl');
-                UserService.goToMainStore();
-                return;
-              }
-              rest.path = 'v1/items';
-              rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
-                if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
-                $scope.items = data;
-              });
-            }).error(messageService.alert);
-          }
-          else {
-            UserService.initMyStoreSettings();
-            rest.path = 'v1/my-items';
-            rest.models().success(function (data) {
-              if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
-              $scope.items = data;
-            }).error(messageService.alert);
-          }
-        }
 
         $scope.seemore = function (go) {
           feedHelper.seeMore = true;
