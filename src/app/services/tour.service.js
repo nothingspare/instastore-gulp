@@ -5,33 +5,28 @@
       .module('instastore')
       .service('TourService', TourService);
 
-  TourService.$inject = ['$rootScope', 'VerifyService', '$mdDialog', '$mdMedia', 'SubscriptionService', 'ItemService', 'ModalService'];
+  TourService.$inject = ['$rootScope', 'VerifyService', '$mdDialog', '$mdMedia', 'SubscriptionService', 'ItemService', 'ModalService', 'UserService'];
   /* @ngInject */
-  function TourService($rootScope, VerifyService, $mdDialog, $mdMedia, SubscriptionService, ItemService, ModalService) {
+  function TourService($rootScope, VerifyService, $mdDialog, $mdMedia, SubscriptionService, ItemService, ModalService, UserService) {
     this.init = init;
     this.addItem = addItem;
 
     ////////////////
 
     function init() {
-            // $rootScope.$on('$stateChangeStart',
-            //     function (event, toState, toParams, fromState, fromParams, options) {
-            // isGetFollowers().then(function (countFollowers) {
-            isGetItems().then(function (countItems) {
-              var countFollowers = isGetFollowers();
-              if (!countItems && !countFollowers && !VerifyService.isVerify()) {
-                $mdDialog.show({
-                  controller: 'DialogController2 as vm',
-                  templateUrl: 'app/components/modal/welcome.html',
-                  parent: angular.element(document.body),
-                  clickOutsideToClose: true,
-                  bindToController: true,
-                  fullscreen: $mdMedia('xs')
-                });
-              }
-            });
-            // });
-      // });
+      isGetItems().then(function (countItems) {
+        var countFollowers = isGetFollowers();
+        if (!countItems && !countFollowers && !VerifyService.isVerify()) {
+          $mdDialog.show({
+            controller: 'DialogController2 as vm',
+            templateUrl: 'app/components/modal/welcome.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: true,
+            bindToController: true,
+            fullscreen: $mdMedia('xs')
+          });
+        }
+      });
     }
 
     function addItem() {
@@ -46,7 +41,9 @@
             bindToController: true,
             fullscreen: $mdMedia('xs'),
             onRemoving: function () {
-              ModalService.showFinishSettings();
+              if (UserService.isSeller()) {
+                ModalService.showFinishSettings();
+              }
             }
           });
         }
@@ -67,13 +64,13 @@
       .module('instastore')
       .controller('DialogController2', DialogController);
 
-  DialogController.$inject = ['$mdDialog', 'SubscriptionService', 'VerifyService', 'TourService', 'ModalService'];
+  DialogController.$inject = ['$mdDialog', 'SubscriptionService', 'VerifyService', 'TourService', 'UserService'];
 
   /* @ngInject */
-    function DialogController($mdDialog, SubscriptionService, VerifyService, TourService, UserService) {
+  function DialogController($mdDialog, SubscriptionService, VerifyService, TourService, UserService) {
     var vm = this;
 
-        vm.profile = UserService.getProfile();
+    vm.profile = UserService.getProfile();
 
     vm.selectedItem = [];
 
