@@ -25,9 +25,14 @@
     ////////////////
 
     function activate() {
-      getAll().then(function () {
-        getAllRecommended().then(function () {
-          getOther();
+      SubscriptionService.count().then(function (count) {
+        if(!count) {
+          SubscriptionService.isFollowing()
+        }
+        getAll().then(function () {
+          getAllRecommended().then(function () {
+            getOther();
+          });
         });
       });
     }

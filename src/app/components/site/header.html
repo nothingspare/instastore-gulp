@@ -10,27 +10,27 @@
                     {{$state.includes('stream') || $state.includes('stream-grid') ? 'All Stores': store.store_name}}
                 </div>
                 <search-store class="search-store" ng-if="$state.includes('subscriptions')"
-                              placeholder="Search store"></search-store>
+                              placeholder="Search Stores"></search-store>
             </div>
         </div>
-        <div ng-if="!$state.includes('transaction')">
+        <div ng-if="transactionService.count" ng-show="!$state.includes('transaction')">
             <a class="transaction-icon" href="/transaction/{{$stateParams.storeurl}}">
                 <ng-md-icon icon="alert-off" size="24"
                             style="fill: #545052"></ng-md-icon>
-                <div ng-show="transactionService.count" ng-class="{'active': transactionService.count > 0}"
-                     class="transaction-count am-slide-right">{{transactionService.count}}
+                <div ng-show="transactionService.activeCount" ng-class="{'active': transactionService.activeCount > 0}"
+                     class="transaction-count am-slide-right">{{transactionService.activeCount}}
                 </div>
             </a>
         </div>
-        <div ng-if="$state.includes('transaction')" ng-click="showProfile()">
+        <div ng-if="$state.includes('transaction') || !transactionService.count" ng-click="showProfile()">
             <div class="user"></div>
         </div>
     </div>
     <div
-        ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
+            ng-if="!($state.includes('itemview') || $state.includes('store') || $state.includes('instaimport') || $state.includes('transaction'))">
         <div layout="column" class="io-sub-bar-freeshipping">
-            <div layout layout-align="center center" flex layout-padding class="free-shipping">FREE SHIPPING ON ALL
-                                                                                               ITEMS
+            <div layout layout-align="center center" flex layout-padding class="free-shipping">
+                FREE SHIPPING ON ALL ITEMS
             </div>
         </div>
         <div layout layout-padding class="io-sub-bar">
@@ -38,6 +38,37 @@
                 <img class="profile" ng-src="{{store.avatar_url|storeAvatar}}">
             </div>
             <div layout="column" flex>
+                <div flex layout layout-align="center center">
+                    <div ng-if="!isSeller">
+                        <div ng-if="!($state.includes('stream') || $state.includes('subscriptions') || $state.includes('stream-grid'))"
+                             class="btn"
+                             ng-click="toggleFollowerState()">
+                            {{store.isFollower?'&nbsp;Unfollow
+                            Store&nbsp;':'Follow&nbsp;+'}}
+                        </div>
+                        <div ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
+                             class="btn"
+                             ng-click="showProfile()">
+                            Edit Profile
+                        </div>
+                    </div>
+                    <div ng-if="isSeller">
+                        <div class="md-button md-primary md-raised io-primary-btn io-mode-selector io-small-btn" layout
+                             layout-align="center center">
+                            <md-select ng-model="configSiteHeader.headerMode" md-on-close="toggleMenuState()">
+                                <md-option value="editstore">
+                                    Your Store
+                                </md-option>
+                                <md-option value="storestream">
+                                    All Stores
+                                </md-option>
+                                <md-option value="editprofile">
+                                    Edit Profile
+                                </md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                </div>
                 <div layout>
                     <div layout="column" layout-align="center center" flex>
                         <span class="profile-digits">Items</span>
@@ -50,37 +81,12 @@
                         <h3>{{store.followersAmount}}</h3>
                     </div>
                 </div>
-                <div flex layout layout-align="center center">
-                    <div ng-if="!isSeller">
-                        <div ng-if="!($state.includes('stream') || $state.includes('subscriptions'))" class="btn"
-                             ng-click="toggleFollowerState()">
-                            {{store.isFollower?'&nbsp;Unfollow
-                            Store&nbsp;':'Follow&nbsp;+'}}
-                        </div>
-                        <div ng-if="$state.includes('stream') || $state.includes('subscriptions')" class="btn"
-                             ng-click="showProfile()">
-                            Edit Profile
-                        </div>
-                    </div>
-                    <div ng-if="isSeller">
-                        <md-select ng-model="configSiteHeader.headerMode" md-on-close="toggleMenuState()">
-                            <md-option value="editstore">
-                                Your Store
-                            </md-option>
-                            <md-option value="storestream">
-                                All Stores
-                            </md-option>
-                            <md-option value="editprofile">
-                                Edit Profile
-                            </md-option>
-                        </md-select>
-                    </div>
-                </div>
             </div>
         </div>
 
         <div>
-            <p ng-init="isMore = true" flex class="store-description" ng-class="{'active': !isMore}"
+            <p ng-init="isMore = true" ng-click="isMore = !isMore" flex class="store-description"
+               ng-class="{'active': !isMore}"
                layout-padding>{{store.description}}</p>
         </div>
         <diiv layout="column" layout-align="center center">
@@ -96,11 +102,12 @@
             <div id="navigation2">
                 <div ng-if="isSeller">
                     <div
-                        ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
-                        layout layout-align="center center"
-                        class="am-fade-and-slide-left am-fade-and-slide-left-add subheader-menu-items">
+                            ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
+                            layout layout-align="center center"
+                            class="am-fade-and-slide-left am-fade-and-slide-left-add subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"
+                             ng-class="{ 'not-items': tour.addItem && !store.userItemsAmount }"
                              ng-click="clickToOpen()">
                             <div class="additem"></div>
                             <div class="title">Add item</div>
@@ -121,9 +128,9 @@
                         </div>
                     </div>
                     <div
-                        ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
-                        layout layout-align="center center"
-                        class="am-fade-and-slide-right am-fade-and-slide-right-add subheader-menu-items">
+                            ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
+                            layout layout-align="center center"
+                            class="am-fade-and-slide-right am-fade-and-slide-right-add subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
@@ -149,7 +156,7 @@
 
                 </div>
                 <div ng-if="!isSeller">
-                    <div ng-if="!($state.includes('stream') || $state.includes('subscriptions'))"
+                    <div ng-if="!configSiteHeader.isYourStore"
                          class="subheader-menu-items"
                          layout layout-align="center center">
                         <div layout="column" flex
@@ -174,23 +181,21 @@
                             <div class="title">Location</div>
                         </div>
                     </div>
-                    <div ng-if="$state.includes('stream') || $state.includes('subscriptions')"
-                         layout layout-align="center center"
-                         class="subheader-menu-items"
-                    >
+                    <div ng-if="configSiteHeader.isYourStore" layout layout-align="center center"
+                         class="subheader-menu-items">
+                        <div layout="column" flex
+                             class="subheader-menu-item"
+                             ui-sref-active="menu-item-active"
+                             ui-sref="stream-grid({storeurl:profile.store.store_url, mode:''})">
+                            <ng-md-icon icon="grid" style="fill:black"></ng-md-icon>
+                            <div class="title">Grid</div>
+                        </div>
                         <div layout="column" flex layout-align="center center"
                              class="subheader-menu-item"
                              ui-sref-active="menu-item-active"
                              ui-sref="stream({storeurl:profile.store.store_url})">
                             <ng-md-icon icon="multi-stream" style="fill:black"></ng-md-icon>
                             <div class="title">Multi Stream</div>
-                        </div>
-                        <div layout="column" flex
-                             class="subheader-menu-item"
-                             ui-sref-active="menu-item-active"
-                             ui-sref="grid({storeurl:profile.store.store_url, mode:''})">
-                            <ng-md-icon icon="grid" style="fill:black"></ng-md-icon>
-                            <div class="title">Grid</div>
                         </div>
                         <div layout="column" flex layout-align="center center"
                              class="subheader-menu-item"

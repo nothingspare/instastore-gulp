@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  angular.module('angularHideHeader', []).directive('hideHeader', ['$timeout', '$window', function ($timeout, $window) {
+  angular.module('angularHideHeader', []).directive('hideHeader', ['$timeout', '$window', '$rootScope', function ($timeout, $window, $rootScope) {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
@@ -14,7 +14,11 @@
           if (current_scroll >= hheight + pxOffset) {
             if (current_scroll <= scrollposition) {
               element.removeClass('hideh');
-              element.css({'top': "0px"});
+              if($rootScope.isHomeScreen) {
+                element.css({'top': "20px"});
+              } else {
+                element.css({'top': "0px"});
+              }
             }
             else {
               element.addClass('hideh');

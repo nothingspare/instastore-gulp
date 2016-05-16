@@ -32,7 +32,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
     $stateProvider.state('grid', {
       url: '/:storeurl/mode/:mode?profile=true',
-      controller: 'ItemIndex',
+      controller: 'ItemIndex as vm',
       templateUrl: function ($stateParams) {
         return $stateParams.mode !== 'feed' ? modulesPath + '/item/item-grid.html' : modulesPath + '/item/index.html';
       }
@@ -78,7 +78,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
     $stateProvider.state('itemview', {
       url: '/:storeurl/:itemurl/:tab',
-      controller: 'ItemView',
+      controller: 'ItemView as vm',
       resolve: {
         urlsThere: function ($stateParams) {
           return ($stateParams.storeurl !== undefined && $stateParams.itemurl !== undefined && $stateParams.itemurl !== 'undefined' && $stateParams.storeurl !== 'undefined');
@@ -126,7 +126,16 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     $stateProvider.state('transaction', {
       url: '/transaction/:storeurl',
       controller: 'TransactionCtrl as vm',
-      templateUrl: modulesPath + '/transaction/transaction.html'
+      templateUrl: modulesPath + '/transaction/transaction.html',
+      resolve: {
+        init: function (transactionService, $state) {
+          transactionService.getCount().then(function () {
+            if (!transactionService.count) {
+              $state.go('grid');
+            }
+          });
+        }
+      }
     });
 
     $authProvider.baseUrl = API_URL;
@@ -239,7 +248,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
   }]);
 
-app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector) {
+app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector, TourService) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.$mdMedia = $mdMedia;

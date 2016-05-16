@@ -14,7 +14,8 @@
         emailTaken: 'Field: Email has already been taken',
         saved: 'Profile saved!',
         addressSuccess: 'Address verified!',
-        addressError: 'Address verification failed!'
+        addressError: 'Address verification failed!',
+        location: 'Your address is wrong! Please make sure that you have entered correct one!'
       },
       /* Profile store */
       profileStore: {
@@ -45,6 +46,10 @@
         labelSent: 'Label sent!',
         duplicated: 'Duplicated!',
         urlWrongFormat: 'Item or Store url undefined!'
+      },
+      /* Verify */
+      verify: {
+        success: 'Verified!'
       },
       /* Other */
       nourl: {status: 500, name: '', message: 'No url specified!'},

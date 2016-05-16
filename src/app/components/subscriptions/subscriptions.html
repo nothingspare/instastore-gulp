@@ -1,12 +1,17 @@
 <div class="subscribtion-main">
+    <div layout-align="center center" layout="column">
+        <md-progress-circular ng-hide='vm.subs.length || vm.subsRecommended.length || vm.subsOther.length'
+                              class="io-primary-btn progress-margin" md-diameter="40"></md-progress-circular>
+    </div>
     <div ng-if="vm.subs.length">
         <h4 class="sub_category">Following</h4>
-        <div layout layout-wrap layout-padding >
+        <div layout layout-wrap layout-padding>
             <div ng-repeat="sub in vm.subs track by $index"
                  layout-align="center center" layout="column"
                  flex-xs="33" flex-sm="15" flex-md="15" flex="10"
                  class="block-store-follow">
-                <div layout="column" layout-align="center center" store-item-sheet store-model="sub.store">
+                <div layout="column" layout-align="center center"
+                     ui-sref="grid({storeurl:sub.store.store_url, mode:'feed'})">
                     <img class="profile store-avatar-followin" ng-src="{{sub.store.avatar_url}}"/>
                     <span class="sub_store_name io-truncate">{{sub.store.store_name}}</span>
                 </div>
@@ -21,7 +26,8 @@
                  layout-align="center center" layout="column"
                  flex-xs="33" flex-sm="15" flex-md="15" flex="10"
                  class="block-store-follow">
-                <div layout="column" layout-align="center center" store-item-sheet store-model="sub.store">
+                <div layout="column" layout-align="center center"
+                     ui-sref="grid({storeurl:sub.store.store_url, mode:'feed'})">
                     <img class="profile store-avatar-followin" ng-src="{{sub.store.avatar_url}}"/>
                     <span class="sub_store_name io-truncate">{{sub.store.store_name}}</span>
                 </div>
@@ -29,14 +35,15 @@
         </div>
     </div>
 
-    <div ng-if="vm.subsRecommended.length">
+    <div ng-if="vm.subsOther.length">
         <h4 class="sub_category">All</h4>
         <div layout layout-wrap layout-padding>
             <div ng-repeat="store in vm.subsOther track by $index"
                  layout-align="center center" layout="column"
                  flex-xs="33" flex-sm="15" flex-md="15" flex="10"
                  class="block-store-follow">
-                <div layout="column" layout-align="center center" store-item-sheet store-model="store">
+                <div layout="column" layout-align="center center"
+                     ui-sref="grid({storeurl: store.store_url, mode:'feed'})">
                     <img class="profile store-avatar-followin" ng-src="{{store.avatar_url}}"/>
                     <span class="sub_store_name io-truncate">{{store.store_name}}</span>
                 </div>

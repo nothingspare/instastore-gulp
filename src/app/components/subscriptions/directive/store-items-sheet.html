@@ -10,12 +10,9 @@
         </div>
         <md-dialog-content>
             <div layout="row" layout-align="space-around center">
-                <!--<md-card flex-->
-                <!--         class="dialog-item-preview"-->
-                <!--         >-->
-                    <img                          ng-repeat="item in items"
-                                                  ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})" ng-src="{{item.coverImage}}" class="md-card-image" alt="Washed Out">
-                <!--</md-card>-->
+                <img ng-repeat="item in items"
+                     ui-sref="itemview({storeurl:store.store_url,itemurl:item.item_url,tab:1})"
+                     ng-src="{{item.coverImage}}" class="md-card-image" alt="Washed Out">
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="column">

@@ -101,11 +101,14 @@ angular.module('instastore')
       'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
       'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', '$window',
       'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia', 'itemsAmount', 'InAppService', 'messageService',
-      'urlsThere',
+      'urlsThere', 'VerifyService',
       function ($scope, rest, $state, feedHelper, UserService, $stateParams,
                 $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
                 ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
-                itemsAmount, InAppService, messageService, urlsThere) {
+                itemsAmount, InAppService, messageService, urlsThere, VerifyService) {
+        var vm = this;
+
+        $scope.VerifyService = VerifyService;
 
         if (!urlsThere) {
           messageService.simpleByCode('item', 'urlWrongFormat');
@@ -394,9 +397,14 @@ angular.module('instastore')
         };
 
         $scope.confirmBuying = function () {
-          if (!$scope.profile.address && !$scope.profile.city && !$scope.profile.state && !$scope.profile.zipcode) {
-            messageService.simpleByCode('item', 'verifyAddress');
-            $scope.showConfirm = false;
+          if (!VerifyService.isVerify()) {
+            VerifyService.showModalAddressPhone()
+                .then(function () {
+                  $scope.showConfirm = true;
+                })
+                .catch(function (err) {
+                  $scope.showConfirm = false;
+                });
           } else {
             $scope.showConfirm = true;
             $timeout(function () {

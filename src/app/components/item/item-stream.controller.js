@@ -6,15 +6,13 @@
       .controller('ItemStream', ItemStream);
 
   ItemStream.$inject = [
-    '$scope',
     'UserService',
-    'StreamService'
+    'StreamService',
+    'SubscriptionService'
   ];
 
   /* @ngInject */
-  function ItemStream($scope,
-                      UserService,
-                      StreamService) {
+  function ItemStream(UserService, StreamService, SubscriptionService) {
 
     var vm = this;
 
@@ -26,8 +24,13 @@
 
     function activate() {
       UserService.initMyStoreSettings();
-
-      StreamService.init('v1/streams');
+      
+      SubscriptionService.count().then(function (count) {
+        if(!count) {
+          SubscriptionService.isFollowing()
+        }
+        StreamService.init('v1/streams');
+      });
     }
   }
 

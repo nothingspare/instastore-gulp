@@ -1,0 +1,33 @@
+<md-dialog aria-label="Welcome" class="store-item" ng-cloak>
+    <form>
+
+        <div layout="row">
+            <h4 flex class="dialog-header top">
+                Remember to finish setting up your store!
+            </h4>
+            <md-button ng-click="vm.hide()"
+                       class="md-fab md-mini md-primary io-secondary-btn dialog-close-btn"
+                       aria-label="Close Dialog">
+                <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+            </md-button>
+        </div>
+
+        <md-dialog-content>
+            <div class="user"></div>
+            <ul class="finish-settings">
+                <li>Update your background image</li>
+                <li>Write someting about your store</li>
+                <li>Enter your stores shipping location</li>
+                <li>Add a Debit Card to recieve money</li>
+                <li>Fill your store with items imported from your Instagram account</li>
+            </ul>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="column">
+            <md-button ng-click="vm.hide()" class="flat-btn" md-autofocus>
+                Done
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

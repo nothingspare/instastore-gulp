@@ -10,6 +10,7 @@
   /* @ngInject */
   function ItemService(rest, ITEM_STATUS) {
     this.all = all;
+    this.count = count;
 
     ////////////////
 
@@ -21,7 +22,17 @@
         'per-page': 3
       });
     }
-  }
 
+    function count(userId) {
+      rest.path = 'v1/items';
+      return rest.models({
+            user_id: userId,
+            status: ITEM_STATUS.active
+          })
+          .then(function (data) {
+            return data.data.length;
+          });
+    }
+  }
 })();
 

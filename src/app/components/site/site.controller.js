@@ -5,16 +5,20 @@ angular.module('instastore')
 
     })
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', '$state',
-      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService',
+      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService', 'TourService',
       function ($scope, $rootScope, rest, $state,
-                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService) {
+                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService, TourService) {
 
         InAppService.warnIfInApp();
         $scope.isInApp = InAppService.isFacebookInApp();
 
         if (!UserService.isGuest()) {
-          if (!UserService.goToLastRouteFromProfile()) {
-            UserService.goToMainStore();
+          if (UserService.isSeller()) {
+            if (!UserService.goToLastRouteFromProfile()) {
+              UserService.goToMainStore();
+            }
+          } else {
+            UserService.goToStream();
           }
         }
 
@@ -58,6 +62,7 @@ angular.module('instastore')
             UserService.setFacebookProfile(res.data.facebookProfile);
             res.data.profile.stores = res.data.stores;
             if (res.data.store) {
+              TourService.init();
               res.data.profile.store = res.data.store;
               UserService.setBg(res.data.store.bg_url);
               UserService.setAvatar(res.data.store.avatar_url);
@@ -82,6 +87,16 @@ angular.module('instastore')
       'profileService', 'transactionService', '$document',
       function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, messageService,
                 $mdDialog, $mdMedia, $rootScope, rest, InAppService, $timeout, RouterTracker, profileService, transactionService, $document) {
+        init();
+
+        $rootScope.$on('$stateChangeStart',
+            function (event, toState, toParams, fromState, fromParams, options) {
+              if (toState.name == 'grid') {
+                $scope.configSiteHeader.headerMode = 'editstore';
+              } else {
+                $scope.configSiteHeader.headerMode = 'storestream';
+              }
+            });
 
         if (!UserService.isGuest()) {
           $scope.transactionService = transactionService;
@@ -93,14 +108,16 @@ angular.module('instastore')
         }
 
         function checkActiveTransaction($time) {
-          getTransactionCount();
+          getActiveTransactionCount();
           setInterval(function () {
-            getTransactionCount();
+            getActiveTransactionCount();
           }, $time);
         }
 
-        function getTransactionCount() {
-          transactionService.getCount();
+        function getActiveTransactionCount() {
+          transactionService.getCount().then(function () {
+            transactionService.getActiveCount();
+          });
         }
 
         if (!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))) {
@@ -109,11 +126,14 @@ angular.module('instastore')
           UserService.initMyStoreSettings();
         }
 
-        $scope.configSiteHeader = {
-          isManageStore: UserService.isYourStore() && $state.includes('grid') ? true : false,
-          headerMode: UserService.isYourStore() && $state.includes('grid') ? 'editstore' : 'storestream',
-          headerPrevState: UserService.isYourStore() && $state.includes('grid') ? 'editstore' : 'storestream'
-        };
+        function init() {
+          $scope.configSiteHeader = {
+            isYourStore: UserService.isYourStore(),
+            isManageStore: UserService.isYourStore() && $state.includes('grid') ? true : false,
+            headerMode: UserService.isYourStore() && $state.includes('grid') ? 'editstore' : 'storestream',
+            headerPrevState: UserService.isYourStore() && $state.includes('grid') ? 'editstore' : 'storestream'
+          };
+        }
 
         $scope.profile = UserService.getProfile();
 

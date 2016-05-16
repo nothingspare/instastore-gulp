@@ -2,9 +2,9 @@
 
 angular.module('instastore')
     .controller('ProfileIndex', ['$scope', 'UserService', 'rest', '$state',
-      '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$mdDialog', 'messageService',
+      '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$mdDialog', 'messageService', 'VerifyService',
       function ($scope, UserService, rest, $state, $rootScope,
-                uiGmapGoogleMapApi, API_URL, $http, $filter, $mdDialog, messageService) {
+                uiGmapGoogleMapApi, API_URL, $http, $filter, $mdDialog, messageService, VerifyService) {
 
         uiGmapGoogleMapApi
             .then(function () {
@@ -172,7 +172,7 @@ angular.module('instastore')
             $scope.profile.status = 20;
             rest.path = 'v1/profiles';
             rest.putModel($scope.profile).success(function (profile) {
-                  messageService.simpleByCode('profile','saved');
+                  messageService.simpleByCode('profile', 'saved');
                   $scope.profile.seller = true;
                   UserService.setProfile(profile);
                   UserService.setIsSeller(true);
@@ -222,31 +222,24 @@ angular.module('instastore')
           $scope.profile.state = '';
           $scope.profile.zipcode = '';
           rest.putModel($scope.profile).success(function (profile) {
-                messageService.simpleByCode('profile','saved');
+                messageService.simpleByCode('profile', 'saved');
                 UserService.setProfile($scope.profile);
               }
           ).error(messageService.profile);
         };
 
         $scope.textToVerify = function () {
-          rest.path = 'v1/link/verify-phone';
-          var params = {
-            phone: $scope.profile.phone
-          };
-          if ($scope.profile.phone.substring(0, 4) === '+380') {
-            params.country = 'UA';
-          }
-          rest.models(params).error(messageService.profile);
+          VerifyService.phone($scope.profile.phone);
         };
 
         $scope.sendCode = function (code) {
-          rest.path = 'v1/link/confirm-phone';
-          rest.models({code: code}).success(function (res) {
-            $scope.profile.phone = res.phone;
-            $scope.profile.phone_validated_at = res.phone_validated_at;
-            UserService.setProfile($scope.profile);
-            $scope.treeConfig['2'].collapsed = true;
-          }).error(messageService.profile);
+          VerifyService.sendCode(code)
+              .success(function (res) {
+                $scope.profile.phone = res.phone;
+                $scope.profile.phone_validated_at = res.phone_validated_at;
+                UserService.setProfile($scope.profile);
+                $scope.treeConfig['2'].collapsed = true;
+              });
         };
 
       }])
@@ -362,31 +355,45 @@ angular.module('instastore')
           });
         };
 
-        $scope.save = function () {
-          if ($scope.profile.store.place) {
-            if ($scope.profile.store.place.types) {
-              $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.k || $scope.profile.store.place.geometry.location.G;
-              $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.D || $scope.profile.store.place.geometry.location.K;
-              $scope.profile.store.address = $scope.profile.store.place.formatted_address;
-            } else {
-              messageService.simpleByCode('profileStore','addressInvalid');
-            }
+        function validateAdress() {
+          var places = _.filter($scope.profile.store.place.address_components, function (places) {
+            return places.types[0] == "street_number" || places.types[0] == "route";
+          });
+
+          if(places.length != 2) {
+            messageService.simpleByCode('profile', 'location');
           }
-          $scope.profile.store.store_url = $scope.profile.store.store_name;
-          rest.path = 'v1/my-stores';
-          rest.putModel($scope.profile.store).success(function (store) {
 
-            $stateParams['storeurl'] = store.store_url;
-            $state.params['storeurl'] = store.store_url;
-            $location.url(store.store_url + '/mode/');
-            $rootScope.store.store_name = store.store_name;
+          return places.length == 2;
+        }
 
-            messageService.simpleByCode('profileStore', 'saved');
-            delete $scope.profile.store.place;
-            $scope.profile.store = store;
+        $scope.save = function () {
+          if (validateAdress()) {
+            if ($scope.profile.store.place) {
+              if ($scope.profile.store.place.types) {
+                $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.lat();
+                $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.lng();
+                $scope.profile.store.address = $scope.profile.store.place.formatted_address;
+              } else {
+                messageService.simpleByCode('profileStore', 'addressInvalid');
+              }
+            }
+            $scope.profile.store.store_url = $scope.profile.store.store_name;
+            rest.path = 'v1/my-stores';
+            rest.putModel($scope.profile.store).success(function (store) {
 
-            UserService.setProfile($scope.profile);
-          }).error(messageService.alert);
+              $stateParams['storeurl'] = store.store_url;
+              $state.params['storeurl'] = store.store_url;
+              $location.url(store.store_url + '/mode/');
+              $rootScope.store.store_name = store.store_name;
+
+              messageService.simpleByCode('profileStore', 'saved');
+              delete $scope.profile.store.place;
+              $scope.profile.store = store;
+
+              UserService.setProfile($scope.profile);
+            }).error(messageService.alert);
+          }
         };
 
         $scope.linkInstagram = function () {

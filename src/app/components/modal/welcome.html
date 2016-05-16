@@ -1,0 +1,39 @@
+<md-dialog aria-label="Welcome" class="store-item" ng-cloak>
+    <form>
+
+        <div layout="row">
+            <h4 flex class="dialog-header top">Welcome to isOpen </h4>
+            <md-button ng-click="vm.hide()"
+                       class="md-fab md-mini md-primary io-secondary-btn dialog-close-btn"
+                       aria-label="Close Dialog">
+                <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+            </md-button>
+        </div>
+
+        <md-dialog-content>
+            <div layout="column" layout-wrap layout-padding layout-align="center center">
+                <img class="profile store-avatar-followin"
+                     ng-src="{{vm.profile.avatar_url|storeAvatar}}"/>
+
+                <h3>{{vm.profile.fullName}}</h3>
+
+                <p>Let's get you set up. Do you want to</p>
+
+                <div>
+                    <md-button ng-click="vm.buy()" class="md-primary md-raised io-primary-btn io-small-btn">Buy
+                    </md-button>
+                    or
+                    <md-button ng-click="vm.sell()" class="md-primary md-raised io-primary-btn io-small-btn">Sell
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="column">
+            <md-button ng-if="!vm.selectedItem.length" ng-click="vm.hide()" class="flat-btn" md-autofocus>
+                Done
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

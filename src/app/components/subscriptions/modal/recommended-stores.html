@@ -1,0 +1,45 @@
+<md-dialog aria-label="Stores Items" class="store-item" ng-cloak>
+    <form>
+
+        <div layout="row">
+            <h4 flex class="dialog-header top">Here are some recommended stores to follow</h4>
+            <md-button ng-click="vm.hide()"
+                       class="md-fab md-mini md-primary io-secondary-btn dialog-close-btn"
+                       aria-label="Close Dialog">
+                <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+            </md-button>
+        </div>
+
+        <md-dialog-content>
+            <div layout layout-wrap layout-padding>
+                <div ng-repeat="store in vm.subsOther track by $index"
+                     layout-align="center center" layout="column"
+                     flex="33"
+                     class="block-store-follow">
+                    <div layout="column" ng-class="{ 'selected': store.isSelected}" class="store-avatar-block"
+                         ng-click="vm.select(store)"
+                         layout-align="center center">
+                        <div>
+                            <img class="profile store-avatar-followin"
+                                 ng-src="{{store.avatar_url}}"/>
+                            <div class="store-avatar-followin-selected" layout-align="center center" layout="column">
+                            </div>
+                        </div>
+                        <span class="sub_store_name io-truncate">{{store.store_name}}</span>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="column">
+            <md-button ng-if="!vm.selectedItem.length" ng-click="vm.hide()" class="flat-btn" md-autofocus>
+                Done
+            </md-button>
+
+            <md-button ng-if="vm.selectedItem.length" ng-click="vm.following()" class="flat-btn md-primary md-raised" md-autofocus>
+                Follow
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

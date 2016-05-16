@@ -10,8 +10,10 @@
     var service = {
       seller: seller,
       buyer: buyer,
+      getActiveCount: getActiveCount,
       getCount: getCount,
       viewCount: viewCount,
+      activeCount: 0,
       count: 0
     };
     return service;
@@ -19,12 +21,20 @@
     ////////////
 
     function getCount() {
+      rest.path = 'v1/my-transactions';
+      return rest.models({
+        type: 'count'
+      }).success(function (res) {
+        service.count = res;
+      });
+    }
+
+    function getActiveCount() {
         rest.path = 'v1/my-transactions';
         return rest.models({
           type: 'active'
         }).success(function (res) {
-          service.count = res;
-          return 0;
+          service.activeCount = res;
         });
     }
 
