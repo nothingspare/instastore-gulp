@@ -64,8 +64,6 @@
 
     function isFollowing() {
       var deferred = $q.defer();
-      // count().then(function (count) {
-      //   if (!count) {
       var perPage = 6;
       other(perPage)
           .success(function (data) {
@@ -84,8 +82,6 @@
               }
             });
           });
-      // }
-      // });
       return deferred.promise;
     }
 

@@ -43,7 +43,7 @@
     function activate() {
       UserService.initMyStoreSettings();
       SubscriptionService.count().then(function (count) {
-        if(!count && UserService.isSeller()) {
+        if(!count) {
           SubscriptionService.isFollowing()
         }
         StreamService.all().then(function (data) {

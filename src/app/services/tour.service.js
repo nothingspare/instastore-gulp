@@ -5,28 +5,31 @@
       .module('instastore')
       .service('TourService', TourService);
 
-  TourService.$inject = ['$rootScope', 'VerifyService', '$mdDialog', '$mdMedia', 'SubscriptionService', 'ItemService', 'ModalService', 'UserService'];
+  TourService.$inject = ['$rootScope', 'VerifyService', '$mdDialog', '$mdMedia', 'ItemService', 'ModalService', 'UserService'];
   /* @ngInject */
-  function TourService($rootScope, VerifyService, $mdDialog, $mdMedia, SubscriptionService, ItemService, ModalService, UserService) {
+  function TourService($rootScope, VerifyService, $mdDialog, $mdMedia, ItemService, ModalService, UserService) {
     this.init = init;
     this.addItem = addItem;
 
     ////////////////
 
     function init() {
-      isGetItems().then(function (countItems) {
-        var countFollowers = isGetFollowers();
-        if (!countItems && !countFollowers && !VerifyService.isVerify()) {
-          $mdDialog.show({
-            controller: 'DialogController2 as vm',
-            templateUrl: 'app/components/modal/welcome.html',
-            parent: angular.element(document.body),
-            clickOutsideToClose: true,
-            bindToController: true,
-            fullscreen: $mdMedia('xs')
-          });
-        }
-      });
+      var profile = UserService.getProfile();
+      if (profile.seller) {
+        isGetItems().then(function (countItems) {
+          var countFollowers = isGetFollowers();
+          if (!countItems && !countFollowers && !VerifyService.isVerify()) {
+            $mdDialog.show({
+              controller: 'DialogController2 as vm',
+              templateUrl: 'app/components/modal/welcome.html',
+              parent: angular.element(document.body),
+              clickOutsideToClose: true,
+              bindToController: true,
+              fullscreen: $mdMedia('xs')
+            });
+          }
+        });
+      }
     }
 
     function addItem() {
@@ -41,9 +44,7 @@
             bindToController: true,
             fullscreen: $mdMedia('xs'),
             onRemoving: function () {
-              if (UserService.isSeller()) {
-                ModalService.showFinishSettings();
-              }
+              ModalService.showFinishSettings();
             }
           });
         }
