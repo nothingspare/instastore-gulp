@@ -14,24 +14,24 @@
     ////////////////
 
     function init() {
-      // $rootScope.$on('$stateChangeStart',
-      //     function (event, toState, toParams, fromState, fromParams, options) {
-      // isGetFollowers().then(function (countFollowers) {
-      isGetItems().then(function (countItems) {
-        var countFollowers = isGetFollowers();
-        debugger;
-        if (!countItems && !countFollowers && !VerifyService.isVerify()) {
-          $mdDialog.show({
-            controller: 'DialogController2 as vm',
-            templateUrl: 'app/components/modal/welcome.html',
-            parent: angular.element(document.body),
-            clickOutsideToClose: true,
-            bindToController: true,
-            fullscreen: $mdMedia('xs')
+      $rootScope.$on('$stateChangeStart',
+          function (event, toState, toParams, fromState, fromParams, options) {
+            // isGetFollowers().then(function (countFollowers) {
+            isGetItems().then(function (countItems) {
+              var countFollowers = isGetFollowers();
+              debugger;
+              if (!countItems && !countFollowers && !VerifyService.isVerify()) {
+                $mdDialog.show({
+                  controller: 'DialogController2 as vm',
+                  templateUrl: 'app/components/modal/welcome.html',
+                  parent: angular.element(document.body),
+                  clickOutsideToClose: true,
+                  bindToController: true,
+                  fullscreen: $mdMedia('xs')
+                });
+              }
+            });
           });
-        }
-      });
-      // });
       // });
     }
 
@@ -60,7 +60,6 @@
 
     function isGetFollowers() {
       return $rootScope.store.followersAmount;
-      // return SubscriptionService.count();
     }
 
   }

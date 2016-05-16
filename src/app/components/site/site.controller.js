@@ -5,7 +5,7 @@ angular.module('instastore')
 
     })
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', '$state',
-      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService','TourService',
+      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService', 'TourService',
       function ($scope, $rootScope, rest, $state,
                 $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService, TourService) {
 
@@ -13,8 +13,12 @@ angular.module('instastore')
         $scope.isInApp = InAppService.isFacebookInApp();
 
         if (!UserService.isGuest()) {
-          if (!UserService.goToLastRouteFromProfile()) {
-            UserService.goToMainStore();
+          if (UserService.isSeller()) {
+            if (!UserService.goToLastRouteFromProfile()) {
+              UserService.goToMainStore();
+            }
+          } else {
+            UserService.goToStream();
           }
         }
 
@@ -87,14 +91,13 @@ angular.module('instastore')
 
         $rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams, options) {
-              if(toState.name == 'grid') {
+              if (toState.name == 'grid') {
                 $scope.configSiteHeader.headerMode = 'editstore';
               } else {
                 $scope.configSiteHeader.headerMode = 'storestream';
               }
             });
-        
-        
+
         if (!UserService.isGuest()) {
           $scope.transactionService = transactionService;
           var time = 120000;
