@@ -19,7 +19,8 @@
         $mdDialog.show({
           controller: 'ProfileIndex',
           templateUrl: 'app/components/profile/profile.html',
-          parent: angular.element(document.body),
+          parent: angular.element(document.querySelector('.io-container')),
+          // parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,
           fullscreen: $mdMedia('xs')

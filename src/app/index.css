@@ -1,7 +1,6 @@
 /* - - - ingrid - - - - */
 html {
-    /*overflow-x: hidden !important;*/
-    height: auto;
+    height: 100%;
 }
 
 body {
@@ -4360,11 +4359,16 @@ md-toast .md-toast-content {
 .io-mode-selector md-select-value {
     border-bottom-width: 0 !important;
 }
+
 ul.finish-settings {
     margin-top: 20px !important;
 }
 
 ul.finish-settings li {
     font-size: 16px;
-    line-height:3em;
+    line-height: 3em;
+}
+
+.md-dialog-is-showing {
+    overflow: visible !important;
 }
