@@ -34,6 +34,9 @@ angular.module('instastore')
           })
           .addViewBox('alert-off', '0 0 37.22 37.169');
     });
+    // .config(['$compileProvider', function ($compileProvider) {
+    //   $compileProvider.debugInfoEnabled(false);
+    // }]);
 
 switch (window.location.origin) {
   case 'https://isopen.us':

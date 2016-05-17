@@ -6,46 +6,24 @@
       .controller('ItemGrid', ItemGrid);
 
   ItemGrid.$inject = [
-    '$scope',
     'UserService',
-    'StreamService'
+    'AllStoreFactory'
   ];
 
   /* @ngInject */
-  function ItemGrid($scope,
-                      UserService,
-                      StreamService) {
+  function ItemGrid(UserService,
+                    AllStoreFactory) {
 
     var vm = this;
-    vm.busy = true;
-    vm.nextPage = nextPage;
-
-    var page = 1;
-    var pageCount;
+    vm.StreamService = AllStoreFactory;
 
     activate();
 
     ////////////////
 
-    function nextPage() {
-      ++page;
-      if (pageCount >= page) {
-        if (this.busy) return;
-        vm.busy = true;
-        StreamService.all(page, 20).success(function (data) {
-          $scope.items = $scope.items.concat(data);
-          vm.busy = false;
-        });
-      }
-    }
-
     function activate() {
       UserService.initMyStoreSettings();
-      StreamService.all(page, 20).then(function (data) {
-        pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
-        $scope.items = data.data;
-        vm.busy = false;
-      });
+      vm.StreamService.init('v1/streams');
     }
   }
 

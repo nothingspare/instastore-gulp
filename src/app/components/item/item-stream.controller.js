@@ -7,35 +7,20 @@
 
   ItemStream.$inject = [
     'UserService',
-    'StreamService',
+    'AllStoreFactory',
     'SubscriptionService'
   ];
 
   /* @ngInject */
-  function ItemStream(UserService, StreamService, SubscriptionService) {
+  function ItemStream(UserService, AllStoreFactory, SubscriptionService) {
 
     var vm = this;
-    vm.busy = true;
-    vm.nextPage = nextPage;
 
-    var page = 1;
-    var pageCount;
+    vm.StreamService = AllStoreFactory;
 
     activate();
 
     ////////////////
-
-    function nextPage() {
-      ++page;
-      if (pageCount >= page) {
-        if (this.busy) return;
-        vm.busy = true;
-        StreamService.all(page).success(function (data) {
-          vm.items = vm.items.concat(data);
-          vm.busy = false;
-        });
-      }
-    }
 
     function activate() {
       UserService.initMyStoreSettings();
@@ -44,11 +29,7 @@
         if(!count) {
           SubscriptionService.isFollowing()
         }
-        StreamService.all().then(function (data) {
-          pageCount = parseInt(data.headers('X-Pagination-Page-Count'));
-          vm.items = data.data;
-          vm.busy = false;
-        });
+        vm.StreamService.init('v1/streams');
       });
     }
   }

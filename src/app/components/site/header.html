@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <div
-                            ng-if="$state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions')"
+                            ng-if="($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
                             layout layout-align="center center"
                             class="am-fade-and-slide-right am-fade-and-slide-right-add subheader-menu-items">
                         <div layout="column" flex
@@ -156,7 +156,7 @@
 
                 </div>
                 <div ng-if="!isSeller">
-                    <div ng-if="!configSiteHeader.isYourStore"
+                    <div ng-if="!isYourStore"
                          class="subheader-menu-items"
                          layout layout-align="center center">
                         <div layout="column" flex
@@ -181,7 +181,7 @@
                             <div class="title">Location</div>
                         </div>
                     </div>
-                    <div ng-if="configSiteHeader.isYourStore" layout layout-align="center center"
+                    <div ng-if="isYourStore" layout layout-align="center center"
                          class="subheader-menu-items">
                         <div layout="column" flex
                              class="subheader-menu-item"

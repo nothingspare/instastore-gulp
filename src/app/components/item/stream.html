@@ -1,10 +1,11 @@
 <div layout="column"
      layout-align="center center"
      layout-fill
-     infinite-scroll='vm.nextPage()' infinite-scroll-disabled='vm.busy' infinite-scroll-distance='1'
+     infinite-scroll='vm.StreamService.nextPage()' infinite-scroll-disabled='vm.StreamService.busy' infinite-scroll-distance='1'
+     
      class="grid-container itemfeed stream-main">
-    <div layout="column" ng-repeat="item in vm.items track by $index" class="item-container itemview">
+    <div layout="column" ng-repeat="item in vm.StreamService.items track by $index" class="item-container itemview">
         <md-card item-stream item="item" store="store" store-url="item.user.store.store_url"></md-card>
     </div>
-    <md-progress-circular ng-show='vm.busy' class="io-primary-btn progress-margin" md-diameter="40"></md-progress-circular>
+    <md-progress-circular ng-show='vm.StreamService.busy' class="io-primary-btn progress-margin" md-diameter="40"></md-progress-circular>
 </div>
