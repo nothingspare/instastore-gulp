@@ -9,66 +9,60 @@
 
   /* @ngInject */
   function StreamService(rest, messageService, UserService, ITEM_STATUS) {
-    var page = 0;
-    var pageCount;
-
-    var service = {
-      items: [],
-      busy: true,
-      after: '',
-      path: '',
-      userId: '',
-      nextPage: nextPage,
-      all: all,
-      init: init
+    var service = function() {
+      this.items = [];
+      this.busy = true;
+      this.after = '';
+      this.path = '';
+      this.userId = '';
+      this.page = 1;
+      this.pageCount = 0;
     };
-    return service;
 
     ////////////////
 
-    function nextPage() {
-      console.log("next page");
-      ++page;
-      if (pageCount >= page || page == 1) {
-        if (service.busy && page != 1) return;
-        service.busy = true;
-        getItems();
+    service.prototype.nextPage = function() {
+      // console.log("next page");
+      if (this.pageCount >= this.page || this.page == 1) {
+        if (this.busy && this.page != 1) return;
+        this.busy = true;
+        this.getItems();
       }
-    }
+    };
 
-    function init(path, userId) {
-      page = 0;
-      service.items = [];
-      service.path = path;
-      service.userId = userId;
-      nextPage();
-    }
+    service.prototype.init = function(path, userId) {
+      // this.page = 0;
+      // this.items = [];
+      this.path = path;
+      this.userId = userId;
+      this.nextPage();
+    };
 
-    function getItems() {
-      if (service.path) {
-        all(page).then(function (response) {
-          pageCount = parseInt(response.headers('X-Pagination-Page-Count'));
-          service.items = service.items.concat(response.data);
-          service.busy = false;
-
-        });
+    service.prototype.getItems = function() {
+      if (this.path) {
+        this.all(this.page).then(function (response) {
+          this.pageCount = parseInt(response.headers('X-Pagination-Page-Count'));
+          this.items = this.items.concat(response.data);
+          this.busy = false;
+          ++this.page;
+        }.bind(this));
       }
-    }
+    };
 
-    function all(page, perPage) {
+    service.prototype.all = function(page, perPage) {
       var page = page || 1;
       var perPage = perPage || 5;
 
-      rest.path = service.path;
+      rest.path = this.path;
 
       var params = {
         'per-page': perPage,
         'page': page
       };
 
-      if (service.userId) {
+      if (this.userId) {
         var addParams = {
-          user_id: service.userId,
+          user_id: this.userId,
           status: ITEM_STATUS.active
         };
         params = angular.extend(params, addParams);
@@ -79,6 +73,8 @@
             messageService.alert(e);
             UserService.goToMainStore();
           });
-    }
+    };
+
+    return service;
   }
 })();

@@ -2,14 +2,14 @@
 
 angular.module('instastore')
     .controller('ItemIndex', ['$scope', 'rest', 'UserService', '$stateParams', '$rootScope',
-      '$state', 'feedHelper', 'messageService', '$filter', 'ITEM_STATUS', '$auth', 'InAppService', 'StreamService',
+      '$state', 'feedHelper', 'messageService', '$filter', 'ITEM_STATUS', '$auth', 'InAppService', 'StreamService', 'MyStoreFactory',
       function ($scope, rest, UserService, $stateParams, $rootScope,
-                $state, feedHelper, messageService, $filter, ITEM_STATUS, $auth, InAppService, StreamService) {
+                $state, feedHelper, messageService, $filter, ITEM_STATUS, $auth, InAppService, StreamService, MyStoreFactory) {
 
         InAppService.warnIfInApp();
 
         var vm = this;
-        vm.StreamService = StreamService;
+
 
         //////////////
 
@@ -28,29 +28,19 @@ angular.module('instastore')
                   UserService.goToMainStore();
                   return;
                 }
-                // StreamService.setUserId(store.user_id);
-                StreamService.init('v1/items', store.user_id);
+                vm.StreamService = new StreamService();
+                vm.StreamService.init('v1/items', store.user_id);
+                
                 if (UserService.isSeller()) {
                   $scope.showPanel = true;
                 }
 
-                // rest.path = 'v1/items';
-                // rest.models({user_id: store.user_id, status: ITEM_STATUS.active}).success(function (data) {
-                //   if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
-                //   $scope.items = data;
-                // });
               }).error(messageService.alert);
             }
             else {
               UserService.initMyStoreSettings();
-
-              StreamService.init('v1/my-items');
-
-              // rest.path = 'v1/my-items';
-              // rest.models().success(function (data) {
-              //   if (data.length === 0 && UserService.isSeller()) $scope.showPanel = true;
-              //   $scope.items = data;
-              // }).error(messageService.alert);
+              vm.StreamService = MyStoreFactory;
+              vm.StreamService.init('v1/my-items');
             }
           }
         }

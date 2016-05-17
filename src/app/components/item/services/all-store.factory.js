@@ -3,12 +3,12 @@
 
   angular
       .module('instastore')
-      .factory('MyStoreFactory', MyStoreFactory);
+      .factory('AllStoreFactory', AllStoreFactory);
 
-  MyStoreFactory.$inject = ['StreamService'];
+  AllStoreFactory.$inject = ['StreamService'];
 
   /* @ngInject */
-  function MyStoreFactory(StreamService) {
+  function AllStoreFactory(StreamService) {
     var service = new StreamService();
     return service;
 

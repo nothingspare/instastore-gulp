@@ -7,16 +7,16 @@
 
   ItemStream.$inject = [
     'UserService',
-    'StreamService',
+    'AllStoreFactory',
     'SubscriptionService'
   ];
 
   /* @ngInject */
-  function ItemStream(UserService, StreamService, SubscriptionService) {
+  function ItemStream(UserService, AllStoreFactory, SubscriptionService) {
 
     var vm = this;
 
-    vm.StreamService = StreamService;
+    vm.StreamService = AllStoreFactory;
 
     activate();
 
@@ -29,7 +29,7 @@
         if(!count) {
           SubscriptionService.isFollowing()
         }
-        StreamService.init('v1/streams');
+        vm.StreamService.init('v1/streams');
       });
     }
   }

@@ -7,15 +7,15 @@
 
   ItemGrid.$inject = [
     'UserService',
-    'StreamService'
+    'AllStoreFactory'
   ];
 
   /* @ngInject */
   function ItemGrid(UserService,
-                    StreamService) {
+                    AllStoreFactory) {
 
     var vm = this;
-    vm.StreamService = StreamService;
+    vm.StreamService = AllStoreFactory;
 
     activate();
 
@@ -23,7 +23,7 @@
 
     function activate() {
       UserService.initMyStoreSettings();
-      StreamService.init('v1/streams');
+      vm.StreamService.init('v1/streams');
     }
   }
 
