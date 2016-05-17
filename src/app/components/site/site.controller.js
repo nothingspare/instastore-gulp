@@ -198,11 +198,11 @@ angular.module('instastore')
         };
 
         $scope.showProfile = function (ev) {
-                if (UserService.isGuest()) {
-                    $auth.authenticate('facebook').then(authentificateCallback, messageService.satellizerAlert);
-                } else {
-          profileService.show(ev);
-                }
+          if (UserService.isGuest()) {
+            $auth.authenticate('facebook').then(authentificateCallback, messageService.satellizerAlert);
+          } else {
+            profileService.show(ev);
+          }
         };
 
         $scope.logout = function () {
