@@ -1,4 +1,4 @@
-<div ng-controller="LocationIndex" ng-if="store.show_store_location>0" class="location-tab-content">
+<div ng-controller="ItemLocation" ng-if="store.show_store_location>0" class="location-tab-content">
     <h5 layout="column" layout-align="center center">
         <b>Store location</b>
         <span>{{store.address}}</span>
@@ -10,9 +10,11 @@
     </ui-gmap-google-map>
 </div>
 <div ng-if="store.show_store_location<1">
-    <h5>
-        <b>Store location</b>
-        <br>
-        This store is online only
-    </h5>
+    <div ng-if="store.show_store_location<1">
+        <h5 layout="column" layout-align="center center">
+            <b>Store location</b>
+            <br>
+            {{city}}
+        </h5>
+    </div>
 </div>

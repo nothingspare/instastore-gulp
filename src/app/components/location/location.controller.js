@@ -2,12 +2,11 @@
 
 angular.module('instastore')
     .controller('LocationIndex', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
+        debugger;
         uiGmapGoogleMapApi
             .then(function () {
-                return uiGmapGoogleMapApi;
-            })
-            .then(function () {
                 if ($rootScope.store) {
+
                     var regexp = /(^\s)?(\w\s?)+\s?,/g;
                     var city = $rootScope.store.address.match(regexp)[2].replace(',','');
 

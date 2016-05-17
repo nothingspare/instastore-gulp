@@ -39,7 +39,7 @@ angular.module('instastore')
             }
             else {
               UserService.initMyStoreSettings();
-              vm.StreamService = MyStoreFactory;
+              vm.StreamService = new StreamService();
               vm.StreamService.init('v1/my-items');
             }
           }
@@ -109,11 +109,11 @@ angular.module('instastore')
       'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
       'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', '$window',
       'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia', 'itemsAmount', 'InAppService', 'messageService',
-      'urlsThere', 'VerifyService',
+      'urlsThere', 'VerifyService', '$rootScope',
       function ($scope, rest, $state, feedHelper, UserService, $stateParams,
                 $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
                 ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
-                itemsAmount, InAppService, messageService, urlsThere, VerifyService) {
+                itemsAmount, InAppService, messageService, urlsThere, VerifyService, $rootScope) {
         var vm = this;
 
         $scope.VerifyService = VerifyService;
@@ -505,6 +505,21 @@ angular.module('instastore')
           }).error(messageService.alert);
         };
 
+        checkCity();
+
+        function checkCity() {
+          var profile = UserService.getProfile();
+
+          var regexp = /(^\s)?(\w\s?)+\s?,/g;
+          var city = profile.store.address.match(regexp)[2].replace(',','');
+
+          if(/\d+/.test(city)) {
+            $scope.city = profile.store.address.match(regexp)[1].replace(',','');
+          } else {
+            $scope.city = city;
+          }
+        }
+
       }
     ])
     .controller('ItemAdd', ['$scope', 'rest', 'ITEM_STATUS', 'API_URL',
@@ -703,6 +718,15 @@ angular.module('instastore')
             $scope.renderMap = true;
             var profile = UserService.getProfile();
             if (profile) {
+              var regexp = /(^\s)?(\w\s?)+\s?,/g;
+              var city = profile.store.address.match(regexp)[2].replace(',','');
+
+              if(/\d+/.test(city)) {
+                $scope.city = profile.store.address.match(regexp)[1].replace(',','');
+              } else {
+                $scope.city = city;
+              }
+
               $scope.map = {
                 center: {latitude: profile.store.store_long, longitude: profile.store.store_lat},
                 zoom: 14

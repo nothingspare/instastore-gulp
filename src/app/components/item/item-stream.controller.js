@@ -7,16 +7,16 @@
 
   ItemStream.$inject = [
     'UserService',
-    'AllStoreFactory',
+    'StreamService',
     'SubscriptionService'
   ];
 
   /* @ngInject */
-  function ItemStream(UserService, AllStoreFactory, SubscriptionService) {
+  function ItemStream(UserService, StreamService, SubscriptionService) {
 
     var vm = this;
 
-    vm.StreamService = AllStoreFactory;
+    vm.StreamService = new StreamService();
 
     activate();
 
