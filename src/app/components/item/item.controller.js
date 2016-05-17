@@ -28,7 +28,8 @@ angular.module('instastore')
                   UserService.goToMainStore();
                   return;
                 }
-                StreamService.init('v1/items');
+                // StreamService.setUserId(store.user_id);
+                StreamService.init('v1/items', store.user_id);
                 if (UserService.isSeller()) {
                   $scope.showPanel = true;
                 }

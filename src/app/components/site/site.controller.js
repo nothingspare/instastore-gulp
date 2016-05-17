@@ -87,24 +87,33 @@ angular.module('instastore')
       'profileService', 'transactionService', '$document',
       function ($scope, $state, UserService, $stateParams, $location, $anchorScroll, $auth, messageService,
                 $mdDialog, $mdMedia, $rootScope, rest, InAppService, $timeout, RouterTracker, profileService, transactionService, $document) {
-        init();
+        $scope.profile = UserService.getProfile();
+        $scope.sellerAllowed = $scope.profile.seller;
 
-        $rootScope.$on('$stateChangeStart',
-            function (event, toState, toParams, fromState, fromParams, options) {
-              if (toState.name == 'grid') {
-                $scope.configSiteHeader.headerMode = 'editstore';
-              } else {
-                $scope.configSiteHeader.headerMode = 'storestream';
-              }
-            });
+        activate();
 
-        if (!UserService.isGuest()) {
-          $scope.transactionService = transactionService;
-          var time = 120000;
-          checkActiveTransaction(time);
-        } else {
-          UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
-          $auth.authenticate('facebook').then(authentificateCallback, messageService.satellizerAlert);
+        //////////////////////////////////
+
+        function activate() {
+          stateChangeStart();
+          checkIsGuest();
+          chekIsStates();
+          configurateHeader();
+        }
+
+        function stateChangeStart() {
+          $rootScope.$on('$stateChangeStart',
+              function (event, toState, toParams, fromState, fromParams, options) {
+                if (toState.name == 'grid') {
+                  $scope.configSiteHeader.headerMode = 'editstore';
+                } else {
+                  $scope.configSiteHeader.headerMode = 'storestream';
+                }
+
+                if (toParams.storeurl && $scope.profile.store) {
+                  $rootScope.isYourStore = toParams.storeurl === $scope.profile.store.store_url;
+                }
+              });
         }
 
         function checkActiveTransaction($time) {
@@ -120,13 +129,26 @@ angular.module('instastore')
           });
         }
 
-        if (!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))) {
-          UserService.initStore();
-        } else {
-          UserService.initMyStoreSettings();
+        function checkIsGuest() {
+          if (!UserService.isGuest()) {
+            $scope.transactionService = transactionService;
+            var time = 120000;
+            checkActiveTransaction(time);
+          } else {
+            UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
+            $auth.authenticate('facebook').then(authentificateCallback, messageService.satellizerAlert);
+          }
         }
 
-        function init() {
+        function chekIsStates() {
+          if (!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))) {
+            UserService.initStore();
+          } else {
+            UserService.initMyStoreSettings();
+          }
+        }
+
+        function configurateHeader() {
           $scope.configSiteHeader = {
             isYourStore: UserService.isYourStore(),
             isManageStore: UserService.isYourStore() && $state.includes('grid') ? true : false,
@@ -135,10 +157,24 @@ angular.module('instastore')
           };
         }
 
-        $scope.profile = UserService.getProfile();
+        function authentificateCallback(res) {
+          if (UserService.getProfile().lastRoute) {
+            var lastRoute = UserService.getProfile().lastRoute;
+          }
+          UserService.login(res.data.token);
+          UserService.setFacebookProfile(res.data.facebookProfile);
+          res.data.profile.stores = res.data.stores;
+          if (res.data.store) {
+            res.data.profile.store = res.data.store;
+            UserService.setBg(res.data.store.bg_url);
+            UserService.setAvatar(res.data.store.avatar_url);
+          }
+          res.data.profile.lastRoute = lastRoute;
+          UserService.setProfile(res.data.profile);
+          $scope.profile = res.data.profile;
+        }
 
         $scope.toggleMenuState = function () {
-
           if ($scope.configSiteHeader.headerMode !== $scope.configSiteHeader.isManageStore) {
             switch ($scope.configSiteHeader.headerMode) {
               case 'editstore':
@@ -163,8 +199,6 @@ angular.module('instastore')
           profileService.show(ev);
         };
 
-        $scope.sellerAllowed = $scope.profile.seller;
-
         $scope.logout = function () {
           UserService.logout();
           $mdDialog.hide();
@@ -187,23 +221,6 @@ angular.module('instastore')
             });
           }
         };
-
-        function authentificateCallback(res) {
-          if (UserService.getProfile().lastRoute) {
-            var lastRoute = UserService.getProfile().lastRoute;
-          }
-          UserService.login(res.data.token);
-          UserService.setFacebookProfile(res.data.facebookProfile);
-          res.data.profile.stores = res.data.stores;
-          if (res.data.store) {
-            res.data.profile.store = res.data.store;
-            UserService.setBg(res.data.store.bg_url);
-            UserService.setAvatar(res.data.store.avatar_url);
-          }
-          res.data.profile.lastRoute = lastRoute;
-          UserService.setProfile(res.data.profile);
-          $scope.profile = res.data.profile;
-        }
 
         $scope.goBack = function () {
           RouterTracker.goToLastRoute();
@@ -238,7 +255,6 @@ angular.module('instastore')
             }).error(messageService.alert);
           }
         };
-
       }])
 
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
