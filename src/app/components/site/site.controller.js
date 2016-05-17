@@ -104,7 +104,7 @@ angular.module('instastore')
                 checkActiveTransaction(time);
             } else {
                 UserService.saveLastRouteToProfile({from: $state.current, fromParams: $stateParams});
-                if (!($state.includes('grid') || $state.includes('itemview'))) {
+                if (!($state.includes('grid') || $state.includes('itemview') || $state.includes('location') || $state.includes('store'))) {
                     $auth.authenticate('facebook').then(authentificateCallback, messageService.satellizerAlert);
                 }
             }
@@ -162,7 +162,11 @@ angular.module('instastore')
             };
 
             $scope.showProfile = function (ev) {
-                profileService.show(ev);
+                if (UserService.isGuest()) {
+                    $auth.authenticate('facebook').then(authentificateCallback, messageService.satellizerAlert);
+                } else {
+                    profileService.show(ev);
+                }
             };
 
             $scope.sellerAllowed = $scope.profile.seller;
