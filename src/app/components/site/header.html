@@ -100,6 +100,7 @@
 
         <div id="container2">
             <div id="navigation2">
+                <!-- Seller middle nav-->
                 <div ng-if="isSeller">
                     <div
                             ng-if="!($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
@@ -127,6 +128,7 @@
                             <div class="title">Stream</div>
                         </div>
                     </div>
+
                     <div
                             ng-if="($state.includes('stream') || $state.includes('stream-grid') || $state.includes('subscriptions'))"
                             layout layout-align="center center"
@@ -155,7 +157,10 @@
                     </div>
 
                 </div>
+
+                <!-- Seller middle nav-->
                 <div ng-if="!isSeller">
+
                     <div ng-if="!isYourStore"
                          class="subheader-menu-items"
                          layout layout-align="center center">

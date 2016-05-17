@@ -32,7 +32,7 @@
               });
             }
           }
-          else if (current_scroll >= hheight) {
+          else if (current_scroll >= hheight || current_scroll == 0) {
             element.removeClass('hideh');
             element.css({
               'top': "0px"

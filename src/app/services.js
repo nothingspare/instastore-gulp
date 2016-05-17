@@ -405,11 +405,6 @@ angular.module('instastore')
 
         $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
           routeHistory.push({route: from, routeParams: fromParams, to: to, toParams: toParams});
-          if (routeHistory[routeHistory.length - 3]
-              && routeHistory[routeHistory.length - 1]
-              && angular.equals(routeHistory[routeHistory.length - 3], routeHistory[routeHistory.length - 1])) {
-            routeHistory[routeHistory.length - 4] ? goToRoute(routeHistory[routeHistory.length - 4]) : goToStreamRoute();
-          }
         });
 
         function getRouteHistory() {
