@@ -65,6 +65,7 @@ angular.module('instastore')
           }
         };
 
+
         if (!$scope.profile.seller) {
           delete($scope.treeConfig.card);
           $scope.treeConfig['5'] = {
@@ -73,6 +74,14 @@ angular.module('instastore')
             toggleThis: true,
             icon: 'local_mall',
             subs: [{name: 'APPLY FOR A STORE'}],
+            collapsed: true
+          };
+          $scope.treeConfig['6'] = {
+            code: 'desc',
+            name: 'DESCRIPTION',
+            toggleThis: true,
+            icon: 'description',
+            subs: [{name: 'Upload and Crop'}],
             collapsed: true
           };
           $scope.treeConfig['4'].name = 'UPDATE PROFILE PHOTO';
@@ -87,6 +96,8 @@ angular.module('instastore')
             case 'address':
               return true;
             case 'crop':
+              return true;
+            case 'desc':
               return true;
             case 'own_store':
               return true;

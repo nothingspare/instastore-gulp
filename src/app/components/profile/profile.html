@@ -39,6 +39,9 @@
                                     <div ng-if="unit.code === 'address'" class="main-title">
                                         ENTER YOUR POSTAL ADDRESS
                                     </div>
+                                    <div ng-if="unit.code === 'desc'" class="main-title">
+                                        {{unit.name}}
+                                    </div>
                                     <div ng-if="unit.code === 'name'" class="main-title">
                                         {{profile.fullName}}
                                     </div>
@@ -203,6 +206,36 @@
                                                 </md-button>
                                             </div>
                                         </div>
+                                        <div ng-if="unit.code === 'desc'" layout="column" layout-padding>
+                                            <ng-form name="specialitiesForm" class="specialities">
+                                                <br>
+                                                <md-input-container class="md-block">
+                                                    <label>Store description</label>
+                                                    <textarea class="textarea-left" ng-model="profile.store.description"
+                                                              md-maxlength="255"
+                                                              required
+                                                              name="store_description"
+                                                              rows="8"
+                                                              md-select-on-focus></textarea>
+                                                    <div ng-messages="specialitiesForm.store_description.$error">
+                                                        <div ng-message="md-maxlength">The name has to be less than 60
+                                                                                       characters long.
+                                                        </div>
+                                                    </div>
+                                                </md-input-container>
+
+                                                <div layout layout-align="center start"
+                                                     class="am-fade-and-scale">
+                                                    <center>
+                                                        <md-button
+                                                            class="md-primary md-raised less-margin io-primary-btn"
+                                                            ng-click="unit.collapsed = !collapsed; save()">
+                                                            &nbsp;Save&nbsp;
+                                                        </md-button>
+                                                    </center>
+                                                </div>
+                                            </ng-form>
+                                        </div>
                                         <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
                                             <p class="text-align-center">Upload a full-length picture of yourself for
                                                 your background image. Then crop your face to create your profile.
@@ -353,9 +386,12 @@
                                                 </md-input-container>
                                                 <md-input-container class="md-block">
                                                     <label>Store description</label>
-                                                    <input required name="store_description"
-                                                           ng-model="profile.store.description"/>
-
+                                                    <textarea class="textarea-left" ng-model="profile.store.description"
+                                                              md-maxlength="255"
+                                                              required
+                                                              name="store_description"
+                                                              rows="8"
+                                                              md-select-on-focus></textarea>
                                                     <div ng-messages="specialitiesForm.store_description.$error">
                                                         <div ng-message="md-maxlength">The name has to be less than 60
                                                             characters long.

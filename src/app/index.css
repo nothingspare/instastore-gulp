@@ -4372,3 +4372,7 @@ ul.finish-settings li {
 .md-dialog-is-showing {
     overflow: visible !important;
 }
+
+.textarea-left {
+    text-align: left;
+}
