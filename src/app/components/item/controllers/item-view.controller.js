@@ -38,8 +38,6 @@
 
     ////////////////
     function activate() {
-      checkCity();
-
       if (!$scope.item) {
         $scope.item = {};
         if (!UserService.isGuest()) {
@@ -54,6 +52,7 @@
           //rest.path is above
           rest.models({item_url: $stateParams.itemurl}).success(function (data) {
             $scope.item = data[0];
+            checkCity();
           }).error(messageService.alert);
         }
         else {
@@ -89,18 +88,14 @@
     }
 
     function checkCity() {
-     UserService.initStore().then(function () {
-       var regexp = /(^\s)?(\w\s?)+\s?,/g;
-       var city = $rootScope.store.address.match(regexp)[2].replace(',', '');
+      var regexp = /(^\s)?(\w\s?)+\s?,/g;
+      var city = $scope.item.user.store.address.match(regexp)[2].replace(',', '');
 
-       if (/\d+/.test(city)) {
-         $scope.city = $rootScope.store.address.match(regexp)[1].replace(',', '');
-       } else {
-         $scope.city = city;
-       }
-     });
-
-
+      if (/\d+/.test(city)) {
+        $scope.city = $scope.item.user.store.address.match(regexp)[1].replace(',', '');
+      } else {
+        $scope.city = city;
+      }
     }
 
     $scope.warnIfInApp = function () {
