@@ -72,8 +72,8 @@ angular.module('instastore')
         }
       };
     })
-    .factory('UserService', ['$rootScope', '$injector', '$cookies', '$window',
-      function ($rootScope, $injector, $cookies, $window) {
+    .factory('UserService', ['$rootScope', '$injector', '$cookies', '$window', '$q',
+      function ($rootScope, $injector, $cookies, $window, $q) {
         var currentUser;
         var isInvited;
         var isManageStore;
@@ -195,6 +195,7 @@ angular.module('instastore')
             this.initBgAndAvatar();
           },
           initStore: function () {
+            var deferred = $q.defer();
             if (this.routeStoreurlCheck()) {
               var state = $injector.get('$state');
               var profile = this.getProfile();
@@ -205,7 +206,7 @@ angular.module('instastore')
               if (stateParams.storeurl) {
                 if (!this.isYourStore(stateParams.storeurl)) {
                   rest.path = this.isGuest() ? 'v1/stores' : 'v1/my-stores';
-                  rest.models({store_url: stateParams.storeurl}).success(function (data) {
+                  return rest.models({store_url: stateParams.storeurl}).success(function (data) {
                     var store = data[0];
                     if (!store) {
                       messageService.simpleAlert('nostorewithurl');
@@ -215,7 +216,7 @@ angular.module('instastore')
                     if (!store.avatar_url) store.avatar_url = '../assets/images/background1circle290x290px.jpg';
                     if (state.includes('store')) {
                       rest.path = 'v1/user-lastitems';
-                      rest.models({user_id: store.user_id}).success(function (data) {
+                       rest.models({user_id: store.user_id}).success(function (data) {
                         store.items = data;
                         $rootScope.bgUrl = store.bg_url;
                         $rootScope.avatarUrl = store.avatar_url;
@@ -228,7 +229,6 @@ angular.module('instastore')
                       $rootScope.store = store;
                       $rootScope.bgUrl = store.bg_url;
                     }
-
                   }).error(messageService.alert);
                 }
                 else {
@@ -249,6 +249,7 @@ angular.module('instastore')
                     }
                   }
                 }
+                return deferred.promise;
               }
             }
           },
