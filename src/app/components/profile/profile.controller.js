@@ -78,7 +78,7 @@ angular.module('instastore')
           };
           $scope.treeConfig['6'] = {
             code: 'desc',
-            name: 'PRESENT YOURSELF',
+            name: 'ABOUT YOU',
             toggleThis: true,
             icon: 'description',
             subs: [{name: 'Upload and Crop'}],

@@ -248,7 +248,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
   }]);
 
-app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector, TourService) {
+app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector, TourService, UserService) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.$mdMedia = $mdMedia;
@@ -256,6 +256,10 @@ app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector, To
       && deviceDetector.browser === 'unknown'
       && deviceDetector.browser_version === '0'
       && deviceDetector.os_version === 'unknown';
+
+  // var profile = UserService.getProfile();
+  // debugger;
+  // $rootScope.isSeller = profile.store.store_url;
 });
 
 
