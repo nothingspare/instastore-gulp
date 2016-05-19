@@ -25,10 +25,10 @@
       }
     }
 
-    function hideHeader(element) {
+    function hideHeader(element, hheight) {
       element.addClass('hideh');
       element.css({
-        'top': -height + "px",
+        'top': -hheight + "px",
         'transition': 'top 0.25s',
         '-webkit-transition': 'top 0.25s',
         '-moz-transition': 'top 0.25s',
@@ -50,7 +50,7 @@
             showHeader(element);
           }
           else {
-            hideHeader(element);
+            hideHeader(element, hheight);
           }
         }
         else if (current_scroll >= hheight || current_scroll == 0) {
