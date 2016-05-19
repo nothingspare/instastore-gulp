@@ -68,15 +68,8 @@ angular.module('instastore')
 
         if (!$scope.profile.seller) {
           delete($scope.treeConfig.card);
+          $scope.treeConfig['4'].name = 'UPDATE PROFILE PHOTO';
           $scope.treeConfig['5'] = {
-            code: 'own_store',
-            name: 'APPLY FOR A STORE',
-            toggleThis: true,
-            icon: 'local_mall',
-            subs: [{name: 'APPLY FOR A STORE'}],
-            collapsed: true
-          };
-          $scope.treeConfig['6'] = {
             code: 'desc',
             name: 'ABOUT YOU',
             toggleThis: true,
@@ -84,7 +77,14 @@ angular.module('instastore')
             subs: [{name: 'Upload and Crop'}],
             collapsed: true
           };
-          $scope.treeConfig['4'].name = 'UPDATE PROFILE PHOTO';
+          $scope.treeConfig['6'] = {
+            code: 'own_store',
+            name: 'APPLY FOR A STORE',
+            toggleThis: true,
+            icon: 'local_mall',
+            subs: [{name: 'APPLY FOR A STORE'}],
+            collapsed: true
+          };
         }
 
         $scope.canToggle = function (code) {
