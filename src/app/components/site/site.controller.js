@@ -99,6 +99,7 @@ angular.module('instastore')
           checkIsGuest();
           chekIsStates();
           configurateHeader();
+          $rootScope.isYourStore = UserService.isYourStore();
         }
 
         function stateChangeStart() {
