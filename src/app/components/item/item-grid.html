@@ -9,7 +9,9 @@
                      ng-click="toggleItemStatus(item)"></div>
                 <div ng-class="item.status|itemStatus">
                     <div ui-sref="itemview({storeurl:item.user.store.store_url,itemurl:item.item_url,tab:1})"
-                         style="background-image:url({{item.images[0].image_url}});"
+                         ng-style="item.images[0].image_url
+                         ? {'background-image':'url(' + item.images[0].image_url + ')'}
+                         : {'background-image':'url(https://placeholdit.imgix.net/~text?txtsize=16&bg=fff%26text%3Dno%2Bimage&txt=no+image&w=100&h=100)'} "
                          class="grid-image">
                         <div ng-if="item.hasActions" class="item-cta"></div>
                         <div
