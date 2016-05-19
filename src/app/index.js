@@ -252,14 +252,11 @@ app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector, To
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.$mdMedia = $mdMedia;
-  $rootScope.isHomeScreen = deviceDetector.os === 'ios'
-      && deviceDetector.browser === 'unknown'
-      && deviceDetector.browser_version === '0'
-      && deviceDetector.os_version === 'unknown';
-
-  // var profile = UserService.getProfile();
-  // debugger;
-  // $rootScope.isSeller = profile.store.store_url;
+  $rootScope.isHomeScreen = true;
+  // $rootScope.isHomeScreen = deviceDetector.os === 'ios'
+  //     && deviceDetector.browser === 'unknown'
+  //     && deviceDetector.browser_version === '0'
+  //     && deviceDetector.os_version === 'unknown';
 });
 
 
