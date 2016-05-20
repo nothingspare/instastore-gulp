@@ -281,3 +281,9 @@ div.item-sale-status h5 {
 .progress-margin {
     margin: 20px;
 }
+
+.slider-profile-avatar {
+    position: absolute;
+    z-index: 1;
+    margin: 20px;
+}

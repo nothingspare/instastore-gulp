@@ -1,4 +1,3 @@
-
 <div layout="column" layout-align="center center" layout-fill class="grid-container itemfeed no-print top-margin">
 
     <div layout="column" class="item-container itemview">
@@ -6,16 +5,17 @@
             <div ng-if="showHearts" class="rowfree">
                 <div class="heartoverimage2 heart-reveal-large"></div>
             </div>
-            <ul rn-carousel rn-carousel-buffered rn-carousel-indicator
+            <img ui-sref="store({storeurl:item.user.store.store_url})"
+                 class="profile item-stream-profile slider-profile-avatar"
+                 ng-src="{{item.user.store.avatar_url}}" />
+
+            <ul ng-if="item.images.length"
+                rn-carousel rn-carousel-buffered rn-carousel-indicator
                 rn-carousel-controls
                 rn-carousel-index="carouselIndex"
                 style="background: url('../assets/images/icon100.gif') center center no-repeat;">
 
                 <li ng-repeat="image in item.images">
-                    <div layout-margin
-                         ui-sref="store({storeurl:item.user.store.store_url})" style="position: absolute; ">
-                        <img class="profile item-stream-profile" ng-src="{{item.user.store.avatar_url}}">
-                    </div>
                     <div ng-if="image.image_url" class="resizable-image"
                          ng-style="{'background-image': 'url(' + image.image_url + ')'};"
                          style="background-repeat: no-repeat; background-size: contain;">
@@ -34,8 +34,12 @@
                     <md-tab>
                         <md-tab-label>
                             <div layout layout-align="center center">
-                                <div ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)" class="buy-circle"></div>
-                                <span ng-if="(item.price && item.quantity && item.box && item.price > 0) && !(item.itemSellsQuantity == item.quantity)" class="price-tag">${{item.price|number:0}}</span>
+                                <div
+                                    ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)"
+                                    class="buy-circle"></div>
+                                <span
+                                    ng-if="(item.price && item.quantity && item.box && item.price > 0) && !(item.itemSellsQuantity == item.quantity)"
+                                    class="price-tag">${{item.price|number:0}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
@@ -90,8 +94,12 @@
                     <md-tab md-on-select="changeStateAndUrlToTab('0');goToBottom()">
                         <md-tab-label>
                             <div layout layout-align="center center">
-                                <div ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)" class="buy-circle"></div>
-                                <span ng-if="(item.price && item.quantity && item.box && item.price > 0) && !(item.itemSellsQuantity == item.quantity)" class="price-tag">${{item.price|number:0}}</span>
+                                <div
+                                    ng-if="!item.price || !item.quantity || !item.box || (item.itemSellsQuantity == item.quantity)"
+                                    class="buy-circle"></div>
+                                <span
+                                    ng-if="(item.price && item.quantity && item.box && item.price > 0) && !(item.itemSellsQuantity == item.quantity)"
+                                    class="price-tag">${{item.price|number:0}}</span>
                             </div>
                         </md-tab-label>
                         <md-tab-body>
@@ -130,7 +138,7 @@
                     </md-tab>
                 </md-tabs>
                 <div id="mainView" style="clear:both;"></div>
-            </md-content>
+            </md-contentflex>
         </md-card>
     </div>
 </div>
