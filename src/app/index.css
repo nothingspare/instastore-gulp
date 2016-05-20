@@ -3974,6 +3974,11 @@ svg.svg-debit {
     padding: 0 14px !important;
 }
 
+.md-button.io-middle-btn {
+    font-size: 18px !important;
+    padding: 0 14px !important;
+}
+
 .io-avatar {
     width: 28px;
     height: 28px;

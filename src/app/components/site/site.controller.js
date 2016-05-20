@@ -5,12 +5,16 @@ angular.module('instastore')
 
     })
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', '$state',
-      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService', 'TourService',
+      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService', 'TourService', '$cookies',
       function ($scope, $rootScope, rest, $state,
-                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService, TourService) {
+                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService, TourService, $cookies) {
 
         InAppService.warnIfInApp();
         $scope.isInApp = InAppService.isFacebookInApp();
+
+        var profile = UserService.getProfile();
+        debugger;
+        $scope.store = profile.store;
 
         if (!UserService.isGuest()) {
           if (UserService.isSeller()) {
