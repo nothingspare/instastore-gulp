@@ -108,32 +108,31 @@
       } else {
         if ($scope.item.instagram_sharing_enabled) {
           $location.hash('start');
-          $mdDialog.show({
-            templateUrl: 'app/components/item/login-instagram.html',
-            parent: angular.element(document.body),
-            scope: $scope,
-            preserveScope: true,
-            clickOutsideToClose: true,
-            fullscreen: $mdMedia('xs')
-          });
+          showDialogLoginInstagram();
         }
       }
     };
 
-    $scope.loginInstagram = function () {
+    function loginInstagram() {
       $scope.item.instagram_sharing_enabled = false;
-      $http.post(API_URL + 'v1/link/instagram-login', {
-        username: $scope.igUsername,
-        password: $scope.igPassword
-      }).success(function (res) {
-        if (res) {
-          $mdDialog.hide();
-          $scope.profile.hasInstagramCredentials = true;
-          $scope.item.instagram_sharing_enabled = true;
-          $scope.save();
-          UserService.setProfile($scope.profile);
-        }
-      }).error(messageService.alert);
+      return $http.post(API_URL + 'v1/link/instagram-login', {
+            username: $scope.igUsername,
+            password: $scope.igPassword
+          })
+          .success(function (res) {
+            if (res) {
+              $mdDialog.hide();
+              $scope.profile.hasInstagramCredentials = true;
+              $scope.item.instagram_sharing_enabled = true;
+              $scope.save();
+              UserService.setProfile($scope.profile);
+            }
+          })
+          .error(messageService.alert);
+    }
+
+    $scope.loginInstagram = function () {
+      loginInstagram();
     };
 
     $scope.savePinterestEnabled = function () {
@@ -182,15 +181,28 @@
           }, 300);
         }).error(function (res) {
           messageService.alert(res);
+          var state = $state;
           if (res.code == 190) {
-            var state = $state;
-            $auth.authenticate('facebook').then(function (res) {
+            $auth.authenticate('facebook').then(function () {
               $state.go(state.current.name, state.params);
             });
+          } else if (res.code == 195) {
+            showDialogLoginInstagram();
           }
         });
       }
     };
+
+    function showDialogLoginInstagram() {
+      $mdDialog.show({
+        templateUrl: 'app/components/item/login-instagram.html',
+        parent: angular.element(document.body),
+        scope: $scope,
+        preserveScope: true,
+        clickOutsideToClose: true,
+        fullscreen: $mdMedia('xs')
+      });
+    }
 
     $scope.save = function () {
       $scope.item.item_url = $scope.item.title;
