@@ -180,7 +180,15 @@
             //TODO::remove it. Terrible solving md-input issue in that way8)))) https://github.com/angular/material/issues/1983
             document.getElementsByClassName("md-char-counter")[1].innerHTML = '0/256';
           }, 300);
-        }).error(messageService.alert);
+        }).error(function (res) {
+          messageService.alert(res);
+          if (res.code == 190) {
+            var state = $state;
+            $auth.authenticate('facebook').then(function (res) {
+              $state.go(state.current.name, state.params);
+            });
+          }
+        });
       }
     };
 
