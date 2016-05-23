@@ -13,7 +13,6 @@ angular.module('instastore')
         $scope.isInApp = InAppService.isFacebookInApp();
 
         var profile = UserService.getProfile();
-        debugger;
         $scope.store = profile.store;
 
         if (!UserService.isGuest()) {
@@ -62,26 +61,28 @@ angular.module('instastore')
         $scope.authenticate = function (provider) {
           sideNavClose();
           $auth.authenticate(provider).then(function (res) {
-            UserService.login(res.data.token);
-            UserService.setFacebookProfile(res.data.facebookProfile);
-            res.data.profile.stores = res.data.stores;
-            if (res.data.store) {
-              TourService.init();
-              res.data.profile.store = res.data.store;
-              UserService.setBg(res.data.store.bg_url);
-              UserService.setAvatar(res.data.store.avatar_url);
-            }
-            else {
-              res.data.profile.store = {};
-            }
-            UserService.setProfile(res.data.profile);
-            UserService.setIsSeller(res.data.profile.seller);
-            if (UserService.getInvitedStatus()) {
-              res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
-            }
-            else {
-              $state.go('storeselect');
-            }
+            UserService.login(res.data.token)
+                .then(function () {
+                  UserService.setFacebookProfile(res.data.facebookProfile);
+                  res.data.profile.stores = res.data.stores;
+                  if (res.data.store) {
+                    TourService.init();
+                    res.data.profile.store = res.data.store;
+                    UserService.setBg(res.data.store.bg_url);
+                    UserService.setAvatar(res.data.store.avatar_url);
+                  }
+                  else {
+                    res.data.profile.store = {};
+                  }
+                  UserService.setProfile(res.data.profile);
+                  UserService.setIsSeller(res.data.profile.seller);
+                  if (UserService.getInvitedStatus()) {
+                    res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
+                  }
+                  else {
+                    $state.go('storeselect');
+                  }
+                });
           }, messageService.satellizerAlert);
         };
 
@@ -168,6 +169,7 @@ angular.module('instastore')
           if (UserService.getProfile().lastRoute) {
             var lastRoute = UserService.getProfile().lastRoute;
           }
+          debugger;
           UserService.login(res.data.token);
           UserService.setFacebookProfile(res.data.facebookProfile);
           res.data.profile.stores = res.data.stores;

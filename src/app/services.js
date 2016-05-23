@@ -72,8 +72,8 @@ angular.module('instastore')
         }
       };
     })
-    .factory('UserService', ['$rootScope', '$injector', '$cookies', '$window', '$q',
-      function ($rootScope, $injector, $cookies, $window, $q) {
+    .factory('UserService', ['$rootScope', '$injector', '$cookies', '$window', 'CookieService',
+      function ($rootScope, $injector, $cookies, $window, CookieService) {
         var currentUser;
         var isInvited;
         var isManageStore;
@@ -84,7 +84,7 @@ angular.module('instastore')
             this.initBgFilter();
           },
           login: function (token) {
-            $cookies._auth = token;
+            return CookieService.setCookie('_auth', token, {expires: 3600 * 24 * 30});
           },
           logout: function () {
             delete $cookies._auth;
