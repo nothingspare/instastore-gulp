@@ -2,7 +2,6 @@
 
 angular.module('instastore')
     .controller('LocationIndex', ['$scope', '$rootScope', 'uiGmapGoogleMapApi', function ($scope, $rootScope, uiGmapGoogleMapApi) {
-        debugger;
         uiGmapGoogleMapApi
             .then(function () {
                 if ($rootScope.store) {

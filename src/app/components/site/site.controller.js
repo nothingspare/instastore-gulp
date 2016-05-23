@@ -169,7 +169,6 @@ angular.module('instastore')
           if (UserService.getProfile().lastRoute) {
             var lastRoute = UserService.getProfile().lastRoute;
           }
-          debugger;
           UserService.login(res.data.token);
           UserService.setFacebookProfile(res.data.facebookProfile);
           res.data.profile.stores = res.data.stores;
