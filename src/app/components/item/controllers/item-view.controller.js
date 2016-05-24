@@ -137,19 +137,23 @@
       loginInstagram();
     };
 
+    function authToPinterest() {
+      $auth.link('pinterest').then(function (res) {
+        if (res) {
+          $scope.profile.hasPinterestToken = true;
+          $scope.item.pinterest_sharing_enabled = true;
+          $scope.save();
+          UserService.setProfile($scope.profile);
+        }
+      });
+    }
+
     $scope.savePinterestEnabled = function () {
       if ($scope.profile.hasPinterestToken) {
         $scope.save();
       } else {
         if ($scope.item.pinterest_sharing_enabled) {
-          $auth.link('pinterest').then(function (res) {
-            if (res) {
-              $scope.profile.hasPinterestToken = true;
-              $scope.item.pinterest_sharing_enabled = true;
-              $scope.save();
-              UserService.setProfile($scope.profile);
-            }
-          });
+          authToPinterest();
         }
       }
     };
@@ -190,6 +194,8 @@
             });
           } else if (res.code == 195) {
             showDialogLoginInstagram();
+          } else if (res.code == 196) {
+            authToPinterest();
           }
         });
       }
