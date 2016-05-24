@@ -88,13 +88,15 @@
     }
 
     function checkCity() {
-      var regexp = /(^\s)?(\w\s?)+\s?,/g;
-      var city = $scope.item.user.store.address.match(regexp)[2].replace(',', '');
+      if ($scope.item.user.store.address) {
+        var regexp = /(^\s)?(\w\s?)+\s?,/g;
+        var city = $scope.item.user.store.address.match(regexp)[2].replace(',', '');
 
-      if (/\d+/.test(city)) {
-        $scope.city = $scope.item.user.store.address.match(regexp)[1].replace(',', '');
-      } else {
-        $scope.city = city;
+        if (/\d+/.test(city)) {
+          $scope.city = $scope.item.user.store.address.match(regexp)[1].replace(',', '');
+        } else {
+          $scope.city = city;
+        }
       }
     }
 
