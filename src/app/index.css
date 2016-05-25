@@ -4381,3 +4381,8 @@ ul.finish-settings li {
 .textarea-left {
     text-align: left;
 }
+
+.modal-images {
+    width: 100%;
+    max-width: 600px;
+}

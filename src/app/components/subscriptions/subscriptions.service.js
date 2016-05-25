@@ -97,55 +97,6 @@
     }
   }
 
-  angular
-      .module('instastore')
-      .controller('DialogController', DialogController);
-
-  DialogController.$inject = ['$mdDialog', 'SubscriptionService', '$state'];
-
-  /* @ngInject */
-  function DialogController($mdDialog, SubscriptionService, $state) {
-    var vm = this;
-
-    vm.selectedItem = [];
-
-    vm.hide = hide;
-    vm.select = select;
-    vm.following = following;
-    ////////////////
-
-    function isSelected(store) {
-      return _.findIndex(vm.selectedItem, function (storeSelected) {
-        return storeSelected.id == store.id;
-      });
-    }
-
-    function select(store) {
-      var index = isSelected(store);
-      if (index >= 0) {
-        vm.selectedItem.splice(index, 1);
-        store.isSelected = false;
-      } else {
-        vm.selectedItem.push(store);
-        store.isSelected = true;
-      }
-    }
-
-    function hide() {
-      $mdDialog.hide();
-    }
-
-    function following() {
-      SubscriptionService.following(vm.selectedItem).success(function (response) {
-        if (response) {
-          hide();
-          $state.go('subscriptions', {}, {reload: true});
-        }
-      })
-    }
-
-  }
-
 })();
 
 

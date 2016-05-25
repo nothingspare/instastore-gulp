@@ -1,0 +1,29 @@
+<md-dialog aria-label="Welcome" class="store-item" ng-cloak>
+    <form>
+
+        <div layout="row">
+            <h4 flex class="dialog-header top">
+                Save your store to Home Screen
+            </h4>
+            <md-button ng-click="vm.hide()"
+                       class="md-fab md-mini md-primary io-secondary-btn dialog-close-btn"
+                       aria-label="Close Dialog">
+                <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+            </md-button>
+        </div>
+
+        <md-dialog-content layout="column" layout-align="center center" layout-padding>
+            <p style="text-align: center">
+                While we are in beta and building our native app save your web based store app so its a click away.
+            </p>
+            <img class="modal-images" src="https://s3.amazonaws.com/cuturia/email/IMG_0101.JPG" alt="">
+        </md-dialog-content>
+
+        <md-dialog-actions layout="column">
+            <md-button ng-click="vm.hide()" class="flat-btn" md-autofocus>
+                Done
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

@@ -46,23 +46,5 @@
       }
     }
   }
-
-  angular
-      .module('instastore')
-      .controller('DialogController', DialogController);
-
-  DialogController.$inject = ['$mdDialog'];
-
-  /* @ngInject */
-  function DialogController($mdDialog) {
-    var vm = this;
-
-    vm.hide = hide;
-
-    function hide() {
-      $mdDialog.hide();
-    }
-  }
-
 })();
 

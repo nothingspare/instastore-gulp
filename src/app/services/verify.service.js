@@ -59,7 +59,7 @@
     function showModalAddressPhone() {
       var deferred = $q.defer();
       $mdDialog.show({
-        controller: 'DialogController3 as vm',
+        controller: 'DialogController as vm',
         templateUrl: 'app/components/item/profile-verify.html',
         parent: angular.element(document.body),
         // scope: $scope,
@@ -75,65 +75,5 @@
     }
   }
 
-  angular
-      .module('instastore')
-      .controller('DialogController3', DialogController);
-
-  DialogController.$inject = ['$mdDialog', 'VerifyService', 'messageService', 'UserService', 'TourService'];
-
-  /* @ngInject */
-  function DialogController($mdDialog, VerifyService, messageService, UserService, TourService) {
-    var vm = this;
-
-    vm.profile = UserService.getProfile();
-
-    vm.hide = hide;
-    vm.address = address;
-    vm.sendCodePhone = sendCodePhone;
-    vm.VerifyService = VerifyService;
-
-    function address() {
-      VerifyService.address(vm.profile)
-          .success(function (data) {
-            if (data.AddressValidateResponse.Address) {
-              messageService.simpleByCode('profile', 'addressSuccess');
-
-              vm.profile.apartment = data.AddressValidateResponse.Address.Address1;
-              vm.profile.address = data.AddressValidateResponse.Address.Address2;
-              vm.profile.state = data.AddressValidateResponse.Address.State;
-              vm.profile.city = data.AddressValidateResponse.Address.City;
-              vm.profile.zipcode = data.AddressValidateResponse.Address.Zip5;
-              vm.profile.address_verified_at = Math.floor(Date.now() / 1000);
-              UserService.setProfile(vm.profile);
-              checkIsVerify();
-            }
-            else {
-              messageService.simpleByCode('profile', 'addressError');
-            }
-          });
-    }
-
-     function sendCodePhone(code) {
-      VerifyService.sendCode(code)
-          .success(function (res) {
-            vm.profile.phone = res.phone;
-            vm.profile.phone_validated_at = res.phone_validated_at;
-            UserService.setProfile(vm.profile);
-            messageService.simpleByCode('verify', 'success');
-            checkIsVerify();
-          });
-    };
-
-    function checkIsVerify() {
-      if(VerifyService.isVerify()) {
-        hide();
-        // TourService.addItem();
-      }
-    }
-
-    function hide() {
-      $mdDialog.hide();
-    }
-  }
 })();
 
