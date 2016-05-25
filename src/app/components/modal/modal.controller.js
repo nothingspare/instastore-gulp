@@ -3,10 +3,11 @@ angular
     .controller('DialogController', DialogController);
 
 DialogController.$inject = ['$mdDialog', 'ModalService', 'SubscriptionService', 'VerifyService', 'TourService',
-  'UserService', '$state', 'messageService'];
+  'UserService', '$state', 'messageService', 'deviceDetector'];
 
 /* @ngInject */
-function DialogController($mdDialog, ModalService, SubscriptionService, VerifyService, TourService, UserService, $state, messageService) {
+function DialogController($mdDialog, ModalService, SubscriptionService, VerifyService, TourService,
+                          UserService, $state, messageService, deviceDetector) {
   var vm = this;
 
   vm.profile = UserService.getProfile();
@@ -28,8 +29,6 @@ function DialogController($mdDialog, ModalService, SubscriptionService, VerifySe
   vm.sendCodePhone = sendCodePhone;
   vm.VerifyService = VerifyService;
 
-  /* Home screen */
-
   function hide() {
     $mdDialog.hide();
   }
@@ -37,7 +36,9 @@ function DialogController($mdDialog, ModalService, SubscriptionService, VerifySe
   function buy() {
     hide();
     SubscriptionService.isFollowing().then(function () {
-      ModalService.show('home-screen');
+      if(deviceDetector.os === 'ios') {
+        ModalService.show('home-screen');
+      }
     });
   }
 

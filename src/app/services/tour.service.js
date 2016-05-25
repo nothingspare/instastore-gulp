@@ -6,9 +6,9 @@
       .service('TourService', TourService);
 
   TourService.$inject = ['$rootScope', 'VerifyService', 'ItemService', 'ModalService',
-    'UserService', 'SubscriptionService'];
+    'UserService', 'SubscriptionService', 'deviceDetector'];
   /* @ngInject */
-  function TourService($rootScope, VerifyService, ItemService, ModalService, UserService, SubscriptionService) {
+  function TourService($rootScope, VerifyService, ItemService, ModalService, UserService, SubscriptionService, deviceDetector) {
     this.init = init;
     this.addItem = addItem;
 
@@ -35,7 +35,9 @@
         if (!count) {
           ModalService.show('add-items').then(function () {
             ModalService.show('finish-settings').then(function () {
-              ModalService.show('home-screen');
+              if(deviceDetector.os === 'ios') {
+                ModalService.show('home-screen');
+              }
             });
           });
         }

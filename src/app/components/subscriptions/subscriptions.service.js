@@ -67,21 +67,14 @@
       var perPage = 6;
       other(perPage)
           .success(function (data) {
-            $mdDialog.show({
-              controller: 'DialogController as vm',
-              templateUrl: 'app/components/subscriptions/modal/recommended-stores.html',
-              parent: angular.element(document.body),
-              clickOutsideToClose: true,
-              bindToController: true,
-              locals: {
-                subsOther: data
-              },
-              fullscreen: $mdMedia('xs'),
-              onRemoving: function () {
-                deferred.resolve();
-              }
+            var locals = {
+              subsOther: data
+            };
+            ModalService.show('recommended-stores', locals).then(function () {
+              deferred.resolve();
             });
           });
+
       return deferred.promise;
     }
 

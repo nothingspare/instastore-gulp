@@ -13,7 +13,7 @@
 
     ////////////////
 
-    function show(templateName) {
+    function show(templateName, locals) {
       var deferred = $q.defer();
       $mdDialog.show({
         controller: 'DialogController as vm',
@@ -21,10 +21,11 @@
         parent: angular.element(document.body),
         clickOutsideToClose: true,
         bindToController: true,
+        locals: locals,
+        fullscreen: $mdMedia('xs'),
         onRemoving: function () {
           deferred.resolve();
-        },
-        fullscreen: $mdMedia('xs')
+        }
       });
 
       return deferred.promise;
