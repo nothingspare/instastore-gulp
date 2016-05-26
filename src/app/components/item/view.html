@@ -7,7 +7,7 @@
             </div>
             <img ui-sref="store({storeurl:item.user.store.store_url})"
                  class="profile item-stream-profile slider-profile-avatar"
-                 ng-src="{{item.user.store.avatar_url}}" />
+                 ng-src="{{item.user.store.avatar_url}}"/>
 
             <ul ng-if="item.images.length"
                 rn-carousel rn-carousel-buffered rn-carousel-indicator
@@ -20,6 +20,19 @@
                          ng-style="{'background-image': 'url(' + image.image_url + ')'};"
                          style="background-repeat: no-repeat; background-size: contain;">
                         <img image-container-height ng-src="{{image.image_url}}"
+                             style="visibility:hidden"/>
+                    </div>
+                </li>
+            </ul>
+            <ul ng-if="!item.images.length"
+                rn-carousel rn-carousel-buffered rn-carousel-indicator
+                rn-carousel-controls
+                rn-carousel-index="carouselIndex">
+                <li>
+                    <div class="resizable-image item__img-view-block"
+                         ng-style="{'background-image': 'url(http://placehold.it/624x624/fff&text=no+image)'};"
+                         style="background-repeat: no-repeat; background-size: contain;">
+                        <img image-container-height class="item__img-view" ng-src="http://placehold.it/624x624/fff&text=no+image"
                              style="visibility:hidden"/>
                     </div>
                 </li>
@@ -138,7 +151,7 @@
                     </md-tab>
                 </md-tabs>
                 <div id="mainView" style="clear:both;"></div>
-            </md-contentflex>
+                </md-contentflex>
         </md-card>
     </div>
 </div>
