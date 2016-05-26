@@ -65,7 +65,7 @@
     function isFollowing() {
       var deferred = $q.defer();
       var perPage = 6;
-      other(perPage)
+      recommended(perPage)
           .success(function (data) {
             var locals = {
               subsOther: data
