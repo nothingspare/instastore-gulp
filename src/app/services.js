@@ -398,7 +398,7 @@ angular.module('instastore')
             name: 'stream'
           },
           routeParams: {
-            storeurl: !UserService.isGuest() ? profile.store.store_url : $stateParams.storeurl
+            storeurl: !UserService.isGuest() ? (profile.store.store_url ? profile.store.store_url : $stateParams.storeurl) : $stateParams.storeurl
           }
         };
 
