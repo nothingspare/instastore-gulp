@@ -5,12 +5,12 @@
             <md-tabs md-border-bottom md-swipe-content md-stretch-tabs="always">
                 <md-tab label="Selling" ng-if="vm.isSeller" md-on-select="vm.selectTab('seller')">
                     <md-content class="transaction-tab-content">
-                        <p ng-hide="!!vm.seller.length" class="transaction-dont-have">No data</p>
-                        <io-table ng-show="!!vm.seller.length"
-                                  content="vm.seller"
+                        <p ng-hide="!!vm.notification.length" class="transaction-dont-have">No data</p>
+                        <io-table ng-show="!!vm.notification.length"
+                                  content="vm.notification"
                                   headers="vm.headers"
                                   sortable="vm.sortable">
-                            <p ng-hide="vm.seller" class="loading">Please wait. Loading</p>
+                            <p ng-hide="vm.notification" class="loading">Please wait. Loading</p>
                         </io-table>
                     </md-content>
                 </md-tab>

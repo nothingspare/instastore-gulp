@@ -12,7 +12,7 @@
       buyer: buyer,
       getActiveCount: getActiveCount,
       getCount: getCount,
-      viewCount: viewCount,
+      updateView: updateView,
       activeCount: 0,
       count: 0
     };
@@ -38,7 +38,7 @@
         });
     }
 
-    function viewCount(ids) {
+    function updateView(ids) {
       rest.path = 'v1/my-transactions/update-view';
       return rest.postModel({
         ids: ids

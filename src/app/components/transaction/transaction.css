@@ -271,3 +271,11 @@
         display: none;
     }
 }
+
+.notification-comment {
+    width: 100px;
+    font-size: 0.7em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

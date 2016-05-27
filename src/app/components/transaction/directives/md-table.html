@@ -3,14 +3,18 @@
         <tbody>
         <tr ng-repeat="c in content | orderBy:'-last_created_at' | filter:filters | startFrom:tablePage*count | limitTo: count"
             ng-show="c.last_status != IT_STATUS.label"
+            ui-sref="itemview({ storeurl: c.storeUrl, itemurl: c.itemUrl, tab: 1})"
             class="md-table-content-row">
             <td ng-repeat="h in headers" ng-class="customClass[h.field]" ng-if="h.field != thumbs"
                 class="md-table-content">
                 {{(h.field.indexOf('status') >= 0 && c.type == 'seller')
                 ? $filter('itemTransactionStatus')(c[h.field])
-                : ((h.field.indexOf('status') >= 0 && c.type == 'buyer') ? $filter('itemBuyerTransactionStatus')(c[h.field]) : ((h.field.indexOf('created_at') > 0) ? $filter('amCalendar')(c[h.field]) : c[h.field]))}}
+                : ((h.field.indexOf('status') >= 0 && c.type == 'buyer')
+                ? $filter('itemBuyerTransactionStatus')(c[h.field]) : ((h.field.indexOf('created_at') > 0)
+                ? $filter('amCalendar')(c[h.field]) : c[h.field]))}}
             </td>
             <td class="md-table-td-action">
+                <div class="notification-comment"  ng-if="c.comment">{{ c.comment }}</div>
                 <io-transaction-action transaction="c"></io-transaction-action>
             </td>
             <td class="td-md-table-thumbs">
