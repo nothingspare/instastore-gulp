@@ -72,8 +72,8 @@ angular.module('instastore')
         }
       };
     })
-    .factory('UserService', ['$rootScope', '$injector', '$cookies', '$window', 'CookieService',
-      function ($rootScope, $injector, $cookies, $window, CookieService) {
+    .factory('UserService', ['$rootScope', '$injector', '$cookies', '$window', 'CookieService', '$q', '$timeout',
+      function ($rootScope, $injector, $cookies, $window, CookieService, $q, $timeout) {
         var currentUser;
         var isInvited;
         var isManageStore;
@@ -282,8 +282,13 @@ angular.module('instastore')
             $cookies.isSeller = $rootScope.isSeller = value;
           },
           setProfile: function (profile) {
-            $cookies.profile = JSON.stringify(profile);
-            if (profile.inviter_id) isInvited = true;
+            return $q(function (resolve) {
+              $timeout(function () {
+                $cookies.profile = JSON.stringify(profile);
+                if (profile.inviter_id) isInvited = true;
+                resolve(true);
+              },1000)
+            })
           },
           getProfile: function () {
             if ($cookies.profile)
