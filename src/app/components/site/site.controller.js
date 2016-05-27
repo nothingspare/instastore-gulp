@@ -74,9 +74,15 @@ angular.module('instastore')
                   else {
                     res.data.profile.store = {};
                   }
-                  UserService.setProfile(res.data.profile);
-                  UserService.setIsSeller(res.data.profile.seller);
-                  res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
+
+                  return $q(function (resolve, reject) {
+                    resolve(UserService.setProfile(res.data.profile));
+                  })
+                      .then(function () {
+                        UserService.setIsSeller(res.data.profile.seller);
+                        res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
+                      });
+
                 });
           }, messageService.satellizerAlert);
         };
