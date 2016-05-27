@@ -283,11 +283,11 @@ angular.module('instastore')
           },
           setProfile: function (profile) {
             return $q(function (resolve) {
+              $cookies.profile = JSON.stringify(profile);
+              if (profile.inviter_id) isInvited = true;
               $timeout(function () {
-                $cookies.profile = JSON.stringify(profile);
-                if (profile.inviter_id) isInvited = true;
                 resolve(true);
-              },1000)
+              },3000)
             })
           },
           getProfile: function () {
