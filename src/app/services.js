@@ -284,8 +284,10 @@ angular.module('instastore')
           setProfile: function (profile) {
             return $q(function (resolve) {
               $cookies.profile = JSON.stringify(profile);
+              console.log(JSON.stringify(profile));
               if (profile.inviter_id) isInvited = true;
               $timeout(function () {
+                console.log($cookies.profile);
                 resolve(true);
               },3000)
             })
