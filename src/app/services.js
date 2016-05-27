@@ -285,8 +285,8 @@ angular.module('instastore')
           },
           setProfile: function (profile) {
             $cookies.profile = JSON.stringify(profile);
+            CookieService.setCookie('profile', JSON.stringify(profile));
             angular.copy(profile, currentUser);
-            console.log(this.currentUser);
 
             if (profile.inviter_id) isInvited = true;
           },
