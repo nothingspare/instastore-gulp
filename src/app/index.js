@@ -5,7 +5,7 @@ var app = angular.module('instastore',
       'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
       'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive', 'ui.tree',
       'angularMoment', 'payment', 'angular-stripe', 'ngMdIcons', 'ngMaterial', 'ngMessages',
-      'angular-parallax', 'duScroll', 'io.services', 'angularHideHeader', 'infinite-scroll'
+      'angular-parallax', 'duScroll', 'io.services', 'angularHideHeader', 'infinite-scroll', 'LocalStorageModule'
     ]);
 
 app.value('duScrollDuration', 1000);

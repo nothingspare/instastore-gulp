@@ -72,8 +72,8 @@ angular.module('instastore')
         }
       };
     })
-    .factory('UserService', ['$rootScope', '$injector', '$cookies', '$window', 'CookieService',
-      function ($rootScope, $injector, $cookies, $window, CookieService) {
+    .factory('UserService', ['$rootScope', '$injector', '$cookies', '$window', 'CookieService', 'localStorageService',
+      function ($rootScope, $injector, $cookies, $window, CookieService, localStorageService) {
         var isInvited;
         var isManageStore;
         var currentUser = {};
@@ -284,8 +284,7 @@ angular.module('instastore')
             $cookies.isSeller = $rootScope.isSeller = value;
           },
           setProfile: function (profile) {
-            $cookies.profile = JSON.stringify(profile);
-            CookieService.setCookie('profile', JSON.stringify(profile));
+            localStorageService.set('profile', profile);
             angular.copy(profile, currentUser);
 
             if (profile.inviter_id) isInvited = true;
@@ -293,10 +292,9 @@ angular.module('instastore')
           getProfile: function () {
             if (this.currentUser.id) {
               return this.currentUser;
-            } else if ($cookies.profile) {
-              return JSON.parse($cookies.profile);
+            } else {
+              return localStorageService.get('profile');
             }
-            return {};
           },
           getInvitedStatus: function () {
             return !!isInvited;
