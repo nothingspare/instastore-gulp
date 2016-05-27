@@ -290,11 +290,14 @@ angular.module('instastore')
             if (profile.inviter_id) isInvited = true;
           },
           getProfile: function () {
+            var profileStorage = localStorageService.get('profile');
+
             if (this.currentUser.id) {
               return this.currentUser;
-            } else {
+            } else if(profileStorage) {
               return localStorageService.get('profile');
             }
+            return {};
           },
           getInvitedStatus: function () {
             return !!isInvited;
