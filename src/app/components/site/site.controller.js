@@ -76,12 +76,7 @@ angular.module('instastore')
                   }
                   UserService.setProfile(res.data.profile);
                   UserService.setIsSeller(res.data.profile.seller);
-                  if (UserService.getInvitedStatus()) {
-                    res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
-                  }
-                  else {
-                    $state.go('storeselect');
-                  }
+                  res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
                 });
           }, messageService.satellizerAlert);
         };
@@ -106,17 +101,4 @@ angular.module('instastore')
         UserService.setIsSeller(true);
         $state.go('grid', {storeurl: profile.store.store_url});
       };
-    }])
-    .controller('SiteStoreSelect', ['$scope', 'UserService', '$state', 'rest', 'messageService',
-      function ($scope, UserService, $state, rest, messageService) {
-        $scope.profile = UserService.getProfile();
-        $scope.selectStore = function (inviter_id) {
-          $scope.profile.inviter_id = inviter_id;
-          rest.path = 'v1/profiles';
-          rest.putModel($scope.profile).success(function (profile) {
-            UserService.setProfile(profile);
-            messageService.simpleByCode('store', 'saved');
-            $state.go('sellorbuy');
-          }).error(messageService.alert);
-        };
-      }]);
+    }]);

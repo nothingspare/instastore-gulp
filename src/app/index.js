@@ -70,12 +70,6 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
       templateUrl: modulesPath + '/site/sellorbuy.html'
     });
 
-    $stateProvider.state('storeselect', {
-      url: '/storeselect/',
-      controller: 'SiteStoreSelect',
-      templateUrl: modulesPath + '/site/storeselect.html'
-    });
-
     $stateProvider.state('itemview', {
       url: '/:storeurl/:itemurl/:tab',
       controller: 'ItemView as vm',
