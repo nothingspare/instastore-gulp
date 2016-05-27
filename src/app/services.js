@@ -74,10 +74,12 @@ angular.module('instastore')
     })
     .factory('UserService', ['$rootScope', '$injector', '$cookies', '$window', 'CookieService',
       function ($rootScope, $injector, $cookies, $window, CookieService) {
-        var currentUser;
         var isInvited;
         var isManageStore;
+        var currentUser = {};
+
         return {
+          currentUser: currentUser,
           init: function () {
             //this.initBgAndAvatar();
             //this.initIsSeller();
@@ -283,12 +285,18 @@ angular.module('instastore')
           },
           setProfile: function (profile) {
             $cookies.profile = JSON.stringify(profile);
+            angular.copy(profile, currentUser);
+            console.log(this.currentUser);
+
             if (profile.inviter_id) isInvited = true;
           },
           getProfile: function () {
-            if ($cookies.profile)
+            if (this.currentUser.id) {
+              return this.currentUser;
+            } else if ($cookies.profile) {
               return JSON.parse($cookies.profile);
-            else return {};
+            }
+            return {};
           },
           getInvitedStatus: function () {
             return !!isInvited;
@@ -300,9 +308,6 @@ angular.module('instastore')
             if ($window.sessionStorage.facebookProfile)
               return JSON.parse($window.sessionStorage.facebookProfile);
             else return {};
-          },
-          currentUser: function () {
-            return currentUser;
           },
           //For redirects from socials
           saveLastRouteToProfile: function (route) {
