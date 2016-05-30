@@ -5,9 +5,9 @@ angular.module('instastore')
 
     })
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', '$state',
-      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService', 'TourService', '$cookies',
+      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService', 'TourService', '$cookies', '$q',
       function ($scope, $rootScope, rest, $state,
-                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService, TourService, $cookies) {
+                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService, TourService, $cookies, $q) {
 
         InAppService.warnIfInApp();
         $scope.isInApp = InAppService.isFacebookInApp();
@@ -74,9 +74,15 @@ angular.module('instastore')
                   else {
                     res.data.profile.store = {};
                   }
-                  UserService.setProfile(res.data.profile);
-                  UserService.setIsSeller(res.data.profile.seller);
-                  res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
+
+                  return $q(function (resolve, reject) {
+                    resolve(UserService.setProfile(res.data.profile));
+                  })
+                      .then(function () {
+                        UserService.setIsSeller(res.data.profile.seller);
+                        res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
+                      });
+
                 });
           }, messageService.satellizerAlert);
         };

@@ -5,7 +5,7 @@ var app = angular.module('instastore',
       'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
       'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive', 'ui.tree',
       'angularMoment', 'payment', 'angular-stripe', 'ngMdIcons', 'ngMaterial', 'ngMessages',
-      'angular-parallax', 'duScroll', 'io.services', 'angularHideHeader', 'infinite-scroll', 'pouchdb'
+      'angular-parallax', 'duScroll', 'io.services', 'angularHideHeader', 'infinite-scroll', 'LocalStorageModule'
     ]);
 
 app.value('duScrollDuration', 1000);
@@ -120,16 +120,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     $stateProvider.state('transaction', {
       url: '/transaction/:storeurl',
       controller: 'TransactionCtrl as vm',
-      templateUrl: modulesPath + '/transaction/transaction.html',
-      resolve: {
-        init: function (transactionService, $state) {
-          transactionService.getCount().then(function () {
-            if (!transactionService.count) {
-              $state.go('grid');
-            }
-          });
-        }
-      }
+      templateUrl: modulesPath + '/transaction/transaction.html'
     });
 
     $authProvider.baseUrl = API_URL;

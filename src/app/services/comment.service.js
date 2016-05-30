@@ -11,6 +11,7 @@
   function CommentFactory(rest) {
     var service = {
       countNotView: 0,
+      count: 0,
       notView: notView,
       startListen: startListen,
       getCountNotView: getCountNotView,
@@ -22,10 +23,16 @@
 
     function startListen() {
       var time = 120000;
-      getCountNotView();
+      getCommentsCount();
       setInterval(function () {
-        getCountNotView();
+        getCommentsCount();
       }, time);
+    }
+
+    function getCommentsCount() {
+      notView().then(function () {
+        getCountNotView();
+      });
     }
 
     function getCountNotView() {
@@ -41,6 +48,8 @@
       rest.path = 'v1/comments';
       return rest.models({
         type: 'not-view'
+      }).success(function (res) {
+        service.count = res.length;
       });
     }
 
