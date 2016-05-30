@@ -5,12 +5,24 @@ angular.module('instastore')
 
     })
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', '$state',
-      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService', 'TourService', '$cookies', '$q',
+      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService',
+      'TourService', '$cookies', '$q', 'pouchDB',
       function ($scope, $rootScope, rest, $state,
-                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService, TourService, $cookies, $q) {
+                $auth, UserService, SStorage, InAppService, $mdSidenav, $document,
+                messageService, TourService, $cookies, $q, pouchDB) {
 
         InAppService.warnIfInApp();
         $scope.isInApp = InAppService.isFacebookInApp();
+
+        var db = pouchDB('store');
+        db.put({
+          _id: 'profile-store',
+          address: 'hello'
+        }).then(function () {
+          db.get('profile-store').then(function (res) {
+            console.log(res);
+          })
+        });
 
         var profile = UserService.getProfile();
         $scope.store = profile.store;
