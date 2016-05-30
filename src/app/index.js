@@ -120,16 +120,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     $stateProvider.state('transaction', {
       url: '/transaction/:storeurl',
       controller: 'TransactionCtrl as vm',
-      templateUrl: modulesPath + '/transaction/transaction.html',
-      resolve: {
-        init: function (transactionService, $state) {
-          transactionService.getCount().then(function () {
-            if (!transactionService.count) {
-              $state.go('grid');
-            }
-          });
-        }
-      }
+      templateUrl: modulesPath + '/transaction/transaction.html'
     });
 
     $authProvider.baseUrl = API_URL;
