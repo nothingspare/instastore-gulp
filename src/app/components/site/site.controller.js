@@ -60,31 +60,26 @@ angular.module('instastore')
 
         $scope.authenticate = function (provider) {
           sideNavClose();
+
+
           $auth.authenticate(provider).then(function (res) {
-            UserService.login(res.data.token)
-                .then(function () {
-                  UserService.setFacebookProfile(res.data.facebookProfile);
-                  res.data.profile.stores = res.data.stores;
-                  if (res.data.store) {
-                    TourService.init();
-                    res.data.profile.store = res.data.store;
-                    UserService.setBg(res.data.store.bg_url);
-                    UserService.setAvatar(res.data.store.avatar_url);
-                  }
-                  else {
-                    res.data.profile.store = {};
-                  }
+            UserService.login(res.data.token);
+            UserService.setFacebookProfile(res.data.facebookProfile);
+            res.data.profile.stores = res.data.stores;
+            if (res.data.store) {
+              TourService.init();
+              res.data.profile.store = res.data.store;
+              UserService.setBg(res.data.store.bg_url);
+              UserService.setAvatar(res.data.store.avatar_url);
+            }
+            else {
+              res.data.profile.store = {};
+            }
+            UserService.setProfile(res.data.profile);
+            UserService.setIsSeller(res.data.profile.seller);
 
-                  return $q(function (resolve, reject) {
-                    resolve(UserService.setProfile(res.data.profile));
-                  })
-                      .then(function () {
-                        UserService.setIsSeller(res.data.profile.seller);
-                        res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
-                      });
-
-                });
-          }, messageService.satellizerAlert);
+            res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
+          });
         };
 
       }])

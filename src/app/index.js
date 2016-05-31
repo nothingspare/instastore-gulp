@@ -5,7 +5,7 @@ var app = angular.module('instastore',
       'ngFileUpload', 'ngImgCrop', 'angular-loading-bar', 'ngTouch', 'ngCookies', 'uiGmapgoogle-maps',
       'google.places', 'ngClipboard', 'ng.deviceDetector', 'cfp.loadingBar', 'plupload.directive', 'ui.tree',
       'angularMoment', 'payment', 'angular-stripe', 'ngMdIcons', 'ngMaterial', 'ngMessages',
-      'angular-parallax', 'duScroll', 'io.services', 'angularHideHeader', 'infinite-scroll', 'LocalStorageModule'
+      'angular-parallax', 'duScroll', 'io.services', 'angularHideHeader', 'infinite-scroll'
     ]);
 
 app.value('duScrollDuration', 1000);
@@ -124,7 +124,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     });
 
     $authProvider.baseUrl = API_URL;
-    $authProvider.storage = 'sessionStorage';
+    $authProvider.storage = 'withoutStorage';
 
     var configFacebook = {
       clientId: '694297854007943',
