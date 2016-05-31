@@ -58,9 +58,13 @@ angular.module('instastore')
 
         $scope.isSession = SStorage.isSessionStorageAvailable();
 
+        $scope.qwe = $cookies;
+        $scope.$watchCollection('qwe', function (q,w) {
+          console.log(q,w);
+        });
+
         $scope.authenticate = function (provider) {
           sideNavClose();
-
 
           $auth.authenticate(provider).then(function (res) {
             UserService.login(res.data.token);
