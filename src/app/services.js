@@ -285,11 +285,14 @@ angular.module('instastore')
             $cookies.isSeller = $rootScope.isSeller = value;
           },
           setProfile: function (profile) {
-            $cookies.profile = profile.id;
-            console.log(1, $cookies.profile);
+            $cookies.profileId = profile.id;
+            $cookies.profile = profile;
+            console.log('1 profile', $cookies.profile);
+            console.log('1 profileId', $cookies.profileId);
 
             setTimeout(function () {
-              console.log(2, $cookies.profile);
+              console.log('2 profile', $cookies.profile);
+              console.log('2 profileId', $cookies.profileId);
             }, 5000);
 
             if (!angular.equals(profile, currentUser)) {
