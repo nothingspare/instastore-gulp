@@ -285,7 +285,12 @@ angular.module('instastore')
             $cookies.isSeller = $rootScope.isSeller = value;
           },
           setProfile: function (profile) {
-            $cookies.profile = JSON.stringify(profile);
+            $cookies.profile = profile.id;
+            console.log(1, $cookies.profile);
+
+            setTimeout(function () {
+              console.log(2, $cookies.profile);
+            }, 5000);
 
             if (!angular.equals(profile, currentUser)) {
               angular.copy(profile, currentUser)
