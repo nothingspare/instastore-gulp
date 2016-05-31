@@ -286,7 +286,7 @@ angular.module('instastore')
           },
           setProfile: function (profile) {
             $cookies.profileId = profile.id;
-            $cookies.profile = profile;
+            $cookies.profile = JSON.stringify(profile);
             console.log('1 profile', $cookies.profile);
             console.log('1 profileId', $cookies.profileId);
 
