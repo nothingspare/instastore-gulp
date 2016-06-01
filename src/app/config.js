@@ -22,10 +22,10 @@ angular.module('instastore')
     })
     .constant('angularMomentConfig', {
       preprocess: 'unix'
-    });
-    // .config(['$compileProvider', function ($compileProvider) {
-    //   $compileProvider.debugInfoEnabled(false);
-    // }]);
+    })
+    .config(['$compileProvider', function ($compileProvider) {
+      $compileProvider.debugInfoEnabled(false);
+    }]);
 
 switch (window.location.origin) {
   case 'https://isopen.us':
