@@ -77,9 +77,14 @@ angular.module('instastore')
         var isInvited;
         var isManageStore;
         var currentUser = {};
-
         return {
           currentUser: currentUser,
+
+          saveProfile: function (profile) {
+          if (!angular.equals(profile, currentUser)) {
+            angular.copy(profile, currentUser)
+          }
+        },
           init: function () {
             //this.initBgAndAvatar();
             //this.initIsSeller();
@@ -87,7 +92,6 @@ angular.module('instastore')
           },
           login: function (token) {
             $cookies._auth = token;
-            // return CookieService.setCookie('_auth', token, {expires: 3600 * 24 * 30});
           },
           logout: function () {
             delete $cookies._auth;
@@ -286,28 +290,21 @@ angular.module('instastore')
           },
           setProfile: function (profile) {
             $cookies.profileId = profile.id;
-            $cookies.profile = JSON.stringify(profile);
-            console.log('1 profile', $cookies.profile);
-            console.log('1 profileId', $cookies.profileId);
-
-            setTimeout(function () {
-              console.log('2 profile', $cookies.profile);
-              console.log('2 profileId', $cookies.profileId);
-            }, 5000);
-
-            if (!angular.equals(profile, currentUser)) {
-              angular.copy(profile, currentUser)
-            }
+            this.saveProfile(profile);
             
             if (profile.inviter_id) isInvited = true;
           },
           getProfile: function () {
-            if (this.currentUser.id) {
-              return this.currentUser;
-            } else if ($cookies.profile) {
-              return JSON.parse($cookies.profile);
-            }
-            return {};
+            return this.currentUser;
+          },
+          getProfileAuth: function () {
+            var rest = $injector.get('rest');
+            rest.path = 'v1/profiles/' + $cookies.profileId;
+            return rest.models({
+            })
+                .error(function (e) {
+                  console.log(e);
+                });
           },
           getInvitedStatus: function () {
             return !!isInvited;

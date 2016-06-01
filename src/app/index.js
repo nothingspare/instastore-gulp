@@ -24,13 +24,37 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
     $urlRouterProvider.otherwise('/');
 
+    $stateProvider.state('main', {
+      // url: '',
+      // controller: 'SiteLogin',
+      template: '<ui-view></ui-view>',
+      resolve: {
+        currentUser: function ($cookies, UserService, $q) {
+          if (UserService.currentUser.id) {
+            return $q.when(UserService.currentUser);
+          } else if ($cookies.profileId) {
+            return UserService.getProfileAuth().then(function (data) {
+              var profile = data.data;
+              UserService.saveProfile(profile);
+              return UserService.currentUser;
+            });
+          } else {
+            return $q.when(UserService.currentUser);
+          }
+        }
+      }
+
+    });
+
     $stateProvider.state('login', {
+      parent: 'main',
       url: '/',
       controller: 'SiteLogin',
       templateUrl: modulesPath + '/site/main.html'
     });
 
     $stateProvider.state('grid', {
+      parent: 'main',
       url: '/:storeurl/mode/:mode?profile=true',
       controller: 'ItemIndex as vm',
       templateUrl: function ($stateParams) {
@@ -39,18 +63,21 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     });
 
     $stateProvider.state('stream', {
+      parent: 'main',
       url: '/stream/:storeurl',
       controller: 'ItemStream as vm',
       templateUrl: modulesPath + '/item/stream.html'
     });
 
     $stateProvider.state('stream-grid', {
+      parent: 'main',
       url: '/stream-grid/:storeurl',
       controller: 'ItemGrid as vm',
       templateUrl: modulesPath + '/item/item-grid.html'
     });
 
     $stateProvider.state('parallax', {
+      parent: 'main',
       url: '/parallax/?profile=true',
       controller: 'ItemStream',
       templateUrl: function () {
@@ -59,18 +86,21 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     });
 
     $stateProvider.state('subscriptions', {
+      parent: 'main',
       url: '/subscriptions/:storeurl',
       controller: 'SubscriptionsMain as vm',
       templateUrl: modulesPath + '/subscriptions/subscriptions.html'
     });
 
     $stateProvider.state('sellorbuy', {
+      parent: 'main',
       url: '/sellorbuy/',
       controller: 'SellOrBuy',
       templateUrl: modulesPath + '/site/sellorbuy.html'
     });
 
     $stateProvider.state('itemview', {
+      parent: 'main',
       url: '/:storeurl/:itemurl/:tab',
       controller: 'ItemView as vm',
       resolve: {
@@ -82,42 +112,49 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     });
 
     $stateProvider.state('accounts', {
+      parent: 'main',
       url: '/accounts/',
       controller: 'StoreAccounts',
       templateUrl: modulesPath + '/store/accounts.html'
     });
 
     $stateProvider.state('profilestore', {
+      parent: 'main',
       url: '/profilestore/',
       controller: 'ProfileStoreIndex',
       templateUrl: modulesPath + '/profile/profilestore.html'
     });
 
     $stateProvider.state('storeview', {
+      parent: 'main',
       url: '/storeview/:storeurl',
       controller: 'StoreView',
       templateUrl: modulesPath + '/item/index.html'
     });
 
     $stateProvider.state('location', {
+      parent: 'main',
       url: '/location/:storeurl',
       controller: 'LocationIndex',
       templateUrl: modulesPath + '/location/index.html'
     });
 
     $stateProvider.state('store', {
+      parent: 'main',
       url: '/store/:storeurl',
       controller: 'StoreIndex',
       templateUrl: modulesPath + '/store/index.html'
     });
 
     $stateProvider.state('instaimport', {
+      parent: 'main',
       url: '/instaimport/:storeurl',
       controller: 'InstagramImport',
       templateUrl: modulesPath + '/item/instaimport.html'
     });
 
     $stateProvider.state('transaction', {
+      parent: 'main',
       url: '/transaction/:storeurl',
       controller: 'TransactionCtrl as vm',
       templateUrl: modulesPath + '/transaction/transaction.html'
