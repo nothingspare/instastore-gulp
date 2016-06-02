@@ -5,12 +5,21 @@ angular.module('instastore')
 
     })
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', '$state',
-      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService', 'TourService', '$cookies', '$q',
+      '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService',
+      'TourService', '$cookies', '$q', '$stateParams', '$http', 'satellizer.config', '$location',
       function ($scope, $rootScope, rest, $state,
-                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService, TourService, $cookies, $q) {
+                $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService,
+                TourService, $cookies, $q, $stateParams, $http, satellizerConfig, $location) {
 
         InAppService.warnIfInApp();
         $scope.isInApp = InAppService.isFacebookInApp();
+
+        $scope.facebookAuthConfig = {
+          authorizationEndpoint: satellizerConfig.providers.facebook.authorizationEndpoint,
+          authUrl: satellizerConfig.baseUrl + satellizerConfig.providers.facebook.url,
+          redirectUri: satellizerConfig.providers.facebook.redirectUri,
+          clientId: satellizerConfig.providers.facebook.clientId,
+        };
 
         var profile = UserService.getProfile();
         $scope.store = profile.store;
@@ -59,27 +68,52 @@ angular.module('instastore')
         $scope.isSession = SStorage.isSessionStorageAvailable();
 
         $scope.authenticate = function (provider) {
+          if ($rootScope.isHomeScreen) {
+            var queryParams = $location.search({
+              response_type: 'code',
+              client_id: $scope.facebookAuthConfig.clientId,
+              redirect_uri: $scope.facebookAuthConfig.redirectUri,
+              display: 'popup',
+              scope: 'email, publish_actions'
+            }).$$url;
+            window.open($scope.facebookAuthConfig.authorizationEndpoint + queryParams, '_self');
+            return;
+          }
+
           sideNavClose();
           $auth.authenticate(provider).then(function (res) {
-            UserService.login(res.data.token);
-            UserService.setFacebookProfile(res.data.facebookProfile);
-            res.data.profile.stores = res.data.stores;
-            if (res.data.store) {
-              TourService.init();
-              res.data.profile.store = res.data.store;
-              UserService.setBg(res.data.store.bg_url);
-              UserService.setAvatar(res.data.store.avatar_url);
-            }
-            else {
-              res.data.profile.store = {};
-            }
-            UserService.setProfile(res.data.profile);
-            UserService.setIsSeller(res.data.profile.seller);
-
-            res.data.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.data.store.store_url});
+            getProfile(res.data);
           });
         };
 
+        if ($stateParams.code) {
+          $http.post($scope.facebookAuthConfig.authUrl, {
+            code: $stateParams.code,
+            clientId: $scope.facebookAuthConfig.clientId,
+            redirectUri: $scope.facebookAuthConfig.redirectUri
+          }).then(function successCallback(res) {
+            getProfile(res.data);
+          });
+        }
+
+        function getProfile(res) {
+          UserService.login(res.token);
+          UserService.setFacebookProfile(res.facebookProfile);
+          res.profile.stores = res.stores;
+          if (res.store) {
+            TourService.init();
+            res.profile.store = res.store;
+            UserService.setBg(res.store.bg_url);
+            UserService.setAvatar(res.store.avatar_url);
+          }
+          else {
+            res.profile.store = {};
+          }
+          UserService.setProfile(res.profile);
+          UserService.setIsSeller(res.profile.seller);
+
+          res.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.store.store_url});
+        }
       }])
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
 

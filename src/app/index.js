@@ -48,7 +48,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
     $stateProvider.state('login', {
       parent: 'main',
-      url: '/',
+      url: '/?code',
       controller: 'SiteLogin',
       templateUrl: modulesPath + '/site/main.html'
     });
