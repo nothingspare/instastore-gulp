@@ -25,14 +25,12 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     $urlRouterProvider.otherwise('/');
 
     $stateProvider.state('main', {
-      // url: '',
-      // controller: 'SiteLogin',
       template: '<ui-view></ui-view>',
       resolve: {
         currentUser: function ($cookies, UserService, $q) {
           if (UserService.currentUser.id) {
             return $q.when(UserService.currentUser);
-          } else if ($cookies.profileId) {
+          } else if ($cookies.profileId && $cookies.profileId != 'undefined') {
             return UserService.getProfileAuth().then(function (data) {
               var profile = data.data;
               UserService.saveProfile(profile);
