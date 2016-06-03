@@ -10,7 +10,7 @@
     <md-dialog-content>
         <md-card layout="column" layout-fill layout-wrap class="profile-tree">
             <ng-form name="profileForm" layout="column">
-                <div layout layout-align="center center" layout-padding>
+                <div layout layout-align="center center" layout-padding >
                     <h4 flex class="dialog-header">PERSONAL INFORMATION</h4>
                 </div>
                 <div ng-if="treeConfig" ui-tree data-drag-enabled="false">
@@ -80,12 +80,12 @@
 
                                                 <md-button
                                                         href="mailto:support@isopen.us?subject=Contact Support&body={{profile.address?'Address:':''}} {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
-                                                        class="md-primary md-raised less-margin io-primary-btn">
+                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn">
                                                     Contact Support
                                                 </md-button>
 
                                                 <md-button
-                                                        class="md-primary md-raised less-margin io-primary-btn"
+                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                         ng-click="logout()">Log-out
                                                     <ng-md-icon icon="logout"></ng-md-icon>
                                                 </md-button>
@@ -109,20 +109,20 @@
                                         <!--USER section ends-->
                                         <!--PHONE section starts-->
                                         <div ng-if="unit.code === 'phone'" layout="column" layout-padding>
-                                            <div layout ng-if="!profile.phone_validated_at">
+                                            <div layout="column" ng-if="!profile.phone_validated_at">
                                                 <md-input-container flex>
                                                     <label>Phone number</label>
                                                     <input ng-model="profile.phone" class="left-justified" type="tel">
                                                 </md-input-container>
-                                                <div layout layout-align="start"
+                                                <div layout layout-align="center start"
                                                      ng-if="profile.phone.length>7 && !profile.phone_validated_at"
                                                      class="am-fade-and-scale">
-                                                    <md-button class="md-primary md-raised io-primary-btn"
+                                                    <md-button class="md-primary md-raised io-primary-btn io-middle-btn"
                                                                ng-click="textToVerify()">Send to Verify
                                                     </md-button>
                                                 </div>
                                             </div>
-                                            <div layout ng-if="profile.phone.length>7 && !profile.phone_validated_at">
+                                            <div layout="column" ng-if="profile.phone.length>7 && !profile.phone_validated_at">
                                                 <md-input-container flex>
                                                     <label>Enter texted code</label>
                                                     <input ng-model="verifyPhoneCode" type="tel">
@@ -130,7 +130,7 @@
                                                 <div layout layout-align="center start"
                                                      ng-if="verifyPhoneCode.length>5 && !profile.phone_validated_at"
                                                      class="am-fade-and-scale">
-                                                    <md-button class="md-primary md-raised io-primary-btn"
+                                                    <md-button class="md-primary md-raised io-primary-btn io-middle-btn"
                                                                ng-click="sendCode(verifyPhoneCode);">Enter Texted Code
                                                     </md-button>
                                                 </div>
@@ -142,7 +142,7 @@
                                                     <span class="phone-verified">&nbsp;Verified!</span>
                                                 </div>
                                                 <md-button
-                                                        class="md-primary md-raised less-margin io-primary-btn"
+                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                         style="margin-top:20px;"
                                                         ng-click="unit.collapsed = !collapsed;removePhone()"
                                                         aria-label="Remove Phone">
@@ -156,21 +156,21 @@
                                             <br>
                                             <ng-form ng-if="!profile.address_verified_at" name="addressForm">
                                                 <div layout layout-sm="column">
-                                                    <md-input-container flex-sm flex-gt-sm="70">
+                                                    <md-input-container>
                                                         <label>Address</label>
                                                         <input ng-model="profile.address" type="text">
                                                     </md-input-container>
-                                                    <md-input-container flex-sm flex-gt-sm="30">
+                                                    <md-input-container >
                                                         <label>Apt</label>
                                                         <input ng-model="profile.apartment" type="text">
                                                     </md-input-container>
                                                 </div>
-                                                <div layout layout-sm="column">
-                                                    <md-input-container flex-sm flex-gt-sm="70">
+                                                <div layout="column">
+                                                    <md-input-container >
                                                         <label>City</label>
                                                         <input ng-model="profile.city" type="text">
                                                     </md-input-container>
-                                                    <md-input-container flex flex-gt-sm="30">
+                                                    <md-input-container >
                                                         <label>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                                         <input ng-model="profile.state" type="text">
                                                     </md-input-container>
@@ -180,13 +180,13 @@
                                                         <label>Zipcode</label>
                                                         <input ng-model="profile.zipcode" type="text">
                                                     </md-input-container>
-                                                    <div layout layout-align="center center"
-                                                         class="am-fade-and-scale">
-                                                        <md-button
-                                                                class="md-raised md-primary button-padding less-margin io-primary-btn"
-                                                                ng-click="verifyAddress()">Verify Address
-                                                        </md-button>
-                                                    </div>
+                                                </div>
+                                                <div layout layout-align="center center"
+                                                     class="am-fade-and-scale">
+                                                    <md-button
+                                                        class="md-raised md-primary button-padding less-margin io-primary-btn io-middle-btn"
+                                                        ng-click="verifyAddress()">Verify Address
+                                                    </md-button>
                                                 </div>
                                             </ng-form>
                                             <div ng-if="profile.address_verified_at" layout="column"
@@ -199,7 +199,7 @@
                                                 </div>
                                                 <br>
                                                 <md-button layout
-                                                           class="md-primary md-raised less-margin io-primary-btn io-profile-btn-margin-above"
+                                                           class="md-primary md-raised less-margin io-primary-btn io-profile-btn-margin-above io-middle-btn"
                                                            ng-click="unit.collapsed = !collapsed;removeAddress()"
                                                            aria-label="Remove Address">
                                                     Remove Address

@@ -4201,6 +4201,7 @@ md-dialog {
     font-size: 12pt;
     font-weight: 400;
     text-transform: uppercase;
+    line-height: 25px;
 }
 
 .dialog-header.top {
