@@ -6,7 +6,7 @@ angular.module('instastore')
     })
     .controller('SiteLogin', ['$scope', '$rootScope', 'rest', '$state',
       '$auth', 'UserService', 'SStorage', 'InAppService', '$mdSidenav', '$document', 'messageService',
-      'TourService', '$cookies', '$q', '$stateParams', '$http', 'satellizer.config', '$location',
+      'TourService', '$cookies', '$q', '$stateParams', '$http', 'SatellizerConfig', '$location',
       function ($scope, $rootScope, rest, $state,
                 $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService,
                 TourService, $cookies, $q, $stateParams, $http, satellizerConfig, $location) {
