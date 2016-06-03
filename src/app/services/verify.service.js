@@ -5,15 +5,20 @@
       .module('instastore')
       .service('VerifyService', VerifyService);
 
-  VerifyService.$inject = ['rest', 'messageService', 'UserService', '$mdDialog', '$mdMedia', '$q'];
+  VerifyService.$inject = [
+    'rest',
+    'messageService',
+    'UserService',
+    'ModalService'
+  ];
 
   /* @ngInject */
-  function VerifyService(rest, messageService, UserService, $mdDialog, $mdMedia, $q) {
+  function VerifyService(rest, messageService, UserService, ModalService) {
     this.phone = phone;
     this.address = address;
     this.sendCode = sendCode;
     this.isVerify = isVerify;
-    this.showModalAddressPhone = showModalAddressPhone;
+    // this.showModalAddressPhone = showModalAddressPhone;
 
     ////////////////
 
@@ -54,24 +59,6 @@
           && profile.state
           && profile.zipcode)
           && profile.phone;
-    }
-
-    function showModalAddressPhone() {
-      var deferred = $q.defer();
-      $mdDialog.show({
-        controller: 'DialogController as vm',
-        templateUrl: 'app/components/item/profile-verify.html',
-        parent: angular.element(document.body),
-        // scope: $scope,
-        preserveScope: true,
-        clickOutsideToClose: true,
-        fullscreen: $mdMedia('xs'),
-        onRemoving: function () {
-          isVerify() ? deferred.resolve() : deferred.reject(err);
-        }
-      });
-
-      return deferred.promise;
     }
   }
 

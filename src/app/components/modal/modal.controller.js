@@ -2,12 +2,22 @@ angular
     .module('instastore')
     .controller('DialogController', DialogController);
 
-DialogController.$inject = ['$mdDialog', 'ModalService', 'SubscriptionService', 'VerifyService', 'TourService',
-  'UserService', '$state', 'messageService', 'deviceDetector'];
+DialogController.$inject = [
+  '$mdDialog',
+  'ModalService',
+  'SubscriptionService',
+  'VerifyService',
+  'TourService',
+  'UserService',
+  '$state',
+  'messageService',
+  'deviceDetector',
+  'ProfileService'
+];
 
 /* @ngInject */
 function DialogController($mdDialog, ModalService, SubscriptionService, VerifyService, TourService,
-                          UserService, $state, messageService, deviceDetector) {
+                          UserService, $state, messageService, deviceDetector, ProfileService) {
   var vm = this;
 
   vm.profile = UserService.getProfile();
@@ -29,6 +39,10 @@ function DialogController($mdDialog, ModalService, SubscriptionService, VerifySe
   vm.sendCodePhone = sendCodePhone;
   vm.VerifyService = VerifyService;
 
+  /* Apply for a store */
+  vm.ProfileService = ProfileService;
+  vm.makeSeller = makeSeller;
+
   function hide() {
     $mdDialog.hide();
   }
@@ -36,16 +50,14 @@ function DialogController($mdDialog, ModalService, SubscriptionService, VerifySe
   function buy() {
     hide();
     SubscriptionService.isFollowing().then(function () {
-      if(deviceDetector.os === 'ios') {
+      if (deviceDetector.os === 'ios') {
         ModalService.show('home-screen');
       }
     });
   }
 
   function sell() {
-    VerifyService.showModalAddressPhone().then(function () {
-      TourService.addItem();
-    });
+    TourService.sell();
   }
 
   function isSelected(store) {
@@ -93,6 +105,12 @@ function DialogController($mdDialog, ModalService, SubscriptionService, VerifySe
             messageService.simpleByCode('profile', 'addressError');
           }
         });
+  }
+
+  function makeSeller(val) {
+    ProfileService.makeSeller(val).then(function () {
+      hide();
+    });
   }
 
   function sendCodePhone(code) {

@@ -24,13 +24,13 @@
 
     function activate() {
       UserService.initMyStoreSettings();
-      
-      SubscriptionService.count().then(function (count) {
-        if(!count) {
-          SubscriptionService.isFollowing()
-        }
-        vm.StreamService.init('v1/streams');
-      });
+      vm.StreamService.init('v1/streams');
+
+      // SubscriptionService.count().then(function (count) {
+      //   if(!count) {
+      //     SubscriptionService.isFollowing()
+      //   }
+      // });
     }
   }
 

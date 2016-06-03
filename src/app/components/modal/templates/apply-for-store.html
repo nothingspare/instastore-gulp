@@ -1,0 +1,53 @@
+<md-dialog aria-label="Welcome" class="store-item" ng-cloak>
+    <form>
+
+        <div layout="row">
+            <h4 flex class="dialog-header top">
+                Apply for a store
+            </h4>
+            <md-button ng-click="vm.hide()"
+                       class="md-fab md-mini md-primary io-secondary-btn dialog-close-btn"
+                       aria-label="Close Dialog">
+                <ng-md-icon icon="close" class="secondary"></ng-md-icon>
+            </md-button>
+        </div>
+
+        <md-dialog-content layout="column" layout-align="center center" layout-padding>
+            <div layout="column" layout-padding>
+                <div layout="column" layout-align="center center">
+                    <div layout layout-align="center center">
+                        <p class="text-align-center">
+                            isOpen is looking for motivated sellers with great ideas or
+                            existing businesses. Please tell us a few words about yourself
+                            so we can consider you for one of our free beta store
+                            accounts.</p>
+                    </div>
+                    <md-button href="mailto:support@isopen.us?subject=Request a store"
+                               class="md-primary md-raised less-margin io-primary-btn">
+                        Request a store
+                    </md-button>
+                </div>
+                <div layout flex>
+                    <md-input-container flex>
+                        <label>Invite code</label>
+                        <input ng-model="inviteCode" type="text">
+                    </md-input-container>
+                    <div layout layout-align="center start"
+                         class="am-fade-and-scale">
+                        <md-button
+                            class="md-primary md-raised less-margin io-primary-btn"
+                            ng-click="vm.makeSeller(inviteCode)">Get Store
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="column">
+            <md-button ng-click="vm.hide()" class="flat-btn" md-autofocus>
+                Done
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>

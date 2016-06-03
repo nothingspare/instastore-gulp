@@ -10,23 +10,21 @@
   /* @ngInject */
   function TourService($rootScope, VerifyService, ItemService, ModalService, UserService, SubscriptionService, deviceDetector) {
     this.init = init;
+    this.sell = sell;
     this.addItem = addItem;
 
     ////////////////
 
     function init() {
-      var profile = UserService.getProfile();
-      if (profile.seller) {
-        ItemService.count().then(function (countItems) {
-          if (!countItems) {
-            SubscriptionService.count().then(function (countFollowers) {
-              if (!countFollowers && !VerifyService.isVerify()) {
-                ModalService.show('welcome');
-              }
-            });
-          }
-        });
-      }
+      ItemService.count().then(function (countItems) {
+        if (!countItems) {
+          SubscriptionService.count().then(function (countFollowers) {
+            if (!countFollowers && !VerifyService.isVerify()) {
+              ModalService.show('welcome');
+            }
+          });
+        }
+      });
     }
 
     function addItem() {
@@ -35,13 +33,27 @@
         if (!count) {
           ModalService.show('add-items').then(function () {
             ModalService.show('finish-settings').then(function () {
-              if(deviceDetector.os === 'ios') {
+              if (deviceDetector.os === 'ios') {
                 ModalService.show('home-screen');
               }
             });
           });
         }
       });
+    }
+
+    function sell() {
+      var profile = UserService.getProfile();
+      if (profile.seller) {
+        ModalService.show('profile-verify')
+            .then(function () {
+              if (VerifyService.isVerify()) {
+                addItem();
+              }
+            });
+      } else {
+        ModalService.show('apply-for-store');
+      }
     }
   }
 

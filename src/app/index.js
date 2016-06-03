@@ -27,7 +27,9 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     $stateProvider.state('main', {
       template: '<ui-view></ui-view>',
       resolve: {
-        currentUser: function ($cookies, UserService, $q) {
+        currentUser: function ($cookies, UserService, $q, TourService) {
+          TourService.init();
+
           if (UserService.currentUser.id) {
             return $q.when(UserService.currentUser);
           } else if ($cookies.profileId && $cookies.profileId != 'undefined') {
