@@ -56,21 +56,9 @@
                         </div>
                     </md-input-container>
                 </div>
-                <div ng-if="isFacebookInApp" flex layout ng-click="warnIfInApp()">
-                    <md-input-container flex class="md-primary">
-                        <label>Leave comment</label>
-                        <input md-maxlength="256" required name="post"
-                               ng-model="item.newComment" disabled/>
-
-                        <div ng-messages="form.postForm.post.$error">
-                            <div ng-message="md-maxlength">The name has to be less than 256 characters long.
-                            </div>
-                        </div>
-                    </md-input-container>
-                </div>
                 <div layout>
                     <md-button ng-disabled="!form.postForm.$valid" class="md-primary md-fab"
-                               ng-click="isFacebookInApp?warnIfInApp():saveComment(item.newComment)"
+                               ng-click="saveComment(item.newComment)"
                                aria-label="Post it!">
                         <ng-md-icon icon="comment" style="fill:white"></ng-md-icon>
                     </md-button>

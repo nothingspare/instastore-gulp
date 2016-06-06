@@ -13,22 +13,16 @@
     };
 
     return service;
-    
+
     function show(ev) {
-      if (!InAppService.isFacebookInApp()) {
-        $mdDialog.show({
-          controller: 'ProfileIndex',
-          templateUrl: 'app/components/profile/profile.html',
-          parent: angular.element(document.querySelector('.io-container')),
-          // parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose: true,
-          fullscreen: $mdMedia('xs')
-        });
-      }
-      else {
-        InAppService.warnIfInApp();
-      }
+      $mdDialog.show({
+        controller: 'ProfileIndex',
+        templateUrl: 'app/components/profile/profile.html',
+        parent: angular.element(document.querySelector('.io-container')),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        fullscreen: $mdMedia('xs')
+      });
     }
   }
 

@@ -11,7 +11,6 @@ angular.module('instastore')
                 $auth, UserService, SStorage, InAppService, $mdSidenav, $document, messageService,
                 TourService, $cookies, $q, $stateParams, $http, satellizerConfig, $location) {
 
-        InAppService.warnIfInApp();
         $scope.isInApp = InAppService.isFacebookInApp();
 
         $scope.facebookAuthConfig = {

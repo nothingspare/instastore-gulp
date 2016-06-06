@@ -6,12 +6,9 @@ angular.module('instastore')
       function ($scope, rest, UserService, $stateParams, $rootScope,
                 $state, feedHelper, messageService, $filter, ITEM_STATUS, $auth, InAppService, StreamService, MyStoreFactory) {
 
-        InAppService.warnIfInApp();
-
         var vm = this;
 
         //////////////
-
         activate();
 
         function activate() {

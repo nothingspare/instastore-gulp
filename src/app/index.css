@@ -2409,8 +2409,8 @@ select,
 
 select:hover,
 .btn:hover {
-    background-color: #eee;
-    color: #f37878;
+    background-color: #f37878;
+    color: #ffffff;
     border: 1px solid #f37878;
     text-decoration: none;
 }
@@ -4364,6 +4364,8 @@ md-toast .md-toast-content {
 
 .io-mode-selector md-select-value {
     border-bottom-width: 0 !important;
+    font-weight: 700;
+    padding: 7px;
 }
 
 ul.finish-settings {

@@ -268,14 +268,11 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         });
   }]);
 
-app.run(function ($rootScope, $state, $stateParams, $mdMedia, deviceDetector) {
+app.run(function ($rootScope, $state, $stateParams, $mdMedia, DeviceService) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.$mdMedia = $mdMedia;
-  $rootScope.isHomeScreen = deviceDetector.os === 'ios'
-      && deviceDetector.browser === 'unknown'
-      && deviceDetector.browser_version === '0'
-      && deviceDetector.os_version === 'unknown';
+  $rootScope.isHomeScreen = DeviceService.isHomeScreen();
 });
 
 

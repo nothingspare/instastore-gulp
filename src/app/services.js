@@ -111,18 +111,18 @@ angular.module('instastore')
           return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
         },
         warnIfInApp: function () {
-          if (this.isFacebookInApp()) {
-            $mdDialog.show({
-              templateUrl: 'app/components/item/inapp-warning.html',
-              parent: angular.element(document.body),
-              clickOutsideToClose: true,
-              controller: function ($scope, $mdDialog) {
-                $scope.closeDialog = function () {
-                  $mdDialog.hide();
-                }
-              }
-            });
-          }
+          // if (this.isFacebookInApp()) {
+          //   $mdDialog.show({
+          //     templateUrl: 'app/components/item/inapp-warning.html',
+          //     parent: angular.element(document.body),
+          //     clickOutsideToClose: true,
+          //     controller: function ($scope, $mdDialog) {
+          //       $scope.closeDialog = function () {
+          //         $mdDialog.hide();
+          //       }
+          //     }
+          //   });
+          // }
         }
       }
     }])

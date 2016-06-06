@@ -15,41 +15,48 @@
       currentUser: currentUser,
       fromInstaimport: false,
 
-      saveProfile: saveProfile,
       init: init,
-      login: login,
-      logout: logout,
-      getToken: getToken,
-      isGuest: isGuest,
-      getIsManageStore: getIsManageStore,
-      toggleIsManageStore: toggleIsManageStore,
-      goToStream: goToStream,
-      getUserRole: getUserRole,
-      getUserFullName: getUserFullName,
-      setBg: setBg,
-      //instaimport part
-      goToInstaimport: goToInstaimport,
-      //go to your store as seller, go to inviter's store as buyer
-      goToMainStore: goToMainStore,
-      getMainStoreUrl: getMainStoreUrl,
-      goToStoreProfile: goToStoreProfile,
-      routeStoreurlCheck: routeStoreurlCheck,
-      checkStoreUrl: checkStoreUrl,
-      isYourStore: isYourStore,
       initMyStoreSettings: initMyStoreSettings,
       initStore: initStore,
-      setAvatar: setAvatar,
       initBgAndAvatar: initBgAndAvatar,
       initBgFilter: initBgFilter,
       initIsSeller: initIsSeller,
-      isSeller: isSeller,
-      setIsSeller: setIsSeller,
+      
+      saveProfile: saveProfile,
+
+      getToken: getToken,
+
+      login: login,
+      logout: logout,
+
+      isGuest: isGuest,
+      isYourStore: isYourStore,
+
+      getIsManageStore: getIsManageStore,
+      toggleIsManageStore: toggleIsManageStore,
+
+      checkStoreUrl: checkStoreUrl,
+
+      setAvatar: setAvatar,
       setProfile: setProfile,
+      setBg: setBg,
+      setIsSeller: setIsSeller,
+      setFacebookProfile: setFacebookProfile,
+
       getProfile: getProfile,
+      getUserRole: getUserRole,
+      getUserFullName: getUserFullName,
       getProfileAuth: getProfileAuth,
       getInvitedStatus: getInvitedStatus,
-      setFacebookProfile: setFacebookProfile,
+      getMainStoreUrl: getMainStoreUrl,
+      goToStoreProfile: goToStoreProfile,
       getFacebookProfile: getFacebookProfile,
+
+      routeStoreurlCheck: routeStoreurlCheck,
+      goToStream: goToStream,
+      goToMainStore: goToMainStore,
+      goToInstaimport: goToInstaimport,
+
       //For redirects from socials
       saveLastRouteToProfile: saveLastRouteToProfile,
       goToLastRouteFromProfile: goToLastRouteFromProfile

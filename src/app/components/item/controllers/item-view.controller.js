@@ -17,6 +17,7 @@
                     ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
                     itemsAmount, InAppService, messageService, urlsThere, VerifyService, $rootScope) {
     var vm = this;
+
     $scope.VerifyService = VerifyService;
     $scope.seeMore = false;
     $scope.profile = UserService.getProfile();
@@ -99,10 +100,6 @@
         }
       }
     }
-
-    $scope.warnIfInApp = function () {
-      InAppService.warnIfInApp();
-    };
 
     $scope.saveInstagramEnabled = function () {
       if ($scope.profile.hasInstagramCredentials) {
@@ -256,6 +253,10 @@
     };
 
     $scope.saveComment = function (comment) {
+      if(UserService.isGuest()) {
+        $state.go('login');
+        return;
+      }
       //$scope.form = {};
       $scope.item.newComment = '';
       $scope.form.postForm.$setPristine();
