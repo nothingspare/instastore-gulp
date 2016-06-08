@@ -43,7 +43,7 @@
       $cookies.lastItem = JSON.stringify({
         storeurl: $stateParams.storeurl,
         itemurl: $stateParams.itemurl,
-        tab: $stateParams.tab
+        tab: tab
       });
     });
 
