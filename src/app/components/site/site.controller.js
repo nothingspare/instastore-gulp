@@ -111,7 +111,12 @@ angular.module('instastore')
           UserService.setProfile(res.profile);
           UserService.setIsSeller(res.profile.seller);
 
-          res.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.store.store_url});
+          if($scope.isInApp){
+            $state.go('itemview', JSON.parse($cookies.lastItem));
+          }else{
+            res.profile.seller ? UserService.goToMainStore() : $state.go('stream', {storeurl: res.store.store_url});
+          }
+
         }
       }])
     .controller('SellOrBuy', ['$scope', 'UserService', '$state', function ($scope, UserService, $state) {
