@@ -9,13 +9,13 @@
     'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
     'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', '$window',
     'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia', 'itemsAmount', 'InAppService', 'messageService',
-    'urlsThere', 'VerifyService', '$rootScope'];
+    'urlsThere', 'VerifyService', '$rootScope', '$cookies'];
 
   /* @ngInject */
   function ItemView($scope, rest, $state, feedHelper, UserService, $stateParams,
                     $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
                     ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
-                    itemsAmount, InAppService, messageService, urlsThere, VerifyService, $rootScope) {
+                    itemsAmount, InAppService, messageService, urlsThere, VerifyService, $rootScope, $cookies) {
     var vm = this;
 
     $scope.VerifyService = VerifyService;
@@ -34,6 +34,18 @@
     //for form in view view-tab-social
     $scope.post = {};
     $scope.form = {};
+
+    // save last item to cookies
+    $scope.$watch('$stateParams.tab', function (tab, oldTab) {
+      if(tab === oldTab){
+        return
+      }
+      $cookies.lastItem = JSON.stringify({
+        storeurl: $stateParams.storeurl,
+        itemurl: $stateParams.itemurl,
+        tab: $stateParams.tab
+      });
+    });
 
     activate();
 

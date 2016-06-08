@@ -105,14 +105,15 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         urlsThere: function ($stateParams) {
           return ($stateParams.storeurl !== undefined && $stateParams.itemurl !== undefined && $stateParams.itemurl !== 'undefined' && $stateParams.storeurl !== 'undefined');
         },
-        lastItem: function ($cookies, $stateParams) {
-          $cookies.lastItem = JSON.stringify({
-            storeurl: $stateParams.storeurl,
-            itemurl: $stateParams.itemurl,
-            tab: $stateParams.tab
-          });
-          return $cookies.lastItem;
-        }
+        // lastItem: function ($cookies, $stateParams) {
+        //   $cookies.lastItem = JSON.stringify({
+        //     storeurl: $stateParams.storeurl,
+        //     itemurl: $stateParams.itemurl,
+        //     tab: $stateParams.tab
+        //   });
+        //   console.log(JSON.parse($cookies.lastItem));
+        //   return $cookies.lastItem;
+        // }
       },
       templateUrl: modulesPath + '/item/view.html'
     });
