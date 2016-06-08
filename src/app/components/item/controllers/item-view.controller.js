@@ -266,7 +266,7 @@
 
     $scope.saveComment = function (comment) {
       if(UserService.isGuest()) {
-        $state.go('login');
+        $auth.authenticate('facebook').then(authentificateCallback);
         return;
       }
       //$scope.form = {};
@@ -284,6 +284,22 @@
         });
       }).error(messageService.alert);
     };
+    function authentificateCallback(res) {
+      if (UserService.getProfile().lastRoute) {
+        var lastRoute = UserService.getProfile().lastRoute;
+      }
+      UserService.login(res.data.token);
+      UserService.setFacebookProfile(res.data.facebookProfile);
+      res.data.profile.stores = res.data.stores;
+      if (res.data.store) {
+        res.data.profile.store = res.data.store;
+        UserService.setBg(res.data.store.bg_url);
+        UserService.setAvatar(res.data.store.avatar_url);
+      }
+      res.data.profile.lastRoute = lastRoute;
+      UserService.setProfile(res.data.profile);
+      $scope.profile = res.data.profile;
+    }
 
     $scope.showCommentTab = function () {
       $scope.leaveComment = !$scope.leaveComment;

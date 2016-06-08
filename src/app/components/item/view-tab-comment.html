@@ -44,7 +44,7 @@
         </div>
         <div>
             <ng-form layout name="form.postForm">
-                <div ng-if="!isFacebookInApp" flex layout>
+                <div ng-if="!(isFacebookInApp && isGuest)" flex layout>
                     <md-input-container flex class="md-primary">
                         <label>Leave comment</label>
                         <input md-maxlength="256" required name="post"
