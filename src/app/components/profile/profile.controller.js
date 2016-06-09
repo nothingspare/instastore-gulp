@@ -256,10 +256,10 @@ angular.module('instastore')
       }])
     .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'uiGmapGoogleMapApi', '$auth',
       'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL', '$mdDialog', '$location', '$stateParams', '$rootScope',
-      '$mdMedia', 'messageService',
+      '$mdMedia', 'messageService', '$cookies',
       function ($scope, UserService, rest, uiGmapGoogleMapApi, $auth, CLIENT_URL,
                 $state, stripe, $http, API_URL, $mdDialog, $location, $stateParams, $rootScope,
-                $mdMedia, messageService) {
+                $mdMedia, messageService, $cookies) {
 
         $scope.CLIENT_URL = CLIENT_URL;
 
@@ -408,6 +408,7 @@ angular.module('instastore')
         };
 
         $scope.linkInstagram = function () {
+          $cookies.authenticateFrom = 'instagram';
           $auth.authenticate('instagram')
               .then(function (response) {
                 if (response.data && response.data.user && response.data.user.id) {
@@ -427,13 +428,8 @@ angular.module('instastore')
                 $mdDialog.hide();
               }
               else {
-                if (!$mdMedia('xs')) {
-                  $scope.instagramProgress = true;
-                  $scope.linkInstagram();
-                }
-                else {
-                  messageService.simpleByCode('profileStore', 'linkAccount');
-                }
+                $scope.instagramProgress = true;
+                $scope.linkInstagram();
               }
               break;
           }

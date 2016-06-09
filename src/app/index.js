@@ -171,7 +171,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
     var configPinterest = {
       name: 'pinterest',
-      url: '/v1/link/pinterest',
+      url: 'v1/link/pinterest',
       display: 'popup',
       authorizationEndpoint: 'https://api.pinterest.com/oauth/',
       defaultUrlParams: ['scope', 'redirect_uri', 'response_type', 'client_id'],
@@ -183,7 +183,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
 
     var configInstagram = {
       name: 'instagram',
-      url: '/v1/link/instagram',
+      url: 'v1/link/instagram',
       redirectUri: 'http://instastore.us/',
       clientId: '59429297486f4f2393762a1febf17583',
       requiredUrlParams: ['scope'],

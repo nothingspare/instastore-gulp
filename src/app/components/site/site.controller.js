@@ -19,6 +19,13 @@ angular.module('instastore')
           redirectUri: satellizerConfig.providers.facebook.redirectUri,
           clientId: satellizerConfig.providers.facebook.clientId,
         };
+        $scope.instagramAuthConfig = {
+          authorizationEndpoint: satellizerConfig.providers.instagram.authorizationEndpoint,
+          authUrl: satellizerConfig.baseUrl + satellizerConfig.providers.instagram.url,
+          redirectUri: satellizerConfig.providers.instagram.redirectUri,
+          clientId: satellizerConfig.providers.instagram.clientId,
+        };
+
 
         var profile = UserService.getProfile();
         $scope.store = profile.store;
@@ -86,13 +93,30 @@ angular.module('instastore')
         };
 
         if ($stateParams.code) {
-          $http.post($scope.facebookAuthConfig.authUrl, {
-            code: $stateParams.code,
-            clientId: $scope.facebookAuthConfig.clientId,
-            redirectUri: $scope.facebookAuthConfig.redirectUri
-          }).then(function successCallback(res) {
-            getProfile(res.data);
-          });
+          if($cookies.authenticateFrom == 'instagram'){
+            $cookies.authenticateFrom = '';
+            $http.post($scope.instagramAuthConfig.authUrl, {
+              code: $stateParams.code,
+              clientId: $scope.instagramAuthConfig.clientId,
+              redirectUri: $scope.instagramAuthConfig.redirectUri
+            })
+            .then(function (response) {
+              if (response.data && response.data.user && response.data.user.id) {
+                UserService.fromInstaimport = true;
+                profile.instagramId = response.data.user.id;
+                $state.go('instaimport', {storeurl: profile.store.store_url});
+              }
+            });
+
+          }else{
+            $http.post($scope.facebookAuthConfig.authUrl, {
+              code: $stateParams.code,
+              clientId: $scope.facebookAuthConfig.clientId,
+              redirectUri: $scope.facebookAuthConfig.redirectUri
+            }).then(function successCallback(res) {
+              getProfile(res.data);
+            });
+          }
         }
 
         function getProfile(res) {

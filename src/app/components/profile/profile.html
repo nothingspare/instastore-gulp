@@ -319,14 +319,12 @@
                                     </div>
                                     <div layout layout-wrap layout-fill ng-if="unit.code==='location'"
                                          class="main-title" layout-wrap>
-                                        {{profile.store.show_store_location?'Store Location':'Online only, no store
-                                        location'}}
+                                        {{profile.store.show_store_location?'Store Location':'Online only, no store location'}}
                                     </div>
                                     <div layout layout-wrap layout-fill
                                          ng-if="unit.code==='instagram' && !instagramProgress"
                                          class="main-title" layout-wrap show-gt-xs>
-                                        <span hide-xs>{{profile.instagramId?'IMPORT FROM INSTAGRAM':'LINK INSTAGRAM ACCOUNT'}}</span>
-                                        <span hide-gt-xs>{{profile.instagramId?'IMPORT FROM INSTAGRAM':'AVAILABLE ONLY FROM PC'}}</span>
+                                        <span>{{profile.instagramId?'IMPORT FROM INSTAGRAM':'LINK INSTAGRAM ACCOUNT'}}</span>
                                     </div>
                                     <div layout layout-wrap layout-fill
                                          ng-if="unit.code==='instagram' && instagramProgress"
