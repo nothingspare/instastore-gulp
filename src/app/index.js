@@ -31,11 +31,14 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
           if (UserService.currentUser.id) {
             return $q.when(UserService.currentUser);
           } else if ($cookies.profileId && $cookies.profileId != 'undefined') {
-            return UserService.getProfileAuth().then(function (data) {
-              var profile = data.data;
-              UserService.saveProfile(profile);
-              return UserService.currentUser;
-            });
+            return UserService.getProfileAuth()
+                .then(function (data) {
+                  var profile = data.data;
+                  UserService.saveProfile(profile);
+                  return UserService.currentUser;
+                }).catch(function () {
+                  UserService.logout();
+                });
           } else {
             return $q.when(UserService.currentUser);
           }
