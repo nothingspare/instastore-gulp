@@ -220,16 +220,18 @@ div.item-sale-status h5 {
 
 .item-sold-text {
     background-color: rgba(255, 0, 0, 0.7);
-    top: 34px;
+    top: 63px;
+    left: 33px;
+    width: 76px;
     color: #000;
-    font-size: 18px;
-    letter-spacing: .2em;
+    font-size: 13px;
+    letter-spacing: 0.2em;
     line-height: 1.2em;
     padding: 0;
     position: relative;
     text-align: center;
-    -webkit-transform: rotate(-33deg);
-    transform: rotate(-33deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
     -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
 }
