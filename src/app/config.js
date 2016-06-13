@@ -40,7 +40,7 @@ switch (window.location.origin) {
     break;
   default:
     angular.module('instastore')
-        .constant('API_URL', 'https://api.isopen.us/')
+        .constant('API_URL', 'http://api.instastore.us/')
         .constant('CLIENT_URL', 'http://192.168.0.104:3000/');
     break;
 }

@@ -210,7 +210,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
         break;
       case 'http://192.168.0.104:3000':
         configFacebook.clientId = '787537388017322';
-        configInstagram.clientId = '7f744b4b4f844419bd49872ac67cf22a';
+        configInstagram.clientId = 'e08157157bdb4d4b9b8f2ec104173156';
         configInstagram.redirectUri = configPinterest.redirectUri = 'http://192.168.0.104:3000/';
         break;
     }
