@@ -140,9 +140,16 @@
                         <option value="0">Pick up in store</option>
                     </select>
                 </div>
-
                 <br>
-
+                <p ng-if="profile.store.facebook_sharing_enabled || profile.store.instagram_sharing_enabled || profile.store.pinterest_sharing_enabled">
+                    <ng-md-icon icon="warning"
+                                style="fill: lightcoral;"></ng-md-icon>
+                    Social posting on
+                    {{profile.store.facebook_sharing_enabled ? 'facebook' : ''}}
+                    {{profile.store.instagram_sharing_enabled ? 'instagram': ''}}
+                    {{profile.store.pinterest_sharing_enabled ? 'pinterest': ''}}
+                </p>
+                <br>
                 <div layout layout-align="center center"
                      class="am-collapse bottom-padding">
                     <md-button ng-disabled="!(itemForm.$dirty && itemForm.$valid)"

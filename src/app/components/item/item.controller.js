@@ -109,6 +109,7 @@ angular.module('instastore')
         //TODO: remove hardcoded data
         $scope.item = {category_id: 9, brand_id: 1, description: ''};
         $scope.item.images = [];
+        $scope.profile = UserService.getProfile();
 
         //init Plupload-directive vars
         $scope.plupfiles = [];
