@@ -812,6 +812,11 @@ p {
     background-repeat: no-repeat;
 }
 
+.back {
+    background: url(../assets/images/icons-sprite2.0.png) -8px -7px;
+    background-size: 700px 50px;
+}
+
 .gridstream {
     background: url(../assets/images/icons-sprite2.0.png);
     background-position: -209px -7px;
@@ -830,10 +835,7 @@ p {
     background-size: 700px 50px;
 }
 
-.back {
-    background: url(../assets/images/icons-sprite2.0.png) -8px -7px;
-    background-size: 700px 50px;
-}
+
 
 .location {
     background-image: url(../assets/images/icons-sprite2.0.png);
@@ -1666,78 +1668,49 @@ h3 {
     background-size: 1200px 50px;
 }
 
-.message-circle:hover {
-    background: url(../assets/images/icons.svg);
-    background-position: -850px -0px;
-    background-size: 1200px 50px;
-}
-
 .message-circle.active {
     background: url(../assets/images/icons.svg) -850px -0px;
-    background-size: 1200px 50px;
 }
 
 .heart-circle {
     background: url(../assets/images/icons.svg);
     background-position: -400px -0px;
-    background-size: 1200px 50px;
 }
 
-.heart-circle:hover {
-    background: url(../assets/images/icons.svg);
-    background-position: -900px -0px;
-    background-size: 1200px 50px;
-}
 
 .heart-circle.active {
     background: url(../assets/images/icons.svg);
     background-position: -900px -0px;
-    background-size: 1200px 50px;
 }
 
 .location-circle {
     background: url(../assets/images/icons.svg);
     background-position: -450px -0px;
-    background-size: 1200px 50px;
 }
 
-.location-circle:hover {
-    background: url(../assets/images/icons.svg);
-    background-position: -950px -0px;
-    background-size: 1200px 50px;
-}
 
 .location-circle.active {
     background: url(../assets/images/icons.svg);
     background-position: -950px -0px;
-    background-size: 1200px 50px;
 }
 
 .buy-circle {
     background: url(../assets/images/icons.svg) -500px -0px;
-    background-size: 1200px 50px;
 }
 
-.buy-circle:hover {
-    background: url(../assets/images/icons.svg) -1000px -0px;
-    background-size: 1200px 50px;
-}
 
 .buy-circle.active {
     background: url(../assets/images/icons.svg) -1000px -0px;
-    background-size: 1200px 50px;
 }
 
 .photo-circle {
     background: url(../assets/images/icons.svg);
     background-position: -550px -0px;
-    background-size: 1200px 50px;
 }
 
 .key-circle {
     background: url(../assets/images/icons.svg);
     background-position: -600px -0px;
-    background-size: 1200px 50px;
 }
 
 .edit-circle {
@@ -1745,31 +1718,22 @@ h3 {
     background-size: 1200px 50px;
 }
 
-.edit-circle:hover {
-    background: url(../assets/images/icons.svg) -1050px -0px;
-    background-size: 1200px 50px;
-}
 
 .edit-circle.active {
     background: url(../assets/images/icons.svg) -1050px -0px;
     background-size: 1200px 50px;
 }
 
+
 .delete-circle {
     background: url(../assets/images/icons.svg);
     background-position: -700px -0px;
-    background-size: 1200px 50px;
 }
 
 .promote-circle {
     background: url(../assets/images/icons.svg) -750px -0px;
-    background-size: 1200px 50px;
 }
 
-.promote-circle:hover {
-    background: url(../assets/images/icons.svg) -1100px -0px;
-    background-size: 1200px 50px;
-}
 
 .promote-circle.active {
     background: url(../assets/images/icons.svg) -1100px -0px;
@@ -1778,12 +1742,6 @@ h3 {
 
 .buyer-message-circle {
     background: url(../assets/images/icons.svg) -799px -0px;
-    background-size: 1200px 50px;
-}
-
-.buyer-message-circle:hover {
-    background: url(../assets/images/icons.svg) -1150px -0px;
-    background-size: 1200px 50px;
 }
 
 .buyer-message-circle.active {
@@ -1794,42 +1752,42 @@ h3 {
 .message-circle-over {
     background: url(../assets/images/icons.svg);
     background-position: -850px -0px;
-    background-size: 1200px 50px;
 }
 
 .heart-circle-over {
     background: url(../assets/images/icons.svg);
     background-position: -900px -0px;
-    background-size: 1200px 50px;
 }
 
 .location-circle-over {
     background: url(../assets/images/icons.svg);
     background-position: -950px -0px;
-    background-size: 1200px 50px;
 }
 
 .buy-circle-over {
     background: url(../assets/images/icons.svg);
     background-position: -1000px -0px;
-    background-size: 1200px 50px;
 }
 
 .edit-circle-over {
     background: url(../assets/images/icons.svg);
     background-position: -1050px -0px;
-    background-size: 1200px 50px;
 }
 
 .promote-circle-over {
     background: url(../assets/images/icons.svg);
     background-position: -1100px -0px;
-    background-size: 1200px 50px;
 }
 
 .buyer-message-circle-over {
     background: url(../assets/images/icons.svg);
     background-position: -1150px -0px;
+}
+
+.message-circle, .heart-circle, .location-circle, .buy-circle, .photo-circle,
+.edit-circle, .key-circle, .delete-circle, .promote-circle, .buyer-message-circle,
+.message-circle-over, .heart-circle-over, .location-circle-over, .buy-circle-over,
+.edit-circle-over, .buyer-message-circle-over, .promote-circle-over {
     background-size: 1200px 50px;
 }
 

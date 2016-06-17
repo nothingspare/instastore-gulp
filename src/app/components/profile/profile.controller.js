@@ -401,7 +401,11 @@ angular.module('instastore')
           } else {
             if ($scope.profile.store.pinterest_sharing_enabled) {
               $location.hash('start');
-              authToPinterest();
+              authToPinterest().then(function (res) {
+                if (res) {
+                  $scope.save();
+                }
+              });
             } else {
               $scope.save();
             }
@@ -409,11 +413,7 @@ angular.module('instastore')
         };
 
         function authToPinterest() {
-          $auth.link('pinterest')
-              .then(function (res) {
-                if (res) {
-                }
-              });
+          return $auth.link('pinterest');
         }
 
         $scope.save = function () {
