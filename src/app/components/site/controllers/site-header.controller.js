@@ -7,11 +7,11 @@
 
   SiteHeader.$inject = ['$scope', '$state', 'UserService', '$stateParams', '$location',
     '$auth', 'messageService', '$mdDialog', '$mdMedia', '$rootScope', 'rest', 'RouterTracker',
-    'profileService', 'transactionService', '$document', 'CommentFactory'];
+    'ModalService', 'transactionService', '$document', 'CommentFactory'];
 
   /* @ngInject */
   function SiteHeader($scope, $state, UserService, $stateParams, $location, $auth, messageService,
-                      $mdDialog, $mdMedia, $rootScope, rest, RouterTracker, profileService, transactionService, $document, CommentFactory) {
+                      $mdDialog, $mdMedia, $rootScope, rest, RouterTracker, ModalService, transactionService, $document, CommentFactory) {
     var vm = this;
 
     $scope.profile = UserService.getProfile();
@@ -136,7 +136,7 @@
       if (UserService.isGuest()) {
         $auth.authenticate('facebook').then(authentificateCallback, messageService.satellizerAlert);
       } else {
-        profileService.show(ev);
+        ModalService.show('profile', {}, 'ProfileIndex');
       }
     };
 

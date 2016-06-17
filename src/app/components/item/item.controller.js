@@ -102,10 +102,10 @@ angular.module('instastore')
       }])
     .controller('ItemAdd', ['$scope', 'rest', 'ITEM_STATUS', 'API_URL',
       'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG', '$mdDialog',
-      'itemsAmount', 'messageService',
+      'itemsAmount', 'messageService', 'SocialService',
       function ($scope, rest, ITEM_STATUS, API_URL,
                 UserService, cfpLoadingBar, $rootScope, PLUPLOAD_RESIZE_CONFIG, $mdDialog,
-                itemsAmount, messageService) {
+                itemsAmount, messageService, SocialService) {
         //TODO: remove hardcoded data
         $scope.item = {category_id: 9, brand_id: 1, description: ''};
         $scope.item.images = [];
@@ -122,18 +122,29 @@ angular.module('instastore')
           $scope.item.status = ITEM_STATUS.active;
           if ($scope.item.id) {
             rest.path = 'v1/user-items';
-            rest.putModel($scope.item).success(function (item) {
-              messageService.simpleByCode('item', 'saved');
-              itemsAmount.incrementItemsAmount();
-              $rootScope.$broadcast('newItem', item);
-            }).error(messageService.alert);
+            rest.putModel($scope.item)
+                .success(function (item) {
+                  SocialService.socialExport(item.id, '').success(function (res) {
+                    console.log(res);
+                  });
+
+                  messageService.simpleByCode('item', 'saved');
+                  itemsAmount.incrementItemsAmount();
+                  $rootScope.$broadcast('newItem', item);
+                })
+                .error(messageService.alert);
           } else {
             rest.path = 'v1/user-items';
-            rest.postModel($scope.item).success(function (item) {
-              messageService.simpleByCode('item', 'saved');
-              itemsAmount.incrementItemsAmount();
-              $rootScope.$broadcast('newItem', item);
-            }).error(messageService.alert);
+            rest.postModel($scope.item)
+                .success(function (item) {
+                  SocialService.socialExport(item.id, '').success(function (res) {
+                    console.log(res);
+                  });
+
+                  messageService.simpleByCode('item', 'saved');
+                  itemsAmount.incrementItemsAmount();
+                  $rootScope.$broadcast('newItem', item);
+                }).error(messageService.alert);
           }
           $mdDialog.hide();
         };

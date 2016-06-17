@@ -17,7 +17,8 @@
   function ProfileService(rest, UserService, messageService, $rootScope, TourService) {
     var service = {
       path: 'v1/profiles',
-      makeSeller: makeSeller
+      makeSeller: makeSeller,
+      loginInstagram: loginInstagram
     };
 
     return service;
@@ -41,7 +42,16 @@
             }
         ).error(messageService.profile);
       }
-    };
+    }
+
+    function loginInstagram(username, password) {
+      rest.path = 'v1/link/instagram-login';
+      return rest.postModel({
+            username: username,
+            password: password
+          })
+          .error(messageService.alert);
+    }
   }
 
 })();

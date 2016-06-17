@@ -93,9 +93,9 @@ angular.module('instastore')
         };
 
         if ($stateParams.code) {
-          if($cookies.authenticateFrom == 'instagram'){
-            $cookies.authenticateFrom = '';
-            $http.post($scope.instagramAuthConfig.authUrl, {
+              if($cookies.authenticateFrom == 'instagram'){
+                $cookies.authenticateFrom = '';
+                $http.post($scope.instagramAuthConfig.authUrl, {
               code: $stateParams.code,
               clientId: $scope.instagramAuthConfig.clientId,
               redirectUri: $scope.instagramAuthConfig.redirectUri

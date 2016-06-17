@@ -65,7 +65,6 @@ angular.module('instastore')
           }
         };
 
-
         if (!$scope.profile.seller) {
           delete($scope.treeConfig.card);
           $scope.treeConfig['4'].name = 'UPDATE PROFILE PHOTO';
@@ -135,15 +134,6 @@ angular.module('instastore')
         var facebookUser = UserService.getFacebookProfile();
         $scope.facebookUid = facebookUser.id;
         $scope.facebookLink = facebookUser.link;
-
-        $scope.save = function () {
-          rest.path = 'v1/profiles';
-          rest.putModel($scope.profile).success(function () {
-                messageService.simpleByCode('profile', 'saved');
-                UserService.setProfile($scope.profile);
-              }
-          ).error(messageService.profile);
-        };
 
         $scope.saveUrl = function () {
           rest.path = 'v1/my-stores';
@@ -256,10 +246,10 @@ angular.module('instastore')
       }])
     .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'uiGmapGoogleMapApi', '$auth',
       'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL', '$mdDialog', '$location', '$stateParams', '$rootScope',
-      '$mdMedia', 'messageService', '$cookies',
+      '$mdMedia', 'messageService', '$cookies', 'ModalService',
       function ($scope, UserService, rest, uiGmapGoogleMapApi, $auth, CLIENT_URL,
                 $state, stripe, $http, API_URL, $mdDialog, $location, $stateParams, $rootScope,
-                $mdMedia, messageService, $cookies) {
+                $mdMedia, messageService, $cookies, ModalService) {
 
         $scope.CLIENT_URL = CLIENT_URL;
 
@@ -294,6 +284,16 @@ angular.module('instastore')
             collapsed: true
           },
           '4': {
+            code: 'social',
+            name: 'STORE LOCATION',
+            toggleThis: true,
+            icon: 'place',
+            subs: [
+              {name: 'Verify phone number'}
+            ],
+            collapsed: true
+          },
+          '5': {
             code: 'instagram',
             name: 'IMPORT FROM INSTAGRAM',
             toggleThis: true,
@@ -308,6 +308,8 @@ angular.module('instastore')
             case 'specialities':
               return true;
             case 'location':
+              return true;
+            case 'social':
               return true;
             case 'crop':
               return true;
@@ -371,40 +373,60 @@ angular.module('instastore')
             return places.types[0] == "street_number" || places.types[0] == "route";
           });
 
-          if(places.length != 2) {
+          if (places.length != 2) {
             messageService.simpleByCode('profile', 'location');
           }
 
           return places.length == 2;
         }
 
-        $scope.save = function () {
-          if (validateAdress()) {
-            if ($scope.profile.store.place) {
-              if ($scope.profile.store.place.types) {
-                $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.lat();
-                $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.lng();
-                $scope.profile.store.address = $scope.profile.store.place.formatted_address;
-              } else {
-                messageService.simpleByCode('profileStore', 'addressInvalid');
-              }
+        $scope.saveInstagramEnabled = function () {
+          if ($scope.profile.hasInstagramCredentials) {
+            $scope.save();
+          } else {
+            if ($scope.profile.store.instagram_sharing_enabled) {
+              $location.hash('start');
+              ModalService.show('login-instagram');
+            } else {
+              $scope.save();
             }
-            $scope.profile.store.store_url = $scope.profile.store.store_name;
-            rest.path = 'v1/my-stores';
-            rest.putModel($scope.profile.store).success(function (store) {
-
-              $stateParams['storeurl'] = store.store_url;
-              $state.params['storeurl'] = store.store_url;
-              $location.url(store.store_url + '/mode/');
-              $rootScope.store.store_name = store.store_name;
-
-              messageService.simpleByCode('profileStore', 'saved');
-              delete $scope.profile.store.place;
-              $scope.profile.store = store;
-
-              UserService.setProfile($scope.profile);
-            }).error(messageService.alert);
           }
+        };
+
+        $scope.save = function () {
+          rest.path = 'v1/profiles';
+          rest.putModel($scope.profile).success(function () {
+                messageService.simpleByCode('profile', 'saved');
+                UserService.setProfile($scope.profile);
+              }
+          ).error(messageService.profile);
+
+          // if (validateAdress()) {
+          if ($scope.profile.store.place) {
+            if ($scope.profile.store.place.types) {
+              $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.lat();
+              $scope.profile.store.store_lat = $scope.profile.store.place.geometry.location.lng();
+              $scope.profile.store.address = $scope.profile.store.place.formatted_address;
+            } else {
+              messageService.simpleByCode('profileStore', 'addressInvalid');
+            }
+          }
+          $scope.profile.store.store_url = $scope.profile.store.store_name;
+          rest.path = 'v1/my-stores';
+          rest.putModel($scope.profile.store).success(function (store) {
+
+            $stateParams['storeurl'] = store.store_url;
+            $state.params['storeurl'] = store.store_url;
+            $location.url(store.store_url + '/mode/');
+            $rootScope.store.store_name = store.store_name;
+
+            messageService.simpleByCode('profileStore', 'saved');
+            delete $scope.profile.store.place;
+            $scope.profile.store = store;
+
+            UserService.setProfile($scope.profile);
+          }).error(messageService.alert);
+          // }
         };
 
         $scope.linkInstagram = function () {
@@ -436,6 +458,23 @@ angular.module('instastore')
         };
 
         $scope.showStoreLocation = $scope.profile.store.show_store_location > 0;
+        $scope.facebookChange = function () {
+          console.log("sadasd1");
+          debugger;
+          $scope.item.item_url = $scope.item.title;
+          rest.path = 'v1/user-items';
+          rest.putModel($scope.item).success(function (item) {
+            $scope.item = item;
+            messageService.simpleByCode('item', 'saved');
+            if ($stateParams.tab === '4') {
+              $state.transitionTo('itemview', {
+                storeurl: $stateParams.storeurl,
+                itemurl: item.item_url,
+                tab: $stateParams.tab
+              });
+            }
+          }).error(messageService.alert);
+        };
         $scope.changeShowStoreLocation = function () {
           rest.path = 'v1/my-stores';
           $scope.profile.store.show_store_location = $scope.showStoreLocation > 0 ? 0 : 1;

@@ -12,12 +12,13 @@ DialogController.$inject = [
   '$state',
   'messageService',
   'deviceDetector',
-  'ProfileService'
+  'ProfileService',
+  '$http'
 ];
 
 /* @ngInject */
 function DialogController($mdDialog, ModalService, SubscriptionService, VerifyService, TourService,
-                          UserService, $state, messageService, deviceDetector, ProfileService) {
+                          UserService, $state, messageService, deviceDetector, ProfileService, $http) {
   var vm = this;
 
   vm.profile = UserService.getProfile();
@@ -42,6 +43,11 @@ function DialogController($mdDialog, ModalService, SubscriptionService, VerifySe
   /* Apply for a store */
   vm.ProfileService = ProfileService;
   vm.makeSeller = makeSeller;
+
+  /* Instagramm login */
+  vm.igUsername = '';
+  vm.igPassword = '';
+  vm.loginInstagram = loginInstagram;
 
   function hide() {
     $mdDialog.hide();
@@ -127,7 +133,39 @@ function DialogController($mdDialog, ModalService, SubscriptionService, VerifySe
   function checkIsVerify() {
     if (VerifyService.isVerify()) {
       hide();
-      // TourService.addItem();
     }
+  }
+
+  function loginInstagram() {
+
+    ProfileService.loginInstagram(vm.igUsername, vm.igPassword)
+        .then(function (res) {
+          if(res) {
+            hide();
+            ModalService.show('profile', {}, 'ProfileIndex');
+            // profileService.show(ev);
+          }
+        });
+
+    return;
+
+    // console.log("hello");
+    // console.log(vm.igUsername);
+    // console.log(vm.igPassword);
+    // // $scope.item.instagram_sharing_enabled = false;
+    // return $http.post(API_URL + 'v1/link/instagram-login', {
+    //       username: $scope.igUsername,
+    //       password: $scope.igPassword
+    //     })
+    //     .success(function (res) {
+    //       if (res) {
+    //         $mdDialog.hide();
+    //         $scope.profile.hasInstagramCredentials = true;
+    //         $scope.item.instagram_sharing_enabled = true;
+    //         $scope.save();
+    //         UserService.setProfile($scope.profile);
+    //       }
+    //     })
+    //     .error(messageService.alert);
   }
 }

@@ -37,7 +37,7 @@
 
     // save last item to cookies
     $scope.$watch('$stateParams.tab', function (tab, oldTab) {
-      if(tab === oldTab){
+      if (tab === oldTab) {
         return
       }
       $cookies.lastItem = JSON.stringify({
@@ -120,6 +120,8 @@
         if ($scope.item.instagram_sharing_enabled) {
           $location.hash('start');
           showDialogLoginInstagram();
+        } else {
+          $scope.save();
         }
       }
     };
@@ -127,8 +129,8 @@
     function loginInstagram() {
       $scope.item.instagram_sharing_enabled = false;
       return $http.post(API_URL + 'v1/link/instagram-login', {
-            username: $scope.igUsername,
-            password: $scope.igPassword
+            username: vm.igUsername,
+            password: vm.igPassword
           })
           .success(function (res) {
             if (res) {
@@ -234,7 +236,7 @@
             tab: $stateParams.tab
           });
         }
-      }).error(messageService.alert);
+          }).error(messageService.alert);
     };
 
     $scope.removeImage = function (thumb) {
@@ -265,7 +267,7 @@
     };
 
     $scope.saveComment = function (comment) {
-      if(UserService.isGuest()) {
+      if (UserService.isGuest()) {
         $auth.authenticate('facebook').then(authentificateCallback);
         return;
       }

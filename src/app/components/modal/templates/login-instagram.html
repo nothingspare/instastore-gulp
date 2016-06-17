@@ -1,6 +1,6 @@
 <md-dialog>
     <md-dialog-actions class="io-close-btn" layout layout-align="end start">
-        <md-button ng-click="closeDialog()"
+        <md-button ng-click="vm.hide()"
                    class="md-fab md-mini md-primary io-secondary-btn"
                    aria-label="Close Dialog">
             <ng-md-icon icon="close" class="secondary"></ng-md-icon>
@@ -24,7 +24,7 @@
             <div layout="row" layout-align="center">
                 <md-button type="submit" class="md-primary md-raised io-primary-btn"
                            ng-disabled="!(contactForm.$dirty && contactForm.$valid)"
-                           ng-click="loginInstagram()"
+                           ng-click="vm.loginInstagram()"
                            aria-label="Save">Save
                 </md-button>
             </div>

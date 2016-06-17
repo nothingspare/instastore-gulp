@@ -13,10 +13,11 @@
 
     ////////////////
 
-    function show(templateName, locals) {
+    function show(templateName, locals, controller) {
+      var controller = controller || 'DialogController as vm';
       var deferred = $q.defer();
       $mdDialog.show({
-        controller: 'DialogController as vm',
+        controller: controller,
         templateUrl: 'app/components/modal/templates/' + templateName + '.html',
         parent: angular.element(document.body),
         clickOutsideToClose: true,
