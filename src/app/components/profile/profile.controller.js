@@ -386,12 +386,35 @@ angular.module('instastore')
           } else {
             if ($scope.profile.store.instagram_sharing_enabled) {
               $location.hash('start');
-              ModalService.show('login-instagram');
+              ModalService.show('login-instagram'), then(function () {
+                $scope.save();
+              });
             } else {
               $scope.save();
             }
           }
         };
+
+        $scope.savePinterestEnabled = function () {
+          if ($scope.profile.hasPinterestToken) {
+            $scope.save();
+          } else {
+            if ($scope.profile.store.pinterest_sharing_enabled) {
+              $location.hash('start');
+              authToPinterest();
+            } else {
+              $scope.save();
+            }
+          }
+        };
+
+        function authToPinterest() {
+          $auth.link('pinterest')
+              .then(function (res) {
+                if (res) {
+                }
+              });
+        }
 
         $scope.save = function () {
           rest.path = 'v1/profiles';
