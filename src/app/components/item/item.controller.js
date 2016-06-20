@@ -116,6 +116,7 @@ angular.module('instastore')
         $scope.pluploadConfig = {};
         $scope.pluploadConfig.resize = $scope.pluploadConfig.resize = PLUPLOAD_RESIZE_CONFIG;
         $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
+        $scope.socialPostingText  = '';
 
         $scope.save = function () {
           if (!$scope.item.title) $scope.item.title = Math.random().toString(36).slice(2);
@@ -171,6 +172,24 @@ angular.module('instastore')
         $scope.closeDialog = function () {
           $mdDialog.hide();
         };
+
+        $scope.getSocialPostingText = function () {
+          var sharing = [];
+          if($scope.profile.store.facebook_sharing_enabled){
+            sharing.push('Facebook')
+          }
+          if($scope.profile.store.pinterest_sharing_enabled){
+            sharing.push('Pinterest')
+          }
+          if($scope.profile.store.instagram_sharing_enabled){
+            sharing.push('Instagram')
+          }
+
+          if(sharing.length){
+            $scope.socialPostingText = 'Auto social posting on: ' + sharing.join(', ').replace(/,([^,]*)$/, ' and$1');
+          }
+        };
+        $scope.getSocialPostingText();
       }
     ])
     .controller('ItemViewTabsCtrl', ['$scope', '$rootScope', '$timeout', '$stateParams', 'UserService',
