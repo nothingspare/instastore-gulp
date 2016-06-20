@@ -12,9 +12,8 @@
             <ul ng-if="item.images.length"
                 rn-carousel rn-carousel-buffered rn-carousel-indicator
                 rn-carousel-controls
-                rn-carousel-index="carouselIndex"
+                rn-carousel-index="vm.carouselIndex"
                 style="background: url('../assets/images/icon100.gif') center center no-repeat;">
-
                 <li ng-repeat="image in item.images">
                     <div ng-if="image.image_url" class="resizable-image"
                          ng-style="{'background-image': 'url(' + image.image_url + ')'};"
@@ -24,10 +23,11 @@
                     </div>
                 </li>
             </ul>
+
             <ul ng-if="!item.images.length"
                 rn-carousel rn-carousel-buffered rn-carousel-indicator
                 rn-carousel-controls
-                rn-carousel-index="carouselIndex">
+                rn-carousel-index="vm.carouselIndex">
                 <li>
                     <div class="resizable-image item__img-view-block"
                          ng-style="{'background-image': 'url(http://placehold.it/624x624/fff&text=no+image)'};"
@@ -38,7 +38,10 @@
                 </li>
             </ul>
             <div rn-carousel-indicators ng-if="item.images.length > 1" slides="item.images"
-                 rn-carousel-index="carouselIndex"></div>
+                 rn-carousel-index="vm.carouselIndex">
+            </div>
+
+
             <md-content layout layout-align="center center" ng-controller="ItemViewTabsCtrl">
                 <md-tabs ng-if="!isYourStore || (isYourStore && !isSeller)" md-center-tabs md-no-pagination
                          md-stretch-tabs="always" md-no-ink-bar
@@ -152,6 +155,7 @@
                 </md-tabs>
                 <div id="mainView" style="clear:both;"></div>
                 </md-contentflex>
+            </md-content>
         </md-card>
     </div>
 </div>
