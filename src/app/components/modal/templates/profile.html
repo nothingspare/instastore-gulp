@@ -92,7 +92,7 @@
 
                                                 <md-button ng-if="profile.seller"
                                                            href="mailto:support@isopen.us?subject=Order Free Boxes&body=Store name: {{profile.store.store_name}} Address: {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
-                                                           class="md-primary md-raised less-margin io-primary-btn">
+                                                           class="md-primary md-raised less-margin io-primary-btn io-middle-btn">
                                                     Order free Boxes
                                                 </md-button>
 
@@ -228,7 +228,7 @@
                                                      class="am-fade-and-scale">
                                                     <center>
                                                         <md-button
-                                                            class="md-primary md-raised less-margin io-primary-btn"
+                                                            class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                             ng-click="unit.collapsed = !collapsed; save()">
                                                             &nbsp;Save&nbsp;
                                                         </md-button>
@@ -268,7 +268,7 @@
                                                         accounts.</p>
                                                 </div>
                                                 <md-button href="mailto:support@isopen.us?subject=Request a store"
-                                                           class="md-primary md-raised less-margin io-primary-btn">
+                                                           class="md-primary md-raised less-margin io-primary-btn io-middle-btn">
                                                     Request a store
                                                 </md-button>
                                             </div>
@@ -280,7 +280,7 @@
                                                 <div layout layout-align="center start"
                                                      class="am-fade-and-scale">
                                                     <md-button
-                                                            class="md-primary md-raised less-margin io-primary-btn"
+                                                            class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                             ng-click="makeMeSeller(inviteCode)">Get Store
                                                     </md-button>
                                                 </div>
@@ -323,7 +323,7 @@
                                     </div>
                                     <div layout layout-wrap layout-fill ng-if="unit.code==='social'"
                                          class="main-title" layout-wrap>
-                                        auto social posting
+                                        {{unit.name}}
                                     </div>
                                     <div layout layout-wrap layout-fill
                                          ng-if="unit.code==='instagram' && !instagramProgress"
@@ -416,7 +416,7 @@
                                                      class="am-fade-and-scale">
                                                     <center>
                                                         <md-button
-                                                                class="md-primary md-raised less-margin io-primary-btn"
+                                                                class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                                 ng-click="unit.collapsed = !collapsed; save()">
                                                             &nbsp;Save&nbsp;
                                                         </md-button>
@@ -438,7 +438,7 @@
                                                          class="am-fade-and-scale">
                                                         <center>
                                                             <md-button
-                                                                    class="md-primary md-raised less-margin io-primary-btn"
+                                                                    class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                                     ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;</md-button>
                                                         </center>
                                                     </div>
@@ -451,7 +451,7 @@
                                                     </div>
                                                     <div layout layout-align="center center">
                                                         <md-button layout-padding
-                                                                   class="md-primary md-raised less-margin io-primary-btn"
+                                                                   class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                                    ng-click="profile.store.address = ''; save()">
                                                             Remove Address
                                                         </md-button>
@@ -482,7 +482,7 @@
                                             </md-list>
                                         </div>
                                         <div ng-if="unit.code==='instagram'" layout layout-padding>
-                                            <md-button class="md-primary md-raised io-primary-btn">&nbsp;Link&nbsp;
+                                            <md-button class="md-primary md-raised io-primary-btn io-middle-btn">&nbsp;Link&nbsp;
                                             </md-button>
                                         </div>
                                         <div ng-if="unit.code === 'card'">
@@ -507,7 +507,7 @@
                                                     </svg>
                                                 </div>
                                                 <md-button ng-if="profile.card_token_created_at" layout-padding
-                                                           class="md-primary md-raised less-margin io-primary-btn"
+                                                           class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                            ng-click="removeSellerCard()"
                                                            aria-label="Delete Card">
                                                     Remove Card
@@ -558,7 +558,7 @@
                                                              class="am-fade-and-scale">
                                                             <center>
                                                                 <md-button
-                                                                        class="md-primary md-raised less-margin io-primary-btn"
+                                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                                         ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
                                                                         type="submit">Verify Card
                                                                 </md-button>

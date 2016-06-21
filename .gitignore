@@ -6,3 +6,4 @@ dist/
 .idea/
 src/assets/.DS_Store
 aws.json
+.DS_Store

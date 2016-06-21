@@ -285,11 +285,11 @@ angular.module('instastore')
           },
           '4': {
             code: 'social',
-            name: 'STORE LOCATION',
+            name: 'AUTO SOCIAL POSTING',
             toggleThis: true,
-            icon: 'place',
+            icon: 'autorenew',
             subs: [
-              {name: 'Verify phone number'}
+              {name: ''}
             ],
             collapsed: true
           },
@@ -386,7 +386,7 @@ angular.module('instastore')
           } else {
             if ($scope.profile.store.instagram_sharing_enabled) {
               $location.hash('start');
-              ModalService.show('login-instagram'), then(function () {
+              ModalService.show('login-instagram').then(function () {
                 $scope.save();
               });
             } else {
