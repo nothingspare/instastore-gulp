@@ -312,7 +312,6 @@
       rest.path = 'v1/profiles/' + $cookies.profileId;
       return rest.models({})
           .error(function (e) {
-            console.log(e);
           });
     }
 
