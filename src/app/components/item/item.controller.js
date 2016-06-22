@@ -312,7 +312,6 @@ angular.module('instastore')
               break;
             case '3':
               $scope.currentTab = 'app/components/item/view-tab-comment.html';
-              $scope.likeItem();
               break;
             case '4':
               $scope.currentTab = 'app/components/item/view-tab-location.html';

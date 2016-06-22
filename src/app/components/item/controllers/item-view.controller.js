@@ -39,7 +39,7 @@
     //for form in view view-tab-social
     $scope.post = {};
     $scope.form = {};
-    vm.carouselIndex = 1;
+    vm.carouselIndex = 0;
 
     // save last item to cookies
     $scope.$watch('$stateParams.tab', function (tab, oldTab) {
