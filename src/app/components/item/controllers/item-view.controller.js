@@ -5,17 +5,22 @@
       .module('instastore')
       .controller('ItemView', ItemView);
 
-  ItemView.$inject = ['$scope', 'rest', '$state', 'feedHelper',
-    'UserService', '$stateParams', '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
-    'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS', '$filter', '$http', '$window',
-    'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia', 'itemsAmount', 'InAppService', 'messageService',
-    'urlsThere', 'VerifyService', '$rootScope', '$cookies'];
+  ItemView.$inject = [
+    '$scope', 'rest', '$state', 'feedHelper', 'UserService', '$stateParams',
+    '$location', '$anchorScroll', '$timeout', 'API_URL', 'cfpLoadingBar',
+    'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS',
+    '$filter', '$http', '$window', 'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia',
+    'itemsAmount', 'InAppService', 'messageService', 'urlsThere', 'VerifyService',
+    '$cookies', 'ModalService'
+  ];
 
   /* @ngInject */
   function ItemView($scope, rest, $state, feedHelper, UserService, $stateParams,
-                    $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar, CLIENT_URL, PLUPLOAD_RESIZE_CONFIG,
-                    ITEMSELLTRANSACTION_STATUS, $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
-                    itemsAmount, InAppService, messageService, urlsThere, VerifyService, $rootScope, $cookies) {
+                    $location, $anchorScroll, $timeout, API_URL, cfpLoadingBar,
+                    CLIENT_URL, PLUPLOAD_RESIZE_CONFIG, ITEMSELLTRANSACTION_STATUS,
+                    $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
+                    itemsAmount, InAppService, messageService, urlsThere, VerifyService,
+                    $cookies, ModalService) {
     var vm = this;
 
     $scope.VerifyService = VerifyService;
@@ -130,9 +135,9 @@
     function loginInstagram() {
       $scope.item.instagram_sharing_enabled = false;
       return $http.post(API_URL + 'v1/link/instagram-login', {
-            username: vm.igUsername,
-            password: vm.igPassword
-          })
+        username: vm.igUsername,
+        password: vm.igPassword
+      })
           .success(function (res) {
             if (res) {
               $mdDialog.hide();
@@ -237,7 +242,7 @@
             tab: $stateParams.tab
           });
         }
-          }).error(messageService.alert);
+      }).error(messageService.alert);
     };
 
     $scope.removeImage = function (thumb) {
@@ -378,11 +383,11 @@
 
     $scope.confirmBuying = function () {
       if (!VerifyService.isVerify()) {
-        VerifyService.showModalAddressPhone()
+        ModalService.show('profile-verify')
             .then(function () {
               $scope.showConfirm = true;
             })
-            .catch(function (err) {
+            .catch(function () {
               $scope.showConfirm = false;
             });
       } else {
