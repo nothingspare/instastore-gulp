@@ -10,7 +10,7 @@
     <md-dialog-content>
         <md-card layout="column" layout-fill layout-wrap class="profile-tree">
             <ng-form name="profileForm" layout="column">
-                <div layout layout-align="center center" layout-padding >
+                <div layout layout-align="center center" layout-padding>
                     <h4 flex class="dialog-header">PERSONAL INFORMATION</h4>
                 </div>
                 <div ng-if="treeConfig" ui-tree data-drag-enabled="false">
@@ -63,7 +63,7 @@
                             </div>
                             <md-divider></md-divider>
                             <ol ui-tree-nodes="" ng-model="unit.subs" ng-class="{hidden: unit.collapsed}">
-                                <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true"
+                                <li ng-repeat="sub in unit.subs" ui-tree-node data-collapsed="true" collapsed="unit.collapsed"
                                     ng-if="!unit.collapsed"
                                     class="am-collapse">
                                     <div ui-tree-handle>
@@ -73,20 +73,20 @@
                                                 <img ng-src="{{store.avatar_url|storeAvatar}}"
                                                      class="io-avatar io-avatar-inside-name-draw"/>
                                                 <!--I should keep style tag style attr to avoid bug with extra margin in popup container-->
-                                                <h3 style="width:200px" class="profile-email">&nbsp;&nbsp;{{::profile.email}}</h3>
+                                                <h3 style="width:200px"
+                                                    class="profile-email">&nbsp;&nbsp;{{::profile.email}}</h3>
                                             </div>
                                             <div layout="column" layout-align="center center">
 
-
                                                 <md-button
-                                                        href="mailto:support@isopen.us?subject=Contact Support&body={{profile.address?'Address:':''}} {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
-                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn">
+                                                    href="mailto:support@isopen.us?subject=Contact Support&body={{profile.address?'Address:':''}} {{profile.address}},{{profile.apartment ? profile.apartment + ', ' : ''}} {{profile.city}},{{profile.state}},{{profile.zipcode}}"
+                                                    class="md-primary md-raised less-margin io-primary-btn io-middle-btn">
                                                     Contact Support
                                                 </md-button>
 
                                                 <md-button
-                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
-                                                        ng-click="logout()">Log-out
+                                                    class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
+                                                    ng-click="logout()">Log-out
                                                     <ng-md-icon icon="logout"></ng-md-icon>
                                                 </md-button>
 
@@ -98,12 +98,11 @@
 
                                                 <div ng-if="profile.seller" layout layout-align="center center">
                                                     <p class="text-align-center">isOpen can order packs of USPS Flat
-                                                        Rate shipping boxes for you at no cost. Allow 10 days for
-                                                        delivery.</p>
+                                                                                 Rate shipping boxes for you at no cost. Allow 10 days for
+                                                                                 delivery.</p>
                                                 </div>
 
                                             </div>
-
 
                                         </div>
                                         <!--USER section ends-->
@@ -122,7 +121,8 @@
                                                     </md-button>
                                                 </div>
                                             </div>
-                                            <div layout="column" ng-if="profile.phone.length>7 && !profile.phone_validated_at">
+                                            <div layout="column"
+                                                 ng-if="profile.phone.length>7 && !profile.phone_validated_at">
                                                 <md-input-container flex>
                                                     <label>Enter texted code</label>
                                                     <input ng-model="verifyPhoneCode" type="tel">
@@ -142,10 +142,10 @@
                                                     <span class="phone-verified">&nbsp;Verified!</span>
                                                 </div>
                                                 <md-button
-                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
-                                                        style="margin-top:20px;"
-                                                        ng-click="unit.collapsed = !collapsed;removePhone()"
-                                                        aria-label="Remove Phone">
+                                                    class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
+                                                    style="margin-top:20px;"
+                                                    ng-click="unit.collapsed = !collapsed;removePhone()"
+                                                    aria-label="Remove Phone">
                                                     Remove Phone
                                                 </md-button>
                                             </div>
@@ -160,17 +160,17 @@
                                                         <label>Address</label>
                                                         <input ng-model="profile.address" type="text">
                                                     </md-input-container>
-                                                    <md-input-container >
+                                                    <md-input-container>
                                                         <label>Apt</label>
                                                         <input ng-model="profile.apartment" type="text">
                                                     </md-input-container>
                                                 </div>
                                                 <div layout="column">
-                                                    <md-input-container >
+                                                    <md-input-container>
                                                         <label>City</label>
                                                         <input ng-model="profile.city" type="text">
                                                     </md-input-container>
-                                                    <md-input-container >
+                                                    <md-input-container>
                                                         <label>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                                         <input ng-model="profile.state" type="text">
                                                     </md-input-container>
@@ -194,8 +194,8 @@
                                                 <div layout layout-wrap layout-fill layout-align="center center"
                                                      class="text-align-center">
                                                     <span>{{profile.address}}, {{profile.apartment ? profile.apartment + ', ' :''}}
-                                                    {{profile.city}}, {{profile.state}}, {{profile.zipcode}} <span
-                                                                class="phone-verified">Verified!</span></span>
+                                                          {{profile.city}}, {{profile.state}}, {{profile.zipcode}} <span
+                                                            class="phone-verified">Verified!</span></span>
                                                 </div>
                                                 <br>
                                                 <md-button layout
@@ -206,7 +206,7 @@
                                                 </md-button>
                                             </div>
                                         </div>
-                                        <div ng-if="unit.code === 'desc'" layout="column" layout-padding>
+                                        <div ng-if="unit.code === 'desc'" layout="column" layout-padding ng-controller="ProfileStoreIndex">
                                             <ng-form name="specialitiesForm" class="specialities">
                                                 <br>
                                                 <md-input-container class="md-block">
@@ -226,19 +226,17 @@
 
                                                 <div layout layout-align="center start"
                                                      class="am-fade-and-scale">
-                                                    <center>
-                                                        <md-button
-                                                            class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
+                                                    <md-button
+                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
                                                             ng-click="unit.collapsed = !collapsed; save()">
-                                                            &nbsp;Save&nbsp;
-                                                        </md-button>
-                                                    </center>
+                                                        &nbsp;Save&nbsp;
+                                                    </md-button>
                                                 </div>
                                             </ng-form>
                                         </div>
                                         <div ng-if="unit.code === 'crop'" layout="column" layout-padding>
                                             <p class="text-align-center">Upload a full-length picture of yourself for
-                                                your background image. Then crop your face to create your profile.
+                                                                         your background image. Then crop your face to create your profile.
                                             </p>
 
                                             <div ng-controller="CropUploadCtrl">
@@ -280,8 +278,8 @@
                                                 <div layout layout-align="center start"
                                                      class="am-fade-and-scale">
                                                     <md-button
-                                                            class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
-                                                            ng-click="makeMeSeller(inviteCode)">Get Store
+                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
+                                                        ng-click="makeMeSeller(inviteCode)">Get Store
                                                     </md-button>
                                                 </div>
                                             </div>
@@ -357,9 +355,9 @@
                                 <div flex="15" ng-if="canToggle(unit.code)" layout="column">
                                     <div flex layout="column" layout-align="center center">
                                         <ng-md-icon
-                                                icon="{{collapsed?'expand_more':'expand_less'}}"
-                                                style="fill: lightcoral"
-                                                size="24">
+                                            icon="{{collapsed?'expand_more':'expand_less'}}"
+                                            style="fill: lightcoral"
+                                            size="24">
                                         </ng-md-icon>
                                     </div>
                                 </div>
@@ -382,7 +380,7 @@
 
                                                     <div ng-messages="specialitiesForm.store_name.$error">
                                                         <div ng-message="md-maxlength">The name has to be less than 30
-                                                            characters long.
+                                                                                       characters long.
                                                         </div>
                                                     </div>
                                                 </md-input-container>
@@ -394,9 +392,10 @@
                                                               name="store_description"
                                                               rows="8"
                                                               md-select-on-focus></textarea>
+                                                    
                                                     <div ng-messages="specialitiesForm.store_description.$error">
                                                         <div ng-message="md-maxlength">The name has to be less than 60
-                                                            characters long.
+                                                                                       characters long.
                                                         </div>
                                                     </div>
                                                 </md-input-container>
@@ -407,20 +406,18 @@
 
                                                     <div ng-messages="specialitiesForm.store_specialities.$error">
                                                         <div ng-message="md-maxlength">The name has to be less than 90
-                                                            characters long.
+                                                                                       characters long.
                                                         </div>
                                                     </div>
                                                 </md-input-container>
 
                                                 <div layout layout-align="center start"
                                                      class="am-fade-and-scale">
-                                                    <center>
-                                                        <md-button
-                                                                class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
-                                                                ng-click="unit.collapsed = !collapsed; save()">
-                                                            &nbsp;Save&nbsp;
-                                                        </md-button>
-                                                    </center>
+                                                    <md-button
+                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
+                                                        ng-click="unit.collapsed = !collapsed; save()">
+                                                        &nbsp;Save&nbsp;
+                                                    </md-button>
                                                 </div>
                                             </ng-form>
                                         </div>
@@ -433,13 +430,14 @@
 
                                             <div ng-if="profile.store.show_store_location" class="am-fade-and-scale">
                                                 <div ng-if="!profile.store.address">
-                                                    <div ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
+                                                    <div
+                                                        ng-include="renderMap ? 'app/components/profile/g-autocomplete.html' : null"></div>
                                                     <div layout layout-align="center start"
                                                          class="am-fade-and-scale">
                                                         <center>
                                                             <md-button
-                                                                    class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
-                                                                    ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;</md-button>
+                                                                class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
+                                                                ng-click="unit.collapsed = collapsed; save()">&nbsp;Save&nbsp;</md-button>
                                                         </center>
                                                     </div>
                                                 </div>
@@ -465,18 +463,22 @@
                                                 <md-list-item>
                                                     <ng-md-icon icon="facebook" style="fill:darkgray"></ng-md-icon>
                                                     <p style="color:darkgray; font-size: 100% !important;">Facebook</p>
-                                                    <md-switch ng-true-value="1" ng-false-value="0" class="md-primary" ng-model="profile.store.facebook_sharing_enabled" ng-change="save()"></md-switch>
+                                                    <md-switch ng-true-value="1" ng-false-value="0" class="md-primary"
+                                                               ng-model="profile.store.facebook_sharing_enabled"
+                                                               ng-change="save()"></md-switch>
                                                 </md-list-item>
                                                 <md-list-item id="popup-anchor">
                                                     <ng-md-icon icon="instagram" style="fill:darkgray"></ng-md-icon>
                                                     <p style="color:darkgray; font-size: 100% !important;">Instagram</p>
-                                                    <md-switch ng-true-value="1" ng-false-value="0" class="md-primary" ng-model="profile.store.instagram_sharing_enabled"
+                                                    <md-switch ng-true-value="1" ng-false-value="0" class="md-primary"
+                                                               ng-model="profile.store.instagram_sharing_enabled"
                                                                ng-change="saveInstagramEnabled()"></md-switch>
                                                 </md-list-item>
                                                 <md-list-item>
                                                     <ng-md-icon icon="pinterest" style="fill:darkgray"></ng-md-icon>
                                                     <p style="color:darkgray; font-size: 100% !important;">Pinterest</p>
-                                                    <md-switch ng-true-value="1" ng-false-value="0" class="md-primary" ng-model="profile.store.pinterest_sharing_enabled"
+                                                    <md-switch ng-true-value="1" ng-false-value="0" class="md-primary"
+                                                               ng-model="profile.store.pinterest_sharing_enabled"
                                                                ng-change="savePinterestEnabled()"></md-switch>
                                                 </md-list-item>
                                             </md-list>
@@ -500,9 +502,9 @@
                                                         <path fill="#555" class="svg-debit-read"
                                                               d="M-.007 3h32v3h-32v-3z"></path>
                                                         <text x="5" y="11.6" fill="black" style="font-size: 2.8px;">****
-                                                            ****
-                                                            ****
-                                                            {{::profile.card_last_digits}}
+                                                                                                                    ****
+                                                                                                                    ****
+                                                                                                                    {{::profile.card_last_digits}}
                                                         </text>
                                                     </svg>
                                                 </div>
@@ -519,7 +521,7 @@
                                                          layout-wrap>
 
                                                     <p style="text-align: center">Simply add a debit card and payments
-                                                        your store recieves will be passed on automaticly.</p>
+                                                                                  your store recieves will be passed on automaticly.</p>
 
                                                     <div layout layout-sm="column" layout-fill layout-padding>
                                                         <md-input-container flex>
@@ -558,9 +560,9 @@
                                                              class="am-fade-and-scale">
                                                             <center>
                                                                 <md-button
-                                                                        class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
-                                                                        ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
-                                                                        type="submit">Verify Card
+                                                                    class="md-primary md-raised less-margin io-primary-btn io-middle-btn"
+                                                                    ng-click="verifyCard(cardNumber, cardExpiry, cardCvc)"
+                                                                    type="submit">Verify Card
                                                                 </md-button>
                                                             </center>
                                                         </div>

@@ -9,12 +9,11 @@
     'rest',
     'UserService',
     'messageService',
-    '$rootScope',
-    'TourService'
+    '$rootScope'
   ];
 
   /* @ngInject */
-  function ProfileService(rest, UserService, messageService, $rootScope, TourService) {
+  function ProfileService(rest, UserService, messageService, $rootScope) {
     var service = {
       path: 'v1/profiles',
       makeSeller: makeSeller,
@@ -25,31 +24,28 @@
 
     ////////////////
 
-    function makeSeller(val) {
-      if (val === 'demo') {
+    function makeSeller() {
+      var profile = UserService.getProfile();
+      profile.status = 20;
+      rest.path = service.path;
 
-        var profile = UserService.getProfile();
-        profile.status = 20;
-
-        rest.path = service.path;
-        return rest.putModel(profile).success(function (profile) {
-              messageService.simpleByCode('profile', 'saved');
-              UserService.setProfile(profile);
-              UserService.setIsSeller(true);
-              $rootScope.store = profile.store;
-              UserService.goToMainStore();
-              TourService.sell();
-            }
-        ).error(messageService.profile);
-      }
+      return rest.putModel(profile)
+          .success(function (profile) {
+                messageService.simpleByCode('profile', 'saved');
+                UserService.setProfile(profile);
+                UserService.setIsSeller(true);
+                $rootScope.store = profile.store;
+                UserService.goToMainStore();
+              }
+          ).error(messageService.profile);
     }
 
     function loginInstagram(username, password) {
       rest.path = 'v1/link/instagram-login';
       return rest.postModel({
-            username: username,
-            password: password
-          })
+        username: username,
+        password: password
+      })
           .error(messageService.alert);
     }
   }

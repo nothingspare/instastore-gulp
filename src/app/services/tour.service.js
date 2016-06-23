@@ -6,9 +6,10 @@
       .service('TourService', TourService);
 
   TourService.$inject = ['$rootScope', 'VerifyService', 'ItemService', 'ModalService',
-    'UserService', 'SubscriptionService', 'deviceDetector'];
+    'UserService', 'SubscriptionService', 'deviceDetector', 'ProfileService'];
   /* @ngInject */
-  function TourService($rootScope, VerifyService, ItemService, ModalService, UserService, SubscriptionService, deviceDetector) {
+  function TourService($rootScope, VerifyService, ItemService, ModalService,
+                       UserService, SubscriptionService, deviceDetector, ProfileService) {
     this.init = init;
     this.sell = sell;
     this.addItem = addItem;
@@ -43,6 +44,13 @@
     }
 
     function sell() {
+      ProfileService.makeSeller()
+          .then(function () {
+            profileVerify();
+          });
+    }
+
+    function profileVerify() {
       var profile = UserService.getProfile();
       if (profile.seller) {
         ModalService.show('profile-verify')
@@ -51,8 +59,6 @@
                 addItem();
               }
             });
-      } else {
-        ModalService.show('apply-for-store');
       }
     }
   }

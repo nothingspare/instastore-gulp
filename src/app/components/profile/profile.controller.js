@@ -1,249 +1,242 @@
 'use strict';
 
 angular.module('instastore')
-    .controller('ProfileIndex', ['$scope', 'UserService', 'rest', '$state',
-      '$rootScope', 'uiGmapGoogleMapApi', 'API_URL', '$http', '$filter', '$mdDialog', 'messageService', 'VerifyService',
-      function ($scope, UserService, rest, $state, $rootScope,
-                uiGmapGoogleMapApi, API_URL, $http, $filter, $mdDialog, messageService, VerifyService) {
+    .controller('ProfileIndex',
+        ['$scope', 'UserService', 'rest', '$state', '$rootScope', 'uiGmapGoogleMapApi',
+          'API_URL', '$http', '$filter', '$mdDialog', 'messageService', 'VerifyService',
+          'ProfileService',
+          function ($scope, UserService, rest, $state, $rootScope, uiGmapGoogleMapApi,
+                    API_URL, $http, $filter, $mdDialog, messageService, VerifyService,
+                    ProfileService) {
 
-        uiGmapGoogleMapApi
-            .then(function () {
-              $scope.renderMap = true;
-            });
+            uiGmapGoogleMapApi
+                .then(function () {
+                  $scope.renderMap = true;
+                });
 
-        $scope.profile = UserService.getProfile();
+            $scope.profile = UserService.getProfile();
 
-        //for form
-        $scope.p = {};
+            //for form
+            $scope.p = {};
 
-        var orderBy = $filter('orderBy');
+            var orderBy = $filter('orderBy');
 
-        $scope.logout = function () {
-          UserService.logout();
-          $mdDialog.hide();
-          $state.go('login');
-        };
+            $scope.logout = function () {
+              UserService.logout();
+              $mdDialog.hide();
+              $state.go('login');
+            };
 
-        $scope.treeConfig = {
-          '1': {
-            code: 'name',
-            name: 'Name',
-            toggleThis: false,
-            icon: 'person',
-            subs: [
-              {name: 'FistName LastName'}
-            ],
-            collapsed: true
-          },
-          '2': {
-            code: 'phone',
-            name: 'PHONE NUMBER',
-            toggleThis: true,
-            icon: 'phone',
-            subs: [
-              {name: 'Verify phone number'}
-            ],
-            collapsed: true
-          },
-          '3': {
-            code: 'address',
-            name: 'ADDRESS',
-            toggleThis: true,
-            icon: 'location_city',
-            subs: [
-              {name: 'Verify postal address'}
-            ],
-            collapsed: true
-          },
-          '4': {
-            code: 'crop',
-            name: 'UPDATE STORE PHOTO',
-            toggleThis: true,
-            icon: 'crop',
-            subs: [{name: 'Upload and Crop'}],
-            collapsed: true
-          }
-        };
-
-        if (!$scope.profile.seller) {
-          delete($scope.treeConfig.card);
-          $scope.treeConfig['4'].name = 'UPDATE PROFILE PHOTO';
-          $scope.treeConfig['5'] = {
-            code: 'desc',
-            name: 'ABOUT YOU',
-            toggleThis: true,
-            icon: 'description',
-            subs: [{name: 'Upload and Crop'}],
-            collapsed: true
-          };
-          $scope.treeConfig['6'] = {
-            code: 'own_store',
-            name: 'APPLY FOR A STORE',
-            toggleThis: true,
-            icon: 'local_mall',
-            subs: [{name: 'APPLY FOR A STORE'}],
-            collapsed: true
-          };
-        }
-
-        $scope.canToggle = function (code) {
-          switch (code) {
-            case 'name':
-              return true;
-            case 'phone':
-              return true;
-            case 'address':
-              return true;
-            case 'crop':
-              return true;
-            case 'desc':
-              return true;
-            case 'own_store':
-              return true;
-            default:
-              return false;
-          }
-        };
-
-        $scope.closeDialog = function () {
-          $mdDialog.hide();
-        };
-
-        $scope.removePhone = function () {
-          rest.path = 'v1/link/remove-phone';
-          rest.deleteModel().success(function () {
-                delete($scope.profile.phone);
-                delete($scope.profile.phone_code);
-                delete($scope.profile.phone_valid_until);
-                delete($scope.profile.phone_validated_at);
-                UserService.setProfile($scope.profile);
+            $scope.treeConfig = {
+              '1': {
+                code: 'name',
+                name: 'Name',
+                toggleThis: false,
+                icon: 'person',
+                subs: [
+                  {name: 'FistName LastName'}
+                ],
+                collapsed: true
+              },
+              '2': {
+                code: 'phone',
+                name: 'PHONE NUMBER',
+                toggleThis: true,
+                icon: 'phone',
+                subs: [
+                  {name: 'Verify phone number'}
+                ],
+                collapsed: true
+              },
+              '3': {
+                code: 'address',
+                name: 'ADDRESS',
+                toggleThis: true,
+                icon: 'location_city',
+                subs: [
+                  {name: 'Verify postal address'}
+                ],
+                collapsed: true
+              },
+              '4': {
+                code: 'crop',
+                name: 'UPDATE STORE PHOTO',
+                toggleThis: true,
+                icon: 'crop',
+                subs: [{name: 'Upload and Crop'}],
+                collapsed: true
               }
-          ).error(messageService.profile);
-        };
+            };
 
-        $scope.fullName = $scope.profile.first_name + ' ' + $scope.profile.last_name;
+            if (!$scope.profile.seller) {
+              delete($scope.treeConfig.card);
+              $scope.treeConfig['4'].name = 'UPDATE PROFILE PHOTO';
+              $scope.treeConfig['5'] = {
+                code: 'desc',
+                name: 'ABOUT YOU',
+                toggleThis: true,
+                icon: 'description',
+                subs: [{name: 'Specialities'}],
+                collapsed: true
+              };
+              $scope.treeConfig['6'] = {
+                code: 'own_store',
+                name: 'APPLY FOR A STORE',
+                toggleThis: true,
+                icon: 'local_mall',
+                subs: [{name: 'APPLY FOR A STORE'}],
+                collapsed: true
+              };
+            }
 
-        rest.path = 'v1/my-stores';
-        rest.model($scope.profile.store.id).success(function (store) {
-          $scope.store = store;
-          $rootScope.bgUrl = store.bg_url;
-        }).error(messageService.profile);
+            $scope.canToggle = function (code) {
+              switch (code) {
+                case 'name':
+                  return true;
+                case 'phone':
+                  return true;
+                case 'address':
+                  return true;
+                case 'crop':
+                  return true;
+                case 'desc':
+                  return true;
+                case 'own_store':
+                  return true;
+                default:
+                  return false;
+              }
+            };
 
-        $scope.isFacebookOff = true;
+            $scope.closeDialog = function () {
+              $mdDialog.hide();
+            };
 
-        var facebookUser = UserService.getFacebookProfile();
-        $scope.facebookUid = facebookUser.id;
-        $scope.facebookLink = facebookUser.link;
+            $scope.removePhone = function () {
+              rest.path = 'v1/link/remove-phone';
+              rest.deleteModel().success(function () {
+                    delete($scope.profile.phone);
+                    delete($scope.profile.phone_code);
+                    delete($scope.profile.phone_valid_until);
+                    delete($scope.profile.phone_validated_at);
+                    UserService.setProfile($scope.profile);
+                  }
+              ).error(messageService.profile);
+            };
 
-        $scope.saveUrl = function () {
-          rest.path = 'v1/my-stores';
-          rest.putModel($scope.profile.store).success(function (data) {
-            messageService.simpleByCode('profileStore', 'urlSaved');
-            $scope.profile.store.store_url = data.store_url;
-            UserService.setProfile($scope.profile);
-          }).error(messageService.profile);
-        };
+            $scope.fullName = $scope.profile.first_name + ' ' + $scope.profile.last_name;
 
-        $scope.toggleFacebookProfile = function () {
-          $scope.isFacebookOff = !$scope.isFacebookOff;
-          if ($scope.isFacebookOff) {
-            var user = UserService.getProfile();
-            $scope.profile.first_name = user.first_name;
-            $scope.profile.last_name = user.last_name;
-            $scope.profile.email = user.email;
-          }
-          else {
-            $scope.profile.first_name = facebookUser.first_name;
-            $scope.profile.last_name = facebookUser.last_name;
-            $scope.profile.email = facebookUser.email;
-          }
-        };
+            rest.path = 'v1/my-stores';
+            rest.model($scope.profile.store.id).success(function (store) {
+              $scope.store = store;
+              $rootScope.bgUrl = store.bg_url;
+            }).error(messageService.profile);
 
-        $scope.goBack = function () {
-          if (PreviousState.Name) {
-            if (PreviousState.Name == 'profilestore/') $state.go('grid');
-            else $state.go(PreviousState.Name, PreviousState.Params);
-          }
-          else
-            $state.go('grid');
-        };
+            $scope.isFacebookOff = true;
 
-        $scope.makeMeSeller = function (val) {
-          if (val === 'demo') {
-            $scope.profile.status = 20;
-            rest.path = 'v1/profiles';
-            rest.putModel($scope.profile).success(function (profile) {
-                  messageService.simpleByCode('profile', 'saved');
-                  $scope.profile.seller = true;
-                  UserService.setProfile(profile);
-                  UserService.setIsSeller(true);
-                  $rootScope.store = profile.store;
-                  $rootScope.isSeller = true;
-                  UserService.goToMainStore();
+            var facebookUser = UserService.getFacebookProfile();
+            $scope.facebookUid = facebookUser.id;
+            $scope.facebookLink = facebookUser.link;
 
-                  $scope.treeConfig['5'].collapsed = true;
+            $scope.saveUrl = function () {
+              rest.path = 'v1/my-stores';
+              rest.putModel($scope.profile.store).success(function (data) {
+                messageService.simpleByCode('profileStore', 'urlSaved');
+                $scope.profile.store.store_url = data.store_url;
+                UserService.setProfile($scope.profile);
+              }).error(messageService.profile);
+            };
+
+            $scope.toggleFacebookProfile = function () {
+              $scope.isFacebookOff = !$scope.isFacebookOff;
+              if ($scope.isFacebookOff) {
+                var user = UserService.getProfile();
+                $scope.profile.first_name = user.first_name;
+                $scope.profile.last_name = user.last_name;
+                $scope.profile.email = user.email;
+              }
+              else {
+                $scope.profile.first_name = facebookUser.first_name;
+                $scope.profile.last_name = facebookUser.last_name;
+                $scope.profile.email = facebookUser.email;
+              }
+            };
+
+            $scope.goBack = function () {
+              if (PreviousState.Name) {
+                if (PreviousState.Name == 'profilestore/') $state.go('grid');
+                else $state.go(PreviousState.Name, PreviousState.Params);
+              }
+              else
+                $state.go('grid');
+            };
+
+            $scope.makeMeSeller = function (val) {
+              if (val === 'demo') {
+                ProfileService.makeSeller()
+                    .then(function () {
+                      $scope.treeConfig['5'].collapsed = true;
+                    });
+              }
+            };
+
+            $scope.verifyAddress = function () {
+              rest.path = 'v1/link/verify-address';
+              rest.postModel({
+                address: $scope.profile.address,
+                city: $scope.profile.city,
+                state: $scope.profile.state,
+                zipcode: $scope.profile.zipcode,
+                apartment: $scope.profile.apartment
+              }).success(function (data) {
+                if (data.AddressValidateResponse.Address) {
+                  //collapsing address section in profile information
+                  $scope.treeConfig['3'].collapsed = true;
+
+                  messageService.simpleByCode('profile', 'addressSuccess');
+                  $scope.profile.apartment = data.AddressValidateResponse.Address.Address1;
+                  $scope.profile.address = data.AddressValidateResponse.Address.Address2;
+                  $scope.profile.state = data.AddressValidateResponse.Address.State;
+                  $scope.profile.city = data.AddressValidateResponse.Address.City;
+                  $scope.profile.zipcode = data.AddressValidateResponse.Address.Zip5;
+                  $scope.profile.address_verified_at = Math.floor(Date.now() / 1000);
+                  UserService.setProfile($scope.profile);
                 }
-            ).error(messageService.profile);
-          }
-        };
+                else {
+                  messageService.simpleByCode('profile', 'addressError');
+                }
+              }).error(messageService.profile);
+            };
 
-        $scope.verifyAddress = function () {
-          rest.path = 'v1/link/verify-address';
-          rest.postModel({
-            address: $scope.profile.address,
-            city: $scope.profile.city,
-            state: $scope.profile.state,
-            zipcode: $scope.profile.zipcode,
-            apartment: $scope.profile.apartment
-          }).success(function (data) {
-            if (data.AddressValidateResponse.Address) {
-              //collapsing address section in profile information
-              $scope.treeConfig['3'].collapsed = true;
+            $scope.removeAddress = function () {
+              rest.path = 'v1/profiles';
+              $scope.profile.address_verified_at = null;
+              $scope.profile.address = '';
+              $scope.profile.city = '';
+              $scope.profile.state = '';
+              $scope.profile.zipcode = '';
+              rest.putModel($scope.profile).success(function (profile) {
+                    messageService.simpleByCode('profile', 'saved');
+                    UserService.setProfile($scope.profile);
+                  }
+              ).error(messageService.profile);
+            };
 
-              messageService.simpleByCode('profile', 'addressSuccess');
-              $scope.profile.apartment = data.AddressValidateResponse.Address.Address1;
-              $scope.profile.address = data.AddressValidateResponse.Address.Address2;
-              $scope.profile.state = data.AddressValidateResponse.Address.State;
-              $scope.profile.city = data.AddressValidateResponse.Address.City;
-              $scope.profile.zipcode = data.AddressValidateResponse.Address.Zip5;
-              $scope.profile.address_verified_at = Math.floor(Date.now() / 1000);
-              UserService.setProfile($scope.profile);
-            }
-            else {
-              messageService.simpleByCode('profile', 'addressError');
-            }
-          }).error(messageService.profile);
-        };
+            $scope.textToVerify = function () {
+              VerifyService.phone($scope.profile.phone);
+            };
 
-        $scope.removeAddress = function () {
-          rest.path = 'v1/profiles';
-          $scope.profile.address_verified_at = null;
-          $scope.profile.address = '';
-          $scope.profile.city = '';
-          $scope.profile.state = '';
-          $scope.profile.zipcode = '';
-          rest.putModel($scope.profile).success(function (profile) {
-                messageService.simpleByCode('profile', 'saved');
-                UserService.setProfile($scope.profile);
-              }
-          ).error(messageService.profile);
-        };
+            $scope.sendCode = function (code) {
+              VerifyService.sendCode(code)
+                  .success(function (res) {
+                    $scope.profile.phone = res.phone;
+                    $scope.profile.phone_validated_at = res.phone_validated_at;
+                    UserService.setProfile($scope.profile);
+                    $scope.treeConfig['2'].collapsed = true;
+                  });
+            };
 
-        $scope.textToVerify = function () {
-          VerifyService.phone($scope.profile.phone);
-        };
-
-        $scope.sendCode = function (code) {
-          VerifyService.sendCode(code)
-              .success(function (res) {
-                $scope.profile.phone = res.phone;
-                $scope.profile.phone_validated_at = res.phone_validated_at;
-                UserService.setProfile($scope.profile);
-                $scope.treeConfig['2'].collapsed = true;
-              });
-        };
-
-      }])
+          }])
     .controller('ProfileStoreIndex', ['$scope', 'UserService', 'rest', 'uiGmapGoogleMapApi', '$auth',
       'CLIENT_URL', '$state', 'stripe', '$http', 'API_URL', '$mdDialog', '$location', '$stateParams', '$rootScope',
       '$mdMedia', 'messageService', '$cookies', 'ModalService',
@@ -424,7 +417,6 @@ angular.module('instastore')
               }
           ).error(messageService.profile);
 
-          // if (validateAdress()) {
           if ($scope.profile.store.place) {
             if ($scope.profile.store.place.types) {
               $scope.profile.store.store_long = $scope.profile.store.place.geometry.location.lat();
@@ -449,7 +441,6 @@ angular.module('instastore')
 
             UserService.setProfile($scope.profile);
           }).error(messageService.alert);
-          // }
         };
 
         $scope.linkInstagram = function () {
