@@ -229,7 +229,7 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     ngClipProvider.setPath('bower_components/zeroclipboard/dist/ZeroClipboard.swf');
 
     uiGmapGoogleMapApiProvider.configure({
-      v: '3.17',
+      v: '3.20',
       libraries: 'places'
     });
 
@@ -237,8 +237,8 @@ app.config(['$locationProvider', '$urlRouterProvider', '$stateProvider', '$httpP
     plUploadServiceProvider.setConfig('silverLightPath', 'bower_components/plupload-angular-directive/plupload.silverlight.xap');
     plUploadServiceProvider.setConfig('resize', {width: 310, height: 390});
 
-    stripeProvider.setPublishableKey('pk_live_gAjzCf5vWrdKN8ycRSCbQDan');
-    // stripeProvider.setPublishableKey('pk_test_1tDqDLjRoJ6lkeyKoQsQ4ZX0');
+    // stripeProvider.setPublishableKey('pk_live_gAjzCf5vWrdKN8ycRSCbQDan');
+    stripeProvider.setPublishableKey('pk_test_1tDqDLjRoJ6lkeyKoQsQ4ZX0');
 
     $mdThemingProvider.definePalette('amazingPaletteName', {
       '50': 'ffebee',

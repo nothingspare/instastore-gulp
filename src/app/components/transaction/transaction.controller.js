@@ -26,7 +26,9 @@
               return vm.buyer;
             })
             .error(messageService.alert)
-            .then(changeViewCountTransaction);
+            .then(function () {
+              changeViewCountTransaction(vm.buyer);
+            });
       } else if (type == 'seller') {
         TransactionService.seller()
             .success(function (result) {

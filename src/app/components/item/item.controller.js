@@ -322,7 +322,7 @@ angular.module('instastore')
       }])
     .controller('ItemLocation', ['$scope', 'UserService', 'uiGmapGoogleMapApi', function ($scope, UserService, uiGmapGoogleMapApi) {
       uiGmapGoogleMapApi
-          .then(function () {
+          .then(function (maps) {
             $scope.renderMap = true;
             var profile = UserService.getProfile();
             if (profile) {
