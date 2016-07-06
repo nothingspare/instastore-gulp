@@ -472,9 +472,8 @@ angular.module('instastore')
         };
 
         $scope.showStoreLocation = $scope.profile.store.show_store_location > 0;
+        
         $scope.facebookChange = function () {
-          console.log("sadasd1");
-          debugger;
           $scope.item.item_url = $scope.item.title;
           rest.path = 'v1/user-items';
           rest.putModel($scope.item).success(function (item) {

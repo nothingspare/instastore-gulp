@@ -102,10 +102,10 @@ angular.module('instastore')
       }])
     .controller('ItemAdd', ['$scope', 'rest', 'ITEM_STATUS', 'API_URL',
       'UserService', 'cfpLoadingBar', '$rootScope', 'PLUPLOAD_RESIZE_CONFIG', '$mdDialog',
-      'itemsAmount', 'messageService', 'SocialService',
+      'itemsAmount', 'messageService', 'SocialService', 'RouterTracker',
       function ($scope, rest, ITEM_STATUS, API_URL,
                 UserService, cfpLoadingBar, $rootScope, PLUPLOAD_RESIZE_CONFIG, $mdDialog,
-                itemsAmount, messageService, SocialService) {
+                itemsAmount, messageService, SocialService, RouterTracker) {
         //TODO: remove hardcoded data
         $scope.item = {category_id: 9, brand_id: 1, description: ''};
         $scope.item.images = [];
@@ -116,10 +116,12 @@ angular.module('instastore')
         $scope.pluploadConfig = {};
         $scope.pluploadConfig.resize = $scope.pluploadConfig.resize = PLUPLOAD_RESIZE_CONFIG;
         $scope.pluploadConfig.uploadPath = API_URL + 'v1/uploader/item-images?access-token=' + UserService.getToken();
-        $scope.socialPostingText  = '';
+        $scope.socialPostingText = '';
 
         $scope.save = function () {
-          if (!$scope.item.title) $scope.item.title = Math.random().toString(36).slice(2);
+          if (!$scope.item.title) {
+            $scope.item.title = Math.random().toString(36).slice(2);
+          }
           $scope.item.item_url = $scope.item.title;
           $scope.item.status = ITEM_STATUS.active;
           if ($scope.item.id) {
@@ -175,17 +177,17 @@ angular.module('instastore')
 
         $scope.getSocialPostingText = function () {
           var sharing = [];
-          if($scope.profile.store.facebook_sharing_enabled){
+          if ($scope.profile.store.facebook_sharing_enabled) {
             sharing.push('Facebook')
           }
-          if($scope.profile.store.pinterest_sharing_enabled){
+          if ($scope.profile.store.pinterest_sharing_enabled) {
             sharing.push('Pinterest')
           }
-          if($scope.profile.store.instagram_sharing_enabled){
+          if ($scope.profile.store.instagram_sharing_enabled) {
             sharing.push('Instagram')
           }
 
-          if(sharing.length){
+          if (sharing.length) {
             $scope.socialPostingText = 'Auto social posting on: ' + sharing.join(', ').replace(/,([^,]*)$/, ' and$1');
           }
         };

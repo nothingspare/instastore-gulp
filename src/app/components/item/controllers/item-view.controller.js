@@ -11,7 +11,7 @@
     'CLIENT_URL', 'PLUPLOAD_RESIZE_CONFIG', 'ITEMSELLTRANSACTION_STATUS',
     '$filter', '$http', '$window', 'uiGmapGoogleMapApi', '$auth', '$mdDialog', '$mdMedia',
     'itemsAmount', 'InAppService', 'messageService', 'urlsThere', 'VerifyService',
-    '$cookies', 'ModalService'
+    '$cookies', 'ModalService', 'RouterTracker'
   ];
 
   /* @ngInject */
@@ -20,7 +20,7 @@
                     CLIENT_URL, PLUPLOAD_RESIZE_CONFIG, ITEMSELLTRANSACTION_STATUS,
                     $filter, $http, $window, uiGmapGoogleMapApi, $auth, $mdDialog, $mdMedia,
                     itemsAmount, InAppService, messageService, urlsThere, VerifyService,
-                    $cookies, ModalService) {
+                    $cookies, ModalService, RouterTracker) {
     var vm = this;
 
     $scope.VerifyService = VerifyService;
@@ -107,7 +107,7 @@
     }
 
     function checkCity() {
-      if ($scope.item.user.store.address) {
+      if ($scope.item && $scope.item.user.store.address) {
         var regexp = /(^\s)?(\w\s?)+\s?,/g;
         var city = $scope.item.user.store.address.match(regexp)[2].replace(',', '');
 
@@ -235,6 +235,8 @@
       rest.putModel($scope.item).success(function (item) {
         $scope.item = item;
         messageService.simpleByCode('item', 'saved');
+        RouterTracker.goToLastRoute();
+
         if ($stateParams.tab === '4') {
           $state.transitionTo('itemview', {
             storeurl: $stateParams.storeurl,
