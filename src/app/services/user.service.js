@@ -22,45 +22,41 @@
       initBgFilter: initBgFilter,
       initIsSeller: initIsSeller,
 
-      saveProfile: saveProfile,
-
-      getToken: getToken,
-
       login: login,
       logout: logout,
 
+      saveProfile: saveProfile,
+
       isGuest: isGuest,
       isYourStore: isYourStore,
-
-      getIsManageStore: getIsManageStore,
-      toggleIsManageStore: toggleIsManageStore,
-
-      checkStoreUrl: checkStoreUrl,
+      isSeller: isSeller,
 
       setAvatar: setAvatar,
       setProfile: setProfile,
       setBg: setBg,
       setIsSeller: setIsSeller,
-      isSeller: isSeller,
       setFacebookProfile: setFacebookProfile,
 
+      getToken: getToken,
       getProfile: getProfile,
+      getStore: getStore,
+      getStoreViewByUrl: getStoreViewByUrl,
       getUserRole: getUserRole,
+      getStoreUrl: getStoreUrl,
+      getStoreView: getStoreView,
       getUserFullName: getUserFullName,
       getProfileAuth: getProfileAuth,
-      getInvitedStatus: getInvitedStatus,
       getMainStoreUrl: getMainStoreUrl,
-      goToStoreProfile: goToStoreProfile,
       getFacebookProfile: getFacebookProfile,
 
-      routeStoreurlCheck: routeStoreurlCheck,
       goToStream: goToStream,
+      goToStoreProfile: goToStoreProfile,
       goToMainStore: goToMainStore,
       goToInstaimport: goToInstaimport,
+      goToLastRouteFromProfile: goToLastRouteFromProfile,
 
-      //For redirects from socials
-      saveLastRouteToProfile: saveLastRouteToProfile,
-      goToLastRouteFromProfile: goToLastRouteFromProfile
+      routeStoreurlCheck: routeStoreurlCheck,
+      saveLastRouteToProfile: saveLastRouteToProfile
     };
     return service;
 
@@ -91,20 +87,6 @@
     function isGuest() {
       var token = $cookies._auth;
       return !token;
-    }
-
-    function getIsManageStore() {
-      return isManageStore;
-    }
-
-    function toggleIsManageStore() {
-      isManageStore = !isManageStore;
-      if (isManageStore) {
-        goToMainStore();
-      }
-      else {
-        goToStream();
-      }
     }
 
     function goToStream() {
@@ -177,7 +159,7 @@
       return state.includes('store') || state.includes('grid') || state.includes('itemview') || state.includes('location') || state.includes('instaimport') ? true : false;
     }
 
-    function checkStoreUrl() {
+    function getStoreUrl() {
       var stateParams = $injector.get('$stateParams');
       if (!stateParams.storeurl) {
         goToMainStore();
@@ -186,9 +168,13 @@
         return stateParams.storeurl;
     }
 
+    function getStoreView() {
+      return $rootScope.store;
+    }
+
     function isYourStore() {
       var profile = getProfile();
-      var storeUrl = checkStoreUrl();
+      var storeUrl = getStoreUrl();
       if (storeUrl && profile.store) {
         return profile.store.store_url === storeUrl;
       }
@@ -307,16 +293,26 @@
       return service.currentUser;
     }
 
+    function getStore() {
+      var profile = getProfile();
+      return profile.store;
+    }
+
+    function getStoreViewByUrl(storeUrl) {
+      var rest = $injector.get('rest');
+      rest.path = isGuest() ? 'v1/stores' : 'v1/my-stores';
+      return rest.models({store_url: storeUrl})
+          .then(function (res) {
+            return res.data[0];
+          });
+    }
+
     function getProfileAuth() {
       var rest = $injector.get('rest');
       rest.path = 'v1/profiles/' + $cookies.profileId;
       return rest.models({})
           .error(function (e) {
           });
-    }
-
-    function getInvitedStatus() {
-      return !!isInvited;
     }
 
     function setFacebookProfile(profile) {

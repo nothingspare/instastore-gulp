@@ -324,16 +324,16 @@ angular.module('instastore')
       uiGmapGoogleMapApi
           .then(function (maps) {
             $scope.renderMap = true;
-            var profile = UserService.getProfile();
-            if (profile) {
+            var store = UserService.getStoreView();
+            if (store) {
               $scope.map = {
-                center: {latitude: profile.store.store_long, longitude: profile.store.store_lat},
+                center: {latitude: store.store_long, longitude: store.store_lat},
                 zoom: 14
               };
               $scope.staticMarker = {id: 'store-marker1'};
               $scope.staticMarker.coords = {
-                latitude: profile.store.store_long,
-                longitude: profile.store.store_lat
+                latitude: store.store_long,
+                longitude: store.store_lat
               };
             }
             return uiGmapGoogleMapApi;
